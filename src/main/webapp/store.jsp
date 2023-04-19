@@ -28,8 +28,8 @@
 					}
 
 					#map {
-						width: 300px;
-						height: 300px;
+						width: 500px;
+						height: 400px;
 					}
 					.row-contents>div{
 						float:left;
