@@ -9,9 +9,16 @@
 <title>Search</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+    .container_noboot{
+        margin-left:0;
+        margin-right:0;
+        max-width: 1920px;
+    }
+</style>
 </head>
 <body>
-    <div class="container">
+    <div class="container_noboot">
         <c:choose>
             <c:when test="${fn:length(list) > 0}">
                 <c:forEach var="i" items="${list}">
@@ -25,8 +32,8 @@
                 </c:forEach>
             </c:when>
             <c:otherwise>
-                <div class="row align-items-center">
-                    <div class="col-12 text-center">검색할 대상이 없습니다.</div>
+                <div style="text-align: center; height:500px; line-height:500px;">
+                    검색할 대상이 없습니다.
                 </div>
             </c:otherwise>
         </c:choose>
