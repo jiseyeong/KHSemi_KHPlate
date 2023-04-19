@@ -3,7 +3,6 @@
 		<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 			<!DOCTYPE html>
 			<html>
-
 			<head>
 				<meta charset="UTF-8">
 				<title>Insert title here</title>
