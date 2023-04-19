@@ -12,6 +12,7 @@
 				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 				<script type="text/javascript"
 					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=714989160c4bbb672f636a880c6c8328"></script>
+				<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 				<style>
 					.container_noboot {
 						margin-left: 0;
@@ -31,9 +32,13 @@
 						width: 500px;
 						height: 400px;
 					}
-					.row-contents>div{
-						float:left;
-						margin-right:30px;
+
+					.row-contents{
+						overflow: hidden;
+					}
+					.row-contents>div {
+						float: left;
+						margin-right: 30px;
 					}
 				</style>
 			</head>
@@ -84,10 +89,10 @@
 								<div class="contents">
 									<table border="1">
 										<tr>
-											<th style="width=40%;">메뉴 이름</th>
-											<th style="width=20%;">메뉴 가격</th>
-											<th style="width=20%;">국가 카테고리</th>
-											<th style="width=20%;">메뉴 카테고리</th>
+											<th style="width:40%;">메뉴 이름</th>
+											<th style="width:20%;">메뉴 가격</th>
+											<th style="width:20%;">국가 카테고리</th>
+											<th style="width:20%;">메뉴 카테고리</th>
 										</tr>
 										<c:forEach var="i" items="${menuList}">
 											<tr>
@@ -97,13 +102,37 @@
 									</table>
 								</div>
 							</div>
-							<div class="review">
+						</div>
+						<div class="review">
+							<div class="title">한줄 리뷰 추가</div>
+							<form action="/create.simpleReview" method="get">
+								<div class="contents" style="overflow:hidden">
+									<div style="float:left; width:80%;">
+										<textarea id="editor" name="content"></textarea>
+									</div>
+									<div style="float:left; width:20%;">
+										<button class="btn btn-primary">등록</button>
+									</div>
+								</div>
+							</form>
+							<div class="title">한줄 리뷰 목록</div>
+							<div class="contents">
 
 							</div>
 						</div>
 					</div>
 				</div>
 				<script>
+					//에디터 스크립트
+					ClassicEditor
+						.create(document.querySelector("#editor"))
+						.then(function (editor) {
+							const toolbarElement = editor.ui.view.toolbar.element;
+							toolbarElement.style.display = 'none';
+						})
+						.catch(error => { console.error(error) });
+
+					//지도 스크립트
 					let mapContainer = document.getElementById("map");
 					let options = {
 						//현재는 학원 좌표인데, 가게 중심 좌표 구해서 해봐야 할 것임.
