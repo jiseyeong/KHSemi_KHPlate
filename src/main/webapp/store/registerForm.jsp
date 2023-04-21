@@ -39,6 +39,10 @@
                     height: 400px;
                 }
 
+                .mapInfo{
+                    width:500px;
+                }
+
                 .inputHeader{
                     float: left;
                     width: 15%;
@@ -56,7 +60,7 @@
 
                 </div>
                 <div class="body">
-                    <form id="addForm" action="" method="post" enctype="multipart/form-data">
+                    <form id="addForm" action="/register.store" method="post" enctype="multipart/form-data">
                         <div class="header">
                             이미지 등록
                             <button type="button" id="btn_image_add" class="btn_naked">+</button>
@@ -72,9 +76,12 @@
                         <div class="header">지도 마커 설정</div>
                         <div class="content">
                             <div id="map"></div>
-                            <input type="text" name="mapLat" style="display:none;">
-                            <input type="text" name="mapLng" style="display:none;">
-                            <input type="text" name="mapDistance" style="display:none;">
+                            <div class="mapInfo" style="overflow:hidden;">
+                                <input type="text" name="mapLat" style="display:none;" readonly>
+                                <input type="text" name="mapLng" style="display:none;" readonly>
+                                <div class="inputHeader">거리(M)</div>
+                                <input type="text" name="mapDistance" class="inputs" readonly>
+                            </div>
                         </div>
                         <div class="header">가게 상세 설정</div>
                         <div class="contente">
