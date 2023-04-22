@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>loginbox</title>
+<title>로그인박스</title>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
 <body>
@@ -25,32 +25,35 @@
 					</tr>
 					<tr>
 						<td align="center">ID:</td>
-						<td><input type="text" name="id" placeholder="Input your id">
+						<td><input type="text" name="id" placeholder="Input id here">
 						</td>
 					</tr>
 					<tr>
 						<td align="center">PW:</td>
-						<td><input type="password" name="pw"
-							placeholder="Input your pw"></td>
+						<td><input type="password" name="pw" placeholder="Input password here"> 
+						<input type="checkbox">Remember this ID></td>
 					</tr>
 					<tr>
-
 						<td colspan="2" align="center">
-						<input type="submit" id="Login" value="Login"> 
-							<input type="button" id="toJoin" value="Sign Up"><br>
-							 <input type="checkbox">Remember this ID
-							</td>
+						<input type="submit" name="Login" id="Login" value="Login"><br>
+					</tr>
+					<tr>
+						<td align="center">
+						<input type="button" name="NaverLI" id="NaverLI" value="Naver Login"> 
+						<input type="button" name="KakaoLI" id="KakaoLI" value="Kakao Login"></td>
 					</tr>
 				</table>
 			</form>
 			<script>
-				$("#toJoin").on("click", function() {
-					location.href = "/member/joinform.jsp"
-				});
+			$("#NaverLI").on("click", function() {
+				location.href = "/login.naverlogin.jsp"
+			});
+			
+			$("#KakaoLI").on("click", function() {
+				location.href = "/login.kakaologin.html"
+			});
 
-				$("#Login").on("click", function() {
-					location.href = "/login.members"
-				});
+			
 			</script>
 		</c:when>
 	</c:choose>
