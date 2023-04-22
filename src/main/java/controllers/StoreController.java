@@ -36,24 +36,26 @@ public class StoreController extends HttpServlet {
 					realPathFile.mkdir();
 				}
 				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
-				
-				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
-				ArrayList<String> oriNames = new ArrayList<>();
-				ArrayList<String> sysNames = new ArrayList<>();
-				ArrayList<Integer> photoIDs = new ArrayList<>();
-				for(int i = 0; i < imgLength; i++) {
-					oriNames.add(multi.getOriginalFileName("image"+i));
-					sysNames.add(multi.getFilesystemName("image"+i));
-					//imgsDAO~ (imgsDTO()) 추가해줘야 함
-				}
 				double mapLat = Double.parseDouble(multi.getParameter("mapLat"));
 				double mapLng = Double.parseDouble(multi.getParameter("mapLng"));
 				int mapDistance = Integer.parseInt(multi.getParameter("mapDistance"));
 				String storeName = multi.getParameter("storeName");
 				String storeAddress = multi.getParameter("storeAddress");
 				String storeIntroduction = multi.getParameter("storeIntroduction");
+				String storeCategory = multi.getParameter("storeCategory");
 				
-				int result = StoreDAO.getInstance().insert(new StoreDTO(0, mapDistance, storeName, mapLat, mapLng, storeAddress, 0, storeIntroduction));
+				int result = StoreDAO.getInstance().insert(new StoreDTO(0, mapDistance, storeName, mapLat, mapLng, storeAddress, 0, storeIntroduction, storeCategory));
+				int currval = StoreDAO.getInstance().getCurrval();
+				
+				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
+				ArrayList<String> oriNames = new ArrayList<>();
+				ArrayList<String> sysNames = new ArrayList<>();
+				for(int i = 0; i < imgLength; i++) {
+					oriNames.add(multi.getOriginalFileName("image"+i));
+					sysNames.add(multi.getFilesystemName("image"+i));
+					//imgsDAO~ (imgsDTO()) 추가해줘야 함
+				}
+				
 				response.sendRedirect(""); //어디로 보내야할까?
 			}
 		}catch(Exception e) {

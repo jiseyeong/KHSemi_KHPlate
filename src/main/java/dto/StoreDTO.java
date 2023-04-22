@@ -9,8 +9,9 @@ public class StoreDTO {
 	private String address;
 	private double avgScore;
 	private String introduction;
+	private String category;
 	public StoreDTO(int storeID, int distance, String name, double lat, double lng, String address, double avgScore,
-			String introduction) {
+			String introduction, String category) {
 		super();
 		this.storeID = storeID;
 		this.distance = distance;
@@ -20,6 +21,7 @@ public class StoreDTO {
 		this.address = address;
 		this.avgScore = avgScore;
 		this.introduction = introduction;
+		this.category = category;
 	}
 	public int getStoreID() {
 		return storeID;
@@ -69,4 +71,11 @@ public class StoreDTO {
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 }

@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -25,8 +26,8 @@ public class StoreDAO {
 	}
 	
 	public int insert(StoreDTO dto) throws Exception {
-		String sql = "insert into store(StoreID, distance, name, lat, lng, address, avgScore, introduction) "
-				+ "values(store_seq.nextval, ?, ?, ?, ?, ?, 0, ?)";
+		String sql = "insert into store(StoreID, distance, name, lat, lng, address, avgScore, introduction, category) "
+				+ "values(store_seq.nextval, ?, ?, ?, ?, ?, 0, ?, ?)";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, dto.getDistance());
@@ -35,9 +36,20 @@ public class StoreDAO {
 			pstat.setDouble(4, dto.getLng());
 			pstat.setString(5, dto.getAddress());
 			pstat.setString(6, dto.getIntroduction());
+			pstat.setString(7, dto.getCategory());
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
+		}
+	}
+	
+	public int getCurrval() throws Exception{
+		String sql = "select store_seq.currval from dual";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			rs.next();
+			return rs.getInt(1);
 		}
 	}
 }

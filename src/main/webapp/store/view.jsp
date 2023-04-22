@@ -32,12 +32,26 @@
 						height: 400px;
 					}
 
+					.row-img{
+						text-align: center;
+					}
 					.row-contents{
 						overflow: hidden;
 					}
 					.row-contents>div {
 						float: left;
 						margin-right: 30px;
+					}
+					.inputHeader{
+                        float: left;
+                        width: 20%;
+                    }
+                    .inputs{
+                        float: left;
+                        width: 80%;
+                    }
+					.detail{
+						overflow: hidden;
 					}
 				</style>
 			</head>
@@ -49,16 +63,13 @@
 					</div>
 					<div class="body">
 						<div class="row-img">
-							<div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+							<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<img src="..." class="d-block w-100" alt="...">
+										<img src="아비꼬1.jpg" class="d-block" alt="..." style="width:500px;">
 									</div>
 									<div class="carousel-item">
-										<img src="..." class="d-block w-100" alt="...">
-									</div>
-									<div class="carousel-item">
-										<img src="..." class="d-block w-100" alt="...">
+										<img src="아비꼬2.jpg" class="d-block" alt="..." style="width:500px;">
 									</div>
 								</div>
 								<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
@@ -76,14 +87,12 @@
 						<div class="row-contents">
 							<div id="map"></div>
 							<div class="detail">
-								<div class="title">가게 이름</div>
-								<div class="contents">${dto.storeName}</div>
-								<div class="title">가게 주소</div>
-								<div class="contents">${dto.storeAddress}</div>
-								<div class="title">평균평점</div>
-								<div class="contents">${dto.storeAvgScore}</div>
-								<div class="title">가게 소개</div>
-								<div class="contetns">${dto.storeBody}</div>
+								<div class="inputHeader">가게 이름</div>
+								<input class="inputs" name="name" value="${dto.name}" readonly>
+								<div class="inputHeader">가게 주소</div>
+								<input class="inputs" name="address" value="${dto.address}" readonly>
+								<div class="inputHeader">평균평점</div>
+								<input class="inputs" name="avgScore" value="${dto.avgScore}" readonly>
 								<div class="title">메뉴</div>
 								<div class="contents">
 									<table border="1">
@@ -102,12 +111,18 @@
 								</div>
 							</div>
 						</div>
+						<div class="storeIntroduction">
+							<div class="title">가게 소개</div>
+							<div style="width:80%;">
+								<textarea id="intro_editor" name="introduction">${dto.introduction}</textarea>
+							</div>
+						</div>
 						<div class="review">
 							<div class="title">한줄 리뷰 추가</div>
 							<form action="/create.simpleReview" method="get">
 								<div class="contents" style="overflow:hidden">
 									<div style="float:left; width:80%;">
-										<textarea id="editor" name="content"></textarea>
+										<textarea id="review_editor" name="content"></textarea>
 									</div>
 									<div style="float:left; width:20%;">
 										<button class="btn btn-primary">등록</button>
@@ -122,9 +137,27 @@
 					</div>
 				</div>
 				<script>
+					var myEditor = null;
 					//에디터 스크립트
 					ClassicEditor
-						.create(document.querySelector("#editor"))
+						.create(document.querySelector("#intro_editor"),{
+							toolbar:['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList','insertTable', 'blockQuote', 'undo', 'redo', ]
+						})
+						.then(function (editor){
+							const toolbarElement = editor.ui.view.toolbar.element;
+							myEditor = editor;
+							editor.on('change:isReadOnly', (evt, propertyName, isReadOnly) => {
+                                if (isReadOnly) {
+                                    toolbarElement.style.display = 'none';
+                                } else {
+                                    toolbarElement.style.display = 'flex';
+                                }
+                            });
+                            editor.enableReadOnlyMode('');
+						})
+						.catch(error => { console.error(error) });
+					ClassicEditor
+						.create(document.querySelector("#review_editor"))
 						.then(function (editor) {
 							const toolbarElement = editor.ui.view.toolbar.element;
 							toolbarElement.style.display = 'none';
@@ -133,14 +166,22 @@
 
 					//지도 스크립트
 					let mapContainer = document.getElementById("map");
+					let lat = "<c:out value='${dto.lat}'></c:out>";
+					let lng = "<c:out value='${dto.lng}'></c:out>";
 					let options = {
 						//현재는 학원 좌표인데, 가게 중심 좌표 구해서 해봐야 할 것임.
 						//가게 등록할 때, 마커 등록 시 function(e) -> e.latlan
 						center: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863),
+						//center: new kakao.maps.LatLng(lat, lng),
 						level: 3
 					};
 					let map = new kakao.maps.Map(mapContainer, options);
-
+					
+					marker = new kakao.maps.Marker({
+                        position: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863)
+                    });
+					marker.setMap(map);
+					
 					function getInfo() {
 						// 지도의 현재 중심좌표를 얻어옵니다 
 						var center = map.getCenter();
