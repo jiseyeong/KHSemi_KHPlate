@@ -29,7 +29,7 @@
 
 					#map {
 						width: 500px;
-						height: 400px;
+						height: 500px;
 					}
 
 					.row-img{
@@ -93,6 +93,12 @@
 								<input class="inputs" name="address" value="${dto.address}" readonly>
 								<div class="inputHeader">평균평점</div>
 								<input class="inputs" name="avgScore" value="${dto.avgScore}" readonly>
+								<div class="storeIntroduction">
+									<div class="title">가게 소개</div>
+									<div>
+										<textarea id="intro_editor" name="introduction">${dto.introduction}</textarea>
+									</div>
+								</div>
 								<div class="title">메뉴</div>
 								<div class="contents">
 									<table border="1">
@@ -111,12 +117,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="storeIntroduction">
-							<div class="title">가게 소개</div>
-							<div style="width:80%;">
-								<textarea id="intro_editor" name="introduction">${dto.introduction}</textarea>
-							</div>
-						</div>
+
 						<div class="review">
 							<div class="title">한줄 리뷰 추가</div>
 							<form action="/create.simpleReview" method="get">

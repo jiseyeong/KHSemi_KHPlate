@@ -36,7 +36,7 @@
 
                 #map {
                     width: 500px;
-                    height: 400px;
+                    height: 500px;
                 }
 
                 .mapInfo{
@@ -115,14 +115,12 @@
                                             <option>패스트푸드</option>
                                             <option>기타</option>
                                         </select>
+                                        <div class="header" style="float:left; width:100%;">가게 소개</div>
+                                        <textarea id="editor" name="storeIntroduction"></textarea>
                                     </fieldset>
                                 </div>
                             </div>
                         </div>
-                        <fieldset>
-                            <legend>가게 소개</legend>
-                            <textarea id="editor" name="storeIntroduction"></textarea>
-                        </fieldset>
                         <button class="btn btn-primary" type="submit">완료</button>
                     </form>
                 </div>
