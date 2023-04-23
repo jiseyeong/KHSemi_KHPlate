@@ -22,8 +22,7 @@ public class CommentReviewController extends HttpServlet {
 				int score = Integer.parseInt(request.getParameter("score"));
 				String body = request.getParameter("body");
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
-				int userNo = 0;
-				
+				int userNo = 0;			
 				int result = CommentReviewDAO.getInstance().insert(new CommentReviewDTO(0, body, score, storeID, userNo, null, 0));
 				
 				response.sendRedirect("/view.store?storeID="+storeID);
