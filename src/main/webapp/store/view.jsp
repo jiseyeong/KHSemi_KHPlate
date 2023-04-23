@@ -3,6 +3,7 @@
 		<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 			<!DOCTYPE html>
 			<html>
+
 			<head>
 				<meta charset="UTF-8">
 				<title>Insert title here</title>
@@ -32,31 +33,75 @@
 						height: 500px;
 					}
 
-					.row-img{
+					.row-img {
 						text-align: center;
 					}
-					.row-contents{
+
+					.row-contents {
 						overflow: hidden;
 					}
+
 					.row-contents>div {
 						float: left;
 					}
-					.row-contents>.c1{
-                    	width:500px;
+
+					.row-contents>.c1 {
+						width: 500px;
 					}
-					.row-contents>.c2{
-                    	width:920px;
+
+					.row-contents>.c2 {
+						width: 920px;
 					}
-					.inputHeader{
-                        float: left;
-                        width: 20%;
-                    }
-                    .inputs{
-                        float: left;
-                        width: 80%;
-                    }
-					.detail{
+
+					.inputHeader {
+						float: left;
+						width: 20%;
+					}
+
+					.inputs {
+						float: left;
+						width: 80%;
+					}
+
+					.detail {
 						overflow: hidden;
+					}
+
+					.star-ratings {
+						color: #aaa9a9;
+						position: relative;
+						unicode-bidi: bidi-override;
+						width: max-content;
+						-webkit-text-fill-color: transparent;
+						/* Will override color (regardless of order) */
+						-webkit-text-stroke-width: 1.3px;
+						-webkit-text-stroke-color: #2b2a29;
+					}
+
+					.star-ratings-fill {
+						color: #fff58c;
+						padding: 0;
+						position: absolute;
+						z-index: 1;
+						display: flex;
+						top: 0;
+						left: 0;
+						overflow: hidden;
+						-webkit-text-fill-color: gold;
+					}
+
+					.star-ratings-base {
+						z-index: 0;
+						padding: 0;
+					}
+
+					#star a {
+						text-decoration: none;
+						color: gray;
+					}
+
+					#star a.on {
+						color: #fff58c;
 					}
 				</style>
 			</head>
@@ -109,7 +154,18 @@
 								<div class="inputHeader">가게 주소</div>
 								<input type="text" class="inputs" name="address" value="${dto.address}" readonly>
 								<div class="inputHeader">평균평점</div>
-								<input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" readonly>
+								<div class="star-ratings" style="float:left; width:80%;">
+									<div class="star-ratings-fill space-x-2 text-lg"
+										style="width: ${dto.ratingToPercent()}%;">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									</div>
+									<div class="star-ratings-base space-x-2 text-lg">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										${dto.avgScore};
+									</div>
+								</div>
+								<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" readonly> -->
+
 								<div class="storeIntroduction">
 									<div class="title">가게 소개</div>
 									<div>
@@ -137,6 +193,14 @@
 							<div class="title">한줄 리뷰 추가</div>
 							<form action="/create.simpleReview" method="get">
 								<div class="contents" style="overflow:hidden">
+									<div id="star">
+										<input type="text" name="rating" style="display:none;">
+										<a href="#" value="1">★</a>
+										<a href="#" value="2">★</a>
+										<a href="#" value="3">★</a>
+										<a href="#" value="4">★</a>
+										<a href="#" value="5">★</a>
+									</div>
 									<div style="float:left; width:80%;">
 										<textarea id="review_editor" name="content"></textarea>
 									</div>
@@ -157,23 +221,29 @@
 					let category = "<c:out value='${dto.category}'></c:out>"
 					$("select[name=category]").val(category);
 
+					$("#star a").click(function () {
+						$(this).parent().children("a").removeClass("on");
+						$(this).addClass("on").prevAll("a").addClass("on");
+						$("input[name=rating]").val($(this).attr("value"));
+					});
+
 					var myEditor = null;
 					//에디터 스크립트
 					ClassicEditor
-						.create(document.querySelector("#intro_editor"),{
-							toolbar:['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList','insertTable', 'blockQuote', 'undo', 'redo', ]
+						.create(document.querySelector("#intro_editor"), {
+							toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
 						})
-						.then(function (editor){
+						.then(function (editor) {
 							const toolbarElement = editor.ui.view.toolbar.element;
 							myEditor = editor;
 							editor.on('change:isReadOnly', (evt, propertyName, isReadOnly) => {
-                                if (isReadOnly) {
-                                    toolbarElement.style.display = 'none';
-                                } else {
-                                    toolbarElement.style.display = 'flex';
-                                }
-                            });
-                            editor.enableReadOnlyMode('');
+								if (isReadOnly) {
+									toolbarElement.style.display = 'none';
+								} else {
+									toolbarElement.style.display = 'flex';
+								}
+							});
+							editor.enableReadOnlyMode('');
 						})
 						.catch(error => { console.error(error) });
 					ClassicEditor
@@ -196,11 +266,11 @@
 						level: 3
 					};
 					let map = new kakao.maps.Map(mapContainer, options);
-					
+
 					marker = new kakao.maps.Marker({
-                        //position: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863)
+						//position: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863)
 						position: new kakao.maps.LatLng(lat, lng)
-                    });
+					});
 					marker.setMap(map);
 				</script>
 			</body>

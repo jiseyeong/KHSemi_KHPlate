@@ -78,4 +78,8 @@ public class StoreDTO {
 		this.category = category;
 	}
 	
+	public double ratingToPercent() {
+		double score = this.avgScore * 20;
+		return score;
+	}
 }
