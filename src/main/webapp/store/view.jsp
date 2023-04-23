@@ -116,10 +116,10 @@
 							<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<img src="아비꼬1.jpg" class="d-block" alt="..." style="width:500px;">
+										<img src="아비꼬1.jpg" class="d-block" alt="..." style="height: 500px; object-fit: contain;">
 									</div>
 									<div class="carousel-item">
-										<img src="아비꼬2.jpg" class="d-block" alt="..." style="width:500px;">
+										<img src="아비꼬2.jpg" class="d-block" alt="..." style="height: 500px; object-fit: contain;">
 									</div>
 								</div>
 								<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
@@ -191,10 +191,12 @@
 
 						<div class="review">
 							<div class="title">한줄 리뷰 추가</div>
-							<form action="/create.simpleReview" method="get">
+							<form id="createCommentForm" action="/create.commentReview" method="get">
+								<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
+								<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)" style="display: none;">
 								<div class="contents" style="overflow:hidden">
 									<div id="star">
-										<input type="text" name="rating" style="display:none;">
+										<input type="text" name="score" value="0" style="display:none;">
 										<a href="#" value="1">★</a>
 										<a href="#" value="2">★</a>
 										<a href="#" value="3">★</a>
@@ -202,7 +204,7 @@
 										<a href="#" value="5">★</a>
 									</div>
 									<div style="float:left; width:80%;">
-										<textarea id="review_editor" name="content"></textarea>
+										<textarea id="review_editor" name="body"></textarea>
 									</div>
 									<div style="float:left; width:20%;">
 										<button class="btn btn-primary">등록</button>
@@ -210,8 +212,10 @@
 								</div>
 							</form>
 							<div class="title">한줄 리뷰 목록</div>
-							<div class="contents">
+							<div class="contents" style="overflow:hidden">
+								<c:forEach var="i" items="${commentList}">
 
+								</c:forEach>
 							</div>
 						</div>
 					</div>
