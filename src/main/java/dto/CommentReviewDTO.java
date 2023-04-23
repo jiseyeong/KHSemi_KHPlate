@@ -83,4 +83,8 @@ public class CommentReviewDTO {
 		this.totalLike = totalLike;
 	}
 
+	public double ratingToPercent() {
+		double score = this.score * 20;
+		return score;
+	}
 }
