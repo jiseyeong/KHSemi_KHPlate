@@ -36,7 +36,7 @@
 
                 #map {
                     width: 500px;
-                    height: 400px;
+                    height: 500px;
                 }
 
                 .mapInfo{
@@ -45,12 +45,25 @@
 
                 .inputHeader{
                     float: left;
-                    width: 15%;
+                    width: 20%;
                 }
                 .inputs{
                     float: left;
-                    width: 85%;
+                    width: 80%;
                 }
+
+                .row-contents{
+					overflow: hidden;
+				}
+				.row-contents>div {
+					float: left;
+				}
+				.row-contents>.c1{
+                    width:500px;
+				}
+				.row-contents>.c2{
+                    width:920px;
+				}
             </style>
         </head>
 
@@ -73,29 +86,49 @@
                                 <input type="text" name="imgLength" style="display: none;">
                             </fieldset>
                         </div>
-                        <div class="header">지도 마커 설정</div>
-                        <div class="content">
-                            <div id="map"></div>
-                            <div class="mapInfo" style="overflow:hidden;">
-                                <input type="text" name="mapLat" style="display:none;" readonly>
-                                <input type="text" name="mapLng" style="display:none;" readonly>
-                                <div class="inputHeader">거리(M)</div>
-                                <input type="text" name="mapDistance" class="inputs" readonly>
+                        <div class="row-contents">
+                            <div class="c1">
+                                <div class="header">지도 마커 설정</div>
+                                <div class="content">
+                                    <div id="map"></div>
+                                    <div class="mapInfo" style="overflow:hidden;">
+                                        <input type="text" name="mapLat" style="display:none;" readonly>
+                                        <input type="text" name="mapLng" style="display:none;" readonly>
+                                        <div class="inputHeader">거리(M)</div>
+                                        <input type="text" name="mapDistance" class="inputs" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c2">
+                                <div class="header">가게 상세 설정</div>
+                                <div class="content">
+                                    <fieldset style="overflow: hidden;">
+                                        <legend>가게 상세 정보 입력</legend>
+                                        <div class="inputHeader">가게 이름 : </div>
+                                        <input type="text" class="inputs" name="storeName" placeholder="가게 이름을 입력해주세요.">
+                                        <div class="inputHeader">가게 주소 : </div>
+                                        <input type="text" class="inputs" name="storeAddress" placeholder="가게 주소를 입력해주세요.">
+                                        <div class="inputHeader">가게 카테고리 : </div>
+                                        <select class="inputs" name="storeCategory">
+                                            <option>한식</option>
+                                            <option>양식</option>
+                                            <option>중식</option>
+                                            <option>일식</option>
+                                            <option>아시안</option>
+                                            <option>디저트</option>
+                                            <option>음료</option>
+                                            <option>패스트푸드</option>
+                                            <option>기타</option>
+                                        </select>
+                                        <div class="header" style="float:left; width:100%;">가게 소개</div>
+                                        <div style="float:left; width:100%;">
+                                            <textarea id="editor" name="storeIntroduction"></textarea>
+                                        </div>
+                                    </fieldset>
+                                </div>
                             </div>
                         </div>
-                        <div class="header">가게 상세 설정</div>
-                        <div class="contente">
-                            <fieldset style="overflow: hidden;">
-                                <legend>가게 상세 정보 입력</legend>
-                                <div class="inputHeader">가게 이름 : </div>
-                                <input type="text" class="inputs" name="storeName" placeholder="가게 이름을 입력해주세요.">
-                                <div class="inputHeader">가게 주소 : </div>
-                                <input type="text" class="inputs" name="storeAddress" placeholder="가게 주소를 입력해주세요.">
-                                <div class="header">가게 소개</div>
-                                <textarea id="editor" name="storeIntroduction"></textarea>
-                            </fieldset>
-                        </div>
-                        <button type="submit">완료</button>
+                        <button class="btn btn-primary" type="submit">완료</button>
                     </form>
                 </div>
             </div>
@@ -116,8 +149,6 @@
                 let isMapAdded = false;
                 let mapContainer = document.getElementById("map");
                 let options = {
-                    //현재는 학원 좌표인데, 가게 중심 좌표 구해서 해봐야 할 것임.
-                    //가게 등록할 때, 마커 등록 시 function(e) -> e.latlan
                     center: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863),
                     level: 3
                 };
@@ -186,6 +217,7 @@
 
                     if(!isMapAdded){
                         alert("마커를 설정해주셔야 합니다.");
+                        return false;
                     }
                 })
             </script>
