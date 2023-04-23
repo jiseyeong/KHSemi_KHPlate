@@ -27,5 +27,7 @@
 	<a href="/store/view.jsp">view.jsp</a>
 	
 	<a href="/searchResult/searchResult.jsp">searchResult</a>
+	
+	<a href="/allstore_inquire/allstore_inquire.jsp">allstore_inquire</a>
 </body>
 </html>
