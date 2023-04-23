@@ -14,6 +14,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.CommentReviewDAO;
+import dao.MembersDAO;
 import dao.StoreDAO;
 import dto.CommentReviewDTO;
 import dto.StoreDTO;
@@ -31,9 +32,14 @@ public class StoreController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);
 				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectByStoreID(storeID);
+				ArrayList<String> userNameList = new ArrayList<>();
+				for(int i = 0; i < commentList.size(); i++) {
+					userNameList.add(MembersDAO.getInstance().getNameByNo(commentList.get(i).getUserNo()));
+				}
 				
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
+				request.setAttribute("userNameList", userNameList);
 				request.getRequestDispatcher("/store/view.jsp").forward(request, response);
 				
 			}else if(cmd.equals("/register.store")) {

@@ -13,12 +13,16 @@ import javax.sql.DataSource;
 import dto.CommentReviewDTO;
 
 public class CommentReviewDAO {
-	private static CommentReviewDAO instance;
+	private static CommentReviewDAO instance = null;
 	public synchronized static CommentReviewDAO getInstance() {
 		if(instance == null) {
 			instance = new CommentReviewDAO();
 		}
 		return instance;
+	}
+	
+	private CommentReviewDAO() {
+		super();
 	}
 	
 	private Connection getConnection() throws Exception {

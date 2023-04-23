@@ -2,6 +2,8 @@ package dto;
 
 import java.sql.Timestamp;
 
+import dao.MembersDAO;
+
 public class CommentReviewDTO {
 	private int reviewID;
 	private String body;
@@ -64,4 +66,8 @@ public class CommentReviewDTO {
 		this.totalLike = totalLike;
 	}
 	
+	public double ratingToPercent() {
+		double score = this.score * 20;
+		return score;
+	}
 }

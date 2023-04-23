@@ -12,12 +12,16 @@ import javax.sql.DataSource;
 import dto.StoreDTO;
 
 public class StoreDAO {
-	private static StoreDAO instance;
+	private static StoreDAO instance = null;
 	public synchronized static StoreDAO getInstance() {
 		if(instance == null) {
 			instance = new StoreDAO();
 		}
 		return instance;
+	}
+	
+	private StoreDAO() {
+		super();
 	}
 	
 	private Connection getConnection() throws Exception {

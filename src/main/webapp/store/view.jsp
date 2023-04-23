@@ -116,10 +116,12 @@
 							<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<img src="아비꼬1.jpg" class="d-block" alt="..." style="height: 500px; object-fit: contain;">
+										<img src="아비꼬1.jpg" class="d-block" alt="..."
+											style="height: 500px; object-fit: contain;">
 									</div>
 									<div class="carousel-item">
-										<img src="아비꼬2.jpg" class="d-block" alt="..." style="height: 500px; object-fit: contain;">
+										<img src="아비꼬2.jpg" class="d-block" alt="..."
+											style="height: 500px; object-fit: contain;">
 									</div>
 								</div>
 								<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
@@ -193,7 +195,8 @@
 							<div class="title">한줄 리뷰 추가</div>
 							<form id="createCommentForm" action="/create.commentReview" method="get">
 								<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
-								<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)" style="display: none;">
+								<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)"
+									style="display: none;">
 								<div class="contents" style="overflow:hidden">
 									<div id="star">
 										<input type="text" name="score" value="0" style="display:none;">
@@ -213,8 +216,33 @@
 							</form>
 							<div class="title">한줄 리뷰 목록</div>
 							<div class="contents" style="overflow:hidden">
-								<c:forEach var="i" items="${commentList}">
+								<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
+									<div>작성자명 : ${userNameList.get(i)}</div>
 
+									<div class="star-ratings-fill space-x-2 text-lg"
+										style="width: ${commentList.get(i).ratingToPercent()}%;">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									</div>
+									<div class="star-ratings-base space-x-2 text-lg">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										${commentList.get(i).score};
+									</div>
+
+									<textarea id="review_editor${i}">
+										${commentList.get(i).body};
+									</textarea>
+
+									<script>
+										let target = "#review_editor" + "<c:out value='${i}'></c:out>"
+										ClassicEditor
+											.create(document.querySelector(target))
+											.then(function (editor) {
+												const toolbarElement = editor.ui.view.toolbar.element;
+												toolbarElement.style.display = 'none';
+												editor.enableReadOnlyMode('');
+											})
+											.catch(error => { console.error(error) });
+									</script>
 								</c:forEach>
 							</div>
 						</div>
