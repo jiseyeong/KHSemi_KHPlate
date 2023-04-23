@@ -26,6 +26,11 @@ public class StoreController extends HttpServlet {
 			if(cmd.equals("/list.store")) {
 				
 			}else if(cmd.equals("/view.store")) {
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);
+				
+				request.setAttribute("dto", dto);
+				request.getRequestDispatcher("/store/view.jsp").forward(request, response);
 				
 			}else if(cmd.equals("/register.store")) {
 				String realPath = request.getServletContext().getRealPath("store");
@@ -36,6 +41,7 @@ public class StoreController extends HttpServlet {
 					realPathFile.mkdir();
 				}
 				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
+				
 				double mapLat = Double.parseDouble(multi.getParameter("mapLat"));
 				double mapLng = Double.parseDouble(multi.getParameter("mapLng"));
 				int mapDistance = Integer.parseInt(multi.getParameter("mapDistance"));
@@ -56,7 +62,7 @@ public class StoreController extends HttpServlet {
 					//imgsDAO~ (imgsDTO()) 추가해줘야 함
 				}
 				
-				response.sendRedirect(""); //어디로 보내야할까?
+				response.sendRedirect("/view.store?storeID="+currval);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

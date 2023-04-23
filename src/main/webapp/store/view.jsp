@@ -40,7 +40,12 @@
 					}
 					.row-contents>div {
 						float: left;
-						margin-right: 30px;
+					}
+					.row-contents>.c1{
+                    	width:500px;
+					}
+					.row-contents>.c2{
+                    	width:920px;
 					}
 					.inputHeader{
                         float: left;
@@ -85,14 +90,26 @@
 							</div>
 						</div>
 						<div class="row-contents">
-							<div id="map"></div>
-							<div class="detail">
+							<div id="map" class="c1"></div>
+							<div class="detail c2">
 								<div class="inputHeader">가게 이름</div>
-								<input class="inputs" name="name" value="${dto.name}" readonly>
+								<input type="text" class="inputs" name="name" value="${dto.name}" readonly>
+								<div class="inputHeader">가게 카테고리</div>
+								<select name="category" class="inputs" disabled="disabled">
+									<option>한식</option>
+									<option>양식</option>
+									<option>중식</option>
+									<option>일식</option>
+									<option>아시안</option>
+									<option>디저트</option>
+									<option>음료</option>
+									<option>패스트푸드</option>
+									<option>기타</option>
+								</select>
 								<div class="inputHeader">가게 주소</div>
-								<input class="inputs" name="address" value="${dto.address}" readonly>
+								<input type="text" class="inputs" name="address" value="${dto.address}" readonly>
 								<div class="inputHeader">평균평점</div>
-								<input class="inputs" name="avgScore" value="${dto.avgScore}" readonly>
+								<input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" readonly>
 								<div class="storeIntroduction">
 									<div class="title">가게 소개</div>
 									<div>
@@ -103,10 +120,8 @@
 								<div class="contents">
 									<table border="1">
 										<tr>
-											<th style="width:40%;">메뉴 이름</th>
-											<th style="width:20%;">메뉴 가격</th>
-											<th style="width:20%;">국가 카테고리</th>
-											<th style="width:20%;">메뉴 카테고리</th>
+											<th style="width:70%;">메뉴 이름</th>
+											<th style="width:30%;">메뉴 가격</th>
 										</tr>
 										<c:forEach var="i" items="${menuList}">
 											<tr>
@@ -138,6 +153,10 @@
 					</div>
 				</div>
 				<script>
+					//select 카테고리 기본 값 설정
+					let category = "<c:out value='${dto.category}'></c:out>"
+					$("select[name=category]").val(category);
+
 					var myEditor = null;
 					//에디터 스크립트
 					ClassicEditor
@@ -172,50 +191,17 @@
 					let options = {
 						//현재는 학원 좌표인데, 가게 중심 좌표 구해서 해봐야 할 것임.
 						//가게 등록할 때, 마커 등록 시 function(e) -> e.latlan
-						center: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863),
-						//center: new kakao.maps.LatLng(lat, lng),
+						//center: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863),
+						center: new kakao.maps.LatLng(lat, lng),
 						level: 3
 					};
 					let map = new kakao.maps.Map(mapContainer, options);
 					
 					marker = new kakao.maps.Marker({
-                        position: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863)
+                        //position: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863)
+						position: new kakao.maps.LatLng(lat, lng)
                     });
 					marker.setMap(map);
-					
-					function getInfo() {
-						// 지도의 현재 중심좌표를 얻어옵니다 
-						var center = map.getCenter();
-
-						// 지도의 현재 레벨을 얻어옵니다
-						var level = map.getLevel();
-
-						// 지도타입을 얻어옵니다
-						var mapTypeId = map.getMapTypeId();
-
-						// 지도의 현재 영역을 얻어옵니다 
-						var bounds = map.getBounds();
-
-						// 영역의 남서쪽 좌표를 얻어옵니다 
-						var swLatLng = bounds.getSouthWest();
-
-						// 영역의 북동쪽 좌표를 얻어옵니다 
-						var neLatLng = bounds.getNorthEast();
-
-						// 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
-						var boundsStr = bounds.toString();
-
-
-						var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
-						message += '경도 ' + center.getLng() + ' 이고 <br>';
-						message += '지도 레벨은 ' + level + ' 입니다 <br> <br>';
-						message += '지도 타입은 ' + mapTypeId + ' 이고 <br> ';
-						message += '지도의 남서쪽 좌표는 ' + swLatLng.getLat() + ', ' + swLatLng.getLng() + ' 이고 <br>';
-						message += '북동쪽 좌표는 ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' 입니다';
-
-						// 개발자도구를 통해 직접 message 내용을 확인해 보세요.
-						console.log(message);
-					};
 				</script>
 			</body>
 

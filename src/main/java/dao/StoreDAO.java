@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -27,7 +28,7 @@ public class StoreDAO {
 	
 	public int insert(StoreDTO dto) throws Exception {
 		String sql = "insert into store(StoreID, distance, name, lat, lng, address, avgScore, introduction, category) "
-				+ "values(store_seq.nextval, ?, ?, ?, ?, ?, 0, ?, ?)";
+				+ "values(store_storeid_seq.nextval, ?, ?, ?, ?, ?, 0, ?, ?)";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, dto.getDistance());
@@ -44,12 +45,41 @@ public class StoreDAO {
 	}
 	
 	public int getCurrval() throws Exception{
-		String sql = "select store_seq.currval from dual";
+		String sql = "select store_storeid_seq.currval from dual";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				ResultSet rs = pstat.executeQuery();){
 			rs.next();
 			return rs.getInt(1);
 		}
+	}
+	
+	public StoreDTO selectOne(int storeID) throws Exception {
+		String sql = "select * from store where STOREID = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, storeID);
+			try(ResultSet rs = pstat.executeQuery();){
+				return this.transAllRsToList(rs).get(0);
+			}
+		}
+	}
+	
+	private ArrayList<StoreDTO> transAllRsToList(ResultSet rs) throws Exception{
+		ArrayList<StoreDTO> result = new ArrayList<>();
+		while(rs.next()) {
+			int storeID = rs.getInt("STOREID");
+			int distance = rs.getInt("DISTANCE");
+			String name = rs.getString("NAME");
+			double lat = rs.getDouble("LAT");
+			double lng = rs.getDouble("LNG");
+			String address = rs.getString("ADDRESS");
+			double avgScore = rs.getDouble("AVGSCORE");
+			String introduction = rs.getString("INTRODUCTION");
+			String category = rs.getString("CATEGORY");
+			
+			result.add(new StoreDTO(storeID, distance, name, lat, lng, address, avgScore, introduction, category));
+		}
+		return result;
 	}
 }

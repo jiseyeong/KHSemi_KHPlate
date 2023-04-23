@@ -57,7 +57,12 @@
 				}
 				.row-contents>div {
 					float: left;
-					margin-right: 30px;
+				}
+				.row-contents>.c1{
+                    width:500px;
+				}
+				.row-contents>.c2{
+                    width:920px;
 				}
             </style>
         </head>
@@ -82,7 +87,7 @@
                             </fieldset>
                         </div>
                         <div class="row-contents">
-                            <div>
+                            <div class="c1">
                                 <div class="header">지도 마커 설정</div>
                                 <div class="content">
                                     <div id="map"></div>
@@ -94,7 +99,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div class="c2">
                                 <div class="header">가게 상세 설정</div>
                                 <div class="content">
                                     <fieldset style="overflow: hidden;">
@@ -116,7 +121,9 @@
                                             <option>기타</option>
                                         </select>
                                         <div class="header" style="float:left; width:100%;">가게 소개</div>
-                                        <textarea id="editor" name="storeIntroduction"></textarea>
+                                        <div style="float:left; width:100%;">
+                                            <textarea id="editor" name="storeIntroduction"></textarea>
+                                        </div>
                                     </fieldset>
                                 </div>
                             </div>
