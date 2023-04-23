@@ -261,8 +261,8 @@
 					let options = {
 						//현재는 학원 좌표인데, 가게 중심 좌표 구해서 해봐야 할 것임.
 						//가게 등록할 때, 마커 등록 시 function(e) -> e.latlan
-						//center: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863),
-						center: new kakao.maps.LatLng(lat, lng),
+						center: new kakao.maps.LatLng(37.567944388923316, 126.98295041529863),
+						//center: new kakao.maps.LatLng(lat, lng),
 						level: 3
 					};
 					let map = new kakao.maps.Map(mapContainer, options);
