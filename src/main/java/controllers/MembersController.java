@@ -7,33 +7,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class MembersController
- */
-@WebServlet("/MembersController")
+
+@WebServlet("*.Members")
 public class MembersController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor. 
-     */
-    public MembersController() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		request.setCharacterEncoding("utf8"); 
+		String cmd = request.getRequestURI();
+		
+		if(cmd.equals("/insert.members")) {
+			
+		}else if(cmd.equals("/update.members")) {
+			
+		}else if(cmd.equals("/delete.members")) {
+			
+		}else if(cmd.equals("/login.members")) {
+			
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
