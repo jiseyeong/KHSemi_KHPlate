@@ -4,6 +4,7 @@ import java.io.File;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -75,6 +76,17 @@ public class StoreController extends HttpServlet {
 				
 				response.sendRedirect("/view.store?storeID="+currval);
 			}
+			
+			
+			// 검색 Controller추가 (allstoreInquiry.jsp 사용)
+			// 네비게비션, 사진 출력 미구현
+			else if(cmd.equals("/search.store")){
+				String search = request.getParameter("search");
+				List<StoreDTO> search_store_list = StoreDAO.getInstance().searchStore(search);
+				request.setAttribute("search_store_list", search_store_list);
+				request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
+			}
+
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");
