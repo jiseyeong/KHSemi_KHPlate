@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+
 	<a href="/joinform/joinform.jsp">joinform</a>
 	
 	<a href="/login/login.jsp">login</a>
