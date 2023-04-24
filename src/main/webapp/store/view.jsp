@@ -95,13 +95,30 @@
 						padding: 0;
 					}
 
-					#star a {
+					.star a {
 						text-decoration: none;
 						color: gray;
 					}
 
-					#star a.on {
+					.star a.on {
 						color: #fff58c;
+					}
+
+					.star_other a {
+						text-decoration: none;
+						color: gray;
+					}
+
+					.star_other a.on {
+						color: #fff58c;
+					}
+
+					.active {
+						display: inline-block;
+					}
+
+					.nonactive {
+						display: none;
 					}
 				</style>
 			</head>
@@ -166,7 +183,7 @@
 										${dto.avgScore};
 									</div>
 								</div>
-								<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" readonly> -->
+								<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" style="display: none;"> -->
 
 								<div class="storeIntroduction">
 									<div class="title">가게 소개</div>
@@ -198,13 +215,13 @@
 								<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)"
 									style="display: none;">
 								<div class="contents" style="overflow:hidden">
-									<div id="star">
+									<div class="star">
 										<input type="text" name="score" value="0" style="display:none;">
-										<a href="#" value="1">★</a>
-										<a href="#" value="2">★</a>
-										<a href="#" value="3">★</a>
-										<a href="#" value="4">★</a>
-										<a href="#" value="5">★</a>
+										<a href="#null" value="1">★</a>
+										<a href="#null" value="2">★</a>
+										<a href="#null" value="3">★</a>
+										<a href="#null" value="4">★</a>
+										<a href="#null" value="5">★</a>
 									</div>
 									<div style="float:left; width:80%;">
 										<textarea id="review_editor" name="body"></textarea>
@@ -214,37 +231,103 @@
 									</div>
 								</div>
 							</form>
-							<div class="title">한줄 리뷰 목록</div>
-							<div class="contents" style="overflow:hidden">
-								<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
-									<div>작성자명 : ${userNameList.get(i)}</div>
+							<c:if test="${fn:length(commentList) > 0}">
+								<div class="title">한줄 리뷰 목록</div>
+								<div class="contents" style="overflow:hidden">
+									<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
+										<div>작성자명 : ${userNameList.get(i)}</div>
 
-									<div class="star-ratings-fill space-x-2 text-lg"
-										style="width: ${commentList.get(i).ratingToPercent()}%;">
-										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-									</div>
-									<div class="star-ratings-base space-x-2 text-lg">
-										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-										${commentList.get(i).score};
-									</div>
+										<div id="readStar${i}" class="star-ratings active" style="width:100%;">
+											<div class="star-ratings-fill space-x-2 text-lg"
+												style="width: ${commentList.get(i).ratingToPercent()}%;">
+												<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+											</div>
+											<div class="star-ratings-base space-x-2 text-lg">
+												<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+												${commentList.get(i).score};
+											</div>
+										</div>
 
-									<textarea id="review_editor${i}">
-										${commentList.get(i).body};
-									</textarea>
+										<form id="updateForm${i}" action="/update.commentReview" method="post">
+											<div id="writeStar${i}" class="star nonactive">
+												<input type="text" id="score${i}" name="modifyScore" value="0"
+													style="display:none;">
+												<a href="#null" value="1">★</a>
+												<a href="#null" value="2">★</a>
+												<a href="#null" value="3">★</a>
+												<a href="#null" value="4">★</a>
+												<a href="#null" value="5">★</a>
+											</div>
 
-									<script>
-										let target = "#review_editor" + "<c:out value='${i}'></c:out>"
-										ClassicEditor
-											.create(document.querySelector(target))
-											.then(function (editor) {
-												const toolbarElement = editor.ui.view.toolbar.element;
-												toolbarElement.style.display = 'none';
-												editor.enableReadOnlyMode('');
-											})
-											.catch(error => { console.error(error) });
-									</script>
-								</c:forEach>
-							</div>
+											<textarea id="review_editor${i}" name="modifyBody">
+												${commentList.get(i).body};
+											</textarea>
+
+											<c:if test="${commentList.get(i).userNo == loginNo}">
+												<div id="replyControl${i}" style="text-align:right;">
+													<button type="button" id="btn_modify${i}" class="active">수정</button>
+												</div>
+											</c:if>
+										</form>
+
+										<script>
+											let target = "#review_editor" + "<c:out value='${i}'></c:out>"
+											ClassicEditor
+												.create(document.querySelector(target))
+												.then(function (editor) {
+													const toolbarElement = editor.ui.view.toolbar.element;
+													toolbarElement.style.display = 'none';
+													editor.enableReadOnlyMode('');
+
+													let i = "<c:out value='${i}'></c:out>";
+													let btn_modify = "#btn_modify" + i;
+													let readStar = "#readStar" + i;
+													let writeStar = "#writeStar" + i;
+													let score = "#score" + i;
+													$(btn_modify).click(function () {
+														let btn_confirm = "#btn_confirm" + i;
+														let btn_cancel = "#btn_cancel" + i;
+														if (!($(btn_confirm).length > 0)) {
+															let replyControl = "#replyControl" + i;
+															let updateForm = "#updateForm" + i;
+
+															let btn_confirm_body = $("<button>");
+															let btn_cancel_body = $("<button>");
+
+															btn_confirm_body.text("수정완료");
+															btn_confirm_body.addClass("active");
+															btn_confirm_body.attr("id", btn_confirm);
+															btn_confirm_body.attr("type", "button");
+															btn_confirm_body.click(function () {
+																$(updateForm).submit();
+															});
+
+															btn_cancel_body.attr("type", "button");
+															btn_cancel_body.attr("id", btn_cancel);
+															btn_cancel_body.text("취소");
+															btn_cancel_body.addClass("active");
+															btn_cancel_body.click(function () {
+																$(btn_modify + "," + readStar).addClass("active").removeClass("nonactive");
+																$(btn_confirm + "," + btn_cancel + "," + writeStar).removeClass("active").addClass("nonactive");
+																editor.enableReadOnlyMode("");
+															});
+
+															$(replyControl).prepend(btn_confirm_body);
+															$(replyControl).prepend(btn_cancel_body);
+														}
+														if (editor.isReadOnly) {
+															editor.disableReadOnlyMode("");
+															$(btn_modify + "," + readStar).removeClass("active").addClass("active");
+															$(btn_confirm + "," + btn_cancel + "," + writeStar).addClass("active").removeClass("nonactive");
+														}
+													});
+
+												})
+												.catch(error => { console.error(error) });
+										</script>
+									</c:forEach>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -253,7 +336,7 @@
 					let category = "<c:out value='${dto.category}'></c:out>"
 					$("select[name=category]").val(category);
 
-					$("#star a").click(function () {
+					$(".star a").click(function () {
 						$(this).parent().children("a").removeClass("on");
 						$(this).addClass("on").prevAll("a").addClass("on");
 						$("input[name=rating]").val($(this).attr("value"));
