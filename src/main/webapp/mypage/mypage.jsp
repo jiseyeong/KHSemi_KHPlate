@@ -1,171 +1,251 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<meta charset="EUC-KR">
+<title>Mypage</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+     <style>
+            *{box-sizing:border-box;}
+            
+            button {
+                border-radius: 15px;
+                border: none;
+                background-color: black;
+                color: white;
+                font-size: 12px;
+                height: 30px;
+            }
+    
+            .mypage {
+                width: 1114px;
+                height: 1200px;
+                margin: auto;
+                margin-top: 20px;
+            }
+    
+            .header {
+                height: 5%;
+                text-align: center;
+                line-height: 60px;
+                font-size: 15px;
+                font-weight: bold;
+                background-color: rgb(245, 245, 245);
+                border-bottom: 1px solid black;
+                border-top: 1px solid black;
+            }
+    
+            .body1 {
+                height: 60%;
+            }
+    
+            .body2 {
+                height: 40%;
+            }
+    
+            .body1>div {
+                float: left;
+                height: 100%;
+            }
+    
+            .profile {
+                width: 35%;
+            }
+    
+            .inpomation {
+                width: 65%;
+            }
+    
+            .inpomation>div {
+                float: left;
+                height: 100%;
+            }
+    
+            .inpocontents1 {
+                width: 20%;
+            }
+    
+            .inpocontents1>ul {
+                list-style: none;
+                margin-top: 50px;
+                padding: 0px;
+                padding-left: 40px;
+            }
+    
+            .inpocontents1>ul>li {
+                margin-bottom: 24px;
+                font-size: 14px;
+            }
+    
+            .inpocontents2 {
+                width: 80%;
+                padding-top: 45px;
+                padding-left: 20px;
+                position: relative;
+            }
+    
+            .inpocontents2>input {
+                margin-bottom: 15px;
+                width: 300px;
+            }
+    
+            .inpocontents2>button {
+                position: absolute;
+                left: 125px;
+                width: 75px;
+                top:600px;
+            }
+    
+            .profileImage {
+                height: 65%;
+            }
+    
+            .proImage {
+                width: 250px;
+                height: 250px;
+                border-radius: 200px;
+                position: relative;
+                left: 63px;
+                top: 45px;
+                border: 1px solid black;
+            }
+    
+            .profileName {
+                height: 35%;
+                text-align: center;
+            }
+    
+            .profileName>button {
+                font-size: 12px;
+                width: 75px;
+                position: relative;
+                right: 8px;
+                bottom:150px;
+            }
+    
+            button:hover {
+                opacity: 70%;
+            }
+    
+            #postSearch {
+                position: relative;
+                left: 15px;
+                top: 0px;
+                display: none;
+            }
+            #modiComBtn{
+                display:none;
+            }
+            .body2Navi {
+                height: 7%;
+            }
+    
+            .body2Navi>a{
+                height:100%;
+                background-color:white;
+                border:1px solid black;
+                color:black;
+                position: relative;
+                top:5px;
+                font-size: 12px;
+                height:30px;
+                display:inline-block;
+                width:80px;
+                text-align:center;
+                line-height:30px;
+                text-decoration:none;
+            }
+            .body2Navi>a:first-of-type{
+                border-bottom:none;
+            }
+            .body2Contents {
+                width:100%;
+                height: 70%;
+                border: 1px solid black;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="mypage">
+            <div class="header">¸¶ÀÌÆäÀÌÁö</div>
+            <div class="body1">
+                <div class="profile">
+                    <div class="profileImage">
+                        <div class="proImage"></div>
+                    </div>
+                    <div class="profileName"><button>º¯°æÇÏ±â</button></div>
+                </div>
+                <div class="inpomation">
+                    <div class="inpocontents1">
+                        <ul>
+                            <li>¾ÆÀÌµð</li>
+                            <li>ºñ¹Ð¹øÈ£</li>
+                            <li>ÀÌ¸§</li>
+                            <li>´Ð³×ÀÓ</li>
+                            <li>ÇÚµåÆù¹øÈ£</li>
+                            <li>email</li>
+                            <li>Å¬·¡½º¸í</li>
+                            <li>¿ìÆí¹øÈ£</li>
+                            <li>ÁÖ¼Ò1</li>
+                            <li>ÁÖ¼Ò2</li>
+                            <li>ÇÑÁÙ¼Ò°³</li>
+                            <li>ÃÖ¾ÖÀ½½Ä</li>
+                        </ul>
+                    </div>
+                    <div class="inpocontents2">
+                        <input type="text" readonly><br>
+                        <input type="text"><br>
+                        <input type="text" readonly><br>
+                        <input type="text"><br>
+                        <input type="text"><br>
+                        <input type="text"><br>
+                        <input type="text" readonly><br>
+                        <input type="text"><button id="postSearch">ÁÖ¼ÒÃ£±â</button><br>
+                        <input type="text"><br>
+                        <input type="text"><br>
+                        <input type="text"><br>
+                        <input type="text"><br>
+                        <button id="modiBtn">¼öÁ¤ÇÏ±â</button>
+                        <button id="modiComBtn">¼öÁ¤¿Ï·á</button>
+                    </div>
+                </div>
+            </div>
+            <div class="body2">
+                <div class="body2Navi">
+                    <a href="#" class="myContents">³»°¡ ¾´ ±Û</a>
+                    <a href="#" class="myContents">³»°¡ ¾´ ´ñ±Û</a>
+                    <a href="#" class="myContents">Áñ°ÜÃ£±â</a>
+                    <a href="#" class="myContents">1:1 ¹®ÀÇ</a>
+                </div>
+                <div class="body2Contents"></div>
+            </div>
+        </div>
+        <script>
+            $("document").ready(function(){
+                $("#modiBtn").on("click", function(){
+                    $("#postSearch").css("display", "inline-block");
+                    $("#modiBtn").css("display","none");
+                    $("#modiComBtn").css("display","inline-block");
+                })
 
-<style>
-* {
-	box-sizing: border-box;
-}
+                $("#modiComBtn").on("click",function(){
+                    $("#modiComBtn").css("display","none");
+                    $("#modiBtn").css("display","inline-block");
+                    $("#postSearch").css("display", "none");
+                })
 
-.container {
-	float: left;
-	border: 1px solid black;
-	margin: auto;
-	width: 1250px;
-	height: 1000px;
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
-
-.fieldset {
-	font-size: 25px;
-	margin: auto;
-	border: 1px solid black;
-	width: 1000px;
-	height: 350px;
-	border-radius: 25px;
-}
-
-.profile {
-	float: left;
-	position: relative;
-	width: 850px;
-	left: 50px;
-	top: 50px;
-}
-
-.profileIMG {
-	float: left;
-	border: 1px solid black;
-	border-radius: 100px;
-	width: 200px;
-	height: 200px;
-}
-
-.myInfo {
-	float: right;
-	border: 1px solid black;
-	width: 600px;
-	height: 200px;
-}
-
-.nickname {
-	border: 1px solid black;
-	float: left;
-	width: 300px;
-	height: 50px;
-}
-
-.info {
-	position: relative;
-	border: 1px solid black;
-	float: left;
-	width: 400px;
-	height: 100px;
-	top: 50px;
-}
-
-.setting {
-	position: relative;
-	border: 1px solid black;
-	float: left;
-	width: 50px;
-	height: 50px;
-	bottom: 50px;
-	left: 150px;
-}
-
-.community {
-	position: relative;
-	margin: auto;
-	border: 1px solid black;
-	width: 1000px;
-	height: 300px;
-	top: 50px;
-	border-radius: 25px;
-}
-
-.communityName {
-	font-size: 25px;
-}
-
-.communityMenu {
-	margin: auto;
-	position: relative;
-	height: 100px;
-	top: 80px;
-}
-
-.article {
-	float: left;
-	border: 1px solid black;
-	height: 100px;
-	width: 300px;
-	position: relative;
-	left: 24px;
-}
-
-.comments {
-	float: left;
-	border: 1px solid black;
-	height: 100px;
-	width: 300px;
-	position: relative;
-	left: 48px;
-}
-
-.scrap {
-	float: left;
-	border: 1px solid black;
-	height: 100px;
-	width: 300px;
-	position: relative;
-	left: 72px;
-}
-</style>
-</head>
-
-
-
-<body>
-	<!-- container -->
-	<div class="container">
-		<!-- my Page ì •ë³´ -->
-		<fieldset class="fieldset">
-			<legend>MY PAGE</legend>
-			<div class="profile">
-				<div class="profileIMG"></div>
-				<div class="myInfo">
-					<div class="nickname"></div>
-					<div class="info"></div>
-					<div class="setting"></div>
-				</div>
-			</div>
-		</fieldset>
-		<!-- Community íƒ­ -->
-		<div class="community">
-			<div class="communityName">COMMUNITY</div>
-			<div class="communityMenu">
-				<div class="article"></div>
-				<div class="comments"></div>
-				<div class="scrap"></div>
-			</div>
-		</div>
-	</div>
-
-
+                $(".myContents").on("click",function(){
+                    $(this).css("border-bottom","none");
+                    $(".myContents").not(this).css("border-bottom","1px solid black");
+            })
+            })
+        </script>
 </body>
 </html>

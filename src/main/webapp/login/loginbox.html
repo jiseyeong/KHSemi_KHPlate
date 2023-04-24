@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,95 +22,145 @@
         line-height: 1.5em;
         color : #222;
     }
+    
     #login{
         font-size: 40px;
-        font-weight: bold;
-        
+        font-weight: bold;  
     }
+    
     #inputid{
         font-size: 28px;
-        
         margin-top: 100px;
         margin-left: 67px;
     }
    
     #id{
         position: absolute;
-        width: 250px;
+        width: 450px;
         left:150px;
-        height: 47px;
+        height: 44px;
         text-align: center;
-        top:250px;
-        left:290px;
+        top:188px;
+        left:205px;
     }
+    
     #inputpw{
         font-size: 28px;
         margin-top: 50px;
         margin-left: 50px;
     }
+    
     #password{
-        width: 430px;
+        width: 450px;
         position: absolute;
         margin-top: -32px;
-        left:290px;
-        height: 40px;
+        left:205px;
+        height: 44px;
         text-align: center;
 
     }
 
     .eyes {
         cursor: pointer;
-        margin-left: 530px;
-        margin-top: -25px;
+        margin-left: 565px;
+        margin-top: -10px;
         position: absolute;
         z-index: 5;
     }
+    
     input::-webkit-input-placeholder {
         color: black;
         font-style:italic;
         font-size: 1.3em;
         }
+        
         #fildset{
-            margin: 130px;
+            margin: 30px;
         }
+        
         #idsave{
             font-size: 15px;
-            margin-left: 165px;
+            margin-left: 180px;
             margin-top: -23px;
         }
+        
         #checkId{
-            margin-left: 140px;
+            margin-left: 155px;
             margin-top: 40px;
             cursor: pointer;
         }
+        
         #loginbutton{
-            width: 400px;
+            width: 500px;
             height: 50px;
             background-color: black;
+            border-radius: 12px;
             cursor: pointer;
-            color: whitesmoke;
-            margin-left: 480px;
-            margin-top: 100px;
-
-
+            color: white;
+            margin-left: 700px;
+            margin-top: 55px;
+            font-size: 20px;
         }
+
+        #loginbutton.hover {
+            background-color: #ED1C16;
+        }
+
+        #NaverLogin{
+            width: 248px;
+            height: 50px;
+            background-color: rgb(3, 199, 90);
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-left: 700px;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        #KakaoLogin{
+            width: 248px;
+            height: 50px;
+            background-color: #FEE500;
+            color: black;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-left: 0px;
+            margin-top: -50px;
+            font-size: 18px;
+        }
+
         a{
             text-decoration: none;
         }
 
         #searchid{
-            color: beige;
-            margin-left: 650px;
-            margin-top: 200px;
+            color: black;
+            margin-left: 750px;
+            margin-top: 50px;
         }
+
+        #searchid.hover {
+            color: #ED1C16;
+        }
+
         #searchpw{
-            color: antiquewhite;
-            margin-left: 800px;
+            color: black;
+            margin-left:960px;
             margin-top: -25px;}
+
+            #searchpw.hover {
+            color: #ED1C16;
+        }
+
         #signup{
             color: black;
-            margin-left: 980px;
+            margin-left: 1170px;
             margin-top : -24px;
+        }
+
+        #signup.hover {
+            color: #ED1C16;
         }
    </style>
 </head>
@@ -123,7 +173,7 @@
             <legend>
             <div id="login">LOGIN</div>
             </legend>
-                 <div id="inputid">ID : <input type="text" id="id" name="id" placeholder="아이디 입력" > </div>
+                 <div id="inputid">ID : <input type="text" id="id" name="id" placeholder="아이디를 입력해주세요." > </div>
                  <div class="input password">
                     <label for="password" class="label password" ></label>
                     <div id="inputpw">PW :</div>
@@ -132,23 +182,27 @@
                         <i class="fa fa-eye fa-lg"></i>
                     </div>
                   </div>
+                  
                   <div class="box">
                     <span class="input-wrap">
                       <input type="checkbox" id="checkId" name="checkId">                                         
                       <label for="checkId"><span></span></label>
-                      
                     </span>
                     <div id="idsave">아이디 저장</div>
-                  
                   </div>
 
-                  <button id="loginbutton">로그인</button>
+
+						<button name="loginbutton" id="loginbutton">로그인</button>
+                            <br>
+						<button name="NaverLI" id="NaverLogin">Naver Login</button>
+						<button name="KakaoLI" id="KakaoLogin">Kakao Login</button>
+				
+                  
         </fieldset>
         
         <div id="searchid"><a href="https://search.naver.com/search.naver?where=nexearch&sm=top_sug.pre&fbm=0&acr=1&acq=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4&qdt=0&ie=utf8&query=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4%EC%A1%B1%EB%B0%9C">아이디 찾기</a></div>
         <div id="searchpw"><a href="http://www.naver.com">비밀번호 찾기</a></div>
-        <div id="signup"><a href="http://www.naver.com">회원 가입</a></div>
-
+        <div id="signup"><a href="/signup.html">회원 가입</a></div>
 
     </form>
     </div>
@@ -168,8 +222,6 @@ $(function(){
     }
   });
 });
-
-
 
 //
 $(document).ready(function(){
@@ -232,11 +284,17 @@ $(document).ready(function(){
 		return unescape(cookieValue);
 	}
 
-
+	//네이버 간편 로그인
+	$("#NaverLI").on("click", function() {
+		location.href = "/login.naverlogin.jsp"
+	});
+	
+	// 카카오 간편 로그인
+	$("#KakaoLI").on("click", function() {
+		location.href = "/login.kakaologin.html"
+	});
 
 
 </script>
-
-    
 </body>
 </html>
