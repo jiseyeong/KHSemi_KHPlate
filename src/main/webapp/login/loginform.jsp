@@ -123,7 +123,7 @@
             <legend>
             <div id="login">LOGIN</div>
             </legend>
-                 <div id="inputid">ID : <input type="text" id="id" name="id" placeholder="아이디 입력" > </div>
+                 <div id="inputid">ID : <input type="text" id="id" name="id" placeholder="아이디를 입력해주세요." > </div>
                  <div class="input password">
                     <label for="password" class="label password" ></label>
                     <div id="inputpw">PW :</div>
@@ -132,17 +132,25 @@
                         <i class="fa fa-eye fa-lg"></i>
                     </div>
                   </div>
+                  
                   <div class="box">
                     <span class="input-wrap">
                       <input type="checkbox" id="checkId" name="checkId">                                         
                       <label for="checkId"><span></span></label>
-                      
                     </span>
                     <div id="idsave">아이디 저장</div>
-                  
                   </div>
 
-                  <button id="loginbutton">로그인</button>
+                  	<tr>
+						<td colspan="2" align="center">
+						<input type="button" name="loginbutton" id="loginbutton" value="로그인"><br>
+					</tr>
+					<tr>
+						<td align="center">
+						<input type="button" name="NaverLI" id="NaverLI" value="Naver Login"> 
+						<input type="button" name="KakaoLI" id="KakaoLI" value="Kakao Login"></td>
+					</tr>
+                  
         </fieldset>
         
         <div id="searchid"><a href="https://search.naver.com/search.naver?where=nexearch&sm=top_sug.pre&fbm=0&acr=1&acq=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4&qdt=0&ie=utf8&query=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4%EC%A1%B1%EB%B0%9C">아이디 찾기</a></div>
@@ -232,11 +240,17 @@ $(document).ready(function(){
 		return unescape(cookieValue);
 	}
 
-
+	//네이버 간편 로그인
+	$("#NaverLI").on("click", function() {
+		location.href = "/login.naverlogin.jsp"
+	});
+	
+	// 카카오 간편 로그인
+	$("#KakaoLI").on("click", function() {
+		location.href = "/login.kakaologin.html"
+	});
 
 
 </script>
-
-    
 </body>
 </html>
