@@ -36,61 +36,63 @@
                     <div class="body">
                         <div class="content">
                             <div class="accordion" id="accordionFAQ">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            FAQ #1
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
-                                        <div class="accordion-body">
-                                            <div id="editor">음.</div>
-                                            <script>
-                                                ClassicEditor
-                                                    .create(document.querySelector("#editor"), {
-                                                        toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
-                                                    })
-                                                    .then(function (editor) {
-                                                        const toolbarElement = editor.ui.view.toolbar.element;
-                                                        editor.on('change:isReadOnly', (evt, propertyName, isReadOnly) => {
-                                                            if (isReadOnly) {
-                                                                toolbarElement.style.display = 'none';
-                                                            } else {
-                                                                toolbarElement.style.display = 'flex';
-                                                            }
-                                                        });
-                                                        editor.enableReadOnlyMode('');
-                                                    })
-                                                    .catch(error => { console.error(error) });
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <c:if test="${fn:length(list) > 0}">
-                                    <c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
+                                <c:choose>
+                                    <c:when test="${fn:length(list) > 0}">
+                                        <c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="heading${i}">
+                                                    <button class="accordion-button" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapse${i}"
+                                                        aria-expanded="true" aria-controls="collapse${i}">
+                                                        ${list.get(i).title}
+                                                    </button>
+                                                </h2>
+                                                <div id="collapse${i}" class="accordion-collapse collapse show"
+                                                    aria-labelledby="heading${i}" data-bs-parent="#accordionFAQ">
+                                                    <div class="accordion-body">
+                                                        <div id="editor${i}">
+                                                            ${list.get(i).body}
+                                                        </div>
+                                                        <script>
+                                                            let i = "<c:out value='${i}'></c:out>"
+                                                            ClassicEditor
+                                                                .create(document.querySelector("#editor" + i), {
+                                                                    toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
+                                                                })
+                                                                .then(function (editor) {
+                                                                    const toolbarElement = editor.ui.view.toolbar.element;
+                                                                    editor.on('change:isReadOnly', (evt, propertyName, isReadOnly) => {
+                                                                        if (isReadOnly) {
+                                                                            toolbarElement.style.display = 'none';
+                                                                        } else {
+                                                                            toolbarElement.style.display = 'flex';
+                                                                        }
+                                                                    });
+                                                                    editor.enableReadOnlyMode('');
+                                                                })
+                                                                .catch(error => { console.error(error) });
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
                                         <div class="accordion-item">
-                                            <h2 class="accordion-header" id="heading${i}">
+                                            <h2 class="accordion-header" id="headingOne">
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse${i}" aria-expanded="true"
-                                                    aria-controls="collapse${i}">
-                                                    ${list.get(i).title}
+                                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    FAQ #1
                                                 </button>
                                             </h2>
-                                            <div id="collapse${i}" class="accordion-collapse collapse show"
-                                                aria-labelledby="heading${i}" data-bs-parent="#accordionFAQ">
+                                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                                aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
                                                 <div class="accordion-body">
-                                                    <div id="editor${i}">
-                                                        ${list.get(i).body}
-                                                    </div>
+                                                    <div id="editor">등록된 FAQ가 없습니다.</div>
                                                     <script>
-                                                        let i = "<c:out value='${i}'></c:out>"
                                                         ClassicEditor
-                                                            .create(document.querySelector("#editor" + i), {
+                                                            .create(document.querySelector("#editor"), {
                                                                 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
                                                             })
                                                             .then(function (editor) {
@@ -109,8 +111,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </c:forEach>
-                                </c:if>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </div>
