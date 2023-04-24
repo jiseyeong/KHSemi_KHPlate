@@ -1,266 +1,300 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-</head>
-<title>회원가입</title>
-<style>
-*{box-sizing: border-box;
-                     }
-                     
-            .container{
-            width:1250px;
-            height: 1300px;
-            margin: auto; 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> <!--CDN 링크 -->
+
+   <style>
+
+
+    *{box-sizing: border-box;}
+   
+    body{
+        background-color: #f5f6f7;
+        line-height: 1.5em;
+        color : #222;
+    }
+    
+    #login{
+        font-size: 40px;
+        font-weight: bold;  
+    }
+    
+    #inputid{
+        font-size: 28px;
+        margin-top: 100px;
+        margin-left: 67px;
+    }
+   
+    #id{
+        position: absolute;
+        width: 450px;
+        left:150px;
+        height: 44px;
+        text-align: center;
+        top:188px;
+        left:205px;
+    }
+    
+    #inputpw{
+        font-size: 28px;
+        margin-top: 50px;
+        margin-left: 50px;
+    }
+    
+    #password{
+        width: 450px;
+        position: absolute;
+        margin-top: -32px;
+        left:205px;
+        height: 44px;
+        text-align: center;
+
+    }
+
+    .eyes {
+        cursor: pointer;
+        margin-left: 565px;
+        margin-top: -10px;
+        position: absolute;
+        z-index: 5;
+    }
+    
+    input::-webkit-input-placeholder {
+        color: black;
+        font-style:italic;
+        font-size: 1.3em;
+        }
+        
+        #fildset{
+            margin: 30px;
+        }
+        
+        #idsave{
+            font-size: 15px;
+            margin-left: 180px;
+            margin-top: -23px;
+        }
+        
+        #checkId{
+            margin-left: 155px;
+            margin-top: 40px;
+            cursor: pointer;
+        }
+        
+        #loginbutton{
+            width: 500px;
+            height: 50px;
+            background-color: black;
+            border-radius: 12px;
+            cursor: pointer;
+            color: white;
+            margin-left: 700px;
+            margin-top: 55px;
             font-size: 20px;
-            
         }
 
+        #loginbutton.hover {
+            background-color: #ED1C16;
+        }
 
-td:first-child {
-	text-align: right;
-}
-</style>
+        #NaverLogin{
+            width: 248px;
+            height: 50px;
+            background-color: rgb(3, 199, 90);
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-left: 700px;
+            margin-top: 10px;
+            font-size: 18px;
+        }
 
+        #KakaoLogin{
+            width: 248px;
+            height: 50px;
+            background-color: #FEE500;
+            color: black;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-left: 0px;
+            margin-top: -50px;
+            font-size: 18px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        #searchid{
+            color: black;
+            margin-left: 750px;
+            margin-top: 50px;
+        }
+
+        #searchid.hover {
+            color: #ED1C16;
+        }
+
+        #searchpw{
+            color: black;
+            margin-left:960px;
+            margin-top: -25px;}
+
+            #searchpw.hover {
+            color: #ED1C16;
+        }
+
+        #signup{
+            color: black;
+            margin-left: 1170px;
+            margin-top : -24px;
+        }
+
+        #signup.hover {
+            color: #ED1C16;
+        }
+   </style>
+</head>
 <body>
-	  <div class="container">
-   
-    <fieldset>
-        <legend id="signup">SIGN UP</legend><br><br>
-		<table>
-			<tr>
-				<th colspan="3" style="text-align: center;">SignUp</th>
-			</tr>
-			<tr>
-				<td>ID</td>
-				<td><input type="text" name="id" id="id" placeholder="아이디를 입력하세요."></td>
-				<td><button type="button" id="idCheck">Check</button></td>
-			</tr>
-			<tr>
-				<td>PW</td>
-				<td><input type="password" name="pw" id="pw1" placeholder="비밀번호를 입력하세요."></td>
-			</tr>
-			<tr>
-				<td>PW CHECK</td>
-				<td><input type="password" name="pw2" id="pw2" placeholder="비밀번호를 한번 더 입력하세요."></td>
-				<td id="pwCheck"></td>
-			</tr>
-			<tr>
-				<td>NAME</td>
-				<td><input type="text" name="name" id="name" placeholder="이름을 입력하세요."></td>
-			</tr>
-			<tr>
-				<td>PHONE NUM.</td>
-				<td><input type="text" name="phone" id="phone" placeholder="전화번호를 입력하세요."></td>
-			</tr>
-			<tr>
-				<td>EMAIL</td>
-				<td><input type="text" name="email" id="email" placeholder="이메일을 입력하세요."></td>
-			</tr>
-			<tr>
-				<td>CLASS</td>
-				<td><select>
-				<option>A</option>
-				<option>B</option>
-				<option>C</option>
-				<option>D</option>
-				<option>E</option>
-				<option>F</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>POST NUM.</td>
-				<td><input type="text" name="zipcode" id="zipcode" readonly></td>
-				<td><button id="search">Search</button></td>
-			</tr>
-			<tr>
-				<td>ADDRESS1</td>
-				<td><input type="text" name="address1" id="address1"
-					placeholder="주소를 입력하세요."></td>
-			</tr>
-			<tr>
-				<td>ADDRESS2</td>
-				<td><input type="text" name="address2" id="address2"
-					placeholder="상세주소를 입력하세요."></td>
-			</tr>
-			<tr>
-				<td colspan="3" style="text-align: center;">
-					<button type=submit id="signup">Sign Up</button>
-					<button type=button id="reset">Reset</button>
-				</td>
-			</tr>
-		</table>
- </fieldset>
-</div>
 
-	<script>
-		var idValidFlag = false;
+    <div class="container">
+        <form action="" id="loginForm">
 
-		$("#idCheck").on(
-				"click",
-				function() {
-					window.open("/IdCheck.members?id=" + $("#id").val(), "",
-							"width=350px, height=250px");
-				});
+        <fieldset id="fildset">
+            <legend>
+            <div id="login">LOGIN</div>
+            </legend>
+                 <div id="inputid">ID : <input type="text" id="id" name="id" placeholder="아이디를 입력해주세요." > </div>
+                 <div class="input password">
+                    <label for="password" class="label password" ></label>
+                    <div id="inputpw">PW :</div>
+                    <input type="password" id="password" class="form-input" placeholder="비밀번호를 입력해주세요.">
+                    <div class="eyes">
+                        <i class="fa fa-eye fa-lg"></i>
+                    </div>
+                  </div>
+                  
+                  <div class="box">
+                    <span class="input-wrap">
+                      <input type="checkbox" id="checkId" name="checkId">                                         
+                      <label for="checkId"><span></span></label>
+                    </span>
+                    <div id="idsave">아이디 저장</div>
+                  </div>
 
-		$("#id").on("change", function() {
-			idValidFlag = false;
-		})
 
-		$("#pw2").on("keyup", function() { //비밀번호 일치여부 표시
-			if ($("#pw2").val() == $("#pw1").val()) {
-				$("#pwCheck").html("비밀번호가 일치합니다 :)").css("color", "dodgerblue");
-			} else {
-				$("#pwCheck").html("비밀번호가 일치하지 않습니다 :(").css("color", "red");
-			}
-		});
+						<button name="loginbutton" id="loginbutton">로그인</button>
+                            <br>
+						<button name="NaverLI" id="NaverLogin">Naver Login</button>
+						<button name="KakaoLI" id="KakaoLogin">Kakao Login</button>
+				
+                  
+        </fieldset>
+        
+        <div id="searchid"><a href="https://search.naver.com/search.naver?where=nexearch&sm=top_sug.pre&fbm=0&acr=1&acq=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4&qdt=0&ie=utf8&query=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4%EC%A1%B1%EB%B0%9C">아이디 찾기</a></div>
+        <div id="searchpw"><a href="http://www.naver.com">비밀번호 찾기</a></div>
+        <div id="signup"><a href="/signup.html">회원 가입</a></div>
 
-		document.getElementById("search").onclick = function() { //우편번호 API
-			new daum.Postcode({
-				oncomplete : function(data) {
-					var roadAddr = data.roadAddress; // 도로명 주소 변수
-					document.getElementById("zipcode").value = data.zonecode;
-					document.getElementById("address1").value = roadAddr;
-				}
-			}).open();
-			return false;
+    </form>
+    </div>
+<script>
+
+$(function(){
+  // 눈표시 클릭 시 패스워드 보이기
+  $('.eyes').on('click',function(){
+    $('.input.password').toggleClass('active');
+
+    if( $('.input.password').hasClass('active') == true ){
+    	$(this).find('.fa-eye').attr('class',"fa fa-eye-slash fa-lg").parents('.input').find('#password').attr('type',"text");
+    				// i 클래스                // 텍스트 보이기 i 클래스
+    }
+    else{
+    	$(this).find('.fa-eye-slash').attr('class',"fa fa-eye fa-lg").parents('.input').find('#password').attr('type','password');
+    }
+  });
+});
+
+//
+$(document).ready(function(){
+		// 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
+	    var key = getCookie("key");
+	    $("#id").val(key); 
+	     
+	    // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
+	    if($("#id").val() != ""){ 
+	        $("#checkId").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+	    }
+    })
+	    $("#checkId").change(function(){ // 체크박스에 변화가 있다면,
+	        if($("#checkId").is(":checked")){ // ID 저장하기 체크했을 때,
+	            setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
+	        }else{ // ID 저장하기 체크 해제 시,
+	            deleteCookie("key");
+	        }
+	    });
+	     
+	    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+	    $("#id").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
+	        if($("#checkId").is(":checked")){ // ID 저장하기를 체크한 상태라면,
+	            setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
+	        }
+	    });
+
+	// 쿠키 저장하기 
+	// setCookie => saveid함수에서 넘겨준 시간이 현재시간과 비교해서 쿠키를 생성하고 지워주는 역할
+	function setCookie(cookieName, value, exdays) {
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var cookieValue = escape(value)
+				+ ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+		document.cookie = cookieName + "=" + cookieValue;
+	}
+
+	// 쿠키 삭제
+	function deleteCookie(cookieName) {
+		var expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() - 1);
+		document.cookie = cookieName + "= " + "; expires="
+				+ expireDate.toGMTString();
+	}
+     
+	// 쿠키 가져오기
+	function getCookie(cookieName) {
+		cookieName = cookieName + '=';
+		var cookieData = document.cookie;
+		var start = cookieData.indexOf(cookieName);
+		var cookieValue = '';
+		if (start != -1) { // 쿠키가 존재하면
+			start += cookieName.length;
+			var end = cookieData.indexOf(';', start);
+			if (end == -1) // 쿠키 값의 마지막 위치 인덱스 번호 설정 
+				end = cookieData.length;
+                console.log("end위치  : " + end);
+			cookieValue = cookieData.substring(start, end);
 		}
+		return unescape(cookieValue);
+	}
 
-		$("#reset").on("click", function() { //다시입력 버튼 클릭 시 input창 reset
-			$("input").val("");
-		});
+	//네이버 간편 로그인
+	$("#NaverLI").on("click", function() {
+		location.href = "/login.naverlogin.jsp"
+	});
+	
+	// 카카오 간편 로그인
+	$("#KakaoLI").on("click", function() {
+		location.href = "/login.kakaologin.html"
+	});
 
-		$("#frm").on(
-				"submit",
-				function() {
-					//입력 형식 제한
-					var regexID = /^[a-z0-9_]{7,13}$/;
-					var regexPW = /^[A-Za-z0-9]{7,13}$/;
-					var regexName = /^[가-힣]+$/;
-					var regexPhone = /^010[0-9]{8}$/;
-					var regexEmail = /.+@.+\..+/;
 
-					var id = $("#id").val();
-					var pw1 = $("#pw1").val();
-					var pw2 = $("#pw2").val();
-					var name = $("#name").val();
-					var phone = $("#phone").val();
-					var email = $("#email").val();
-
-					if (id == "" || pw1 == "" || pw2 == "" || name == ""
-							|| phone == "" || email == "") { //필수항목 입력 여부 체크
-						Swal.fire({
-							icon : "error",
-							title : "Oops...",
-							text : "필수 항목을 모두 입력해주세요."
-						});
-						return false;
-					}
-					if (pw1 != pw2) { //패스워드 일치 여부 체크
-						Swal.fire({
-							icon : "error",
-							title : "Oops...",
-							text : "패스워드를 다시 확인해주세요"
-						});
-						return false;
-					}
-
-					// if (id=="") {
-					//     Swal.fire({
-					//         icon: "error",
-					//         title: "Oops...",
-					//         text: "아이디를 입력해주세요"
-					//     });
-					//     return false;
-					// }
-					// if(pw1==""||pw2==""){
-					//     Swal.fire({
-					//         icon: "error",
-					//         title: "Oops...",
-					//         text: "패스워드를 입력해주세요"
-					//     });
-					//     return false;
-					// }
-					// if(name==""){
-					//     Swal.fire({
-					//         icon: "error",
-					//         title: "Oops...",
-					//         text: "이름을 입력해주세요"
-					//     });
-					//     return false;
-					// }
-					// if(phone==""){
-					//     Swal.fire({
-					//         icon: "error",
-					//         title: "Oops...",
-					//         text: "전화번호를 입력해주세요"
-					//     });
-					//     return false;
-					// }
-					// if(email==""){
-					//     Swal.fire({
-					//         icon: "error",
-					//         title: "Oops...",
-					//         text: "이메일을 입력해주세요"
-					//     });
-					//     return false;
-					// }
-
-					//형식 제한 준수 여부 체크
-					if (!regexID.test(id)) {
-						Swal.fire({
-							icon : "error",
-							title : "ID 형식 오류",
-							text : "7-13자의 알파벳 소문자, 숫자, _",
-						});
-						return false;
-					}
-					if (!regexPW.test(pw1)) {
-						Swal.fire({
-							icon : "error",
-							title : "Password 형식 오류",
-							text : "7-13자의 알파벳 대소문자, 숫자",
-						});
-						return false;
-					}
-					if (!regexName.test(name)) {
-						Swal.fire({
-							icon : "error",
-							title : "NAME 형식 오류",
-							text : "한글만 입력 가능",
-						});
-						return false;
-					}
-					if (!regexPhone.test(phone)) {
-						Swal.fire({
-							icon : "error",
-							title : "PHONE 형식 오류",
-							text : "- 제외 입력",
-						});
-						return false;
-					}
-					if (!regexEmail.test(email)) {
-						Swal.fire({
-							icon : "error",
-							title : "EMAIL 형식 오류",
-							text : "ID@address 형식으로 입력",
-						});
-						return false;
-					}
-				});
-	</script>
+</script>
 </body>
 </html>
