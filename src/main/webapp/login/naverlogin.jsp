@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>네이버로그인</title>
+    <title>네이버 간편 로그인</title>
   </head>
   <body>
   <%
