@@ -35,7 +35,7 @@
                     </div>
                     <div class="body">
                         <div class="content">
-                            <div class="accordion" id="accordionExample">
+                            <div class="accordion" id="accordionFAQ">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingOne">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -45,7 +45,7 @@
                                         </button>
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
                                         <div class="accordion-body">
                                             <div id="editor">음.</div>
                                             <script>
@@ -70,19 +70,19 @@
                                     </div>
                                 </div>
 
-                                
+
                                 <c:if test="${fn:length(list) > 0}">
                                     <c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
                                         <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingOne">
+                                            <h2 class="accordion-header" id="heading${i}">
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
+                                                    data-bs-target="#collapse${i}" aria-expanded="true"
+                                                    aria-controls="collapse${i}">
                                                     ${list.get(i).title}
                                                 </button>
                                             </h2>
-                                            <div id="collapseOne" class="accordion-collapse collapse show"
-                                                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                            <div id="collapse${i}" class="accordion-collapse collapse show"
+                                                aria-labelledby="heading${i}" data-bs-parent="#accordionFAQ">
                                                 <div class="accordion-body">
                                                     <div id="editor${i}">
                                                         ${list.get(i).body}
