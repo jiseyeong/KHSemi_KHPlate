@@ -5,16 +5,15 @@
 <head>
 <meta charset="EUC-KR">
 <title>Mypage</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-crossorigin="anonymous"></script>
-	<style>
-	
-			*{box-sizing:border-box;}
-			
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+     <style>
+            *{box-sizing:border-box;}
+            
             button {
                 border-radius: 15px;
                 border: none;
@@ -26,7 +25,7 @@ crossorigin="anonymous"></script>
     
             .mypage {
                 width: 1114px;
-                height: 1000px;
+                height: 1200px;
                 margin: auto;
                 margin-top: 20px;
             }
@@ -34,7 +33,7 @@ crossorigin="anonymous"></script>
             .header {
                 height: 5%;
                 text-align: center;
-                line-height: 49px;
+                line-height: 60px;
                 font-size: 15px;
                 font-weight: bold;
                 background-color: rgb(245, 245, 245);
@@ -43,11 +42,11 @@ crossorigin="anonymous"></script>
             }
     
             .body1 {
-                height: 50%;
+                height: 60%;
             }
     
             .body2 {
-                height: 45%;
+                height: 40%;
             }
     
             .body1>div {
@@ -100,7 +99,7 @@ crossorigin="anonymous"></script>
                 position: absolute;
                 left: 125px;
                 width: 75px;
-                top:460px;
+                top:600px;
             }
     
             .profileImage {
@@ -127,6 +126,7 @@ crossorigin="anonymous"></script>
                 width: 75px;
                 position: relative;
                 right: 8px;
+                bottom:150px;
             }
     
             button:hover {
@@ -142,11 +142,8 @@ crossorigin="anonymous"></script>
             #modiComBtn{
                 display:none;
             }
-            .body2 {
-                padding: 30px;
-            }
             .body2Navi {
-                height: 10%;
+                height: 7%;
             }
     
             .body2Navi>a{
@@ -155,7 +152,7 @@ crossorigin="anonymous"></script>
                 border:1px solid black;
                 color:black;
                 position: relative;
-                top:10px;
+                top:5px;
                 font-size: 12px;
                 height:30px;
                 display:inline-block;
@@ -169,9 +166,10 @@ crossorigin="anonymous"></script>
             }
             .body2Contents {
                 width:100%;
-                height: 80%;
+                height: 70%;
                 border: 1px solid black;
-            }  
+            }
+            
         </style>
     </head>
     <body>
@@ -188,6 +186,7 @@ crossorigin="anonymous"></script>
                     <div class="inpocontents1">
                         <ul>
                             <li>아이디</li>
+                            <li>비밀번호</li>
                             <li>이름</li>
                             <li>닉네임</li>
                             <li>핸드폰번호</li>
@@ -196,16 +195,21 @@ crossorigin="anonymous"></script>
                             <li>우편번호</li>
                             <li>주소1</li>
                             <li>주소2</li>
+                            <li>한줄소개</li>
+                            <li>최애음식</li>
                         </ul>
                     </div>
                     <div class="inpocontents2">
+                        <input type="text" readonly><br>
+                        <input type="text"><br>
+                        <input type="text" readonly><br>
                         <input type="text"><br>
                         <input type="text"><br>
                         <input type="text"><br>
-                        <input type="text"><br>
-                        <input type="text"><br>
-                        <input type="text"><br>
+                        <input type="text" readonly><br>
                         <input type="text"><button id="postSearch">주소찾기</button><br>
+                        <input type="text"><br>
+                        <input type="text"><br>
                         <input type="text"><br>
                         <input type="text"><br>
                         <button id="modiBtn">수정하기</button>
@@ -217,6 +221,8 @@ crossorigin="anonymous"></script>
                 <div class="body2Navi">
                     <a href="#" class="myContents">내가 쓴 글</a>
                     <a href="#" class="myContents">내가 쓴 댓글</a>
+                    <a href="#" class="myContents">즐겨찾기</a>
+                    <a href="#" class="myContents">1:1 문의</a>
                 </div>
                 <div class="body2Contents"></div>
             </div>
