@@ -1,8 +1,11 @@
 package controllers;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,17 +66,36 @@ public class StoreController extends HttpServlet {
 				int result = StoreDAO.getInstance().insert(new StoreDTO(0, mapDistance, storeName, mapLat, mapLng, storeAddress, 0, storeIntroduction, storeCategory));
 				int currval = StoreDAO.getInstance().getCurrval();
 				
-				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
-				ArrayList<String> oriNames = new ArrayList<>();
-				ArrayList<String> sysNames = new ArrayList<>();
-				for(int i = 0; i < imgLength; i++) {
-					oriNames.add(multi.getOriginalFileName("image"+i));
-					sysNames.add(multi.getFilesystemName("image"+i));
-					//imgsDAO~ (imgsDTO()) 추가해줘야 함
-				}
+//				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
+//				ArrayList<String> oriNames = new ArrayList<>();
+//				ArrayList<String> sysNames = new ArrayList<>();
+//				for(int i = 0; i < imgLength; i++) {
+//					oriNames.add(multi.getOriginalFileName("image"+i));
+//					sysNames.add(multi.getFilesystemName("image"+i));
+//					//imgsDAO~ (imgsDTO()) 추가해줘야 함
+//				}
 				
+				Enumeration<String> names = multi.getFileNames();
+				while(names.hasMoreElements()) {
+					String fileName = names.nextElement();
+					if(multi.getFile(fileName) != null){
+						String oriName = multi.getOriginalFileName(fileName);
+						String sysName = multi.getFilesystemName(fileName);
+						//imgsDAO ~ (new imgsDTO()) 추가해줘야 함.
+					}
+				}
 				response.sendRedirect("/view.store?storeID="+currval);
 			}
+			
+			// 검색 Controller추가 (allstoreInquiry.jsp 사용)
+			// 네비게비션, 사진 출력 미구현
+			else if(cmd.equals("/search.store")){
+				String search = request.getParameter("search");
+				List<StoreDTO> search_store_list = StoreDAO.getInstance().searchStore(search);
+				request.setAttribute("search_store_list", search_store_list);
+				request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
+			}
+
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");
