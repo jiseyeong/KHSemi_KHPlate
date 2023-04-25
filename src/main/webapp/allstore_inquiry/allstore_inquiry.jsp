@@ -506,7 +506,7 @@
 
 		.btn_layout {
 			width: 100%;
-			height: 8%;
+			height: 12%;
 			display: flex;
 			justify-content: space-evenly;
 			align-items: center;
@@ -514,7 +514,7 @@
 
 		.btn_inner_layout {
 			width: 25%;
-			height: 80%;
+			height: 60%;
 		}
 
 		.sort_apply_btn {
