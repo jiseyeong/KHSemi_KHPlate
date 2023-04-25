@@ -32,10 +32,15 @@
 	<a href="/searchResult/main_searchResult.jsp">searchResult</a>
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<a href="/allstore_inquire/allstore_inquire.jsp">allstore_inquire</a>
 	<a href="/googleLogin">google</a>
 =======
 	<a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry</a>
 >>>>>>> d476a259a84f6a213bfdc04509446680779af26f
+=======
+	<a href="/allstore_inquire/allstore_inquire.jsp">allstore_inquire</a>
+	<a href="/googleLogin">google</a>
+>>>>>>> 6786814d8c54caa135dca5e674865d35ea15a515
 </body>
 </html>
