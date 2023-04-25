@@ -62,7 +62,7 @@ li:not(.firstLi):hover {
 
 </head>
 <body>
-	<div class="col-12 col-lg-2 sideBar">
+	<div class="col-12 col-xl-2 themed-grid-col sideBar">
 		<ul class="ulTag">
 			<li class="firstLi">Menu</li>
 			<li>한식</li>
