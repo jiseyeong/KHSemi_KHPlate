@@ -20,7 +20,7 @@
 	
 	<a href="/mypage/mypage.jsp">mypage</a>
 	
-	<a href="/page/main.html">main</a>
+	<a href="/page/main.jsp">main</a>
 	
 	<a href="/search/result.jsp">result</a>
 	
