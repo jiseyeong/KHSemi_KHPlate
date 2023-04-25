@@ -16,6 +16,8 @@
 	<a href="/login/navercallback.jsp">navercallback</a>
 	<a href="/login/naverlogin.jsp">naverlogin</a>
 	
+	<a href="/loginform/loginform.jsp">loginform</a>	
+	
 	<a href="/mypage/mypage.jsp">mypage</a>
 	
 	<a href="/page/main.html">main</a>
@@ -27,9 +29,13 @@
 	<a href="/store/registerForm.jsp">register</a>
 	<a href="/store/view.jsp">view.jsp</a>
 	
-	<a href="/searchResult/searchResult.jsp">searchResult</a>
+	<a href="/searchResult/main_searchResult.jsp">searchResult</a>
 	
+<<<<<<< HEAD
 	<a href="/allstore_inquire/allstore_inquire.jsp">allstore_inquire</a>
 	<a href="/googleLogin">google</a>
+=======
+	<a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry</a>
+>>>>>>> d476a259a84f6a213bfdc04509446680779af26f
 </body>
 </html>

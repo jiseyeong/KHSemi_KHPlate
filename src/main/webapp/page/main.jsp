@@ -1,14 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>메인페이지</title>
+<title>Main</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
-	rel="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.3.0/octicons.min.css"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
 <script
@@ -17,62 +20,30 @@
 	crossorigin="anonymous"></script>
 
 <style>
+/* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 * {
 	box-sizing: border-box;
 	padding: 0px;
 }
-
-.header {
-	height: 90px;
-	background-color: #f2f2f2;
-}
-
-.logo>img {
-	width: 100%;
-	height: 60%;
-}
-
 .container {
 	margin-left: 0;
 	margin-right: 0;
 	max-width: 1920px;
 }
-
-#searchBox {
-	width: 850px;
-	height: 40px;
-	line-height: 50px;
-	position: relative;
-	top: -25px;
-	border-radius: 15px;
-	border: 1px solid #ED1C16;
-	left: 300px;
+.header {
+	height: 110px;
+	background-color: #f2f2f2;
 }
-
-#searchBtn {
-	width: 40px;
-	height: 39px;
-	position: relative;
-	top: -25px;
-	right: -260px;
-	font-size: 8px;
-	padding: 0px;
-	line-height: 35px;
-	color: white;
-	background-color: #ED1C16;
-	border: 1px solid #ED1C16;
-	border-radius: 10px;
-}
-
 .body {
 	height: 1000px;
 	max-width: 1400px;
 	margin: auto;
 	margin-top: 20px;
 }
-
+/* 하단부터 메인부분 스타일 작성 요망 */
 .contents {
 	padding: 0px;
+	padding-left: 10px;
 }
 
 .contents1 {
@@ -93,108 +64,37 @@
 	height: 100%;
 }
 
-.sideBar {
-	padding: 0px;
-}
 
-ul {
-	list-style: none;
-	margin: 0px;
-	padding: 0px;
-	width: 150px;
-	text-align: center;
-	width: 100%;
-}
 
-li {
-	height: 50px;
-	width: 100%;
-	font-size: 14px;
-	text-align: center;
-	margin: 0px;
-	padding: 0px;
-	line-height: 50px;
-	cursor: pointer;
-}
-
-li:hover {
-	color: #ED1C16;
-}
-
-.ulTag {
-	margin-bottom: 50px;
-}
-
-.firstLi {
-	border-bottom: 1px solid silver;
-	font-weight: bold;
-}
-
-.rightMenu>button {
-	width: 80px;
-	height: 40px;
-	font-size: 13px;
-	background-color: #ED1C16;
-	border: none;
-	border-radius: 20px;
-	color: white;
-	position: relative;
-	top: -65px;
-	right: -1200px;
-}
 </style>
 </head>
 <body>
 	<div class="container">
-
+		
+	<!-- 헤더부분 건들지 말것 -->
 		<div class="row header" id="header">
-			<div class="col-12 col-lg-2 logo">logo
-				<img src="...">
-			</div>
-
-			<form class="d-flex" role="search">
-				<input type="search" id="searchBox">
-				<button id="searchBtn" type="submit">>></button>
-			</form>
-
+			<jsp:include page="header.jsp" flush="false"></jsp:include>
 		</div>
+	</div>
 
-		<div class="col-12 col-lg-2 d-flex justify-content-evenly rightMenu">
-			<button id="loginBtn">로그인</button>
-			<button>회원가입</button>
-		</div>
+
+	<!-- sideBar부분 건들지 말것 -->
 	<div class="row body">
-		<div class="col-12 col-lg-2 sideBar">
-			<ul class="ulTag">
-				<li class="firstLi">Menu</li>
-				<li>한식</li>
-				<li>중식</li>
-				<li>일식</li>
-				<li>양식</li>
-				<li>음료/디저트</li>
-			</ul>
-			<ul class="ulTag">
-				<li class="firstLi">Community</li>
-				<li>잡담 게시판</li>
-				<li>리뷰 게시판</li>
-			</ul>
-			<ul class="ulTag">
-				<li class="firstLi">고객센터</li>
-				<li>1:1 문의</li>
-			</ul>
-		</div>
+		<jsp:include page="sideBar.jsp" flush="false"></jsp:include>
 
+	<!-- Main 내용 부분 하단부터 수정 요망 -->
 		<div class="col-12 col-lg-10 contents">
 			<div class="col-12 col-lg-12 row contents1">
 				<div class="col-12 col-lg-9 carousel">
-					<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+					<div id="carouselIndicators" class="carousel slide"
+						data-bs-ride="true">
 						<div class="carousel-indicators">
-							<button type="button" data-bs-target="#carouselExampleIndicators"
+							<button type="button" data-bs-target="#carouselIndicators"
 								data-bs-slide-to="0" class="active" aria-current="true"
 								aria-label="Slide 1"></button>
-							<button type="button" data-bs-target="#carouselExampleIndicators"
+							<button type="button" data-bs-target="#carouselIndicators"
 								data-bs-slide-to="1" aria-label="Slide 2"></button>
-							<button type="button" data-bs-target="#carouselExampleIndicators"
+							<button type="button" data-bs-target="#carouselIndicators"
 								data-bs-slide-to="2" aria-label="Slide 3"></button>
 						</div>
 						<div class="carousel-inner">
@@ -215,29 +115,35 @@ li:hover {
 							</div>
 						</div>
 						<button class="carousel-control-prev" type="button"
-							data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+							data-bs-target="#carouselIndicators" data-bs-slide="prev">
 							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 							<span class="visually-hidden">Previous</span>
 						</button>
 						<button class="carousel-control-next" type="button"
-							data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+							data-bs-target="#carouselIndicators" data-bs-slide="next">
 							<span class="carousel-control-next-icon" aria-hidden="true"></span>
 							<span class="visually-hidden">Next</span>
 						</button>
 					</div>
 				</div>
+
+
+
 				<div class="col-12 col-lg-3 sideList">sideList</div>
 			</div>
+
+
+
+
 			<div class="col-12 col-lg-12 row contents2">
+
+
 				<div class="row row-cols-1 row-cols-md-3 g-4">
 					<div class="col-12 col-lg-4">
-						<div class="card h-100">
+						<div class="card h-80">
 							<img src="..." class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Card title</h5>
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
 							</div>
 							<div class="card-footer">
 								<small class="text-muted">Last updated 3 mins ago</small>
@@ -245,12 +151,10 @@ li:hover {
 						</div>
 					</div>
 					<div class="col-12 col-lg-4">
-						<div class="card h-100">
+						<div class="card h-80">
 							<img src="..." class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Card title</h5>
-								<p class="card-text">This card has supporting text below as
-									a natural lead-in to additional content.</p>
 							</div>
 							<div class="card-footer">
 								<small class="text-muted">Last updated 3 mins ago</small>
@@ -258,14 +162,10 @@ li:hover {
 						</div>
 					</div>
 					<div class="col-12 col-lg-4">
-						<div class="card h-100">
+						<div class="card h-80">
 							<img src="..." class="card-img-top" alt="...">
 							<div class="card-body">
 								<h5 class="card-title">Card title</h5>
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									card has even longer content than the first to show that equal
-									height action.</p>
 							</div>
 							<div class="card-footer">
 								<small class="text-muted">Last updated 3 mins ago</small>
@@ -275,7 +175,9 @@ li:hover {
 				</div>
 			</div>
 		</div>
+		<!-- Main 수정 여기까지, 하단 건들지 말것. -->
+		
 	</div>
-</div>
+
 </body>
 </html>
