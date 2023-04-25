@@ -7,17 +7,7 @@
 <meta charset="UTF-8">
 <title>FAQ 등록</title>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<<<<<<< HEAD
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script
-	src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
-=======
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
->>>>>>> 8ba58e4173cce3bde1cd182362e75902880376cc
 <style>
 .container_noboot {
 	margin-left: 0;
