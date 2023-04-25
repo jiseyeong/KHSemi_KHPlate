@@ -37,13 +37,10 @@
         float:left;
     }
 
-<<<<<<< HEAD
-#writer {
-	display: none;
-}
+    #writer {
+	    display: none;
+    }
 
-=======
->>>>>>> 8ba58e4173cce3bde1cd182362e75902880376cc
     .left{
         width:20%;
         margin-right:5%;
@@ -54,7 +51,6 @@
         width:75%;
         float:left;
     }
-<<<<<<< HEAD
     
     #toList {
 	width: 250px;
@@ -79,8 +75,6 @@
 	margin-top: 55px;
 	font-size: 20px;
 }
-=======
->>>>>>> 8ba58e4173cce3bde1cd182362e75902880376cc
 </style>
 </head>
 <body>
@@ -99,10 +93,7 @@
                             <option>건의</option>
                         </select>
                         <input type="text" name="title" class="title" placeholder="제목을 입력해주세요.">
-<<<<<<< HEAD
                         <input type="text" name="writer" id="writer" value="${sessionScope.loginID}" readonly>
-=======
->>>>>>> 8ba58e4173cce3bde1cd182362e75902880376cc
                     </div>
                     <div style="overflow:hidden;">
                         <div class="left">
@@ -119,19 +110,11 @@
                     </div>
                 </fieldset>
                 <div style="text-align:center">
-<<<<<<< HEAD
                 	<input type="button" name="toList" id="toList" value="목록으로">
 					<input type="submit" name="submitBtn" id="submitBtn" value="작성완료">
                 </div>
             </form>
         </div>
-=======
-                	<button>Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
->>>>>>> 8ba58e4173cce3bde1cd182362e75902880376cc
         <script>
             ClassicEditor
             .create(document.querySelector("#editor"), {
