@@ -83,7 +83,7 @@
                                 <legend>image list</legend>
                                 <!-- 여기에 name이 image0, image1 식의 name으로 file input 추가됨. 보내기 직전 name 태그 붙이기 시작. -->
                                 <div id="img_field"></div>
-                                <input type="text" name="imgLength" style="display: none;">
+                                <!-- <input type="text" name="imgLength" style="display: none;"> -->
                             </fieldset>
                         </div>
                         <div class="row-contents">
@@ -203,12 +203,13 @@
                 });
 
                 $("#addForm").submit(function (e) {
-                    $("input[name=imgLength]").val(imgs.length);
+                    // $("input[name=imgLength]").val(imgs.length);
                     for (let i = 0; i < imgs.length; i++) {
-                        if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
-                            alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
-                            return false;
-                        } else if (!imgs[i].children("input").val().match(imgForms)) {
+                        // if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
+                        //     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
+                        //     return false;
+                        //} else
+                        if (!imgs[i].children("input").val().match(imgForms)) {
                             alert("이미지 파일만 업로드 가능합니다.");
                             return false;
                         }

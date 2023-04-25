@@ -6,7 +6,7 @@
 
             <head>
                 <meta charset="UTF-8">
-                <title>FAQ</title>
+                <title>FAQ List</title>
                 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -30,9 +30,7 @@
 
             <body>
                 <div class="container_noboot">
-                    <div class="sidebar">
-
-                    </div>
+                    <div class="sidebar"></div>
                     <div class="body">
                         <div class="content">
                             <div class="accordion" id="accordionFAQ">
@@ -44,15 +42,12 @@
                                                     <button class="accordion-button" type="button"
                                                         data-bs-toggle="collapse" data-bs-target="#collapse${i}"
                                                         aria-expanded="true" aria-controls="collapse${i}">
-                                                        ${list.get(i).title}
-                                                    </button>
+                                                        ${list.get(i).title}</button>
                                                 </h2>
                                                 <div id="collapse${i}" class="accordion-collapse collapse show"
                                                     aria-labelledby="heading${i}" data-bs-parent="#accordionFAQ">
                                                     <div class="accordion-body">
-                                                        <div id="editor${i}">
-                                                            ${list.get(i).body}
-                                                        </div>
+                                                        <div id="editor${i}">${list.get(i).body}</div>
                                                         <script>
                                                             let i = "<c:out value='${i}'></c:out>"
                                                             ClassicEditor
@@ -82,9 +77,8 @@
                                             <h2 class="accordion-header" id="headingOne">
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                                     data-bs-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
-                                                    FAQ #1
-                                                </button>
+                                                    aria-controls="collapseOne">FAQ
+                                                    #1</button>
                                             </h2>
                                             <div id="collapseOne" class="accordion-collapse collapse show"
                                                 aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">

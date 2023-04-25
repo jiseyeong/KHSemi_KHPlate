@@ -4,6 +4,7 @@ import java.io.File;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -65,13 +66,23 @@ public class StoreController extends HttpServlet {
 				int result = StoreDAO.getInstance().insert(new StoreDTO(0, mapDistance, storeName, mapLat, mapLng, storeAddress, 0, storeIntroduction, storeCategory));
 				int currval = StoreDAO.getInstance().getCurrval();
 				
-				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
-				ArrayList<String> oriNames = new ArrayList<>();
-				ArrayList<String> sysNames = new ArrayList<>();
-				for(int i = 0; i < imgLength; i++) {
-					oriNames.add(multi.getOriginalFileName("image"+i));
-					sysNames.add(multi.getFilesystemName("image"+i));
-					//imgsDAO~ (imgsDTO()) 추가해줘야 함
+//				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
+//				ArrayList<String> oriNames = new ArrayList<>();
+//				ArrayList<String> sysNames = new ArrayList<>();
+//				for(int i = 0; i < imgLength; i++) {
+//					oriNames.add(multi.getOriginalFileName("image"+i));
+//					sysNames.add(multi.getFilesystemName("image"+i));
+//					//imgsDAO~ (imgsDTO()) 추가해줘야 함
+//				}
+				
+				Enumeration<String> names = multi.getFileNames();
+				while(names.hasMoreElements()) {
+					String fileName = names.nextElement();
+					if(multi.getFile(fileName) != null){
+						String oriName = multi.getOriginalFileName(fileName);
+						String sysName = multi.getFilesystemName(fileName);
+						//imgsDAO ~ (new imgsDTO()) 추가해줘야 함.
+					}
 				}
 				
 				response.sendRedirect("/view.store?storeID="+currval);
