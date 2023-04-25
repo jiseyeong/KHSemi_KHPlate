@@ -84,10 +84,8 @@ public class StoreController extends HttpServlet {
 						//imgsDAO ~ (new imgsDTO()) 추가해줘야 함.
 					}
 				}
-				
 				response.sendRedirect("/view.store?storeID="+currval);
 			}
-			
 			
 			// 검색 Controller추가 (allstoreInquiry.jsp 사용)
 			// 네비게비션, 사진 출력 미구현
