@@ -85,6 +85,7 @@
                 </div>
             </form>
         </div>
+    </div>
         <script>
             ClassicEditor
             .create(document.querySelector("#editor"), {
