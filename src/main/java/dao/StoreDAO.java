@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -81,9 +82,21 @@ public class StoreDAO {
 			double avgScore = rs.getDouble("AVGSCORE");
 			String introduction = rs.getString("INTRODUCTION");
 			String category = rs.getString("CATEGORY");
-			
 			result.add(new StoreDTO(storeID, distance, name, lat, lng, address, avgScore, introduction, category));
 		}
 		return result;
+	}
+	
+	
+	// 가게 검색 SQL
+	public List<StoreDTO> searchStore (String search) throws Exception{
+		String sql = "select * from store where name like ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1,"%"+search+"%");
+			try (	ResultSet rs = pstat.executeQuery();){
+				return transAllRsToList(rs);
+			}
+		}
 	}
 }
