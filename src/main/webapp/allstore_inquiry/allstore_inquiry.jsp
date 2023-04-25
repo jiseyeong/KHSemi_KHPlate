@@ -129,6 +129,7 @@
 			height: 80%;
 			border-radius: 15px;
 			border: none;
+			padding-left:10px;
 		}
 
 		#seachBtn {
