@@ -73,10 +73,8 @@ public class StoreController extends HttpServlet {
 					sysNames.add(multi.getFilesystemName("image"+i));
 					//imgsDAO~ (imgsDTO()) 추가해줘야 함
 				}
-				
 				response.sendRedirect("/view.store?storeID="+currval);
 			}
-			
 			
 			// 검색 Controller추가 (allstoreInquiry.jsp 사용)
 			// 네비게비션, 사진 출력 미구현
