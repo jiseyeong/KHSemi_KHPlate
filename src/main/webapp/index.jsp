@@ -31,7 +31,8 @@
 	
 	<a href="/searchResult/main_searchResult.jsp">searchResult</a>
 	
-	<a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry</a>
+
+	<a href="/allstore_inquire/allstore_inquire.jsp">allstore_inquire</a>
 	<a href="/googleLogin">google</a>
 </body>
 </html>
