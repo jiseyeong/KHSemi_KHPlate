@@ -20,7 +20,7 @@
 	
 	<a href="/mypage/mypage.jsp">mypage</a>
 	
-	<a href="/page/main.html">main</a>
+	<a href="/page/main.jsp">main</a>
 	
 	<a href="/search/result.jsp">result</a>
 	
@@ -31,7 +31,7 @@
 	
 	<a href="/searchResult/main_searchResult.jsp">searchResult</a>
 	
-	<a href="/allstore_inquire/allstore_inquire.jsp">allstore_inquire</a>
+	<a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry</a>
 	<a href="/googleLogin">google</a>
 </body>
 </html>
