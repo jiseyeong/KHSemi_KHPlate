@@ -1,7 +1,7 @@
 package dto;
 
 public class MembersDTO {
-	
+
 	private int userNO;
 	private String userID;
 	private String pw;
@@ -19,11 +19,29 @@ public class MembersDTO {
 	private String kakao;
 	private String naver;
 	private String google;
-	
+
 	public MembersDTO() {
 		super();
 	}
 
+	public MembersDTO(String userID, String pw, String nickname,String name, String email, String phone,
+			String classes, String selfcomment, String favoriteFood, int zipCode, String address1,
+			String address2) {//마이페이지 출력할때 쓸 dto 오버로딩
+
+		this.userID = userID;
+		this.pw = pw;
+		this.nickname = nickname;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.classes = classes;
+		this.selfcomment = selfcomment;
+		this.favoriteFood = favoriteFood;
+		this.zipCode = zipCode;
+		this.address1 = address1;
+		this.address2 = address2;
+
+	}
 	public MembersDTO(int userNO, String userID, String pw, String nickname, String name, String email, String phone,
 			String classes, String selfcomment, String favoriteFood, String isAdmin, int zipCode, String address1,
 			String address2, String kakao, String naver, String google) {
@@ -182,9 +200,9 @@ public class MembersDTO {
 	public void setGoogle(String google) {
 		this.google = google;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }
