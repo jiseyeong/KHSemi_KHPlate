@@ -30,5 +30,6 @@
 	<a href="/searchResult/searchResult.jsp">searchResult</a>
 	
 	<a href="/allstore_inquire/allstore_inquire.jsp">allstore_inquire</a>
+	<a href="/googleLogin">google</a>
 </body>
 </html>
