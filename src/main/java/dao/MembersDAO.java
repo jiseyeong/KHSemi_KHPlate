@@ -70,16 +70,18 @@ public class MembersDAO {
 			return result;
 		}
 	}	
-	public MembersDTO select() throws Exception{ //마이페이지 정보 출력
+	public MembersDTO selectById(String userID) throws Exception{ //마이페이지 정보 출력
 		
-		String sql = "select * from members";
+		String sql = "select * from members where userid=?";
 		
 		try(Connection con = this.getConnection();
 			PreparedStatement pstat = con.prepareStatement(sql);){
 			
+			pstat.setString(1, userID);
+			
 			ResultSet rs = pstat.executeQuery();			
 			rs.next();
-			String userId = rs.getString("userid");
+			String userID2 = rs.getString("userid");
 			String pw = rs.getString("pw");
 			String nickname = rs.getString("nickname");
 			String name = rs.getString("name");
@@ -92,7 +94,7 @@ public class MembersDAO {
 			String address1 = rs.getString("address1");
 			String address2 = rs.getString("address2");
 			
-			MembersDTO result = new MembersDTO(userId,pw,nickname,name,email,phone,classes,selfcomment,favoritefood,zipCode,address1,address2);
+			MembersDTO result = new MembersDTO(userID2,pw,nickname,name,email,phone,classes,selfcomment,favoritefood,zipCode,address1,address2);
 			
 			return result;
 		}
@@ -127,7 +129,7 @@ public class MembersDAO {
 		String sql = "delete from members where userid=? and pw=?";
 
 		try(Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
+			PreparedStatement pstat = con.prepareStatement(sql);){
 
 			pstat.setString(1, userId);
 			pstat.setString(2, pw);
