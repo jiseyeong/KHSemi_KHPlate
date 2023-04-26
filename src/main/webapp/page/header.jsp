@@ -5,7 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>헤더</title>
+=======
+<title>Insert title here</title>
+>>>>>>> 8b811052a743086068cfe994fdf95ff7439b731c
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,6 +22,7 @@
     <style>
         * {
             box-sizing: border-box;
+<<<<<<< HEAD
             position: fixed;
         }
 
@@ -33,6 +38,22 @@
         .logo {
             float: left;
 
+=======
+        }
+
+        .header {
+        	
+            margin: auto;
+            width: 100%; 
+
+   			background-color: #f2f2f2;
+            
+        }
+
+        .logo {
+            float: left;
+
+>>>>>>> 8b811052a743086068cfe994fdf95ff7439b731c
         }
 
         .logo>img {
@@ -130,4 +151,5 @@
         </div>
     </div>
 </body>
+
 </html>

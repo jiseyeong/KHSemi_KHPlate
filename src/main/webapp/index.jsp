@@ -9,29 +9,35 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-
-	<a href="/joinform/joinform.jsp">joinform</a>
-	
-	<a href="/login/login.jsp">login</a>
+	<a href="/adminPage/consultRegister.jsp">consultRegister.jsp</a>
+	<a href="/adminPage/counsultList.jsp">counsultList.jsp</a>
+	<a href="/adminPage/FAQRegister.jsp">FAQRegister.jsp</a>
+	<a href="/adminPage/FAQView.jsp">FAQView.jsp</a>
+	<br>
+	<a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry.jsp</a>
+	<br>
+	<a href="/common/main_searchResult.jsp">main_searchResult.jsp</a>
+	<a href="/common/searchResult.jsp">searchResult.jsp</a>
+	<a href="/common/sort_filter.html">sort_filter.html</a>
+	<br>
+	<a href="/joinform/joinform.jsp">joinform.jsp</a>
+	<br>
+	<a href="/login/kakaologin.html">kakaologin.html</a>
+	<a href="/login/loginbox.html">loginbox</a>
 	<a href="/login/navercallback.jsp">navercallback</a>
 	<a href="/login/naverlogin.jsp">naverlogin</a>
-	
-	<a href="/loginform/loginform.jsp">loginform</a>	
-	
-	<a href="/mypage/mypage.jsp">mypage</a>
-	
-	<a href="/page/main.html">main</a>
-	
-	<a href="/search/result.jsp">result</a>
-	
-	<a href="/signin/signin.jsp">signin</a>
-	
+	<br>
+	<a href="/memberout/memberout.html">memberout.html</a>	
+	<br>
+	<a href="/mypage/mypage.jsp">mypage.jsp</a>
+	<br>
+	<a href="/page/header.jsp">header.jsp</a>
+	<a href="/page/main.jsp">main.jsp</a>
+	<a href="/page/sideBar.jsp">sideBar.jsp</a>
+	<br>
+	<a href="/signin/signin.jsp">signin.jsp</a>
+	<br>
 	<a href="/store/registerForm.jsp">register</a>
 	<a href="/store/view.jsp">view.jsp</a>
-	
-	<a href="/searchResult/main_searchResult.jsp">searchResult</a>
-	
-	<a href="/allstore_inquire/allstore_inquire.jsp">allstore_inquire</a>
-	<a href="/googleLogin">google</a>
 </body>
 </html>
