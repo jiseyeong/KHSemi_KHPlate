@@ -62,6 +62,15 @@ public class ConsultController extends HttpServlet {
 				request.setAttribute("list", list);
 				request.setAttribute("writerList", writerList);
 				request.getRequestDispatcher("/adminPage/consultList.jsp").forward(request, response);
+			}else if(cmd.equals("/view.consult")) {
+				int consultID = Integer.parseInt(request.getParameter("consultID"));
+				ConsultDTO dto = ConsultDAO.getInstance().selectOne(consultID);
+				String writer = MembersDAO.getInstance().getIDByNo(dto.getUserNO());
+				
+				request.setAttribute("dto", dto);
+				request.setAttribute("writer", writer);
+				//이미지 추가해야 함.
+				request.getRequestDispatcher("/adminPage/consultView.jsp").forward(request, response);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

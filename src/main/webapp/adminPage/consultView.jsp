@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1 상담 답변 등록</title>
+<title>1:1 상담</title>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <style>
@@ -25,6 +26,18 @@
     .body {
         width: 1420px;
     }
+    
+    select.category {
+        width:15%;
+        margin-right:10%;
+        float:left;
+    }
+
+    input.title {
+        width:75%;
+        float:left;
+    }
+
     .left{
         width:20%;
         margin-right:5%;
@@ -35,6 +48,7 @@
         width:75%;
         float:left;
     }
+    
     .previewImg{
     	width:100%;
         object-fit: contain;
@@ -65,58 +79,39 @@
 
         </div>
         <div class="body">
-        	<fieldset style="margin-bottom:50px;">
+            <fieldset style="margin-bottom:50px;">
                 <legend>대상 고객 글</legend>
                 <div style="overflow: hidden;">
                     <div class="category">
                         <label style="width:40%;">카테고리</label>
-                        <input type="text" value="${parentDTO.category}" style="width:60%;" readonly>
+                        <input type="text" value="${dto.category}" style="width:60%;" readonly>
                     </div>
                     <div class="title">
                         <label style="width:5%;">제목</label>
-                        <input type="text" class="title" value="${parentDTO.title}" style="width:95%;" readonly>
+                        <input type="text" class="title" value="${dto.title}" style="width:95%;" readonly>
                     </div>
                     <div class="writer">
                         <label style="width: 20%;">작성자</label>
-                        <input type="text" class="writer" value="${parentWriter}" style="width:80%;" readonly>
+                        <input type="text" class="writer" value="${writer}" style="width:80%;" readonly>
                     </div>
                 </div>
                 <div style="overflow: hidden;">
                 	<div style="text-align:center;">작성 내용</div>
                 	<div class="left">
                         <div>
-                            <img src="${parentImage}" alt="${parentImage}" id="image" class="previewImg">
+                            <img src="${image}" alt="${image}" id="image" class="previewImg">
                         </div>
                     </div>
                     <div class="right">
-                       <div id="readEditor">${parentDTO.body}</div>
+                       <div id="readEditor">${dto.body}</div>
                     </div>
                 </div>
         	</fieldset>
-            
-            <form action="" method="get">
-                <fieldset>
-                    <legend>답변 등록</legend>
-                    <input type="text" name="writer" value="${sessionScope.loginID}" style="display:none;">
-                    <input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
-                    <div style="width:100%">
-                        <label style="width:5%; float:left;">제목</label>
-                        <input type="text" class="title" name="title" placeholder="제목을 입력해주세요." style="float:left; width:95%;">
-                    </div>
-                    <div>
-                        <textarea name="body" id="editor"></textarea>
-                    </div>
-                    </div>
-                </fieldset>
-                <div style="text-align:center;">
-                	<button type="submit">submit</button>
-                </div>
-            </form>
         </div>
     </div>
-    
+
     <script>
-    	ClassicEditor
+        ClassicEditor
     		.create(document.querySelector("#readEditor"))
     		.then(function (editor) {
         		const toolbarElement = editor.ui.view.toolbar.element;
@@ -124,12 +119,6 @@
         		editor.enableReadOnlyMode('');
     		})
     		.catch(error => { console.error(error) });
-
-        ClassicEditor
-            .create(document.querySelector("#editor"), {
-                 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
-            })
-            .catch(error => { console.error(error) });
     </script>
 </body>
 </html>

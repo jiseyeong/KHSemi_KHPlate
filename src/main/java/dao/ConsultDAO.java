@@ -52,6 +52,17 @@ public class ConsultDAO {
 		}
 	}
 	
+	public ConsultDTO selectOne(int consultID) throws Exception{
+		String sql = "select * from CONSULT where CONSULTID = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, consultID);
+			try(ResultSet rs = pstat.executeQuery();){
+				return this.transAllRsToList(rs).get(0);
+			}
+		}
+	}
+	
 	private ArrayList<ConsultDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<ConsultDTO> result = new ArrayList<>();
 		while(rs.next()) {

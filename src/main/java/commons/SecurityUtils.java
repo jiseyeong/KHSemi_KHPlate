@@ -13,7 +13,7 @@ public class SecurityUtils {
 		return builder.toString();
 	}
 	
-	private String XSSCheck(String text){
+	public static String XSSCheck(String text){
 		return text.replaceAll("<script>", "&lt;script>");
 	}
 }

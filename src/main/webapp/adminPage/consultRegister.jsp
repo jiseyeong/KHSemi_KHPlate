@@ -98,7 +98,7 @@
                             <option>건의</option>
                         </select>
                         <input type="text" name="title" class="title" placeholder="제목을 입력해주세요.">
-                        <input type="text" name="writer" id="writer" value="${sessionScope.loginNo}" readonly>
+                        <input type="text" name="writer" id="writer" value="${sessionScope.loginNo}" style="display: none;">
                     </div>
                     <div style="overflow:hidden;">
                         <div class="left">
