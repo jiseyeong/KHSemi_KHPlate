@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -21,35 +21,40 @@
         }
 
         .header {
+<<<<<<< HEAD
         
         	width: 100%;
             height:130px; 
 
    			background-color: #f2f2f2;
+=======
+        	max-width:100%;
+           	width: 100%;
+            background-color: #ED1C16;
+>>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
             
         }
         #searchBox {
             height: 40px;
             width: 90%;
             border-radius: 10px;
-            border: 1px solid #ED1C16;
+            border: 1px solid #f2f2f2;
         }
 
         #searchBtn {
             position: relative;
-            top: 12px;
+            top: 13px;
             height: 40px;
             width: 40px;
             right: 45px;
-            background-color: #ED1C16;
-            border: 1px solid #ED1C16;
-            border-radius: 10px;
+            background-color: #f2f2f2;
+            border: 1px solid #f2f2f2;
+            border-radius: 3px;
             cursor: pointer;
         }
 
         .form {
             width: 100%;
-            margin-top: 3%;
             padding-left: 10px;
         }
 
@@ -61,10 +66,10 @@
             width: 80px;
             height: 40px;
             font-size: 13px;
-            background-color: #ED1C16;
+            background-color: #f2f2f2;
             border: none;
-            border-radius: 20px;
-            color: white;
+            border-radius: 3px;
+            color: black;
 
         }
 
@@ -73,22 +78,42 @@
             width: 50px;
             height: 50px;
             font-family: "Consolas", "Menlo", "Ubuntu Mono", monospace;
-            filter: invert(22%) sepia(94%) saturate(5663%) hue-rotate(355deg) brightness(96%) contrast(91%);
             cursor: pointer;
         }
-    </style>
+        
+        #searchBox{
+        	margin-top:3px;
+        }
+        
+        .btnBox{
+        	margin-top:0px;
+        	padding-top:10px;
+        	margin-bottom:8px;
+        }
+        
+        
+</style>
 
 
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="row header g-0">
         <div class="col-12 col-xl-3 themed-grid-col logo">
+=======
+    <div class="row header m-0">
+        <div class="col-12 col-lg-3 themed-grid-col logo">
+>>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
           
         </div>
 
 
+<<<<<<< HEAD
         <div class="col-12 col-xl-6  d-flex search">
+=======
+        <div class="col-12 col-lg-6  d-flex search">
+>>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
             <form action="/search.store" method="get" class="form">
                 <input type="search" id="searchBox">
                 <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass">
@@ -97,7 +122,7 @@
         </div>
 
 
-        <div class="col-12 col-xl-3 themed-grid-col d-flex justify-content-evenly rightMenu">
+        <div class="col-12 col-lg-3 themed-grid-col d-flex justify-content-evenly rightMenu">
             <div class="btnBox">
             <button id="loginBtn" name="loginBtn">로그인</button>
             <button id="signupBtn" name="signupBtn">회원가입</button>

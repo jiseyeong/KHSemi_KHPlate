@@ -88,17 +88,17 @@
 
         </div>
         <div class="body">
-            <form id="myForm" action="" method="post" enctype="multipart/form-data">
+            <form id="myForm" action="/register.consult" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Customer Service Page</legend>
                     <div style="overflow: hidden;">
-                        <select class="category">
+                        <select name="category" class="category">
                             <option>문의</option>
                             <option>신고</option>
                             <option>건의</option>
                         </select>
                         <input type="text" name="title" class="title" placeholder="제목을 입력해주세요.">
-                        <input type="text" name="writer" id="writer" value="${sessionScope.loginID}" readonly>
+                        <input type="text" name="writer" id="writer" value="${sessionScope.loginNo}" style="display: none;">
                     </div>
                     <div style="overflow:hidden;">
                         <div class="left">

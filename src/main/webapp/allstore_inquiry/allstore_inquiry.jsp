@@ -113,6 +113,7 @@
 			height: 50%;
 			line-height: 50px;
 			position: relative;
+			margin-top: 17px;
 			border-radius: 20px;
 			border: 2px solid silver;
 			display: flex;
@@ -125,11 +126,10 @@
 		}
 
 		#seach {
-			width: 80%;
+			width: 75%;
 			height: 80%;
 			border-radius: 15px;
 			border: none;
-			padding-left:10px;
 		}
 
 		#seachBtn {
