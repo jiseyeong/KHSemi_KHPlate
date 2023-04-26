@@ -15,6 +15,11 @@
     <!-- Title Page-->
     <title>Register Form</title>
 
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -61,7 +66,7 @@
   -webkit-justify-content: space-between;
   -moz-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+ 
 }
 
 .col-2 {
@@ -456,7 +461,7 @@ input {
 }
 
 .card-2 .card-heading {
-  background: url("https://cdn.crowdpic.net/detail-thumb/thumb_d_D6F554AC3A121A60B724FA4A303AA273.jpg") top left/cover no-repeat;
+  background: url("https://t4.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/6xp/image/S8Yex9htG67CcWaAbhU6Fy1w4qo.jpg") top left/cover no-repeat;
   width: 29%;
   display: table-cell;
 }
@@ -482,6 +487,87 @@ input {
     padding: 60px 50px;
   }
 }
+
+#eyes {
+    cursor: pointer;
+    z-index: 5;
+}
+
+#naverIdLogin {
+            width: 215px;
+            height: 55px;
+            background-color: rgb(3, 199, 90);
+            font-size: 18px;
+        }
+
+
+
+        a {
+            text-decoration: none;
+        }
+
+        #searchid {
+            color: black;
+        }
+
+        #searchid.hover {
+            color: #ED1C16;
+        }
+
+        #searchpw {
+            color: black;
+        }
+
+        #searchpw.hover {
+            color: #ED1C16;
+        }
+
+        #signup {
+            color: black;
+        }
+
+        #signup.hover {
+            color: #ED1C16;
+        }
+
+        #naverIdLogin img {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        #naverIdLogin {
+            background-color: #ED1C1600;
+        }
+
+        /* #NaverLogin {
+            width: 248px;
+            height: 50px;
+            background-color: rgb(3, 199, 90);
+            color: white;
+            border-radius: 12px;
+            font-size: 18px;
+        }   */
+        .NaverLogin img {
+            width: 215px;
+            height: 55px;
+
+        }
+
+        #kakaobtn2 img{
+            width: 220px;
+            height: 57px;
+        }
+/* 
+        #KakaoLogin {
+            width: 248px;
+            height: 50px;
+            background-color: #FEE500;
+            color: black;
+            border-radius: 12px;
+            font-size: 18px;
+        } */
+    
 </style>
 <body>
     <body>
@@ -490,80 +576,101 @@ input {
                 <div class="card card-2">
                     <div class="card-heading"></div>
                     <div class="card-body">
-                        <h2 class="title">KH PLATE에 오신 것을 환영합니다!</h2>
+                        <h2 class="title">로그인</h2>
                         <form class="frm" method="POST">
-                            <div class="row row-space">
-                                <div class="col-2"> 
-                            <div class="input-group">
-                                <input class="input--style-2" type="text" placeholder="이름" id="name" name="name">
-                            </div>
-                            </div>
-                            <div class="col-2"> 
-                                <div class="input-group">
-                                    <div class="rs-select2 js-select-simple select--no-search">
-                                        <select id="class" name="class">
-                                            <option disabled="disabled" selected="selected">Class</option>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
-                                            <option>D</option>
-                                            <option>E</option>
-                                            <option>F</option>
-                                        </select>
-                                        <div class="select-dropdown"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row row-space">
-                            <div class="col-2"> 
-                            <div class="input-group">
-                                <input class="input--style-2" type="text" placeholder="아이디" id="id" name="id">
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn--radius btn--green" type="submit" id="idCheck">체크</button>
-                        </div>
-                        </div>
-                    
-        
-        
-                                <div class="row row-space">
-                                    <div class="col-2">
-                                        <div class="input-group">
-                                            <input class="input--style-2" type="password" placeholder="비밀번호" id="pw1">
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group">
-                                            <input class="input--style-2" type="password" placeholder="비밀번호 확인" id="pw2">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            <div class="input-group">
-                                <input class="input--style-2" type="text" placeholder="이메일" id="email" name="email">
+                
+                            <div class="input-group" id="inputid">ID: 
+                                <input class="input--style-2" type="text" placeholder="아이디" id="id" name="id" placeholder="아이디를 입력해주세요."> 
                             </div>
 
+                             <div class="input-group" id="inputpw">PW: 
+                                <input class="input--style-2" type="text" placeholder="비밀번호" id="pw" name="pw" placeholder="비밀번호를 입력해주세요."> 
+                                <i class="fa fa-eye fa-lg" id="eyes"></i>
+                            </div>
+                       
 
                             <div class="row row-space">
-                                <div class="col-2"> 
-                                <div class="input-group">
-                                    <input class="input--style-2" type="text" placeholder="인증코드" id="reg_code" name="reg_code">
+                                <div class="col-2">
+                                    <div class="input-wrap">
+                                    <input type="checkbox" id="checkId" name="checkId">
+                                    <label for="checkId"></label>
                                 </div>
-                            </div>
-                            <div class="col-2">
-                                <button class="btn btn--radius btn--green" type="submit" id="reg_send">발송</button>
-                            </div>
-                            </div>
+                                  </div>
+                                <div id="idsave">아이디 저장</div>
+</div>
 
+                               
+                                    
+                                       
+<div class="row row-space">
+    <div class="col-3"> 
+    <div class="p-t-30">
+       <button class="btn btn--radius btn--green" id="loginbutton">ENTER!</button>
+    </div>
+</div>
+<div class="col-3">
+    <div class="p-t-30">
+    <button class="btn btn--radius btn--green" id="idCheck">네이버로그인</button>
+</div>
+</div>
+<div class="col-3">
+    <div class="p-t-30">
+    <button class="btn btn--radius btn--green" id="idCheck">카카오로그인</button>
+</div>
+</div>
+</div>
+                       
+                            
+                        
 
-                            <div class="p-t-10">
-                                <button class="btn btn--radius btn--green" type="submit" id="enter">냠냠!</button>
+                            <br>
+
+                            <!-- <div class="login-area">
+                                <div id="button_area"> 
+                            <div id="naverIdLogin"></div>
+                           </div>
+                            </div> -->
+                            <!-- <img id="NaverLogin" src="naver.png" style="width:100px; height:100px;" margin=100px> -->
+                           <!-- <div class="NaverLogin"><img src="naver2.png"></div>   -->
+                            <!-- <button name="KakaoLI" id="KakaoLogin">Kakao Login</button> -->
+            
+            
+                          <!--  <div id ="kakaobtn2" onclick="kakaoLogin();">
+                                <a href="javascript:void(0)">
+                                        <span><img src="kakao.png"></span>    
+                                </a>
+                            </div> -->
+            
+                  
+                            <div class="row row-space">
+                                <div class="col-3"> 
+                                    <div class="input-group" id="searchid">
+                                        <a href="https://search.naver.com/search.naver?where=nexearch&sm=top_sug.pre&fbm=0&acr=1&acq=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4&qdt=0&ie=utf8&query=%EC%84%9D%EA%B3%84+%EB%A7%A4%EC%9A%B4%EC%A1%B1%EB%B0%9C">아이디
+                                            찾기</a>
+                                    </div>
                             </div>
+                            <div class="col-3"> 
+                                <div class="input-group" id="searchpw">
+                                    <a href="http://www.naver.com">비밀번호 찾기</a>
+                                </div>
+                        </div>
+                        <div class="col-3"> 
+                            <div class="input-group" id="signup">
+                                <a href="/signup.html">회원 가입</a>
+                            </div>
+                    </div>
+                </div>
+            
+            
+                        <!-- <a href="http://www.daum.net">
+                            <img src="kakao.png" width="100%" height="100%">
+                        </a> -->
+            
+                       
+                         
+                       
+            
+            
                         </form>
                     </div>
                 </div>
@@ -581,116 +688,152 @@ input {
         <script src="js/global.js"></script>
     
         <script>
-            var idValidFlag = false;
+
+            $(function () {
+                // 눈표시 클릭 시 패스워드 보이기
+                $('#eyes').on('click', function () {
+                    $('.input.password').toggleClass('active');
     
-            $("#idCheck").on(
-                "click",
-                function () {
-                    window.open("/IdCheck.members?id=" + $("#id").val(), "",
-                        "width=350px, height=250px");
+                    if ($('.input.password').hasClass('active') == true) {
+                        $(this).find('.fa-eye').attr('class', "fa fa-eye-slash fa-lg").parents('.input').find('#password').attr('type', "text");
+                        // i 클래스                // 텍스트 보이기 i 클래스
+                    }
+                    else {
+                        $(this).find('.fa-eye-slash').attr('class', "fa fa-eye fa-lg").parents('.input').find('#password').attr('type', 'password');
+                    }
                 });
+            });
     
-            $("#id").on("change", function () {
-                idValidFlag = false;
+            //
+            $(document).ready(function () {
+                // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
+                var key = getCookie("key");
+                $("#id").val(key);
+    
+                // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
+                if ($("#id").val() != "") {
+                    $("#checkId").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+                }
             })
+            $("#checkId").change(function () { // 체크박스에 변화가 있다면,
+                if ($("#checkId").is(":checked")) { // ID 저장하기 체크했을 때,
+                    setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
+                } else { // ID 저장하기 체크 해제 시,
+                    deleteCookie("key");
+                }
+            });
     
-            $("#pw2").on(
-                "keyup",
-                function () { //비밀번호 일치여부 표시
-                    if ($("#pw2").val() == $("#pw1").val()) {
-                        $("#pwCheck").html("비밀번호가 일치합니다 :)").css("color",
-                            "dodgerblue");
+            // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+            $("#id").keyup(function () { // ID 입력 칸에 ID를 입력할 때,
+                if ($("#checkId").is(":checked")) { // ID 저장하기를 체크한 상태라면,
+                    setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
+                }
+            });
+    
+            // 쿠키 저장하기 
+            // setCookie => saveid함수에서 넘겨준 시간이 현재시간과 비교해서 쿠키를 생성하고 지워주는 역할
+            function setCookie(cookieName, value, exdays) {
+                var exdate = new Date();
+                exdate.setDate(exdate.getDate() + exdays);
+                var cookieValue = escape(value)
+                    + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+                document.cookie = cookieName + "=" + cookieValue;
+            }
+    
+            // 쿠키 삭제
+            function deleteCookie(cookieName) {
+                var expireDate = new Date();
+                expireDate.setDate(expireDate.getDate() - 1);
+                document.cookie = cookieName + "= " + "; expires="
+                    + expireDate.toGMTString();
+            }
+    
+            // 쿠키 가져오기
+            function getCookie(cookieName) {
+                cookieName = cookieName + '=';
+                var cookieData = document.cookie;
+                var start = cookieData.indexOf(cookieName);
+                var cookieValue = '';
+                if (start != -1) { // 쿠키가 존재하면
+                    start += cookieName.length;
+                    var end = cookieData.indexOf(';', start);
+                    if (end == -1) // 쿠키 값의 마지막 위치 인덱스 번호 설정 
+                        end = cookieData.length;
+                    console.log("end위치  : " + end);
+                    cookieValue = cookieData.substring(start, end);
+                }
+                return unescape(cookieValue);
+            }
+    
+    
+    
+            //naver
+            const naverLogin = new naver.LoginWithNaverId(
+                {
+                    clientId: "Mm9YQgxstdSEuf5xt0jg",
+                    callbackUrl: "http://127.0.0.1:8090/naver-login",
+                    loginButton: { color: "green", type: 2, height: 40 }
+                }
+            );
+            naverLogin.init(); // 로그인 설정
+    
+            naverLogin.getLoginStatus(function (status) {
+                if (status) {
+                    const nickName = naverLogin.user.getNickName();
+                    const age = naverLogin.user.getAge();
+                    const birthday = naverLogin.user.getBirthday();
+    
+                    //닉네임을 선택하지 않으면 선택창으로 돌아갑니다.
+                    if (nickName === null || nickName === undefined) {
+                        alert("별명이 필요합니다. 정보제공을 동의해주세요.");
+                        naverLogin.reprompt();
+                        return;
                     } else {
-                        $("#pwCheck").html("비밀번호가 일치하지 않습니다 :(").css("color",
-                            "red",font-size);
+                        setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
                     }
-                });
-    
-          
-    
-            $("#frm").on(
-                "enter",
-                function () {
-                    //입력 형식 제한
-                    var regexID = /^[a-z0-9_]{7,13}$/;
-                    var regexPW = /^[A-Za-z0-9]{7,13}$/;
-                    var regexName = /^[가-힣]+$/;
-                    var regexPhone = /^010[0-9]{8}$/;
-                    var regexEmail = /.+@.+\..+/;
-    
-                    var id = $("#id").val();
-                    var pw1 = $("#pw1").val();
-                    var pw2 = $("#pw2").val();
-                    var name = $("#name").val();
-                    var phone = $("#phone").val();
-                    var email = $("#email").val();
-    
-                    if (id == "" || pw1 == "" || pw2 == "" || name == ""
-                        || phone == "" || email == "") { //필수항목 입력 여부 체크
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "필수 항목을 모두 입력해주세요."
-                        });
-                        return false;
-                    }
-                    if (pw1 != pw2) { //패스워드 일치 여부 체크
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "패스워드를 다시 확인해주세요"
-                        });
-                        return false;
-                    }
+                }
+            });
+            naverLogin.init(); // 로그인 설정
     
     
-                    //형식 제한 준수 여부 체크
-                    if (!regexID.test(id)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "ID 형식 오류",
-                            text: "7-13자의 알파벳 소문자, 숫자, _",
-                        });
-                        return false;
-                    }
-                    if (!regexPW.test(pw1)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Password 형식 오류",
-                            text: "7-13자의 알파벳 대소문자, 숫자",
-                        });
-                        return false;
-                    }
-                    if (!regexName.test(name)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "NAME 형식 오류",
-                            text: "한글만 입력 가능",
-                        });
-                        return false;
-                    }
-                    if (!regexPhone.test(phone)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "PHONE 형식 오류",
-                            text: "- 제외 입력",
-                        });
-                        return false;
-                    }
-                    if (!regexEmail.test(email)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "EMAIL 형식 오류",
-                            text: "ID@address 형식으로 입력",
-                        });
-                        return false;
-                    }
-                });
+            //kakao
+    
+            Kakao.init('25e12e36964674d52a9931b02d3b7cc1'); //발급받은 키 중 javascript키를 사용해준다.
+            console.log(Kakao.isInitialized());               // sdk초기화여부판단
+    
+            //카카오로그인
+            function kakaoLogin() {
+                Kakao.Auth.login({
+                    success: function (response) {
+                        Kakao.API.request({
+                            url: '/v2/user/me',
+                            success: function (response) {
+                                console.log(response)
+                            },
+                            fail: function (error) {
+                                console.log(error)
+                            },
+                        })
+                    },
+                    fail: function (error) {
+                        console.log(error)
+                    },
+                })
+            }
+    
+    
         </script>
-   
     
     </body>
     </html>
 
 
 
+
+
+
+
+
+
+
+      

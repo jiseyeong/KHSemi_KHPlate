@@ -27,8 +27,7 @@
 }
 
 .body {
-	padding-left:30px;
-	padding-top:10px;
+
 	margin:auto;
 	
 }
@@ -63,9 +62,9 @@
 
 
 
-
-		<!-- sideBar부분 건들지 말것 -->
+		<!-- body 부분 row div 건들지 말것 -->
 		<div class="row g-0 justify-content-center body">
+		<!-- sideBar부분 건들지 말것 -->
 			<jsp:include page="sideBar.jsp" flush="false"></jsp:include>
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
@@ -163,9 +162,10 @@
 						</div>
 					</div>
 				</div>
+				
+		<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
 		</div>
-		<!-- Main 수정 여기까지, 하단 건들지 말것. -->
 	
 	<jsp:include page="footer.jsp" flush="false"></jsp:include>
 	</div>
