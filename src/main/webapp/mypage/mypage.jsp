@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
      <style>
             *{box-sizing:border-box;}
             
@@ -43,10 +45,6 @@
     
             .body1 {
                 height: 60%;
-            }
-    
-            .body2 {
-                height: 40%;
             }
     
             .body1>div {
@@ -84,7 +82,7 @@
             }
     
             .inpocontents2 {
-                width: 80%;
+                width: 100%;
                 padding-top: 45px;
                 padding-left: 20px;
                 position: relative;
@@ -94,12 +92,21 @@
                 margin-bottom: 15px;
                 width: 300px;
             }
-    
+            .inputPw2{
+				margin-top:5px;            
+            }
+    		.inputPw2>input{
+    			width:54%
+    		}
+    		#pwConfirm{
+    			margin-left:10px;
+    			display:inline-block;
+    		}
             .inpocontents2>button {
                 position: absolute;
-                left: 125px;
+                left: 253px;
                 width: 75px;
-                top:600px;
+                top:650px;
             }
     
             .profileImage {
@@ -142,6 +149,11 @@
             #modiComBtn{
                 display:none;
             }
+            
+            .body2 {
+                height: 40%;
+            }
+            
             .body2Navi {
                 height: 7%;
             }
@@ -187,6 +199,7 @@
                         <ul>
                             <li>아이디</li>
                             <li>비밀번호</li>
+                            <li>비밀번호 확인</li>                         
                             <li>이름</li>
                             <li>닉네임</li>
                             <li>핸드폰번호</li>
@@ -199,22 +212,25 @@
                             <li>최애음식</li>
                         </ul>
                     </div>
+                   	<form action="/update.members" method="post" id="updateForm">
                     <div class="inpocontents2">
-                        <input type="text" readonly><br>
-                        <input type="text"><br>
-                        <input type="text" readonly><br>
-                        <input type="text"><br>
-                        <input type="text"><br>
-                        <input type="text"><br>
-                        <input type="text" readonly><br>
-                        <input type="text"><button id="postSearch">주소찾기</button><br>
-                        <input type="text"><br>
-                        <input type="text"><br>
-                        <input type="text"><br>
-                        <input type="text"><br>
-                        <button id="modiBtn">수정하기</button>
-                        <button id="modiComBtn">수정완료</button>
+                        <input type="text" value="${my.userID}" readonly><br> 
+                        <input type="password" value="${my.pw}" id="pw1" name="pw" readonly><br> 
+                        <input type="password" id="pw2" readonly><div id="pwConfirm"></div><br> 
+                        <input type="text" value="${my.name}" readonly><br>            
+                        <input type="text" value="${my.nickname}" id="nickname" readonly><br>	
+                        <input type="text" value="${my.phone}" id="phone" readonly><br>
+                        <input type="text" value="${my.email}" id="email" readonly><br>
+                        <input type="text" value="${my.classes}" readonly><br>
+                        <input type="text" value="${my.zipCode}" id="zipCode" readonly><button id="postSearch">주소찾기</button><br>
+                        <input type="text" value="${my.address1}" id="address1" readonly><br>
+                        <input type="text" value="${my.address2}" id="address2" readonly><br>
+                        <input type="text" value="${my.selfcomment}" id="selfcomment" readonly><br>    
+                        <input type="text" value="${my.favoriteFood}" id="favoriteFood" readonly><br>
+                        <button id="modiBtn" type="button">수정하기</button>
+                        <button id="modiComBtn" type="submit">수정완료</button>
                     </div>
+                    </form>
                 </div>
             </div>
             <div class="body2">
@@ -228,24 +244,95 @@
             </div>
         </div>
         <script>
-            $("document").ready(function(){
-                $("#modiBtn").on("click", function(){
+        	$("#postSearch").on("click",function(){  // 주소 API
+        		
+        		new daum.Postcode({
+                    oncomplete: function (data) {
+                        var roadAddr = data.roadAddress; 
+                        document.getElementById('zipCode').value = data.zonecode;
+                        document.getElementById("address1").value = roadAddr;
+                    }
+                }).open();
+        	})
+        	
+        	
+            $("document").ready(function(){ 
+                $("#modiBtn").on("click", function(){ //수정하기
+         
                     $("#postSearch").css("display", "inline-block");
                     $("#modiBtn").css("display","none");
                     $("#modiComBtn").css("display","inline-block");
+                    $("#pw1,#pw2,#nickname,#phone,#email,#zipCode,#address1,#address2,#selfcomment,#favoriteFood").removeAttr("readonly");
                 })
 
-                $("#modiComBtn").on("click",function(){
+                $("#modiComBtn").on("click",function(){ //수정완료
                     $("#modiComBtn").css("display","none");
                     $("#modiBtn").css("display","inline-block");
                     $("#postSearch").css("display", "none");
+                    $("input").attr("readonly",true);
                 })
 
-                $(".myContents").on("click",function(){
+                $(".myContents").on("click",function(){ //내가 쓴글...등 버튼 이벤트
                     $(this).css("border-bottom","none");
                     $(".myContents").not(this).css("border-bottom","1px solid black");
+            	})
             })
+            
+              $("#updateForm").on("submit",function(){ //수정 regex
+                
+                var regexPw = /^[A-Za-z0-9]{7,13}$/;        
+                var regexPhone = /^010[0-9]{8}$/;
+                var regexEmail = /.+@.+\..+/;
+
+                var pw1 = $("#pw1"); 
+                var pw2 = $("#pw2");
+                var phone = $("#phone");
+                var email = $("#email");
+               
+                if (pw1.value != ""
+                    && pw2.value != ""
+                    && phone.value != ""
+                    && email.value != "") {
+
+                    var result1 = regexPw.test(pw2.value);
+                    var result2 = regexPhone.test(phone.value);
+                    var result3 = regexEmail.test(email.value);
+
+                    if(pw1.value != pw2.value) {
+                    	alert("패스워드를 다시 확인해주세요.");
+                    	return false;
+                    } else if (!result1) {
+                        alert("패스워드 형식이 잘못됐습니다.");
+                        return false;
+                    } else if (!result2) {
+                        alert("핸드폰 번호 형식이 잘못됐습니다.")
+                        return false;
+                    } else if (!result3) {
+                        alert("이메일 형식이 잘못됐습니다.")
+                        return false;
+                    }else {
+                    alert("정보를 다 입력해주세요.")
+                    return false;
+                	}
+                }
             })
+            
+              $("#pw2").on("keyup",function(){  //패스워드 일치여부
+            	  var inputPw1 = $("#pw1");
+            	  var inputPw2 = $("#pw2");
+            	  
+            	  if(inputPw1.val() == inputPw2.val()){
+            		  $("#pwConfirm").html("패스워드가 일치합니다").css({
+            			  "color":"blue",
+            			  "font-size":"13px"
+            		  });
+            	  } else {
+            		  $("#pwConfirm").html("패스워드가 일치하지 않습니다").css({
+            			  "color":"red",
+            			  "font-size":"13px"
+            		  });
+            	  }
+              })
         </script>
 </body>
 </html>

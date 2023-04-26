@@ -70,7 +70,7 @@ public class MembersDAO {
 			return result;
 		}
 	}	
-	public MembersDTO select(String userID) throws Exception{ //마이페이지 정보 출력
+	public MembersDTO selectById(String userID) throws Exception{ //마이페이지 정보 출력
 		
 		String sql = "select * from members where userid=?";
 		
