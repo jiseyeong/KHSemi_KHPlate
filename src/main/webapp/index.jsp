@@ -9,6 +9,8 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+
+	페이지 만드는 중
 	<a href="/adminPage/consultRegister.jsp">consultRegister.jsp</a>
 	<a href="/adminPage/counsultList.jsp">counsultList.jsp</a>
 	<a href="/adminPage/FAQRegister.jsp">FAQRegister.jsp</a>
@@ -39,5 +41,15 @@
 	<br>
 	<a href="/store/registerForm.jsp">register</a>
 	<a href="/store/view.jsp">view.jsp</a>
+	<hr>
+	수정 완료 > 컨트롤러 적용 예정
+	<br>
+	<a href="/memberout/memberout.html">memberout.html</a>
+	<hr>
+	컨트롤러 적용 완료
+	<br>
+	
+
+	
 </body>
 </html>
