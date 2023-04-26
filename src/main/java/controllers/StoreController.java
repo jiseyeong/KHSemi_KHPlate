@@ -37,7 +37,7 @@ public class StoreController extends HttpServlet {
 				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectByStoreID(storeID);
 				ArrayList<String> userNameList = new ArrayList<>();
 				for(int i = 0; i < commentList.size(); i++) {
-					userNameList.add(MembersDAO.getInstance().getNameByNo(commentList.get(i).getUserNo()));
+					userNameList.add(MembersDAO.getInstance().getIDByNo(commentList.get(i).getUserNo()));
 				}
 				
 				request.setAttribute("dto", dto);

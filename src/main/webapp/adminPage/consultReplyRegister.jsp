@@ -58,29 +58,6 @@
     .writer {
         width:25%;
     }
-    #toList {
-	    width: 250px;
-	    height: 50px;
-	    background-color: black;
-	    border-radius: 12px;
-	    cursor: pointer;
-	    color: white;
-	    margin-left: 700px;
-	    margin-top: 55px;
-	    font-size: 20px;
-    }
-
-    #submitBtn {
-	    width: 250px;
-	    height: 50px;
-	    background-color: black;
-	    border-radius: 12px;
-	    cursor: pointer;
-	    color: white;
-	    margin-left: 900px;
-	    margin-top: 55px;
-	    font-size: 20px;
-    }
 </style>
 <body>
 	<div class="container_noboot">
@@ -124,7 +101,7 @@
                     <input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
                     <div style="width:100%">
                         <label style="width:5%; float:left;">제목</label>
-                        <input type="text" class="title" name="title" placeholder="제목을 입력해주세요." style="flaot:left; width:95%;">
+                        <input type="text" class="title" name="title" placeholder="제목을 입력해주세요." style="float:left; width:95%;">
                     </div>
                     <div>
                         <textarea name="body" id="editor"></textarea>

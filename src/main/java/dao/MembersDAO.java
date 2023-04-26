@@ -30,8 +30,8 @@ public class MembersDAO {
 		return ds.getConnection();
 	}
 
-	public String getNameByNo(int userNo) throws Exception{
-		String sql = "select NAME from MEMBERS where USERNO = ?";
+	public String getIDByNo(int userNo) throws Exception{
+		String sql = "select userID from MEMBERS where USERNO = ?";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, userNo);
@@ -41,7 +41,7 @@ public class MembersDAO {
 			}
 		}
 	}
-	public int insert(MembersDTO dto) throws Exception{ //È¸¿ø°¡ÀÔ
+	public int insert(MembersDTO dto) throws Exception{ //È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,?,default,?,?,?,?,?,?);";
 		try(Connection con = this.getConnection();
@@ -70,7 +70,7 @@ public class MembersDAO {
 			return result;
 		}
 	}	
-	public MembersDTO selectById(String userID) throws Exception{ //¸¶ÀÌÆäÀÌÁö Á¤º¸ Ãâ·Â
+	public MembersDTO selectById(String userID) throws Exception{ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		
 		String sql = "select * from members where userid=?";
 		
@@ -99,7 +99,7 @@ public class MembersDAO {
 			return result;
 		}
 	}
-	public int update(MembersDTO dto)throws Exception{ //È¸¿øÁ¤º¸ ¼öÁ¤
+	public int update(MembersDTO dto)throws Exception{ //È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		String sql = "update members set pw=?, nickname=?, email=?, phone=?, selfcomment=?, favoritefood=?, zipcode=?, address1=?, address2=? where userid=?";
 
@@ -124,7 +124,7 @@ public class MembersDAO {
 			return result;
 		}
 	}
-	public int delete(String userId,String pw)throws Exception{  //È¸¿ø Å»Åð
+	public int delete(String userId,String pw)throws Exception{  //È¸ï¿½ï¿½ Å»ï¿½ï¿½
 
 		String sql = "delete from members where userid=? and pw=?";
 
@@ -141,7 +141,7 @@ public class MembersDAO {
 			return result;
 		}
 	}
-	public boolean idPwOk(String userId,String pw) throws Exception{ //·Î±×ÀÎ
+	public boolean idPwOk(String userId,String pw) throws Exception{ //ï¿½Î±ï¿½ï¿½ï¿½
 
 		String sql = "select * from members where userid=? and pw=?";
 
