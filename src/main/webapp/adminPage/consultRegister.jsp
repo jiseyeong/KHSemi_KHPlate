@@ -52,6 +52,11 @@
         float:left;
     }
     
+    .previewImg{
+    	width:100%;
+        object-fit: contain;
+    }
+    
     #toList {
 	width: 250px;
 	height: 50px;
@@ -98,7 +103,7 @@
                     <div style="overflow:hidden;">
                         <div class="left">
                             <div>
-                                <img src="#none" alt="#none" id="image">
+                                <img src="#none" alt="#none" id="image" class="previewImg">
                             </div>
                             <div>
                                 <input id="input_image" name="img" type='file' accept='image/*'>
@@ -135,7 +140,7 @@
                 fReader.onload = function(e){
                 	$("#image").attr("src", e.target.result);
                 }
-                fReader.readAsDataURL(input.file[0]);
+                fReader.readAsDataURL(input.files[0]);
             });
         </script>
 </body>
