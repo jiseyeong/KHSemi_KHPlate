@@ -96,21 +96,18 @@
                     </div>
                 </div>
                 <div style="overflow: hidden;">
-                	<div style="text-align:center;">작성 내용</div>
-                	<div class="left">
+                    <div style="text-align:center;">작성 내용</div>
+                    <div class="left">
                         <div>
                             <img src="${image}" alt="${image}" id="image" class="previewImg">
                         </div>
                     </div>
                     <div class="right">
-                       <div id="readEditor">${dto.body}</div>
+                        <div id="readEditor">${dto.body}</div>
                     </div>
                 </div>
-        	</fieldset>
+            </fieldset>
 
-            <c:if test="sessionScope.loginNo == dto.userNo || sessionScope.loginIsAdmin">
-                <button type="button" id="btn_modify">수정하기</button>
-            </c:if>
             <c:choose>
                 <c:when test="${not empty replyDTO}">
                     <fieldset style="margin-bottom:50px;">
