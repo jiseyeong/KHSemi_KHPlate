@@ -5,546 +5,588 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<title>전체 가게 조회</title>
-
-	<!-- JQuery -->
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"
-		integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-
-	<!-- Font-Awesome-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-	<!-- 구글 폰트 API -->
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto&display=swap"
-		rel="stylesheet">
-
-	<style>
-		* {
-			box-sizing: border-box;
-			font-family: 'Noto Sans KR', sans-serif;
-			font-family: 'Roboto', sans-serif;
-		}
-
-		body {
-			width: 100%;
-			height: 100%;
-			margin: 0px;
-		}
-
-		.container {
-			position: relative;
-			width: 1920px;
-			height: 929px;
-			overflow: hidden;
-		}
-
-		/* 맛집 리스트 영역 */
-		.store_list {
-			float: left;
-			width: 27%;
-			height: 100%;
-			position: inherit;
-			border: 1px solid silver;
-		}
-
-		.search_layout {
-			width:100%;
-			height: 10%;
-			display: flex;
-			justify-content: space-evenly;
-			align-items: center;
-		}
-
-		.toBack_layout {
-			width: 12%;
-			height: 50%;
-			float: left;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		#toBack_btn {
-			width: 100%;
-			height: 100%;
-			background-color: white;
-			border: 2px solid silver;
-			border-radius: 20px;
-			font-size: 22px;
-		}
-
-		.searchForm {
-			width: 65%;
-			height: 100%;
-			float: left;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.show_filterForm_layout {
-			width: 17%;
-			height: 50%;
-			float: left;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		#show_filterForm_btn {
-			width: 100%;
-			height: 100%;
-			background-color: white;
-			border: 2px solid silver;
-			border-radius: 20px;
-			font-size: 15px;
-		}
-
-		.seachBox {
-			width: 100%;
-			height: 50%;
-			line-height: 50px;
-			position: relative;
-			border-radius: 20px;
-			border: 2px solid silver;
-			display: flex;
-			justify-content: space-evenly;
-			align-items: center;
-		}
-
-		.seachBar {
-			line-height: 140px;
-		}
-
-		#seach {
-			width: 80%;
-			height: 80%;
-			border-radius: 15px;
-			border: none;
-			padding-left:10px;
-		}
-
-		#seachBtn {
-			width: 12%;
-			height: 80%;
-			position: relative;
-			font-size: 10px;
-			padding: 0px;
-			background-color: white;
-			border: 2px solid silver;
-			border-radius: 10px;
-		}
-
-		#seachBtn:hover {
-			cursor: pointer;
-		}
-
-		.restaurant_list_layout {
-			width:100%;
-			height: 90%;
-		}
-
-		.restaurant_list {
-			width: 98%;
-			height: 93%;
-			list-style: none;
-			padding: 0px;
-			margin: 0px;
-			margin-left: 10px;
-		}
-
-		.restaurant {
-			width: 100%;
-			height: 140px;
-			margin-bottom: 10px;
-			border: 1px solid silver;
-			border-radius: 70px;
-		}
-
-		.restaurant_none {
-			margin: auto;
-			width: 100%;
-			height: 100%;
-		}
-
-		.none {
-			width: 100%;
-			height: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.img_layout {
-			float: left;
-			width: 30%;
-			height: 100%;
-			border: 1px solid silver;
-		}
-
-		img {
-			width: 100%;
-			height: 100%;
-		}
-
-		.info_layout {
-			float: left;
-			height: 100%;
-			width: 70%;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.info_layout_topside {
-			width: 100%;
-			height: 65%;
-		}
-
-		.info_layout_bottomside {
-			width: 100%;
-			height: 35%;
-		}
-
-		.info_layout_left {
-			height: 100%;
-			width: 60%;
-			float: left;
-			padding-top: 10px;
-		}
-
-		.info_layout_right {
-			height: 100%;
-			width: 40%;
-			float: left;
-			text-align: right;
-			padding-top: 12px;
-			padding-right: 20px;
-		}
-
-		.restaurant_info {
-			margin: 15px;
-		}
-
-		.restaurant_name {
-			font-size: 18px;
-		}
-
-		.restaurant_address {
-			font-size: 16px;
-		}
-
-		.restaurant_score {
-			font-size: 16px;
-		}
-
-		.restaurant_category {
-			font-size: 16px;
-		}
-
-
-
-		/* 별점 */
-		.stars {
-			padding: 0px;
-			margin: 0px;
-			width: 100%;
-			height: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.stars__link {
-			text-decoration: none;
-			padding: 2px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.stars__icon {
-			color: #b2b2b2;
-			display: inline-block;
-			cursor: pointer;
-		}
-
-		.js-clear {
-			color: #b2b2b2;
-		}
-
-		.js-fill {
-			color: gold;
-		}
-
-		@media (max-width : 27em) {
-			.stars__icon {
-				font-size: 2.5em;
-			}
-
-			.stars-phrase {
-				font-size: 1em;
-			}
-		}
-
-		.navigator {
-			height: 7%;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			padding-bottom: 10px;
-			font-size: 20px;
-			padding: 0px;
-		}
-
-		.navigator_list {
-			list-style-type: none;
-			padding-left: 0px;
-			margin: 0px;
-		}
-
-		.navigator_list_item {
-			width: 30px;
-			height: 30px;
-			float: left;
-			margin-left: 5px;
-			margin-right: 5px;
-		}
-
-		.navigator_list_item_btn_layout {
-			width: 30px;
-			height: 30px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.item {
-			text-decoration: none;
-		}
-
-
-
-		
-		/* 지도 영역 */ 
-		.map_layout{
-			width: 73%;
-			height:100%;
-			float: right;
-			position:relative;
-		}
-		#map {
-			float: right;
-			position: inherit;
-			width:100%;
-			height:100%;
-		}
-
-
-		/* 필터 영역 */
-		hr {
-			width:90%;
-			border: 1px solid silver;
-		}
-
-		#sort_layout {
-			position: absolute;
-			z-index: 1;
-			left : 3px;
-			width: 400px;
-			height: 650px;
-			background-color: white;
-			border: 1px solid silver;
-		}
-
-		.sort_title {
-			margin: 10px auto 10px;
-			padding-left: 10px;
-			font-size: 16px;
-		}
-
-
-
-		.search_filter {
-			width: 100%;
-			height: 15%;
-		}
-
-		.filter_sort {
-			width: 100%;
-			height: 60%;
-			display: flex;
-			justify-content: space-evenly;
-			align-items: center;
-		}
-
-		.filter_options {
-			width: 22%;
-			height: 70%;
-			border-radius: 30px;
-		}
-
-		.filter_option_btn {
-			width: 100%;
-			height: 100%;
-			border-radius: 30px;
-			font-size: 13px;
-			background-color: white;
-			border: 2px solid silver;
-		}
-
-
-
-
-		.cost_average {
-			width: 100%;
-			height: 20%;
-		}
-
-		.filter_cost {
-			width: 100%;
-			height:60%;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-evenly;
-			align-items: center;
-		}
-
-		.form-range {
-			width: 90%;
-		}
-
-		.form-range::-webkit-slider-thumb {
-			background: rgb(232, 127, 127);
-		}
-
-		#range_result {
-			width: 50%;
-			height: 35%;
-			margin-top : 20px;
-			border: 2px solid silver;
-			border-radius: 25px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-size: 14px;
-			flex:2;
-		}
-
-
-
-
-		.food_category {
-			width: 100%;
-			height: 41%;
-		}
-
-		.food_category_title {
-			margin-bottom: 2px;
-		}
-
-		.food_category_layout {
-			margin: auto;
-			width: 90%;
-			height: 90%;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-evenly;
-			align-items: center;
-		}
-
-		.food_category_inner_layout {
-			width: 100%;
-			height: 50%;
-			display: flex;
-			justify-content: space-evenly;
-			align-items: center;
-		}
-
-		.food_category_list {
-			width: 20%;
-			height: 80%;
-			border: 1px solid silver;
-		}
-
-		.food_category_list:hover {
-			cursor: pointer;
-		}
-
-		.food_icon_layout {
-			width: 100%;
-			height: 75%;
-			border: 1px solid silver;
-		}
-
-		.food_icon {
-			width: 100%;
-			height: 100%;
-		}
-
-		.food_name {
-			width: 100%;
-			height: 25%;
-			font-size: 12px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border: 1px solid silver;
-		}
-
-
-
-		.btn_layout {
-			width: 100%;
-			height: 12%;
-			display: flex;
-			justify-content: space-evenly;
-			align-items: center;
-		}
-
-		.btn_inner_layout {
-			width: 25%;
-			height: 60%;
-		}
-
-		.sort_apply_btn {
-			width: 100%;
-			height: 100%;
-			border-radius: 25px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-size: 15px;
-			background-color: white;
-			border: 2px solid silver;
-		}
-	</style>
+<meta charset="utf-8" />
+<title>전체 가게 조회</title>
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+	integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+	crossorigin="anonymous"></script>
+
+<!-- Font-Awesome-->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- 구글 폰트 API -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+	rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto&display=swap"
+	rel="stylesheet">
+
+<style>
+* {
+	box-sizing: border-box;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
+.container {
+	position: relative;
+	width: 1920px;
+	height: 929px;
+	overflow: hidden;
+}
+
+/* 맛집 리스트 영역 */
+.store_list {
+	float: left;
+	width: 27%;
+	height: 100%;
+	position: inherit;
+	border: 1px solid silver;
+}
+
+.search_layout {
+	width: 100%;
+	height: 10%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.toBack_layout {
+	width: 12%;
+	height: 50%;
+	float: left;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#toBack_btn {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	border: 2px solid silver;
+	border-radius: 20px;
+	font-size: 22px;
+}
+
+.searchForm {
+	width: 65%;
+	height: 100%;
+	float: left;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.show_filterForm_layout {
+	width: 17%;
+	height: 50%;
+	float: left;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#show_filterForm_btn {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	border: 2px solid silver;
+	border-radius: 20px;
+	font-size: 15px;
+}
+
+.seachBox {
+	width: 100%;
+	height: 50%;
+	line-height: 50px;
+	position: relative;
+	border-radius: 20px;
+	border: 2px solid silver;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.seachBar {
+	line-height: 140px;
+}
+
+#seach {
+	width: 80%;
+	height: 80%;
+	border-radius: 15px;
+	border: none;
+	padding-left: 10px;
+}
+
+#seachBtn {
+	width: 12%;
+	height: 80%;
+	position: relative;
+	font-size: 10px;
+	padding: 0px;
+	background-color: white;
+	border: 2px solid silver;
+	border-radius: 10px;
+}
+
+#seachBtn:hover {
+	cursor: pointer;
+}
+
+.restaurant_list_layout {
+	width: 100%;
+	height: 90%;
+}
+
+.restaurant_list {
+	width: 98%;
+	height: 93%;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	margin-left: 10px;
+}
+
+.restaurant {
+	width: 100%;
+	height: 140px;
+	margin-bottom: 10px;
+	border: 1px solid silver;
+	border-radius: 70px;
+}
+
+.restaurant_none {
+	margin: auto;
+	width: 100%;
+	height: 100%;
+}
+
+.none {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.img_layout {
+	float: left;
+	width: 30%;
+	height: 100%;
+	border: 1px solid silver;
+}
+
+img {
+	width: 100%;
+	height: 100%;
+}
+
+.info_layout {
+	float: left;
+	height: 100%;
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.info_layout_topside {
+	width: 100%;
+	height: 65%;
+}
+
+.info_layout_bottomside {
+	width: 100%;
+	height: 35%;
+}
+
+.info_layout_left {
+	height: 100%;
+	width: 60%;
+	float: left;
+	padding-top: 10px;
+}
+
+.info_layout_right {
+	height: 100%;
+	width: 40%;
+	float: left;
+	text-align: right;
+	padding-top: 12px;
+	padding-right: 20px;
+}
+
+.restaurant_info {
+	margin: 15px;
+}
+
+.restaurant_name {
+	font-size: 18px;
+}
+
+.restaurant_address {
+	font-size: 16px;
+}
+
+.restaurant_score {
+	font-size: 16px;
+}
+
+.restaurant_category {
+	font-size: 16px;
+}
+
+/* 별점 */
+.stars {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.stars__link {
+	text-decoration: none;
+	padding: 2px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.stars__icon {
+	color: #b2b2b2;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.js-clear {
+	color: #b2b2b2;
+}
+
+.js-fill {
+	color: gold;
+}
+
+@media ( max-width : 27em) {
+	.stars__icon {
+		font-size: 2.5em;
+	}
+	.stars-phrase {
+		font-size: 1em;
+	}
+}
+
+.navigator {
+	height: 7%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 10px;
+	font-size: 20px;
+	padding: 0px;
+}
+
+.navigator_list {
+	list-style-type: none;
+	padding-left: 0px;
+	margin: 0px;
+}
+
+.navigator_list_item {
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.navigator_list_item_btn_layout {
+	width: 30px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.item {
+	text-decoration: none;
+}
+
+/* 지도 영역 */
+.map_layout {
+	width: 73%;
+	height: 100%;
+	float: right;
+	position: relative;
+}
+
+#map {
+	float: right;
+	position: inherit;
+	width: 100%;
+	height: 100%;
+}
+
+/* 필터 영역 */
+hr {
+	width: 90%;
+	border: 1px solid silver;
+}
+
+#sort_layout {
+	position: absolute;
+	z-index: 1;
+	left: 3px;
+	width: 400px;
+	height: 650px;
+	background-color: white;
+	border: 1px solid silver;
+}
+
+.sort_title {
+	margin: 10px auto 10px;
+	padding-left: 10px;
+	font-size: 16px;
+}
+
+.search_filter {
+	width: 100%;
+	height: 15%;
+}
+
+.filter_sort {
+	width: 100%;
+	height: 60%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.filter_options {
+	width: 22%;
+	height: 70%;
+	border-radius: 30px;
+}
+
+.filter_option_btn {
+	width: 100%;
+	height: 100%;
+	border-radius: 30px;
+	font-size: 13px;
+	background-color: white;
+	border: 2px solid silver;
+}
+
+.cost_average {
+	width: 100%;
+	height: 20%;
+}
+
+.filter_cost {
+	width: 100%;
+	height: 60%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.form-range {
+	width: 90%;
+}
+
+.form-range::-webkit-slider-thumb {
+	background: rgb(232, 127, 127);
+}
+
+#range_result {
+	width: 50%;
+	height: 35%;
+	margin-top: 20px;
+	border: 2px solid silver;
+	border-radius: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	flex: 2;
+}
+
+.food_category {
+	width: 100%;
+	height: 41%;
+}
+
+.food_category_title {
+	margin-bottom: 2px;
+}
+
+.food_category_layout {
+	margin: auto;
+	width: 90%;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.food_category_inner_layout {
+	width: 100%;
+	height: 50%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.food_category_list {
+	width: 20%;
+	height: 80%;
+	border: 1px solid silver;
+}
+
+.food_category_list:hover {
+	cursor: pointer;
+}
+
+.food_icon_layout {
+	width: 100%;
+	height: 75%;
+	border: 1px solid silver;
+}
+
+.food_icon {
+	width: 100%;
+	height: 100%;
+}
+
+.food_name {
+	width: 100%;
+	height: 25%;
+	font-size: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid silver;
+}
+
+.btn_layout {
+	width: 100%;
+	height: 12%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.btn_inner_layout {
+	width: 25%;
+	height: 60%;
+}
+
+.sort_apply_btn {
+	width: 100%;
+	height: 100%;
+	border-radius: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 15px;
+	background-color: white;
+	border: 2px solid silver;
+}
+
+/* 맵에 표시될 InfoWindow */
+.restaurant_infoWindow {
+	width: 150px;
+	height: 50px;
+	background-color: white;
+	border: 1px solid silver;
+	border-radius: 70px;
+}
+
+.infoWindow_img_layout {
+	float: left;
+	width: 35%;
+	height: 100%;
+}
+
+.infoWindow_img {
+	width: 100%;
+	height: 100%;
+	border: 1px solid silver;
+	border-radius: 70px;
+}
+
+.infoWindow_info_layout {
+	float: left;
+	width: 65%;
+	height: 100%;
+}
+
+.infoWindow_info_top {
+	height: 60%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	text-overflow: ellipsis;
+}
+
+.infoWindow_info_bottom {
+	height: 40%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+}
+</style>
 </head>
 
 <body>
+
 	<div class="container">
 		<div class="store_list">
 			<div class="search_layout">
 				<div class="toBack_layout">
-					<button id="toBack_btn"><i class="fa-solid fa-rotate-left"></i></button>
+					<button id="toBack_btn">
+						<i class="fa-solid fa-rotate-left"></i>
+					</button>
 				</div>
 				<form class="searchForm" action="/search.store">
 					<div class="seachBox">
-						<input type="text" id="seach" name="search"> <input type="submit" id="seachBtn" value="검색">
+						<input type="text" id="seach" name="search"> 
+						<input type="submit" id="seachBtn" value="검색">
 					</div>
 				</form>
 				<div class="show_filterForm_layout">
-					<button id="show_filterForm_btn"><i class="fa-solid fa-sliders"></i>&nbsp 필터</button>
+					<button id="show_filterForm_btn">
+						<i class="fa-solid fa-sliders"></i>&nbsp 필터
+					</button>
 				</div>
 			</div>
 			<div class="restaurant_list_layout">
@@ -552,7 +594,9 @@
 					<c:choose>
 						<c:when test="${search_store_list==null}">
 							<li class="restaurant_none">
-								<div class="none">표시할 내용이 없습니다.<br>검색을 진행해주세요.</div>
+								<div class="none">
+									표시할 내용이 없습니다.<br>검색을 진행해주세요.
+								</div>
 							</li>
 
 						</c:when>
@@ -571,15 +615,15 @@
 												<div class="restaurant_info restaurant_score">
 													<ul class="stars">
 														<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
+															class="stars__icon fas fa-star"></i></a>
 														<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
+															class="stars__icon fas fa-star"></i></a>
 														<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
+															class="stars__icon fas fa-star"></i></a>
 														<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
+															class="stars__icon fas fa-star"></i></a>
 														<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
+															class="stars__icon fas fa-star"></i></a>
 													</ul>
 												</div>
 												<p class="restaurant_info restaurant_category">#${i.category}</p>
@@ -673,7 +717,7 @@
 
 
 			<!-- 정렬 팝업 창 (SlideToggle)-->
-			<div id="sort_layout">
+			<div id="sort_layout" style="display: none;">
 				<div class="search_filter">
 					<p class="sort_title">검색 필터</p>
 					<div class="filter_sort">
@@ -694,8 +738,8 @@
 				<div class="cost_average">
 					<p class="sort_title">가격/1인당</p>
 					<div class="filter_cost">
-						<input type="range" id="cost_range" class="form-range" min="0" max="6" step="1"
-							onchange=SetValue()>
+						<input type="range" id="cost_range" class="form-range" min="0"
+							max="6" step="1" onchange=SetValue()>
 						<div id="range_result">범위를 입력해주세요</div>
 					</div>
 				</div>
@@ -856,13 +900,12 @@
 				range_result.html("20000원 이상");
 			}
 		}
-
-
+	
+		
 		// 필터 SlideToggle
 
 		$(document).ready(function () {
 			let sort_check = false;
-			$("#sort_layout").css({"display":"none"});
 
 			$("#show_filterForm_btn").on("click", function () {
 				if(sort_check==false){
@@ -874,7 +917,7 @@
 				}
 			});
 		});
-
+		
 	</script>
 
 
@@ -883,45 +926,121 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9"></script>
 	<script>
+		
 		var container = document.getElementById('map');
+		
+		// 학원 중심 좌표 설정
 		var options = {
 			center: new kakao.maps.LatLng(37.567917, 126.983043),
-			level: 1
+			level: 2
 		};
-
-		var map = new kakao.maps.Map(container, options);
-
+		
+		// 학원 영역 변수 설정
+		var khacademyMap = new kakao.maps.Map(container, options);
+		
+		// 학원 마커 이미지 등록
+		var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+	    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	 	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+	    
+		// 학원 마커 표시
 		// 지도를 클릭한 위치에 표출할 마커입니다
-		var marker = new kakao.maps.Marker({
+		var khacademy = new kakao.maps.Marker({
 			// 지도 중심좌표에 마커를 생성합니다 
-			position: map.getCenter()
+			position: khacademyMap.getCenter(),
+			image: markerImage
+			 // 마커이미지 설정 
 		});
 		// 지도에 마커를 표시합니다
-		marker.setMap(map);
+		khacademy.setMap(khacademyMap);
+	
+		
+		var InfoWindowContent = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="infoWindow_img" src="/retaurant2.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">고깃집 123</div><div class="infoWindow_info_bottom"># 한식</div></div></div></body>'
+			
+		
+		
+		
+		// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		var khacademy_Content = InfoWindowContent; 
+		// '<div style="padding:5px;">KH 아카데미<br><a href="https://map.kakao.com/link/map/KH 아카데미,37.567917,126.983043" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/KH 아카데미,37.567917,126.983043" style="color:blue" target="_blank">길찾기</a></div>',
+		khacademy_Position = new kakao.maps.LatLng(37.567917,126.983043); 
+		//인포윈도우 표시 위치입니다
 
-		// 지도에 클릭 이벤트를 등록합니다
-		// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-		kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-
-			// 클릭한 위도, 경도 정보를 가져옵니다 
-			var latlng = mouseEvent.latLng;
-
-			// 마커 위치를 클릭한 위치로 옮깁니다
-			marker.setPosition(latlng);
-
-			var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-			message += '경도는 ' + latlng.getLng() + ' 입니다';
-
-			var resultDiv = document.getElementById('x');
-			resultDiv.innerHTML = message;
+		// 인포윈도우를 생성합니다
+		var infowindow = new kakao.maps.InfoWindow({
+		    position : khacademy_Position, 
+		    content : khacademy_Content
 		});
+		  
+		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+		let infowindow_switch = false;
+		kakao.maps.event.addListener(khacademy, 'click', function() {
+			if(infowindow_switch==true){
+				infowindow.open(khacademyMap, khacademy);
+				infowindow_switch = false;
+				$(".restaurant_infoWindow").parent().parent().css({
+					"border":"0px",
+					"background-color":"transparent"
+				});
+			}else{
+				infowindow.close();
+				infowindow_switch = true;
+			}
+		});
+		
+		
+		
+		
+		$(function(){
+			var markers = "<c:out value='${search_store_list}'/>";
+			if(markers!=null){
+				$(markers).each(function(index,item){
+		            console.log(index + " : " + item);
+		        })
+				for(i = 0 ; i < markers.length ; i++){
+					addMarker(new kakao.maps.LatLng(33.450701, 126.570667));
+				}
+			}
+		})
+		
+		/*
 
-		// 마커가 지도 위에 표시되도록 설정합니다
-		marker.setMap(map);
-		// 마커가 드래그 가능하도록 설정합니다 
-		marker.setDraggable(true);
-        // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-        // marker.setMap(null);    
+		// 마커 하나를 지도위에 표시합니다 
+		
+
+		// 마커를 생성하고 지도위에 표시하는 함수입니다
+		function addMarker(position) {
+		    
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        position: position
+		    });
+
+		    // 마커가 지도 위에 표시되도록 설정합니다
+		    marker.setMap(map);
+		    
+		    // 생성된 마커를 배열에 추가합니다
+		    markers.push(marker);
+		}
+
+		// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+		function setMarkers(map) {
+		    for (var i = 0; i < markers.length; i++) {
+		        markers[i].setMap(map);
+		    }            
+		}
+
+		// "마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
+		function showMarkers() {
+		    setMarkers(map)    
+		}
+
+		// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
+		function hideMarkers() {
+		    setMarkers(null);    
+		}  */
 	</script>
 
 
