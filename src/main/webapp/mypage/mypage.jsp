@@ -218,15 +218,15 @@
                         <input type="password" value="${my.pw}" id="pw1" name="pw" readonly><br> 
                         <input type="password" id="pw2" readonly><div id="pwConfirm"></div><br> 
                         <input type="text" value="${my.name}" readonly><br>            
-                        <input type="text" value="${my.nickname}" id="nickname" readonly><br>	
-                        <input type="text" value="${my.phone}" id="phone" readonly><br>
-                        <input type="text" value="${my.email}" id="email" readonly><br>
+                        <input type="text" value="${my.nickname}" id="nickname" name="nickname" readonly><br>	
+                        <input type="text" value="${my.phone}" id="phone" name="phone" readonly><br>
+                        <input type="text" value="${my.email}" id="email" name="email" readonly><br>
                         <input type="text" value="${my.classes}" readonly><br>
-                        <input type="text" value="${my.zipCode}" id="zipCode" readonly><button id="postSearch">주소찾기</button><br>
-                        <input type="text" value="${my.address1}" id="address1" readonly><br>
-                        <input type="text" value="${my.address2}" id="address2" readonly><br>
-                        <input type="text" value="${my.selfcomment}" id="selfcomment" readonly><br>    
-                        <input type="text" value="${my.favoriteFood}" id="favoriteFood" readonly><br>
+                        <input type="text" value="${my.zipCode}" id="zipCode" name="zipCode" readonly><button id="postSearch" type="button">주소찾기</button><br>
+                        <input type="text" value="${my.address1}" id="address1" name="address1" readonly><br>
+                        <input type="text" value="${my.address2}" id="address2" name="address2" readonly><br>
+                        <input type="text" value="${my.selfcomment}" id="selfcomment" name="selfcomment" readonly><br>    
+                        <input type="text" value="${my.favoriteFood}" id="favoriteFood" name="favoriteFood" readonly><br>
                         <button id="modiBtn" type="button">수정하기</button>
                         <button id="modiComBtn" type="submit">수정완료</button>
                     </div>
