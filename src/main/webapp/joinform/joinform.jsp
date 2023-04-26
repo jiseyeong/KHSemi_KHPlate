@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
-<title>회원가입</title>
+<title>회원가입 페이지</title>
 <style>
     * {
         box-sizing: border-box;
@@ -74,8 +74,7 @@
     <div class="container">
         <fieldset>
             <table>
-                <form>
-
+                <form id="frm" action="" method="post">
                     <legend id="SignUp">SIGN UP</legend>
 
                     <tr>
@@ -89,7 +88,7 @@
                     </tr>
                     <tr>
                         <td>PW CHECK: </td>
-                        <td><input type="password" name="pw2" id="pw2" placeholder="비밀번호 재확인 하세요."></td>
+                        <td><input type="password" name="pw2" id="pw2" placeholder="비밀번호를 재확인 하세요."></td>
                         <td id="pwCheck"></td>
                     </tr>
                     <tr>
@@ -117,12 +116,12 @@
                     </tr>
                     <tr>
                         <td>POST NUM.: </td>
-                        <td><input type="text" name="zipcode" id="zipcode" readonly></td>
+                        <td><input type="text" name="zipcode" id="zipcode" readonly placeholder="우편번호를 입력하세요."></td>
                         <td><button id="search">Search</button></td>
                     </tr>
                     <tr>
                         <td>ADDRESS: </td>
-                        <td><input type="text" name="address1" id="address1" placeholder="주소를 입력하세요."></td>
+                        <td><input type="text" name="address1" id="address1" placeholder="도로명주소를 입력하세요."></td>
                     </tr>
                     <tr>
                         <td>ADDRESS2: </td>
@@ -164,7 +163,7 @@
                     $("#pwCheck").html("비밀번호가 일치합니다 :)").css("color",
                         "dodgerblue");
                 } else {
-                    $("#pwCheck").html("비밀번호가 일치하지 않습니다 :(").css("color",
+                    $("#pwCheck").html("비밀번호를 확인하세요 :(").css("color",
                         "red",font-size);
                 }
             });
@@ -255,6 +254,7 @@
                 }
                 if (!regexEmail.test(email)) {
                     Swal.fire({
+                        
                         icon: "error",
                         title: "EMAIL 형식 오류",
                         text: "ID@address 형식으로 입력",
