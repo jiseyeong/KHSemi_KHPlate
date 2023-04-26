@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import commons.SecurityUtils;
 import dao.CommentReviewDAO;
 import dto.CommentReviewDTO;
 
@@ -21,6 +22,7 @@ public class CommentReviewController extends HttpServlet {
 			if(cmd.equals("/create.commentReview")) {
 				int score = Integer.parseInt(request.getParameter("score"));
 				String body = request.getParameter("body");
+				body = SecurityUtils.XSSCheck(body);
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				int userNo = 0;			
 				int result = CommentReviewDAO.getInstance().insert(new CommentReviewDTO(0, body, score, storeID, userNo, null, 0));

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import commons.SecurityUtils;
 import dao.FaqDAO;
 import dto.FaqDTO;
 
@@ -22,7 +23,9 @@ public class FaqController extends HttpServlet {
 		try {
 			if(cmd.equals("/register.faq")) {
 				String title = request.getParameter("title");
+				title = SecurityUtils.XSSCheck(title);
 				String body = request.getParameter("body");
+				body = SecurityUtils.XSSCheck(body);
 				
 				int result = FaqDAO.getInstance().insert(new FaqDTO(0, title, body));
 				response.sendRedirect("/adminPage/FAQRegister.jsp");

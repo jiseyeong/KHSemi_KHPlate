@@ -56,7 +56,7 @@
 	<div class="container_noboot">
 		<div class="sidebar"></div>
 		<div class="body">
-			<form action="register.faq" method="get">
+			<form action="/register.faq" method="get">
 				<fieldset>
 					<legend>FAQ 등록</legend>
 					<div class="inputHeader">제목 :</div>
@@ -74,10 +74,7 @@
                  toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
             })
             .catch(error => { console.error(error) });
-
-			$("#submitBtn").on("click",function () {
-            
-            })
+        
     </script>
 </body>
 </html>
