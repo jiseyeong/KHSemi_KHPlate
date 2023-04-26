@@ -21,29 +21,13 @@
         }
 
         .header {
-        	
-            margin: auto;
-            width: 100%; 
+        
+        	width: 100%;
+            height:130px; 
 
    			background-color: #f2f2f2;
             
         }
-
-        .logo {
-            float: left;
-
-        }
-
-        .logo>img {
-            width: 100%;
-            height: 100%;
-        }
-
-        .search {
-            float: left;
-
-        }
-
         #searchBox {
             height: 40px;
             width: 90%;
@@ -69,9 +53,6 @@
             padding-left: 10px;
         }
 
-        .rightMenu {
-            float: left;
-        }
 
         .btnBox {
             margin-top: 8.5%;
@@ -101,13 +82,13 @@
 </head>
 
 <body>
-    <div class="row header">
+    <div class="row header g-0">
         <div class="col-12 col-xl-3 themed-grid-col logo">
-            <img src="logo.png">
+          
         </div>
 
 
-        <div class="col-12 col-xl-6 themed-grid-col d-flex search">
+        <div class="col-12 col-xl-6  d-flex search">
             <form action="/search.store" method="get" class="form">
                 <input type="search" id="searchBox">
                 <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass">
