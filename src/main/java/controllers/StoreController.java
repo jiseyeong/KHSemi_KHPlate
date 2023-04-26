@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.File;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -16,11 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import commons.SecurityUtils;
 import dao.CommentReviewDAO;
 import dao.MembersDAO;
 import dao.StoreDAO;
 import dto.CommentReviewDTO;
 import dto.StoreDTO;
+import dto.StoreListDTO;
 
 @WebServlet("*.store")
 public class StoreController extends HttpServlet {
@@ -35,14 +36,14 @@ public class StoreController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);
 				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectByStoreID(storeID);
-				ArrayList<String> userNameList = new ArrayList<>();
+				ArrayList<String> userIDList = new ArrayList<>();
 				for(int i = 0; i < commentList.size(); i++) {
-					userNameList.add(MembersDAO.getInstance().getNameByNo(commentList.get(i).getUserNo()));
+					userIDList.add(MembersDAO.getInstance().getIDByNo(commentList.get(i).getUserNo()));
 				}
 				
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
-				request.setAttribute("userNameList", userNameList);
+				request.setAttribute("userIDList", userIDList);
 				request.getRequestDispatcher("/store/view.jsp").forward(request, response);
 				
 			}else if(cmd.equals("/register.store")) {
@@ -59,8 +60,11 @@ public class StoreController extends HttpServlet {
 				double mapLng = Double.parseDouble(multi.getParameter("mapLng"));
 				int mapDistance = Integer.parseInt(multi.getParameter("mapDistance"));
 				String storeName = multi.getParameter("storeName");
+				storeName = SecurityUtils.XSSCheck(storeName);
 				String storeAddress = multi.getParameter("storeAddress");
+				storeAddress = SecurityUtils.XSSCheck(storeAddress);
 				String storeIntroduction = multi.getParameter("storeIntroduction");
+				storeIntroduction = SecurityUtils.XSSCheck(storeIntroduction);
 				String storeCategory = multi.getParameter("storeCategory");
 				
 				int result = StoreDAO.getInstance().insert(new StoreDTO(0, mapDistance, storeName, mapLat, mapLng, storeAddress, 0, storeIntroduction, storeCategory));

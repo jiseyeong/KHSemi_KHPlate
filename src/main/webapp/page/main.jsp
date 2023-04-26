@@ -25,29 +25,24 @@
 	box-sizing: border-box;
 	padding: 0px;
 }
-.container {
-	margin-left: 0;
-	margin-right: 0;
-	max-width: 1920px;
-}
+
 .body {
-	max-width: 1400px;
-	margin-top: 20px;
+	padding-left:30px;
+	padding-top:10px;
+	margin:auto;
+	
 }
+
+.sideList{
+	border: 1px solid black;
+}
+
+
 /* 하단부터 메인부분 스타일 작성 요망 */
 .contents {
 	padding: 0px;
-	padding-left: 10px;
-}
 
-.contents1 {
-
-	margin: 0px;
-}
-
-.contents2 {
-
-	margin: 0px;
+	
 }
 
 .contents1>div {
@@ -59,108 +54,111 @@
 }
 
 
-
 </style>
 </head>
 <body>
-	<div class="container">
-	<!-- 헤더부분 건들지 말것 -->
+	<div class="container-fluid themed-container m-0 g-0">
+		<!-- 헤더부분 건들지 말것 -->
 		<jsp:include page="header.jsp" flush="false"></jsp:include>
 
-	</div>
 
 
-	<!-- sideBar부분 건들지 말것 -->
-	<div class="row body">
-		<jsp:include page="sideBar.jsp" flush="false"></jsp:include>
 
-	<!-- Main 내용 부분 하단부터 수정 요망 -->
-		<div class="col-12 col-xl-10 themed-grid-col contents">
-			<div class="col-12 col-xl-12 themed-grid-col row contents1">
-				<div class="col-12 col-xl-9 themed-grid-col carousel">
-					<div id="carouselIndicators" class="carousel slide"
-						data-bs-ride="true">
-						<div class="carousel-indicators">
-							<button type="button" data-bs-target="#carouselIndicators"
-								data-bs-slide-to="0" class="active" aria-current="true"
-								aria-label="Slide 1"></button>
-							<button type="button" data-bs-target="#carouselIndicators"
-								data-bs-slide-to="1" aria-label="Slide 2"></button>
-							<button type="button" data-bs-target="#carouselIndicators"
-								data-bs-slide-to="2" aria-label="Slide 3"></button>
+		<!-- sideBar부분 건들지 말것 -->
+		<div class="row g-0 justify-content-center body">
+			<jsp:include page="sideBar.jsp" flush="false"></jsp:include>
+
+			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
+				<!-- Main 내용 부분 하단부터 수정 요망 -->
+
+				<div class="col-12 themed-grid-col contents">
+					<div class="col-12 col-lg-12 themed-grid-col row contents1">
+						<div class="col-12 col-lg-9 themed-grid-col carousel">
+							<div id="carouselIndicators" class="carousel slide"
+								data-bs-ride="true">
+								<div class="carousel-indicators">
+									<button type="button" data-bs-target="#carouselIndicators"
+										data-bs-slide-to="0" class="active" aria-current="true"
+										aria-label="Slide 1"></button>
+									<button type="button" data-bs-target="#carouselIndicators"
+										data-bs-slide-to="1" aria-label="Slide 2"></button>
+									<button type="button" data-bs-target="#carouselIndicators"
+										data-bs-slide-to="2" aria-label="Slide 3"></button>
+								</div>
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<img
+											src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?cs=srgb&dl=pexels-ash-376464.jpg&fm=jpg"
+											class="d-block w-100 h-100" alt="...">
+									</div>
+									<div class="carousel-item">
+										<img
+											src="https://img.bestrecipes.com.au/iyddCRce/br/2019/02/1980-crunchy-chicken-twisties-drumsticks-951509-1.jpg"
+											class="d-block w-100 h-100" alt="...">
+									</div>
+									<div class="carousel-item">
+										<img
+											src="https://media-cdn.tripadvisor.com/media/photo-s/15/03/79/e3/otto-s-anatolian-food.jpg"
+											class="d-block w-100 h-100" alt="...">
+									</div>
+								</div>
+								<button class="carousel-control-prev" type="button"
+									data-bs-target="#carouselIndicators" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button"
+									data-bs-target="#carouselIndicators" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
 						</div>
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img
-									src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?cs=srgb&dl=pexels-ash-376464.jpg&fm=jpg"
-									class="d-block w-100 h-100" alt="...">
-							</div>
-							<div class="carousel-item">
-								<img
-									src="https://img.bestrecipes.com.au/iyddCRce/br/2019/02/1980-crunchy-chicken-twisties-drumsticks-951509-1.jpg"
-									class="d-block w-100 h-100" alt="...">
-							</div>
-							<div class="carousel-item">
-								<img
-									src="https://media-cdn.tripadvisor.com/media/photo-s/15/03/79/e3/otto-s-anatolian-food.jpg"
-									class="d-block w-100 h-100" alt="...">
-							</div>
-						</div>
-						<button class="carousel-control-prev" type="button"
-							data-bs-target="#carouselIndicators" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button"
-							data-bs-target="#carouselIndicators" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
+
+
+
+						<div class="col-12 col-lg-3 themed-grid-col sideList">sideList</div>
 					</div>
-				</div>
-
-
-
-				<div class="col-12 col-xl-3 themed-grid-col sideList">sideList</div>
-			</div>
 
 
 
 
-			<div class="col-12 col-xl-12 themed-grid-col row contents2">
+					<div class="col-12 col-lg-12 themed-grid-col row contents2">
 
 
-				<div class="row row-cols-1 row-cols-md-3 g-4">
-					<div class="col-12 col-xl-4 themed-grid-col">
-						<div class="card h-80">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
+						<div class="row row-cols-1 row-cols-md-3 g-4">
+							<div class="col-12 col-lg-4 themed-grid-col">
+								<div class="card h-80">
+									<img src="..." class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">Card title</h5>
+									</div>
+									<div class="card-footer">
+										<small class="text-muted">Last updated 3 mins ago</small>
+									</div>
+								</div>
 							</div>
-							<div class="card-footer">
-								<small class="text-muted">Last updated 3 mins ago</small>
+							<div class="col-12 col-lg-4 themed-grid-col">
+								<div class="card h-80">
+									<img src="..." class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">Card title</h5>
+									</div>
+									<div class="card-footer">
+										<small class="text-muted">Last updated 3 mins ago</small>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-12 col-xl-4 themed-grid-col">
-						<div class="card h-80">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Last updated 3 mins ago</small>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-xl-4 themed-grid-col">
-						<div class="card h-80">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-							</div>
-							<div class="card-footer">
-								<small class="text-muted">Last updated 3 mins ago</small>
+							<div class="col-12 col-lg-4 themed-grid-col">
+								<div class="card h-80">
+									<img src="..." class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">Card title</h5>
+									</div>
+									<div class="card-footer">
+										<small class="text-muted">Last updated 3 mins ago</small>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -168,7 +166,8 @@
 			</div>
 		</div>
 		<!-- Main 수정 여기까지, 하단 건들지 말것. -->
-		
+	
+	<jsp:include page="footer.jsp" flush="false"></jsp:include>
 	</div>
 
 </body>

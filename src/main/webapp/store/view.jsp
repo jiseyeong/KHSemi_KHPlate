@@ -235,7 +235,7 @@
 								<div class="title">한줄 리뷰 목록</div>
 								<div class="contents" style="overflow:hidden">
 									<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
-										<div>작성자명 : ${userNameList.get(i)}</div>
+										<div>작성자 : ${userIDList.get(i)}</div>
 
 										<div id="readStar${i}" class="star-ratings active" style="width:100%;">
 											<div class="star-ratings-fill space-x-2 text-lg"

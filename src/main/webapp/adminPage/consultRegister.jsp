@@ -52,6 +52,11 @@
         float:left;
     }
     
+    .previewImg{
+    	width:100%;
+        object-fit: contain;
+    }
+    
     #toList {
 	width: 250px;
 	height: 50px;
@@ -83,22 +88,22 @@
 
         </div>
         <div class="body">
-            <form id="myForm" action="" method="post" enctype="multipart/form-data">
+            <form id="myForm" action="/register.consult" method="post" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Customer Service Page</legend>
                     <div style="overflow: hidden;">
-                        <select class="category">
+                        <select name="category" class="category">
                             <option>문의</option>
                             <option>신고</option>
                             <option>건의</option>
                         </select>
                         <input type="text" name="title" class="title" placeholder="제목을 입력해주세요.">
-                        <input type="text" name="writer" id="writer" value="${sessionScope.loginID}" readonly>
+                        <input type="text" name="writer" id="writer" value="${sessionScope.loginNo}" style="display: none;">
                     </div>
                     <div style="overflow:hidden;">
                         <div class="left">
                             <div>
-                                <img src="#none" alt="#none" id="image">
+                                <img src="#none" alt="#none" id="image" class="previewImg">
                             </div>
                             <div>
                                 <input id="input_image" name="img" type='file' accept='image/*'>
@@ -135,7 +140,7 @@
                 fReader.onload = function(e){
                 	$("#image").attr("src", e.target.result);
                 }
-                fReader.readAsDataURL(input.file[0]);
+                fReader.readAsDataURL(input.files[0]);
             });
         </script>
 </body>

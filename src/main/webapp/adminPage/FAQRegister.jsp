@@ -30,11 +30,14 @@
 
 
 .inputs {
-	float: left;
 	width: 80%;
 	font-size: 22px;
 }
 
+.inputContent {
+	margin-top: 3%;
+	margin-bottom: 1%;
+}
 
 #submitBtn {
 	width: 250px;
@@ -43,7 +46,7 @@
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-left: 900px;
+	margin-left: 600px;
 	margin-top: 55px;
 	font-size: 20px;
 }
@@ -53,12 +56,12 @@
 	<div class="container_noboot">
 		<div class="sidebar"></div>
 		<div class="body">
-			<form action="register.faq" method="get">
+			<form action="/register.faq" method="get">
 				<fieldset>
 					<legend>FAQ 등록</legend>
 					<div class="inputHeader">제목 :</div>
 					<input type="text" class="inputs" name="title" placeholder="제목을 입력해주세요."> 
-					<div>FAQ 내용</div>
+					<div class="inputContent">FAQ 내용</div>
 					<textarea name="body" id="editor"></textarea>
 					<input type="submit" name="submitBtn" id="submitBtn" value="작성완료">
 				</fieldset>
@@ -71,6 +74,7 @@
                  toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
             })
             .catch(error => { console.error(error) });
+        
     </script>
 </body>
 </html>

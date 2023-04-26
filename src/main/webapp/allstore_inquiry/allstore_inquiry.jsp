@@ -564,6 +564,9 @@ hr {
 	align-items: center;
 	font-size: 12px;
 }
+.search_store_list_toScript{
+	display:none;
+}
 </style>
 </head>
 
@@ -579,8 +582,8 @@ hr {
 				</div>
 				<form class="searchForm" action="/search.store">
 					<div class="seachBox">
-						<input type="text" id="seach" name="search"> 
-						<input type="submit" id="seachBtn" value="검색">
+						<input type="text" id="seach" name="search"> <input
+							type="submit" id="seachBtn" value="검색">
 					</div>
 				</form>
 				<div class="show_filterForm_layout">
@@ -813,6 +816,19 @@ hr {
 						<button class="sort_apply_btn" id="apply_btn">적용</button>
 					</div>
 				</div>
+				<c:if test="${search_store_list!=null}">
+					<c:forEach var="dto" items="${search_store_list}" varStatus="status">
+						<input type="text" class="search_store_list_toScript" id="search_store_list_storeID${status.index}" value="${dto.storeID}">
+						<input type="text" class="search_store_list_toScript" id="search_store_list_distance${status.index}" value="${dto.distance}">
+						<input type="text" class="search_store_list_toScript" id="search_store_list_name${status.index}" value="${dto.name}">
+						<input type="text" class="search_store_list_toScript" id="search_store_list_lat${status.index}" value="${dto.lat}">
+						<input type="text" class="search_store_list_toScript" id="search_store_list_lng${status.index}" value="${dto.lng}">
+						<input type="text" class="search_store_list_toScript" id="search_store_list_address${status.index}" value="${dto.address}">
+						<input type="text" class="search_store_list_toScript" id="search_store_list_avgScore${status.index}" value="${dto.avgScore}">
+						<input type="text" class="search_store_list_toScript" id="search_store_list_introduction${status.index}" value="${dto.introduction}">
+						<input type="text" class="search_store_list_toScript" id="search_store_list_category${status.index}" value="${dto.category}">
+					</c:forEach>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -992,55 +1008,22 @@ hr {
 		
 		
 		
-		
-		$(function(){
-			var markers = "<c:out value='${search_store_list}'/>";
-			if(markers!=null){
-				$(markers).each(function(index,item){
-		            console.log(index + " : " + item);
-		        })
-				for(i = 0 ; i < markers.length ; i++){
-					addMarker(new kakao.maps.LatLng(33.450701, 126.570667));
-				}
-			}
-		})
-		
-		/*
-
-		// 마커 하나를 지도위에 표시합니다 
+		$(function() {
+			let list_length = '${search_store_list.size()}';
+		    for(i = 0 ; i<list_length; i++){
+		    	console.log($("#search_store_list_storeID"+i).val());
+		    	console.log($("#search_store_list_distance"+i).val());
+		    	console.log($("#search_store_list_name"+i).val());
+		    	console.log($("#search_store_list_lat"+i).val());
+		    	console.log($("#search_store_list_lng"+i).val());
+		    	console.log($("#search_store_list_address"+i).val());
+		    	console.log($("#search_store_list_avgScore"+i).val());
+		    	console.log($("#search_store_list_introduction"+i).val());
+		    	console.log($("#search_store_list_category"+i).val());
+		    }
+		});
 		
 
-		// 마커를 생성하고 지도위에 표시하는 함수입니다
-		function addMarker(position) {
-		    
-		    // 마커를 생성합니다
-		    var marker = new kakao.maps.Marker({
-		        position: position
-		    });
-
-		    // 마커가 지도 위에 표시되도록 설정합니다
-		    marker.setMap(map);
-		    
-		    // 생성된 마커를 배열에 추가합니다
-		    markers.push(marker);
-		}
-
-		// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
-		function setMarkers(map) {
-		    for (var i = 0; i < markers.length; i++) {
-		        markers[i].setMap(map);
-		    }            
-		}
-
-		// "마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
-		function showMarkers() {
-		    setMarkers(map)    
-		}
-
-		// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
-		function hideMarkers() {
-		    setMarkers(null);    
-		}  */
 	</script>
 
 

@@ -8,20 +8,20 @@ public class ConsultReplyDTO {
 	private String title;
 	private String body;
 	private int consultID;
-	private int userID;
+	private int userNo;
 	private Timestamp writedate;
 
 	public ConsultReplyDTO() {
 		super();
 	}
 
-	public ConsultReplyDTO(int replyID, String title, String body, int consultID, int userID, Timestamp writedate) {
+	public ConsultReplyDTO(int replyID, String title, String body, int consultID, int userNo, Timestamp writedate) {
 		super();
 		this.replyID = replyID;
 		this.title = title;
 		this.body = body;
 		this.consultID = consultID;
-		this.userID = userID;
+		this.userNo = userNo;
 		this.writedate = writedate;
 	}
 
@@ -57,12 +57,12 @@ public class ConsultReplyDTO {
 		this.consultID = consultID;
 	}
 
-	public int getUserID() {
-		return userID;
+	public int getUserNo() {
+		return userNo;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public Timestamp getWritedate() {
