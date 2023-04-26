@@ -94,10 +94,10 @@
                 </div>
         	</fieldset>
             
-            <form action="" method="get">
+            <form action="/replyRegister.consult" method="get">
                 <fieldset>
                     <legend>답변 등록</legend>
-                    <input type="text" name="writer" value="${sessionScope.loginID}" style="display:none;">
+                    <input type="text" name="writer" value="${sessionScope.loginNo}" style="display:none;">
                     <input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
                     <div style="width:100%">
                         <label style="width:5%; float:left;">제목</label>
