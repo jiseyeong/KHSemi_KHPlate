@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>헤더</title>
 <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -18,6 +19,20 @@
     <style>
         * {
             box-sizing: border-box;
+            position: fixed;
+        }
+
+        .header {
+            margin: auto;
+            width: 100%; 
+            top: 0;
+            left: 0;
+            right: 0;
+   			background-color: #f2f2f2;  
+        }
+
+        .logo {
+            float: left;
         }
 
         .header {

@@ -39,7 +39,7 @@
                                         <c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header" id="heading${i}">
-                                                    <button class="accordion-button" type="button"
+                                                    <button class="accordion-button bg-light text-dark" type="button"
                                                         data-bs-toggle="collapse" data-bs-target="#collapse${i}"
                                                         aria-expanded="true" aria-controls="collapse${i}">
                                                         ${list.get(i).title}</button>
@@ -75,7 +75,7 @@
                                     <c:otherwise>
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="headingOne">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
                                                     data-bs-target="#collapseOne" aria-expanded="true"
                                                     aria-controls="collapseOne">FAQ
                                                     #1</button>
