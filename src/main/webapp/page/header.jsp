@@ -34,8 +34,6 @@
         }
 
         #searchBtn {
-            position: relative;
-            top: 13px;
             height: 40px;
             width: 40px;
             right: 45px;
@@ -90,7 +88,7 @@
 </head>
 
 <body>
-    <div class="row header m-0">
+    <div class="row header m-0 align-items-center">
         <div class="col-12 col-lg-3 themed-grid-col logo">
           
         </div>
