@@ -45,8 +45,8 @@
                 <c:if test="${fn:length(list) > 0}">
                     <c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
                         <tr>
-                            <td>${list.get(i).ReplyID}</td>
-                            <td>${list.get(i).title}</td>
+                            <td>${list.get(i).consultID}</td>
+                            <td><a href="/view.consult?consultID=${list.get(i).consultID}">${list.get(i).title}</a></td>
                             <td>${writerList.get(i)}</td>
                             <td>
                                 <c:choose>

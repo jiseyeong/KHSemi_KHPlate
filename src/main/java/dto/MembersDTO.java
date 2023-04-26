@@ -24,9 +24,24 @@ public class MembersDTO {
 		super();
 	}
 
+	public MembersDTO(String pw, String nickname,String email, String phone,
+					  int zipCode, String address1,String address2,String selfcomment, String favoriteFood) {
+		//마이페이지 수정할 때 쓸 dto 오버로딩
+
+		this.pw = pw;
+		this.nickname = nickname;
+		this.email = email;
+		this.phone = phone;
+		this.zipCode = zipCode;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.selfcomment = selfcomment;
+		this.favoriteFood = favoriteFood;
+	}
+	
 	public MembersDTO(String userID, String pw, String nickname,String name, String email, String phone,
 			String classes, String selfcomment, String favoriteFood, int zipCode, String address1,
-			String address2) {//마이페이지 출력할때 쓸 dto 오버로딩
+			String address2) {//마이페이지 출력할 때 쓸 dto 오버로딩
 
 		this.userID = userID;
 		this.pw = pw;

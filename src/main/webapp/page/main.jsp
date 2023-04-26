@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -33,6 +32,7 @@
 .body {
 	max-width: 1400px;
 	margin-top: 20px;
+	padding-top: 75px;
 }
 /* 하단부터 메인부분 스타일 작성 요망 */
 .contents {
@@ -41,6 +41,19 @@
 }
 
 .contents1 {
+<<<<<<< HEAD
+   height: 60%;
+   margin: 0px;
+   padding: 0 20px;
+   margin: 0px;
+}
+
+.contents2 {
+   height: 40%;
+   margin-top: 20px;
+   padding: 0 20px;
+   text-align: center;
+=======
 
 	margin: 0px;
 }
@@ -48,6 +61,7 @@
 .contents2 {
 
 	margin: 0px;
+>>>>>>> 8b811052a743086068cfe994fdf95ff7439b731c
 }
 
 .contents1>div {
@@ -58,8 +72,13 @@
 	height: 100%;
 }
 
-
-
+.footer {
+	background-color: #f2f2f2;
+	text-align: center;
+	padding: 10px;
+	margin-top: 575px;
+	max-width: 1920px;
+}
 </style>
 </head>
 <body>
@@ -77,6 +96,10 @@
 	<!-- Main 내용 부분 하단부터 수정 요망 -->
 		<div class="col-12 col-xl-10 themed-grid-col contents">
 			<div class="col-12 col-xl-12 themed-grid-col row contents1">
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8b811052a743086068cfe994fdf95ff7439b731c
 				<div class="col-12 col-xl-9 themed-grid-col carousel">
 					<div id="carouselIndicators" class="carousel slide"
 						data-bs-ride="true">
@@ -120,17 +143,27 @@
 				</div>
 
 
+<<<<<<< HEAD
+				
+					<div class="col-12 col-xl-3 themed-grid-col sideList">sideList</div>
+=======
 
 				<div class="col-12 col-xl-3 themed-grid-col sideList">sideList</div>
+>>>>>>> 8b811052a743086068cfe994fdf95ff7439b731c
 			</div>
 
 
 
 
 			<div class="col-12 col-xl-12 themed-grid-col row contents2">
+<<<<<<< HEAD
+				<div class="top3" text-align="center" style="height:15%;">TOP 3 PLATES</div><br>
+				<div class="row">
+=======
 
 
 				<div class="row row-cols-1 row-cols-md-3 g-4">
+>>>>>>> 8b811052a743086068cfe994fdf95ff7439b731c
 					<div class="col-12 col-xl-4 themed-grid-col">
 						<div class="card h-80">
 							<img src="..." class="card-img-top" alt="...">
@@ -167,9 +200,11 @@
 				</div>
 			</div>
 		</div>
+
 		<!-- Main 수정 여기까지, 하단 건들지 말것. -->
 		
 	</div>
+	<div class="footer">© copyright KHplate.com</div>
 
 </body>
 </html>
