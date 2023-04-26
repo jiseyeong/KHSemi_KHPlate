@@ -1,9 +1,8 @@
-package sha;
+package commons;
 
 import java.security.MessageDigest;
 
-public class EncryptionUtils {
-
+public class SecurityUtils {
 	public static String sha512(String msg) throws Exception {
 		MessageDigest md = MessageDigest.getInstance("SHA-512");
 		md.update(msg.getBytes());
@@ -12,5 +11,9 @@ public class EncryptionUtils {
 			builder.append(String.format("%02x", b));
 		}
 		return builder.toString();
+	}
+	
+	private String XSSCheck(String text){
+		return text.replaceAll("<script>", "&lt;script>");
 	}
 }

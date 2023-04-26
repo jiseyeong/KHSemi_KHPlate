@@ -25,7 +25,7 @@ public class ConsultController extends HttpServlet {
 		String cmd = request.getRequestURI();
 		
 		try {
-			if(cmd.equals("register.consult")) {
+			if(cmd.equals("/register.consult")) {
 				String realPath = request.getServletContext().getRealPath("consult");
 				int maxSize = 1024 * 1024 * 10; //10Mb
 				System.out.println(realPath);
@@ -53,7 +53,7 @@ public class ConsultController extends HttpServlet {
 				}
 				
 				response.sendRedirect("/list.consult");
-			}else if(cmd.equals("list.consult")) {
+			}else if(cmd.equals("/list.consult")) {
 				ArrayList<ConsultDTO> list = ConsultDAO.getInstance().selectAll();
 				ArrayList<String> writerList = new ArrayList<>();
 				for(ConsultDTO i : list) {

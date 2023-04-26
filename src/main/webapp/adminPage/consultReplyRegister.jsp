@@ -94,7 +94,7 @@
                 </div>
         	</fieldset>
             
-            <form>
+            <form action="" method="get">
                 <fieldset>
                     <legend>답변 등록</legend>
                     <input type="text" name="writer" value="${sessionScope.loginID}" style="display:none;">

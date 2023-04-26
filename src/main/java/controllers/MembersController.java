@@ -1,15 +1,16 @@
 package controllers;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import commons.SecurityUtils;
 import dao.MembersDAO;
 import dto.MembersDTO;
-import sha.EncryptionUtils;
 
 
 @WebServlet("*.Members")
@@ -22,12 +23,12 @@ public class MembersController extends HttpServlet {
 
 		try {
 			
-			if(cmd.equals("/join.members")) { //È¸¿ø°¡ÀÔ
+			if(cmd.equals("/join.members")) { //È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-			}else if(cmd.equals("/update.members")) { //È¸¿ø¼öÁ¤
+			}else if(cmd.equals("/update.members")) { //È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 				String pw = request.getParameter("pw");
-				String pw2 = EncryptionUtils.sha512(pw); //ºñ¹Ð¹øÈ£ ¾ÏÈ£È­
+				String pw2 = SecurityUtils.sha512(pw); //ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½È£È­
 				String nickname = request.getParameter("nickname");
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
@@ -42,11 +43,11 @@ public class MembersController extends HttpServlet {
 				
 				response.sendRedirect("/mypage.members");
 				
-			}else if(cmd.equals("/memberout.members")) { //È¸¿øÅ»Åð
+			}else if(cmd.equals("/memberout.members")) { //È¸ï¿½ï¿½Å»ï¿½ï¿½
 				
 				
 
-			}else if(cmd.equals("/mypage.members")) { //¸¶ÀÌÆäÀÌÁö Á¤º¸ Ãâ·Â
+			}else if(cmd.equals("/mypage.members")) { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 				String userId = (String)request.getSession().getAttribute("loginID");
 				MembersDTO my = MembersDAO.getInstance().selectById(userId);
@@ -54,9 +55,9 @@ public class MembersController extends HttpServlet {
 				request.setAttribute("my",my);
 				request.getRequestDispatcher("/mypage/mypage.jsp").forward(request, response);
 				
-			}else if(cmd.equals("/login.members")) { //·Î±×ÀÎ
+			}else if(cmd.equals("/login.members")) { //ï¿½Î±ï¿½ï¿½ï¿½
 
-			}else if(cmd.equals("/logout.members")) { //·Î±×¾Æ¿ô
+			}else if(cmd.equals("/logout.members")) { //ï¿½Î±×¾Æ¿ï¿½
 
 			}
 		}catch(Exception e) {
