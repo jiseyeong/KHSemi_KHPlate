@@ -74,6 +74,7 @@ public class ConsultController extends HttpServlet {
 				request.setAttribute("dto", dto);
 				request.setAttribute("writer", writer);
 				request.setAttribute("replyDTO", replyDTO);
+				request.setAttribute("replyWriter", replyWriter);
 				//이미지 추가해야 함.
 				request.getRequestDispatcher("/adminPage/consultView.jsp").forward(request, response);
 			}else if(cmd.equals("/replyForm.consult")) {
