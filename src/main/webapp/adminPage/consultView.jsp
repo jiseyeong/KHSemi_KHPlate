@@ -107,6 +107,46 @@
                     </div>
                 </div>
         	</fieldset>
+
+            <c:if test="sessionScope.loginNo == dto.userNo || sessionScope.loginIsAdmin">
+                <button type="button" id="btn_modify">수정하기</button>
+            </c:if>
+            <c:choose>
+                <c:when test="${not empty replyDTO}">
+                    <fieldset style="margin-bottom:50px;">
+                        <legend>답글</legend>
+                        <div style="overflow: hidden;">
+                            <div class="title">
+                                <label style="width:5%;">제목</label>
+                                <input type="text" class="title" value="${replyDTO.title}" style="width:95%;" readonly>
+                            </div>
+                            <div class="writer">
+                                <label style="width: 20%;">작성자</label>
+                                <input type="text" class="writer" value="${replyWriter}" style="width:80%;" readonly>
+                            </div>
+                        </div>
+                        <div style="overflow: hidden;">
+                            <div style="text-align:center;">작성 내용</div>
+                            <div id="readEditor2">${replyDTO.body}</div>
+                            <script>
+                                ClassicEditor
+                                    .create(document.querySelector("#readEditor2"))
+                                    .then(function (editor) {
+                                        const toolbarElement = editor.ui.view.toolbar.element;
+                                        toolbarElement.style.display = 'none';
+                                        editor.enableReadOnlyMode('');
+                                    })
+                                    .catch(error => { console.error(error) });
+                            </script>
+                        </div>
+                    </fieldset>
+                </c:when>
+                <c:otherwise>
+                    <c:if test="sessionScope.loginIsAdmin">
+                        <a href="/replyForm.consult?consultID=${dto.consultID}"><button type="button" id="btn_reply">답글달기</button></a>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 

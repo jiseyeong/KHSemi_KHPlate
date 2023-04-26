@@ -15,8 +15,10 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.ConsultDAO;
+import dao.ConsultReplyDAO;
 import dao.MembersDAO;
 import dto.ConsultDTO;
+import dto.ConsultReplyDTO;
 
 @WebServlet("*.consult")
 public class ConsultController extends HttpServlet {
@@ -65,12 +67,32 @@ public class ConsultController extends HttpServlet {
 			}else if(cmd.equals("/view.consult")) {
 				int consultID = Integer.parseInt(request.getParameter("consultID"));
 				ConsultDTO dto = ConsultDAO.getInstance().selectOne(consultID);
-				String writer = MembersDAO.getInstance().getIDByNo(dto.getUserNO());
+				String writer = MembersDAO.getInstance().getIDByNo(dto.getUserNO());				
+				ConsultReplyDTO replyDTO = ConsultReplyDAO.getInstance().selectOneByConsultID(consultID);
+				String replyWriter = MembersDAO.getInstance().getIDByNo(replyDTO.getUserNo());
 				
 				request.setAttribute("dto", dto);
 				request.setAttribute("writer", writer);
+				request.setAttribute("replyDTO", replyDTO);
 				//이미지 추가해야 함.
 				request.getRequestDispatcher("/adminPage/consultView.jsp").forward(request, response);
+			}else if(cmd.equals("/replyForm.consult")) {
+				int consultID = Integer.parseInt(request.getParameter("consultID"));
+				ConsultDTO parentDTO = ConsultDAO.getInstance().selectOne(consultID);
+				String parentWriter = MembersDAO.getInstance().getIDByNo(parentDTO.getUserNO());
+				
+				request.setAttribute("parentDTO", parentDTO);
+				request.setAttribute("parentWriter", parentWriter);
+				//이미지 추가해야 함
+				request.getRequestDispatcher("/adminPage/consultReplyRegister.jsp").forward(request, response);
+			}else if(cmd.equals("/replyRegister.consult")) {
+				int userNo = Integer.parseInt(request.getParameter("writer"));
+				int consultID = Integer.parseInt(request.getParameter("consultID"));
+				String title = request.getParameter("title");
+				String body = request.getParameter("body");
+				
+				int result = ConsultReplyDAO.getInstance().insert(new ConsultReplyDTO(0, title, body, consultID, userNo, null));
+				response.sendRedirect("/view.consult?consultID="+consultID);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
