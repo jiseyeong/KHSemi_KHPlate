@@ -212,19 +212,48 @@
 									</tr>
 									<c:forEach var="i" items="${menuList}">
 										<tr>
-											<td>${i.menuName}</td>
-											<td>${i.menuPrice}</td>
+											<form id="menuUpdateForm${i.menuID}" action="/update.storeMenu" method="get">
+												<input type="text" name="menuID" value="${i.menuID}" style="display: none;" readonly>
+												<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
+												<td><input type="text" id="updateMenuName${i.menuID}" name="updateMenuName" value="${i.menuName}" readonly></td>
+												<td><input type="text" id="updateMenuPrice${i.menuID}" name="updateMenuPrice" value="${i.menuPrice}" readonly></td>
+											
 											<td>
-												<form action="/delete.storeMenu" method="get">
+
+												<button type="button" class="btn_menu_update btn btn-outline-secondary" style="display:none" id="btn_menu_update${i.menuID}">수정</button>
+												<button type="submit" class="btn_menu_update_confirm btn btn-outline-secondary" style="display: none;" id="btn_menu_update_confirm${i.menuID}">확정</button>
+											</form>
+												<form id="menuDeleteForm${i.menuID}" action="/delete.storeMenu" method="get">
 													<input type="text" name="menuID" value="${i.menuID}" style="display: none;" readonly>
 													<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
-													<button type="submit" class="btn_menu_delete nonactive">X</button>
+													<button type="submit" class="btn_menu_delete btn btn-outline-secondary" style="display:none">삭제</button>
 												</form>
 											</td>
 										</tr>
 										<script>
-											let menuID = "<c:out value='i.menuID'></c:out>";
+											var menuID = "<c:out value='${i.menuID}'></c:out>";
 											$("#btn_menu_delete"+menuID).click(function(){
+												$("#menuDeleteForm"+menuID).submit();
+											});
+											$("#btn_menu_update"+menuID).click(function(){
+												$("#btn_menu_update_confirm"+menuID).css({"display":"inline-block"});
+												$("#updateMenuName"+menuID).attr("readonly", false);
+												$("#updateMenuPrice"+menuID).attr("readonly", false);
+												$(this).css({"display":"none"});
+											});
+											console.log(menuID);
+											$("#btn_menu_update_confirm"+menuID).click(function(){
+												$("menuUpdateForm"+menuID).submit();
+											})
+											$("menuUpdateForm"+menuID).submit(function(){
+												let menuPrice = $("#updateMenuPrice"+menuID).val();
+												if(!menuPrice){
+													alert("메뉴 가격은 빈 값일 수 없습니다.");
+													return false;
+												}else if(isNaN(menuPrice)){
+													alert("메뉴 가격은 숫자 형식이어야 합니다.");
+													return false;
+												}
 											});
 										</script>
 									</c:forEach>
@@ -425,13 +454,18 @@
 
 					$("#btn_menu_modify").click(function(){
 						$(".btn_menu_delete").css({"display":"inline-block"});
+						$(".btn_menu_update").css({"display":"inline-block"});
 						$("#btn_menu_modify_cancel").css({"display":"inline-block"});
 						$(this).css({"display":"none"});
 					});
 
 					$("#btn_menu_modify_cancel").click(function(){
 						$(".btn_menu_delete").css({"display":"none"});
+						$(".btn_menu_update").css({"display":"none"});
+						$(".btn_menu_update_confirm").css({"display":"none"});
 						$("#btn_menu_modify").css({"display":"inline-block"});
+						$("[name='updateMenuName']").attr("readonly", true);
+						$("[name='updateMenuPrice']").attr("readonly", true);
 						$(this).css({"display":"none"});
 					});
 
