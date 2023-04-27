@@ -1,131 +1,113 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1 상담</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<title>1:1 상담 내용</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.3.0/octicons.min.css"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+
 <style>
-	*{
-        box-sizing: border-box;
-    }
-    .container_noboot {
-        margin-left: 0;
-        margin-right: 0;
-        max-width: 1920px;
-    }
+/* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
+* {
+	box-sizing: border-box;
+	padding: 0px;
+}
 
-    .sidebar {
-        width: 500px;
-    }
+.body {
+	margin: auto;
+}
 
-    .body {
-        width: 1420px;
-    }
-    
-    select.category {
-        width:15%;
-        margin-right:10%;
-        float:left;
-    }
+.sideList {
+	border: 1px solid black;
+}
 
-    input.title {
-        width:75%;
-        float:left;
-    }
-
-    .left{
-        width:20%;
-        margin-right:5%;
-        float:left;
-        text-align: center;
-    }
-    .right{
-        width:75%;
-        float:left;
-    }
-    
-    .previewImg{
-    	width:100%;
-        object-fit: contain;
-    }
-    .category {
-        width:15%;
-        margin-right:10%;
-        float:left;
-    }
-    .category>label,.title>label,.writer>label{
-        float:left;
-    }
-    .category>input,.title>input,.writer>input{
-        float:left;
-    }
-    .title {
-        width:75%;
-        float:left;
-    }
-    .writer {
-        width:25%;
-    }
+/* 하단부터 메인부분 스타일 작성 요망 */
 </style>
 </head>
 <body>
-	<div class="container_noboot">
-        <div class="sidebar">
+	<div class="container-fluid themed-container m-0 g-0">
+		<!-- 헤더부분 건들지 말것 -->
+		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
 
-        </div>
-        <div class="body">
-            <fieldset style="margin-bottom:50px;">
-                <legend>대상 고객 글</legend>
-                <div style="overflow: hidden;">
-                    <div class="category">
-                        <label style="width:40%;">카테고리</label>
-                        <input type="text" value="${dto.category}" style="width:60%;" readonly>
-                    </div>
-                    <div class="title">
-                        <label style="width:5%;">제목</label>
-                        <input type="text" class="title" value="${dto.title}" style="width:95%;" readonly>
-                    </div>
-                    <div class="writer">
-                        <label style="width: 20%;">작성자</label>
-                        <input type="text" class="writer" value="${writer}" style="width:80%;" readonly>
-                    </div>
-                </div>
-                <div style="overflow: hidden;">
-                    <div style="text-align:center;">작성 내용</div>
-                    <div class="left">
-                        <div>
-                            <img src="${image}" alt="${image}" id="image" class="previewImg">
-                        </div>
-                    </div>
-                    <div class="right">
-                        <div id="readEditor">${dto.body}</div>
-                    </div>
-                </div>
-            </fieldset>
 
-            <c:choose>
-                <c:when test="${not empty replyDTO}">
-                    <fieldset style="margin-bottom:50px;">
-                        <legend>답글</legend>
-                        <div style="overflow: hidden;">
-                            <div class="title">
-                                <label style="width:5%;">제목</label>
-                                <input type="text" class="title" value="${replyDTO.title}" style="width:95%;" readonly>
-                            </div>
-                            <div class="writer">
-                                <label style="width: 20%;">작성자</label>
-                                <input type="text" class="writer" value="${replyWriter}" style="width:80%;" readonly>
-                            </div>
-                        </div>
-                        <div style="overflow: hidden;">
-                            <div style="text-align:center;">작성 내용</div>
-                            <div id="readEditor2">${replyDTO.body}</div>
-                            <script>
+
+		<!-- body 부분 row div 건들지 말것 -->
+		<div class="row g-0 justify-content-center body">
+			<!-- sideBar부분 건들지 말것 -->
+			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
+
+			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
+				<!-- Main 내용 부분 하단부터 수정 요망 -->
+				<fieldset style="margin-bottom:50px">
+					<legend>대상 고객 글</legend>
+					<div class="row">
+						<div class="col-12 col-lg-3">
+							<div class="input-group">
+								<span class="input-group-text">카테고리</span>
+								<input type="text" value="${dto.category}" class="form-control" readonly>
+							</div>
+						</div>
+						<div class="col-12 col-lg-9">
+							<div class="input-group">
+								<span class="input-group-text">제목</span>
+								<input type="text" class="form-control" value="${dto.title}" readonly> 
+							</div>
+						</div>
+						<div class="col-12 col-lg-3">
+							<div class="input-group">
+								<span class="input-group-text">작성자</span>
+								<input type="text" class="form-control" value="${writer}" readonly>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 text-center">작성내용</div>
+						<div class="col-12 col-lg-3">
+							<img src="${image}" alt="${image}" id="image" class="w-100 object-fit-contain">
+						</div>
+						<div class="col-12 col-lg-9">
+							<div id="readEditor">${dto.body}</div>
+						</div>
+					</div>
+				</fieldset>
+
+				<c:choose>
+					<c:when test="${not empty replyDTO}">
+						<fieldset>
+							<legend>답글</legend>
+							<div class="row">
+								<div class="col-12 col-lg-9">
+									<div class="input-group">
+										<span class="input-group-text">제목</span>
+										<input type="text" class="form-control" value="${replyDTO.title}" readonly>
+									</div>
+								</div>
+								<div class="col-12 col-lg-3">
+									<div class="input-group">
+										<span class="input-group-text">작성자</span>
+										<input type="text" class="form-control" value="${replyWriter}" readonly>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 text-center">작성 내용</div>
+								<div id="readEditor2">${replyDTO.body}</div>
+							</div>
+							<script>
                                 ClassicEditor
                                     .create(document.querySelector("#readEditor2"))
                                     .then(function (editor) {
@@ -135,27 +117,32 @@
                                     })
                                     .catch(error => { console.error(error) });
                             </script>
-                        </div>
-                    </fieldset>
-                </c:when>
-                <c:otherwise>
-                    <c:if test="sessionScope.loginIsAdmin">
-                        <a href="/replyForm.consult?consultID=${dto.consultID}"><button type="button" id="btn_reply">답글달기</button></a>
-                    </c:if>
-                </c:otherwise>
-            </c:choose>
-        </div>
-    </div>
+						</fieldset>
+					</c:when>
+					<c:otherwise>
+						<c:if test="sessionScope.loginIsAdmin">
+							<a href="/replyForm.consult?consultID=${dto.consultID}"><button type="button" id="btn_reply">답글달기</button></a>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
 
-    <script>
-        ClassicEditor
-    		.create(document.querySelector("#readEditor"))
-    		.then(function (editor) {
-        		const toolbarElement = editor.ui.view.toolbar.element;
-                toolbarElement.style.display = 'none';
-        		editor.enableReadOnlyMode('');
-    		})
-    		.catch(error => { console.error(error) });
-    </script>
+				<script>
+					ClassicEditor
+						.create(document.querySelector("#readEditor"))
+						.then(function (editor) {
+							const toolbarElement = editor.ui.view.toolbar.element;
+							toolbarElement.style.display = 'none';
+							editor.enableReadOnlyMode('');
+						})
+						.catch(error => { console.error(error) });
+				</script>
+
+				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
+			</div>
+		</div>
+
+		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
+	</div>
+
 </body>
 </html>
