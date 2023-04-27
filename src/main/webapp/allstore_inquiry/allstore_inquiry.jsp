@@ -571,7 +571,7 @@ hr {
 </head>
 
 <body>
-	<form id="searchForm" action="/search.store" onsubmit="return false;">
+	<form id="searchForm" action="/searchToMap.store" onsubmit="return false;">
 		<div class="container">
 			<div class="store_list">
 				<div class="search_layout">
@@ -595,7 +595,7 @@ hr {
 				<div class="restaurant_list_layout">
 					<ul class="restaurant_list">
 						<c:choose>
-							<c:when test="${search_store_list==null}">
+							<c:when test="${search_store_list_toMap==null}">
 								<li class="restaurant_none">
 									<div class="none">
 										표시할 내용이 없습니다.<br>검색을 진행해주세요.
@@ -604,7 +604,7 @@ hr {
 
 							</c:when>
 							<c:otherwise>
-								<c:forEach var='i' items='${search_store_list}'>
+								<c:forEach var='i' items='${search_store_list_toMap}'>
 									<li class="restaurant">
 										<div class="img_layout">
 											<img src="/allstore_inquiry/restaurant_img1.jpg">
@@ -644,7 +644,7 @@ hr {
 
 					<!-- Navigator 리스트를 표시 (getNavi(currentpage,search)) -->
 					<div class="navigator">
-						<ul class="navigator_list">${search_store_list_navi}</ul>
+						<ul class="navigator_list">${search_store_list_navi_toMap}</ul>
 					</div>
 
 				</div>
@@ -659,7 +659,7 @@ hr {
 
 
 				<!-- 정렬 팝업 창 (SlideToggle)-->
-				<form action="/search.store" onsubmit="return false;">
+				<form action="/searchToMap.store" onsubmit="return false;">
 					<div id="sort_layout" style="display: none;">
 						<div class="search_filter">
 							<p class="sort_title">검색 필터</p>
@@ -788,8 +788,8 @@ hr {
 			</div>
 		</div>
 	</form>
-	<c:if test="${search_store_list!=null}">
-		<c:forEach var="dto" items="${search_store_list}" varStatus="status">
+	<c:if test="${search_store_list_toMap!=null}">
+		<c:forEach var="dto" items="${search_store_list_toMap}" varStatus="status">
 			<input type="text" class="search_store_list_toScript"
 				id="search_store_list_storeID${status.index}" value="${dto.storeID}">
 			<input type="text" class="search_store_list_toScript"
@@ -1028,7 +1028,7 @@ hr {
     	
 		$(function() {
 			
-			let list_length = '${search_store_list.size()}';
+			let list_length = '${search_store_list_toMap.size()}';
 			
 	    	for(i=0 ; i<list_length ; i++){
 	    		

@@ -105,8 +105,8 @@
          	 <img src="logowhite.png" class="logoimage">
         </div>
         <div class="col-12 col-lg-6  d-flex search">
-            <form action="/search.store" method="get" class="form">
-                <input type="search" id="searchBox">
+            <form action="/searchToMain.store" method="get" class="form">
+                <input type="search" id="searchBox" name="search">
                 <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
                 </button>
             </form>
