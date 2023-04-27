@@ -16,61 +16,56 @@
         crossorigin="anonymous"></script>
 
     <style>
+    
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+	.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
+	
+	
         * {
             box-sizing: border-box;
         }
-
+		
         .header {
-<<<<<<< HEAD
-        
-        	width: 100%;
-            height:130px; 
-
-   			background-color: #f2f2f2;
-=======
-        	max-width:100%;
-           	width: 100%;
-            background-color: #ED1C16;
->>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
+           max-width:100%;
+           width: 100%;
+           background-color: #ED1C16;
+           box-shadow:1px 1px 5px 1px silver;
+           padding-top:10px;
+           padding-bottom:10px;
             
         }
+        .logo{
+        	text-align:center;
+        	padding-top:5px;
+        }
+		.logoimage{
+			height:90%;
+			width:25%;
+		}
         #searchBox {
             height: 40px;
-            width: 90%;
+            width: 70%;
             border-radius: 10px;
             border: 1px solid #f2f2f2;
+            position:relative;
+            top:5px;
+            left:60px;
         }
 
         #searchBtn {
             position: relative;
-            top: 13px;
+            top:18px;
             height: 40px;
             width: 40px;
-            right: 45px;
+            left:30px;
             background-color: #f2f2f2;
             border: 1px solid #f2f2f2;
             border-radius: 3px;
             cursor: pointer;
         }
-
         .form {
             width: 100%;
             padding-left: 10px;
-        }
-
-
-        .btnBox {
-            margin-top: 8.5%;
-        }
-        .btnBox>button {
-            width: 80px;
-            height: 40px;
-            font-size: 13px;
-            background-color: #f2f2f2;
-            border: none;
-            border-radius: 3px;
-            color: black;
-
         }
 
         #mypageBtn {
@@ -82,55 +77,47 @@
         }
         
         #searchBox{
-        	margin-top:3px;
+           margin-top:3px;
         }
-        
         .btnBox{
-        	margin-top:0px;
-        	padding-top:10px;
-        	margin-bottom:8px;
+        	width:100%;
+			line-height:76px;
+			text-align:center;
         }
-        
-        
+      .btnBox>a{
+		text-decoration:none;
+		font-size:13px;
+		margin-right:10px;
+		color:white;
+		font-weight:600;
+		}
+	  .btnBox>a:hover{
+		opacity:80%;
+		}
 </style>
 
 
 </head>
 
 <body>
-<<<<<<< HEAD
-    <div class="row header g-0">
-        <div class="col-12 col-xl-3 themed-grid-col logo">
-=======
     <div class="row header m-0">
         <div class="col-12 col-lg-3 themed-grid-col logo">
->>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
-          
+         	 <img src="logowhite.png" class="logoimage">
         </div>
-
-
-<<<<<<< HEAD
-        <div class="col-12 col-xl-6  d-flex search">
-=======
         <div class="col-12 col-lg-6  d-flex search">
->>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
             <form action="/search.store" method="get" class="form">
                 <input type="search" id="searchBox">
-                <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass">
+                <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
                 </button>
             </form>
         </div>
-
-
-        <div class="col-12 col-lg-3 themed-grid-col d-flex justify-content-evenly rightMenu">
+        <div class="col-12 col-lg-3 themed-grid-col d-flex rightMenu">
             <div class="btnBox">
-            <button id="loginBtn" name="loginBtn">로그인</button>
-            <button id="signupBtn" name="signupBtn">회원가입</button>
-            <svg xmlns="http://www.w3.org/2000/svg" id="mypageBtn" name="mypageBtn" viewBox="0 0 16 16">
-                <path
-                    d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm.847-8.145a2.502 2.502 0 1 0-1.694 0C5.471 8.261 4 9.775 4 11c0 .395.145.995 1 .995h6c.855 0 1-.6 1-.995 0-1.224-1.47-2.74-3.153-3.145Z">
-                </path>
-            </svg>
+         <a href="#null" class="nanum-gothic" >로그인 </a>
+          <a href="#null" class="nanum-gothic" >｜</a>
+         <a href="#null" class="nanum-gothic" >회원가입</a>
+         <a href="#null" class="nanum-gothic" >｜</a>
+		 <a href="#null" class="nanum-gothic" >마이페이지</a>
         </div>
         </div>
     </div>

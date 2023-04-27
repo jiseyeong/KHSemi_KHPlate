@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,231 +7,205 @@
 <meta charset="UTF-8">
 <title>Main</title>
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-	rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.3.0/octicons.min.css"
-	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-	crossorigin="anonymous">
+   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.3.0/octicons.min.css"
+   integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+   crossorigin="anonymous">
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-	crossorigin="anonymous"></script>
+   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+   integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+   crossorigin="anonymous"></script>
 
 <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+	.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;} /*나눔고딕 폰트 import*/
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
-	* {
-	box-sizing: border-box;
-	padding: 0px;
-<<<<<<< HEAD
-	}
-	.row{
-		float:none;
-		margin:0 auto;
-	}
-	.col{
-		float:none;
-		margin:0 auto;
-	}
-	.container-fluid{
-		max-width:1920px;
-		height:1000px;
-	}
-	.row{
-		margin:0px;
-	}
-	.header{
-	width:100%;
-	}
-	.body {
-	max-width: 1400px;
-	height:100%;
-	margin-top: 20px;
-	margin:0 auto;
-	}
-
+* {
+   box-sizing: border-box;
+   padding: 0px;
 }
+.container-fluid{
 
+	height:1387px;
+}
 .body {
-	padding-left:30px;
-	padding-top:10px;
-	margin:auto;
-	
+
+   margin:auto;
+   margin-top:40x;
 }
-
-.sideList{
-	border: 1px solid black;
-}
-
-
->>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
 /* 하단부터 메인부분 스타일 작성 요망 */
-	.contents {
-	padding: 0px;
-<<<<<<< HEAD
-	padding-left: 10px;
-	}
+.contents {
+   padding: 0px; 
+}
 
-	.contents1 {
+.contents1>div {
+   height: 100%;
+}
 
-	margin: 0px;
-	}
-
-	.contents2 {
-
-	margin: 0px;
-	}
-=======
-
+.contents2>div {
+   height: 100%;
+}
+.carousel-inner{
+	height:500px;
+}
+.carousel-inner>.item>img{
+    width: 100%;
+    height: 100%;
+}
+.sideListUl>li{text-align:left; width:60%; margin:auto; font-weight:600;}
+.firstLi>input {
+	height:30px;
+	width:30px;
+	line-height:30px;
+	border:none;
+	background-color:white;
+	float:right;
+	position: relative;
+	top:10px;
+}
+.firstLi>input:hover{
+	color:#ED1C16;
+}
+.contents2>div{
+	height:450px;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 	
 }
->>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
-
-	.contents1>div {
-	height: 100%;
-	}
-
-	.contents2>div {
-	height: 100%;
-<<<<<<< HEAD
-	}
-
-	div{
-		display:block;
-	}
+.contents2>div>div {
+	background-color:rgb(253, 253, 253);
+	border-radius:20px;
+	box-shadow:1px 1px 5px 1px silver;
+	margin-right:70px;
+}
+.contents2>div>div:first-of-type{
+	margin-left:15px;
+}
+.imageDiv{
+	width:90%;
+	height:60%;
+	margin:auto;
+	margin-top:25px;
+}
+.imageDiv>img{
+	width:100%;
+	height:100%;
+	cursor:pointer;
+}
+.imageDiv>img:hover{
+	opacity:80%;
+}
+.textDiv{
+	text-align:center;
+	font-size:15px;
+	font-weight:600;
+	width:90%;
+	margin:auto;
+	margin-top:20px;
+}
 </style>
 </head>
 <body>
-	<div class="container-fluid g-0">
-	<div class="row header" style="float:none; margin:0 auto;">
-	<!-- 헤더부분 건들지 말것 -->
-=======
-}
+   <div class="container-fluid themed-container m-0 g-0">
+      <!-- 헤더부분 건들지 말것 -->
+      <jsp:include page="header.jsp" flush="false"></jsp:include>
 
 
-</style>
-</head>
-<body>
-	<div class="container-fluid themed-container m-0 g-0">
-		<!-- 헤더부분 건들지 말것 -->
->>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
-		<jsp:include page="header.jsp" flush="false"></jsp:include>
+      <!-- body 부분 row div 건들지 말것 -->
+      <div class="row g-0 justify-content-center body" style="margin-top:70px;">
+      <!-- sideBar부분 건들지 말것 -->
+         <jsp:include page="sideBar.jsp" flush="false"></jsp:include>
 
+         <div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
+            <!-- Main 내용 부분 하단부터 수정 요망 -->
 
-
-<<<<<<< HEAD
-	<!-- sideBar부분 건들지 말것 -->
-	<div class="row body" style="float:none; margin:0 auto;">
-	
-=======
-
-		<!-- sideBar부분 건들지 말것 -->
-		<div class="row g-0 justify-content-center body">
-			<jsp:include page="sideBar.jsp" flush="false"></jsp:include>
-
-			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
-				<!-- Main 내용 부분 하단부터 수정 요망 -->
-
-				<div class="col-12 themed-grid-col contents">
-					<div class="col-12 col-lg-12 themed-grid-col row contents1">
-						<div class="col-12 col-lg-9 themed-grid-col carousel">
-							<div id="carouselIndicators" class="carousel slide"
-								data-bs-ride="true">
-								<div class="carousel-indicators">
-									<button type="button" data-bs-target="#carouselIndicators"
-										data-bs-slide-to="0" class="active" aria-current="true"
-										aria-label="Slide 1"></button>
-									<button type="button" data-bs-target="#carouselIndicators"
-										data-bs-slide-to="1" aria-label="Slide 2"></button>
-									<button type="button" data-bs-target="#carouselIndicators"
-										data-bs-slide-to="2" aria-label="Slide 3"></button>
-								</div>
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<img
-											src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?cs=srgb&dl=pexels-ash-376464.jpg&fm=jpg"
-											class="d-block w-100 h-100" alt="...">
-									</div>
-									<div class="carousel-item">
-										<img
-											src="https://img.bestrecipes.com.au/iyddCRce/br/2019/02/1980-crunchy-chicken-twisties-drumsticks-951509-1.jpg"
-											class="d-block w-100 h-100" alt="...">
-									</div>
-									<div class="carousel-item">
-										<img
-											src="https://media-cdn.tripadvisor.com/media/photo-s/15/03/79/e3/otto-s-anatolian-food.jpg"
-											class="d-block w-100 h-100" alt="...">
-									</div>
-								</div>
-								<button class="carousel-control-prev" type="button"
-									data-bs-target="#carouselIndicators" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button"
-									data-bs-target="#carouselIndicators" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
-							</div>
-						</div>
+            <div class="col-12 themed-grid-col contents">
+               <div class="col-12 col-lg-12 themed-grid-col row contents1">
+                  <div class="col-12 col-lg-8 themed-grid-col carousel">
+                     <div id="carouselIndicators" class="carousel slide"
+                        data-bs-ride="true">
+                        <div class="carousel-indicators">
+                           <button type="button" data-bs-target="#carouselIndicators"
+                              data-bs-slide-to="0" class="active" aria-current="true"
+                              aria-label="Slide 1"></button>
+                           <button type="button" data-bs-target="#carouselIndicators"
+                              data-bs-slide-to="1" aria-label="Slide 2"></button>
+                           <button type="button" data-bs-target="#carouselIndicators"
+                              data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                           <div class="carousel-item active">
+                              <img
+                                 src="carouselimage1.jpg"
+                                 class="d-block w-100" alt="...">
+                           </div>
+                           <div class="carousel-item">
+                              <img
+                                 src="carouselimage2.jpg"
+                                 class="d-block w-100" alt="...">
+                           </div>
+                           <div class="carousel-item">
+                              <img
+                                 src="carouselimage3.jpg"
+                                 class="d-block w-100" alt="...">
+                           </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button"
+                           data-bs-target="#carouselIndicators" data-bs-slide="prev">
+                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                           <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button"
+                           data-bs-target="#carouselIndicators" data-bs-slide="next">
+                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                           <span class="visually-hidden">Next</span>
+                        </button>
+                     </div>
+                  </div>
 
 
 
-						<div class="col-12 col-lg-3 themed-grid-col sideList">sideList</div>
-					</div>
+                  <div class="col-12 col-lg-4 themed-grid-col sideList">
+                  	<ul class="nanum-gothic sideListUl">
+                  		<li class="firstLi">Review<input type="button" value="+"></li>
+                  		<li>첫번째 게시글 입니다.</li>
+                  		<li>첫번째 게시글 입니다.</li>
+                  		<li>첫번째 게시글 입니다.</li>
+                  		<li>첫번째 게시글 입니다.</li>
+                  		<li>첫번째 게시글 입니다.</li>
+                  		<li>첫번째 게시글 입니다.</li>
+                  		<li>첫번째 게시글 입니다.</li>
+                  		<li>첫번째 게시글 입니다.</li>
+                  		<li>첫번째 게시글 입니다.</li>
+                  	</ul>
+                  </div>
+               </div>
+               <div class="col-12 col-lg-12 themed-grid-col row contents2" style="margin-top:100px;">
+                  <div class="row row-cols-1 row-cols-md-3 g-4">
+                     <div class="col-12 col-lg-3 themed-grid-col">
+                     	<div class="imageDiv"><img src="롤링파스타.png"></div>
+						<div class="nanum-gothic textDiv">롤링파스타 종로점</div>
+                     </div>
+                     <div class="col-12 col-lg-3 themed-grid-col">
+						<div class="imageDiv"><img src="오로지라멘.png"></div>
+						<div class="nanum-gothic textDiv">오로지라멘</div>
+                     </div>
+                     <div class="col-12 col-lg-3 themed-grid-col">
+						<div class="imageDiv"><img src="자담치킨.png"></div>
+						<div class="nanum-gothic textDiv">자담치킨</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            
+      <!-- body main 수정 여기까지, 하단 건들지 말것. -->
+         </div>
+      </div>
+   
+   <jsp:include page="footer.jsp" flush="false"></jsp:include>
+   </div>
 
-
-
-
-					<div class="col-12 col-lg-12 themed-grid-col row contents2">
-
-
-						<div class="row row-cols-1 row-cols-md-3 g-4">
-							<div class="col-12 col-lg-4 themed-grid-col">
-								<div class="card h-80">
-									<img src="..." class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-									</div>
-									<div class="card-footer">
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="col-12 col-lg-4 themed-grid-col">
-								<div class="card h-80">
-									<img src="..." class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-									</div>
-									<div class="card-footer">
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="col-12 col-lg-4 themed-grid-col">
-								<div class="card h-80">
-									<img src="..." class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-									</div>
-									<div class="card-footer">
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
->>>>>>> de2e28e3235c5a4858765450a1caf1ba22370822
-		<!-- Main 수정 여기까지, 하단 건들지 말것. -->
-	
-	<jsp:include page="footer.jsp" flush="false"></jsp:include>
-	</div>
-</div>
 </body>
 </html>

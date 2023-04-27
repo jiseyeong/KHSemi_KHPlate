@@ -23,12 +23,12 @@ public class MembersController extends HttpServlet {
 
 		try {
 			
-			if(cmd.equals("/join.members")) { //ȸ������
+			if(cmd.equals("/join.members")) { 
 
-			}else if(cmd.equals("/update.members")) { //ȸ������
+			}else if(cmd.equals("/update.members")) {
 
 				String pw = request.getParameter("pw");
-				String pw2 = SecurityUtils.sha512(pw); //��й�ȣ ��ȣȭ
+				String pw2 = SecurityUtils.sha512(pw); 
 				String nickname = request.getParameter("nickname");
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
@@ -43,11 +43,11 @@ public class MembersController extends HttpServlet {
 				
 				response.sendRedirect("/mypage.members");
 				
-			}else if(cmd.equals("/memberout.members")) { //ȸ��Ż��
+			}else if(cmd.equals("/memberout.members")) { 
 				
 				
 
-			}else if(cmd.equals("/mypage.members")) { //���������� ���� ���
+			}else if(cmd.equals("/mypage.members")) { 
 
 				String userId = (String)request.getSession().getAttribute("loginID");
 				MembersDTO my = MembersDAO.getInstance().selectById(userId);
@@ -55,9 +55,9 @@ public class MembersController extends HttpServlet {
 				request.setAttribute("my",my);
 				request.getRequestDispatcher("/mypage/mypage.jsp").forward(request, response);
 				
-			}else if(cmd.equals("/login.members")) { //�α���
+			}else if(cmd.equals("/login.members")) { 
 
-			}else if(cmd.equals("/logout.members")) { //�α׾ƿ�
+			}else if(cmd.equals("/logout.members")) {
 
 			}
 		}catch(Exception e) {
