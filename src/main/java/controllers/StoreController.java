@@ -23,7 +23,6 @@ import dao.StoreMenuDAO;
 import dto.CommentReviewDTO;
 import dto.PhotoDTO;
 import dto.StoreDTO;
-import dto.StoreListDTO;
 import statics.Settings;
 import dto.StoreMenuDTO;
 
