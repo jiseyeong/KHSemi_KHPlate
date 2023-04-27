@@ -5,35 +5,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FAQ 등록</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<title>Main</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.3.0/octicons.min.css"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
-<style>
-.container_noboot {
-	margin-left: 0;
-	margin-right: 0;
-	max-width: 1920px;
-}
 
-.sidebar {
-	width: 500px;
+<style>
+/* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
+* {
+	box-sizing: border-box;
+	padding: 0px;
 }
 
 .body {
-	width: 1420px;
+	margin: auto;
 }
 
-.inputHeader {
-	float: left;
-	width: 20%;
+.sideList {
+	border: 1px solid black;
 }
 
-
-.inputs {
-	width: 80%;
-	font-size: 22px;
-}
-
+/* 하단부터 메인부분 스타일 작성 요망 */
 .inputContent {
 	margin-top: 3%;
 	margin-bottom: 1%;
@@ -53,28 +55,54 @@
 </style>
 </head>
 <body>
-	<div class="container_noboot">
-		<div class="sidebar"></div>
-		<div class="body">
-			<form action="/register.faq" method="get">
-				<fieldset>
-					<legend>FAQ 등록</legend>
-					<div class="inputHeader">제목 :</div>
-					<input type="text" class="inputs" name="title" placeholder="제목을 입력해주세요."> 
-					<div class="inputContent">FAQ 내용</div>
-					<textarea name="body" id="editor"></textarea>
-					<input type="submit" name="submitBtn" id="submitBtn" value="작성완료">
-				</fieldset>
-			</form>
+	<div class="container-fluid themed-container m-0 g-0">
+		<!-- 헤더부분 건들지 말것 -->
+		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
+
+
+
+		<!-- body 부분 row div 건들지 말것 -->
+		<div class="row g-0 justify-content-center body">
+			<!-- sideBar부분 건들지 말것 -->
+			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
+
+			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
+				<!-- Main 내용 부분 하단부터 수정 요망 -->
+				<form action="/register.faq" method="get">
+					<div class="row">
+						<div class="col-12">
+							<fieldset>
+								<legend>FAQ 등록</legend>
+								<div class="col-12">
+									<div class="input-group">
+										<span class="input-group-text">제목</span>
+										<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요">
+										<div class="col-12 inputContent">FAQ 내용</div>
+										<div class="col-12">
+											<textarea name="body" id="editor"></textarea>
+										</div>
+										<button type="submit" id="submitBtn">작성완료</button>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</form>
+
+				<script>
+					ClassicEditor
+						.create(document.querySelector("#editor"), {
+							 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
+						})
+						.catch(error => { console.error(error) });
+				</script>
+
+				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
+			</div>
 		</div>
+
+		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
 	</div>
-	<script>
-        ClassicEditor
-            .create(document.querySelector("#editor"), {
-                 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
-            })
-            .catch(error => { console.error(error) });
-        
-    </script>
+
 </body>
 </html>
