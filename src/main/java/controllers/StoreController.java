@@ -88,7 +88,7 @@ public class StoreController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						//imgsDAO ~ (new imgsDTO()) 추가해줘야 함.
+						StoreDAO.getInstance().insertPhoto(sysName, oriName, currval);
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+currval);
