@@ -92,7 +92,7 @@
 							<input type="text" name="writer" id="writer" value="${sessionScope.loginNo}" style="display: none;">
 						</div>
 						<div class="row">
-							<div class="col-12 col-lg-3 me-3">
+							<div class="col-12 col-lg-3">
 								<div class="col-12">
 									<img src="#none" alt="#none" id="image" class="w-100 object-fit-contain">
 								</div>
@@ -100,7 +100,7 @@
 									<input id="input_image" name="img" type="file" accept="image/*" class="form-control">
 								</div>
 							</div>
-							<div class="col-12 col-lg-8">
+							<div class="col-12 col-lg-9">
 								<textarea name="body" id="editor"></textarea>
 							</div>
 						</div>
