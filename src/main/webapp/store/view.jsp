@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main</title>
+<title>가게 정보 확인</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -190,15 +190,57 @@
 							<div class="col-12">
 								<table class="table table-secondary table-striped">
 									<tr>
-										<th style="width:70%;">메뉴 이름</th>
+										<th style="width:40%;">메뉴 이름</th>
 										<th style="width:30%;">메뉴 가격</th>
+										<th style="width:30%"></th>
 									</tr>
 									<c:forEach var="i" items="${menuList}">
 										<tr>
-
+											<td>${i.menuName}</td>
+											<td>${i.menuPrice}</td>
+											<td>
+												<form action="/delete.storeMenu" method="get">
+													<input type="text" name="menuID" value="${i.menuID}" style="display: none;" readonly>
+													<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
+													<button type="submit" class="btn_menu_delete nonactive">X</button>
+												</form>
+											</td>
 										</tr>
+										<script>
+											let menuID = "<c:out value='i.menuID'></c:out>";
+											$("#btn_menu_delete"+menuID).click(function(){
+											});
+										</script>
 									</c:forEach>
+									<form id="menuAddForm" action="/add.storeMenu" method="get">
+										<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
+										<tr id="menu_add" class="nonactive">
+											<td>
+												<div class="input-group">
+													<span class="input-group-text">메뉴이름</span>
+													<input type="text" class="form-control" name="menuName"> 
+												</div>
+											</td>
+											<td>
+												<div class="input-group">
+													<span class="input-group-text">메뉴가격</span>
+													<input type="text" class="form-control" name="menuPrice">
+												</div>
+											</td>
+											<td>
+												<button type="submit" class="btn btn-outline-secondary">적용</button>
+												<button type="button" id="btn_menu_cancel" class="btn btn-outline-secondary">취소</button>
+											</td>
+										</tr>
+									</form>
 								</table>
+								<div class="row">
+									<div class="col-12 text-end">
+										<button type="button" id="btn_menu_add" class="btn btn-outline-secondary">메뉴 추가</button>
+										<button type="button" id="btn_menu_modify" class="btn btn-outline-secondary">메뉴 수정</button>
+										<button type="button" id="btn_menu_modify_cancel" class="btn btn-outline-secondary" style="display:none;">수정 모드 취소</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -211,7 +253,7 @@
 						<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
 						<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)" style="display: none;">
 						<div class="col-12">
-							<div class="row">
+							<div class="row align-items-center">
 								<div class="col-12">
 									<div class="star">
 										<input type="text" name="score" value="0" style="display:none;">
@@ -226,7 +268,7 @@
 									<textarea id="review_editor" name="body"></textarea>
 								</div>
 								<div class="col-3">
-									<button class="btn btn-primary">등록</button>
+									<button class="btn btn-outline-secondary">등록</button>
 								</div>
 							</div>
 						</div>
@@ -338,10 +380,43 @@
 					let category = "<c:out value='${dto.category}'></c:out>"
 					$("select[name=category]").val(category);
 
+					//별점 버튼 이벤트 등록
 					$(".star a").click(function () {
 						$(this).parent().children("a").removeClass("on");
 						$(this).addClass("on").prevAll("a").addClass("on");
 						$("input[name=rating]").val($(this).attr("value"));
+					});
+
+					//메뉴 추가 버튼 이벤트 등록
+					$("#btn_menu_add").click(function(){
+						$("#menu_add").removeClass("nonactive");
+					});
+
+					$("#btn_menu_cancel").click(function(){
+						$("#menu_add").addClass("nonactive");
+					})
+
+					$("#menuAddForm").submit(function(){
+						let menuPrice = $("input[name='menuPrice']").val();
+						if(!menuPrice){
+							alert("메뉴 가격은 빈 값일 수 없습니다.");
+							return false;
+						}else if(isNaN(menuPrice)){
+							alert("메뉴 가격은 숫자 형식이어야 합니다.");
+							return false;
+						}
+					});
+
+					$("#btn_menu_modify").click(function(){
+						$(".btn_menu_delete").css({"display":"inline-block"});
+						$("#btn_menu_modify_cancel").css({"display":"inline-block"});
+						$(this).css({"display":"none"});
+					});
+
+					$("#btn_menu_modify_cancel").click(function(){
+						$(".btn_menu_delete").css({"display":"none"});
+						$("#btn_menu_modify").css({"display":"inline-block"});
+						$(this).css({"display":"none"});
 					});
 
 					var myEditor = null;

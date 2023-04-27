@@ -19,10 +19,12 @@ import commons.SecurityUtils;
 import dao.CommentReviewDAO;
 import dao.MembersDAO;
 import dao.StoreDAO;
+import dao.StoreMenuDAO;
 import dto.CommentReviewDTO;
 import dto.StoreDTO;
 import dto.StoreListDTO;
 import statics.Settings;
+import dto.StoreMenuDTO;
 
 @WebServlet("*.store")
 public class StoreController extends HttpServlet {
@@ -41,10 +43,12 @@ public class StoreController extends HttpServlet {
 				for(int i = 0; i < commentList.size(); i++) {
 					userIDList.add(MembersDAO.getInstance().getIDByNo(commentList.get(i).getUserNo()));
 				}
+				ArrayList<StoreMenuDTO> menuList = StoreMenuDAO.getInstance().selectAllByStoreID(storeID);
 				
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("userIDList", userIDList);
+				request.setAttribute("menuList", menuList);
 				request.getRequestDispatcher("/store/view.jsp").forward(request, response);
 				
 			}else if(cmd.equals("/register.store")) {
@@ -86,7 +90,7 @@ public class StoreController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						//imgsDAO ~ (new imgsDTO()) 추가해줘야 함.
+						StoreDAO.getInstance().insertPhoto(sysName, oriName, currval);
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+currval);
