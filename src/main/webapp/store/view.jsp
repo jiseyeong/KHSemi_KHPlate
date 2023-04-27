@@ -1,178 +1,171 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-		<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-			<!DOCTYPE html>
-			<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Main</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.3.0/octicons.min.css"
+	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=714989160c4bbb672f636a880c6c8328"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 
-			<head>
-				<meta charset="UTF-8">
-				<title>Store View</title>
-				<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-				<script type="text/javascript"
-					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=714989160c4bbb672f636a880c6c8328"></script>
-				<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
-				<style>
-					.container_noboot {
-						margin-left: 0;
-						margin-right: 0;
-						max-width: 1920px;
-					}
+<style>
+/* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
+* {
+	box-sizing: border-box;
+	padding: 0px;
+}
 
-					.sidebar {
-						width: 500px;
-					}
+.body {
+	margin: auto;
+}
 
-					.body {
-						width: 1420px;
-					}
+.sideList {
+	border: 1px solid black;
+}
 
-					#map {
-						width: 500px;
-						height: 500px;
-					}
+/* 하단부터 메인부분 스타일 작성 요망 */
 
-					.row-img {
-						text-align: center;
-					}
+.star-ratings {
+	color: #aaa9a9;
+	position: relative;
+	unicode-bidi: bidi-override;
+	width: max-content;
+	-webkit-text-fill-color: transparent;
+	/* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1.3px;
+	-webkit-text-stroke-color: #2b2a29;
+}
 
-					.row-contents {
-						overflow: hidden;
-					}
+.star-ratings-fill {
+	color: #fff58c;
+	padding: 0;
+	position: absolute;
+	z-index: 1;
+	display: flex;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	-webkit-text-fill-color: gold;
+}
 
-					.row-contents>div {
-						float: left;
-					}
+.star-ratings-base {
+	z-index: 0;
+	padding: 0;
+}
 
-					.row-contents>.c1 {
-						width: 500px;
-					}
+.star a {
+	text-decoration: none;
+	color: gray;
+}
 
-					.row-contents>.c2 {
-						width: 920px;
-					}
+.star a.on {
+	color: #fff58c;
+}
 
-					.inputHeader {
-						float: left;
-						width: 20%;
-					}
+.star_other a {
+	text-decoration: none;
+	color: gray;
+}
 
-					.inputs {
-						float: left;
-						width: 80%;
-					}
+.star_other a.on {
+	color: #fff58c;
+}
 
-					.detail {
-						overflow: hidden;
-					}
+.active {
+	display: inline-block;
+}
 
-					.star-ratings {
-						color: #aaa9a9;
-						position: relative;
-						unicode-bidi: bidi-override;
-						width: max-content;
-						-webkit-text-fill-color: transparent;
-						/* Will override color (regardless of order) */
-						-webkit-text-stroke-width: 1.3px;
-						-webkit-text-stroke-color: #2b2a29;
-					}
+.nonactive {
+	display: none;
+}
+</style>
+</head>
+<body>
+	<div class="container-fluid themed-container m-0 g-0">
+		<!-- 헤더부분 건들지 말것 -->
+		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
 
-					.star-ratings-fill {
-						color: #fff58c;
-						padding: 0;
-						position: absolute;
-						z-index: 1;
-						display: flex;
-						top: 0;
-						left: 0;
-						overflow: hidden;
-						-webkit-text-fill-color: gold;
-					}
 
-					.star-ratings-base {
-						z-index: 0;
-						padding: 0;
-					}
 
-					.star a {
-						text-decoration: none;
-						color: gray;
-					}
+		<!-- body 부분 row div 건들지 말것 -->
+		<div class="row g-0 justify-content-center body">
+			<!-- sideBar부분 건들지 말것 -->
+			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
 
-					.star a.on {
-						color: #fff58c;
-					}
-
-					.star_other a {
-						text-decoration: none;
-						color: gray;
-					}
-
-					.star_other a.on {
-						color: #fff58c;
-					}
-
-					.active {
-						display: inline-block;
-					}
-
-					.nonactive {
-						display: none;
-					}
-				</style>
-			</head>
-
-			<body>
-				<div class="container_noboot">
-					<div class="sidebar">
-
-					</div>
-					<div class="body">
-						<div class="row-img">
-							<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<img src="아비꼬1.jpg" class="d-block" alt="..."
-											style="height: 500px; object-fit: contain;">
-									</div>
-									<div class="carousel-item">
-										<img src="아비꼬2.jpg" class="d-block" alt="..."
-											style="height: 500px; object-fit: contain;">
-									</div>
+			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
+				<!-- Main 내용 부분 하단부터 수정 요망 -->
+				<!-- 상점 헤더 이미지 -->
+				<div class="row">
+					<div class="col-12 text-center">
+						<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<img src="아비꼬1.jpg" class="d-block" alt="..."
+										style="height: 500px; object-fit: contain;">
 								</div>
-								<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
-									data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button" data-bs-target="#carouselControls"
-									data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
+								<div class="carousel-item">
+									<img src="아비꼬2.jpg" class="d-block" alt="..."
+										style="height: 500px; object-fit: contain;">
+								</div>
 							</div>
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
+								data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselControls"
+								data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
 						</div>
-						<div class="row-contents">
-							<div id="map" class="c1"></div>
-							<div class="detail c2">
-								<div class="inputHeader">가게 이름</div>
-								<input type="text" class="inputs" name="name" value="${dto.name}" readonly>
-								<div class="inputHeader">가게 카테고리</div>
-								<select name="category" class="inputs" disabled="disabled">
-									<option>한식</option>
-									<option>양식</option>
-									<option>중식</option>
-									<option>일식</option>
-									<option>아시안</option>
-									<option>디저트</option>
-									<option>음료</option>
-									<option>패스트푸드</option>
-									<option>기타</option>
-								</select>
-								<div class="inputHeader">가게 주소</div>
-								<input type="text" class="inputs" name="address" value="${dto.address}" readonly>
-								<div class="inputHeader">평균평점</div>
+					</div>
+				</div>
+				<!-- 상점 본문 -->
+				<div class="row">
+					<div class="col-12 col-lg-4">
+						<div id="map" class="ratio ratio-1x1"></div>
+					</div>
+					<div class="col-12 col-lg-8">
+						<div class="input-group">
+							<span class="input-group-text">가게 이름</span>
+							<input type="text" class="form-control" name="name" value="${dto.name}" readonly>
+						</div>
+						<div class="input-group">
+							<span class="input-group-text">가게 카테고리</span>
+							<select name="category" class="form-select" disabled="disabled">
+								<option>한식</option>
+								<option>양식</option>
+								<option>중식</option>
+								<option>일식</option>
+								<option>아시안</option>
+								<option>디저트/음료</option>
+								<option>패스트푸드</option>
+								<option>기타</option>
+							</select>
+						</div>
+						<div class="input-group">
+							<span class="input-group-text">가게 주소</span>
+							<input type="text" class="form-control" name="address" value="${dto.address}" readonly>
+						</div>
+						<div class="row">
+							<div class="col-2">평균 평점</div>
+							<div class="col-10">
 								<div class="star-ratings" style="float:left; width:80%;">
 									<div class="star-ratings-fill space-x-2 text-lg"
 										style="width: ${dto.ratingToPercent()}%;">
@@ -183,38 +176,43 @@
 										${dto.avgScore};
 									</div>
 								</div>
-								<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" style="display: none;"> -->
-
-								<div class="storeIntroduction">
-									<div class="title">가게 소개</div>
-									<div>
-										<textarea id="intro_editor" name="introduction">${dto.introduction}</textarea>
-									</div>
-								</div>
-								<div class="title">메뉴</div>
-								<div class="contents">
-									<table border="1">
-										<tr>
-											<th style="width:70%;">메뉴 이름</th>
-											<th style="width:30%;">메뉴 가격</th>
-										</tr>
-										<c:forEach var="i" items="${menuList}">
-											<tr>
-
-											</tr>
-										</c:forEach>
-									</table>
-								</div>
 							</div>
 						</div>
+						<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" style="display: none;"> -->
+						<div class="row">
+							<div class="col-12">가게 소개</div>
+							<div class="col-12">
+								<textarea id="intro_editor" name="introduction">${dto.introduction}</textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">메뉴</div>
+							<div class="col-12">
+								<table class="table table-secondary table-striped">
+									<tr>
+										<th style="width:70%;">메뉴 이름</th>
+										<th style="width:30%;">메뉴 가격</th>
+									</tr>
+									<c:forEach var="i" items="${menuList}">
+										<tr>
 
-						<div class="review">
-							<div class="title">한줄 리뷰 추가</div>
-							<form id="createCommentForm" action="/create.commentReview" method="get">
-								<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
-								<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)"
-									style="display: none;">
-								<div class="contents" style="overflow:hidden">
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 리뷰 -->
+				<div class="row">
+					<div class="col-12">한줄 리뷰 추가</div>
+					<form id="createCommentForm" action="/crate.commentReview" method="get">
+						<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
+						<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)" style="display: none;">
+						<div class="col-12">
+							<div class="row">
+								<div class="col-12">
 									<div class="star">
 										<input type="text" name="score" value="0" style="display:none;">
 										<a href="#null" value="1">★</a>
@@ -223,114 +221,118 @@
 										<a href="#null" value="4">★</a>
 										<a href="#null" value="5">★</a>
 									</div>
-									<div style="float:left; width:80%;">
-										<textarea id="review_editor" name="body"></textarea>
-									</div>
-									<div style="float:left; width:20%;">
-										<button class="btn btn-primary">등록</button>
+								</div>
+								<div class="col-9">
+									<textarea id="review_editor" name="body"></textarea>
+								</div>
+								<div class="col-3">
+									<button class="btn btn-primary">등록</button>
+								</div>
+							</div>
+						</div>
+					</form>
+					<c:if test="${fn:length(commentList) > 0}">
+						<div class="col-12">한줄 리뷰 목록</div>
+						<div class="row">
+							<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
+								<div class="col-12">작성자 : ${userIDList.get(i)}</div>
+
+								<div class="col-12">
+									<div id="readStar${i}" class="star-ratings active" style="width:100%;">
+										<div class="star-ratings-fill space-x-2 text-lg"
+											style="width: ${commentList.get(i).ratingToPercent()}%;">
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										</div>
+										<div class="star-ratings-base space-x-2 text-lg">
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+											${commentList.get(i).score};
+										</div>
 									</div>
 								</div>
-							</form>
-							<c:if test="${fn:length(commentList) > 0}">
-								<div class="title">한줄 리뷰 목록</div>
-								<div class="contents" style="overflow:hidden">
-									<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
-										<div>작성자 : ${userIDList.get(i)}</div>
 
-										<div id="readStar${i}" class="star-ratings active" style="width:100%;">
-											<div class="star-ratings-fill space-x-2 text-lg"
-												style="width: ${commentList.get(i).ratingToPercent()}%;">
-												<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-											</div>
-											<div class="star-ratings-base space-x-2 text-lg">
-												<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-												${commentList.get(i).score};
-											</div>
+								<form id="updateForm${i}" action="/update.commentReview" method="post">
+									<div id="writeStar${i}" class="col-12 star nonactive">
+										<input type="text" id="score${i}" name="modifyScore" value="0"
+											style="display:none;">
+										<a href="#null" value="1">★</a>
+										<a href="#null" value="2">★</a>
+										<a href="#null" value="3">★</a>
+										<a href="#null" value="4">★</a>
+										<a href="#null" value="5">★</a>
+									</div>
+									<div class="col-12">
+										<textarea id="review_editor${i}" name="modifyBody">
+											${commentList.get(i).body};
+										</textarea>
+									</div>
+									<c:if test="${commentList.get(i).userNo == sessionScope.loginNo}">
+										<div id="replyControl${i}" class="col-12 text-end">
+											<button type="button" id="btn_modify${i}" class="active">수정</button>
 										</div>
+									</c:if>
+								</form>
 
-										<form id="updateForm${i}" action="/update.commentReview" method="post">
-											<div id="writeStar${i}" class="star nonactive">
-												<input type="text" id="score${i}" name="modifyScore" value="0"
-													style="display:none;">
-												<a href="#null" value="1">★</a>
-												<a href="#null" value="2">★</a>
-												<a href="#null" value="3">★</a>
-												<a href="#null" value="4">★</a>
-												<a href="#null" value="5">★</a>
-											</div>
+								<script>
+									let target = "#review_editor" + "<c:out value='${i}'></c:out>"
+									ClassicEditor
+										.create(document.querySelector(target))
+										.then(function (editor) {
+											const toolbarElement = editor.ui.view.toolbar.element;
+											toolbarElement.style.display = 'none';
+											editor.enableReadOnlyMode('');
 
-											<textarea id="review_editor${i}" name="modifyBody">
-												${commentList.get(i).body};
-											</textarea>
+											let i = "<c:out value='${i}'></c:out>";
+											let btn_modify = "#btn_modify" + i;
+											let readStar = "#readStar" + i;
+											let writeStar = "#writeStar" + i;
+											let score = "#score" + i;
+											$(btn_modify).click(function () {
+												let btn_confirm = "#btn_confirm" + i;
+												let btn_cancel = "#btn_cancel" + i;
+												if (!($(btn_confirm).length > 0)) {
+													let replyControl = "#replyControl" + i;
+													let updateForm = "#updateForm" + i;
 
-											<c:if test="${commentList.get(i).userNo == loginNo}">
-												<div id="replyControl${i}" style="text-align:right;">
-													<button type="button" id="btn_modify${i}" class="active">수정</button>
-												</div>
-											</c:if>
-										</form>
+													let btn_confirm_body = $("<button>");
+													let btn_cancel_body = $("<button>");
 
-										<script>
-											let target = "#review_editor" + "<c:out value='${i}'></c:out>"
-											ClassicEditor
-												.create(document.querySelector(target))
-												.then(function (editor) {
-													const toolbarElement = editor.ui.view.toolbar.element;
-													toolbarElement.style.display = 'none';
-													editor.enableReadOnlyMode('');
-
-													let i = "<c:out value='${i}'></c:out>";
-													let btn_modify = "#btn_modify" + i;
-													let readStar = "#readStar" + i;
-													let writeStar = "#writeStar" + i;
-													let score = "#score" + i;
-													$(btn_modify).click(function () {
-														let btn_confirm = "#btn_confirm" + i;
-														let btn_cancel = "#btn_cancel" + i;
-														if (!($(btn_confirm).length > 0)) {
-															let replyControl = "#replyControl" + i;
-															let updateForm = "#updateForm" + i;
-
-															let btn_confirm_body = $("<button>");
-															let btn_cancel_body = $("<button>");
-
-															btn_confirm_body.text("수정완료");
-															btn_confirm_body.addClass("active");
-															btn_confirm_body.attr("id", btn_confirm);
-															btn_confirm_body.attr("type", "button");
-															btn_confirm_body.click(function () {
-																$(updateForm).submit();
-															});
-
-															btn_cancel_body.attr("type", "button");
-															btn_cancel_body.attr("id", btn_cancel);
-															btn_cancel_body.text("취소");
-															btn_cancel_body.addClass("active");
-															btn_cancel_body.click(function () {
-																$(btn_modify + "," + readStar).addClass("active").removeClass("nonactive");
-																$(btn_confirm + "," + btn_cancel + "," + writeStar).removeClass("active").addClass("nonactive");
-																editor.enableReadOnlyMode("");
-															});
-
-															$(replyControl).prepend(btn_confirm_body);
-															$(replyControl).prepend(btn_cancel_body);
-														}
-														if (editor.isReadOnly) {
-															editor.disableReadOnlyMode("");
-															$(btn_modify + "," + readStar).removeClass("active").addClass("active");
-															$(btn_confirm + "," + btn_cancel + "," + writeStar).addClass("active").removeClass("nonactive");
-														}
+													btn_confirm_body.text("수정완료");
+													btn_confirm_body.addClass("active");
+													btn_confirm_body.attr("id", btn_confirm);
+													btn_confirm_body.attr("type", "button");
+													btn_confirm_body.click(function () {
+														$(updateForm).submit();
 													});
 
-												})
-												.catch(error => { console.error(error) });
-										</script>
-									</c:forEach>
-								</div>
-							</c:if>
+													btn_cancel_body.attr("type", "button");
+													btn_cancel_body.attr("id", btn_cancel);
+													btn_cancel_body.text("취소");
+													btn_cancel_body.addClass("active");
+													btn_cancel_body.click(function () {
+														$(btn_modify + "," + readStar).addClass("active").removeClass("nonactive");
+														$(btn_confirm + "," + btn_cancel + "," + writeStar).removeClass("active").addClass("nonactive");
+														editor.enableReadOnlyMode("");
+													});
+
+													$(replyControl).prepend(btn_confirm_body);
+													$(replyControl).prepend(btn_cancel_body);
+												}
+												if (editor.isReadOnly) {
+													editor.disableReadOnlyMode("");
+													$(btn_modify + "," + readStar).removeClass("active").addClass("active");
+													$(btn_confirm + "," + btn_cancel + "," + writeStar).addClass("active").removeClass("nonactive");
+												}
+											});
+
+										})
+										.catch(error => { console.error(error) });
+								</script>
+
+							</c:forEach>
 						</div>
-					</div>
+					</c:if>
 				</div>
+				
 				<script>
 					//select 카테고리 기본 값 설정
 					let category = "<c:out value='${dto.category}'></c:out>"
@@ -388,6 +390,13 @@
 					});
 					marker.setMap(map);
 				</script>
-			</body>
 
-			</html>
+				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
+			</div>
+		</div>
+
+		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
+	</div>
+
+</body>
+</html>
