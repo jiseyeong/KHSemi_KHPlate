@@ -79,20 +79,20 @@
 					<fieldset>
 						<legend>Customer Service Page</legend>
 						<div class="row">
-							<div class="col-3">
+							<div class="col-12 col-lg-3">
 								<select class="form-select" name="category">
 									<option>문의</option>
 									<option>신고</option>
 									<option>건의</option>
 								</select>
 							</div>
-							<div class="col-9">
+							<div class="col-12 col-lg-9">
 								<input type="text" name="title" class="form-control" placeholder="제목을 입력해주세요.">
 							</div>
 							<input type="text" name="writer" id="writer" value="${sessionScope.loginNo}" style="display: none;">
 						</div>
 						<div class="row">
-							<div class="col-3 me-3">
+							<div class="col-12 col-lg-3 me-3">
 								<div class="col-12">
 									<img src="#none" alt="#none" id="image" class="w-100 object-fit-contain">
 								</div>
@@ -100,7 +100,7 @@
 									<input id="input_image" name="img" type="file" accept="image/*" class="form-control">
 								</div>
 							</div>
-							<div class="col-8">
+							<div class="col-12 col-lg-8">
 								<textarea name="body" id="editor"></textarea>
 							</div>
 						</div>
