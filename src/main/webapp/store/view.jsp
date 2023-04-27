@@ -93,6 +93,10 @@
 .nonactive {
 	display: none;
 }
+
+.carousel-inner img {
+  margin: auto;
+}
 </style>
 </head>
 <body>
@@ -114,14 +118,26 @@
 					<div class="col-12 text-center">
 						<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
 							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="아비꼬1.jpg" class="d-block" alt="..."
-										style="height: 500px; object-fit: contain;">
-								</div>
-								<div class="carousel-item">
-									<img src="아비꼬2.jpg" class="d-block" alt="..."
-										style="height: 500px; object-fit: contain;">
-								</div>
+								<c:choose>
+									<c:when test="${fn:length(imgPathList) > 0}">
+										<c:forEach var="i" items="imgPathList">
+											<div class="carousel-item active">
+												<img src="i" class="d-block" alt="..."
+													style="height: 500px; object-fit: contain;">
+											</div>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<div class="carousel-item active">
+											<img src="/store/아비꼬1.jpg" class="d-block" alt="..."
+												style="height: 500px; object-fit: contain;">
+										</div>
+										<div class="carousel-item">
+											<img src="/store/아비꼬2.jpg" class="d-block" alt="..."
+												style="height: 500px; object-fit: contain;">
+										</div>
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
 								data-bs-slide="prev">

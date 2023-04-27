@@ -21,6 +21,7 @@ import dao.MembersDAO;
 import dao.StoreDAO;
 import dao.StoreMenuDAO;
 import dto.CommentReviewDTO;
+import dto.PhotoDTO;
 import dto.StoreDTO;
 import dto.StoreListDTO;
 import statics.Settings;
@@ -44,11 +45,17 @@ public class StoreController extends HttpServlet {
 					userIDList.add(MembersDAO.getInstance().getIDByNo(commentList.get(i).getUserNo()));
 				}
 				ArrayList<StoreMenuDTO> menuList = StoreMenuDAO.getInstance().selectAllByStoreID(storeID);
+				ArrayList<String> imgPathList = new ArrayList<>();
+				ArrayList<PhotoDTO> imgList = StoreDAO.getInstance().selectPhoto(storeID);
+				for(PhotoDTO i : imgList) {
+					imgPathList.add("/store/" + i.getSysName());
+				}
 				
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("userIDList", userIDList);
 				request.setAttribute("menuList", menuList);
+				request.setAttribute("imgPathList", imgPathList);
 				request.getRequestDispatcher("/store/view.jsp").forward(request, response);
 				
 			}else if(cmd.equals("/register.store")) {
