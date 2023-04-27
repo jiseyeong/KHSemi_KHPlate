@@ -122,8 +122,7 @@
 														<option>중식</option>
 														<option>일식</option>
 														<option>아시안</option>
-														<option>디저트</option>
-														<option>음료</option>
+														<option>디저트/음료</option>
 														<option>패스트푸드</option>
 														<option>기타</option>
 													</select>
