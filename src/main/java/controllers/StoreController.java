@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.File;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -20,8 +19,10 @@ import commons.SecurityUtils;
 import dao.CommentReviewDAO;
 import dao.MembersDAO;
 import dao.StoreDAO;
+import dao.StoreMenuDAO;
 import dto.CommentReviewDTO;
 import dto.StoreDTO;
+import dto.StoreMenuDTO;
 
 @WebServlet("*.store")
 public class StoreController extends HttpServlet {
@@ -40,10 +41,12 @@ public class StoreController extends HttpServlet {
 				for(int i = 0; i < commentList.size(); i++) {
 					userIDList.add(MembersDAO.getInstance().getIDByNo(commentList.get(i).getUserNo()));
 				}
+				ArrayList<StoreMenuDTO> menuList = StoreMenuDAO.getInstance().selectAllByStoreID(storeID);
 				
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("userIDList", userIDList);
+				request.setAttribute("menuList", menuList);
 				request.getRequestDispatcher("/store/view.jsp").forward(request, response);
 				
 			}else if(cmd.equals("/register.store")) {
