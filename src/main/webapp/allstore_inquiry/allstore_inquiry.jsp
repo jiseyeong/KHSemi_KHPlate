@@ -44,6 +44,10 @@ body {
 	margin: 0px;
 }
 
+button:hover {
+	cursor: pointer;
+}
+
 .container {
 	position: relative;
 	width: 1920px;
@@ -62,10 +66,10 @@ body {
 
 .search_layout {
 	width: 100%;
-	height: 10%;
+	height: 10%; display : flex; justify-content : space-evenly;
+	align-items: center;
 	display: flex;
 	justify-content: space-evenly;
-	align-items: center;
 }
 
 .toBack_layout {
@@ -86,15 +90,6 @@ body {
 	font-size: 22px;
 }
 
-.searchForm {
-	width: 65%;
-	height: 100%;
-	float: left;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
 .show_filterForm_layout {
 	width: 17%;
 	height: 50%;
@@ -113,8 +108,8 @@ body {
 	font-size: 15px;
 }
 
-.seachBox {
-	width: 100%;
+.searchBox {
+	width: 65%;
 	height: 50%;
 	line-height: 50px;
 	position: relative;
@@ -125,11 +120,11 @@ body {
 	align-items: center;
 }
 
-.seachBar {
+.searchBar {
 	line-height: 140px;
 }
 
-#seach {
+#search {
 	width: 80%;
 	height: 80%;
 	border-radius: 15px;
@@ -137,7 +132,7 @@ body {
 	padding-left: 10px;
 }
 
-#seachBtn {
+#searchBtn {
 	width: 12%;
 	height: 80%;
 	position: relative;
@@ -146,10 +141,6 @@ body {
 	background-color: white;
 	border: 2px solid silver;
 	border-radius: 10px;
-}
-
-#seachBtn:hover {
-	cursor: pointer;
 }
 
 .restaurant_list_layout {
@@ -465,7 +456,7 @@ hr {
 .food_category_list {
 	width: 20%;
 	height: 80%;
-	border: 1px solid silver;
+	border: 2px solid red;
 }
 
 .food_category_list:hover {
@@ -557,13 +548,15 @@ hr {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 14px; white-space : nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+	font-size: 14px;
+	white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
 	overflow: hidden;
 	white-space: nowrap;
 }
 
 .infoWindow_info_bottom {
-	width: 100%; height : 40%;
+	width: 100%;
+	height: 40%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -578,284 +571,249 @@ hr {
 </head>
 
 <body>
-
-	<div class="container">
-		<div class="store_list">
-			<div class="search_layout">
-				<div class="toBack_layout">
-					<button id="toBack_btn">
-						<i class="fa-solid fa-rotate-left"></i>
-					</button>
-				</div>
-				<form class="searchForm" action="/search.store">
-					<div class="seachBox">
-						<input type="text" id="seach" name="search"> <input
-							type="submit" id="seachBtn" value="검색">
+	<form id="searchForm" action="/search.store" onsubmit="return false;">
+		<div class="container">
+			<div class="store_list">
+				<div class="search_layout">
+					<div class="toBack_layout">
+						<button id="toBack_btn" onclick="location.href='/index.jsp'">
+							<i class="fa-solid fa-rotate-left"></i>
+						</button>
 					</div>
-				</form>
-				<div class="show_filterForm_layout">
-					<button id="show_filterForm_btn">
-						<i class="fa-solid fa-sliders"></i>&nbsp 필터
-					</button>
-				</div>
-			</div>
-			<div class="restaurant_list_layout">
-				<ul class="restaurant_list">
-					<c:choose>
-						<c:when test="${search_store_list==null}">
-							<li class="restaurant_none">
-								<div class="none">
-									표시할 내용이 없습니다.<br>검색을 진행해주세요.
-								</div>
-							</li>
 
-						</c:when>
-						<c:otherwise>
-							<c:forEach var='i' items='${search_store_list}'>
-								<li class="restaurant">
-									<div class="img_layout">
-										<img src="/allstore_inquiry/restaurant_img1.jpg">
-									</div>
-									<div class="info_layout">
-										<div class=info_layout_topside>
-											<div class="info_layout_left">
-												<p class="restaurant_info restaurant_name">${i.name}</p>
-											</div>
-											<div class="info_layout_right">
-												<div class="restaurant_info restaurant_score">
-													<ul class="stars">
-														<a class="stars__link"><i
-															class="stars__icon fas fa-star"></i></a>
-														<a class="stars__link"><i
-															class="stars__icon fas fa-star"></i></a>
-														<a class="stars__link"><i
-															class="stars__icon fas fa-star"></i></a>
-														<a class="stars__link"><i
-															class="stars__icon fas fa-star"></i></a>
-														<a class="stars__link"><i
-															class="stars__icon fas fa-star"></i></a>
-													</ul>
-												</div>
-												<p class="restaurant_info restaurant_category">#${i.category}</p>
-											</div>
-										</div>
-										<div class=info_layout_bottomside>
-											<p class="restaurant_info restaurant_address">${i.address}</p>
-										</div>
+					<div class="searchBox">
+						<input type="text" id="search" name="search"> 
+						<button type="submit" id="searchBtn">검색</button>
+					</div>
+
+					<div class="show_filterForm_layout">
+						<button id="show_filterForm_btn">
+							<i class="fa-solid fa-sliders"></i>&nbsp 필터
+						</button>
+					</div>
+				</div>
+				<div class="restaurant_list_layout">
+					<ul class="restaurant_list">
+						<c:choose>
+							<c:when test="${search_store_list==null}">
+								<li class="restaurant_none">
+									<div class="none">
+										표시할 내용이 없습니다.<br>검색을 진행해주세요.
 									</div>
 								</li>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</ul>
 
-				<div class="navigator">
-					<ul class="navigator_list">
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<button class="navigator_direction_btn">
-									<i class="fa-solid fa-angle-left"></i>
-								</button>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">1</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">2</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">3</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">4</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">5</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">6</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">7</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">8</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">9</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<a class="item" href="/searchResult.html">10</a>
-							</div>
-						</li>
-						<li class="navigator_list_item">
-							<div class=navigator_list_item_btn_layout>
-								<button class="navigator_direction_btn">
-									<i class="fa-solid fa-angle-right"></i>
-								</button>
-							</div>
-						</li>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var='i' items='${search_store_list}'>
+									<li class="restaurant">
+										<div class="img_layout">
+											<img src="/allstore_inquiry/restaurant_img1.jpg">
+										</div>
+										<div class="info_layout">
+											<div class=info_layout_topside>
+												<div class="info_layout_left">
+													<p class="restaurant_info restaurant_name">${i.name}</p>
+												</div>
+												<div class="info_layout_right">
+													<div class="restaurant_info restaurant_score">
+														<ul class="stars">
+															<a class="stars__link"><i
+																class="stars__icon fas fa-star"></i></a>
+															<a class="stars__link"><i
+																class="stars__icon fas fa-star"></i></a>
+															<a class="stars__link"><i
+																class="stars__icon fas fa-star"></i></a>
+															<a class="stars__link"><i
+																class="stars__icon fas fa-star"></i></a>
+															<a class="stars__link"><i
+																class="stars__icon fas fa-star"></i></a>
+														</ul>
+													</div>
+													<p class="restaurant_info restaurant_category">#${i.category}</p>
+												</div>
+											</div>
+											<div class=info_layout_bottomside>
+												<p class="restaurant_info restaurant_address">${i.address}</p>
+											</div>
+										</div>
+									</li>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</ul>
+
+					<!-- Navigator 리스트를 표시 (getNavi(currentpage,search)) -->
+					<div class="navigator">
+						<ul class="navigator_list">${search_store_list_navi}</ul>
+					</div>
+
 				</div>
 
 			</div>
 
-		</div>
-		<div class="map_layout">
-			<div id="map"></div>
+
+			<!--  맵 영역 -->
+			<div class="map_layout">
+				<div id="map"></div>
 
 
 
-			<!-- 정렬 팝업 창 (SlideToggle)-->
-			<div id="sort_layout" style="display: none;">
-				<div class="search_filter">
-					<p class="sort_title">검색 필터</p>
-					<div class="filter_sort">
-						<div class="filter_options">
-							<button class="filter_option_btn order_by_distance">거리순</button>
-						</div>
-						<div class="filter_options">
-							<button class="filter_option_btn order_by_score">평점순</button>
-						</div>
-						<div class="filter_options">
-							<button class="filter_option_btn order_by_review">리뷰순</button>
-						</div>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="cost_average">
-					<p class="sort_title">가격/1인당</p>
-					<div class="filter_cost">
-						<input type="range" id="cost_range" class="form-range" min="0"
-							max="4" step="1" onchange=SetValue()>
-						<div id="range_result">범위를 입력해주세요</div>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="food_category">
-					<p class="sort_title food_category_title">음식종류</p>
-					<div class="food_category_layout">
-						<div class="food_category_inner_layout">
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
+				<!-- 정렬 팝업 창 (SlideToggle)-->
+				<form action="/search.store" onsubmit="return false;">
+					<div id="sort_layout" style="display: none;">
+						<div class="search_filter">
+							<p class="sort_title">검색 필터</p>
+							<div class="filter_sort">
+								<input type="text" id="sortMethod" name="sortMethod"
+									style="display: none;">
+								<div class="filter_options">
+									<button class="filter_option_btn" id="order_by_distance">거리순</button>
 								</div>
-								<div class="food_name">한식</div>
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
+								<div class="filter_options">
+									<button class="filter_option_btn" id="order_by_score">평점순</button>
 								</div>
-								<div class="food_name">양식</div>
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
+								<div class="filter_options">
+									<button class="filter_option_btn" id="order_by_review">리뷰순</button>
 								</div>
-								<div class="food_name">중식</div>
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">일식</div>
 							</div>
 						</div>
-						<div class="food_category_inner_layout">
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">아시안</div>
+
+						<hr>
+
+						<div class="cost_average">
+							<p class="sort_title">가격/1인당</p>
+							<div class="filter_cost">
+								<input type="range" id="cost_range"
+									class="form-range" min="0" max="4" step="1" onchange=SetValue()>
+								<div id="range_result">범위를 지정해주세요</div>
 							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
+						</div>
+
+						<hr>
+
+						<div class="food_category">
+							<p class="sort_title food_category_title">음식종류</p>
+							<div class="food_category_layout">
+								<div class="food_category_inner_layout">
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">한식</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_korean" name="food_category_korean"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">양식</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_western" name="food_category_western"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">중식</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_chinese" name="food_category_chinese"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">일식</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_japanese" name="food_category_japanese"
+											style="display: none;">
+									</div>
 								</div>
-								<div class="food_name">패스트푸드</div>
+								<div class="food_category_inner_layout">
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">아시안</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_asian" name="food_category_asian"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">패스트푸드</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_fastfood" name="food_category_fastfood"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">음료/디저트</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_dessert_drink"
+											name="food_category_dessert_drink" style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">기타</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_etc" name="food_category_etc"
+											style="display: none;">
+									</div>
+								</div>
 							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">음료/디저트</div>
+						</div>
+
+						<hr>
+
+						<div class="btn_layout">
+							<div class="btn_inner_layout">
+								<button class="sort_apply_btn" id="cancel_btn">취소</button>
 							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">기타</div>
+							<div class="btn_inner_layout">
+								<button class="sort_apply_btn" id="apply_btn">적용</button>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<hr>
-				<div class="btn_layout">
-					<div class="btn_inner_layout">
-						<button class="sort_apply_btn" id="cancel_btn">취소</button>
-					</div>
-					<div class="btn_inner_layout">
-						<button class="sort_apply_btn" id="apply_btn">적용</button>
-					</div>
-				</div>
-				<c:if test="${search_store_list!=null}">
-					<c:forEach var="dto" items="${search_store_list}"
-						varStatus="status">
-						<input type="text" class="search_store_list_toScript"
-							id="search_store_list_storeID${status.index}"
-							value="${dto.storeID}">
-						<input type="text" class="search_store_list_toScript"
-							id="search_store_list_distance${status.index}"
-							value="${dto.distance}">
-						<input type="text" class="search_store_list_toScript"
-							id="search_store_list_name${status.index}" value="${dto.name}">
-						<input type="text" class="search_store_list_toScript"
-							id="search_store_list_lat${status.index}" value="${dto.lat}">
-						<input type="text" class="search_store_list_toScript"
-							id="search_store_list_lng${status.index}" value="${dto.lng}">
-						<input type="text" class="search_store_list_toScript"
-							id="search_store_list_address${status.index}"
-							value="${dto.address}">
-						<input type="text" class="search_store_list_toScript"
-							id="search_store_list_avgScore${status.index}"
-							value="${dto.avgScore}">
-						<input type="text" class="search_store_list_toScript"
-							id="search_store_list_introduction${status.index}"
-							value="${dto.introduction}">
-						<input type="text" class="search_store_list_toScript"
-							id="search_store_list_category${status.index}"
-							value="${dto.category}">
-					</c:forEach>
-				</c:if>
+				</form>
 			</div>
 		</div>
-	</div>
-
+	</form>
+	<c:if test="${search_store_list!=null}">
+		<c:forEach var="dto" items="${search_store_list}" varStatus="status">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_storeID${status.index}" value="${dto.storeID}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_distance${status.index}"
+				value="${dto.distance}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_name${status.index}" value="${dto.name}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_lat${status.index}" value="${dto.lat}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_lng${status.index}" value="${dto.lng}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_address${status.index}" value="${dto.address}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_avgScore${status.index}"
+				value="${dto.avgScore}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_introduction${status.index}"
+				value="${dto.introduction}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_category${status.index}"
+				value="${dto.category}">
+		</c:forEach>
+	</c:if>
 
 	<!-- 별점 등록 Script -->
 	<script>
@@ -898,47 +856,9 @@ hr {
 
 
 	<script>
-		// 각 음식 카테고리 div에 boolean변수 부여(closer)
-		$(function () {
-			$(".food_category_list").each(function (index, item) {
-				let food_category_list_check = false;
-				$(item).on("click", function () {
-					if (food_category_list_check == false) {
-						$(this).css({
-							"border": "2px solid red"
-						})
-						food_category_list_check = true;
-					} else {
-						$(this).css({
-							"border": "1px solid silver"
-						})
-						food_category_list_check = false;
-					}
-				})
-			})
-		});
-
-
-		// 범위 바의 값을 변경하였을 때 적용
-		function SetValue() {
-			let range = $("#cost_range").val();
-			let range_result = $("#range_result");
-			if (range == 0) {
-				range_result.html("5000원 이하");
-			} else if (range == 1) {
-				range_result.html("5000원 ~ 10000원");
-			} else if (range == 2) {
-				range_result.html("10000원 ~ 15000원");
-			} else if (range == 3) {
-				range_result.html("15000원 ~ 20000원");
-			} else {
-				range_result.html("20000원 이상");
-			}
-		}
-	
+		// 필터 기능들
 		
 		// 필터 SlideToggle
-
 		$(document).ready(function () {
 			let sort_check = false;
 
@@ -953,13 +873,81 @@ hr {
 			});
 		});
 		
+		
+		// 범위 바의 값을 변경하였을 때 적용
+		function SetValue() {
+			if($("#cost_range").prop("name")==false){
+				$("#cost_range").prop("name","cost_range");
+			}
+			
+			let range = $("#cost_range").val();
+			let range_result = $("#range_result");
+			if (range == 0) {
+				range_result.html("5000원 이하");
+			} else if (range == 1) {
+				range_result.html("5000원 ~ 10000원");
+			} else if (range == 2) {
+				range_result.html("10000원 ~ 15000원");
+			} else if (range == 3) {
+				range_result.html("15000원 ~ 20000원");
+			} else {
+				range_result.html("20000원 이상");
+			}
+		}
+		
+		
+		// 각 음식 카테고리 div에 boolean변수 부여(closer)
+		$(function () {
+			$(".food_category_list").each(function (index, item) {
+				let food_category_list_check = true;
+				$(this).find(".food_category_menu").val(true);
+				$(item).on("click", function () {
+					if (food_category_list_check == false) {
+						$(this).css({
+							"border": "2px solid red"
+						})
+						$(this).find(".food_category_menu").val(true);
+						food_category_list_check = true;
+					} else {
+						$(this).css({
+							"border": "1px solid silver"
+						})
+						$(this).find(".food_category_menu").val(false);
+						food_category_list_check = false;
+					}
+				})
+			})
+		});
+
+		
+		// 필터 정렬 지정
+		$(".filter_option_btn").on("click",function(){
+			$("#sortMethod").val($(this).attr("id"));
+			$(".filter_option_btn").css({
+				"border":"2px solid silver"
+			});
+			$(this).css({
+				"border":"2px solid red"
+			});
+		})
+		
+		// 검색 버튼
+		$("#searchBtn").on("click",function(){
+			$("#searchForm").prop("onsubmit",true);
+			$("#searchForm").submit();
+		})
+
 	</script>
 
 
 
 	<!-- 지도 Script -->
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9">
+	</script>
+
+
+
 	<script>
 		
 	
