@@ -520,16 +520,19 @@ hr {
 
 /* 맵에 표시될 InfoWindow */
 .restaurant_infoWindow {
-	width: 150px;
+	width: auto;
 	height: 50px;
 	background-color: white;
 	border: 1px solid silver;
 	border-radius: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .infoWindow_img_layout {
 	float: left;
-	width: 35%;
+	width: 50px;
 	height: 100%;
 }
 
@@ -542,30 +545,34 @@ hr {
 
 .infoWindow_info_layout {
 	float: left;
-	width: 65%;
+	width: auto;
 	height: 100%;
+	margin-left: 4px;
+	margin-right: 10px;
 }
 
 .infoWindow_info_top {
-	height: 60%;
 	width: 100%;
+	height: 60%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 14px;
-	text-overflow: ellipsis;
+	font-size: 14px; white-space : nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .infoWindow_info_bottom {
-	height: 40%;
-	width: 100%;
+	width: 100%; height : 40%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 12px;
+	height: 40%;
 }
-.search_store_list_toScript{
-	display:none;
+
+.search_store_list_toScript {
+	display: none;
 }
 </style>
 </head>
@@ -742,7 +749,7 @@ hr {
 					<p class="sort_title">가격/1인당</p>
 					<div class="filter_cost">
 						<input type="range" id="cost_range" class="form-range" min="0"
-							max="6" step="1" onchange=SetValue()>
+							max="4" step="1" onchange=SetValue()>
 						<div id="range_result">범위를 입력해주세요</div>
 					</div>
 				</div>
@@ -817,16 +824,32 @@ hr {
 					</div>
 				</div>
 				<c:if test="${search_store_list!=null}">
-					<c:forEach var="dto" items="${search_store_list}" varStatus="status">
-						<input type="text" class="search_store_list_toScript" id="search_store_list_storeID${status.index}" value="${dto.storeID}">
-						<input type="text" class="search_store_list_toScript" id="search_store_list_distance${status.index}" value="${dto.distance}">
-						<input type="text" class="search_store_list_toScript" id="search_store_list_name${status.index}" value="${dto.name}">
-						<input type="text" class="search_store_list_toScript" id="search_store_list_lat${status.index}" value="${dto.lat}">
-						<input type="text" class="search_store_list_toScript" id="search_store_list_lng${status.index}" value="${dto.lng}">
-						<input type="text" class="search_store_list_toScript" id="search_store_list_address${status.index}" value="${dto.address}">
-						<input type="text" class="search_store_list_toScript" id="search_store_list_avgScore${status.index}" value="${dto.avgScore}">
-						<input type="text" class="search_store_list_toScript" id="search_store_list_introduction${status.index}" value="${dto.introduction}">
-						<input type="text" class="search_store_list_toScript" id="search_store_list_category${status.index}" value="${dto.category}">
+					<c:forEach var="dto" items="${search_store_list}"
+						varStatus="status">
+						<input type="text" class="search_store_list_toScript"
+							id="search_store_list_storeID${status.index}"
+							value="${dto.storeID}">
+						<input type="text" class="search_store_list_toScript"
+							id="search_store_list_distance${status.index}"
+							value="${dto.distance}">
+						<input type="text" class="search_store_list_toScript"
+							id="search_store_list_name${status.index}" value="${dto.name}">
+						<input type="text" class="search_store_list_toScript"
+							id="search_store_list_lat${status.index}" value="${dto.lat}">
+						<input type="text" class="search_store_list_toScript"
+							id="search_store_list_lng${status.index}" value="${dto.lng}">
+						<input type="text" class="search_store_list_toScript"
+							id="search_store_list_address${status.index}"
+							value="${dto.address}">
+						<input type="text" class="search_store_list_toScript"
+							id="search_store_list_avgScore${status.index}"
+							value="${dto.avgScore}">
+						<input type="text" class="search_store_list_toScript"
+							id="search_store_list_introduction${status.index}"
+							value="${dto.introduction}">
+						<input type="text" class="search_store_list_toScript"
+							id="search_store_list_category${status.index}"
+							value="${dto.category}">
 					</c:forEach>
 				</c:if>
 			</div>
@@ -903,14 +926,10 @@ hr {
 			if (range == 0) {
 				range_result.html("5000원 이하");
 			} else if (range == 1) {
-				range_result.html("5000원 ~ 7500원");
+				range_result.html("5000원 ~ 10000원");
 			} else if (range == 2) {
-				range_result.html("7500원 ~ 10000원");
+				range_result.html("10000원 ~ 15000원");
 			} else if (range == 3) {
-				range_result.html("10000원 ~ 12500원");
-			} else if (range == 4) {
-				range_result.html("12500원 ~ 15000원");
-			} else if (range == 5) {
 				range_result.html("15000원 ~ 20000원");
 			} else {
 				range_result.html("20000원 이상");
@@ -943,12 +962,26 @@ hr {
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9"></script>
 	<script>
 		
+	
+		/*
+		let storeId = $("#search_store_list_storeID"+0).val();
+		let distance = $("#search_store_list_distance"+0).val();
+		let name = $("#search_store_list_name"+0).val();
+		let lat = $("#search_store_list_lat"+0).val();
+		let lng = $("#search_store_list_lng"+0).val();
+		let address = $("#search_store_list_address"+0).val();
+		let avgScore = $("#search_store_list_avgScore"+0).val();
+		let introduction = $("#search_store_list_introduction"+0).val();
+		let category = $("#search_store_list_category"+0).val();
+		*/
+		
+		// 학원 지도 설정
 		var container = document.getElementById('map');
 		
 		// 학원 중심 좌표 설정
 		var options = {
 			center: new kakao.maps.LatLng(37.567917, 126.983043),
-			level: 2
+			level: 4
 		};
 		
 		// 학원 영역 변수 설정
@@ -972,11 +1005,8 @@ hr {
 		// 지도에 마커를 표시합니다
 		khacademy.setMap(khacademyMap);
 	
-		
-		var InfoWindowContent = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="infoWindow_img" src="/retaurant2.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">고깃집 123</div><div class="infoWindow_info_bottom"># 한식</div></div></div></body>'
-			
-		
-		
+		var InfoWindowContent = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="infoWindow_img" src="/retaurant2.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">KH 아카데미</div><div class="infoWindow_info_bottom"></div></div></div></body>'
+
 		
 		// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 		var khacademy_Content = InfoWindowContent; 
@@ -993,36 +1023,66 @@ hr {
 		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
 		let infowindow_switch = false;
 		kakao.maps.event.addListener(khacademy, 'click', function() {
-			if(infowindow_switch==true){
+			if(infowindow_switch==false){
 				infowindow.open(khacademyMap, khacademy);
-				infowindow_switch = false;
 				$(".restaurant_infoWindow").parent().parent().css({
 					"border":"0px",
 					"background-color":"transparent"
 				});
+				infowindow_switch = true;
 			}else{
 				infowindow.close();
-				infowindow_switch = true;
+				infowindow_switch = false;
 			}
 		});
-		
-		
-		
+    	
+    	let Store_markers = [];
+    	
 		$(function() {
+			
 			let list_length = '${search_store_list.size()}';
-		    for(i = 0 ; i<list_length; i++){
-		    	console.log($("#search_store_list_storeID"+i).val());
-		    	console.log($("#search_store_list_distance"+i).val());
-		    	console.log($("#search_store_list_name"+i).val());
-		    	console.log($("#search_store_list_lat"+i).val());
-		    	console.log($("#search_store_list_lng"+i).val());
-		    	console.log($("#search_store_list_address"+i).val());
-		    	console.log($("#search_store_list_avgScore"+i).val());
-		    	console.log($("#search_store_list_introduction"+i).val());
-		    	console.log($("#search_store_list_category"+i).val());
-		    }
+			
+	    	for(i=0 ; i<list_length ; i++){
+	    		
+		    	let name = $("#search_store_list_name"+i).val();
+		    	let category = $("#search_store_list_category"+i).val();
+				let lat = $("#search_store_list_lat"+i).val()
+				let lng = $("#search_store_list_lng"+i).val()
+				
+				let marker_position = new kakao.maps.LatLng(lat, lng);
+				
+				// 마커를 생성합니다
+			    let Store_marker = new kakao.maps.Marker({
+			        position: marker_position
+			    });
+
+			    // 마커가 지도 위에 표시되도록 설정합니다
+			    Store_marker.setMap(khacademyMap);
+			    
+			    // 배열 추가
+			    Store_markers.push(Store_marker);
+			    
+				let marker_content = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="infoWindow_img" src="/retaurant2.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">'+name+'</div><div class="infoWindow_info_bottom"># '+category+'</div></div></div></body>'
+				let infowindow = new kakao.maps.InfoWindow({
+				    position : marker_position, 
+				    content : marker_content
+				});
+				let infowindow_switch = false;
+				kakao.maps.event.addListener(Store_marker, 'click', function() {
+					if(infowindow_switch==false){
+						infowindow.open(khacademyMap, Store_marker);
+						$(".restaurant_infoWindow").parent().parent().css({
+							"border":"0px",
+							"background-color":"transparent"
+						});
+						infowindow_switch = true;
+					}else{
+						infowindow.close();
+						infowindow_switch = false;
+					}
+				});
+			}
 		});
-		
 
 	</script>
 
