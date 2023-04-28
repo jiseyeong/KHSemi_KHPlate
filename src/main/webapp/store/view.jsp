@@ -549,6 +549,8 @@
 						$("select[name='priceRange']").removeAttr("disabled");
 						$("input[name='address']").removeAttr("readonly");
 						myEditor.disableReadOnlyMode("");
+						$("#imageBox").addClass("nonactive");
+						$("#imageModify").removeClass("nonactive");
 					});
 
 					$("#btn_store_update_confirm").click(function(){

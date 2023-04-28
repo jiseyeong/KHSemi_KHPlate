@@ -127,10 +127,13 @@ public class StoreController extends HttpServlet {
 				double mapLng = Double.parseDouble(multi.getParameter("mapLng"));
 				int mapDistance = Integer.parseInt(multi.getParameter("mapDistance"));
 				String name = multi.getParameter("name");
+				name = SecurityUtils.XSSCheck(name);
 				String category = multi.getParameter("category");
 				String priceRange = multi.getParameter("priceRange");
 				String address = multi.getParameter("address");
+				address = SecurityUtils.XSSCheck(address);
 				String introduction = multi.getParameter("introduction");
+				introduction = SecurityUtils.XSSCheck(introduction);
 				
 				int result = StoreDAO.getInstance().update(new StoreDTO(storeID, mapDistance, name, mapLat, mapLng, address, 0, introduction, category, 0, priceRange));
 				
