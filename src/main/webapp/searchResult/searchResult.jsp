@@ -43,7 +43,7 @@
 	box-sizing: border-box;
 }
 
-.container {
+.outerBody {
 	max-width: 1100px;
 	min-width: 1000px;
 	position: relative;
@@ -53,7 +53,7 @@
 	border: 1px solid rgb(178, 178, 178);
 }
 
-.body {
+.ResultBody {
 	display: flex;
 	/* 세로 정렬 */
 	flex-direction: column;
@@ -229,7 +229,7 @@
 
 .navigator_list {
 	list-style-type: none;
-	padding-left: 0px;
+	padding-left: 320px;
 	margin: 0px;
 }
 
@@ -255,6 +255,7 @@
 	text-decoration: none;
 }
 
+
 .navigator_direction_btn {
 	position: relative;
 	width: 100%;
@@ -265,67 +266,13 @@
 	border: 0px;
 }
 
-.footer {
-	margin-top: 100px;
-	width: 100%;
-	height: 235px;
-	background-color: rgb(42, 40, 45);
-	color: rgb(237, 238, 242);
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 
-.footer>div {
-	position: relative;
-	float: left;
-}
-
-.footer_left {
-	min-width: 8%;
-	height: 55%;
-}
-
-.footer_right {
-	min-width: 30%;
-	height: 100%;
-	top: 20px;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-.footer_content1 {
-	font-size: 22px;
-}
-
-.footer_content2 {
-	font-size: 15px;
-}
-
-.footer_content3 {
-	font-size: 15px;
-}
-
-.footer_content4 {
-	font-size: 15px;
-	margin-bottom: 40px;
-}
-
-.footer_logo {
-	width: 100%;
-	height: 100%;
-	border-radius: 40px;
-}
 </style>
 </head>
 
 <body>
-	<div class="container">
-		<div class="body">
+	<div class="outerBody">
+		<div class="RersultBody">
 			<div class="col-12 outer_layout">
 				<div class="col-12 col-lg-8 inner_layout">
 					<div class="col-12 col-lg-8 img_layout">
@@ -828,20 +775,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="footer">
-		<div class="footer_left">
-			<img class="footer_logo" src="khplate1.jpg">
-		</div>
-		<div class="footer_right">
-			<p class="footer_content1">KH Plate Corp.</p>
-			<p class="footer_content2">KH Plate</p>
-			<p class="footer_content3">대표 모두가
-				대표&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp대표번호
-				02-123-4567&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 홈페이지 naver.com</p>
-			<p class="footer_content4">Copyright ▷ KH Plate Corp. All Rights
-				Reserved</p>
-		</div>
-	</div>
+	
 
 
 	<!-- 별점 등록 Script -->
