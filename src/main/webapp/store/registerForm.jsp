@@ -38,10 +38,10 @@
 }
 
 /* 하단부터 메인부분 스타일 작성 요망 */
-/* #map {
+ #map {
     width:100%;
     height: 40vw;
-} */
+} 
 
 </style>
 </head>
@@ -79,7 +79,7 @@
 							<div class="row">
 								<div class="col-12">지도 마커 설정</div>
 								<div class="col-12 content">
-									<div id="map" class="ratio ratio-1x1"></div>
+									<div id="map"></div>
 									<div class="mapInfo">
 										<input type="text" name="mapLat" style="display:none;" readonly>
                                         <input type="text" name="mapLng" style="display:none;" readonly>
