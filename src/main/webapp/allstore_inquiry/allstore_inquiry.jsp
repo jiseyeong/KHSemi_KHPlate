@@ -593,7 +593,7 @@ hr {
 
 					<div class="searchBox">
 						<input type="text" id="search" name="search">
-						<button type="submit" id="searchBtn">검색</button>
+						<button id="searchBtn">검색</button>
 					</div>
 
 					<div class="show_filterForm_layout">
@@ -695,8 +695,10 @@ hr {
 						<div class="cost_average">
 							<p class="sort_title">가격/1인당</p>
 							<div class="filter_cost">
-								<input type="text" id="cost_set" name="cost_range" style="display: none;"> 
-								<input type="range" id="cost_range" class="form-range" min="0" max="4" step="1" onchange=SetValue()>
+								<input type="text" id="cost_set" name="cost_range"
+									style="display: none;"> <input type="range"
+									id="cost_range" class="form-range" min="0" max="4" step="1"
+									onchange=SetValue()>
 								<div id="range_result">범위를 지정해주세요</div>
 							</div>
 						</div>
@@ -827,6 +829,37 @@ hr {
 		</c:forEach>
 	</c:if>
 
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_sortMethod" value="${sortMethod}"
+		style="display: none;">
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_cost_range" value="${cost_range}"
+		style="display: none;">
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_food_category_korean"
+		value="${food_category_korean}" style="display: none;">
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_food_category_western"
+		value="${food_category_western}" style="display: none;">
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_food_category_chinese"
+		value="${food_category_chinese}" style="display: none;">
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_food_category_japanese"
+		value="${food_category_japanese}" style="display: none;">
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_food_category_asian"
+		value="${food_category_asian}" style="display: none;">
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_food_category_fastfood"
+		value="${food_category_fastfood}" style="display: none;">
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_food_category_dessert_drink"
+		value="${food_category_dessert_drink}" style="display: none;">
+	<input type="text" class="search_store_filter_toScript"
+		id="fillter_settings_food_category_etc" value="${food_category_etc}"
+		style="display: none;">
+
 	<!-- 
 	<c:if test="${search_store_list!=null}">
 		<c:forEach var="dto" items="${search_store_list}" varStatus="status">
@@ -899,8 +932,9 @@ hr {
 	<script>
 		// 필터 기능들
 		
-		// 필터 SlideToggle
-		$(document).ready(function () {
+		$(function(){
+			
+			// 필터 Toggle 기능 부여
 			let sort_check = false;
 
 			$("#show_filterForm_btn").on("click", function () {
@@ -911,8 +945,113 @@ hr {
 					$("#sort_layout").css({"display":"none"});
 					sort_check=false;
 				}
-			});
-		});
+			})
+		
+		
+			// 필터 정렬 지정
+			$(".filter_option_btn").on("click",function(){
+				$("#sortMethod").val($(this).attr("id"));
+				$(".filter_option_btn").css({
+					"border":"2px solid silver"
+				});
+				$(this).css({
+					"border":"2px solid red"
+				});
+			})
+			
+			// 각 음식 카테고리 div에 boolean변수 부여(closer)
+			$(".food_category_list").each(function (index, item) {
+				let food_category_list_check = true;
+				$(this).find(".food_category_menu").val(true);
+				$(item).on("click", function () {
+					if (food_category_list_check == false) {
+						$(this).css({
+							"border": "2px solid red"
+						});
+						$(this).find(".food_category_menu").val(true);
+						food_category_list_check = true;
+					} else {
+						$(this).css({
+							"border": "1px solid silver"
+						});
+						$(this).find(".food_category_menu").val(false);
+						food_category_list_check = false;
+					}
+				})
+			})
+				
+			// 필터 초기화 지정
+			let sortMethod = $("#fillter_settings_sortMethod").val();
+			let cost_range = $("#fillter_settings_cost_range").val();
+			let food_category_korean = $("#fillter_settings_food_category_korean").val();
+			let food_category_western = $("#fillter_settings_food_category_western").val();
+			let food_category_chinese = $("#fillter_settings_food_category_chinese").val();
+			let food_category_japanese = $("#fillter_settings_food_category_japanese").val();
+			let food_category_asian = $("#fillter_settings_food_category_asian").val();
+			let food_category_fastfood = $("#fillter_settings_food_category_fastfood").val();
+			let food_category_dessert_drink = $("#fillter_settings_food_category_dessert_drink").val();
+			let food_category_etc = $("#fillter_settings_food_category_etc").val();
+			
+			if(sortMethod=='order_by_distance'){
+				$("#order_by_distance").click();
+			}else if(sortMethod=='order_by_score'){
+				$("#order_by_score").click();
+			}
+			
+			let range_result = $("#range_result");
+			
+			if(cost_range=='5000이하'){
+				$("#cost_range").val(0);
+				$("#cost_set").val("5000이하");
+				range_result.html("5000원 이하");
+				
+			}else if(cost_range=='5000~10000'){
+				$("#cost_range").val(1);
+				$("#cost_set").val("5000~10000");
+				range_result.html("5000원 ~ 10000원");
+				
+			}else if(cost_range=='10000~15000'){
+				$("#cost_range").val(2);
+				$("#cost_set").val("10000~15000");
+				range_result.html("10000원 ~ 15000원");
+				
+			}else if(cost_range=='15000~20000'){
+				$("#cost_range").val(3);
+				$("#cost_set").val("15000~20000");
+				range_result.html("15000원 ~ 20000원");
+				
+			}else if(cost_range=='20000이상'){
+				$("#cost_range").val(4);
+				$("#cost_set").val("20000이상");
+				range_result.html("20000원 이상");
+			}
+			
+			
+			if(food_category_korean!='true'){
+				$("#food_category_korean").click();
+			}
+			if(food_category_western!='true'){
+				$("#food_category_western").click();
+			}
+			if(food_category_chinese!='true'){
+				$("#food_category_chinese").click();
+			}
+			if(food_category_japanese!='true'){
+				$("#food_category_japanese").click();
+			}
+			if(food_category_asian!='true'){
+				$("#food_category_asian").click();
+			}
+			if(food_category_fastfood!='true'){
+				$("#food_category_fastfood").click();
+			}
+			if(food_category_dessert_drink!='true'){
+				$("#food_category_dessert_drink").click();
+			}
+			if(food_category_etc!='true'){
+				$("#food_category_etc").click();
+			}
+		})
 		
 		
 		// 범위 바의 값을 변경하였을 때 적용
@@ -943,52 +1082,30 @@ hr {
 		}
 		
 		
-		// 각 음식 카테고리 div에 boolean변수 부여(closer)
-		$(function () {
-			$(".food_category_list").each(function (index, item) {
-				let food_category_list_check = true;
-				$(this).find(".food_category_menu").val(true);
-				$(item).on("click", function () {
-					if (food_category_list_check == false) {
-						$(this).css({
-							"border": "2px solid red"
-						})
-						$(this).find(".food_category_menu").val(true);
-						food_category_list_check = true;
-					} else {
-						$(this).css({
-							"border": "1px solid silver"
-						})
-						$(this).find(".food_category_menu").val(false);
-						food_category_list_check = false;
-					}
-				})
-			})
-		});
-
-		
-		// 필터 정렬 지정
-		$(".filter_option_btn").on("click",function(){
-			$("#sortMethod").val($(this).attr("id"));
-			$(".filter_option_btn").css({
-				"border":"2px solid silver"
-			});
-			$(this).css({
-				"border":"2px solid red"
-			});
-		})
-		
 		// 검색 버튼
 		$("#searchBtn").on("click",function(){
 			$("#searchForm").prop("onsubmit",true);
 			$("#searchForm").submit();
 		})
 		
+		// 검색 정렬 확인 버튼
 		$("#apply_btn").on("click",function(){
 			$("#searchForm").prop("onsubmit",true);
 			$("#searchForm").submit();
 		});
-
+		
+		// 검색 정렬 취소 버튼
+		$("#cancel_btn").on("click",function(){
+			$("#sortMethod").val("");
+			$("#cost_set").val("");
+			
+			$(".food_category_menu").each(function(index, item){
+			    $(item).val("true");
+			});
+			
+			$("#searchForm").prop("onsubmit",true);
+			$("#searchForm").submit();
+		})
 	</script>
 
 

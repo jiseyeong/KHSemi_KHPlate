@@ -144,113 +144,11 @@ public class StoreDAO {
 	}
 
 
-
-
-
-
-	// 맛집 검색 SQL
-	//	public List<StoreDTO> searchStore(String search, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception{
-	//		String sql = "select * from "
-	//				+ "(select store.*, row_number() over(order by storeID desc) row_num from store where name like ?) "
-	//				+ "where row_num between ? and ?";
-	//		try(	Connection con = this.getConnection();
-	//				PreparedStatement pstat = con.prepareStatement(sql);){
-	//			pstat.setString(1,"%"+search+"%");
-	//			pstat.setInt(2, start_Record_Row_Num);
-	//			pstat.setInt(3, end_Record_Row_Num);
-	//			try (	ResultSet rs = pstat.executeQuery();){
-	//				return transAllRsToList(rs);
-	//			}
-	//		}
-	//	}
-	//
-	//	public String getNavi(int currentpage, String search) throws Exception{
-	//		int record_total_count = getSearchStore_RecordCount(); // 13
-	//		int record_count_per_page = Settings.SEARCH_STORE_RECORD_COUNT_PER_PAGE; // 15
-	//		int navi_count_per_page = Settings.SEARCH_STORE_NAVI_COUNT_PER_PAGE; // 10
-	//		int page_total_count = 0;
-	//
-	//		// 총 페이지의 수
-	//		if(record_total_count%record_count_per_page==0) {
-	//			page_total_count = record_total_count/record_count_per_page;
-	//		}else {	
-	//			page_total_count = (record_total_count/record_count_per_page)+1;
-	//		}
-	//
-	//		// 페이지 범위 초과 시 자동 조정 (필수 x)
-	//		if(currentpage<1)
-	//			currentpage = 1;
-	//		else if(currentpage > page_total_count)
-	//			currentpage=page_total_count;
-	//
-	//
-	//		int startNavi = ((currentpage - 1)/navi_count_per_page * navi_count_per_page)+1;
-	//		int endNavi = startNavi + (navi_count_per_page - 1);
-	//
-	//		if(startNavi<1)
-	//			startNavi = 1;
-	//		else if(endNavi>page_total_count)
-	//			endNavi = page_total_count;
-	//
-	//		StringBuilder sb = new StringBuilder();
-	//
-	//		boolean needPrev = true;
-	//		boolean needNext = true;
-	//
-	//		if(startNavi == 1)
-	//			needPrev = false;
-	//		if(endNavi == page_total_count)
-	//			needNext = false;
-	//
-	//		if(needPrev) {
-	//			sb.append("<li class='navigator_list_item'>"
-	//					+ "		<div class='navigator_list_item_btn_layout'>"
-	//					+ "			<a href='/searchToMain.store?cpage="+(startNavi-1)+"&search="+search+"'>"
-	//					+ "				<button class='navigator_direction_btn'>"
-	//					+ "					<i class='fa-solid fa-angle-left'></i>"
-	//					+ "				</button>"
-	//					+ "			</a>"
-	//					+ "		</div>"
-	//					+ "</li>");
-	//		}
-	//		for(int i = startNavi ; i <= endNavi ; i++) {
-	//			sb.append("<li class='navigator_list_item'>"
-	//					+ "		<div class='navigator_list_item_btn_layout'>"
-	//					+ "			<a class='item' href='/searchToMain.store?cpage="+i+"&search="+search+"'>"+i+"</a>"
-	//					+ "		</div>"
-	//					+ "</li>");
-	//		}
-	//		if(needNext) {
-	//			sb.append("<li class='navigator_list_item'>"
-	//					+ "		<div class='navigator_list_item_btn_layout'>"
-	//					+ "			<a href='/searchToMain.store?cpage="+(endNavi+1)+"&search="+search+"'>"
-	//					+ "				<button class='navigator_direction_btn'>"
-	//					+ "					<i class='fa-solid fa-angle-right'></i>"
-	//					+ "				</button>"
-	//					+ "			</a>"
-	//					+ "		</div>"
-	//					+ "</li>");
-	//		}
-	//		return sb.toString();
-	//	}
-	//
-	//	public int getSearchStore_RecordCount() throws Exception{
-	//		String sql = "select count(*) from store";
-	//		try(	Connection con = this.getConnection();
-	//				PreparedStatement pstat = con.prepareStatement(sql);
-	//				ResultSet rs = pstat.executeQuery();){
-	//			rs.next();
-	//			return rs.getInt(1);
-	//		}
-	//	}
-
-
-
+	
 
 
 	// 맛집 검색 SQL (검색 필터 기능 포함)
-
-	public List<StoreDTO> searchFilteredStore(String search, int start_Record_Row_Num, int end_Record_Row_Num,
+	public List<StoreDTO> searchStore(String search, int start_Record_Row_Num, int end_Record_Row_Num,
 			String sortMethod,String cost_range,String food_category_korean, String food_category_western, String food_category_chinese, 
 			String food_category_japanese, String food_category_asian, String food_category_fastfood,String food_category_dessert_drink, 
 			String food_category_etc) throws Exception{
@@ -341,11 +239,11 @@ public class StoreDAO {
 		}
 	}
 
-	public String getFilteredNavi(int currentpage, String search, String searchedBy, String sortMethod, String cost_range, String food_category_korean, 
+	public String getNavi(int currentpage, String search, String searchedBy, String sortMethod, String cost_range, String food_category_korean, 
 			String food_category_western, String food_category_chinese, String food_category_japanese, String food_category_asian, String food_category_fastfood, 
 			String food_category_dessert_drink, String food_category_etc) throws Exception{
 
-		int record_total_count = getSearchFilteredStore_RecordCount(search, cost_range, food_category_korean, food_category_western, 
+		int record_total_count = getSearchdStore_RecordCount(search, cost_range, food_category_korean, food_category_western, 
 				food_category_chinese, food_category_japanese, food_category_asian, food_category_fastfood, food_category_dessert_drink, food_category_etc);
 		int record_count_per_page = 0;
 		int navi_count_per_page = 0;
@@ -425,7 +323,7 @@ public class StoreDAO {
 
 	}
 
-	public int getSearchFilteredStore_RecordCount(String search, String cost_range, String food_category_korean, String food_category_western, 
+	public int getSearchdStore_RecordCount(String search, String cost_range, String food_category_korean, String food_category_western, 
 			String food_category_chinese, String food_category_japanese, String food_category_asian, String food_category_fastfood, 
 			String food_category_dessert_drink, String food_category_etc) throws Exception{
 		String sql = "select count(*) from store where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?)";
@@ -493,4 +391,100 @@ public class StoreDAO {
 			}
 		}
 	}
+	
+	// 기타 맛집 검색 SQL (예비)
+		//	public List<StoreDTO> searchStore(String search, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception{
+		//		String sql = "select * from "
+		//				+ "(select store.*, row_number() over(order by storeID desc) row_num from store where name like ?) "
+		//				+ "where row_num between ? and ?";
+		//		try(	Connection con = this.getConnection();
+		//				PreparedStatement pstat = con.prepareStatement(sql);){
+		//			pstat.setString(1,"%"+search+"%");
+		//			pstat.setInt(2, start_Record_Row_Num);
+		//			pstat.setInt(3, end_Record_Row_Num);
+		//			try (	ResultSet rs = pstat.executeQuery();){
+		//				return transAllRsToList(rs);
+		//			}
+		//		}
+		//	}
+		//
+		//	public String getNavi(int currentpage, String search) throws Exception{
+		//		int record_total_count = getSearchStore_RecordCount(); // 13
+		//		int record_count_per_page = Settings.SEARCH_STORE_RECORD_COUNT_PER_PAGE; // 15
+		//		int navi_count_per_page = Settings.SEARCH_STORE_NAVI_COUNT_PER_PAGE; // 10
+		//		int page_total_count = 0;
+		//
+		//		// 총 페이지의 수
+		//		if(record_total_count%record_count_per_page==0) {
+		//			page_total_count = record_total_count/record_count_per_page;
+		//		}else {	
+		//			page_total_count = (record_total_count/record_count_per_page)+1;
+		//		}
+		//
+		//		// 페이지 범위 초과 시 자동 조정 (필수 x)
+		//		if(currentpage<1)
+		//			currentpage = 1;
+		//		else if(currentpage > page_total_count)
+		//			currentpage=page_total_count;
+		//
+		//
+		//		int startNavi = ((currentpage - 1)/navi_count_per_page * navi_count_per_page)+1;
+		//		int endNavi = startNavi + (navi_count_per_page - 1);
+		//
+		//		if(startNavi<1)
+		//			startNavi = 1;
+		//		else if(endNavi>page_total_count)
+		//			endNavi = page_total_count;
+		//
+		//		StringBuilder sb = new StringBuilder();
+		//
+		//		boolean needPrev = true;
+		//		boolean needNext = true;
+		//
+		//		if(startNavi == 1)
+		//			needPrev = false;
+		//		if(endNavi == page_total_count)
+		//			needNext = false;
+		//
+		//		if(needPrev) {
+		//			sb.append("<li class='navigator_list_item'>"
+		//					+ "		<div class='navigator_list_item_btn_layout'>"
+		//					+ "			<a href='/searchToMain.store?cpage="+(startNavi-1)+"&search="+search+"'>"
+		//					+ "				<button class='navigator_direction_btn'>"
+		//					+ "					<i class='fa-solid fa-angle-left'></i>"
+		//					+ "				</button>"
+		//					+ "			</a>"
+		//					+ "		</div>"
+		//					+ "</li>");
+		//		}
+		//		for(int i = startNavi ; i <= endNavi ; i++) {
+		//			sb.append("<li class='navigator_list_item'>"
+		//					+ "		<div class='navigator_list_item_btn_layout'>"
+		//					+ "			<a class='item' href='/searchToMain.store?cpage="+i+"&search="+search+"'>"+i+"</a>"
+		//					+ "		</div>"
+		//					+ "</li>");
+		//		}
+		//		if(needNext) {
+		//			sb.append("<li class='navigator_list_item'>"
+		//					+ "		<div class='navigator_list_item_btn_layout'>"
+		//					+ "			<a href='/searchToMain.store?cpage="+(endNavi+1)+"&search="+search+"'>"
+		//					+ "				<button class='navigator_direction_btn'>"
+		//					+ "					<i class='fa-solid fa-angle-right'></i>"
+		//					+ "				</button>"
+		//					+ "			</a>"
+		//					+ "		</div>"
+		//					+ "</li>");
+		//		}
+		//		return sb.toString();
+		//	}
+		//
+		//	public int getSearchStore_RecordCount() throws Exception{
+		//		String sql = "select count(*) from store";
+		//		try(	Connection con = this.getConnection();
+		//				PreparedStatement pstat = con.prepareStatement(sql);
+		//				ResultSet rs = pstat.executeQuery();){
+		//			rs.next();
+		//			return rs.getInt(1);
+		//		}
+		//	}
 }
