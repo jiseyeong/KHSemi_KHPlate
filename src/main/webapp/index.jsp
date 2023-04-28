@@ -18,7 +18,8 @@
 	<br>
 	<a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry.jsp</a>
 	<br>
-	<a href="/common/main_searchResult.jsp">main_searchResult.jsp</a>
+	<a href="/common/main_storeSearchResult.jsp">main_storeSearchResult.jsp</a>
+	<a href="/common/main_blogSearchResult.jsp">main_blogSearchResult.jsp</a>
 	<a href="/common/searchResult.jsp">searchResult.jsp</a>
 	<a href="/common/sort_filter.html">sort_filter.html</a>
 	<br>

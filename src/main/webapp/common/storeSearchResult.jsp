@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>searchResult</title>
+<title>storeSearchResult</title>
 
 <!-- 부트 스트랩 -->
 <link
@@ -357,7 +357,6 @@ hr {
 				<div class="print_searchResult_layout">
 					<c:choose>
 						<c:when test="${search_store_list!=null}">
-
 							<!-- Outer_layout의 개수 -->
 							<!-- 검색 결과가 3으로 나누어 떨어지면 count=리스트 수 / 3 -->
 							<!-- 그렇지 않으면 count=리스트 수 / 3 + 1-->
@@ -376,7 +375,8 @@ hr {
 												<div class="inner_cover_layout">
 													<div class="inner_layout">
 														<div class="img_layout">
-															<img src="/searchResult/restaurant_img1.jpg" id="restaurant_img1">
+															<img src="/searchResult/restaurant_img1.jpg"
+																id="restaurant_img1">
 															<div class="restaurant_addFavorite">
 																<button class="addFavorite_btn">
 																	<i class="fa-regular fa-heart"></i>
@@ -415,7 +415,8 @@ hr {
 												<div class="inner_cover_layout">
 													<div class="inner_layout">
 														<div class="img_layout">
-															<img src="/searchResult/restaurant_img1.jpg" id="restaurant_img1">
+															<img src="/searchResult/restaurant_img1.jpg"
+																id="restaurant_img1">
 															<div class="restaurant_addFavorite">
 																<button class="addFavorite_btn">
 																	<i class="fa-regular fa-heart"></i>
@@ -470,389 +471,14 @@ hr {
 			<div class="navigator"
 				style="position: relative; width: 100%; border: 0px;">
 				<ul class="navigator_list">
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<button class="navigator_direction_btn">
-								<i class="fa-solid fa-angle-left"></i>
-							</button>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">1</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">2</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">3</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">4</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">5</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">6</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">7</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">8</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">9</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">10</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<button class="navigator_direction_btn">
-								<i class="fa-solid fa-angle-right"></i>
-							</button>
-						</div>
-					</li>
+					${search_store_list_navi}
 				</ul>
 			</div>
 		</div>
+	</div>
 
-
-
-		<br>
-
-
-
-		<!-- 블로그 리뷰 검색 결과 -->
-
-		<div class="blog_searchResult_layout">
-			<div class="main_layout">
-				<div class="search_category_layout">
-					<div class="search_category_title_layout">
-						<p class="search_category_title">블로그 검색 결과</p>
-					</div>
-					<div class="show_filterForm_layout">
-						<button id="show_filterForm_btn">
-							<i class="fa-solid fa-sliders"></i>&nbsp 필터
-						</button>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="print_searchResult_layout">
-					<div class="outer_layout">
-						<div class="inner_cover_layout">
-							<div class="inner_layout">
-								<div class="img_layout">
-									<img src="restaurant_img1.jpg" id="restaurant_img1">
-									<div class="restaurant_addFavorite">
-										<button class="addFavorite_btn">
-											<i class="fa-regular fa-heart"></i>
-										</button>
-									</div>
-								</div>
-								<div class="info_layout">
-									<div class="info_title_layout" style="padding-left: 10px">
-										<div class="info_title">장어집 123</div>
-										<div class="info_score">
-											<ul class="stars">
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-											</ul>
-										</div>
-									</div>
-									<div class="info_address" style="padding-left: 10px">
-										서울시 중구 을지로 무슨빌딩 3층</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="inner_cover_layout">
-							<div class="inner_layout">
-								<div class="img_layout">
-									<img src="restaurant_img1.jpg" id="restaurant_img1">
-									<div class="restaurant_addFavorite">
-										<button class="addFavorite_btn">
-											<i class="fa-regular fa-heart"></i>
-										</button>
-									</div>
-								</div>
-								<div class="info_layout">
-									<div class="info_title_layout" style="padding-left: 10px">
-										<div class="info_title">장어집 123</div>
-										<div class="info_score">
-											<ul class="stars">
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-											</ul>
-										</div>
-									</div>
-									<div class="info_address" style="padding-left: 10px">
-										서울시 중구 을지로 무슨빌딩 3층</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="inner_cover_layout">
-							<div class="inner_layout">
-								<div class="img_layout">
-									<img src="restaurant_img1.jpg" id="restaurant_img1">
-									<div class="restaurant_addFavorite">
-										<button class="addFavorite_btn">
-											<i class="fa-regular fa-heart"></i>
-										</button>
-									</div>
-								</div>
-								<div class="info_layout">
-									<div class="info_title_layout" style="padding-left: 10px">
-										<div class="info_title">장어집 123</div>
-										<div class="info_score">
-											<ul class="stars">
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-											</ul>
-										</div>
-									</div>
-									<div class="info_address" style="padding-left: 10px">
-										서울시 중구 을지로 무슨빌딩 3층</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<hr>
-
-					<div class="outer_layout">
-						<div class="inner_cover_layout">
-							<div class="inner_layout">
-								<div class="img_layout">
-									<img src="restaurant_img1.jpg" id="restaurant_img1">
-									<div class="restaurant_addFavorite">
-										<button class="addFavorite_btn">
-											<i class="fa-regular fa-heart"></i>
-										</button>
-									</div>
-								</div>
-								<div class="info_layout">
-									<div class="info_title_layout" style="padding-left: 10px">
-										<div class="info_title">장어집 123</div>
-										<div class="info_score">
-											<ul class="stars">
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-											</ul>
-										</div>
-									</div>
-									<div class="info_address" style="padding-left: 10px">
-										서울시 중구 을지로 무슨빌딩 3층</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="inner_cover_layout">
-							<div class="inner_layout">
-								<div class="img_layout">
-									<img src="restaurant_img1.jpg" id="restaurant_img1">
-									<div class="restaurant_addFavorite">
-										<button class="addFavorite_btn">
-											<i class="fa-regular fa-heart"></i>
-										</button>
-									</div>
-								</div>
-								<div class="info_layout">
-									<div class="info_title_layout" style="padding-left: 10px">
-										<div class="info_title">장어집 123</div>
-										<div class="info_score">
-											<ul class="stars">
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-											</ul>
-										</div>
-									</div>
-									<div class="info_address" style="padding-left: 10px">
-										서울시 중구 을지로 무슨빌딩 3층</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="inner_cover_layout">
-							<div class="inner_layout">
-								<div class="img_layout">
-									<img src="restaurant_img1.jpg" id="restaurant_img1">
-									<div class="restaurant_addFavorite">
-										<button class="addFavorite_btn">
-											<i class="fa-regular fa-heart"></i>
-										</button>
-									</div>
-								</div>
-								<div class="info_layout">
-									<div class="info_title_layout" style="padding-left: 10px">
-										<div class="info_title">장어집 123</div>
-										<div class="info_score">
-											<ul class="stars">
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
-											</ul>
-										</div>
-									</div>
-									<div class="info_address" style="padding-left: 10px">
-										서울시 중구 을지로 무슨빌딩 3층</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="toDetailSearch_layout">
-					<button id="toDetailSearch_btn">더보기</button>
-				</div>
-			</div>
-
-			<!-- 네비게이터 영역 
-        1. 하단 고정-->
-			<div class="navigator"
-				style="position: relative; width: 100%; border: 0px;">
-				<ul class="navigator_list">
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<button class="navigator_direction_btn">
-								<i class="fa-solid fa-angle-left"></i>
-							</button>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">1</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">2</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">3</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">4</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">5</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">6</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">7</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">8</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">9</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<a class="item" href="/searchResult.html">10</a>
-						</div>
-					</li>
-					<li class="navigator_list_item">
-						<div class=navigator_list_item_btn_layout>
-							<button class="navigator_direction_btn">
-								<i class="fa-solid fa-angle-right"></i>
-							</button>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-
-		<!-- 별점 등록 Script -->
-		<script>
+	<!-- 별점 등록 Script -->
+	<script>
             let stars = document.querySelectorAll('.stars__link');
             let phrase = document.querySelector('.stars-phrase');
 
@@ -890,10 +516,10 @@ hr {
 
         </script>
 
-		<!-- 네비게이터 영역 
+	<!-- 네비게이터 영역 
         2. 하단 Fixed-->
 
-		<!-- <div class="navigator">
+	<!-- <div class="navigator">
         <ul class="navigator_list">
             <li class="navigator_list_item">
                 <div class=navigator_list_item_btn_layout>
