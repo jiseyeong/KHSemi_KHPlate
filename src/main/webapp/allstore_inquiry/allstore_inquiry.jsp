@@ -66,7 +66,9 @@ button:hover {
 
 .search_layout {
 	width: 100%;
-	height: 10%; display : flex; justify-content : space-evenly;
+	height: 10%;
+	display: flex;
+	justify-content: space-evenly;
 	align-items: center;
 	display: flex;
 	justify-content: space-evenly;
@@ -198,7 +200,8 @@ img {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: left;
+	overflow: hidden;
 }
 
 .info_layout_topside {
@@ -207,7 +210,7 @@ img {
 }
 
 .info_layout_bottomside {
-	width: 100%;
+	width: 82%;
 	height: 35%;
 }
 
@@ -237,6 +240,10 @@ img {
 
 .restaurant_address {
 	font-size: 16px;
+	/* 주소 길어질 경우 생략 기호로 간략 표시 (...)*/
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .restaurant_score {
@@ -571,7 +578,10 @@ hr {
 </head>
 
 <body>
-	<form id="searchForm" action="/searchToMap.store" onsubmit="return false;">
+	<form id="searchForm" action="/searchToMain.store"
+		onsubmit="return false;">
+		<input type="text" name="searchedBy" value="mapSearch"
+			style="display: none;">
 		<div class="container">
 			<div class="store_list">
 				<div class="search_layout">
@@ -582,7 +592,7 @@ hr {
 					</div>
 
 					<div class="searchBox">
-						<input type="text" id="search" name="search"> 
+						<input type="text" id="search" name="search">
 						<button type="submit" id="searchBtn">검색</button>
 					</div>
 
@@ -595,7 +605,7 @@ hr {
 				<div class="restaurant_list_layout">
 					<ul class="restaurant_list">
 						<c:choose>
-							<c:when test="${search_store_list_toMap==null}">
+							<c:when test="${search_store_list==null}">
 								<li class="restaurant_none">
 									<div class="none">
 										표시할 내용이 없습니다.<br>검색을 진행해주세요.
@@ -604,7 +614,7 @@ hr {
 
 							</c:when>
 							<c:otherwise>
-								<c:forEach var='i' items='${search_store_list_toMap}'>
+								<c:forEach var='i' items='${search_store_list}'>
 									<li class="restaurant">
 										<div class="img_layout">
 											<img src="/allstore_inquiry/restaurant_img1.jpg">
@@ -644,7 +654,7 @@ hr {
 
 					<!-- Navigator 리스트를 표시 (getNavi(currentpage,search)) -->
 					<div class="navigator">
-						<ul class="navigator_list">${search_store_list_navi_toMap}</ul>
+						<ul class="navigator_list">${search_store_list_navi}</ul>
 					</div>
 
 				</div>
@@ -659,7 +669,9 @@ hr {
 
 
 				<!-- 정렬 팝업 창 (SlideToggle)-->
-				<form action="/searchToMap.store" onsubmit="return false;">
+				<form action="/searchToMain.store" onsubmit="return false;">
+					<input type="text" name="searchedBy" value="mapSearch"
+						style="display: none;">
 					<div id="sort_layout" style="display: none;">
 						<div class="search_filter">
 							<p class="sort_title">검색 필터</p>
@@ -683,8 +695,8 @@ hr {
 						<div class="cost_average">
 							<p class="sort_title">가격/1인당</p>
 							<div class="filter_cost">
-								<input type="range" id="cost_range"
-									class="form-range" min="0" max="4" step="1" onchange=SetValue()>
+								<input type="text" id="cost_set" name="cost_range" style="display: none;"> 
+								<input type="range" id="cost_range" class="form-range" min="0" max="4" step="1" onchange=SetValue()>
 								<div id="range_result">범위를 지정해주세요</div>
 							</div>
 						</div>
@@ -788,8 +800,8 @@ hr {
 			</div>
 		</div>
 	</form>
-	<c:if test="${search_store_list_toMap!=null}">
-		<c:forEach var="dto" items="${search_store_list_toMap}" varStatus="status">
+	<c:if test="${search_store_list!=null}">
+		<c:forEach var="dto" items="${search_store_list}" varStatus="status">
 			<input type="text" class="search_store_list_toScript"
 				id="search_store_list_storeID${status.index}" value="${dto.storeID}">
 			<input type="text" class="search_store_list_toScript"
@@ -814,6 +826,36 @@ hr {
 				value="${dto.category}">
 		</c:forEach>
 	</c:if>
+
+	<!-- 
+	<c:if test="${search_store_list!=null}">
+		<c:forEach var="dto" items="${search_store_list}" varStatus="status">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_storeID${status.index}" value="${dto.storeID}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_distance${status.index}"
+				value="${dto.distance}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_name${status.index}" value="${dto.name}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_lat${status.index}" value="${dto.lat}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_lng${status.index}" value="${dto.lng}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_address${status.index}" value="${dto.address}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_avgScore${status.index}"
+				value="${dto.avgScore}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_introduction${status.index}"
+				value="${dto.introduction}">
+			<input type="text" class="search_store_list_toScript"
+				id="search_store_list_category${status.index}"
+				value="${dto.category}">
+		</c:forEach>
+	</c:if>
+	
+	 -->
 
 	<!-- 별점 등록 Script -->
 	<script>
@@ -851,7 +893,6 @@ hr {
 				});
 			});
 		});
-
 	</script>
 
 
@@ -882,15 +923,21 @@ hr {
 			
 			let range = $("#cost_range").val();
 			let range_result = $("#range_result");
+			
 			if (range == 0) {
+				$("#cost_set").val("5000이하");
 				range_result.html("5000원 이하");
 			} else if (range == 1) {
+				$("#cost_set").val("5000~10000");
 				range_result.html("5000원 ~ 10000원");
 			} else if (range == 2) {
+				$("#cost_set").val("10000~15000");
 				range_result.html("10000원 ~ 15000원");
 			} else if (range == 3) {
+				$("#cost_set").val("15000~20000");
 				range_result.html("15000원 ~ 20000원");
 			} else {
+				$("#cost_set").val("20000이상");
 				range_result.html("20000원 이상");
 			}
 		}
@@ -936,6 +983,11 @@ hr {
 			$("#searchForm").prop("onsubmit",true);
 			$("#searchForm").submit();
 		})
+		
+		$("#apply_btn").on("click",function(){
+			$("#searchForm").prop("onsubmit",true);
+			$("#searchForm").submit();
+		});
 
 	</script>
 
@@ -1028,7 +1080,7 @@ hr {
     	
 		$(function() {
 			
-			let list_length = '${search_store_list_toMap.size()}';
+			let list_length = '${search_store_list.size()}';
 			
 	    	for(i=0 ; i<list_length ; i++){
 	    		

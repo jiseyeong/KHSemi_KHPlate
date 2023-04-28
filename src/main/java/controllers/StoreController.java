@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -147,29 +149,10 @@ public class StoreController extends HttpServlet {
 			
 			
 			
-			// 검색 Controller추가 (main_searchResult.jsp 사용), 필터 미구현
+			// 검색 Controller (main_searchResult.jsp / allstore_inquiry.jsp에 같이 사용)
 			// 사진 출력 미구현
-			else if(cmd.equals("/searchToMain.store")){
-				int currentpage = 1 ;
-				String search = request.getParameter("search");
-				if(request.getParameter("cpage")!=null) {
-					currentpage = Integer.parseInt(request.getParameter("cpage"));
-				}
-				request.getSession().setAttribute("cpage", currentpage);
-				
-				int end_Record_Row_Num = currentpage * Settings.SEARCH_STORE_RECORD_COUNT_PER_PAGE;
-				int start_Record_Row_Num = end_Record_Row_Num - (Settings.SEARCH_STORE_RECORD_COUNT_PER_PAGE - 1);
-						
-				List<StoreDTO> search_store_list = StoreDAO.getInstance().searchStore(search, start_Record_Row_Num, end_Record_Row_Num);
-				String search_store_list_navi = StoreDAO.getInstance().getNavi(currentpage,search);
-				request.setAttribute("search_store_list", search_store_list);
-				request.setAttribute("search_store_list_navi", search_store_list_navi);
-				request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
-				
-				
-			// 검색 Controller추가 (allstoreInquiry.jsp 사용), 간단한 필터 구현
-			// 사진 출력 미구현
-			} else if(cmd.equals("/searchToMap.store")){
+			else if(cmd.equals("/searchToMain.store")) {
+				String searchedBy = "";
 				String sortMethod = "";
 				String cost_range = "";
 				String food_category_korean = "";
@@ -181,12 +164,25 @@ public class StoreController extends HttpServlet {
 				String food_category_dessert_drink = "";
 				String food_category_etc = "";
 				
+				if(request.getParameter("searchedBy")!=null) {
+					searchedBy = request.getParameter("searchedBy");
+					request.getSession().setAttribute("searchedBy", searchedBy);
+				}else {
+					if(request.getSession().getAttribute("searchedBy")!=null) {
+						searchedBy = (String) request.getSession().getAttribute("searchedBy");
+					}else {
+						searchedBy = "mainSearch";
+						request.getSession().setAttribute("searchedBy", searchedBy);
+					}
+				}
+				
 				if(request.getParameter("sortMethod")!=null) {
 					sortMethod = request.getParameter("sortMethod");
 					request.getSession().setAttribute("sortMethod", sortMethod);
 				}else {
 					sortMethod = (String) request.getSession().getAttribute("sortMethod");
 				}
+				
 				
 				if(request.getParameter("cost_range")!=null) {
 					cost_range = request.getParameter("cost_range");
@@ -251,37 +247,76 @@ public class StoreController extends HttpServlet {
 					food_category_etc = (String) request.getSession().getAttribute("food_category_etc");
 				}
 				
-//				System.out.println("정렬방식 : "+sortMethod);
-//				System.out.println("가격 : "+cost_range);
-//				System.out.println("한식 : "+food_category_korean);
-//				System.out.println("양식 : "+food_category_western);
-//				System.out.println("중식 : "+food_category_chinese);
-//				System.out.println("일식 : "+food_category_japanese);
-//				System.out.println("아시안 : "+food_category_asian);
-//				System.out.println("패스트푸드 : "+food_category_fastfood);
-//				System.out.println("디저트음료 : "+food_category_dessert_drwink);
-//				System.out.println("기타 : "+food_category_etc);
+				if(cost_range==null) {
+					cost_range="";
+				}
 				
-				String search = request.getParameter("search");
+				
+				System.out.println("검색경로 : "+searchedBy);
+				System.out.println("정렬방식 : "+sortMethod);
+				System.out.println("가격 : "+cost_range);
+				System.out.println("한식 : "+food_category_korean);
+				System.out.println("양식 : "+food_category_western);
+				System.out.println("중식 : "+food_category_chinese);
+				System.out.println("일식 : "+food_category_japanese);
+				System.out.println("아시안 : "+food_category_asian);
+				System.out.println("패스트푸드 : "+food_category_fastfood);
+				System.out.println("디저트/음료 : "+food_category_dessert_drink);
+				System.out.println("기타 : "+food_category_etc);
+				
+				String search = "";
+				if(request.getParameter("search")!=null) {
+					search = request.getParameter("search");
+					request.getSession().setAttribute("search", search);
+				}else {
+					search = (String) request.getSession().getAttribute("search");
+				}
+				System.out.println("검색어 : "+search);
+				
 				int currentpage = 1;
 				if(request.getParameter("cpage")!=null) {
 					currentpage = Integer.parseInt(request.getParameter("cpage"));
 				}
 				request.getSession().setAttribute("cpage", currentpage);
-				int end_Record_Row_Num = currentpage * Settings.SEARCH_STORE_TO_MAP_RECORD_COUNT_PER_PAGE;
-				int start_Record_Row_Num = end_Record_Row_Num - (Settings.SEARCH_STORE_TO_MAP_RECORD_COUNT_PER_PAGE-1);
-				List<StoreDTO> search_filtered_store_list = StoreDAO.getInstance().searchFilteredStore_toMap(search, start_Record_Row_Num, end_Record_Row_Num,
+				
+				
+				int start_Record_Row_Num = 0;
+				int end_Record_Row_Num = 0;
+				if(searchedBy.equals("mainSearch")) {
+					end_Record_Row_Num = currentpage * Settings.SEARCH_STORE_RECORD_COUNT_PER_PAGE;
+					start_Record_Row_Num = end_Record_Row_Num - (Settings.SEARCH_STORE_RECORD_COUNT_PER_PAGE-1);
+				}else if(searchedBy.equals("mapSearch")) {
+					end_Record_Row_Num = currentpage * Settings.SEARCH_STORE_TO_MAP_RECORD_COUNT_PER_PAGE;
+					start_Record_Row_Num = end_Record_Row_Num - (Settings.SEARCH_STORE_TO_MAP_RECORD_COUNT_PER_PAGE-1);
+				}
+				
+				System.out.println("시작넘버 : "+start_Record_Row_Num);
+				System.out.println("끝넘버 : "+end_Record_Row_Num);
+				
+				List<StoreDTO> search_filtered_store_list = StoreDAO.getInstance().searchFilteredStore(search, start_Record_Row_Num, end_Record_Row_Num,
 						sortMethod, cost_range, food_category_korean, food_category_western, food_category_chinese, food_category_japanese, food_category_asian,
 						food_category_fastfood, food_category_dessert_drink, food_category_etc);
-				String search_store_list_navi = StoreDAO.getInstance().getFilteredNavi_toMap(currentpage,search,sortMethod, cost_range, food_category_korean, 
+				
+				String search_store_list_navi = StoreDAO.getInstance().getFilteredNavi(currentpage,search,searchedBy,sortMethod, cost_range, food_category_korean, 
 						food_category_western, food_category_chinese, food_category_japanese, food_category_asian, food_category_fastfood, 
 						food_category_dessert_drink, food_category_etc);
 				
-				request.setAttribute("search_store_list_toMap", search_filtered_store_list);
-				request.setAttribute("search_store_list_navi_toMap", search_store_list_navi);
-				request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
+				System.out.println("리스트 사이즈 : "+search_filtered_store_list.size());
+				for(StoreDTO s : search_filtered_store_list) {
+					System.out.println(s.getName());
+				}
+				System.out.println("===================");
+				
+				request.setAttribute("search_store_list", search_filtered_store_list);
+				request.setAttribute("search_store_list_navi", search_store_list_navi);
+				
+				if(searchedBy.equals("mainSearch")) {
+					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
+				}else if(searchedBy.equals("mapSearch")) {
+					request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
+				}
 			}
-
+	
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");
