@@ -31,21 +31,19 @@ public class MembersController extends HttpServlet {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
 				String classes = request.getParameter("classes");
-				
+
 				System.out.println(pw);
-				
+
 				int result = dao.join(id,pw,name,email,classes);
-				
+
 				if(result>0) {
 					System.out.println(id +" 회원가입 완료");
-					response.sendRedirect("/index.jsp");
+					response.sendRedirect("/main.jsp");
 				}else {
 					System.out.println(id +" 회원가입 실패");
 				}
-				
-				
 			}else if(cmd.equals("/update.members")) { //ȸ������
-			
+
 			}if(cmd.equals("/join.members")) { 
 
 			}else if(cmd.equals("/update.members")) {
@@ -57,15 +55,15 @@ public class MembersController extends HttpServlet {
 				String email = request.getParameter("email");
 				String selfcomment = request.getParameter("selfcomment");
 				String favoriteFood = request.getParameter("favoriteFood");
-				
-				
+
+
 				int result = dao.update(new MembersDTO(pw2,nickname,phone,email,selfcomment,favoriteFood));
-				
+
 				response.sendRedirect("/mypage.members");
-				
+
 			}else if(cmd.equals("/memberout.members")) { 
-				
-				
+
+
 
 			}else if(cmd.equals("/mypage.members")) { 
 
@@ -74,7 +72,7 @@ public class MembersController extends HttpServlet {
 
 				request.setAttribute("my",my);
 				request.getRequestDispatcher("/mypage/mypage.jsp").forward(request, response);
-				
+
 			}else if(cmd.equals("/login.members")) { 
 
 			}else if(cmd.equals("/logout.members")) {

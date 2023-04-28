@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -190,7 +190,8 @@
                 box-shadow:1px 1px 5px 1px silver;
                 background-color:rgb(240, 240, 240);
             }
-            
+            #memberout{
+            }
         </style>
     </head>
     <body>
@@ -250,7 +251,7 @@
                     <a href="#null" class="myContents">1:1 ¹®ÀÇ</a>
                 </div>
                 <div class="body2Contents"></div>
-                <div><button>È¸¿øÅ»Åð</button></div>
+                <div><button id="memberout">È¸¿øÅ»Åð</button></div>
             </div>
         </div>
         <script>
