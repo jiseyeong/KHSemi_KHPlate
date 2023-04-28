@@ -13,9 +13,6 @@ public class MembersDTO {
 	private String selfcomment;
 	private String favoriteFood;
 	private String isAdmin;
-	private int zipCode;
-	private String address1;
-	private String address2;
 	private String kakao;
 	private String naver;
 	private String google;
@@ -25,23 +22,19 @@ public class MembersDTO {
 	}
 
 	public MembersDTO(String pw, String nickname,String email, String phone,
-					  int zipCode, String address1,String address2,String selfcomment, String favoriteFood) {
-		//¸¶ÀÌÆäÀÌÁö ¼öÁ¤ÇÒ ¶§ ¾µ dto ¿À¹ö·Îµù
+					  String selfcomment, String favoriteFood) {
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ dto ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½
 
 		this.pw = pw;
 		this.nickname = nickname;
 		this.email = email;
 		this.phone = phone;
-		this.zipCode = zipCode;
-		this.address1 = address1;
-		this.address2 = address2;
 		this.selfcomment = selfcomment;
 		this.favoriteFood = favoriteFood;
 	}
 	
 	public MembersDTO(String userID, String pw, String nickname,String name, String email, String phone,
-			String classes, String selfcomment, String favoriteFood, int zipCode, String address1,
-			String address2) {//¸¶ÀÌÆäÀÌÁö Ãâ·ÂÇÒ ¶§ ¾µ dto ¿À¹ö·Îµù
+			String classes, String selfcomment, String favoriteFood) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ dto ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½
 
 		this.userID = userID;
 		this.pw = pw;
@@ -52,14 +45,11 @@ public class MembersDTO {
 		this.classes = classes;
 		this.selfcomment = selfcomment;
 		this.favoriteFood = favoriteFood;
-		this.zipCode = zipCode;
-		this.address1 = address1;
-		this.address2 = address2;
+
 
 	}
 	public MembersDTO(int userNO, String userID, String pw, String nickname, String name, String email, String phone,
-			String classes, String selfcomment, String favoriteFood, String isAdmin, int zipCode, String address1,
-			String address2, String kakao, String naver, String google) {
+			String classes, String selfcomment, String favoriteFood, String isAdmin, String kakao, String naver, String google) {
 		super();
 		this.userNO = userNO;
 		this.userID = userID;
@@ -72,9 +62,6 @@ public class MembersDTO {
 		this.selfcomment = selfcomment;
 		this.favoriteFood = favoriteFood;
 		this.isAdmin = isAdmin;
-		this.zipCode = zipCode;
-		this.address1 = address1;
-		this.address2 = address2;
 		this.kakao = kakao;
 		this.naver = naver;
 		this.google = google;
@@ -168,29 +155,6 @@ public class MembersDTO {
 		this.isAdmin = isAdmin;
 	}
 
-	public int getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(int zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public String getAddress1() {
-		return address1;
-	}
-
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
-
-	public String getAddress2() {
-		return address2;
-	}
-
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
 
 	public String getKakao() {
 		return kakao;
