@@ -35,6 +35,17 @@
 	border: 1px solid black;
 }
 
+#btn_reply {
+	width: 150px;
+	height: 50px;
+	background-color: #57b846;
+	border:  #57b846;
+	border-radius: 12px;
+	cursor: pointer;
+	color: white;
+	margin-top: 50px;
+	font-size: 20px;
+}
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
 </head>
@@ -121,7 +132,8 @@
 					</c:when>
 					<c:otherwise>
 						<c:if test="sessionScope.loginIsAdmin">
-							<a href="/replyForm.consult?consultID=${dto.consultID}"><button type="button" id="btn_reply">답글달기</button></a>
+							<a href="/replyForm.consult?consultID=${dto.consultID}">
+								<button type="button" id="btn_reply">답글달기</button></a>
 						</c:if>
 					</c:otherwise>
 				</c:choose>
@@ -140,9 +152,7 @@
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
 		</div>
-
 		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
 	</div>
-
 </body>
 </html>

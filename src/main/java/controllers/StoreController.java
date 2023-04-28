@@ -18,6 +18,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import commons.SecurityUtils;
 import dao.CommentReviewDAO;
 import dao.MembersDAO;
+import dao.PhotoDAO;
 import dao.StoreDAO;
 import dao.StoreMenuDAO;
 import dto.CommentReviewDTO;
@@ -44,17 +45,18 @@ public class StoreController extends HttpServlet {
 					userIDList.add(MembersDAO.getInstance().getIDByNo(commentList.get(i).getUserNo()));
 				}
 				ArrayList<StoreMenuDTO> menuList = StoreMenuDAO.getInstance().selectAllByStoreID(storeID);
-				ArrayList<String> imgPathList = new ArrayList<>();
 				ArrayList<PhotoDTO> imgList = StoreDAO.getInstance().selectPhoto(storeID);
-				for(PhotoDTO i : imgList) {
-					imgPathList.add("/store/" + i.getSysName());
-				}
+//				ArrayList<String> imgPathList = new ArrayList<>();
+//				for(PhotoDTO i : imgList) {
+//					imgPathList.add("/store/" + i.getSysName());
+//				}
+//				request.setAttribute("imgPathList", imgPathList);
 				
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("userIDList", userIDList);
 				request.setAttribute("menuList", menuList);
-				request.setAttribute("imgPathList", imgPathList);
+				request.setAttribute("imgList", imgList);
 				request.getRequestDispatcher("/store/view.jsp").forward(request, response);
 				
 			}else if(cmd.equals("/register.store")) {
@@ -79,7 +81,7 @@ public class StoreController extends HttpServlet {
 				String storeCategory = multi.getParameter("storeCategory");
 				String storePriceRange = multi.getParameter("storePriceRange");
 				
-				int result = StoreDAO.getInstance().insert(new StoreDTO(0, mapDistance, storeName, mapLat, mapLng, storeAddress, 0, storeIntroduction, storeCategory, storePriceRange));
+				int result = StoreDAO.getInstance().insert(new StoreDTO(0, mapDistance, storeName, mapLat, mapLng, storeAddress, 0, storeIntroduction, storeCategory, 0, storePriceRange));
 				int currval = StoreDAO.getInstance().getCurrval();
 				
 //				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
@@ -101,6 +103,46 @@ public class StoreController extends HttpServlet {
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+currval);
+			}else if(cmd.equals("/deletePhoto.store")) {
+				int imageID = Integer.parseInt(request.getParameter("imageID"));
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				
+				int result = PhotoDAO.getInstance().delete(imageID);
+				
+				response.sendRedirect("/view.store?storeID="+storeID);
+			}else if(cmd.equals("/update.store")) {
+				String realPath = request.getServletContext().getRealPath("store");
+				int maxSize = 1024 * 1024 * 10; //10Mb
+				System.out.println(realPath);
+				File realPathFile = new File(realPath);
+				if(!realPathFile.exists()) {
+					realPathFile.mkdir();
+				}
+				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
+				
+				int storeID = Integer.parseInt(multi.getParameter("storeID"));
+				double mapLat = Double.parseDouble(multi.getParameter("mapLat"));
+				double mapLng = Double.parseDouble(multi.getParameter("mapLng"));
+				int mapDistance = Integer.parseInt(multi.getParameter("mapDistance"));
+				String name = multi.getParameter("name");
+				String category = multi.getParameter("category");
+				String priceRange = multi.getParameter("priceRange");
+				String address = multi.getParameter("address");
+				String introduction = multi.getParameter("introduction");
+				
+				int result = StoreDAO.getInstance().update(new StoreDTO(storeID, mapDistance, name, mapLat, mapLng, address, 0, introduction, category, 0, priceRange));
+				
+				Enumeration<String> names = multi.getFileNames();
+				while(names.hasMoreElements()) {
+					String fileName = names.nextElement();
+					if(multi.getFile(fileName) != null){
+						String oriName = multi.getOriginalFileName(fileName);
+						String sysName = multi.getFilesystemName(fileName);
+						StoreDAO.getInstance().insertPhoto(sysName, oriName, storeID);
+					}
+				}
+				response.sendRedirect("/view.store?storeID="+storeID);
+				
 			}
 			
 			

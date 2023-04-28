@@ -127,16 +127,14 @@
                 </tr>
                 <div class="pwclass">
                     <tr>
-
                         <td>
                             <input type="password" name="pw1" id="pw1" placeholder="새로운 비밀번호 입력">
                         </td>
                     </tr>
+                    
                     <tr>
-
                         <td>
                             <input type="password" id="pw2" name="pw2" placeholder="비밀번호 다시 입력">
-
                         </td>
                     </tr>
                 </div>
@@ -145,10 +143,9 @@
 
                 <tr>
                     <td colspan="2" align="center">
-
                         <div class="btn">
                             <button type=button id="reset">다시 입력</button>
-                            <button type=submit id="next" name="next">확인</button>
+                            <button type=submit id="next" name="next">제출하기</button>
                         </div>
                     </td>
                 </tr>
