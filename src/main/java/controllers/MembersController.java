@@ -22,7 +22,6 @@ public class MembersController extends HttpServlet {
 		System.out.println(cmd);
 
 		try {
-<<<<<<< HEAD
 			MembersDAO dao = MembersDAO.getInstance();
 			if(cmd.equals("/join.members")) { //ȸ������
 				System.out.println("회원가입 시도 확인");
@@ -46,12 +45,10 @@ public class MembersController extends HttpServlet {
 				
 				
 			}else if(cmd.equals("/update.members")) { //ȸ������
-=======
 			
-			if(cmd.equals("/join.members")) { 
+			}if(cmd.equals("/join.members")) { 
 
 			}else if(cmd.equals("/update.members")) {
->>>>>>> 6c673b1b938b734ad1235effcea2153e923573a2
 
 				String pw = request.getParameter("pw");
 				String pw2 = SecurityUtils.sha512(pw); 
