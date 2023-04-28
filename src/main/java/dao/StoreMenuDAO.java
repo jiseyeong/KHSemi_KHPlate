@@ -60,6 +60,18 @@ public class StoreMenuDAO {
 			return result;
 		}
 	}
+	public int update(StoreMenuDTO dto) throws Exception{
+		String sql = "update STOREMENU set MENUNAME=?, MENUPRICE=? where MENUID=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, dto.getMenuName());
+			pstat.setInt(2, dto.getMenuPrice());
+			pstat.setInt(3, dto.getMenuID());
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 	
 	private ArrayList<StoreMenuDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<StoreMenuDTO> result = new ArrayList<>();

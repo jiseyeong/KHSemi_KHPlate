@@ -38,10 +38,10 @@
 }
 
 /* 하단부터 메인부분 스타일 작성 요망 */
-/* #map {
+ #map {
     width:100%;
     height: 40vw;
-} */
+} 
 
 </style>
 </head>
@@ -79,7 +79,7 @@
 							<div class="row">
 								<div class="col-12">지도 마커 설정</div>
 								<div class="col-12 content">
-									<div id="map" class="ratio ratio-1x1"></div>
+									<div id="map"></div>
 									<div class="mapInfo">
 										<input type="text" name="mapLat" style="display:none;" readonly>
                                         <input type="text" name="mapLng" style="display:none;" readonly>
@@ -125,6 +125,18 @@
 														<option>디저트/음료</option>
 														<option>패스트푸드</option>
 														<option>기타</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="input-group">
+													<span class="input-group-text">1인당 가격범위</span>
+													<select type="text" class="form-select" name="storePriceRange">
+														<option>5000이하</option>
+														<option>5000~10000</option>
+														<option>10000~15000</option>
+														<option>15000~20000</option>
+														<option>20000이상</option>
 													</select>
 												</div>
 											</div>

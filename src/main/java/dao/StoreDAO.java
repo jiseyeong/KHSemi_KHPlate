@@ -34,8 +34,8 @@ public class StoreDAO {
 	}
 
 	public int insert(StoreDTO dto) throws Exception {
-		String sql = "insert into store(StoreID, distance, name, lat, lng, address, avgScore, introduction, category) "
-				+ "values(store_storeid_seq.nextval, ?, ?, ?, ?, ?, 0, ?, ?)";
+		String sql = "insert into store(StoreID, distance, name, lat, lng, address, avgScore, introduction, category, priceRange)"
+				+ " values(store_storeid_seq.nextval, ?, ?, ?, ?, ?, 0, ?, ?, ?)";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, dto.getDistance());
@@ -45,6 +45,7 @@ public class StoreDAO {
 			pstat.setString(5, dto.getAddress());
 			pstat.setString(6, dto.getIntroduction());
 			pstat.setString(7, dto.getCategory());
+			pstat.setString(8, dto.getPriceRange());
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
@@ -115,7 +116,8 @@ public class StoreDAO {
 			double avgScore = rs.getDouble("AVGSCORE");
 			String introduction = rs.getString("INTRODUCTION");
 			String category = rs.getString("CATEGORY");
-			result.add(new StoreDTO(storeID, distance, name, lat, lng, address, avgScore, introduction, category));
+			String priceRange = rs.getString("priceRange");
+			result.add(new StoreDTO(storeID, distance, name, lat, lng, address, avgScore, introduction, category, priceRange));
 		}
 		return result;
 	}

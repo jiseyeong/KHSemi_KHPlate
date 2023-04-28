@@ -13,17 +13,40 @@ import dao.MembersDAO;
 import dto.MembersDTO;
 
 
-@WebServlet("*.Members")
+@WebServlet("*.members")
 public class MembersController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf8"); 
 		String cmd = request.getRequestURI();
+		System.out.println(cmd);
 
 		try {
+			MembersDAO dao = MembersDAO.getInstance();
+			if(cmd.equals("/join.members")) { //ȸ������
+				System.out.println("회원가입 시도 확인");
+				String id = request.getParameter("id");
+				String pw = request.getParameter("pw");
+				String sha512pw = SecurityUtils.sha512(pw);
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String classes = request.getParameter("classes");
+				
+				System.out.println(pw);
+				
+				int result = dao.join(id,pw,name,email,classes);
+				
+				if(result>0) {
+					System.out.println(id +" 회원가입 완료");
+					response.sendRedirect("/index.jsp");
+				}else {
+					System.out.println(id +" 회원가입 실패");
+				}
+				
+				
+			}else if(cmd.equals("/update.members")) { //ȸ������
 			
-			if(cmd.equals("/join.members")) { 
+			}if(cmd.equals("/join.members")) { 
 
 			}else if(cmd.equals("/update.members")) {
 
@@ -32,14 +55,11 @@ public class MembersController extends HttpServlet {
 				String nickname = request.getParameter("nickname");
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
-				int zipCode = Integer.parseInt(request.getParameter("zipCode"));
-				String address1 = request.getParameter("address1");
-				String address2 = request.getParameter("address2");
 				String selfcomment = request.getParameter("selfcomment");
 				String favoriteFood = request.getParameter("favoriteFood");
 				
-				MembersDAO dao = MembersDAO.getInstance();
-				int result = dao.update(new MembersDTO(pw2,nickname,phone,email,zipCode,address1,address2,selfcomment,favoriteFood));
+				
+				int result = dao.update(new MembersDTO(pw2,nickname,phone,email,selfcomment,favoriteFood));
 				
 				response.sendRedirect("/mypage.members");
 				
@@ -59,6 +79,14 @@ public class MembersController extends HttpServlet {
 
 			}else if(cmd.equals("/logout.members")) {
 
+			}else if(cmd.equals("/IdCheck.members")) {
+				String id = request.getParameter("id");
+				System.out.println("입력 id = " + id);
+
+				boolean result = dao.isIdExist(id);
+
+				request.setAttribute("result", result);
+				request.getRequestDispatcher("/joinform/isIdExist.jsp").forward(request, response);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
