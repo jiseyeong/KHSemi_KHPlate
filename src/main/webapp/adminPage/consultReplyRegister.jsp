@@ -35,6 +35,17 @@
 	border: 1px solid black;
 }
 
+#submitBtn {
+	width: 150px;
+	height: 50px;
+	background-color: #57b846;
+	border:  #57b846;
+	border-radius: 12px;
+	cursor: pointer;
+	color: white;
+	margin-top: 50px;
+	font-size: 20px;
+}
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
 </head>
@@ -106,7 +117,7 @@
 					</fieldset>
 					<div class="row">
 						<div class="col-12 text-center">
-							<button type="submit">submit</button>
+							<button type="submit" id="submitBtn">제출하기</button>
 						</div>
 					</div>
 				</form>
@@ -131,9 +142,7 @@
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
 		</div>
-
 		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
 	</div>
-
 </body>
 </html>

@@ -119,18 +119,17 @@
                             </td>
                         </tr>
                         <tr>
-
-                            <td>
-                                <input type="text" id="phone" name="phone" placeholder="핸드폰번호 입력">
-                            </td>
-                        </tr>
+						<td>
+						<input type="text" id="email" name="email" placeholder="이메일 입력">
+						</td>
+					</tr>
                     </div>
                     <tr>
                         <td colspan="2" align="center">
 
                             <div class="input2">
                                 <button type=button id="reset">다시 입력</button>
-                                <button type=submit id="next" name="next">다음</button>
+                                <button type=submit id="next" name="next">제출하기</button>
                             </div>
                         </td>
                     </tr>
@@ -155,18 +154,18 @@
                 var regexID = /^[a-z0-9_]{7,13}$/;
                 var regexPW = /^[A-Za-z0-9]{7,13}$/;
                 var regexName = /^[가-힣]+$/;
-                var regexPhone = /^010[0-9]{8}$/;
+                var regexEmail = /.+@.+\..+/;
 
 
                 var id = $("#id").val();
                 var pw1 = $("#pw1").val();
                 var name = $("#name").val();
-                var phone = $("#phone").val();
+                var email = $("#email").val();
 
 
 
                 if (id == "" || name == ""
-                    || phone == "") { //필수항목 입력 여부 체크
+                    || email == "") { //필수항목 입력 여부 체크
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
@@ -195,15 +194,15 @@
                     });
                     return false;
                 }
-                if (!regexPhone.test(phone)) {
+                if (!regexEmail.test(email)) {
                     Swal.fire({
                         icon: "error",
-                        title: "PHONE 형식 오류",
-                        text: "핸드폰 번호 다시 확인",
+                        title: "EMAIL 형식 오류",
+                        text: "ID@address 형식으로 입력",
                     });
                     return false;
                 }
-            })
+            });
     </script>
 
 
