@@ -63,7 +63,7 @@ public class StoreDAO {
 	}
 
 	public StoreDTO selectOne(int storeID) throws Exception {
-		String sql = "select * from store where STOREID = ?";
+		String sql = "select * from STORE where STOREID = ?";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, storeID);
@@ -103,6 +103,26 @@ public class StoreDAO {
 			}
 		}
 	}
+	
+	public int update(StoreDTO dto) throws Exception{
+		String sql = "update STORE set DISTANCE=?, LAT=?, LNG=?, NAME=?, ADDRESS=?, INTRODUCTION=?, CATEGORY=?, PRICERANGE=?"
+				+ " where STOREID = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, dto.getDistance());
+			pstat.setDouble(2, dto.getLat());
+			pstat.setDouble(3, dto.getLng());
+			pstat.setString(4, dto.getName());
+			pstat.setString(5, dto.getAddress());
+			pstat.setString(6, dto.getIntroduction());
+			pstat.setString(7, dto.getCategory());
+			pstat.setString(8, dto.getPriceRange());
+			pstat.setInt(9, dto.getStoreID());
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 
 	private ArrayList<StoreDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<StoreDTO> result = new ArrayList<>();
@@ -116,8 +136,9 @@ public class StoreDAO {
 			double avgScore = rs.getDouble("AVGSCORE");
 			String introduction = rs.getString("INTRODUCTION");
 			String category = rs.getString("CATEGORY");
+			int reviewCount = rs.getInt("REVIEWCOUNT"); 
 			String priceRange = rs.getString("priceRange");
-			result.add(new StoreDTO(storeID, distance, name, lat, lng, address, avgScore, introduction, category, priceRange));
+			result.add(new StoreDTO(storeID, distance, name, lat, lng, address, avgScore, introduction, category, reviewCount,priceRange));
 		}
 		return result;
 	}
