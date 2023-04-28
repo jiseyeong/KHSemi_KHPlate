@@ -20,14 +20,15 @@
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
+.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
 
 ul {
    list-style: none;
    margin: 0px;
    padding: 0px;
    width: 150px;
-   text-align: center;
    width: 100%;
 }
 
@@ -40,6 +41,7 @@ li {
    padding: 0px;
    line-height: 50px;
    cursor: pointer;
+  
 }
 
 li:not(.firstLi):hover {
@@ -48,13 +50,15 @@ li:not(.firstLi):hover {
 
 .ulTag {
    	margin-bottom: 50px;
-   	padding-left:30px;
-	padding-right:30px;
+   	padding-left:70px;
+	padding-right:70px;
+	font-weight:600;
 }
 
 .firstLi {
    border-bottom: 1px solid silver;
    font-weight: bold;
+   font-size:17px;
 }
 
 </style>
@@ -63,7 +67,7 @@ li:not(.firstLi):hover {
 </head>
 <body>
    <div class="col-12 col-lg-2 themed-grid-col sideBar">
-      <ul class="ulTag">
+      <ul class="nanum-gothic ulTag">
          <li class="firstLi">Menu</li>
          <li>한식</li>
          <li>중식</li>
@@ -71,12 +75,12 @@ li:not(.firstLi):hover {
          <li>양식</li>
          <li>음료/디저트</li>
       </ul>
-      <ul class="ulTag">
+      <ul class="nanum-gothic ulTag">
          <li class="firstLi">Community</li>
          <li>잡담 게시판</li>
          <li>리뷰 게시판</li>
       </ul>
-      <ul class="ulTag">
+      <ul class="nanum-gothic ulTag">
          <li class="firstLi">고객센터</li>
          <li>1:1 문의</li>
       </ul>

@@ -22,6 +22,7 @@ public class MembersController extends HttpServlet {
 		System.out.println(cmd);
 
 		try {
+<<<<<<< HEAD
 			MembersDAO dao = MembersDAO.getInstance();
 			if(cmd.equals("/join.members")) { //ȸ������
 				System.out.println("회원가입 시도 확인");
@@ -45,9 +46,15 @@ public class MembersController extends HttpServlet {
 				
 				
 			}else if(cmd.equals("/update.members")) { //ȸ������
+=======
+			
+			if(cmd.equals("/join.members")) { 
+
+			}else if(cmd.equals("/update.members")) {
+>>>>>>> 6c673b1b938b734ad1235effcea2153e923573a2
 
 				String pw = request.getParameter("pw");
-				String pw2 = SecurityUtils.sha512(pw); //��й�ȣ ��ȣȭ
+				String pw2 = SecurityUtils.sha512(pw); 
 				String nickname = request.getParameter("nickname");
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
@@ -59,11 +66,11 @@ public class MembersController extends HttpServlet {
 				
 				response.sendRedirect("/mypage.members");
 				
-			}else if(cmd.equals("/memberout.members")) { //ȸ��Ż��
+			}else if(cmd.equals("/memberout.members")) { 
 				
 				
 
-			}else if(cmd.equals("/mypage.members")) { //���������� ���� ���
+			}else if(cmd.equals("/mypage.members")) { 
 
 				String userId = (String)request.getSession().getAttribute("loginID");
 				MembersDTO my = MembersDAO.getInstance().selectById(userId);
@@ -71,9 +78,9 @@ public class MembersController extends HttpServlet {
 				request.setAttribute("my",my);
 				request.getRequestDispatcher("/mypage/mypage.jsp").forward(request, response);
 				
-			}else if(cmd.equals("/login.members")) { //�α���
+			}else if(cmd.equals("/login.members")) { 
 
-			}else if(cmd.equals("/logout.members")) { //�α׾ƿ�
+			}else if(cmd.equals("/logout.members")) {
 
 			}else if(cmd.equals("/IdCheck.members")) {
 				String id = request.getParameter("id");

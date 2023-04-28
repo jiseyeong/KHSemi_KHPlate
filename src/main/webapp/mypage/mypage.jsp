@@ -18,11 +18,16 @@
             
             button {
                 border-radius: 15px;
-                border: none;
-                background-color: black;
-                color: white;
+                border:1px solid #4dae3c;
+                background-color: white;      	
+                color: #4dae3c;
                 font-size: 12px;
                 height: 30px;
+                
+            }
+            button:hover{
+            	color:white;
+            	background-color:#4dae3c;
             }
     
             .mypage {
@@ -36,11 +41,12 @@
                 height: 5%;
                 text-align: center;
                 line-height: 60px;
-                font-size: 15px;
-                font-weight: bold;
-                background-color: rgb(245, 245, 245);
-                border-bottom: 1px solid black;
-                border-top: 1px solid black;
+                font-size: 14px;
+                background-color:#ED1C16;
+                color:white;
+                font-width:bold;
+                border-radius:30px;
+                box-shadow:1px 1px 5px 1px silver;
             }
     
             .body1 {
@@ -172,6 +178,7 @@
                 text-align:center;
                 line-height:30px;
                 text-decoration:none;
+                background-color:rgb(240, 240, 240);
             }
             .body2Navi>a:first-of-type{
                 border-bottom:none;
@@ -180,6 +187,8 @@
                 width:100%;
                 height: 70%;
                 border: 1px solid black;
+                box-shadow:1px 1px 5px 1px silver;
+                background-color:rgb(240, 240, 240);
             }
             
         </style>
@@ -248,7 +257,7 @@
         		
         		new daum.Postcode({
                     oncomplete: function (data) {
-                        var roadAddr = data.roadAddress; 
+                        let roadAddr = data.roadAddress; 
                         document.getElementById('zipCode').value = data.zonecode;
                         document.getElementById("address1").value = roadAddr;
                     }
@@ -280,23 +289,23 @@
             
               $("#updateForm").on("submit",function(){ //수정 regex
                 
-                var regexPw = /^[A-Za-z0-9]{7,13}$/;        
-                var regexPhone = /^010[0-9]{8}$/;
-                var regexEmail = /.+@.+\..+/;
+                let regexPw = /^[A-Za-z0-9]{7,13}$/;        
+                let regexPhone = /^010[0-9]{8}$/;
+                let regexEmail = /.+@.+\..+/;
 
-                var pw1 = $("#pw1"); 
-                var pw2 = $("#pw2");
-                var phone = $("#phone");
-                var email = $("#email");
+                let pw1 = $("#pw1"); 
+                let pw2 = $("#pw2");
+                let phone = $("#phone");
+                let email = $("#email");
                
                 if (pw1.value != ""
                     && pw2.value != ""
                     && phone.value != ""
                     && email.value != "") {
 
-                    var result1 = regexPw.test(pw2.value);
-                    var result2 = regexPhone.test(phone.value);
-                    var result3 = regexEmail.test(email.value);
+                	let result1 = regexPw.test(pw2.value);
+                	let result2 = regexPhone.test(phone.value);
+                	let result3 = regexEmail.test(email.value);
 
                     if(pw1.value != pw2.value) {
                     	alert("패스워드를 다시 확인해주세요.");
@@ -318,8 +327,8 @@
             })
             
               $("#pw2").on("keyup",function(){  //패스워드 일치여부
-            	  var inputPw1 = $("#pw1");
-            	  var inputPw2 = $("#pw2");
+            	  let inputPw1 = $("#pw1");
+            	  let inputPw2 = $("#pw2");
             	  
             	  if(inputPw1.val() == inputPw2.val()){
             		  $("#pwConfirm").html("패스워드가 일치합니다").css({

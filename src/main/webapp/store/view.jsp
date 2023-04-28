@@ -93,6 +93,10 @@
 .nonactive {
 	display: none;
 }
+
+.carousel-inner img {
+  margin: auto;
+}
 </style>
 </head>
 <body>
@@ -114,14 +118,26 @@
 					<div class="col-12 text-center">
 						<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
 							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="아비꼬1.jpg" class="d-block" alt="..."
-										style="height: 500px; object-fit: contain;">
-								</div>
-								<div class="carousel-item">
-									<img src="아비꼬2.jpg" class="d-block" alt="..."
-										style="height: 500px; object-fit: contain;">
-								</div>
+								<c:choose>
+									<c:when test="${fn:length(imgPathList) > 0}">
+										<c:forEach var="i" items="imgPathList">
+											<div class="carousel-item active">
+												<img src="i" class="d-block" alt="..."
+													style="height: 500px; object-fit: contain;">
+											</div>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<div class="carousel-item active">
+											<img src="/store/아비꼬1.jpg" class="d-block" alt="..."
+												style="height: 500px; object-fit: contain;">
+										</div>
+										<div class="carousel-item">
+											<img src="/store/아비꼬2.jpg" class="d-block" alt="..."
+												style="height: 500px; object-fit: contain;">
+										</div>
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
 								data-bs-slide="prev">
@@ -190,15 +206,86 @@
 							<div class="col-12">
 								<table class="table table-secondary table-striped">
 									<tr>
-										<th style="width:70%;">메뉴 이름</th>
+										<th style="width:40%;">메뉴 이름</th>
 										<th style="width:30%;">메뉴 가격</th>
+										<th style="width:30%"></th>
 									</tr>
 									<c:forEach var="i" items="${menuList}">
 										<tr>
+											<form id="menuUpdateForm${i.menuID}" action="/update.storeMenu" method="get">
+												<input type="text" name="menuID" value="${i.menuID}" style="display: none;" readonly>
+												<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
+												<td><input type="text" id="updateMenuName${i.menuID}" name="updateMenuName" value="${i.menuName}" readonly></td>
+												<td><input type="text" id="updateMenuPrice${i.menuID}" name="updateMenuPrice" value="${i.menuPrice}" readonly></td>
+											
+											<td>
 
+												<button type="button" class="btn_menu_update btn btn-outline-secondary" style="display:none" id="btn_menu_update${i.menuID}">수정</button>
+												<button type="submit" class="btn_menu_update_confirm btn btn-outline-secondary" style="display: none;" id="btn_menu_update_confirm${i.menuID}">확정</button>
+											</form>
+												<form id="menuDeleteForm${i.menuID}" action="/delete.storeMenu" method="get">
+													<input type="text" name="menuID" value="${i.menuID}" style="display: none;" readonly>
+													<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
+													<button type="submit" class="btn_menu_delete btn btn-outline-secondary" style="display:none">삭제</button>
+												</form>
+											</td>
 										</tr>
+										<script>
+											var menuID = "<c:out value='${i.menuID}'></c:out>";
+											$("#btn_menu_delete"+menuID).click(function(){
+												$("#menuDeleteForm"+menuID).submit();
+											});
+											$("#btn_menu_update"+menuID).click(function(){
+												$("#btn_menu_update_confirm"+menuID).css({"display":"inline-block"});
+												$("#updateMenuName"+menuID).attr("readonly", false);
+												$("#updateMenuPrice"+menuID).attr("readonly", false);
+												$(this).css({"display":"none"});
+											});
+											console.log(menuID);
+											$("#btn_menu_update_confirm"+menuID).click(function(){
+												$("menuUpdateForm"+menuID).submit();
+											})
+											$("menuUpdateForm"+menuID).submit(function(){
+												let menuPrice = $("#updateMenuPrice"+menuID).val();
+												if(!menuPrice){
+													alert("메뉴 가격은 빈 값일 수 없습니다.");
+													return false;
+												}else if(isNaN(menuPrice)){
+													alert("메뉴 가격은 숫자 형식이어야 합니다.");
+													return false;
+												}
+											});
+										</script>
 									</c:forEach>
+									<form id="menuAddForm" action="/add.storeMenu" method="get">
+										<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
+										<tr id="menu_add" class="nonactive">
+											<td>
+												<div class="input-group">
+													<span class="input-group-text">메뉴이름</span>
+													<input type="text" class="form-control" name="menuName"> 
+												</div>
+											</td>
+											<td>
+												<div class="input-group">
+													<span class="input-group-text">메뉴가격</span>
+													<input type="text" class="form-control" name="menuPrice">
+												</div>
+											</td>
+											<td>
+												<button type="submit" class="btn btn-outline-secondary">적용</button>
+												<button type="button" id="btn_menu_cancel" class="btn btn-outline-secondary">취소</button>
+											</td>
+										</tr>
+									</form>
 								</table>
+								<div class="row">
+									<div class="col-12 text-end">
+										<button type="button" id="btn_menu_add" class="btn btn-outline-secondary">메뉴 추가</button>
+										<button type="button" id="btn_menu_modify" class="btn btn-outline-secondary">메뉴 수정</button>
+										<button type="button" id="btn_menu_modify_cancel" class="btn btn-outline-secondary" style="display:none;">수정 모드 취소</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -211,7 +298,7 @@
 						<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
 						<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)" style="display: none;">
 						<div class="col-12">
-							<div class="row">
+							<div class="row align-items-center">
 								<div class="col-12">
 									<div class="star">
 										<input type="text" name="score" value="0" style="display:none;">
@@ -226,7 +313,7 @@
 									<textarea id="review_editor" name="body"></textarea>
 								</div>
 								<div class="col-3">
-									<button class="btn btn-primary">등록</button>
+									<button class="btn btn-outline-secondary">등록</button>
 								</div>
 							</div>
 						</div>
@@ -338,10 +425,48 @@
 					let category = "<c:out value='${dto.category}'></c:out>"
 					$("select[name=category]").val(category);
 
+					//별점 버튼 이벤트 등록
 					$(".star a").click(function () {
 						$(this).parent().children("a").removeClass("on");
 						$(this).addClass("on").prevAll("a").addClass("on");
 						$("input[name=rating]").val($(this).attr("value"));
+					});
+
+					//메뉴 추가 버튼 이벤트 등록
+					$("#btn_menu_add").click(function(){
+						$("#menu_add").removeClass("nonactive");
+					});
+
+					$("#btn_menu_cancel").click(function(){
+						$("#menu_add").addClass("nonactive");
+					})
+
+					$("#menuAddForm").submit(function(){
+						let menuPrice = $("input[name='menuPrice']").val();
+						if(!menuPrice){
+							alert("메뉴 가격은 빈 값일 수 없습니다.");
+							return false;
+						}else if(isNaN(menuPrice)){
+							alert("메뉴 가격은 숫자 형식이어야 합니다.");
+							return false;
+						}
+					});
+
+					$("#btn_menu_modify").click(function(){
+						$(".btn_menu_delete").css({"display":"inline-block"});
+						$(".btn_menu_update").css({"display":"inline-block"});
+						$("#btn_menu_modify_cancel").css({"display":"inline-block"});
+						$(this).css({"display":"none"});
+					});
+
+					$("#btn_menu_modify_cancel").click(function(){
+						$(".btn_menu_delete").css({"display":"none"});
+						$(".btn_menu_update").css({"display":"none"});
+						$(".btn_menu_update_confirm").css({"display":"none"});
+						$("#btn_menu_modify").css({"display":"inline-block"});
+						$("[name='updateMenuName']").attr("readonly", true);
+						$("[name='updateMenuPrice']").attr("readonly", true);
+						$(this).css({"display":"none"});
 					});
 
 					var myEditor = null;
