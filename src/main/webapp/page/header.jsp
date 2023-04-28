@@ -49,7 +49,7 @@
             border: 1px solid #f2f2f2;
             position:relative;
             top:5px;
-            left:60px;
+            left:30px;
         }
 
         #searchBtn {
@@ -57,7 +57,7 @@
             top:18px;
             height: 40px;
             width: 40px;
-            left:30px;
+            left:15px;
             background-color: #f2f2f2;
             border: 1px solid #f2f2f2;
             border-radius: 3px;
@@ -84,6 +84,17 @@
 			line-height:76px;
 			text-align:center;
         }
+        #searchCheck{
+        	font-size:12px;
+        	position:relative;
+        	top:3px;
+        	width:70px;
+        	height:25px;
+        	left:20px;
+        	text-align:center;
+        	border-radius:4px;
+        	background-color:rgb(241, 241, 241);
+        }
       .btnBox>a{
 		text-decoration:none;
 		font-size:13px;
@@ -100,12 +111,16 @@
 </head>
 
 <body>
-    <div class="row header m-0">
+    <div class="row header m-0" style="margin-bottom:70px;">
         <div class="col-12 col-lg-3 themed-grid-col logo">
          	 <img src="logowhite.png" class="logoimage">
         </div>
         <div class="col-12 col-lg-6  d-flex search">
             <form action="/search.store" method="get" class="form">
+            <select size="1" id="searchCheck" class="nanum-gothic"> 
+        		<option>맛집</option>
+        		<option>블로그</option>
+    		</select>
                 <input type="search" id="searchBox">
                 <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
                 </button>

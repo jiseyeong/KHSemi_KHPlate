@@ -244,10 +244,10 @@
             </div>
             <div class="body2">
                 <div class="body2Navi">
-                    <a href="#" class="myContents">내가 쓴 글</a>
-                    <a href="#" class="myContents">내가 쓴 댓글</a>
-                    <a href="#" class="myContents">즐겨찾기</a>
-                    <a href="#" class="myContents">1:1 문의</a>
+                    <a href="#null" class="myContents">내가 쓴 글</a>
+                    <a href="#null" class="myContents">내가 쓴 댓글</a>
+                    <a href="#null" class="myContents">즐겨찾기</a>
+                    <a href="#null" class="myContents">1:1 문의</a>
                 </div>
                 <div class="body2Contents"></div>
             </div>

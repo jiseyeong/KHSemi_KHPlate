@@ -41,7 +41,7 @@ public class MembersDAO {
 			}
 		}
 	}
-	public int insert(MembersDTO dto) throws Exception{ //ȸ������
+	public int insert(MembersDTO dto) throws Exception{ 
 
 		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,?,default,?,?,?,?,?,?);";
 		try(Connection con = this.getConnection();
@@ -70,7 +70,7 @@ public class MembersDAO {
 			return result;
 		}
 	}	
-	public MembersDTO selectById(String userID) throws Exception{ //���������� ���� ���
+	public MembersDTO selectById(String userID) throws Exception{ 
 		
 		String sql = "select * from members where userid=?";
 		
@@ -99,7 +99,7 @@ public class MembersDAO {
 			return result;
 		}
 	}
-	public int update(MembersDTO dto)throws Exception{ //ȸ������ ����
+	public int update(MembersDTO dto)throws Exception{ 
 
 		String sql = "update members set pw=?, nickname=?, email=?, phone=?, selfcomment=?, favoritefood=?, zipcode=?, address1=?, address2=? where userid=?";
 
@@ -124,7 +124,7 @@ public class MembersDAO {
 			return result;
 		}
 	}
-	public int delete(String userId,String pw)throws Exception{  //ȸ�� Ż��
+	public int delete(String userId,String pw)throws Exception{  
 
 		String sql = "delete from members where userid=? and pw=?";
 
@@ -141,7 +141,7 @@ public class MembersDAO {
 			return result;
 		}
 	}
-	public boolean idPwOk(String userId,String pw) throws Exception{ //�α���
+	public boolean idPwOk(String userId,String pw) throws Exception{ 
 
 		String sql = "select * from members where userid=? and pw=?";
 
