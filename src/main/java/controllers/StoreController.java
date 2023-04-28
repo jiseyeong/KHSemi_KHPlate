@@ -23,8 +23,8 @@ import dao.StoreMenuDAO;
 import dto.CommentReviewDTO;
 import dto.PhotoDTO;
 import dto.StoreDTO;
-import statics.Settings;
 import dto.StoreMenuDTO;
+import statics.Settings;
 
 @WebServlet("*.store")
 public class StoreController extends HttpServlet {
@@ -77,8 +77,9 @@ public class StoreController extends HttpServlet {
 				String storeIntroduction = multi.getParameter("storeIntroduction");
 				storeIntroduction = SecurityUtils.XSSCheck(storeIntroduction);
 				String storeCategory = multi.getParameter("storeCategory");
+				String storePriceRange = multi.getParameter("storePriceRange");
 				
-				int result = StoreDAO.getInstance().insert(new StoreDTO(0, mapDistance, storeName, mapLat, mapLng, storeAddress, 0, storeIntroduction, storeCategory));
+				int result = StoreDAO.getInstance().insert(new StoreDTO(0, mapDistance, storeName, mapLat, mapLng, storeAddress, 0, storeIntroduction, storeCategory, storePriceRange));
 				int currval = StoreDAO.getInstance().getCurrval();
 				
 //				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
