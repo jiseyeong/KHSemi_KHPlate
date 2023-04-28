@@ -28,7 +28,7 @@ ul {
    list-style: none;
    margin: 0px;
    padding: 0px;
-   width: 150px;
+   width: 200px;
    width: 100%;
 }
 
@@ -41,7 +41,6 @@ li {
    padding: 0px;
    line-height: 50px;
    cursor: pointer;
-  
 }
 
 li:not(.firstLi):hover {
