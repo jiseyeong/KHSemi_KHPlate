@@ -12,40 +12,45 @@ import javax.sql.DataSource;
 import dto.MembersDTO;
 
 public class MembersDAO {
-	private static MembersDAO instance = null;
-	public synchronized static MembersDAO getInstance() {
-		if(instance == null) {
-			instance = new MembersDAO();
-		}
-		return instance;
-	}
 
 	private MembersDAO() {
 		super();
 	}
 
+	private static MembersDAO instance = null;
+
+	public synchronized static MembersDAO getInstance() {
+		if (instance == null) {
+			instance = new MembersDAO();
+		}
+		return instance;
+	}
+
 	private Connection getConnection() throws Exception {
 		Context iContext = new InitialContext();
-		DataSource ds = (DataSource)iContext.lookup("java:/comp/env/jdbc/ora");
+		DataSource ds = (DataSource) iContext.lookup("java:/comp/env/jdbc/ora");
 		return ds.getConnection();
 	}
 
-	public String getIDByNo(int userNo) throws Exception{
+	public String getIDByNo(int userNo) throws Exception {
 		String sql = "select userID from MEMBERS where USERNO = ?";
-		try(Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setInt(1, userNo);
-			try(ResultSet rs = pstat.executeQuery();){
+			try (ResultSet rs = pstat.executeQuery();) {
 				rs.next();
 				return rs.getString(1);
 			}
 		}
 	}
+<<<<<<< HEAD
 	public int insert(MembersDTO dto) throws Exception{ 
+=======
+>>>>>>> cd3a4d11d313cad3ed58028f8eec26bfb10aea59
 
-		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,?,default,?,?,?,?,?,?);";
-		try(Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
+	public int insert(MembersDTO dto) throws Exception { // ȸ������
+
+		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,?,default,?,?,?);";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
 			pstat.setString(1, dto.getUserID());
 			pstat.setString(2, dto.getPw());
@@ -56,12 +61,9 @@ public class MembersDAO {
 			pstat.setString(7, dto.getClasses());
 			pstat.setString(8, dto.getSelfcomment());
 			pstat.setString(9, dto.getFavoriteFood());
-			pstat.setInt(10, dto.getZipCode());
-			pstat.setString(11, dto.getAddress1());
-			pstat.setString(12, dto.getAddress2());
-			pstat.setString(13, dto.getKakao());
-			pstat.setString(14, dto.getNaver());
-			pstat.setString(15, dto.getGoogle());
+			pstat.setString(10, dto.getKakao());
+			pstat.setString(11, dto.getNaver());
+			pstat.setString(12, dto.getGoogle());
 
 			int result = pstat.executeUpdate();
 
@@ -69,17 +71,23 @@ public class MembersDAO {
 
 			return result;
 		}
+<<<<<<< HEAD
 	}	
 	public MembersDTO selectById(String userID) throws Exception{ 
 		
+=======
+	}
+
+	public MembersDTO selectById(String userID) throws Exception { // ���������� ���� ���
+
+>>>>>>> cd3a4d11d313cad3ed58028f8eec26bfb10aea59
 		String sql = "select * from members where userid=?";
-		
-		try(Connection con = this.getConnection();
-			PreparedStatement pstat = con.prepareStatement(sql);){
-			
+
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+
 			pstat.setString(1, userID);
-			
-			ResultSet rs = pstat.executeQuery();			
+
+			ResultSet rs = pstat.executeQuery();
 			rs.next();
 			String userID2 = rs.getString("userid");
 			String pw = rs.getString("pw");
@@ -90,21 +98,23 @@ public class MembersDAO {
 			String classes = rs.getString("classes");
 			String selfcomment = rs.getString("selfcomment");
 			String favoritefood = rs.getString("favoritefood");
-			int zipCode = rs.getInt("zipcode");
-			String address1 = rs.getString("address1");
-			String address2 = rs.getString("address2");
-			
-			MembersDTO result = new MembersDTO(userID2,pw,nickname,name,email,phone,classes,selfcomment,favoritefood,zipCode,address1,address2);
-			
+
+			MembersDTO result = new MembersDTO(userID2, pw, nickname, name, email, phone, classes, selfcomment,
+					favoritefood);
+
 			return result;
 		}
 	}
+<<<<<<< HEAD
 	public int update(MembersDTO dto)throws Exception{ 
+=======
+>>>>>>> cd3a4d11d313cad3ed58028f8eec26bfb10aea59
 
-		String sql = "update members set pw=?, nickname=?, email=?, phone=?, selfcomment=?, favoritefood=?, zipcode=?, address1=?, address2=? where userid=?";
+	public int update(MembersDTO dto) throws Exception { // ȸ������ ����
 
-		try(Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
+		String sql = "update members set pw=?, nickname=?, email=?, phone=?, selfcomment=?, favoritefood=?, where userid=?";
+
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
 			pstat.setString(1, dto.getPw());
 			pstat.setString(2, dto.getNickname());
@@ -112,10 +122,7 @@ public class MembersDAO {
 			pstat.setString(4, dto.getPhone());
 			pstat.setString(5, dto.getSelfcomment());
 			pstat.setString(6, dto.getFavoriteFood());
-			pstat.setInt(7, dto.getZipCode());
-			pstat.setString(8, dto.getAddress1());
-			pstat.setString(9, dto.getAddress2());
-			pstat.setString(10, dto.getUserID());
+			pstat.setString(7, dto.getUserID());
 
 			int result = pstat.executeUpdate();
 
@@ -124,12 +131,16 @@ public class MembersDAO {
 			return result;
 		}
 	}
+<<<<<<< HEAD
 	public int delete(String userId,String pw)throws Exception{  
+=======
+
+	public int delete(String userId, String pw) throws Exception { // ȸ�� Ż��
+>>>>>>> cd3a4d11d313cad3ed58028f8eec26bfb10aea59
 
 		String sql = "delete from members where userid=? and pw=?";
 
-		try(Connection con = this.getConnection();
-			PreparedStatement pstat = con.prepareStatement(sql);){
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
 			pstat.setString(1, userId);
 			pstat.setString(2, pw);
@@ -141,12 +152,16 @@ public class MembersDAO {
 			return result;
 		}
 	}
+<<<<<<< HEAD
 	public boolean idPwOk(String userId,String pw) throws Exception{ 
+=======
+
+	public boolean idPwOk(String userId, String pw) throws Exception { // �α���
+>>>>>>> cd3a4d11d313cad3ed58028f8eec26bfb10aea59
 
 		String sql = "select * from members where userid=? and pw=?";
 
-		try(Connection con = this.getConnection();
-			PreparedStatement pstat = con.prepareStatement(sql);){
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
 			pstat.setString(1, userId);
 			pstat.setString(2, pw);
@@ -158,4 +173,30 @@ public class MembersDAO {
 			return rs.next();
 		}
 	}
-}	
+
+	public int join(String id, String pw, String name, String email, String classes) throws Exception {
+		String sql = "insert into members (userno,userid,pw,name,email,classes) values (members_userno_seq.nextval,?,?,?,?,?)";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, id);
+			pstat.setString(2, pw);
+			pstat.setString(3, name);
+			pstat.setString(4, email);
+			pstat.setString(5, classes);
+
+			int result = pstat.executeUpdate();
+			return result;
+		}
+
+	}
+
+	public boolean isIdExist(String id) throws Exception {
+		String sql = "select id from members where id = ?";
+		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
+			ppst.setString(1, id);
+			try (ResultSet rs = ppst.executeQuery()) {
+				return rs.next();
+			}
+		}
+
+	}
+}
