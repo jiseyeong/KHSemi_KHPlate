@@ -43,14 +43,14 @@
 <body>
 	<div class="container-fluid themed-container m-0 g-0">
 		<!-- 헤더부분 건들지 말것 -->
-		<jsp:include page="header.jsp" flush="false"></jsp:include>
+		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
 
 
 
 		<!-- body 부분 row div 건들지 말것 -->
 		<div class="row g-0 justify-content-center body">
 			<!-- sideBar부분 건들지 말것 -->
-			<jsp:include page="sideBar.jsp" flush="false"></jsp:include>
+			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 
-		<jsp:include page="footer.jsp" flush="false"></jsp:include>
+		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
 	</div>
 
 </body>
