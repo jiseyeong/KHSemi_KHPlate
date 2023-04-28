@@ -534,7 +534,7 @@ input {
 							</div>
 							<div class="col-2">
 								<button class="btn btn--radius btn--green" type="button"
-									id="idCheck">체크</button>
+									id="idCheck">중복체크</button>
 							</div>
 						</div>
 
@@ -574,7 +574,7 @@ input {
 							</div>
 							<div class="col-2">
 								<button class="btn btn--radius btn--green" type="button"
-									id="reg_send">발송</button>
+									id="reg_send">코드발송</button>
 							</div>
 						</div>
 
