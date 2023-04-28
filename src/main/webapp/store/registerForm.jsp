@@ -128,6 +128,18 @@
 													</select>
 												</div>
 											</div>
+											<div class="col-12">
+												<div class="input-group">
+													<span class="input-group-text">1인당 가격범위</span>
+													<select type="text" class="form-select" name="storePriceRange">
+														<option>5000이하</option>
+														<option>5000~10000</option>
+														<option>10000~15000</option>
+														<option>15000~20000</option>
+														<option>20000이상</option>
+													</select>
+												</div>
+											</div>
 											<div class="col-12">가게 소개</div>
 											<div class="col-12">
 												<textarea id="editor" name="storeIntroduction"></textarea>
