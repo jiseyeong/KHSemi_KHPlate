@@ -217,16 +217,14 @@
 												<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
 												<td><input type="text" id="updateMenuName${i.menuID}" name="updateMenuName" value="${i.menuName}" readonly></td>
 												<td><input type="text" id="updateMenuPrice${i.menuID}" name="updateMenuPrice" value="${i.menuPrice}" readonly></td>
-											
-											<td>
-
-												<button type="button" class="btn_menu_update btn btn-outline-secondary" style="display:none" id="btn_menu_update${i.menuID}">수정</button>
-												<button type="submit" class="btn_menu_update_confirm btn btn-outline-secondary" style="display: none;" id="btn_menu_update_confirm${i.menuID}">확정</button>
 											</form>
+											<td>
+												<button type="button" class="btn_menu_update nonactive" id="btn_menu_update${i.menuID}">수정</button>
+												<button type="button" id="btn_menu_update_confirm${i.menuID}" class="btn_menu_update_confirm nonactive">확정</button>
+												<button type="button" id="btn_menu_delete${i.menuID}" class="btn_menu_delete nonactive">삭제</button>
 												<form id="menuDeleteForm${i.menuID}" action="/delete.storeMenu" method="get">
 													<input type="text" name="menuID" value="${i.menuID}" style="display: none;" readonly>
 													<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
-													<button type="submit" class="btn_menu_delete btn btn-outline-secondary" style="display:none">삭제</button>
 												</form>
 											</td>
 										</tr>
@@ -236,14 +234,14 @@
 												$("#menuDeleteForm"+menuID).submit();
 											});
 											$("#btn_menu_update"+menuID).click(function(){
-												$("#btn_menu_update_confirm"+menuID).css({"display":"inline-block"});
+												$("#btn_menu_update_confirm"+menuID).addClass("btn").addClass("btn-outline-secondary").removeClass("nonactive");
 												$("#updateMenuName"+menuID).attr("readonly", false);
 												$("#updateMenuPrice"+menuID).attr("readonly", false);
 												$(this).css({"display":"none"});
 											});
 											console.log(menuID);
 											$("#btn_menu_update_confirm"+menuID).click(function(){
-												$("menuUpdateForm"+menuID).submit();
+												$("#menuUpdateForm"+menuID).submit();
 											})
 											$("menuUpdateForm"+menuID).submit(function(){
 												let menuPrice = $("#updateMenuPrice"+menuID).val();
@@ -283,7 +281,7 @@
 									<div class="col-12 text-end">
 										<button type="button" id="btn_menu_add" class="btn btn-outline-secondary">메뉴 추가</button>
 										<button type="button" id="btn_menu_modify" class="btn btn-outline-secondary">메뉴 수정</button>
-										<button type="button" id="btn_menu_modify_cancel" class="btn btn-outline-secondary" style="display:none;">수정 모드 취소</button>
+										<button type="button" id="btn_menu_modify_cancel" class="nonactive">수정 모드 취소</button>
 									</div>
 								</div>
 							</div>
@@ -453,20 +451,15 @@
 					});
 
 					$("#btn_menu_modify").click(function(){
-						$(".btn_menu_delete").css({"display":"inline-block"});
-						$(".btn_menu_update").css({"display":"inline-block"});
-						$("#btn_menu_modify_cancel").css({"display":"inline-block"});
-						$(this).css({"display":"none"});
+						$(".btn_menu_delete").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
+						$(".btn_menu_update").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
+						$("#btn_menu_modify_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
+						$(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
 					});
 
 					$("#btn_menu_modify_cancel").click(function(){
-						$(".btn_menu_delete").css({"display":"none"});
-						$(".btn_menu_update").css({"display":"none"});
-						$(".btn_menu_update_confirm").css({"display":"none"});
-						$("#btn_menu_modify").css({"display":"inline-block"});
-						$("[name='updateMenuName']").attr("readonly", true);
-						$("[name='updateMenuPrice']").attr("readonly", true);
-						$(this).css({"display":"none"});
+						let storeID = "<c:out value='${dto.storeID}'></c:out>";
+						location.href = "/view.store?storeID="+storeID;
 					});
 
 					var myEditor = null;
