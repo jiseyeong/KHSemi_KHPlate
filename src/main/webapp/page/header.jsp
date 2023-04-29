@@ -106,6 +106,7 @@
         </div>
         <div class="col-12 col-lg-6  d-flex search">
             <form action="/searchToMain.store" method="get" class="form">
+            	<input type="text" name="searchedBy" value="mainSearch" style="display:none;">
                 <input type="search" id="searchBox" name="search">
                 <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
                 </button>
