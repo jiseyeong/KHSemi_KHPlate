@@ -553,7 +553,7 @@ hr {
 												<div class="inner_cover_layout">
 													<div class="inner_layout">
 														<div class="img_layout">
-															<img src="/searchResult/restaurant_img1.jpg"
+															<img src="/common/restaurant_img1.jpg"
 																class="restaurant_img">
 															<div class="restaurant_addFavorite">
 																<button class="addFavorite_btn">
@@ -595,7 +595,7 @@ hr {
 												<div class="inner_cover_layout">
 													<div class="inner_layout">
 														<div class="img_layout">
-															<img src="/searchResult/restaurant_img1.jpg"
+															<img src="/common/restaurant_img1.jpg"
 																class="restaurant_img">
 															<div class="restaurant_addFavorite">
 																<button class="addFavorite_btn">

@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import commons.SecurityUtils;
 import dto.MembersDTO;
 
 public class MembersDAO {
@@ -168,7 +169,7 @@ public class MembersDAO {
 	}
 
 	public boolean isIdExist(String id) throws Exception {
-		String sql = "select id from members where id = ?";
+		String sql = "select userid from members where userid = ?";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
 			ppst.setString(1, id);
 			try (ResultSet rs = ppst.executeQuery()) {
@@ -176,5 +177,35 @@ public class MembersDAO {
 			}
 		}
 
+	}
+
+
+	// 이메일 인증 부분입니다.
+	// 이메일 인증 시 해당 유저가 있는 지 검사
+	public int getUserEmailVerified(String code) throws Exception{
+		String sql = "select * from members";
+		try
+		(Connection con = this.getConnection();
+		PreparedStatement pstat= con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();){
+			while(rs.next()) {
+				String email = rs.getString("email");
+				if(SecurityUtils.sha512(email).equals(code)) {
+					return rs.getInt("userno");
+				}
+			}
+			return 0;
+		}
+	}
+	
+	public int updateuserEmailChecked(int userno) throws Exception{
+		String sql = "update members set userEmailChecked = 'y' where userno = ?";
+		try
+		(Connection con = this.getConnection();
+		PreparedStatement pstat= con.prepareStatement(sql);){
+			pstat.setInt(1, userno);
+			int result = pstat.executeUpdate();
+			return result;
+		}
 	}
 }
