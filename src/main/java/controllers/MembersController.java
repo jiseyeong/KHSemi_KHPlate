@@ -63,7 +63,12 @@ public class MembersController extends HttpServlet {
 
 			}else if(cmd.equals("/memberout.members")) { 
 
-
+				String userId = request.getParameter("userId");
+				String userPw = SecurityUtils.sha512(request.getParameter("loginPw"));
+				
+				int result = dao.delete(userId, userPw);
+				
+				response.sendRedirect("/page/main.jsp");
 
 			}else if(cmd.equals("/mypage.members")) { 
 

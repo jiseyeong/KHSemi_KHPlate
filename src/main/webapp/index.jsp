@@ -21,10 +21,9 @@
 	<a href="/login/login.jsp">login</a><br>
 	<a href="/login/navercallback.jsp">navercallback</a><br>
 	<a href="/login/naverlogin.jsp">naverlogin</a><br>
-	<a href="/memberout/memberout.html">memberout.html</a><br>
 	<a href="/signin/signin.jsp">signin.jsp</a><br>
 	<a href="/store/view.jsp">view.jsp</a><br>
-	<a href="/memberout/memberout.html">memberout.html</a>
+	<a href="/memberout/memberout.jsp">memberout.jsp</a>
 	<br>
 	<br>
 	컨트롤러만 적용 완료
@@ -40,6 +39,7 @@
 	<a href="/page/header.jsp">header.jsp</a><br>
 	<a href="/page/main.jsp">main.jsp</a><br>
 	<a href="/page/sideBar.jsp">sideBar.jsp</a><br>
+	<a href="/mypage/myPageVer2.jsp">myPageVer2.jsp</a>
 	<br>
 	<br>
 	다 만든 페이지(컨트롤러+디자인 끝)

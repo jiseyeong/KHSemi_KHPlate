@@ -537,7 +537,7 @@ hr {
 				</ul>
 			</div>
 		</div>
-
+ 
 
 
 		<br>
@@ -646,8 +646,8 @@ hr {
 										<div class="info_title">장어집 123</div>
 										<div class="info_score">
 											<ul class="stars">
-												<a class="stars__link"><i
-													class="stars__icon fas fa-star"></i></a>
+												<a class="stars__link">
+												<i class="stars__icon fas fa-star"></i></a>
 												<a class="stars__link"><i
 													class="stars__icon fas fa-star"></i></a>
 												<a class="stars__link"><i

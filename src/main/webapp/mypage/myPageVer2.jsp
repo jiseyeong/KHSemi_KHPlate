@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Main</title>
+<title>Title</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -21,7 +21,6 @@
 
 <style>
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
-
 * {
 	box-sizing: border-box;
 	padding: 0px;
@@ -30,11 +29,9 @@
 .body {
 	margin: auto;
 }
-
 .sideList {
 	border: 1px solid black;
 }
-
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
 
@@ -45,17 +42,15 @@
 		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
 
 
+
 		<!-- body 부분 row div 건들지 말것 -->
 		<div class="row g-0 justify-content-center body" style="margin-top:70px;">
 			<!-- sideBar부분 건들지 말것 -->
 			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
 
-			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
-				<!-- Main 내용 부분 하단부터 수정 요망 -->
-				
-				<jsp:include page="/searchResult/searchResult.jsp" flush="false"></jsp:include>
-
-
+			<div class="col-12 col-lg-8 g-0 themed-grid-col bodyContents" style="padding-left:100px; padding-right:100px;">
+				<!-- Main 내용 부분 하단부터 수정 요망 -->		
+			<jsp:include page="/mypage/mypage.jsp" flush="false"></jsp:include>
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
 		</div>

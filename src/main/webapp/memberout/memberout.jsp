@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>회원탈퇴</title>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
@@ -48,6 +50,33 @@
         height:40px;
         border:none;
         background-color: rgb(245, 245, 245);
+        padding-left:10px;
+    }
+    #inputPw{
+    	margin-bottom:40px;
+    }
+    #memberout{
+    	background-color:#4dae3c;
+    	border:none;
+    	border-radius:15px;
+    	width:350px;
+    	height:40px;
+    	color:white;
+    }
+    #cancel{
+    	background-color:#4dae3c;
+    	border:none;
+    	border-radius:15px;
+    	width:350px;
+    	height:40px;
+    	color:white;
+    	margin-top:15px;
+    }
+    button{
+    	cursor:pointer;
+    }
+    button:hover{
+    	opacity:80%;
     }
 	</style>
 	<body>
@@ -56,9 +85,10 @@
         <div class="nanum-gothic contents">
         <div>정말 탈퇴 하실건가요?</div><br>
         <form action="/memberout.member" method="get">
-        <input type="text" value="" id="inputId" name="userId" placeholder="ID"><br>
-        <input type="password" id="inputPw" name="userPw" placeholder="PW">
-        <button>탈퇴하기</button>
+        <input type="text" value="${sessionScope.loginID}" id="inputId" name="userId" placeholder="ID"><br>
+        <input type="password" id="inputPw" name="userPw" placeholder="PW"><br>
+        <button id="memberout">탈퇴하기</button><br>
+        <button id="cancel" onclick="history.back()" type="button">취소하기</button>
         </form>
         </div>
         <div class="lead2"></div>
