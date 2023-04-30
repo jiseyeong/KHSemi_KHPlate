@@ -112,7 +112,7 @@
 
 
 		<!-- body 부분 row div 건들지 말것 -->
-		<div class="row g-0 justify-content-center body">
+		<div class="row g-0 justify-content-center body" style="margin-top:70px;">
 			<!-- sideBar부분 건들지 말것 -->
 			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
 
@@ -549,6 +549,8 @@
 						$("select[name='priceRange']").removeAttr("disabled");
 						$("input[name='address']").removeAttr("readonly");
 						myEditor.disableReadOnlyMode("");
+						$("#imageBox").addClass("nonactive");
+						$("#imageModify").removeClass("nonactive");
 					});
 
 					$("#btn_store_update_confirm").click(function(){

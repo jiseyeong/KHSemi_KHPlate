@@ -534,7 +534,7 @@ input {
 							</div>
 							<div class="col-2">
 								<button class="btn btn--radius btn--green" type="button"
-									id="idCheck">체크</button>
+									id="idCheck">중복체크</button>
 							</div>
 						</div>
 
@@ -574,7 +574,7 @@ input {
 							</div>
 							<div class="col-2">
 								<button class="btn btn--radius btn--green" type="button"
-									id="reg_send">발송</button>
+									id="reg_send">코드발송</button>
 							</div>
 						</div>
 
@@ -611,7 +611,7 @@ input {
                 function () {
                     window.open("/IdCheck.members?id="+$("#id").val(),"","width=500px, height=600px");
                 });
-    
+            
             $("#id").on("change", function () {
                 idValidFlag = false;
             })
@@ -652,14 +652,18 @@ input {
                         });
                         return false;
                     }
-                    if (pw1 != pw2) { //패스워드 일치 여부 체크
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "패스워드를 다시 확인해주세요"
-                        });
-                        return false;
-                    }
+                    
+                  	// 패스워드 일치 여부 체크
+                  	// 아래 항목과 중복됩니다.. 둘 중 하나를 사용해주세요.
+                  	
+//                     if (pw1 != pw2) { 
+//                         Swal.fire({
+//                             icon: "error",
+//                             title: "Oops...",
+//                             text: "패스워드를 다시 확인해주세요"
+//                         });
+//                         return false;
+//                     }
     
     
                     //형식 제한 준수 여부 체크
@@ -671,6 +675,18 @@ input {
                         });
                         return false;
                     }
+                    
+                    // ID 중복체크 확인 코드
+                    // 추가 완료
+                    if (idValidFlag==false){
+                    	Swal.fire({
+                            icon: "error",
+                            title: "ID 중복 검사 미실시",
+                            text: "ID 중복 검사를 실시해주세요."
+                        });
+                        return false;
+                    }
+                    
                     if (!regexPW.test(pw1)) {
                         Swal.fire({
                             icon: "error",
@@ -679,6 +695,8 @@ input {
                         });
                         return false;
                     }
+                    // 위 항목과 중복됩니다.
+                    // 둘 중 하나만 사용해주세요.
                     if (pw1 != pw2) {
                     	 Swal.fire({
                              icon: "error",
@@ -702,6 +720,8 @@ input {
                             text: "ID@address 형식으로 입력",
                         });
                         return false;
+                    }else{
+                    	return true;
                     }
                 });
         </script>

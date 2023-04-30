@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import commons.SecurityUtils;
 import dto.MembersDTO;
 
 public class MembersDAO {
@@ -43,7 +44,8 @@ public class MembersDAO {
 		}
 	}
 
-	public int insert(MembersDTO dto) throws Exception { // ȸ������
+
+	public int insert(MembersDTO dto) throws Exception { // 회占쏙옙占쏙옙占쏙옙
 
 		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,?,default,?,?,?);";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
@@ -67,9 +69,10 @@ public class MembersDAO {
 
 			return result;
 		}
-	}
 
-	public MembersDTO selectById(String userID) throws Exception { // ���������� ���� ���
+	}
+	public MembersDTO selectById(String userID) throws Exception { // 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占�
+
 
 		String sql = "select * from members where userid=?";
 
@@ -95,8 +98,7 @@ public class MembersDAO {
 			return result;
 		}
 	}
-
-	public int update(MembersDTO dto) throws Exception { // ȸ������ ����
+	public int update(MembersDTO dto) throws Exception { // 회占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 
 		String sql = "update members set pw=?, nickname=?, email=?, phone=?, selfcomment=?, favoritefood=?, where userid=?";
 
@@ -118,7 +120,7 @@ public class MembersDAO {
 		}
 	}
 
-	public int delete(String userId, String pw) throws Exception { // ȸ�� Ż��
+	public int delete(String userId, String pw) throws Exception { // 회占쏙옙 탈占쏙옙
 
 		String sql = "delete from members where userid=? and pw=?";
 
@@ -135,7 +137,7 @@ public class MembersDAO {
 		}
 	}
 
-	public boolean idPwOk(String userId, String pw) throws Exception { // �α���
+	public boolean idPwOk(String userId, String pw) throws Exception { // 占싸깍옙占쏙옙
 
 		String sql = "select * from members where userid=? and pw=?";
 
@@ -162,6 +164,7 @@ public class MembersDAO {
 			pstat.setString(5, classes);
 
 			int result = pstat.executeUpdate();
+			con.commit();
 			return result;
 		}
 
@@ -176,5 +179,36 @@ public class MembersDAO {
 			}
 		}
 
+	}
+
+
+	// 이메일 인증 부분입니다.
+	// 이메일 인증 시 해당 유저가 있는 지 검사
+	public String getUserEmailVerified(String code) throws Exception{
+		String sql = "select * from members";
+		try
+		(Connection con = this.getConnection();
+		PreparedStatement pstat= con.prepareStatement(sql);
+		ResultSet rs = pstat.executeQuery();){
+			while(rs.next()) {
+				String email = rs.getString("email");
+				if(SecurityUtils.sha512(email).equals(code)) {
+					return rs.getString("userid");
+				}
+			}
+			return "";
+		}
+	}
+	
+	public int updateuserEmailChecked(int userno) throws Exception{
+		String sql = "update members set userEmailChecked = 'y' where userno = ?";
+		try
+		(Connection con = this.getConnection();
+		PreparedStatement pstat= con.prepareStatement(sql);){
+			pstat.setInt(1, userno);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
 	}
 }

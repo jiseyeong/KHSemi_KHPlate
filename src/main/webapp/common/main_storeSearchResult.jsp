@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Title</title>
+<title>Main</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -21,14 +21,13 @@
 
 <style>
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
+
 * {
 	box-sizing: border-box;
 	padding: 0px;
 }
 
 .body {
-	padding-left: 30px;
-	padding-top: 10px;
 	margin: auto;
 }
 
@@ -38,13 +37,11 @@
 
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
-
 </head>
 <body>
 	<div class="container-fluid themed-container m-0 g-0">
 		<!-- 헤더부분 건들지 말것 -->
 		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
-
 
 
 		<!-- body 부분 row div 건들지 말것 -->
@@ -54,8 +51,7 @@
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
-				
-				<jsp:include page="/searchResult/searchResult.jsp" flush="false"></jsp:include>
+				<jsp:include page="/common/storeSearchResult.jsp" flush="false"></jsp:include>
 
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
