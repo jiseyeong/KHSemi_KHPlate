@@ -209,7 +209,7 @@ button:hover {
 
 .body2Contents {
    width: 100%;
-   height: 200px;
+   height: 400px;
    border: 1px solid black;
    box-shadow: 1px 1px 5px 1px silver;
    background-color: rgb(240, 240, 240);
