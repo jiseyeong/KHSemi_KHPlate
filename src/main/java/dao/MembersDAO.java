@@ -44,7 +44,8 @@ public class MembersDAO {
 		}
 	}
 
-	public int insert(MembersDTO dto) throws Exception { // ȸ������
+
+	public int insert(MembersDTO dto) throws Exception { // 회占쏙옙占쏙옙占쏙옙
 
 		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,?,default,?,?,?);";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
@@ -68,9 +69,10 @@ public class MembersDAO {
 
 			return result;
 		}
-	}
 
-	public MembersDTO selectById(String userID) throws Exception { // ���������� ���� ���
+	}
+	public MembersDTO selectById(String userID) throws Exception { // 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占�
+
 
 		String sql = "select * from members where userid=?";
 
@@ -96,8 +98,7 @@ public class MembersDAO {
 			return result;
 		}
 	}
-
-	public int update(MembersDTO dto) throws Exception { // ȸ������ ����
+	public int update(MembersDTO dto) throws Exception { // 회占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 
 		String sql = "update members set pw=?, nickname=?, email=?, phone=?, selfcomment=?, favoritefood=?, where userid=?";
 
@@ -119,7 +120,7 @@ public class MembersDAO {
 		}
 	}
 
-	public int delete(String userId, String pw) throws Exception { // ȸ�� Ż��
+	public int delete(String userId, String pw) throws Exception { // 회占쏙옙 탈占쏙옙
 
 		String sql = "delete from members where userid=? and pw=?";
 
@@ -136,7 +137,7 @@ public class MembersDAO {
 		}
 	}
 
-	public boolean idPwOk(String userId, String pw) throws Exception { // �α���
+	public boolean idPwOk(String userId, String pw) throws Exception { // 占싸깍옙占쏙옙
 
 		String sql = "select * from members where userid=? and pw=?";
 

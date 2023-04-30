@@ -1,8 +1,6 @@
 package controllers;
-
 import java.io.IOException;
 import java.util.Properties;
-
 import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -15,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import commons.Gmail;
 import commons.SecurityUtils;
@@ -29,6 +29,7 @@ public class MembersController extends HttpServlet {
 		request.setCharacterEncoding("utf8"); 
 		String cmd = request.getRequestURI();
 		System.out.println(cmd);
+		Gson g = new Gson();
 
 		try {
 			MembersDAO dao = MembersDAO.getInstance();
@@ -62,6 +63,18 @@ public class MembersController extends HttpServlet {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
 				String classes = request.getParameter("classes");
+
+
+				System.out.println(pw);
+
+				int result = dao.join(id,pw,name,email,classes);
+
+				if(result>0) {
+					System.out.println(id +" 회원가입 완료");
+					response.sendRedirect("/main.jsp");
+				}else {
+					System.out.println(id +" 회원가입 실패");
+				}
 
 				if(request.getParameter("id")!=null){
 					id = request.getParameter("id");
@@ -169,6 +182,14 @@ public class MembersController extends HttpServlet {
 
 			}else if(cmd.equals("/memberout.members")) { 
 
+
+				String userId = request.getParameter("userId");
+				String userPw = SecurityUtils.sha512(request.getParameter("loginPw"));
+				
+				int result = dao.delete(userId, userPw);
+				
+				String resp = g.toJson(result);
+				response.getWriter().append(resp);
 
 
 			}else if(cmd.equals("/mypage.members")) { 
