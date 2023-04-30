@@ -170,6 +170,8 @@ public class MembersDAO {
 
 	}
 
+	// 아이디 검사
+	// 일치하지 않을 경우 ID가 틀렸다고 사용자에게 표시
 	public boolean isIdExist(String id) throws Exception {
 		String sql = "select userid from members where userid = ?";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
@@ -180,8 +182,32 @@ public class MembersDAO {
 		}
 
 	}
-
-
+	
+	// 비밀번호 검사 후 로그인 적용
+	// 일치하지 않을 경우 PW가 틀렸다고 사용자에게 표시
+	public boolean isPwExist(String id, String pw) throws Exception {
+		String sql = "select userid from members where userid = ? and pw = ?";
+		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
+			ppst.setString(1, id);
+			ppst.setString(2, pw);
+			try (ResultSet rs = ppst.executeQuery()) {
+				return rs.next();
+			}
+		}
+	}
+	
+	public int getUserno(String id) throws Exception {
+		String sql = "select userno from members where userid = ?";
+		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
+			ppst.setString(1, id);
+			try (ResultSet rs = ppst.executeQuery()) {
+				rs.next();
+				return rs.getInt("userno");
+			}
+		}
+	}
+	
+	
 	// 이메일 인증 부분입니다.
 	// 이메일 인증 시 해당 유저가 있는 지 검사
 	public String getUserEmailVerified(String code) throws Exception{
@@ -200,6 +226,7 @@ public class MembersDAO {
 		}
 	}
 	
+	// 이메일 인증 후 해당 유저의 userEmailChecked 를 y값으로 변경
 	public int updateuserEmailChecked(int userno) throws Exception{
 		String sql = "update members set userEmailChecked = 'y' where userno = ?";
 		try

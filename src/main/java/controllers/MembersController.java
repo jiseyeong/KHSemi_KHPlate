@@ -1,6 +1,7 @@
 package controllers;
 import java.io.IOException;
 import java.util.Properties;
+
 import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -19,6 +20,7 @@ import com.google.gson.Gson;
 import commons.Gmail;
 import commons.SecurityUtils;
 import dao.MembersDAO;
+import dao.StoreDAO;
 import dto.MembersDTO;
 
 
@@ -148,7 +150,7 @@ public class MembersController extends HttpServlet {
 			}else if(cmd.equals("/update.members")) {
 
 				String pw = request.getParameter("pw");
-				String pw2 = SecurityUtils.sha512(pw); 
+				String pw2 = SecurityUtils.sha512(pw);
 				String nickname = request.getParameter("nickname");
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
@@ -179,11 +181,47 @@ public class MembersController extends HttpServlet {
 				request.setAttribute("my",my);
 				request.getRequestDispatcher("/mypage/mypage.jsp").forward(request, response);
 
-			}else if(cmd.equals("/login.members")) { 
-
-			}else if(cmd.equals("/logout.members")) {
-
-			}else if(cmd.equals("/IdCheck.members")) {
+				
+				// 로그인 기능 AJAX
+			}else if(cmd.equals("/login.members")) {
+				String userId = request.getParameter("id");
+				String pw = request.getParameter("password");
+				String EncryptionPw = SecurityUtils.sha512(pw);
+				
+				// ID 체크
+				boolean idCheck = dao.isIdExist(userId);
+				
+				if(!idCheck) {
+					System.out.println("아이디가 틀렸습니다.");
+					response.getWriter().append("1");
+					return;
+				}
+				
+				// 비밀번호 체크
+				boolean pwCheck = dao.isPwExist(userId, EncryptionPw);
+				
+				if(!pwCheck) {
+					System.out.println("비밀번호가 틀렸습니다.");
+					response.getWriter().append("2");
+					return;
+					
+				}else {
+					System.out.println("로그인에 성공하였습니다.");
+					request.getSession().setAttribute("userId", userId);
+					int userno = dao.getUserno(userId);
+					request.getSession().setAttribute("userno", userno);
+					response.getWriter().append("3");
+					return;
+				}
+			}
+				// 로그아웃 시 세션에 저장된 유저넘버와 유저ID를 삭제
+			else if(cmd.equals("/logout.members")) {
+				request.getSession().removeAttribute("userId");
+				request.getSession().removeAttribute("userno");
+				response.sendRedirect("/page/main.jsp");
+			}
+			
+			else if(cmd.equals("/IdCheck.members")) {
 				String id = request.getParameter("id");
 				System.out.println("입력 id = " + id);
 
@@ -192,6 +230,7 @@ public class MembersController extends HttpServlet {
 				request.setAttribute("result", result);
 				request.getRequestDispatcher("/joinform/isIdExist.jsp").forward(request, response);
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
