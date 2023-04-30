@@ -168,7 +168,7 @@ public class MembersDAO {
 	}
 
 	public boolean isIdExist(String id) throws Exception {
-		String sql = "select id from members where id = ?";
+		String sql = "select userid from members where userid = ?";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
 			ppst.setString(1, id);
 			try (ResultSet rs = ppst.executeQuery()) {
