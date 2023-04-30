@@ -56,7 +56,7 @@ public class MembersController extends HttpServlet {
 			
 				// 가입 확인 후 이메일 인증 절차로 보내는 controller
 			if(cmd.equals("/join.members")) {
-				String id = request.getParameter("id");
+				String userid = request.getParameter("id");
 				String pw = request.getParameter("pw");
 				String sha512pw = SecurityUtils.sha512(pw);
 				String name = request.getParameter("name");
@@ -64,7 +64,7 @@ public class MembersController extends HttpServlet {
 				String classes = request.getParameter("classes");
 
 				if(request.getParameter("id")!=null){
-					id = request.getParameter("id");
+					userid = request.getParameter("id");
 				}
 				if(request.getParameter("pw")!=null){
 					pw = request.getParameter("pw");
@@ -75,21 +75,21 @@ public class MembersController extends HttpServlet {
 
 				System.out.println(pw);
 
-				int result = dao.join(id,sha512pw,name,email,classes);
+				int result = dao.join(userid,sha512pw,name,email,classes);
 
 				if(result>0) {
-					System.out.println(id +" 회원가입 완료");
-					request.setAttribute("id", id);
+					System.out.println(userid +" 회원가입 완료");
+					request.setAttribute("userid", userid);
 					request.setAttribute("email", email);
 					request.getRequestDispatcher("/emailSend.members").forward(request, response);
 				}else {
-					System.out.println(id +" 회원가입 실패");
+					System.out.println(userid +" 회원가입 실패");
 				}
 
 
 				// 인증 이메일 보내는 Controller
 			}else if(cmd.equals("/emailSend.members")) {
-				String id = (String) request.getAttribute("email");
+				String userid = (String) request.getAttribute("userid");
 				String email = (String) request.getAttribute("email");
 
 				String host = "http://localhost/";
@@ -130,14 +130,16 @@ public class MembersController extends HttpServlet {
 				// 이메일 전송 완료
 
 				// 이후 가입 완료 페이지 띄우고 이메일 인증 절차 요구
-				response.sendRedirect("/index.jsp");
+				request.setAttribute("userid", userid);
+				request.setAttribute("email", email);
+				request.getRequestDispatcher("/joinform/needEmailVerify.jsp").forward(request, response);
 				
 			}else if(cmd.equals("/emailVerified.members")) {
 				String code = request.getParameter("code");
 				
-				int userno = dao.getUserEmailVerified(code);
+				String userid = dao.getUserEmailVerified(code);
 				
-				if(userno==0) {
+				if(userid.equals("")) {
 					System.out.println("인증실패");
 				}else {
 					System.out.println("인증성공");
@@ -145,7 +147,8 @@ public class MembersController extends HttpServlet {
 //					dao.updateuserEmailChecked(userno);
 					
 					// 이후 인증완료 페이지로 이동
-					response.sendRedirect("/index.jsp");
+					request.setAttribute("userid", userid);
+					request.getRequestDispatcher("/joinform/joinComplete.jsp").forward(request, response);
 				}
 
 			}else if(cmd.equals("/update.members")) { //ȸ������

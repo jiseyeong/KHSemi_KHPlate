@@ -354,6 +354,11 @@ public class StoreController extends HttpServlet {
 				}else if(searchedBy.equals("mapSearch")) {
 					request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
 				}
+			
+			// 즐겨찾기 추가 controller
+			}else if(cmd.equals("/addFavoriteStore.store")) {
+				int addFavorite_storeID = Integer.parseInt(request.getParameter("addFavorite_storeID"));
+				
 			}
 
 		}catch(Exception e) {
