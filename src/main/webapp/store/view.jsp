@@ -97,6 +97,11 @@
 .carousel-inner img {
   margin: auto;
 }
+
+#map {
+    width:100%;
+    height: 40vw;
+} 
 </style>
 </head>
 <body>
@@ -115,14 +120,14 @@
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<!-- 상점 헤더 이미지 -->
 				<div class="row">
-					<div class="col-12 text-center">
+					<div class="col-12" id="imageBox">
 						<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
 							<div class="carousel-inner">
 								<c:choose>
-									<c:when test="${fn:length(imgPathList) > 0}">
-										<c:forEach var="i" items="imgPathList">
+									<c:when test="${fn:length(imgList) > 0}">
+										<c:forEach var="i" items="imgList">
 											<div class="carousel-item active">
-												<img src="i" class="d-block" alt="..."
+												<img src="/store/i.sysName" class="d-block" alt="..."
 													style="height: 500px; object-fit: contain;">
 											</div>
 										</c:forEach>
@@ -151,56 +156,125 @@
 							</button>
 						</div>
 					</div>
-				</div>
-				<!-- 상점 본문 -->
-				<div class="row">
-					<div class="col-12 col-lg-4">
-						<div id="map" class="ratio ratio-1x1"></div>
+					<div class="col-12 text-end">
+						<button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점 수정</button>
+						<button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
+						<button type="submit" id="btn_store_update_cancel" class="nonactive">취소</button>
 					</div>
-					<div class="col-12 col-lg-8">
-						<div class="input-group">
-							<span class="input-group-text">가게 이름</span>
-							<input type="text" class="form-control" name="name" value="${dto.name}" readonly>
+					<div class="col-12 nonactive" id="imageModify">
+						<c:if test="${fn:length(imgList) > 0}">
+							<div class="row">
+								<div class="col-12">
+									<fieldset>
+										<legend>이미지 삭제</legend>
+										<div class="row">
+											<c:forEach var="i" items="imgList">
+												<form action="/deletePhoto.store" method="get">
+													<input type="text" name="imageID" value="${i.imageID}" style="display: none;" readonly>
+													<input type="text" name="storeID" value="${dto.storeID}" style="display: none;" readonly>
+													<div class="col-8">
+														<img src="/store/i.sysName" class="w-100 object-fit-contain">
+													</div>
+													<div class="col-4">
+														<button type="submit" class="btn btn-outline-secondary">삭제</button>
+													</div>
+												</form>
+											</c:forEach>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+						</c:if>
+						<form id="updateForm" action="/update.store" method="post" enctype="multipart/form-data">
+							<input type="text" name="storeID" value="${dto.storeID}" style="display:none;" readonly>
+							<div class="row">
+								<div class="col-12">
+									이미지 추가 등록
+									<button type="button" id="btn_image_add" class="btn btn-outline-secondary">+</button>
+								</div>
+								<div class="col-12">
+									<fieldset>
+										<legend>image list</legend>
+										<!-- 여기에 name이 image0, image1 식의 name으로 file input 추가됨. 보내기 직전 name 태그 붙이기 시작. -->
+										<div id="img_field"></div>
+										<!-- <input type="text" name="imgLength" style="display: none;"> -->
+									</fieldset>
+								</div>
+							</div>
 						</div>
-						<div class="input-group">
-							<span class="input-group-text">가게 카테고리</span>
-							<select name="category" class="form-select" disabled="disabled">
-								<option>한식</option>
-								<option>양식</option>
-								<option>중식</option>
-								<option>일식</option>
-								<option>아시안</option>
-								<option>디저트/음료</option>
-								<option>패스트푸드</option>
-								<option>기타</option>
-							</select>
-						</div>
-						<div class="input-group">
-							<span class="input-group-text">가게 주소</span>
-							<input type="text" class="form-control" name="address" value="${dto.address}" readonly>
-						</div>
-						<div class="row">
-							<div class="col-2">평균 평점</div>
-							<div class="col-10">
-								<div class="star-ratings" style="float:left; width:80%;">
-									<div class="star-ratings-fill space-x-2 text-lg"
-										style="width: ${dto.ratingToPercent()}%;">
-										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-									</div>
-									<div class="star-ratings-base space-x-2 text-lg">
-										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-										${dto.avgScore};
+					</div>
+					<!-- 상점 본문 -->
+					<div class="row">
+						<div class="col-12 col-lg-4">
+							<div id="map"></div>
+							<div class="mapInfo">
+								<input type="text" name="mapLat" value="${dto.lat}" style="display:none;" readonly>
+								<input type="text" name="mapLng" value="${dto.lng}" style="display:none;" readonly>
+								<div class="row">
+									<div class="col-12">
+										<div class="input-group">
+											<span class="input-group-text">거리(M)</span>
+											<input type="text" name="mapDistance" class="form-control" value="${dto.distance}" readonly>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" style="display: none;"> -->
-						<div class="row">
-							<div class="col-12">가게 소개</div>
-							<div class="col-12">
-								<textarea id="intro_editor" name="introduction">${dto.introduction}</textarea>
+						<div class="col-12 col-lg-8">
+							<div class="input-group">
+								<span class="input-group-text">가게 이름</span>
+								<input type="text" class="form-control" name="name" value="${dto.name}" readonly>
 							</div>
-						</div>
+							<div class="input-group">
+								<span class="input-group-text">가게 카테고리</span>
+								<select name="category" class="form-select" disabled="disabled">
+									<option>한식</option>
+									<option>양식</option>
+									<option>중식</option>
+									<option>일식</option>
+									<option>아시안</option>
+									<option>디저트/음료</option>
+									<option>패스트푸드</option>
+									<option>기타</option>
+								</select>
+							</div>
+							<div class="input-group">
+								<span class="input-group-text">1인당 가격범위</span>
+								<select name="priceRange" class="form-select" disabled="disabled">
+									<option>5000이하</option>
+									<option>5000~10000</option>
+									<option>10000~15000</option>
+									<option>15000~20000</option>
+									<option>20000이상</option>
+								</select>
+							</div>
+							<div class="input-group">
+								<span class="input-group-text">가게 주소</span>
+								<input type="text" class="form-control" name="address" value="${dto.address}" readonly>
+							</div>
+							<div class="row">
+								<div class="col-2">평균 평점</div>
+								<div class="col-10">
+									<div class="star-ratings" style="float:left; width:80%;">
+										<div class="star-ratings-fill space-x-2 text-lg"
+											style="width: ${dto.ratingToPercent()}%;">
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+										</div>
+										<div class="star-ratings-base space-x-2 text-lg">
+											<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+											${dto.avgScore};
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" style="display: none;"> -->
+							<div class="row">
+								<div class="col-12">가게 소개</div>
+								<div class="col-12">
+									<textarea id="intro_editor" name="introduction">${dto.introduction}</textarea>
+								</div>
+							</div>
+						</form>
 						<div class="row">
 							<div class="col-12">메뉴</div>
 							<div class="col-12">
@@ -420,8 +494,10 @@
 				
 				<script>
 					//select 카테고리 기본 값 설정
-					let category = "<c:out value='${dto.category}'></c:out>"
-					$("select[name=category]").val(category);
+					let category = "<c:out value='${dto.category}'></c:out>";
+					$("select[name='category']").val(category);
+					let priceRange = "<c:out value='${dto.priceRange}'></c:out>";
+					$("select[name='priceRange']").val(priceRange);
 
 					//별점 버튼 이벤트 등록
 					$(".star a").click(function () {
@@ -462,6 +538,72 @@
 						location.href = "/view.store?storeID="+storeID;
 					});
 
+					$("#btn_store_update").click(function(){
+						$("#btn_store_update_confirm").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
+						$("#btn_store_update_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
+						$(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
+
+						updateOn = true;
+						$("input[name='name']").removeAttr("readonly");
+						$("select[name='category']").removeAttr("disabled");
+						$("select[name='priceRange']").removeAttr("disabled");
+						$("input[name='address']").removeAttr("readonly");
+						myEditor.disableReadOnlyMode("");
+						$("#imageBox").addClass("nonactive");
+						$("#imageModify").removeClass("nonactive");
+					});
+
+					$("#btn_store_update_confirm").click(function(){
+						$("#updateForm").submit();
+					});
+
+					$("#btn_store_update_cancel").click(function(){
+						let storeID = "<c:out value='${dto.storeID}'></c:out>";
+						location.href = "/view.store?storeID="+storeID;
+					});
+					
+
+					//이미지 추가 등록 스크립트
+					let imgs = [];
+					let alreadyImgsLength = "<c:out value='${fn:length(imgList)}'></c:out>"
+                	let maxlength = 5 - alreadyImgsLength;
+                	let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+                	$("#btn_image_add").click(function () {
+                    	if (imgs.length < maxlength) {
+                        	let div = $("<div>"),
+                            	fileInput = $("<input type='file' accept='image/*'>"),
+                            	btn_cancel = $("<button>");
+                        	div.addClass("input-group");
+                        	fileInput.addClass("form-control");
+                        	btn_cancel.addClass("btn");
+                        	btn_cancel.addClass("btn-outline-secondary")
+                        	btn_cancel.append("x");
+                        	div.append(fileInput, btn_cancel);
+                        	$("#img_field").append(div);
+                        	imgs.push(div);
+
+                        	btn_cancel.click(function () {
+                            	imgs.splice(imgs.indexOf(div), 1);
+                            	div.remove();
+                        	});
+                    	}
+                	});
+
+                	$("#updateForm").submit(function (e) {
+                    	// $("input[name=imgLength]").val(imgs.length);
+                    	for (let i = 0; i < imgs.length; i++) {
+                        	// if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
+                        	//     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
+                        	//     return false;
+                        	//} else
+                        	if (!imgs[i].children("input").val().match(imgForms)) {
+                            	alert("이미지 파일만 업로드 가능합니다.");
+                            	return false;
+                        	}
+                        	imgs[i].children("input").attr("name", "image" + i);
+                    	}
+                	})
+
 					var myEditor = null;
 					//에디터 스크립트
 					ClassicEditor
@@ -493,6 +635,7 @@
 					let mapContainer = document.getElementById("map");
 					let lat = "<c:out value='${dto.lat}'></c:out>";
 					let lng = "<c:out value='${dto.lng}'></c:out>";
+					let updateOn = false;
 					let options = {
 						//현재는 학원 좌표인데, 가게 중심 좌표 구해서 해봐야 할 것임.
 						//가게 등록할 때, 마커 등록 시 function(e) -> e.latlan
@@ -507,6 +650,29 @@
 						position: new kakao.maps.LatLng(lat, lng)
 					});
 					marker.setMap(map);
+					kakao.maps.event.addListener(map, "click", function (e) {
+						if(updateOn){
+							if(marker != null){
+								marker.setMap(null);
+							}
+							let pos = e.latLng;
+							marker = new kakao.maps.Marker({
+								position: pos
+							});
+							let lat = pos.toString().split(',')[0].split('(')[1],
+								lng = pos.toString().split(',')[1].split(')')[0];
+							$("input[name=mapLat]").val(lat);
+							$("input[name=mapLng]").val(lng);
+							marker.setMap(map);
+	
+							let dLat = (37.567944388923316 - lat) * (Math.PI/180);
+							let dLng = (126.98295041529863 - lng) * (Math.PI/180);
+							let a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(37.567944388923316 * (Math.PI/180)) * Math.cos(lat * (Math.PI/180)) * Math.sin(dLng/2) * Math.sin(dLng/2);
+							let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+							let d = 6371 * c;
+							$("input[name=mapDistance]").val(Math.round(d * 1000));
+						}
+                	});
 				</script>
 
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->

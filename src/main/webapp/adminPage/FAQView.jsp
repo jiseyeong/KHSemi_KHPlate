@@ -136,9 +136,7 @@
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
 		</div>
-
 		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
 	</div>
-
 </body>
 </html>

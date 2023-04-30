@@ -10,6 +10,7 @@ public class StoreDTO {
 	private double avgScore;
 	private String introduction;
 	private String category;
+	private int reviewCount;
 	private String priceRange;
 
 	public StoreDTO() {
@@ -17,7 +18,7 @@ public class StoreDTO {
 	}
 
 	public StoreDTO(int storeID, int distance, String name, double lat, double lng, String address, double avgScore,
-			String introduction, String category, String priceRange) {
+			String introduction, String category, int reviewCount, String priceRange) {
 		super();
 		this.storeID = storeID;
 		this.distance = distance;
@@ -28,6 +29,7 @@ public class StoreDTO {
 		this.avgScore = avgScore;
 		this.introduction = introduction;
 		this.category = category;
+		reviewCount = reviewCount;
 		this.priceRange = priceRange;
 	}
 
@@ -109,6 +111,14 @@ public class StoreDTO {
 
 	public void setPriceRange(String priceRange) {
 		this.priceRange = priceRange;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 
 	public double ratingToPercent() {

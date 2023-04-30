@@ -37,26 +37,28 @@
 
 /* 하단부터 메인부분 스타일 작성 요망 */
 #toList {
-	width: 250px;
+	width: 150px;
 	height: 50px;
-	background-color: black;
+	background-color: #57b846;
+	border:  #57b846;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-left: 700px;
+	margin-left: 200px;
 	margin-top: 55px;
 	font-size: 20px;
 }
 
 #submitBtn {
-	width: 250px;
+	width: 150px;
 	height: 50px;
-	background-color: black;
+	background-color: #57b846;
+	border:  #57b846;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-left: 900px;
-	margin-top: 55px;
+	margin-left: 50px;
+	margin-top: -50px;
 	font-size: 20px;
 }
 </style>
@@ -108,7 +110,7 @@
 					<div class="row">
 						<div class="col-12 text-center">
 							<input type="button" name="toList" id="toList" value="목록으로">
-							<input type="submit" name="submitBtn" id="submitBtn" value="작성완료">
+							<input type="submit" name="submitBtn" id="submitBtn" value="제출하기">
 						</div>
 					</div>
 				</form>
@@ -138,9 +140,7 @@
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
 		</div>
-
 		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
 	</div>
-
 </body>
 </html>

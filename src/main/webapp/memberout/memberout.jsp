@@ -93,5 +93,20 @@
         </div>
         <div class="lead2"></div>
 	</div>
+	<script>
+	$("#memberout").on("submit",function(){
+		$.ajax({
+			url:"/memberout.members"
+		}).done(function(resp){
+			if(resp == "1") {
+				alert("회원탈퇴가 완료되었습니다.");
+				location.href = "/page/main.jsp";
+			}else if(resp == "0") {
+				alert("비밀번호가 틀립니다.");
+				location.reload();
+			}
+		});
+	})
+	</script>
 </body>
 </html>

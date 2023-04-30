@@ -54,8 +54,8 @@
 					<td colspan=2>이 아이디를 사용하시겠습니까?</td>
 				</tr>
 				<tr>
-					<td><button type="button" id="use">사용하기</button></td>
-					<td><button type="button" id="cancle">닫기</button></td>
+					<td><button type="button" id="use">사용</button></td>
+					<td><button type="button" id="cancle">취소</button></td>
 				<script>
 						$("#use").on("click",function(){
 							opener.idValidFlag= true; //회원가입에 id 중복여부 확인 체크

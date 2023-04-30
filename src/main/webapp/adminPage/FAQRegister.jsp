@@ -42,9 +42,10 @@
 }
 
 #submitBtn {
-	width: 250px;
+	width: 150px;
 	height: 50px;
-	background-color: black;
+	background-color: #57b846;
+	border:  #57b846;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
@@ -81,7 +82,7 @@
 										<div class="col-12">
 											<textarea name="body" id="editor"></textarea>
 										</div>
-										<button type="submit" id="submitBtn">작성완료</button>
+										<button type="submit" id="submitBtn">제출하기</button>
 									</div>
 								</div>
 							</fieldset>
@@ -100,9 +101,7 @@
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
 		</div>
-
 		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
 	</div>
-
 </body>
 </html>

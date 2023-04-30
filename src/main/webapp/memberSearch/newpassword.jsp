@@ -1,170 +1,277 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-    <title>비밀번호 재발급</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<title>비밀번호 재발급</title>
 </head>
 
 <style>
-    * {
-        box-sizing: border-box;
-        margin: auto;
-    }
+
+body{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #000000;
+  background-color: #ED1C16;
+  overflow-x: hidden;
+}
+a {
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+a:hover {
+  text-decoration: none;
+}
+.link {
+  color: #c4c3ca;
+}
+.link:hover {
+  color: #ffeba7;
+}
+p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.7;
+}
+h4 {
+  font-weight: 600;
+}
+
+.section{
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.full-height{
+  min-height: 100vh;
+}
 
 
-    #container {
-        width: 450px;
-        height: 550px;
-        border: solid black;
-        border-width: 4px;
-    }
+.card-3d-wrap {
+  position: relative;
+  width: 440px;
+  max-width: 100%;
+  height: 400px;
+  perspective: 800px;
+  margin-top: 60px;
+}
+.card-3d-wrapper {
+  width: 100%;
+  height: 100%;
+  position:absolute;    
+  top: 0;
+  left: 0;  
+  transition: all 600ms ease-out; 
+}
+.card {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: 300%;
+  position: absolute;
+  border-radius: 6px;
+  left: 0;
+  top: 0;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 
-    #pwwrite {
-        font-size: 25px;
-    }
-
-    #next {
-        font-size: 20px;
-        border: none;
-        background-color: white;
-        font-weight: bold;
-
-    }
-
-    #reset {
-        font-size: 20px;
-        border: none;
-        background-color: white;
-        font-weight: bold;
-
-    }
-
-    table {
-        width: 300px;
-        height: 300px;
-    }
-
-    th {
-        width: 300px;
-        height: 100px;
-    }
-
-
-
-    #name {
-        font-size: 20px;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    #phone {
-        font-size: 20px;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    #id {
-        font-size: 20px;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-    }
-
-    #pwCheck {
-        height: 0%;
-        border: none;
-    }
-
-    #pw1 {
-        width: 100%;
-        height: 100%;
-        font-size: 20px;
-        text-align: center;
-    }
+.center-wrap{
+  position: absolute;
+  width: 100%;
+  padding: 0 35px;
+  top: 50%;
+  left: 0;
+  transform: translate3d(0, -50%, 35px) perspective(100px);
+  z-index: 20;
+  display: block;
+}
 
 
-    #pw2 {
-        width: 100%;
-        height: 100%;
-        font-size: 20px;
-        text-align: center;
-    }
+.form-group{ 
+  position: relative;
+  display: block;
+    margin: 0;
+    padding: 0;
+}
+.form-style {
+  padding: 13px 20px;
+  padding-left: 55px;
+  height: 48px;
+  width: 100%;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  outline: none;
+  color: #c4c3ca;
+  background-color: #f2f2f2;
+  border: none;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
+.form-style:focus,
+.form-style:active {
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}
 
-    .btn {
-        position: relative;
-        top: 100px;
-        left: 80px;
-    }
+.form-group input:-ms-input-placeholder  {
+  color: #c4c3ca;
+  opacity: 0.7;
+  -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+.form-group input::-moz-placeholder  {
+  color: #c4c3ca;
+  opacity: 0.7;
+  -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+.form-group input:-moz-placeholder  {
+  color: #c4c3ca;
+  opacity: 0.7;
+  -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+.form-group input::-webkit-input-placeholder  {
+  color: #c4c3ca;
+  opacity: 0.7;
+  -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+.form-group input:focus:-ms-input-placeholder  {
+  opacity: 0;
+  -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+.form-group input:focus::-moz-placeholder  {
+  opacity: 0;
+  -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+.form-group input:focus:-moz-placeholder  {
+  opacity: 0;
+  -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
+.form-group input:focus::-webkit-input-placeholder  {
+  opacity: 0;
+  -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+}
 
-    .pwclass {
-        margin-top: 90px;
-    }
+.btn{  
+  border-radius: 4px;
+  height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  -webkit-transition : all 200ms linear;
+  transition: all 200ms linear;
+  padding: 0 30px;
+  letter-spacing: 1px;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  text-align: center;
+  border: none;
+  background-color: #57b846;
+  color: #ffffff;
+  box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
+}
+.btn:active,
+.btn:focus{  
+  background-color: #4dae3c;
+  color: #ffffff;
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+.btn:hover{  
+  background-color: #4dae3c;
+  color: #ffffff;
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+
 </style>
 
+
 <body>
+	<form id="frm" action="" method="post">
+	  <div class="section">
+		<div class="container">
+		  <div class="row full-height justify-content-center">
+			<div class="col-12 text-center align-self-center py-5">
+			  <div class="section pb-5 pt-5 pt-sm-2 text-center">
+				<div class="card-3d-wrap mx-auto">
+				  <div class="card-3d-wrapper">
+					<div class="card">
+					  <div class="center-wrap">
+						<div class="section text-center">
+						  <h4 class="mb-4 pb-3">비밀번호 재발급</h4>
+						  <div class="form-group">
+							<input type="password" name="pw1" class="form-style" id="pw1" placeholder="새로운 비밀번호 입력" autocomplete="off"> 
+						  </div>  
+						  <div class="form-group mt-2">
+							<input type="password" id="pw2" name="pw2" class="form-style" placeholder="비밀번호 재입력" autocomplete="off">
+						  </div>
+						  <a href="#" class="btn mt-4">제출하기</a>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+		  </div>
+	  </div>
+
+	
+	</form>
 
 
-    <form id="frm" action="" method="post">
 
-        <div id="container">
-            <table align="center">
-
-                <tr>
-                    <th colspan="2" id="pwwrite">비밀번호 재발급</th>
-                </tr>
-                <div class="pwclass">
-                    <tr>
-
-                        <td>
-                            <input type="password" name="pw1" id="pw1" placeholder="새로운 비밀번호 입력">
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td>
-                            <input type="password" id="pw2" name="pw2" placeholder="비밀번호 다시 입력">
-
-                        </td>
-                    </tr>
-                </div>
-                <td id="pwCheck"></td>
-
-
-                <tr>
-                    <td colspan="2" align="center">
-
-                        <div class="btn">
-                            <button type=button id="reset">다시 입력</button>
-                            <button type=submit id="next" name="next">확인</button>
-                        </div>
-                    </td>
-                </tr>
-        </div>
-        </table>
-
-    </form>
-
+	
 
     <script>
 
-
-
-        $("#reset").on("click", function () { //다시입력 버튼 클릭 시 input창 reset
-            $("input").val("");
-        });
 
         $("#pw2").on(
             "keyup",
@@ -223,7 +330,6 @@
                 }
             })
     </script>
-
 
 </body>
 
