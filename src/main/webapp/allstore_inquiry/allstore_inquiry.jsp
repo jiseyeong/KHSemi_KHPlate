@@ -20,22 +20,15 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- 구글 폰트 API -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Roboto&display=swap" rel="stylesheet">
 
 <style>
 * {
 	box-sizing: border-box;
-	font-family: 'Noto Sans KR', sans-serif;
 	font-family: 'Roboto', sans-serif;
+/* 	font-family: 'Nanum Gothic', sans-serif; */
 }
 
 body {
@@ -216,18 +209,18 @@ img {
 
 .info_layout_left {
 	height: 100%;
-	width: 60%;
+	width: 58%;
 	float: left;
 	padding-top: 10px;
 }
 
 .info_layout_right {
 	height: 100%;
-	width: 40%;
+	width: 42%;
 	float: left;
 	text-align: right;
-	padding-top: 12px;
-	padding-right: 20px;
+	padding-top: 20px;
+	padding-right: 16px;
 }
 
 .restaurant_info {
@@ -235,7 +228,9 @@ img {
 }
 
 .restaurant_name {
-	font-size: 18px;
+	font-size: 20px;
+	color : red;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .restaurant_address {
@@ -251,7 +246,8 @@ img {
 }
 
 .restaurant_category {
-	font-size: 16px;
+	margin-right : 26px;
+	font-size: 14px;
 }
 
 /* 별점 */
@@ -261,7 +257,7 @@ img {
 	width: 100%;
 	height: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 }
 
@@ -578,7 +574,7 @@ hr {
 </head>
 
 <body>
-	<form id="searchForm" action="/searchToMain.store"
+	<form id="searchForm" action="/searchStore.store"
 		onsubmit="return false;">
 		<input type="text" name="searchedBy" value="mapSearch"
 			style="display: none;">
@@ -627,16 +623,16 @@ hr {
 												<div class="info_layout_right">
 													<div class="restaurant_info restaurant_score">
 														<ul class="stars">
-															<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
-															<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
-															<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
-															<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
-															<a class="stars__link"><i
-																class="stars__icon fas fa-star"></i></a>
+															<c:forEach var="scoreCount" begin="0" end="4" step="1">
+																<c:choose>
+																	<c:when test="${i.avgScore>=(scoreCount+0.5)}">
+																		<i class="stars__icon fas fa-star js-clear js-fill"></i>
+																	</c:when>
+																	<c:otherwise>
+																		<i class="stars__icon fas fa-star js-clear"></i>
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach>
 														</ul>
 													</div>
 													<p class="restaurant_info restaurant_category">#${i.category}</p>
@@ -669,7 +665,7 @@ hr {
 
 
 				<!-- 정렬 팝업 창 (SlideToggle)-->
-				<form action="/searchToMain.store" onsubmit="return false;">
+				<form action="/searchStore.store" onsubmit="return false;">
 					<input type="text" name="searchedBy" value="mapSearch"
 						style="display: none;">
 					<div id="sort_layout" style="display: none;">
