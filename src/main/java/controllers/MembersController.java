@@ -1,8 +1,6 @@
 package controllers;
-
 import java.io.IOException;
 import java.util.Properties;
-
 import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -15,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import commons.Gmail;
 import commons.SecurityUtils;
@@ -29,6 +29,7 @@ public class MembersController extends HttpServlet {
 		request.setCharacterEncoding("utf8"); 
 		String cmd = request.getRequestURI();
 		System.out.println(cmd);
+		Gson g = new Gson();
 
 		try {
 			MembersDAO dao = MembersDAO.getInstance();
@@ -187,10 +188,8 @@ public class MembersController extends HttpServlet {
 				
 				int result = dao.delete(userId, userPw);
 				
-				if(result > 0) {
-					response.sendRedirect("/page/main.jsp");
-				}
-				
+				String resp = g.toJson(result);
+				response.getWriter().append(resp);
 
 
 			}else if(cmd.equals("/mypage.members")) { 

@@ -116,18 +116,13 @@
          	 <img src="logowhite.png" class="logoimage">
         </div>
         <div class="col-12 col-lg-6  d-flex search">
-<<<<<<< HEAD
-            <form action="/search.store" method="get" class="form">
-            <select size="1" id="searchCheck" class="nanum-gothic"> 
+           <form action="/searchToMain.store" method="get" class="form">
+            <select size="1" id="searchCheck" class="nanum-gothic" name="searchSelect"> 
         		<option>맛집</option>
         		<option>블로그</option>
     		</select>
-                <input type="search" id="searchBox">
-=======
-            <form action="/searchToMain.store" method="get" class="form">
             	<input type="text" name="searchedBy" value="mainSearch" style="display:none;">
                 <input type="search" id="searchBox" name="search">
->>>>>>> c4fa5354a88bd6bc574ab073ad950009c854b9fa
                 <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
                 </button>
             </form>
