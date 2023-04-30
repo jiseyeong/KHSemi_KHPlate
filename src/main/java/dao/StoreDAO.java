@@ -405,6 +405,19 @@ public class StoreDAO {
 				return result;
 			}
 	}
+	
+	public int deleteFavoriteStore(int storeID, int userno) throws Exception {
+		String sql = "delete from favoritepage where storeID = ? and userno = ?";
+			try(	Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, storeID);
+				pstat.setInt(2, userno);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+	}
 
 	// 기타 맛집 검색 SQL (예비)
 	//	public List<StoreDTO> searchStore(String search, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception{

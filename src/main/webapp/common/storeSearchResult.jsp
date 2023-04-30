@@ -558,9 +558,10 @@ hr {
 															<div class="restaurant_addFavorite">
 																<input type="text" name="addFavorite_storeID"
 																	val="${search_store_list.get(index).storeID}"
+																	style="display: none;"> 
+																<input type="text"
+																	name="addFavorite_userno" val="${userno}"
 																	style="display: none;">
-																<input type="text" name="addFavorite_userno"
-																	val="${userno}" style="display: none;">
 																<button class="addFavorite_btn">
 																	<i class="fa-regular fa-heart"></i>
 																</button>
@@ -605,9 +606,8 @@ hr {
 															<div class="restaurant_addFavorite">
 																<input type="text" name="addFavorite_storeID"
 																	val="${search_store_list.get(index).storeID}"
-																	style="display: none;">
-																<input type="text" name="addFavorite_userno"
-																	val="${userno}"
+																	style="display: none;"> <input type="text"
+																	name="addFavorite_userno" val="${userno}"
 																	style="display: none;">
 																<button class="addFavorite_btn">
 																	<i class="fa-regular fa-heart"></i>
@@ -1044,38 +1044,56 @@ hr {
 		
 		
 		// 즐겨찾기 등록 버튼
-		$(".addFavorite_btn").on("click",function(){
-			$.ajax({
-				url:"/addFavoriteStore.store",
-				type:"post",
-				data:{
-					addFavorite_storeID:$(this).prev().val()
-				},
-				success: function(response) {
-					console.log("[response] : " + response);
-					console.log("");    				
-				},
-				/* 에러 확인 부분 */
-				error: function(xhr) {
-					console.log("[error] : " + xhr);
-					console.log("");    				
+		$(function(){
+			let addFavoriteStoreCheck = false;
+			$(".addFavorite_btn").on("click",function(){
+				if(addFavoriteStoreCheck==false){
+					$.ajax({
+						url:"/addFavoriteStore.store",
+						type:"post",
+						data:{
+							storeID:$(this).prev().prev().val(),
+							userno:$(this).prev().val()
+						},
+						success: function(response) {
+							console.log("[response] : " + response);
+						},
+						error: function(xhr) {
+							console.log("[error] : " + xhr);
+						}
+					}).done(function(resp){
+						if(resp=="true"){
+							addFavoriteStoreCheck = true;
+							$(this).css({
+								"background-color":"red"
+							})
+						}
+					})
+				}else{
+					$.ajax({
+						url:"/deleteFavoriteStore.store",
+						type:"post",
+						data:{
+							storeID:$(this).prev().prev().val(),
+							userno:$(this).prev().val()
+						},
+						success: function(response) {
+							console.log("[response] : " + response);
+						},
+						error: function(xhr) {
+							console.log("[error] : " + xhr);
+						}
+					}).done(function(resp){
+						if(resp=="true"){
+							addFavoriteStoreCheck = false;
+							$(this).css({
+								"background-color":"white"
+							})
+						}
+					})
 				}
-			}).done({
-				
-			})
-		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			});
+		})
 		
 		
 		

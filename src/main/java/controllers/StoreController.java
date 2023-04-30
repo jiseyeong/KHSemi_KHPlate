@@ -357,8 +357,23 @@ public class StoreController extends HttpServlet {
 			
 			// 즐겨찾기 추가 controller
 			}else if(cmd.equals("/addFavoriteStore.store")) {
-				int addFavorite_storeID = Integer.parseInt(request.getParameter("addFavorite_storeID"));
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				int userno = (int) request.getSession().getAttribute("userno");
 				
+				int result = StoreDAO.getInstance().addFavoriteStore(storeID, userno);
+				if(result>0) {
+					System.out.println("즐찾 등록 성공");
+					response.getWriter().append("true");
+				}
+			}else if(cmd.equals("/deleteFavoriteStore.store")) {
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				int userno = (int) request.getSession().getAttribute("userno");
+				
+				int result = StoreDAO.getInstance().addFavoriteStore(storeID, userno);
+				if(result>0) {
+					System.out.println("즐찾 해제 성공");
+					response.getWriter().append("true");
+				}
 			}
 
 		}catch(Exception e) {
