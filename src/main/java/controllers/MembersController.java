@@ -124,6 +124,8 @@ public class MembersController extends HttpServlet {
 				request.setAttribute("email", email);
 				request.getRequestDispatcher("/joinform/needEmailVerify.jsp").forward(request, response);
 				
+				
+				// 인증 이메일 링크 접속 시 controller 수행
 			}else if(cmd.equals("/emailVerified.members")) {
 				String code = request.getParameter("code");
 				
@@ -141,10 +143,8 @@ public class MembersController extends HttpServlet {
 					request.getRequestDispatcher("/joinform/joinComplete.jsp").forward(request, response);
 				}
 
-			}else if(cmd.equals("/update.members")) { //ȸ������
-
-			}if(cmd.equals("/join.members")) { 
-
+				
+				
 			}else if(cmd.equals("/update.members")) {
 
 				String pw = request.getParameter("pw");
