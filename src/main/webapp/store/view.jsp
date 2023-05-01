@@ -443,44 +443,6 @@
 											</div>
 										</div>
 									</div>
-									<script>
-										let reviewImgs = [];
-										let review_maxlength = 3;
-										let imgForms2 = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-										$("#btn_review_image_add").click(function () {
-											if (reviewImgs.length < review_maxlength) {
-												let div = $("<div>"),
-													fileInput = $("<input type='file' accept='image/*'>"),
-													btn_cancel = $("<button>");
-												div.addClass("input-group");
-												fileInput.addClass("form-control");
-												btn_cancel.addClass("btn");
-												btn_cancel.addClass("btn-outline-secondary")
-												btn_cancel.append("x");
-												div.append(fileInput, btn_cancel);
-												$("#review_img_field").append(div);
-												imgs.push(div);
-												btn_cancel.click(function () {
-													imgs.splice(imgs.indexOf(div), 1);
-													div.remove();
-												});
-											}
-										});
-										$("#createCommentForm").submit(function (e) {
-											// $("input[name=imgLength]").val(imgs.length);
-											for (let i = 0; i < reviewImgs.length; i++) {
-												// if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
-												//     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
-												//     return false;
-												//} else
-												if (!reviewImgs[i].children("input").val().match(imgForms2)) {
-													alert("이미지 파일만 업로드 가능합니다.");
-													return false;
-												}
-												reviewImgs[i].children("input").attr("name", "image" + i);
-											}
-										});
-									</script>
 								</form>
 								<c:if test="${fn:length(commentList) > 0}">
 									<div class="col-12">한줄 리뷰 목록</div>
@@ -546,8 +508,8 @@
 												});
 											</script>
 
-											<form id="updateCommentForm${i}" action="/update.commentReview" method="post"
-												enctype="multipart/form-data">
+											<form id="updateCommentForm${i}" action="/update.commentReview"
+												method="post" enctype="multipart/form-data">
 												<input type="text" name="storeID" value="${dto.storeID}"
 													style="display: none;">
 												<div id="writeStar${i}" class="col-12 star nonactive">
@@ -678,7 +640,7 @@
 																let reviewImgs = [];
 																let review_maxlength = 3;
 																let imgForms2 = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-																$("#btn_review_image_add"+i).click(function () {
+																$("#btn_review_image_add" + i).click(function () {
 																	if (reviewImgs.length < review_maxlength) {
 																		let div = $("<div>"),
 																			fileInput = $("<input type='file' accept='image/*'>"),
@@ -689,15 +651,15 @@
 																		btn_cancel.addClass("btn-outline-secondary")
 																		btn_cancel.append("x");
 																		div.append(fileInput, btn_cancel);
-																		$("#review_img_field"+i).append(div);
-																		imgs.push(div);
+																		$("#review_img_field" + i).append(div);
+																		reviewImgs.push(div);
 																		btn_cancel.click(function () {
-																			imgs.splice(imgs.indexOf(div), 1);
+																			reviewImgs.splice(reviewImgs.indexOf(div), 1);
 																			div.remove();
 																		});
 																	}
 																});
-																$("#updateCommentForm"+i).submit(function (e) {
+																$("#updateCommentForm" + i).submit(function (e) {
 																	// $("input[name=imgLength]").val(imgs.length);
 																	for (let i = 0; i < reviewImgs.length; i++) {
 																		// if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
@@ -839,6 +801,43 @@
 											return false;
 										}
 										imgs[i].children("input").attr("name", "image" + i);
+									}
+								});
+
+								let reviewImgs = [];
+								let review_maxlength = 3;
+								let imgForms2 = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+								$("#btn_review_image_add").click(function () {
+									if (reviewImgs.length < review_maxlength) {
+										let div = $("<div>"),
+											fileInput = $("<input type='file' accept='image/*'>"),
+											btn_cancel = $("<button>");
+										div.addClass("input-group");
+										fileInput.addClass("form-control");
+										btn_cancel.addClass("btn");
+										btn_cancel.addClass("btn-outline-secondary")
+										btn_cancel.append("x");
+										div.append(fileInput, btn_cancel);
+										$("#review_img_field").append(div);
+										reviewImgs.push(div);
+										btn_cancel.click(function () {
+											reviewImgs.splice(reviewImgs.indexOf(div), 1);
+											div.remove();
+										});
+									}
+								});
+								$("#createCommentForm").submit(function (e) {
+									// $("input[name=imgLength]").val(imgs.length);
+									for (let i = 0; i < reviewImgs.length; i++) {
+										// if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
+										//     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
+										//     return false;
+										//} else
+										if (!reviewImgs[i].children("input").val().match(imgForms2)) {
+											alert("이미지 파일만 업로드 가능합니다.");
+											return false;
+										}
+										reviewImgs[i].children("input").attr("name", "image" + i);
 									}
 								});
 
