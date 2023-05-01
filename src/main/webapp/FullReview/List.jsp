@@ -61,28 +61,89 @@
 	-webkit-overflow-scrolling: touch;
 }
 
-
 .card {
-	margin:auto;
-	width:30%;
-	margin-bottom:30px;
+	margin-right:30px;
+	width: 30%;
+	margin-bottom: 30px;
 }
 
-.btnBox{
-	height:100px;
-	padding-left:80%;
+.btnBox {
+	height: 100px;
+	padding-left: 80%;
 }
 
-.writeBtn{
-	width:100px;
-	height:95px;
+.writeBtn {
+	width: 100px;
+	height: 95px;
 }
 
-.writeBtn:hover{
-	cursor:pointer;
+.writeBtn:hover {
+	cursor: pointer;
 }
 
+/* 네비게이터 영역 */
+.navigator {
+	border: 1px solid black;
+	height: 60px;
+	width: 100%;
+	text-align: center;
+	margin: 20px auto 0 auto;
+	padding: 10px 0px 10px;
+	background-color: rgba(255, 255, 255, 0.9);
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	border-top: 1px solid #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	justify-content: center
+}
 
+.navigator_list {
+	list-style-type: none;
+	padding-right: 50px;
+	margin: 0px;
+	display: flex;
+	justify-content: right;
+	align-items: center;
+}
+
+.navigator_list_item {
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.navigator_list_item_btn_layout {
+	border: 1px solid rgb(178, 178, 178);
+	width: 30px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.item {
+	font-size: 15px;
+	text-decoration: none;
+}
+
+.navigator_direction_btn {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	right: 0px;
+	font-size: 15px;
+	background-color: white;
+	border: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -92,99 +153,116 @@
 	<div class="album py-5 bg-light">
 		<div class="container">
 
-			<div class="btnBox"><img src="/FullReview/writeBtn.png" class="writeBtn"></div>
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="padding-top:40px;">
-					
-					
-					<div class="card">
-						<div class="reviewId">리뷰 ID</div>
-						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<div class="title">여긴 제목란</div>
-							<div class="writer">여긴 작성자</div>
-							<div class="stars">여긴 평점란</div>
-						</div>
-					</div>
-					<div class="card">
-					<div class="reviewId">리뷰 ID</div>
-						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<div class="title">여긴 제목란</div>
-							<div class="writer">여긴 작성자</div>
-							<div class="stars">여긴 평점란</div>
-						</div>
-					</div>
-					<div class="card">
-					<div class="reviewId">리뷰 ID</div>
-						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<div class="title">여긴 제목란</div>
-							<div class="writer">여긴 작성자</div>
-							<div class="stars">여긴 평점란</div>
-						</div>
-					</div>
-					
-					<div class="card">
-					<div class="reviewId">리뷰 ID</div>
-						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<div class="title">여긴 제목란</div>
-							<div class="writer">여긴 작성자</div>
-							<div class="stars">여긴 평점란</div>
-						</div>
-					</div>
-					<div class="card">
-					<div class="reviewId">리뷰 ID</div>
-						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<div class="title">여긴 제목란</div>
-							<div class="writer">여긴 작성자</div>
-							<div class="stars">여긴 평점란</div>
-						</div>
-					</div>
-					<div class="card">
-					<div class="reviewId">리뷰 ID</div>
-						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<div class="title">여긴 제목란</div>
-							<div class="writer">여긴 작성자</div>
-							<div class="stars">여긴 평점란</div>
-						</div>
-					</div>
-					
-					<div class="card">
-					<div class="reviewId">리뷰 ID</div>
-						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<div class="title">여긴 제목란</div>
-							<div class="writer">여긴 작성자</div>
-							<div class="stars">여긴 평점란</div>
-						</div>
-					</div>
-					<div class="card">
-					<div class="reviewId">리뷰 ID</div>
-						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<div class="title">여긴 제목란</div>
-							<div class="writer">여긴 작성자</div>
-							<div class="stars">여긴 평점란</div>
-						</div>
-					</div>
-					<div class="card">
-					<div class="reviewId">리뷰 ID</div>
-						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<div class="title">여긴 제목란</div>
-							<div class="writer">여긴 작성자</div>
-							<div class="stars">여긴 평점란</div>
-						</div>
-					</div>
+			<div class="btnBox">
+				<img src="/FullReview/writeBtn.png" class="writeBtn">
 			</div>
-			
-			
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+				style="padding-top: 40px;">
+
+				<c:choose>
+					<c:when test="${FullReviewList!=null}">
+						<c:forEach var="i" items="${FullReviewList}">
+							<div class="card">
+								<div class="reviewId">${i.reviewID}</div>
+								<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
+								<div class="card-body">
+									<div class="title">${i.title}</div>
+									<div class="writer">${i.userNO}</div>
+									<div class="stars">${i.score}</div>
+								</div>
+							</div>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<div>표시할 내용 없음</div>
+					</c:otherwise>
+				</c:choose>
+
+				<!-- 				<div class="card"> -->
+				<!-- 					<div class="reviewId">리뷰 ID</div> -->
+				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
+				<!-- 					<div class="card-body"> -->
+				<!-- 						<div class="title">여긴 제목란</div> -->
+				<!-- 						<div class="writer">여긴 작성자</div> -->
+				<!-- 						<div class="stars">여긴 평점란</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+				<!-- 				<div class="card"> -->
+				<!-- 					<div class="reviewId">리뷰 ID</div> -->
+				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
+				<!-- 					<div class="card-body"> -->
+				<!-- 						<div class="title">여긴 제목란</div> -->
+				<!-- 						<div class="writer">여긴 작성자</div> -->
+				<!-- 						<div class="stars">여긴 평점란</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+
+				<!-- 				<div class="card"> -->
+				<!-- 					<div class="reviewId">리뷰 ID</div> -->
+				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
+				<!-- 					<div class="card-body"> -->
+				<!-- 						<div class="title">여긴 제목란</div> -->
+				<!-- 						<div class="writer">여긴 작성자</div> -->
+				<!-- 						<div class="stars">여긴 평점란</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+				<!-- 				<div class="card"> -->
+				<!-- 					<div class="reviewId">리뷰 ID</div> -->
+				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
+				<!-- 					<div class="card-body"> -->
+				<!-- 						<div class="title">여긴 제목란</div> -->
+				<!-- 						<div class="writer">여긴 작성자</div> -->
+				<!-- 						<div class="stars">여긴 평점란</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+				<!-- 				<div class="card"> -->
+				<!-- 					<div class="reviewId">리뷰 ID</div> -->
+				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
+				<!-- 					<div class="card-body"> -->
+				<!-- 						<div class="title">여긴 제목란</div> -->
+				<!-- 						<div class="writer">여긴 작성자</div> -->
+				<!-- 						<div class="stars">여긴 평점란</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+
+				<!-- 				<div class="card"> -->
+				<!-- 					<div class="reviewId">리뷰 ID</div> -->
+				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
+				<!-- 					<div class="card-body"> -->
+				<!-- 						<div class="title">여긴 제목란</div> -->
+				<!-- 						<div class="writer">여긴 작성자</div> -->
+				<!-- 						<div class="stars">여긴 평점란</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+				<!-- 				<div class="card"> -->
+				<!-- 					<div class="reviewId">리뷰 ID</div> -->
+				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
+				<!-- 					<div class="card-body"> -->
+				<!-- 						<div class="title">여긴 제목란</div> -->
+				<!-- 						<div class="writer">여긴 작성자</div> -->
+				<!-- 						<div class="stars">여긴 평점란</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+				<!-- 				<div class="card"> -->
+				<!-- 					<div class="reviewId">리뷰 ID</div> -->
+				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
+				<!-- 					<div class="card-body"> -->
+				<!-- 						<div class="title">여긴 제목란</div> -->
+				<!-- 						<div class="writer">여긴 작성자</div> -->
+				<!-- 						<div class="stars">여긴 평점란</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+			</div>
+
+			<div class="navigator"
+				style="position: relative; width: 100%; border: 0px;">
+				<hr>
+				<ul class="navigator_list">${FullReviewNavi}</ul>
+			</div>
+
 		</div>
 	</div>
-	
+
 	<script>
 		$(".writeBtn").on("click",function(){
 			location.href="/FullReview/writeFullReview.jsp";
