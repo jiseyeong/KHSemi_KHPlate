@@ -37,6 +37,9 @@
         .logo{
         	text-align:center;
         	padding-top:5px;
+        	
+/*         	로고에 클릭 포인터 추가 */
+        	cursor:pointer;
         }
 		.logoimage{
 			height:90%;
@@ -113,10 +116,12 @@
 <body>
     <div class="row header m-0" style="margin-bottom:70px;">
         <div class="col-12 col-lg-3 themed-grid-col logo">
-         	 <img src="logowhite.png" class="logoimage">
+<!--         	다른 페이지에서도 정상 표시되기 위한 이미지 절대 경로로 지정 -->
+         	 <img src="/page/logowhite.png" class="logoimage">
         </div>
         <div class="col-12 col-lg-6  d-flex search">
-           <form action="/searchToMain.store" method="get" class="form">
+           <form action="/searchStoreBySearchBox.store" method="get" class="form">
+							
             <select size="1" id="searchCheck" class="nanum-gothic" name="searchSelect"> 
         		<option>맛집</option>
         		<option>블로그</option>
@@ -129,14 +134,36 @@
         </div>
         <div class="col-12 col-lg-3 themed-grid-col d-flex rightMenu">
             <div class="btnBox">
-         <a href="#null" class="nanum-gothic" >로그인 </a>
-          <a href="#null" class="nanum-gothic" >｜</a>
-         <a href="#null" class="nanum-gothic" >회원가입</a>
-         <a href="#null" class="nanum-gothic" >｜</a>
-		 <a href="#null" class="nanum-gothic" >마이페이지</a>
-        </div>
+<!--             <a href="#null" class="nanum-gothic" >로그인 </a> -->
+<!-- 	          <a href="#null" class="nanum-gothic" >｜</a> -->
+<!-- 	         <a href="#null" class="nanum-gothic" >회원가입</a> -->
+<!-- 	         <a href="#null" class="nanum-gothic" >｜</a> -->
+<!-- 			 <a href="#null" class="nanum-gothic" >마이페이지</a> -->
+           	<c:choose>
+           		<c:when test="${userno==null}">
+	           		<a href="/login/login.jsp" class="nanum-gothic" >로그인 </a>
+			          <a href="#null" class="nanum-gothic" >｜</a>
+			         <a href="/joinform/joinform.jsp" class="nanum-gothic" >회원가입</a>
+           		</c:when>
+           		<c:otherwise>
+	           		<a href="/logout.members" class="nanum-gothic" >로그아웃 </a>
+			          <a href="#null" class="nanum-gothic" >｜</a>
+					 <a href="/mypage/mypage.jsp" class="nanum-gothic" >마이페이지</a>
+           		</c:otherwise>
+           	</c:choose>
+        	</div>
         </div>
     </div>
+    
+    <script>
+    
+    // 로고 클릭 시 메인페이지 이동
+   	$(".logo").on("click",function(){
+   		location.href = "/page/main.jsp";
+   	})
+    
+    </script>
+    
 </body>
 
 </html>

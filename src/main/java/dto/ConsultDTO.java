@@ -10,12 +10,15 @@ public class ConsultDTO {
 	private int userNO;
 	private Timestamp writedate;
 	private String category;
+	private String reply;
 
 	public ConsultDTO() {
 		super();
 	}
 
-	public ConsultDTO(int consultID, String title, String body, int userNO, Timestamp writedate, String category) {
+
+	public ConsultDTO(int consultID, String title, String body, int userNO, Timestamp writedate, String category,
+			String reply) {
 		super();
 		this.consultID = consultID;
 		this.title = title;
@@ -23,7 +26,10 @@ public class ConsultDTO {
 		this.userNO = userNO;
 		this.writedate = writedate;
 		this.category = category;
+		this.reply = reply;
 	}
+
+
 
 	public int getConsultID() {
 		return consultID;
@@ -72,5 +78,14 @@ public class ConsultDTO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+	public String getReply() {
+		return reply;
+	}
+
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
+
 
 }
