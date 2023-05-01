@@ -21,6 +21,8 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}/*나눔고딕 폰트 import */
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 * {
 	box-sizing: border-box;
@@ -36,30 +38,41 @@
 }
 
 /* 하단부터 메인부분 스타일 작성 요망 */
+p{font-weight:bold;}
+
+.row>div>select{font-size:12px;}
+.row>div>input{font-size:12px;}
+.writeBody>div{
+	margin-left:auto;
+	margin-right:auto;
+}
+.ck-editor__editable_inline {
+    min-height: 400px;
+}
+#input_image{width:100%}
 #toList {
-	width: 150px;
-	height: 50px;
+	width: 100px;
+	height: 40px;
 	background-color: #57b846;
 	border:  #57b846;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-left: 200px;
-	margin-top: 55px;
-	font-size: 20px;
+	font-size: 14px;
+	margin-right:20px;
+	box-shadow:1px 1px 5px 1px silver;
 }
 
 #submitBtn {
-	width: 150px;
-	height: 50px;
+	width: 100px;
+	height: 40px;
 	background-color: #57b846;
 	border:  #57b846;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-left: 50px;
-	margin-top: -50px;
-	font-size: 20px;
+	font-size: 14px;
+	box-shadow:1px 1px 5px 1px silver;
 }
 </style>
 </head>
@@ -75,42 +88,43 @@
 			<!-- sideBar부분 건들지 말것 -->
 			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
 
-			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
+			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents" style="padding-left:100px; padding-right:100px;">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<form id="myForm" action="/register.consult" method="post" enctype="multipart/form-data">
-					<fieldset>
-						<legend>Customer Service Page</legend>
-						<div class="row">
-							<div class="col-12 col-lg-3">
-								<select class="form-select" name="category">
+					<p class="nanum-gothic">Customer Service Page</p>
+					<hr>
+					<br>
+						<div class="row writeHeader" style="margin-bottom:20px;">	
+							<div class="col-12 col-lg-1" style="margin-left:auto;">
+								<select class="nanum-gothic form-select" name="category">
 									<option>문의</option>
 									<option>신고</option>
 									<option>건의</option>
 								</select>
 							</div>
-							<div class="col-12 col-lg-9">
-								<input type="text" name="title" class="form-control" placeholder="제목을 입력해주세요.">
+							<div class="col-12 col-lg-7" style="margin-right:auto;">
+								
+								<input type="text" name="title" class="nanum-gothic form-control" placeholder="제목을 입력해주세요.">
 							</div>
 							<input type="text" name="writer" id="writer" value="${sessionScope.loginNo}" style="display: none;">
 						</div>
-						<div class="row">
-							<div class="col-12 col-lg-3">
-								<div class="col-12">
-									<img src="#none" alt="#none" id="image" class="w-100 object-fit-contain">
-								</div>
-								<div class="col-12">
-									<input id="input_image" name="img" type="file" accept="image/*" class="form-control">
-								</div>
-							</div>
-							<div class="col-12 col-lg-9">
+						<div class="row writeBody">
+							<div class="col-12 col-lg-8">
 								<textarea name="body" id="editor"></textarea>
 							</div>
 						</div>
-					</fieldset>
-					<div class="row">
-						<div class="col-12 text-center">
-							<input type="button" name="toList" id="toList" value="목록으로">
-							<input type="submit" name="submitBtn" id="submitBtn" value="제출하기">
+					<div class="row file" style="margin-top:20px;">
+						<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+							<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+								<img src="#none" alt="#none" id="image" class="w-100 object-fit-contain" style="display:none; margin-bottom:20px;">
+								<input id="input_image" name="img" type="file" accept="image/*" class="nanum-gothic form-control" style="font-size:13px;">
+							</div>
+							</div>
+					</div>
+					<div class="row" style="margin-top:80px;">
+						<div class="col-12 col-lg-8 text-center" style="margin-left:auto; margin-right:auto;">
+							<input type="button" name="toList" id="toList" value="목록으로" class="nanum-gothic">
+							<input type="submit" name="submitBtn" id="submitBtn" value="제출하기" class="nanum-gothic">
 						</div>
 					</div>
 				</form>
@@ -135,6 +149,7 @@
 							$("#image").attr("src", e.target.result);
 						}
 						fReader.readAsDataURL(input.files[0]);
+						$("#image").css("display","block");
 					});
 				</script>
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->

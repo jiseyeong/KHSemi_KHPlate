@@ -555,7 +555,7 @@ $(".forgetpass").on("click", function() {
 			type : "post",
 			data : {
 				id : $("#id").val(),
-				password : $("#pw").val()
+				password : $("#password").val()
 			}
 		}).done(function(resp) {
 			if (resp == "1") {

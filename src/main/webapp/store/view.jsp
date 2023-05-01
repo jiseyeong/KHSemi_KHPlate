@@ -407,10 +407,10 @@
 							<!-- 리뷰 -->
 							<div class="row">
 								<div class="col-12">한줄 리뷰 추가</div>
-								<form id="createCommentForm" action="/crate.commentReview" method="post"
+								<form id="createCommentForm" action="/create.commentReview" method="post"
 									enctype="multipart/form-data">
 									<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
-									<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)"
+									<input type="text" name="userNo" value="${sessionScope.userno}"
 										style="display: none;">
 									<div class="col-12">
 										이미지 등록
