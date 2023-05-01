@@ -491,6 +491,12 @@ public class StoreController extends HttpServlet {
 					response.getWriter().append("true");
 				}
 			}
+			
+			//즐겨찾기 조회 controller
+			else if(cmd.equals("/selectFavoriteStore.store")) {
+				String userid = request.getParameter("userid");
+				FavoriteStoreDAO.getInstance().
+			}
 
 		}catch(Exception e) {
 			e.printStackTrace();
