@@ -88,5 +88,13 @@ public class FavoriteStoreDAO {
 		}
 	}
 	
-	
+	public int selectFavoriteStore(String userid) throws Exception {
+		String sql = "select * from favoritepage where u";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			
+		}
+	}
+		
 }

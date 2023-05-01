@@ -233,9 +233,9 @@ public class MembersDAO {
 		PreparedStatement pstat= con.prepareStatement(sql);
 		ResultSet rs = pstat.executeQuery();){
 			while(rs.next()) {
-				String email = rs.getString("email");
-				if(SecurityUtils.sha512(email).equals(code)) {
-					return rs.getString("userid");
+				String userid = rs.getString("userid");
+				if(SecurityUtils.sha512(userid).equals(code)) {
+					return userid;
 				}
 			}
 			return "";
