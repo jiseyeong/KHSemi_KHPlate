@@ -47,10 +47,9 @@
 
 
 .legend {
-color: #ED1C16;
+color: #57b846;
 font-size: 25px;
 font-weight: bold;
-margin-bottom: 25px;
 }
 
 #btn_reply {
@@ -63,6 +62,9 @@ margin-bottom: 25px;
 	color: white;
 	margin-top: 50px;
 	font-size: 20px;
+	margin-left: auto; 
+	margin-right:auto;
+
 }
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
@@ -84,6 +86,9 @@ margin-bottom: 25px;
 				<fieldset style="margin-bottom:50px">
 					<div class="row">
 						<legend class="legend">고객의 소리</legend>
+            
+						<hr style="border-style:dotted; margin-bottom:25px;">
+
 					<div class="row">
 						<div class="col-12 col-lg-3">
 							<div class="input-group">
@@ -118,6 +123,9 @@ margin-bottom: 25px;
 					<c:when test="${not empty replyDTO}">
 						<fieldset>
 							<legend class="legend">답글</legend>
+              
+							<hr style="border-style:dotted; margin-bottom:25px;">
+
 							<div class="row">
 								<div class="col-12 col-lg-9">
 									<div class="input-group">
@@ -151,8 +159,10 @@ margin-bottom: 25px;
 					</c:when>
 					<c:otherwise>
 						<c:if test="sessionScope.loginIsAdmin">
+							<div class="col-12 text-center">
 							<a href="/replyForm.consult?consultID=${dto.consultID}">
 								<button type="button" id="btn_reply">답글달기</button></a>
+							</div>
 						</c:if>
 					</c:otherwise>
 				</c:choose>

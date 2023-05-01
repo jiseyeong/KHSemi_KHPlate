@@ -46,10 +46,9 @@
 }
 
 .legend {
-color: #ED1C16;
+color: #57b846;
 font-size: 25px;
 font-weight: bold;
-margin-bottom: 25px;
 }
 
 #submitBtn {
@@ -62,6 +61,9 @@ margin-bottom: 25px;
 	color: white;
 	margin-top: 50px;
 	font-size: 20px;
+  margin-left: auto; 
+	margin-right:auto;
+
 }
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
@@ -83,6 +85,9 @@ margin-bottom: 25px;
 				<fieldset style="margin-bottom:50px">
 					<div class="row">
 						<legend class="legend">고객의 소리</legend>
+            
+						<hr style="border-style:dotted; margin-bottom:25px;">
+
 					<div class="row">
 						<div class="col-12 col-lg-3">
 							<div class="input-group">
@@ -117,6 +122,9 @@ margin-bottom: 25px;
 				<form action="/replyRegister.consult" method="get">
 					<fieldset>
 						<legend class="legend">답변 등록</legend>
+
+						<hr style="border-style:dotted; margin-bottom:25px;">
+            
 						<input type="text" name="writer" value="${sessionScope.loginNo}" style="display:none;">
 						<input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
 						<div class="row">
