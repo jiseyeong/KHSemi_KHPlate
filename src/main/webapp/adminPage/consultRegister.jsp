@@ -79,9 +79,6 @@ p{font-weight:bold; font-size:25px; color:#57b846;}
 	<div class="container-fluid themed-container m-0 g-0">
 		<!-- 헤더부분 건들지 말것 -->
 		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
-
-
-
 		<!-- body 부분 row div 건들지 말것 -->
 		<div class="row g-0 justify-content-center body" style="margin-top:70px;">
 			<!-- sideBar부분 건들지 말것 -->

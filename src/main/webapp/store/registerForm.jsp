@@ -42,7 +42,9 @@
     width:100%;
     height: 40vw;
 } 
-
+.btn_image_add{
+	width:150px;
+}
 </style>
 </head>
 <body>
@@ -61,11 +63,11 @@
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<form id="addForm" action="/register.store" method="post"  enctype="multipart/form-data">
 					<div class="row">
-						<div class="col-12">
-							이미지 등록
-							<button type="button" id="btn_image_add" class="btn btn-outline-secondary">+</button>
+						<div class="col-12 col-lg-11" style="margin-left:auto; margin-right:auto;">
+							<span>이미지 등록</span>
+							<button type="button" id="btn_image_add" class="btn btn-outline-secondary" style="width:35px; height:30px; text-align:center; line-height:30px;">+</button>
 						</div>
-						<div class="col-12">
+						<div class="col-12 col-lg-11" style="margin-left:auto; margin-right:auto;">
 							<fieldset>
 								<legend>image list</legend>
 								<!-- 여기에 name이 image0, image1 식의 name으로 file input 추가됨. 보내기 직전 name 태그 붙이기 시작. -->
@@ -75,7 +77,7 @@
 						</div>
 					</div>
 					<div class="row contents">
-						<div class="col-12 col-lg-4">
+						<div class="col-12 col-lg-5" style="margin-left:auto;">
 							<div class="row">
 								<div class="col-12">지도 마커 설정</div>
 								<div class="col-12 content">
@@ -95,7 +97,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-12 col-lg-8">
+						<div class="col-12 col-lg-6" style="margin-right:auto;">
 							<div class="row">
 								<div class="col-12">
 									<fieldset>
