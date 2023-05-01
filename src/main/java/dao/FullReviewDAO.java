@@ -143,7 +143,7 @@ public class FullReviewDAO {
 		if(needPrev) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a href='/select.fullreview?cpage="+(startNavi-1)+"'>"
+					+ "			<a href='/select.fullreview?cpage="+(startNavi-1)+"&search="+searchFullReviewTitle+"'>"
 					+ "				<button class='navigator_direction_btn'>"
 					+ "					<i class='fa-solid fa-angle-left'></i>"
 					+ "				</button>"
@@ -154,14 +154,14 @@ public class FullReviewDAO {
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a class='item' href='/select.fullreview?cpage="+i+"'>"+i+"</a>"
+					+ "			<a class='item' href='/select.fullreview?cpage="+i+"&search="+searchFullReviewTitle+"'>"+i+"</a>"
 					+ "		</div>"
 					+ "</li>");
 		}
 		if(needNext) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a href='/select.fullreview?cpage="+(endNavi+1)+"'>"
+					+ "			<a href='/select.fullreview?cpage="+(endNavi+1)+"&search="+searchFullReviewTitle+"'>"
 					+ "				<button class='navigator_direction_btn'>"
 					+ "					<i class='fa-solid fa-angle-right'></i>"
 					+ "				</button>"

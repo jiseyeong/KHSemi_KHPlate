@@ -59,8 +59,8 @@ public class FullReviewController extends HttpServlet {
 				if(request.getParameter("searchUserno")!=null) {
 					searchUserno = Integer.parseInt(request.getParameter("searchUserno"));
 				}
-				if(request.getParameter("searchFullReviewTitle")!=null) {
-					searchFullReviewTitle = request.getParameter("searchFullReviewTitle");
+				if(request.getParameter("search")!=null) {
+					searchFullReviewTitle = request.getParameter("search");
 				}
 				
 				System.out.println("검색 유저 : "+searchUserno);
