@@ -33,11 +33,8 @@
 	<br>
 	<hr>
 	<p>컨트롤러 적용 완료</p><br>
-	문의 내역 -> <a href="/adminPage/consultList.jsp">counsultList.jsp</a><br>
-	문의 작성 -> <a href="/adminPage/consultRegister.jsp">consultRegister.jsp</a><br>
 	문의 답변 작성 -> <a href="/adminPage/consultReplyRegister.jsp">consultReplyRegister.jsp</a><br>
 	문의 글 보기 -> <a href="/adminPage/consultView.jsp">consultView.jsp</a><br>
-	FAQ등록 -> <a href="/adminPage/FAQRegister.jsp">FAQRegister.jsp</a><br>
 	FAQ 리스트 -> <a href="/adminPage/FAQView.jsp">FAQView.jsp</a><br>
 	<hr>
 	가게 정보 등록 -> <a href="/store/registerForm.jsp">registerForm.jsp</a><br>
@@ -59,6 +56,10 @@
 	새 비밀번호 설정 -> <a href="/memberSearch/newpassword.jsp">newpassword.jsp</a><br>
 	비밀번호 찾기 -> <a href="/memberSearch/pwsearch.jsp">pwsearch.jsp</a>
 	<hr>
-	회원탈퇴 -> <a href="/memberout/memberout.jsp">memberout.jsp</a>	
+	회원탈퇴 -> <a href="/memberout/memberout.jsp">memberout.jsp</a>
+	<hr>
+	문의 작성 -> <a href="/adminPage/consultRegister.jsp">consultRegister.jsp</a><br>
+	FAQ등록 -> <a href="/adminPage/FAQRegister.jsp">FAQRegister.jsp</a><br>
+	문의 내역 -> <a href="/adminPage/consultList.jsp">counsultList.jsp</a><br>	
 </body>
 </html>

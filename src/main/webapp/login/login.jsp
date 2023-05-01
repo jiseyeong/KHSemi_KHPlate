@@ -304,7 +304,7 @@ label input[type="checkbox"] {
 <div class="animated bounceInDown">
 	<div class="container">
 		<span class="error animated tada" id="msg"></span>
-		<form name="form1" class="box" onsubmit="return checkStuff()">
+		<form name="form1" class="box" onsubmit="return false;">
 			<h4>KHPLATE</h4>
 			<h5>오늘은 뭐 먹지?</h5>
 			<div class="input password">
@@ -327,7 +327,7 @@ label input[type="checkbox"] {
 			</div>
 			<!-- <label> <input type="checkbox"> <span></span> <small
 				class="rmb">ID 기억하기</small></label> -->
-			<input type="submit" value="제출하기" class="btn" id="signupBtn">
+			<input type="button" value="제출하기" class="btn" id="signupBtn">
 			<input type="button" value="" class="btn" id="kakaoBtn"> 
 			  <div id="kakaobtn2" onclick="kakaoLogin();">
                     <a href="javascript:void(0)">
@@ -508,7 +508,7 @@ $(".forgetpass").on("click", function() {
 
 	// Form Validation
 
-	function checkStuff() {
+	$("#signupBtn").on("click",function(){
 		var id = document.form1.id;
 		var password = document.form1.password;
 		var msg = document.getElementById('msg');
@@ -560,8 +560,7 @@ $(".forgetpass").on("click", function() {
 				location.href = "/page/main.jsp";
 			}
 		})
-// 		$("#loginForm").submit();
-	}
+	});
 
 	// ParticlesJS
 

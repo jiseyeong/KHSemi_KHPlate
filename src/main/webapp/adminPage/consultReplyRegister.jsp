@@ -61,8 +61,9 @@ font-weight: bold;
 	color: white;
 	margin-top: 50px;
 	font-size: 20px;
-    margin-left: auto; 
+  margin-left: auto; 
 	margin-right:auto;
+
 }
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
@@ -84,7 +85,9 @@ font-weight: bold;
 				<fieldset style="margin-bottom:50px">
 					<div class="row">
 						<legend class="legend">고객의 소리</legend>
+            
 						<hr style="border-style:dotted; margin-bottom:25px;">
+
 					<div class="row">
 						<div class="col-12 col-lg-3">
 							<div class="input-group">
@@ -119,7 +122,9 @@ font-weight: bold;
 				<form action="/replyRegister.consult" method="get">
 					<fieldset>
 						<legend class="legend">답변 등록</legend>
+
 						<hr style="border-style:dotted; margin-bottom:25px;">
+            
 						<input type="text" name="writer" value="${sessionScope.loginNo}" style="display:none;">
 						<input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
 						<div class="row">

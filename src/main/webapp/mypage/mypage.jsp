@@ -257,7 +257,7 @@ button:hover {
             </div>
             <form action="/update.members" method="post" id="updateForm">
                <div class="inpocontents2">
-                  <input type="text" value="${my.userID}" readonly><br>
+                  <input type="text" value="${my.userID}" id="id" readonly><br>
                   <input type="password" value="${my.pw}" id="pw1" name="pw" readonly><br>
                   <input type="password" id="pw2" readonly id="pwConfirm"><br>
                   <input type="text" value="${my.name}" readonly><br>
@@ -430,23 +430,40 @@ button:hover {
                                     "1px solid black");
                            })
                      $("#writeListBtn").on("click",function(){ //내가 쓴 글 버튼 누르면 관련 테이블 나오게 이벤트
-    	  			 $("#writeList").css("display","table");
-      	  			 $("table").not("table#writeList").css("display","none");
+	    	  			 $("#writeList").css("display","table");
+	      	  			 $("table").not("table#writeList").css("display","none");
      				 })
       
        				 $("#replyListBtn").on("click",function(){ //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
-    	 			 $("#replyList").css("display","table");
-      				 $("table").not("table#replyList").css("display","none");
+	    	 			 $("#replyList").css("display","table");
+	      				 $("table").not("table#replyList").css("display","none");
       				})
       
        				$("#reviewMarkBtn").on("click",function(){ //즐겨찾기 버튼 누르면 관련 테이블 나오게 이벤트
-    	 			$("#reviewMark").css("display","table");
-      	  			$("table").not("table#reviewMark").css("display","none");
+	    	 			$("#reviewMark").css("display","table");
+	      	  			$("table").not("table#reviewMark").css("display","none");
+	      	  			$.ajax({
+	      	  				url:"",
+	      	  				type:"post",
+	      	  				data:{
+	      	  					userid:$("#id").val()
+	      	  				},
+	      	  				dataType:"json"
+	      	  				success:function(result){
+	      	  					console.log(result);
+	      	  				},
+	      	  				error:function(result){
+	      	  					console.log(result);
+	      	  				}
+	      	  			}).done({
+	      	  				id
+	      	  			})
+	      	  			
       				})
       
       				$("#consultListBtn").on("click",function(){ //1:1문의 버튼 누르면 관련 테이블 나오게 이벤트
-    	  			$("#consultList").css("display","table");
-      	  			$("table").not("table#consultList").css("display","none");
+	    	  			$("#consultList").css("display","table");
+	      	  			$("table").not("table#consultList").css("display","none");
       				})        
                   })
 

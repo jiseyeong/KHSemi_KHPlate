@@ -22,9 +22,13 @@
 
 <style>
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');/* 나눔고딕 import */
+
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	font-family: 'Nanum Gothic', sans-serif;
 	margin-bottom: 10px;
 }
 
@@ -39,18 +43,29 @@
 /* 하단부터 메인부분 스타일 작성 요망 */
 .inputContent {
 	margin-top: 3%;
-	margin-bottom: 1%;
+	font-weight:bold;
+	font-size:25px;
+	color:#57b846;
 }
-
-.legend {
-color: #ED1C16;
-font-size: 25px;
-margin-bottom: 5px;
+.input-group {
+	width:100%;
 }
-
+.input-group>span{
+	margin-top:20px;
+	margin-bottom:20px;
+	font-size:14px;
+}
+.input-group>input{
+	margin-top:20px;
+	margin-bottom:20px;
+	font-size:14px;
+}
+.ck-editor__editable_inline {
+    min-height: 400px;
+}
 #submitBtn {
-	width: 150px;
-	height: 50px;
+	width: 100px;
+	height: 40px;
 	background-color: #57b846;
 	border:  #57b846;
 	border-radius: 12px;
@@ -67,9 +82,6 @@ margin-bottom: 5px;
 	<div class="container-fluid themed-container m-0 g-0">
 		<!-- 헤더부분 건들지 말것 -->
 		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
-
-
-
 		<!-- body 부분 row div 건들지 말것 -->
 		<div class="row g-0 justify-content-center body" style="margin-top:70px;">
 			<!-- sideBar부분 건들지 말것 -->
@@ -79,20 +91,21 @@ margin-bottom: 5px;
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<form action="/register.faq" method="get">
 					<div class="row">
-						<div class="col-12">
-							<fieldset>
-								<legend class="legend">FAQ 등록</legend>
-								<div class="col-12">
+						<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+							<div class="inputContent">FAQ 등록</div>
+							<hr style="border-style:dotted;">
+								<div class="col-12 col-lg-12">
 									<div class="input-group">
 										<span class="input-group-text">제목</span>
 										<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요">
 										<div class="col-12">
 											<textarea name="body" id="editor"></textarea>
 										</div>
+										<div class="col-12 text-center">
 										<button type="submit" id="submitBtn">제출하기</button>
+										</div>
 									</div>
 								</div>
-							</fieldset>
 						</div>
 					</div>
 				</form>
