@@ -123,6 +123,30 @@ public class StoreDAO {
 			return result;
 		}
 	}
+	
+	public int updateAvgScore(double avgScore, int storeID) throws Exception{
+		String sql = "update STORE set AVGSCORE=? where STOREID=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setDouble(1, avgScore);
+			pstat.setInt(2, storeID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int updateReviewCount(int reviewCount, int storeID) throws Exception{
+		String sql = "update STORE set REVIEWCOUNT=? where STOREID=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, reviewCount);
+			pstat.setInt(2, storeID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 
 	private ArrayList<StoreDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<StoreDTO> result = new ArrayList<>();
