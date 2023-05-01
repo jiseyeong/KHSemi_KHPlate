@@ -26,7 +26,9 @@
 	box-sizing: border-box;
 	padding: 0px;
 }
-
+table{
+	text-align:center;
+}
 .body {
 	margin: auto;
 }

@@ -14,7 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-
+        <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.18/dist/css/bootstrap-select.min.css">
+	<!-- Latest compiled and minified JavaScript 한국어 번역 파일 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/i18n/defaults-ko_KR.min.js"></script>
     <style>
     
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
@@ -91,12 +94,13 @@
         	font-size:12px;
         	position:relative;
         	top:3px;
-        	width:70px;
-        	height:25px;
+        	width:90px;
+        	height:30px;
         	left:20px;
         	text-align:center;
         	border-radius:4px;
         	background-color:rgb(241, 241, 241);
+        	padding:none;
         }
       .btnBox>a{
 		text-decoration:none;
@@ -121,11 +125,10 @@
         </div>
         <div class="col-12 col-lg-6  d-flex search">
            <form action="/searchStoreBySearchBox.store" method="get" class="form">
-							
-            <select size="1" id="searchCheck" class="nanum-gothic" name="searchSelect"> 
+			<select class="nanum-gothic" id="searchCheck" name="searchSelect">
         		<option>맛집</option>
         		<option>블로그</option>
-    		</select>
+      		</select>
             	<input type="text" name="searchedBy" value="mainSearch" style="display:none;">
                 <input type="search" id="searchBox" name="search">
                 <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
@@ -134,11 +137,6 @@
         </div>
         <div class="col-12 col-lg-3 themed-grid-col d-flex rightMenu">
             <div class="btnBox">
-<!--             <a href="#null" class="nanum-gothic" >로그인 </a> -->
-<!-- 	          <a href="#null" class="nanum-gothic" >｜</a> -->
-<!-- 	         <a href="#null" class="nanum-gothic" >회원가입</a> -->
-<!-- 	         <a href="#null" class="nanum-gothic" >｜</a> -->
-<!-- 			 <a href="#null" class="nanum-gothic" >마이페이지</a> -->
            	<c:choose>
            		<c:when test="${userno==null}">
 	           		<a href="/login/login.jsp" class="nanum-gothic" >로그인 </a>
@@ -161,7 +159,12 @@
    	$(".logo").on("click",function(){
    		location.href = "/page/main.jsp";
    	})
+    $('.selectpicker').selectpicker();
     
+    $('.selectpicker').selectpicker({
+        style: 'btn-info',
+        size: 4
+    });
     </script>
     
 </body>
