@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -494,8 +496,25 @@ public class StoreController extends HttpServlet {
 			
 			//즐겨찾기 조회 controller
 			else if(cmd.equals("/selectFavoriteStore.store")) {
-				String userid = request.getParameter("userid");
-				FavoriteStoreDAO.getInstance().
+				
+				int userno = (int) request.getSession().getAttribute("userno");
+				System.out.println("userno : "+userno);
+				
+				List<FavoritePageDTO> FavoriteStoreList = FavoriteStoreDAO.getInstance().selectFavoriteStore(userno);
+				List<StoreDTO> FavoriteStoreInfoList = StoreDAO.getInstance().selectAll(FavoriteStoreList);
+				
+				Gson g = new Gson();
+				String FavoriteStoreListJson = g.toJson(FavoriteStoreList);
+				String FavoriteStoreInfoListJson = g.toJson(FavoriteStoreInfoList);
+				
+				System.out.println(FavoriteStoreList.size());
+				System.out.println(FavoriteStoreInfoList.size());
+				
+				JsonObject resp = new JsonObject();
+				resp.addProperty("FavoriteStoreList", FavoriteStoreListJson);
+				resp.addProperty("FavoriteStoreInfoList", FavoriteStoreInfoListJson);
+				
+				response.getWriter().append(resp.toString());
 			}
 
 		}catch(Exception e) {

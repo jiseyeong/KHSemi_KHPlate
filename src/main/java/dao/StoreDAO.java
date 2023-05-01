@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.FavoritePageDTO;
 import dto.PhotoDTO;
 import dto.StoreDTO;
 import statics.Settings;
@@ -72,6 +73,7 @@ public class StoreDAO {
 			}
 		}
 	}
+	
 	public int insertPhoto(String sysName, String oriName, int storeID) throws Exception{
 		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, STOREID)"
 				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
@@ -529,5 +531,33 @@ public class StoreDAO {
 				return rs.getInt(1);
 			}
 		}
+	}
+	
+	public List<StoreDTO> selectAll(List<FavoritePageDTO> FavoriteStoreList) throws Exception {
+		String sql = "select * from STORE where STOREID = ?";
+		List<StoreDTO> result = new ArrayList<>();
+		for(FavoritePageDTO favorite : FavoriteStoreList) {
+			try(	Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setInt(1, favorite.getStoreID());
+				try(ResultSet rs = pstat.executeQuery();){
+					while(rs.next()) {
+						int storeID = rs.getInt("STOREID");
+						int distance = rs.getInt("DISTANCE");
+						String name = rs.getString("NAME");
+						double lat = rs.getDouble("LAT");
+						double lng = rs.getDouble("LNG");
+						String address = rs.getString("ADDRESS");
+						double avgScore = rs.getDouble("AVGSCORE");
+						String introduction = rs.getString("INTRODUCTION");
+						String category = rs.getString("CATEGORY");
+						int reviewCount = rs.getInt("REVIEWCOUNT"); 
+						String priceRange = rs.getString("priceRange");
+						result.add(new StoreDTO(storeID, distance, name, lat, lng, address, avgScore, introduction, category, reviewCount,priceRange));
+					}
+				}
+			}
+		}
+		return result;
 	}
 }
