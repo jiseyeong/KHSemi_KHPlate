@@ -39,13 +39,15 @@
 
 /* 하단부터 메인부분 스타일 작성 요망 */
 p{font-weight:bold;}
-textarea{height:500px;}
+
 .row>div>select{font-size:12px;}
 .row>div>input{font-size:12px;}
-.writeBody{height:500px;}
 .writeBody>div{
 	margin-left:auto;
 	margin-right:auto;
+}
+.ck-editor__editable_inline {
+    min-height: 400px;
 }
 #toList {
 	width: 100px;
@@ -55,9 +57,9 @@ textarea{height:500px;}
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-left: 200px;
-	margin-top: 55px;
-	font-size: 15px;
+	font-size: 14px;
+	margin-right:20px;
+	box-shadow:1px 1px 5px 1px silver;
 }
 
 #submitBtn {
@@ -68,9 +70,8 @@ textarea{height:500px;}
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-left: 50px;
-	margin-top: -50px;
-	font-size: 15px;
+	font-size: 14px;
+	box-shadow:1px 1px 5px 1px silver;
 }
 </style>
 </head>
@@ -92,7 +93,7 @@ textarea{height:500px;}
 					<p class="nanum-gothic">Customer Service Page</p>
 					<hr>
 					<br>
-						<div class="row" style="margin-bottom:20px;">
+						<div class="row writeHeader" style="margin-bottom:20px;">	
 							<div class="col-12 col-lg-1" style="margin-left:auto;">
 								<select class="nanum-gothic form-select" name="category">
 									<option>문의</option>
@@ -111,18 +112,16 @@ textarea{height:500px;}
 								<textarea name="body" id="editor"></textarea>
 							</div>
 						</div>
-					<div class="row file">
+					<div class="row file" style="margin-top:20px;">
 						<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
-							<div class="col-12 col-lg-3">
-								<img src="#none" alt="#none" id="image" class="w-100 object-fit-contain">
-							</div>
-							<div class="col-12 col-lg-5">
+							<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+								<img src="#none" alt="#none" id="image" class="w-100 object-fit-contain" style="display:none; margin-bottom:20px;">
 								<input id="input_image" name="img" type="file" accept="image/*" class="nanum-gothic form-control" style="font-size:13px;">
 							</div>
-						</div>
+							</div>
 					</div>
-					<div class="row">
-						<div class="col-12 text-center">
+					<div class="row" style="margin-top:80px;">
+						<div class="col-12 col-lg-8 text-center" style="margin-left:auto; margin-right:auto;">
 							<input type="button" name="toList" id="toList" value="목록으로" class="nanum-gothic">
 							<input type="submit" name="submitBtn" id="submitBtn" value="제출하기" class="nanum-gothic">
 						</div>
@@ -149,6 +148,7 @@ textarea{height:500px;}
 							$("#image").attr("src", e.target.result);
 						}
 						fReader.readAsDataURL(input.files[0]);
+						$("#image").css("display","block");
 					});
 				</script>
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
