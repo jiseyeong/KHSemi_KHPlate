@@ -301,7 +301,7 @@ h6 span{
 
 
 <body>
-	<form id="frm" action="" method="post">
+	<form id="frm" action="/idsearch.members" method="post">
 	  <div class="section">
 		<div class="container">
 		  <div class="row full-height justify-content-center">
@@ -315,6 +315,7 @@ h6 span{
 					<div class="card-front">
 					  <div class="center-wrap">
 						<div class="section text-center">
+						<form action="" method="post">
 						  <h4 class="mb-4 pb-3">아이디 찾기</h4>
 						  <div class="form-group">
 							<input type="text" name="name" class="form-style" id="name" placeholder="이름 입력" autocomplete="off">
@@ -343,7 +344,9 @@ h6 span{
 							</div>
 						  </div>
 						</div>
-				
+					</form>
+					
+					
 					<div class="card-back">
 					  <div class="center-wrap">
 						<div class="section text-center">
@@ -376,7 +379,7 @@ h6 span{
 
 	
 
-//아이디찾기 기능
+
 	<script>
      
         $("#frm").on(
@@ -428,7 +431,7 @@ h6 span{
 
 
 
-//비번찾기 기능
+
   <script>
 
 	$("#frm").on(

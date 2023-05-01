@@ -40,7 +40,7 @@
 <body>
 	<div class="container-fluid themed-container m-0 g-0">
 		<!-- 헤더부분 건들지 말것 -->
-		<jsp:include page="header.jsp" flush="false"></jsp:include>
+		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
 
 
 
