@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class FullReviewDTO {
 	
-	private int revireID;
+	private int reviewID;
 	private String reviewBody;
 	private int score;
 	private int storeID;
@@ -15,9 +15,9 @@ public class FullReviewDTO {
 		super();
 	}
 
-	public FullReviewDTO(int revireID, String reviewBody, int score, int storeID, int userNO, Timestamp writedate) {
+	public FullReviewDTO(int reviewID, String reviewBody, int score, int storeID, int userNO, Timestamp writedate) {
 		super();
-		this.revireID = revireID;
+		this.reviewID = reviewID;
 		this.reviewBody = reviewBody;
 		this.score = score;
 		this.storeID = storeID;
@@ -26,11 +26,11 @@ public class FullReviewDTO {
 	}
 
 	public int getRevireID() {
-		return revireID;
+		return reviewID;
 	}
 
-	public void setRevireID(int revireID) {
-		this.revireID = revireID;
+	public void setRevireID(int reviewID) {
+		this.reviewID = reviewID;
 	}
 
 	public String getReviewBody() {
