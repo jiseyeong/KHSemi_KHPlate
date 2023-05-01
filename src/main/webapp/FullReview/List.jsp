@@ -97,6 +97,7 @@
 					
 					
 					<div class="card">
+						<div class="reviewId">리뷰 ID</div>
 						<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
 						<div class="card-body">
 							<div class="title">여긴 제목란</div>
@@ -175,5 +176,12 @@
 			
 		</div>
 	</div>
+	
+	<script>
+		$(".writeBtn").on("click",function(){
+			location.href="/write.fullreview";
+		})
+		
+	</script>
 </body>
 </html>
