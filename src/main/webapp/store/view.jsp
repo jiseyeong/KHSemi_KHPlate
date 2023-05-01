@@ -274,15 +274,17 @@
 									<div class="row">
 										<div class="col-2">평균 평점</div>
 										<div class="col-10">
-											<div class="star-ratings" style="float:left; width:80%;">
+											<div class="star-ratings" style="float:left;">
 												<div class="star-ratings-fill space-x-2 text-lg"
 													style="width: ${dto.ratingToPercent()}%;">
 													<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 												</div>
 												<div class="star-ratings-base space-x-2 text-lg">
 													<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-													${dto.avgScore};
 												</div>
+											</div>
+											<div style="float:left;">
+												${dto.avgScore}
 											</div>
 										</div>
 									</div>
@@ -302,7 +304,7 @@
 												<tr>
 													<th style="width:40%;">메뉴 이름</th>
 													<th style="width:30%;">메뉴 가격</th>
-													<th style="width:30%"></th>
+													<th style="width:30%;"></th>
 												</tr>
 												<c:forEach var="i" items="${menuList}">
 													<tr>
@@ -347,7 +349,6 @@
 															$("#updateMenuPrice" + menuID).attr("readonly", false);
 															$(this).css({ "display": "none" });
 														});
-														console.log(menuID);
 														$("#btn_menu_update_confirm" + menuID).click(function () {
 															$("#menuUpdateForm" + menuID).submit();
 														})
@@ -407,10 +408,10 @@
 							<!-- 리뷰 -->
 							<div class="row">
 								<div class="col-12">한줄 리뷰 추가</div>
-								<form id="createCommentForm" action="/crate.commentReview" method="post"
+								<form id="createCommentForm" action="/create.commentReview" method="post"
 									enctype="multipart/form-data">
 									<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
-									<input type="text" name="userNo" value="(임시. 로그인 후 세션 userNo 만들어야 할 것)"
+									<input type="text" name="userNo" value="${sessionScope.userno}"
 										style="display: none;">
 									<div class="col-12">
 										이미지 등록
@@ -427,7 +428,7 @@
 										<div class="row align-items-center">
 											<div class="col-12">
 												<div class="star">
-													<input type="text" name="score" value="0" style="display:none;">
+													<input type="text" name="score" value="0" style="display:none;" id="score">
 													<a href="#null" value="1">★</a>
 													<a href="#null" value="2">★</a>
 													<a href="#null" value="3">★</a>
@@ -451,15 +452,17 @@
 											<div class="col-12">작성자 : ${userIDList.get(i)}</div>
 
 											<div class="col-12">
-												<div id="readStar${i}" class="star-ratings active" style="width:100%;">
+												<div id="readStar${i}" class="star-ratings active" style="float:left;">
 													<div class="star-ratings-fill space-x-2 text-lg"
 														style="width: ${commentList.get(i).ratingToPercent()}%;">
 														<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 													</div>
 													<div class="star-ratings-base space-x-2 text-lg">
 														<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-														${commentList.get(i).score};
 													</div>
+												</div>
+												<div style="float:left;">
+													${commentList.get(i).score}
 												</div>
 											</div>
 
@@ -485,7 +488,7 @@
 											</div>
 
 											<script>
-												let reviewID = "<c:out value='${commentList.get(i).reviewID}'></c:out>";
+												var reviewID = "<c:out value='${commentList.get(i).reviewID}'></c:out>";
 												$.ajax({
 													url: "/getPhotoList.commentReview?reviewID=" + reviewID,
 													dataType: "json"
@@ -523,19 +526,23 @@
 												</div>
 												<div class="col-12">
 													<textarea id="review_editor${i}" name="modifyBody">
-														${commentList.get(i).body};
+														${commentList.get(i).body}
 													</textarea>
 												</div>
-												<div class="col-12">
-													이미지 추가 등록
-													<button type="button" id="btn_review_image_add${i}"
-														class="btn btn-outline-secondary">+</button>
-												</div>
-												<div class="col-12">
-													<fieldset>
-														<legend>add image list</legend>
-														<div id="review_img_field${i}"></div>
-													</fieldset>
+												<div class="col-12 nonactive" id="modifyAddImage${i}">
+													<div class="row">
+														<div class="col-12">
+															이미지 추가 등록
+															<button type="button" id="btn_review_image_add${i}"
+																class="btn btn-outline-secondary">+</button>
+														</div>
+														<div class="col-12">
+															<fieldset>
+																<legend>add image list</legend>
+																<div id="review_img_field${i}"></div>
+															</fieldset>
+														</div>
+													</div>
 												</div>
 											</form>
 											<div class="col-12 nonactive" id="reviewImageModify${i}">
@@ -547,8 +554,8 @@
 											</c:if>
 
 											<script>
-												let i = "<c:out value='${i}'></c:out>";
-												let target = "#review_editor" + i;
+												var i = "<c:out value='${i}'></c:out>";
+												var target = "#review_editor" + i;
 												ClassicEditor
 													.create(document.querySelector(target))
 													.then(function (editor) {
@@ -585,6 +592,7 @@
 																	$(btn_confirm + "," + btn_cancel + "," + writeStar).addClass("nonactive");
 																	editor.enableReadOnlyMode("");
 																	$("#reviewImageModify" + i).addClass("nonactive");
+																	$("#modifyAddImage" + i).addClass("nonactive");
 
 																});
 
@@ -679,6 +687,7 @@
 																$(btn_modify + "," + readStar).addClass("nonactive");
 																$(btn_confirm + "," + btn_cancel + "," + writeStar).removeClass("nonactive");
 																$("#reviewImageModify" + i).removeClass("nonactive");
+																$("#modifyAddImage" + i).removeClass("nonactive");
 															}
 														});
 
@@ -703,7 +712,7 @@
 								$(".star a").click(function () {
 									$(this).parent().children("a").removeClass("on");
 									$(this).addClass("on").prevAll("a").addClass("on");
-									$("input[name=rating]").val($(this).attr("value"));
+									$("input[name='score']").attr("value",$(this).attr("value"));
 								});
 
 								//메뉴 추가 버튼 이벤트 등록

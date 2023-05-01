@@ -26,7 +26,7 @@ public class FullReviewDTO {
 		this.userNO = userNO;
 		this.writedate = writedate;
 	}
-	
+
 	public int getReviewID() {
 		return reviewID;
 	}
@@ -38,7 +38,7 @@ public class FullReviewDTO {
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
