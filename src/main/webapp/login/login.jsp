@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +127,7 @@ label input[type="checkbox"] {
 }
 
 /* style the artificial checkbox */
-label span {
+/* label span {
 	height: 13px;
 	width: 13px;
 	border: 2px solid #464d64;
@@ -135,8 +137,7 @@ label span {
 	cursor: pointer;
 	float: left;
 	left: 7.5%;
-}
-
+} */
 .btn {
 	border: 0;
 	border-radius: 100px;
@@ -162,13 +163,24 @@ label span {
 #kakaoBtn {
 	top: 72%;
 	background: #ffe812;
-	color: #000000;
+	background-image: url(kakao3.png);
+	background-size: 320px 50px;
+	background-position: top;
+	background-position: 10px;
 }
 
 #naverBtn {
 	top: 82%;
 	background: #57b846;
-	color: #dfdeee;
+	/* background-image: url(naver13.png);
+    background-size: 270px 70px;
+     */
+	background-image: url(naver17.png);
+	background-size: 300px 80px;
+	background-position: 30px;
+
+	/* background-position: left;
+    background-position: -20px; */
 }
 
 .rmb {
@@ -191,7 +203,7 @@ label span {
 	left: 28%;
 }
 
-[type=checkbox]:checked+span:before { /* <-- style its checked state */
+[type=checkbox]:checked+span:before /*style its checked state  */ {
 	font-family: FontAwesome;
 	font-size: 16px;
 	content: "\f00c";
@@ -237,38 +249,126 @@ label span {
 	background-color: rgb(3, 199, 90);
 	font-size: 18px;
 }
+
+.eyes {
+	cursor: pointer;
+	margin-left: 330px;
+	margin-top: -71px;
+	position: absolute;
+}
+
+.input-wrap {
+	font-size: 13px;
+}
+
+#checkId {
+	margin-left: -117px;
+}
+
+.forgetpass {
+	margin-top: 3px;
+}
+
+#naverIdLogin img {
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+#naverIdLogin {
+	background-color: #ED1C1600;
+}
+
+#naverIdLogin {
+	width: 330px;
+	height: 47px;	
+	position: relative;
+	top: 18px;
+	cursor: pointer;
+	margin-left: 42px;
+	margin-top: 10px;
+	font-size: 18px;
+}
+
+
+
+#kakaobtn2 {
+	width: 333px;
+	height: 47px;
+	position: relative;
+	top: 18px;
+	cursor: pointer;
+	margin-left: 37px;
+	margin-top: 57px;
+	font-size: 18px;
+	opacity: 0;
+}
+
+.forgetpass{
+cursor:pointer;}
+
+
+
 </style>
 
 <body id="particles-js"></body>
 <div class="animated bounceInDown">
 	<div class="container">
 		<span class="error animated tada" id="msg"></span>
-
-		<!--     form 태그에 action 태그와 id 부여 -->
-<!-- 		checkStuff() -->
-		<form name="form1" class="box" onsubmit="return false;">
-
+		<form name="form1" class="box" onsubmit="return checkStuff()">
 			<h4>KHPLATE</h4>
 			<h5>오늘은 뭐 먹지?</h5>
-			<input type="text" name="id" id="id" placeholder="ID" autocomplete="off">
-			<i class="typcn typcn-eye" id="eye"></i> <input type="password"
-				name="password" placeholder="PW" id="pw" autocomplete="off">
-			<label> <input type="checkbox"> <span></span> <small
-				class="rmb">ID 기억하기</small>
-			</label> <a href="#" class="forgetpass">비밀번호 찾기</a> 
-			<input type="submit"
-				value="Sign in" class="btn" id="signupBtn" onclick="checkStuff()"> 
-				<input
-				type="submit" value="KAKAO" class="btn" id="kakaoBtn"> <input
-				type="submit" value="NAVER" class="btn" id="naverBtn">
+			<div class="input password">
+				<input type="text" name="id" id="id" placeholder="ID"
+					autocomplete="off"> <i class="typcn typcn-eye" id="eye"></i>
+
+				<input type="password" name="password" id="password"
+					placeholder="PW" autocomplete="off" class="form-input">
+				<div class="box">
+					<span class="input-wrap"> <input type="checkbox"
+						id="checkId" name="checkId"> <label for="checkId"><span></span></label>
+						아이디저장 <div class="forgetpass"> 아이디/비밀번호 찾기</div>
+					</span>
+					<!-- <div id="idsave">아이디 저장</div> -->
+				</div>
+				<div class="eyes">
+					<i class="fa fa-eye fa-lg"></i>
+				</div>
+			</div>
+			<!-- <label> <input type="checkbox"> <span></span> <small
+				class="rmb">ID 기억하기</small></label> -->
+			<input type="submit" value="Sign in" class="btn" id="signupBtn">
+			<input type="button" value="" class="btn" id="kakaoBtn"> 
+			  <div id="kakaobtn2" onclick="kakaoLogin();">
+                    <a href="javascript:void(0)">
+                        
+                    </a>
+                </div>
+			
+			<input type="button" value="" class="btn" id="naverBtn">
+			<div id="naverIdLogin"></div>
 		</form>
-		<a href="#" class="dnthave">처음이세요? 회원가입하기</a>
+		<a href="/joinform/joinform.jsp" class="dnthave">처음이세요? 회원가입하기</a>
 	</div>
 </div>
 
 
 <script>
-	var pw = document.getElementById('pw');
+
+$(".forgetpass").on("click", function() {
+	window.open("/memberSearch/idsearch.jsp","","width=480px,height=750px");
+	
+})
+
+
+	$("#signup").on("click", function() {
+	
+	location.href = "/joinform/joinform.jsp";
+})
+
+
+
+	var pw = document.getElementById('password');
 	var eye = document.getElementById('eye');
 
 	eye.addEventListener('click', togglePass);
@@ -282,7 +382,7 @@ label span {
 
 	$(function() {
 		// 눈표시 클릭 시 패스워드 보이기
-		$('#eyes').on(
+		$('.eyes').on(
 				'click',
 				function() {
 					$('.input.password').toggleClass('active');
@@ -299,7 +399,6 @@ label span {
 					}
 				});
 	});
-
 	//
 	$(document).ready(function() {
 		// 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
@@ -418,7 +517,6 @@ label span {
 
 	// Form Validation
 
-	
 	function checkStuff() {
 		var id = document.form1.id;
 		var password = document.form1.password;
@@ -440,11 +538,7 @@ label span {
 		} else {
 			msg.innerHTML = "";
 		}
-
-		//  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		//	로그인 시 회원가입과 동일한 정규식 적용
-		var re = /^[a-z0-9_]{7,13}$/;
-
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (!re.test(id.value)) {
 			msg.innerHTML = "Please enter a valid id";
 			id.focus();
@@ -452,28 +546,7 @@ label span {
 		} else {
 			msg.innerHTML = "";
 		}
-
-		// 정규식 검사에 해당되지 않으면 로그인
-		$.ajax({
-			url : "/login.members",
-			type : "post",
-			data : {
-				id : $("#id").val(),
-				password : $("#pw").val()
-			}
-		}).done(function(resp) {
-			if (resp == "1") {
-				alert("ID가 잘못 되었습니다.");
-			} else if(resp == "2"){
-				alert("비밀번호가 잘못 되었습니다.");
-			} else {
-				alert("로그인 성공");
-				location.href = "/page/main.jsp";
-			}
-		})
-// 		$("#loginForm").submit();
 	}
-	
 
 	// ParticlesJS
 
