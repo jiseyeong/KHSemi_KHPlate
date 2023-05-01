@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.CommentReviewDTO;
+import dto.PhotoDTO;
 
 public class CommentReviewDAO {
 	private static CommentReviewDAO instance = null;
@@ -68,6 +69,48 @@ public class CommentReviewDAO {
 		}
 	}
 	
+	public int getCurrval() throws Exception{
+		String sql = "select COMMENTREVIEW_REVIEWID_SEQ.currval from dual";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			rs.next();
+			return rs.getInt(1);
+		}
+	}
+	
+	public int insertPhoto(String sysName, String oriName, int cReviewID) throws Exception{
+		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, cReviewID)"
+				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, sysName);
+			pstat.setString(2, oriName);
+			pstat.setInt(3, cReviewID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public ArrayList<PhotoDTO> selectPhoto(int cReviewID) throws Exception{
+		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where CREVIEWID = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, cReviewID);
+			try(ResultSet rs = pstat.executeQuery();){
+				ArrayList<PhotoDTO> result = new ArrayList<>();
+				while(rs.next()) {
+					int imageID = rs.getInt("IMAGEID");
+					String oriName = rs.getString("ORINAME");
+					String sysName = rs.getString("SYSNAME");
+					result.add(new PhotoDTO(imageID, oriName, sysName));
+				}
+				return result;
+			}
+		}
+	}
+	
 	private ArrayList<CommentReviewDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<CommentReviewDTO> result = new ArrayList<>();
 		while(rs.next()) {
@@ -83,4 +126,6 @@ public class CommentReviewDAO {
 		}
 		return result;
 	}
+	
+	
 }
