@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1:1 상담 내용</title>
+<title>1:1 상담 답변 등록</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -21,10 +21,16 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	margin-bottom: 10px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .body {
@@ -35,7 +41,18 @@
 	border: 1px solid black;
 }
 
-#btn_reply {
+.input-group-text {
+	margin-bottom: 0px;
+}
+
+.legend {
+color: #ED1C16;
+font-size: 25px;
+font-weight: bold;
+margin-bottom: 25px;
+}
+
+#submitBtn {
 	width: 150px;
 	height: 50px;
 	background-color: #57b846;
@@ -64,79 +81,63 @@
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<fieldset style="margin-bottom:50px">
-					<legend>대상 고객 글</legend>
+					<div class="row">
+						<legend class="legend">고객의 소리</legend>
 					<div class="row">
 						<div class="col-12 col-lg-3">
 							<div class="input-group">
 								<span class="input-group-text">카테고리</span>
-								<input type="text" value="${dto.category}" class="form-control" readonly>
+								<input type="text" value="${parentDTO.category}" class="form-control" readonly>
 							</div>
-						</div>
-						<div class="col-12 col-lg-9">
-							<div class="input-group">
-								<span class="input-group-text">제목</span>
-								<input type="text" class="form-control" value="${dto.title}" readonly> 
-							</div>
-						</div>
+						</div>	
 						<div class="col-12 col-lg-3">
 							<div class="input-group">
 								<span class="input-group-text">작성자</span>
-								<input type="text" class="form-control" value="${writer}" readonly>
+								<input type="text" class="form-control" value="${parentWriter}" readonly>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="input-group">
+								<span class="input-group-text">제목</span>
+								<input type="text" class="form-control" value="${parentDTO.title}" readonly> 
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 text-center">작성내용</div>
 						<div class="col-12 col-lg-3">
-							<img src="${image}" alt="${image}" id="image" class="w-100 object-fit-contain">
+							<img src="${parentImage}" alt="${parentImage}" id="image" class="w-100 object-fit-contain">
 						</div>
 						<div class="col-12 col-lg-9">
-							<div id="readEditor">${dto.body}</div>
+							<div id="readEditor">${parentDTO.body}</div>
 						</div>
+					</div>
 					</div>
 				</fieldset>
 
-				<c:choose>
-					<c:when test="${not empty replyDTO}">
-						<fieldset>
-							<legend>답글</legend>
-							<div class="row">
-								<div class="col-12 col-lg-9">
-									<div class="input-group">
-										<span class="input-group-text">제목</span>
-										<input type="text" class="form-control" value="${replyDTO.title}" readonly>
-									</div>
-								</div>
-								<div class="col-12 col-lg-3">
-									<div class="input-group">
-										<span class="input-group-text">작성자</span>
-										<input type="text" class="form-control" value="${replyWriter}" readonly>
-									</div>
+				<form action="/replyRegister.consult" method="get">
+					<fieldset>
+						<legend class="legend">답변 등록</legend>
+						<input type="text" name="writer" value="${sessionScope.loginNo}" style="display:none;">
+						<input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
+						<div class="row">
+							<div class="col-12">
+								<div class="input-group">
+									<span class="input-group-text">제목</span>
+									<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요.">
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-12 text-center">작성 내용</div>
-								<div id="readEditor2">${replyDTO.body}</div>
+							<div class="col-12">
+								<textarea name="body" id="editor"></textarea>
 							</div>
-							<script>
-                                ClassicEditor
-                                    .create(document.querySelector("#readEditor2"))
-                                    .then(function (editor) {
-                                        const toolbarElement = editor.ui.view.toolbar.element;
-                                        toolbarElement.style.display = 'none';
-                                        editor.enableReadOnlyMode('');
-                                    })
-                                    .catch(error => { console.error(error) });
-                            </script>
-						</fieldset>
-					</c:when>
-					<c:otherwise>
-						<c:if test="sessionScope.loginIsAdmin">
-							<a href="/replyForm.consult?consultID=${dto.consultID}">
-								<button type="button" id="btn_reply">답글달기</button></a>
-						</c:if>
-					</c:otherwise>
-				</c:choose>
+						</div>
+					</fieldset>
+					<div class="row">
+						<div class="col-12 text-center">
+							<button type="submit" id="submitBtn">제출하기</button>
+						</div>
+					</div>
+				</form>
+
 
 				<script>
 					ClassicEditor
@@ -147,8 +148,13 @@
 							editor.enableReadOnlyMode('');
 						})
 						.catch(error => { console.error(error) });
+			
+					ClassicEditor
+						.create(document.querySelector("#editor"), {
+							 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
+						})
+						.catch(error => { console.error(error) });
 				</script>
-
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
 		</div>

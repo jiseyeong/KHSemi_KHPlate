@@ -22,10 +22,15 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	margin-bottom: 10px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .body {
@@ -33,10 +38,12 @@
 }
 
 .sideList {
-	border: 1px solid black;
+	border: 1px solid #57b846;
 }
 
-/* 하단부터 메인부분 스타일 작성 요망 */
+
+
+
 </style>
 </head>
 <body>
@@ -61,7 +68,7 @@
 									<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
 										<div class="accordion-item">
 											<h2 class="accordion-header" id="heading${i}">
-												<button class="accordion-button bg-light text-dark" type="button"
+												<button class="accordion-button text-white" style="background-color: #57b846;" type="button"
 													data-bs-toggle="collapse" data-bs-target="#collapse${i}"
 													aria-expanded="true" aria-controls="collapse${i}">
 													${list.get(i).title}</button>
@@ -97,7 +104,7 @@
 								<c:otherwise>
 									<div class="accordion-item">
 										<h2 class="accordion-header" id="headingOne">
-											<button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse"
+											<button class="accordion-button  text-white" style="background-color: #57b846;" type="button" data-bs-toggle="collapse"
 												data-bs-target="#collapseOne" aria-expanded="true"
 												aria-controls="collapseOne">FAQ
 												#1</button>
