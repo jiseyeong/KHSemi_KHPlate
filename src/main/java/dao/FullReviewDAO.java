@@ -214,4 +214,35 @@ public class FullReviewDAO {
 		return result;
 	}		
 	
+	public FullReviewDTO contentByReviewId(int reviewid) throws Exception {
+		String sql = "select * from fullreview where reviewid = ?";
+		try (Connection con = this.getConnection(); 
+				PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setInt(1, reviewid);
+			try (ResultSet rs = pstat.executeQuery()) {
+				FullReviewDTO result = new FullReviewDTO();
+				int rsreviewid = rs.getInt("reviewid");
+				String rsreviewbody = rs.getString("reviewbody");
+				int rsscore = rs.getInt("score");
+				int rsstoreid = rs.getInt("storeid");
+				int rsuserno = rs.getInt("userno");
+				Timestamp writedate = rs.getTimestamp("writedate");
+				
+				rs.next();
+				
+				result.setReviewID(rsreviewid);
+				result.setReviewBody(rsreviewbody);
+				result.setScore(rsscore);
+				result.setStoreID(rsstoreid);
+				result.setUserNO(rsuserno);
+				result.setWritedate(writedate);
+
+				return result;
+			}
+		}
+	};
+	
+	
+	
+	
 }
