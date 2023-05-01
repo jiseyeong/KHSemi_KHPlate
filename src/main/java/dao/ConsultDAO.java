@@ -29,8 +29,8 @@ public class ConsultDAO {
 		return ds.getConnection();
 	}
 	public int insert(ConsultDTO dto) throws Exception{
-		String sql = "insert into CONSULT(CONSULTID, TITLE, BODY, USERNO, WRITEDATE, CATEGORY)"
-				+ " values(CONSULT_CONSULTID_SEQ.nextval, ?, ?, ?, sysdate, ?)";
+		String sql = "insert into CONSULT(CONSULTID, TITLE, BODY, USERNO, WRITEDATE, CATEGORY, REPLY)"
+				+ " values(CONSULT_CONSULTID_SEQ.nextval, ?, ?, ?, sysdate, ?, 'N')";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1, dto.getTitle());
@@ -63,6 +63,18 @@ public class ConsultDAO {
 		}
 	}
 	
+	public int updateReply(int consultID, String reply) throws Exception{
+		String sql = "update CONSULT set REPLY = ? where CONSULTID = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, reply);
+			pstat.setInt(2, consultID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
 	private ArrayList<ConsultDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<ConsultDTO> result = new ArrayList<>();
 		while(rs.next()) {
@@ -72,8 +84,9 @@ public class ConsultDAO {
 			int number = rs.getInt("USERNO");
 			Timestamp writeDate = rs.getTimestamp("WRITEDATE");
 			String category = rs.getString("CATEGORY");
+			String reply = rs.getString("REPLY");
 			
-			result.add(new ConsultDTO(consultID, title, body, number, writeDate, category));
+			result.add(new ConsultDTO(consultID, title, body, number, writeDate, category, reply));
 		}
 		return result;
 	}
