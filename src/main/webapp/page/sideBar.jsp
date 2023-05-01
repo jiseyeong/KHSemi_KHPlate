@@ -41,6 +41,9 @@ li {
    padding: 0px;
    line-height: 50px;
    cursor: pointer;
+   
+/*     a태그에 의한 색 변경 추가 */
+   color:black;
 }
 
 li:not(.firstLi):hover {
@@ -60,6 +63,9 @@ li:not(.firstLi):hover {
    font-size:17px;
 }
 
+/* a태그의 밑줄 속성 제거 */
+a:link {text-decoration: none;}
+
 </style>
 
 
@@ -68,11 +74,16 @@ li:not(.firstLi):hover {
    <div class="col-12 col-lg-2 themed-grid-col sideBar">
       <ul class="nanum-gothic ulTag">
          <li class="firstLi">Menu</li>
-         <li>한식</li>
-         <li>중식</li>
-         <li>일식</li>
-         <li>양식</li>
-         <li>음료/디저트</li>
+         
+<!--          카테고리 접근을 위한 a태그 추가 -->
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=한식"><li>한식</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=양식"><li>양식</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=중식"><li>중식</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=일식"><li>일식</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=아시안"><li>아시안</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=패스트푸드"><li>패스트푸드</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=음료/디저트"><li>음료/디저트</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=기타"><li>기타</li></a>
       </ul>
       <ul class="nanum-gothic ulTag">
          <li class="firstLi">Community</li>

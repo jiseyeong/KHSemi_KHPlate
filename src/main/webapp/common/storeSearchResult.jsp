@@ -30,14 +30,12 @@
 <!-- 구글 폰트 api -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&family=Roboto&display=swap"
-	rel="stylesheet">
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+	.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
 * {
 	box-sizing: border-box;
-	font-family: 'Roboto', sans-serif;
 }
 
 hr {
@@ -87,7 +85,6 @@ hr {
 	padding-left: 30px;
 	text-align: left;
 	font-size: 22px;
-	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .show_filterForm_layout {
@@ -108,6 +105,7 @@ hr {
 }
 
 .print_searchResult_layout {
+	position :relative;
 	width: 100%;
 }
 
@@ -199,13 +197,11 @@ hr {
 	float: right;
 	font-size: 15px;
 	text-align: right;
-	padding-right: 15px;
+	padding-right: 5px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
 :root {
 	box-sizing: border-box;
@@ -218,7 +214,7 @@ hr {
 	width: 100%;
 	height: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 }
 
@@ -233,7 +229,6 @@ hr {
 .stars__icon {
 	color: #b2b2b2;
 	display: inline-block;
-	cursor: pointer;
 }
 
 .js-clear {
@@ -511,7 +506,14 @@ hr {
 			<div class="main_layout">
 				<div class="search_category_layout">
 					<div class="search_category_title_layout">
-						<p class="search_category_title">가게 검색 결과</p>
+						<c:choose>
+						<c:when test="${food_category.length()==0}">
+							<p class="search_category_title">가게 검색 결과</p>
+						</c:when>
+						<c:otherwise>
+							<p class="search_category_title">${food_category} List</p>
+						</c:otherwise>						
+						</c:choose>
 					</div>
 					<div class="show_filterForm_layout">
 						<button id="show_filterForm_btn">
@@ -523,6 +525,143 @@ hr {
 				<hr>
 
 				<div class="print_searchResult_layout">
+					<!-- 필터 영역 -->
+
+					<form action="/searchStoreBySearchFilter.store" id="searchForm"
+						onsubmit="return false;">
+<!-- 						<input type="text" name="cpage" value="1" -->
+<!-- 							style="display: none;"> -->
+						<input type="text" name="searchedBy" value="mainSearch"
+							style="display: none;">
+						<div id="sort_layout" style="display: none;">
+							<div class="search_filter">
+								<p class="sort_title">검색 필터</p>
+								<div class="filter_sort">
+									<input type="text" id="sortMethod" name="sortMethod"
+										style="display: none;">
+									<div class="filter_options">
+										<button class="filter_option_btn" id="order_by_distance">거리순</button>
+									</div>
+									<div class="filter_options">
+										<button class="filter_option_btn" id="order_by_score">평점순</button>
+									</div>
+									<div class="filter_options">
+										<button class="filter_option_btn" id="order_by_review">리뷰순</button>
+									</div>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="cost_average">
+								<p class="sort_title">가격/1인당</p>
+								<div class="filter_cost">
+									<input type="text" id="cost_set" name="cost_range"
+										style="display: none;"> <input type="range"
+										id="cost_range" class="form-range" min="0" max="4" step="1"
+										onchange=SetValue()>
+									<div id="range_result">범위를 지정해주세요</div>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="food_category">
+								<p class="sort_title food_category_title">음식종류</p>
+								<div class="food_category_layout">
+									<div class="food_category_inner_layout">
+										<div class="food_category_list">
+											<div class="food_icon_layout">
+												<img class="food_icon" src="/allstore_inquiry/salad.png">
+											</div>
+											<div class="food_name">한식</div>
+											<input type="text" class="food_category_menu"
+												id="food_category_korean" name="food_category_korean"
+												style="display: none;">
+										</div>
+										<div class="food_category_list">
+											<div class="food_icon_layout">
+												<img class="food_icon" src="/allstore_inquiry/salad.png">
+											</div>
+											<div class="food_name">양식</div>
+											<input type="text" class="food_category_menu"
+												id="food_category_western" name="food_category_western"
+												style="display: none;">
+										</div>
+										<div class="food_category_list">
+											<div class="food_icon_layout">
+												<img class="food_icon" src="/allstore_inquiry/salad.png">
+											</div>
+											<div class="food_name">중식</div>
+											<input type="text" class="food_category_menu"
+												id="food_category_chinese" name="food_category_chinese"
+												style="display: none;">
+										</div>
+										<div class="food_category_list">
+											<div class="food_icon_layout">
+												<img class="food_icon" src="/allstore_inquiry/salad.png">
+											</div>
+											<div class="food_name">일식</div>
+											<input type="text" class="food_category_menu"
+												id="food_category_japanese" name="food_category_japanese"
+												style="display: none;">
+										</div>
+									</div>
+									<div class="food_category_inner_layout">
+										<div class="food_category_list">
+											<div class="food_icon_layout">
+												<img class="food_icon" src="/allstore_inquiry/salad.png">
+											</div>
+											<div class="food_name">아시안</div>
+											<input type="text" class="food_category_menu"
+												id="food_category_asian" name="food_category_asian"
+												style="display: none;">
+										</div>
+										<div class="food_category_list">
+											<div class="food_icon_layout">
+												<img class="food_icon" src="/allstore_inquiry/salad.png">
+											</div>
+											<div class="food_name">패스트푸드</div>
+											<input type="text" class="food_category_menu"
+												id="food_category_fastfood" name="food_category_fastfood"
+												style="display: none;">
+										</div>
+										<div class="food_category_list">
+											<div class="food_icon_layout">
+												<img class="food_icon" src="/allstore_inquiry/salad.png">
+											</div>
+											<div class="food_name">디저트/음료</div>
+											<input type="text" class="food_category_menu"
+												id="food_category_dessert_drink"
+												name="food_category_dessert_drink" style="display: none;">
+										</div>
+										<div class="food_category_list">
+											<div class="food_icon_layout">
+												<img class="food_icon" src="/allstore_inquiry/salad.png">
+											</div>
+											<div class="food_name">기타</div>
+											<input type="text" class="food_category_menu"
+												id="food_category_etc" name="food_category_etc"
+												style="display: none;">
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="btn_layout">
+								<div class="btn_inner_layout">
+									<button class="sort_apply_btn" id="cancel_btn">취소</button>
+								</div>
+								<div class="btn_inner_layout">
+									<button class="sort_apply_btn" id="apply_btn">적용</button>
+								</div>
+							</div>
+						</div>
+					</form>
+
+
 					<c:choose>
 						<c:when test="${search_store_list!=null}">
 							<!-- Outer_layout의 개수 -->
@@ -557,10 +696,9 @@ hr {
 																class="restaurant_img">
 															<div class="restaurant_addFavorite">
 																<input type="text" name="addFavorite_storeID"
-																	val="${search_store_list.get(index).storeID}"
-																	style="display: none;"> 
-																<input type="text"
-																	name="addFavorite_userno" val="${userno}"
+																	value="${search_store_list.get(index).storeID}"
+																	style="display: none;"> <input type="text"
+																	name="addFavorite_userno" value="${userno}"
 																	style="display: none;">
 																<button class="addFavorite_btn">
 																	<i class="fa-regular fa-heart"></i>
@@ -572,16 +710,28 @@ hr {
 																<div class="info_title">${search_store_list.get(index).name}</div>
 																<div class="info_score">
 																	<ul class="stars">
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
+																		<c:forEach var="scoreCount" begin="0" end="4" step="1">
+																			<c:choose>
+																				<c:when
+																					test="${search_store_list.get(index).avgScore>=(scoreCount+0.5)}">
+																					<i class="stars__icon fas fa-star js-clear js-fill"></i>
+																				</c:when>
+																				<c:otherwise>
+																					<i class="stars__icon fas fa-star js-clear"></i>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach>
+
+																		<!--<a class="stars__link"><i -->
+																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
+																		<!--<a class="stars__link"><i -->
+																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
+																		<!--<a class="stars__link"><i -->
+																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
+																		<!--<a class="stars__link"><i -->
+																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
+																		<!--<a class="stars__link"><i -->
+																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
 																	</ul>
 																</div>
 															</div>
@@ -605,9 +755,9 @@ hr {
 																class="restaurant_img">
 															<div class="restaurant_addFavorite">
 																<input type="text" name="addFavorite_storeID"
-																	val="${search_store_list.get(index).storeID}"
+																	value="${search_store_list.get(index).storeID}"
 																	style="display: none;"> <input type="text"
-																	name="addFavorite_userno" val="${userno}"
+																	name="addFavorite_userno" value="${userno}"
 																	style="display: none;">
 																<button class="addFavorite_btn">
 																	<i class="fa-regular fa-heart"></i>
@@ -619,16 +769,17 @@ hr {
 																<div class="info_title">${search_store_list.get(index).name}</div>
 																<div class="info_score">
 																	<ul class="stars">
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
-																		<a class="stars__link"><i
-																			class="stars__icon fas fa-star"></i></a>
+																		<c:forEach var="scoreCount" begin="0" end="4" step="1">
+																			<c:choose>
+																				<c:when
+																					test="${search_store_list.get(index).avgScore>=(scoreCount+0.5)}">
+																					<i class="stars__icon fas fa-star js-clear js-fill"></i>
+																				</c:when>
+																				<c:otherwise>
+																					<i class="stars__icon fas fa-star js-clear"></i>
+																				</c:otherwise>
+																			</c:choose>
+																		</c:forEach>
 																	</ul>
 																</div>
 															</div>
@@ -655,146 +806,11 @@ hr {
 			<div class="navigator"
 				style="position: relative; width: 100%; border: 0px;">
 				<hr>
-				<ul class="navigator_list">${search_store_list_navi}
-				</ul>
+				<ul class="navigator_list">${search_store_list_navi}</ul>
 			</div>
 		</div>
 
 
-
-		<!-- 필터 영역 -->
-
-		<form action="/searchToMain.store" id="searchForm"
-			onsubmit="return false;">
-			<input type="text" name="searchedBy" value="mainSearch"
-				style="display: none;">
-			<div id="sort_layout" style="display: none;">
-				<div class="search_filter">
-					<p class="sort_title">검색 필터</p>
-					<div class="filter_sort">
-						<input type="text" id="sortMethod" name="sortMethod"
-							style="display: none;">
-						<div class="filter_options">
-							<button class="filter_option_btn" id="order_by_distance">거리순</button>
-						</div>
-						<div class="filter_options">
-							<button class="filter_option_btn" id="order_by_score">평점순</button>
-						</div>
-						<div class="filter_options">
-							<button class="filter_option_btn" id="order_by_review">리뷰순</button>
-						</div>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="cost_average">
-					<p class="sort_title">가격/1인당</p>
-					<div class="filter_cost">
-						<input type="text" id="cost_set" name="cost_range"
-							style="display: none;"> <input type="range"
-							id="cost_range" class="form-range" min="0" max="4" step="1"
-							onchange=SetValue()>
-						<div id="range_result">범위를 지정해주세요</div>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="food_category">
-					<p class="sort_title food_category_title">음식종류</p>
-					<div class="food_category_layout">
-						<div class="food_category_inner_layout">
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">한식</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_korean" name="food_category_korean"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">양식</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_western" name="food_category_western"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">중식</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_chinese" name="food_category_chinese"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">일식</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_japanese" name="food_category_japanese"
-									style="display: none;">
-							</div>
-						</div>
-						<div class="food_category_inner_layout">
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">아시안</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_asian" name="food_category_asian"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">패스트푸드</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_fastfood" name="food_category_fastfood"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">디저트/음료</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_dessert_drink"
-									name="food_category_dessert_drink" style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">기타</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_etc" name="food_category_etc"
-									style="display: none;">
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="btn_layout">
-					<div class="btn_inner_layout">
-						<button class="sort_apply_btn" id="cancel_btn">취소</button>
-					</div>
-					<div class="btn_inner_layout">
-						<button class="sort_apply_btn" id="apply_btn">적용</button>
-					</div>
-				</div>
-			</div>
-		</form>
 	</div>
 
 	<input type="text" class="search_store_filter_toScript"
@@ -847,7 +863,6 @@ hr {
 		    var sibling = elem;
 		    for (; sibling; sibling = sibling.previousElementSibling)
 		        siblings.push(sibling);
-		    console.log(siblings);
 		    return siblings;
 		}
 		
@@ -857,6 +872,7 @@ hr {
 		        nextSibs.forEach((sib) => {
 		            sib.children[0].classList.add('js-clear');
 		            sib.children[0].classList.remove('js-fill');
+		            
 		        });
 		        let prevSibs = getPrevSiblings(el);
 		        prevSibs.forEach((sib) => {
@@ -992,6 +1008,60 @@ hr {
 			if(food_category_etc!='true'){
 				$("#food_category_etc").click();
 			}
+			
+			
+			
+			
+			// 즐겨찾기 등록,삭제 버튼
+			let addFavoriteStoreCheck = false;
+			$(".addFavorite_btn").on("click",function(){
+				
+				if(addFavoriteStoreCheck==false){
+					$.ajax({
+						url:"/addFavoriteStore.store",
+						type:"post",
+						data:{
+							addFavorite_storeID:$(this).prev().prev().val(),
+							addFavorite_userno:$(this).prev().val()
+						},
+						success: function(response) {
+							console.log("[response] : " + response);
+						},
+						error: function(xhr) {
+							console.log("[error] : " + xhr);
+						}
+					}).done(function(resp){
+						if(resp=="true"){
+							addFavoriteStoreCheck = true;
+							$(this).css({
+								"background-color":"red"
+							})
+						}
+					})
+				}else{
+					$.ajax({
+						url:"/deleteFavoriteStore.store",
+						type:"post",
+						data:{
+							addFavorite_storeID:$(this).prev().prev().val(),
+							addFavorite_userno:$(this).prev().val()
+						},
+						success: function(response) {
+							console.log("[response] : " + response);
+						},
+						error: function(xhr) {
+							console.log("[error] : " + xhr);
+						}
+					}).done(function(resp){
+						if(resp=="true"){
+							addFavoriteStoreCheck = false;
+							$(this).css({
+								"background-color":"white"
+							})
+						}
+					})
+				}
+			});
 		})
 		
 		
@@ -1022,7 +1092,6 @@ hr {
 			}
 		}
 		
-		
 		// 검색 정렬 확인 버튼
 		$("#apply_btn").on("click",function(){
 			$("#searchForm").prop("onsubmit",true);
@@ -1041,67 +1110,6 @@ hr {
 			$("#searchForm").prop("onsubmit",true);
 			$("#searchForm").submit();
 		})
-		
-		
-		// 즐겨찾기 등록 버튼
-		$(function(){
-			let addFavoriteStoreCheck = false;
-			$(".addFavorite_btn").on("click",function(){
-				if(addFavoriteStoreCheck==false){
-					$.ajax({
-						url:"/addFavoriteStore.store",
-						type:"post",
-						data:{
-							storeID:$(this).prev().prev().val(),
-							userno:$(this).prev().val()
-						},
-						success: function(response) {
-							console.log("[response] : " + response);
-						},
-						error: function(xhr) {
-							console.log("[error] : " + xhr);
-						}
-					}).done(function(resp){
-						if(resp=="true"){
-							addFavoriteStoreCheck = true;
-							$(this).css({
-								"background-color":"red"
-							})
-						}
-					})
-				}else{
-					$.ajax({
-						url:"/deleteFavoriteStore.store",
-						type:"post",
-						data:{
-							storeID:$(this).prev().prev().val(),
-							userno:$(this).prev().val()
-						},
-						success: function(response) {
-							console.log("[response] : " + response);
-						},
-						error: function(xhr) {
-							console.log("[error] : " + xhr);
-						}
-					}).done(function(resp){
-						if(resp=="true"){
-							addFavoriteStoreCheck = false;
-							$(this).css({
-								"background-color":"white"
-							})
-						}
-					})
-				}
-			});
-		})
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	</script>
 </body>
