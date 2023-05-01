@@ -209,12 +209,24 @@ button:hover {
 
 .body2Contents {
    width: 100%;
-   height: 400px;
+   height: 530px;
    border: 1px solid black;
    box-shadow: 1px 1px 5px 1px silver;
    background-color: rgb(240, 240, 240);
    border: 1px solid black;
+   padding:30px;
 }
+.body2Contents>table{
+	width:100%;
+	text-align:center;
+	font-size:14px;
+	magin:0 auto;
+
+}
+#replyList{display:none;}
+#reviewMark{display:none;}
+#consultList{display:none;}
+
 </style>
 </head>
 <body>
@@ -264,12 +276,118 @@ button:hover {
       </div>
       <div class="body2">
          <div class="body2Navi">
-            <a href="#null" class="myContents">내가 쓴 글</a>
-            <a href="#null" class="myContents">내가 쓴 댓글</a>
-            <a href="#null" class="myContents">즐겨찾기</a>
-            <a href="#null" class="myContents">1:1 문의</a>
+            <a href="#null" class="myContents" id="writeListBtn">내가 쓴 글</a>
+            <a href="#null" class="myContents" id="replyListBtn">내가 쓴 댓글</a>
+            <a href="#null" class="myContents" id="reviewMarkBtn">즐겨찾기</a>
+            <a href="#null" class="myContents" id="consultListBtn">1:1 문의</a>
          </div>
-         <div class="body2Contents"></div>
+         <div class="body2Contents">
+         <table border-bottom="1" class="table" id="writeList"><!--내가 쓴 글 리스트 뽑아내기-->
+         	 <colgroup>
+         	 	<col width="10%">
+         	 	<col width="40%">
+         	 	<col width="15%">
+         	 	<col width="10%">
+         	 	<col width="25%">
+         	 </colgroup>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>bootstrap</td>
+            <td>세영</td>
+            <td>1</td>
+            <td>2023.05.01</td>
+         </tr>
+        </tbody>
+    </table>
+    <table border-bottom="1" class="table" id="replyList"> <!--내가 쓴 댓글 리스트 뽑아내기-->
+         	 <colgroup>
+         	 	<col width="5%">
+         	 	<col width="40%">
+         	 	<col width="40%">
+         	 	<col width="15%">
+         	 </colgroup>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>글 제목</th>
+                <th>댓글 내용</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2</td>
+            <td>bootstrap</td>
+            <td>세영</td>
+            <td>1</td>
+         </tr>
+        </tbody>
+    </table>
+     <table border-bottom="1" class="table" id="reviewMark"> <!--블로그형 리뷰 스크랩-->
+         	 <colgroup>
+         	 	<col width="10%">
+         	 	<col width="40%">
+         	 	<col width="15%">
+         	 	<col width="10%">
+         	 	<col width="25%">
+         	 </colgroup>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>3</td>
+            <td>bootstrap</td>
+            <td>세영</td>
+            <td>1</td>
+            <td>2023.05.01</td>
+         </tr>
+        </tbody>
+    </table>
+    <table border-bottom="1" class="table" id="consultList"> <!-- 1:1문의 리스트 -->
+         	 <colgroup>
+         	 	<col width="10%">
+         	 	<col width="40%">
+         	 	<col width="15%">
+         	 	<col width="10%">
+         	 	<col width="25%">
+         	 </colgroup>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>4</td>
+            <td>bootstrap</td>
+            <td>세영</td>
+            <td>1</td>
+            <td>2023.05.01</td>
+         </tr>
+        </tbody>
+    </table>
+         </div>
       </div>
    </div>
    <script>
@@ -284,7 +402,7 @@ button:hover {
          }).open();
       })
 
-      $("document").ready(function() {
+      $("document").ready(function(){
     	  
     	  		  $("#memberoutBtn").on("click",function(){ //탈퇴하기 버튼 누를 때 이동
     	  			  location.href = "/memberout/memberout.jsp";  
@@ -305,14 +423,31 @@ button:hover {
                         $("input").attr("readonly", true);
                      })
 
-                     $(".myContents").on(
-                           "click",
-                           function() { //내가 쓴글...등 버튼 이벤트
+                     $(".myContents").on("click", function() { //내가 쓴글...등 버튼 이벤트
                               $(this).css("border-bottom", "none");
                               $(".myContents").not(this).css(
                                     "border-bottom",
                                     "1px solid black");
                            })
+                     $("#writeListBtn").on("click",function(){ //내가 쓴 글 버튼 누르면 관련 테이블 나오게 이벤트
+    	  			 $("#writeList").css("display","table");
+      	  			 $("table").not("table#writeList").css("display","none");
+     				 })
+      
+       				 $("#replyListBtn").on("click",function(){ //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
+    	 			 $("#replyList").css("display","table");
+      				 $("table").not("table#replyList").css("display","none");
+      				})
+      
+       				$("#reviewMarkBtn").on("click",function(){ //즐겨찾기 버튼 누르면 관련 테이블 나오게 이벤트
+    	 			$("#reviewMark").css("display","table");
+      	  			$("table").not("table#reviewMark").css("display","none");
+      				})
+      
+      				$("#consultListBtn").on("click",function(){ //1:1문의 버튼 누르면 관련 테이블 나오게 이벤트
+    	  			$("#consultList").css("display","table");
+      	  			$("table").not("table#consultList").css("display","none");
+      				})        
                   })
 
       $("#updateForm").on("submit",function() { //수정 regex
