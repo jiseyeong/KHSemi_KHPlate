@@ -546,6 +546,28 @@ $(".forgetpass").on("click", function() {
 		} else {
 			msg.innerHTML = "";
 		}
+
+		// 정규식 검사에 해당되지 않으면 로그인
+		$.ajax({
+			url : "/login.members",
+			type : "post",
+			data : {
+				id : $("#id").val(),
+				password : $("#pw").val()
+			}
+		}).done(function(resp) {
+			if (resp == "1") {
+				alert("ID가 잘못 되었습니다.");
+			} else if(resp == "2"){
+				alert("비밀번호가 잘못 되었습니다.");
+			} else if(resp == "3"){
+				alert("이메일 인증이 되지 않았습니다.");
+			} else {
+				alert("로그인 되었습니다.");
+				location.href = "/page/main.jsp";
+			}
+		})
+// 		$("#loginForm").submit();
 	}
 
 	// ParticlesJS

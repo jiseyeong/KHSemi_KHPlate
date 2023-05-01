@@ -17,11 +17,13 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import commons.SecurityUtils;
 import dao.CommentReviewDAO;
+import dao.FavoriteStoreDAO;
 import dao.MembersDAO;
 import dao.PhotoDAO;
 import dao.StoreDAO;
 import dao.StoreMenuDAO;
 import dto.CommentReviewDTO;
+import dto.FavoritePageDTO;
 import dto.PhotoDTO;
 import dto.StoreDTO;
 import dto.StoreMenuDTO;
@@ -223,9 +225,31 @@ public class StoreController extends HttpServlet {
 					System.out.println(s.getName());
 				}
 				System.out.println("===================");
-
+				
+				// 즐겨찾기 여부 확인
+				int userno = 0;
+				if(request.getSession().getAttribute("userno")!=null) {
+					userno = (int) request.getSession().getAttribute("userno");
+				}
+				System.out.println("유저넘버 : "+userno);
+				
+				List<FavoritePageDTO> Favorite_list = FavoriteStoreDAO.getInstance().isFavoriteStore(search_store_list,userno);
+				
+				// 필터 기본값 적용 
+				request.getSession().setAttribute("sortMethod", "");
+				request.getSession().setAttribute("cost_range", "");
+				request.getSession().setAttribute("food_category_korean", true);
+				request.getSession().setAttribute("food_category_western", true);
+				request.getSession().setAttribute("food_category_chinese", true);
+				request.getSession().setAttribute("food_category_japanese", true);
+				request.getSession().setAttribute("food_category_asian", true);
+				request.getSession().setAttribute("food_category_fastfood", true);
+				request.getSession().setAttribute("food_category_dessert_drink", true);
+				request.getSession().setAttribute("food_category_etc", true);
+				
 				request.setAttribute("search_store_list", search_store_list);
 				request.setAttribute("search_store_list_navi", search_store_list_navi);
+				request.setAttribute("Favorite_list", Favorite_list);
 
 				if(searchedBy.equals("mainSearch")) {
 					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
@@ -394,13 +418,8 @@ public class StoreController extends HttpServlet {
 
 				if(request.getParameter("cpage")!=null) {
 					currentpage = Integer.parseInt(request.getParameter("cpage"));
-					//				cpage는 외부 parameter로 접근 아니면 1로 고정
-					//					request.getSession().setAttribute("cpage", currentpage);
-					//				}else if(request.getSession().getAttribute("cpage")!=null) {
-					//					currentpage = (int) request.getSession().getAttribute("cpage");
 				}else {
 					currentpage = 1;
-					//					request.getSession().setAttribute("cpage", currentpage);
 				}
 
 				System.out.println("현재 페이지 : "+currentpage);
@@ -413,7 +432,7 @@ public class StoreController extends HttpServlet {
 					end_Record_Row_Num = currentpage * Settings.SEARCH_STORE_TO_MAP_RECORD_COUNT_PER_PAGE;
 					start_Record_Row_Num = end_Record_Row_Num - (Settings.SEARCH_STORE_TO_MAP_RECORD_COUNT_PER_PAGE-1);
 				}
-
+				
 				System.out.println("시작넘버 : "+start_Record_Row_Num);
 				System.out.println("끝넘버 : "+end_Record_Row_Num);
 
@@ -424,15 +443,17 @@ public class StoreController extends HttpServlet {
 				String search_store_list_navi = StoreDAO.getInstance().getNavi_BySearchFilter(currentpage,search,searchedBy,sortMethod, cost_range, food_category_korean, 
 						food_category_western, food_category_chinese, food_category_japanese, food_category_asian, food_category_fastfood, 
 						food_category_dessert_drink, food_category_etc);
-
+				
 				System.out.println("리스트 사이즈 : "+search_store_list.size());
-				for(StoreDTO s : search_store_list) {
-					System.out.println(s.getName());
-				}
+				
+				int userno = (int) request.getSession().getAttribute("userno");
+				List<FavoritePageDTO> Favorite_list = FavoriteStoreDAO.getInstance().isFavoriteStore(search_store_list,userno);
+				
 				System.out.println("===================");
 
 				request.setAttribute("search_store_list", search_store_list);
 				request.setAttribute("search_store_list_navi", search_store_list_navi);
+				request.setAttribute("Favorite_list", Favorite_list);
 
 				if(searchedBy.equals("mainSearch")) {
 					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
@@ -445,9 +466,9 @@ public class StoreController extends HttpServlet {
 			// 즐겨찾기 추가 controller
 			else if(cmd.equals("/addFavoriteStore.store")) {
 				int storeID = Integer.parseInt(request.getParameter("addFavorite_storeID"));
-				int userno = (int) request.getSession().getAttribute("addFavorite_userno");
+				int userno = (int) request.getSession().getAttribute("userno");
 
-				int result = StoreDAO.getInstance().addFavoriteStore(storeID, userno);
+				int result = FavoriteStoreDAO.getInstance().addFavoriteStore(storeID, userno);
 				if(result>0) {
 					System.out.println("즐찾 등록 성공");
 					response.getWriter().append("true");
@@ -458,9 +479,9 @@ public class StoreController extends HttpServlet {
 			// 즐겨찾기 삭제 controller
 			else if(cmd.equals("/deleteFavoriteStore.store")) {
 				int storeID = Integer.parseInt(request.getParameter("addFavorite_storeID"));
-				int userno = (int) request.getSession().getAttribute("addFavorite_userno");
+				int userno = (int) request.getSession().getAttribute("userno");
 
-				int result = StoreDAO.getInstance().addFavoriteStore(storeID, userno);
+				int result = FavoriteStoreDAO.getInstance().deleteFavoriteStore(storeID, userno);
 				if(result>0) {
 					System.out.println("즐찾 해제 성공");
 					response.getWriter().append("true");
