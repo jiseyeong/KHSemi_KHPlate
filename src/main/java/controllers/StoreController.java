@@ -189,19 +189,14 @@ public class StoreController extends HttpServlet {
 
 				if(request.getParameter("search")!=null) {
 					search = request.getParameter("search");
-					request.getSession().setAttribute("search", search);
-				}else if(request.getSession().getAttribute("search")!=null){
-					search = (String) request.getSession().getAttribute("search");
 				}else {
 					search = "";
-					request.getSession().setAttribute("search", search);
 				}
 
 				System.out.println("검색어 : "+search);
 
 				if(request.getParameter("food_category")!=null) {
 					food_category = request.getParameter("food_category");
-					request.setAttribute("food_category", food_category);
 				}else {
 					food_category = "";
 				}

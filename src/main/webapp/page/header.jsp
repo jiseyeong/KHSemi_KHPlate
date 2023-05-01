@@ -108,6 +108,15 @@
 	  .btnBox>a:hover{
 		opacity:80%;
 		}
+		
+		
+/* 		#searchForm{ */
+/* 			width:inherit; */
+/* 			height:inherit; */
+/* 			display:flex; */
+/* 			justify-content:center; */
+/* 			align-items:center; */
+/* 		} */
 </style>
 
 
@@ -120,15 +129,15 @@
          	 <img src="/page/logowhite.png" class="logoimage">
         </div>
         <div class="col-12 col-lg-6  d-flex search">
-           <form action="/searchStoreBySearchBox.store" method="get" class="form">
+           <form id=searchForm action="/searchStoreBySearchBox.store" method="get" class="form d-flex" onsubmit="return false;">
 							
             <select size="1" id="searchCheck" class="nanum-gothic" name="searchSelect"> 
-        		<option>맛집</option>
-        		<option>블로그</option>
+        		<option value="1">맛집</option>
+        		<option value="2">블로그</option>
     		</select>
             	<input type="text" name="searchedBy" value="mainSearch" style="display:none;">
                 <input type="search" id="searchBox" name="search">
-                <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
+                <button type="button" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
                 </button>
             </form>
         </div>
@@ -160,6 +169,18 @@
     // 로고 클릭 시 메인페이지 이동
    	$(".logo").on("click",function(){
    		location.href = "/page/main.jsp";
+   	})
+   	
+   	
+   	// 맛집 검색과 블로그 검색 구분
+   	$("#searchBtn").on("click",function(){
+		if($("#searchCheck option:selected").val()==1){
+			$("#searchForm").prop("action","/searchStoreBySearchBox.store");
+   		}else if($("#searchCheck option:selected").val()==2){
+   			$("#searchForm").prop("action","/select.fullreview");
+   		}
+			$("#searchForm").prop("onsubmit",true);
+			$("#searchForm").submit();
    	})
     
     </script>

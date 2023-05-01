@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
@@ -10,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import commons.SecurityUtils;
+import dto.FullReviewDTO;
 import dto.MembersDTO;
 
 public class MembersDAO {
@@ -251,5 +253,34 @@ public class MembersDAO {
 			con.commit();
 			return result;
 		}
+	}
+	
+	
+	// FullReviewController에서 리스트 출력 시 유저 정보를 가져올 때 사용
+	public List<MembersDTO> selectfullReviewUserList(List<FullReviewDTO> fullReviewList) throws Exception {
+		List<MembersDTO> result = new ArrayList<>();
+		for(FullReviewDTO users : fullReviewList) {
+			String sql = "select * from members where userno = ?";
+			try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+				
+				pstat.setInt(1, users.getUserNO());
+				try(ResultSet rs = pstat.executeQuery();){
+					rs.next();
+					String userID = rs.getString("userid");
+					String pw = rs.getString("pw");
+					String nickname = rs.getString("nickname");
+					String name = rs.getString("name");
+					String email = rs.getString("email");
+					String phone = rs.getString("phone");
+					String classes = rs.getString("classes");
+					String selfcomment = rs.getString("selfcomment");
+					String favoritefood = rs.getString("favoritefood");
+					
+					result.add(new MembersDTO(userID, pw, nickname, name, email, phone, classes, selfcomment,
+							favoritefood));
+				}
+			}
+		}
+		return result;
 	}
 }
