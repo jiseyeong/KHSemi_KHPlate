@@ -21,12 +21,17 @@
 	crossorigin="anonymous"></script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');/*나눔고딕 폰트 import */
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
-
+table{
+	text-align:center;
+	font-size:12px;
+}
 .body {
 	margin: auto;
 }
@@ -52,7 +57,7 @@
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
-				<table align="center" class="table table-secondary table-striped">
+				<table align="center" class="table" style="background-color:#57b846; color:white;">
 					<tr>
 						<th width="10%">글 번호</th>
 						<th width="40%">제목</th>

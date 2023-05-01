@@ -38,8 +38,7 @@
 }
 
 /* 하단부터 메인부분 스타일 작성 요망 */
-p{font-weight:bold;}
-
+p{font-weight:bold; font-size:25px; color:#57b846;}
 .row>div>select{font-size:12px;}
 .row>div>input{font-size:12px;}
 .writeBody>div{
@@ -54,7 +53,7 @@ p{font-weight:bold;}
 	width: 100px;
 	height: 40px;
 	background-color: #57b846;
-	border:  #57b846;
+	border:none;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
@@ -67,9 +66,9 @@ p{font-weight:bold;}
 	width: 100px;
 	height: 40px;
 	background-color: #57b846;
-	border:  #57b846;
 	border-radius: 12px;
 	cursor: pointer;
+	border:none;
 	color: white;
 	font-size: 14px;
 	box-shadow:1px 1px 5px 1px silver;
@@ -91,9 +90,12 @@ p{font-weight:bold;}
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents" style="padding-left:100px; padding-right:100px;">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<form id="myForm" action="/register.consult" method="post" enctype="multipart/form-data">
-					<p class="nanum-gothic">Customer Service Page</p>
-					<hr>
-					<br>
+					<div class="row" style="margin-bottom:20px;">
+					<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+					<p class="nanum-gothic">고객의 소리</p>
+					<hr style="border-style:dotted;">
+					</div>
+					</div>
 						<div class="row writeHeader" style="margin-bottom:20px;">	
 							<div class="col-12 col-lg-1" style="margin-left:auto;">
 								<select class="nanum-gothic form-select" name="category">
