@@ -23,16 +23,13 @@ public class FullReviewController extends HttpServlet {
 		if(cmd.equals("/write.fullreview")) {
 			System.out.println(cmd);
 			
-			String writer = request.getParameter("writer");
 			String title = request.getParameter("title");
-			
-			
 			String reviewbody = request.getParameter("reviewbody");
 			int score = Integer.parseInt(request.getParameter("score"));
 			int storeId = Integer.parseInt(request.getParameter("storeId"));
 			int userNo= Integer.parseInt(request.getParameter("userNo"));
 			
-			int result = frdao.writeFullReview(reviewbody,score,storeId,userNo);
+			int result = frdao.writeFullReview(title,reviewbody,score,storeId,userNo);
 			
 			if (result>0) {
 				System.out.println("진심리뷰 작성완료");
@@ -44,6 +41,19 @@ public class FullReviewController extends HttpServlet {
 		}else if (cmd.equals("/update.fullreview")){
 			System.out.println(cmd);
 			
+			int reviewId = Integer.parseInt(request.getParameter("reviewId"));
+			String title = request.getParameter("title");
+			String reviewbody = request.getParameter("reviewbody");
+			int score = Integer.parseInt(request.getParameter("score"));
+			
+			int result = frdao.update(title,reviewbody,score,reviewId);
+			
+			if (result>0) {
+				System.out.println("진심리뷰 수정완료");
+				response.sendRedirect("/FullReview/FullReviewList.jsp");
+			}else {
+				response.sendRedirect("error.jsp");
+			}
 		}
 		
 		
