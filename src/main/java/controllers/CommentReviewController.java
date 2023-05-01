@@ -43,7 +43,7 @@ public class CommentReviewController extends HttpServlet {
 				String body = multi.getParameter("body");
 				body = SecurityUtils.XSSCheck(body);
 				int storeID = Integer.parseInt(multi.getParameter("storeID"));
-				int userNo = 0;			
+				int userNo = Integer.parseInt(multi.getParameter("userNo"));	
 				int result = CommentReviewDAO.getInstance().insert(new CommentReviewDTO(0, body, score, storeID, userNo, null, 0));
 				int currval = CommentReviewDAO.getInstance().getCurrval();
 				
