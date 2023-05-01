@@ -540,6 +540,7 @@ $(".forgetpass").on("click", function() {
 		}
 // 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		var re = /^[a-z0-9_]{7,13}$/;
+		
 		if (!re.test(id.value)) {
 			msg.innerHTML = "Please enter a valid id";
 			id.focus();
