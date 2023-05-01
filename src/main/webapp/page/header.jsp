@@ -120,7 +120,7 @@
          	 <img src="/page/logowhite.png" class="logoimage">
         </div>
         <div class="col-12 col-lg-6  d-flex search">
-           <form action="/searchStoreBySearchBox.store" method="get" class="form">
+           <form action="/searchStoreBySearchBox.store" method="get" class="form" onsubmit="return false;">
 							
             <select size="1" id="searchCheck" class="nanum-gothic" name="searchSelect"> 
         		<option>맛집</option>
@@ -128,7 +128,7 @@
     		</select>
             	<input type="text" name="searchedBy" value="mainSearch" style="display:none;">
                 <input type="search" id="searchBox" name="search">
-                <button type="submit" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
+                <button type="button" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
                 </button>
             </form>
         </div>
@@ -161,6 +161,13 @@
    	$(".logo").on("click",function(){
    		location.href = "/page/main.jsp";
    	})
+   	
+   	
+   	// 맛집 검색일 때
+   	$("#searchBtn").on("click",function(){
+   		console.log($("#searchCheck").selected));
+   	})
+   	// 블로그 검색일 때
     
     </script>
     
