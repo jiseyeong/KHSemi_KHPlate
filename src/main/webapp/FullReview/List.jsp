@@ -66,6 +66,9 @@
 	width: 30%;
 	margin-bottom: 30px;
 }
+.card:hover{
+	cursor:pointer;
+} 
 
 .btnBox {
 	height: 100px;
@@ -144,6 +147,8 @@
 	justify-content: center;
 	align-items: center;
 }
+
+
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -269,7 +274,7 @@
 		})
 		
 		$(".card").on("click",function(){
-			location.href="/FullReview/FullReviewContent?reviewId="${list.reviewId};
+			location.href="/FullReview/FullReviewContent.jsp";
 		})
 		
 	</script>

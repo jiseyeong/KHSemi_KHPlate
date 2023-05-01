@@ -20,6 +20,45 @@ public class FullReviewReplyController extends HttpServlet {
 		FullReviewReplyDAO frrdao = FullReviewReplyDAO.getInstance();
 
 		try {
+			if(cmd.equals("/write.fullreviewreply")) {
+				
+				String body = request.getParameter("body");
+				int userno = Integer.parseInt(request.getParameter("userno"));
+				int reviewid= Integer.parseInt(request.getParameter("reviewid"));
+				
+				frrdao.addReply( body,  userno,  reviewid);
+				
+				response.sendRedirect("/select.fullreview");
+					
+				}else if(cmd.equals("delete.fullreviewreply")) {
+					
+					int reviewid= Integer.parseInt(request.getParameter("reviewid"));
+					
+					
+					int result = frrdao.deleteReply(reviewid);
+					
+					if(result==0) {
+						System.out.println(reviewid +"댓글 삭제 실패");
+					}else {
+						System.out.println(reviewid +"댓글 삭제 성공");
+					}
+					
+					response.sendRedirect("/select.fullreview");
+				}else if(cmd.equals("ipdate.fullreviewreply")) {
+					String body = request.getParameter("body");
+					int reviewid= Integer.parseInt(request.getParameter("reviewid"));
+					
+					int result = frrdao.updateReply(body, reviewid);
+					
+					if(result==0) {
+						System.out.println(reviewid +"댓글 수정 실패");
+					}else {
+						System.out.println(reviewid +"댓글 수정 성공");
+					}
+
+				}
+				
+			
 
 		}catch(Exception e) {
 			e.printStackTrace();
