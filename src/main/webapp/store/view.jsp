@@ -566,15 +566,27 @@
 
 														let btn_modify = "#btn_modify" + i;
 														let readStar = "#readStar" + i;
+														let btn_confirm = "#btn_confirm" + i;
+														let btn_cancel = "#btn_cancel" + i;
+
 														let writeStar = "#writeStar" + i;
 														let score = "#score" + i;
-														$(btn_modify).click(function () {
-															let btn_confirm = "#btn_confirm" + i;
-															let btn_cancel = "#btn_cancel" + i;
-															if (!($(btn_confirm).length > 0)) {
-																let replyControl = "#replyControl" + i;
-																let updateForm = "#updateCommentForm" + i;
+														
+														let replyControl = "#replyControl" + i;
+														let updateForm = "#updateCommentForm" + i;
+														
+														let reviewImageModify = "#reviewImageModify" + i;
+														let modifyAddImage = "#modifyAddImage" + i;
+														//별점 버튼 이벤트 등록
+														$(writeStar + " a").click(function () {
+															$(this).parent().children("a").removeClass("on");
+															$(this).addClass("on").prevAll("a").addClass("on");
+															$(score).attr("value", $(this).attr("value"));
+														});
 
+														$(btn_modify).click(function () {
+
+															if (!($(btn_confirm).length > 0)) {
 																let btn_confirm_body = $("<button>");
 																let btn_cancel_body = $("<button>");
 
@@ -592,8 +604,8 @@
 																	$(btn_modify + "," + readStar).removeClass("nonactive");
 																	$(btn_confirm + "," + btn_cancel + "," + writeStar).addClass("nonactive");
 																	editor.enableReadOnlyMode("");
-																	$("#reviewImageModify" + i).addClass("nonactive");
-																	$("#modifyAddImage" + i).addClass("nonactive");
+																	$(reviewImageModify).addClass("nonactive");
+																	$(modifyAddImage).addClass("nonactive");
 
 																});
 
@@ -603,7 +615,7 @@
 																let review_imgsLength;
 
 																$.ajax({
-																	url: "/getPhotoList.commentReview?reviewID" + reviewID,
+																	url: "/getPhotoList.commentReview?reviewID=" + reviewID,
 																	dataType: "json"
 																}).done(function (resp) {
 																	review_imgsLength = resp.length;
@@ -642,13 +654,6 @@
 																		form.append(sub_col2);
 
 																		row2.append(form);
-
-																		//별점 버튼 이벤트 등록
-																		$(writeStar + " a").click(function () {
-																			$(this).parent().children("a").removeClass("on");
-																			$(this).addClass("on").prevAll("a").addClass("on");
-																			$("#score" + i).attr("value", $(this).attr("value"));
-																		});
 																	}
 																});
 
@@ -694,12 +699,13 @@
 																editor.disableReadOnlyMode("");
 																$(btn_modify + "," + readStar).addClass("nonactive");
 																$(btn_confirm + "," + btn_cancel + "," + writeStar).removeClass("nonactive");
-																$("#reviewImageModify" + i).removeClass("nonactive");
-																$("#modifyAddImage" + i).removeClass("nonactive");
+																$(reviewImageModify).removeClass("nonactive");
+																$(modifyAddImage).removeClass("nonactive");
 															}
 														});
 													})
 													.catch(error => { console.error(error) });
+
 
 											</script>
 
