@@ -428,7 +428,8 @@
 										<div class="row align-items-center">
 											<div class="col-12">
 												<div class="star">
-													<input type="text" name="score" value="0" style="display:none;" id="score">
+													<input type="text" name="score" value="0" style="display:none;"
+														id="score">
 													<a href="#null" value="1">★</a>
 													<a href="#null" value="2">★</a>
 													<a href="#null" value="3">★</a>
@@ -515,6 +516,8 @@
 												method="post" enctype="multipart/form-data">
 												<input type="text" name="storeID" value="${dto.storeID}"
 													style="display: none;">
+												<input type="text" name="reviewID"
+													value="${commentList.get(i).reviewID}" style="display: none;">
 												<div id="writeStar${i}" class="col-12 star nonactive">
 													<input type="text" id="score${i}" name="modifyScore" value="0"
 														style="display:none;">
@@ -545,9 +548,7 @@
 													</div>
 												</div>
 											</form>
-											<div class="col-12 nonactive" id="reviewImageModify${i}">
-											</div>
-											<c:if test="${commentList.get(i).userNo == sessionScope.loginNo}">
+											<c:if test="${commentList.get(i).userNo == sessionScope.userno}">
 												<div id="replyControl${i}" class="col-12 text-end">
 													<button type="button" id="btn_modify${i}" class="active">수정</button>
 												</div>
@@ -565,15 +566,27 @@
 
 														let btn_modify = "#btn_modify" + i;
 														let readStar = "#readStar" + i;
+														let btn_confirm = "#btn_confirm" + i;
+														let btn_cancel = "#btn_cancel" + i;
+
 														let writeStar = "#writeStar" + i;
 														let score = "#score" + i;
-														$(btn_modify).click(function () {
-															let btn_confirm = "#btn_confirm" + i;
-															let btn_cancel = "#btn_cancel" + i;
-															if (!($(btn_confirm).length > 0)) {
-																let replyControl = "#replyControl" + i;
-																let updateForm = "#updateForm" + i;
+														
+														let replyControl = "#replyControl" + i;
+														let updateForm = "#updateCommentForm" + i;
+														
+														let reviewImageModify = "#reviewImageModify" + i;
+														let modifyAddImage = "#modifyAddImage" + i;
+														//별점 버튼 이벤트 등록
+														$(writeStar + " a").click(function () {
+															$(this).parent().children("a").removeClass("on");
+															$(this).addClass("on").prevAll("a").addClass("on");
+															$(score).attr("value", $(this).attr("value"));
+														});
 
+														$(btn_modify).click(function () {
+
+															if (!($(btn_confirm).length > 0)) {
 																let btn_confirm_body = $("<button>");
 																let btn_cancel_body = $("<button>");
 
@@ -591,8 +604,8 @@
 																	$(btn_modify + "," + readStar).removeClass("nonactive");
 																	$(btn_confirm + "," + btn_cancel + "," + writeStar).addClass("nonactive");
 																	editor.enableReadOnlyMode("");
-																	$("#reviewImageModify" + i).addClass("nonactive");
-																	$("#modifyAddImage" + i).addClass("nonactive");
+																	$(reviewImageModify).addClass("nonactive");
+																	$(modifyAddImage).addClass("nonactive");
 
 																});
 
@@ -602,7 +615,7 @@
 																let review_imgsLength;
 
 																$.ajax({
-																	url: "/getPhotoList.commentReview?reviewID" + reviewID,
+																	url: "/getPhotoList.commentReview?reviewID=" + reviewID,
 																	dataType: "json"
 																}).done(function (resp) {
 																	review_imgsLength = resp.length;
@@ -686,14 +699,14 @@
 																editor.disableReadOnlyMode("");
 																$(btn_modify + "," + readStar).addClass("nonactive");
 																$(btn_confirm + "," + btn_cancel + "," + writeStar).removeClass("nonactive");
-																$("#reviewImageModify" + i).removeClass("nonactive");
-																$("#modifyAddImage" + i).removeClass("nonactive");
+																$(reviewImageModify).removeClass("nonactive");
+																$(modifyAddImage).removeClass("nonactive");
 															}
 														});
-
-
 													})
 													.catch(error => { console.error(error) });
+
+
 											</script>
 
 										</c:forEach>
@@ -712,7 +725,7 @@
 								$(".star a").click(function () {
 									$(this).parent().children("a").removeClass("on");
 									$(this).addClass("on").prevAll("a").addClass("on");
-									$("input[name='score']").attr("value",$(this).attr("value"));
+									$("input[name='score']").attr("value", $(this).attr("value"));
 								});
 
 								//메뉴 추가 버튼 이벤트 등록

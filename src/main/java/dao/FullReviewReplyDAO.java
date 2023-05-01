@@ -2,10 +2,15 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import dto.FullReviewReplyDTO;
 
 public class FullReviewReplyDAO {
 	private static FullReviewReplyDAO instance = null;
@@ -57,5 +62,32 @@ public class FullReviewReplyDAO {
 			return result;
 		}
 	}
+
+
+	public List<FullReviewReplyDTO> listReplyByPa_seq(int reviewid) throws Exception {
+		String sql = "select * from FullReviewReply where reviewid = ?";
+		try (Connection con = this.getConnection(); 
+				PreparedStatement ppst = con.prepareStatement(sql);) {
+			ppst.setInt(1, reviewid);
+
+			try (ResultSet rs = ppst.executeQuery();) {
+				List<FullReviewReplyDTO> result = new ArrayList<>();
+				while (rs.next()) {
+					int rscommentid =rs.getInt("commentid");
+					String rsbody = rs.getString("body");
+					int rsuserno =rs.getInt("userno");
+					int rsreviewid=rs.getInt("reviewid");
+					
+					FullReviewReplyDTO dto = new FullReviewReplyDTO(rscommentid,rsbody,rsuserno,rsreviewid);
+					result.add(dto);
+				}
+				return result;
+			}
+		}
+	}
+	
+
+
+
 
 }

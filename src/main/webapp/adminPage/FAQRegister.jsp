@@ -25,6 +25,7 @@
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	margin-bottom: 10px;
 }
 
 .body {
@@ -39,6 +40,12 @@
 .inputContent {
 	margin-top: 3%;
 	margin-bottom: 1%;
+}
+
+.legend {
+color: #ED1C16;
+font-size: 25px;
+margin-bottom: 5px;
 }
 
 #submitBtn {
@@ -73,12 +80,11 @@
 					<div class="row">
 						<div class="col-12">
 							<fieldset>
-								<legend>FAQ 등록</legend>
+								<legend class="legend">FAQ 등록</legend>
 								<div class="col-12">
 									<div class="input-group">
 										<span class="input-group-text">제목</span>
 										<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요">
-										<div class="col-12 inputContent">FAQ 내용</div>
 										<div class="col-12">
 											<textarea name="body" id="editor"></textarea>
 										</div>

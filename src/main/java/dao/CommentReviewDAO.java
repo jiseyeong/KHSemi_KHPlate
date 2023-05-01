@@ -47,6 +47,21 @@ public class CommentReviewDAO {
 		}
 	}
 	
+	public int update(int reviewID, String body, int score) throws Exception{
+		String sql = "update COMMENTREVIEW"
+				+ " set BODY=?, SCORE=?"
+				+ " where REVIEWID = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, body);
+			pstat.setInt(2, score);
+			pstat.setInt(3, reviewID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
 	public ArrayList<CommentReviewDTO> selectByStoreID(int storeID) throws Exception{
 		String sql = "select * from COMMENTREVIEW where STOREID = ?";
 		try(	Connection con = this.getConnection();
