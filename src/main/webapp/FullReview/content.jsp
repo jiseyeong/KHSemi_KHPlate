@@ -6,16 +6,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>리뷰 게시판</title>
+
+<style>
+	.title{
+		width:100%;
+	}
+	
+	.reviewbody{
+		width:100%;
+	}
+</style>
+
 </head>
 <body>
 	<div class="container">
-		<form action="/update.fullreview" class="frm">
+		
+		<!-- 본문란 -->
+		<form action="/update.fullreview" class="frm" method="post">
 			<input type="text" placeholder="제목란" class="title" name="title" value="${contents.title }" readonly>
+			
 			<div class="storeId" name="storeId">음식점</div>
 			<div class="score" name="score">별점란</div>
 			<div class="bodyBox">
-				<textarea class="reviewBody" readonly>${contents.reviewbody }</textarea>
+				<textarea class="reviewbody" readonly>${contents.reviewbody }</textarea>
 			</div>
 			<br>
 			<div>
@@ -25,6 +39,29 @@
 				<button class="toListBtn" type="button">목록으로</button>
 			</div>
 		</form>
+		
+		<!-- 댓글 작성란 -->
+			<form action="write.fullreviewreply" method="post">
+		<table border="1">
+			<tr>
+				<td colspan="2">작성자 ID : <input type="text" id="re_writer"
+					name="re_writer" value="${sessionScope.loginId}" readonly>
+					<input type="text" class="seq" name="seq" value="${dto.seq }">
+				</td>
+			</tr>
+			<tr>
+				<td><input type="text" id="re_contents" name="re_contents"
+					placeholder="작성할 댓글 입력" size="87%"></td>
+				<td><input type="submit" value="작성완료" id="re_write_btn"
+					name="re_write_btn"></td>
+			</tr>
+		</table>
+	</form>
+		
+		
+		<!-- 댓글목록란 -->
+		
+		
 	</div>
 	
 	<script>

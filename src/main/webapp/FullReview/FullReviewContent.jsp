@@ -45,14 +45,15 @@
 
 
 		<!-- body 부분 row div 건들지 말것 -->
-		<div class="row g-0 justify-content-center body" style="margin-top:70px;">
+		<div class="row g-0 justify-content-center body"
+			style="margin-top: 70px;">
 			<!-- sideBar부분 건들지 말것 -->
 			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 
-			<jsp:include page="/page/content.jsp" flush="false"></jsp:include>
+				<jsp:include page="/FullReview/content.jsp" flush="false"></jsp:include>
 
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
