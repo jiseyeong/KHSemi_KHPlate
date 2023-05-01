@@ -42,7 +42,7 @@ public class ConsultController extends HttpServlet {
 				Integer userNo = Integer.parseInt(multi.getParameter("writer"));
 				String body = multi.getParameter("body");
 				
-				int result = ConsultDAO.getInstance().insert(new ConsultDTO(0, title, body, userNo, null, category));
+				int result = ConsultDAO.getInstance().insert(new ConsultDTO(0, title, body, userNo, null, category, "N"));
 				
 				Enumeration<String> names = multi.getFileNames();
 				while(names.hasMoreElements()) {
@@ -93,6 +93,7 @@ public class ConsultController extends HttpServlet {
 				String body = request.getParameter("body");
 				
 				int result = ConsultReplyDAO.getInstance().insert(new ConsultReplyDTO(0, title, body, consultID, userNo, null));
+				int replyResult = ConsultDAO.getInstance().updateReply(consultID, "Y");
 				response.sendRedirect("/view.consult?consultID="+consultID);
 			}
 		}catch(Exception e) {
