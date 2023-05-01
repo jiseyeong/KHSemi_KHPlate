@@ -1,336 +1,686 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
 
+
+<!DOCTYPE html>
+<html>
 <head>
+<!-- Required meta tags-->
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+
+
+<!-- Title Page-->
+<title>Login Form</title>
+
+<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-	<link rel="stylesheet"
-	href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
-	<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900">
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-<title>비밀번호 재발급</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.1.2/typicons.min.css">
+
+<!-- Main CSS-->
+<link href="css/main.css" rel="stylesheet" media="all">
 </head>
 
+
+
 <style>
+	
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
-body{
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #000000;
-  background-color: #ED1C16;
-  overflow-x: hidden;
+
+body, html {
+	font-family: 'Nanum Gothic', sans-serif;
+	background-color: #ED1C16;
+	padding: 0;
+	margin: 0;
 }
+
+#particles-js {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	font-family: 'Nanum Gothic', sans-serif;
+	margin: 0;
+	top: 50px;
+	left: 50%;
+	position: absolute;
+	text-align: center;
+	transform: translateX(-50%);
+	background-color: white;
+	border-radius: 9px;
+	border-top: 10px solid #57b846;
+	border-bottom: 10px solid #57b846;
+	width: 400px;
+	height: 550px;
+}
+
+.box h4 {
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #ED1C16;
+	font-size: 25px;
+	margin-top: 55px;;
+}
+
+.box h5 {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 13px;
+	color: #a1a4ad;
+	letter-spacing: 1.5px;
+	margin-top: -15px;
+	margin-bottom: 60px;
+}
+
+.box input[type="text"], .box input[type="password"] {
+	display: block;
+	margin: 20px auto;
+	background: #f2f2f2;
+	border: 0;
+	border-radius: 5px;
+	padding: 14px 10px;
+	width: 320px;
+	outline: none;
+	color: #000000;
+	-webkit-transition: all .2s ease-out;
+	-moz-transition: all .2s ease-out;
+	-ms-transition: all .2s ease-out;
+	-o-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+}
+
+::-webkit-input-placeholder {
+	color: #565f79;
+}
+
+.box input[type="text"]:focus, .box input[type="password"]:focus {
+	border: 1px solid #79A6FE;
+}
+
 a {
-  cursor: pointer;
-  transition: all 200ms linear;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: black;
+	font-size: 13px;
+	text-decoration: none;
 }
+
 a:hover {
-  text-decoration: none;
-}
-.link {
-  color: #c4c3ca;
-}
-.link:hover {
-  color: #ffeba7;
-}
-p {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.7;
-}
-h4 {
-  font-weight: 600;
+	text-decoration: underline;
 }
 
-.section{
-  position: relative;
-  width: 100%;
-  display: block;
+label input[type="checkbox"] {
+	display: none; /* hide the default checkbox */
 }
-.full-height{
-  min-height: 100vh;
+
+/* style the artificial checkbox */
+/* label span {
+	height: 13px;
+	width: 13px;
+	border: 2px solid #464d64;
+	border-radius: 2px;
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	float: left;
+	left: 7.5%;
+} */
+.btn {
+	border: 0;
+	border-radius: 100px;
+	width: 340px;
+	height: 49px;
+	font-size: 16px;
+	position: absolute;
+	left: 8%;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+#signupBtn:hover {
+	background: #4dae3c;
+}
+
+#signupBtn {
+	top: 62%;
+	background: #57b846;
+	color: #dfdeee;
+}
+
+#kakaoBtn {
+	top: 72%;
+	background: #ffe812;
+	background-image: url(kakao3.png);
+	background-size: 320px 50px;
+	background-position: top;
+	background-position: 10px;
+}
+
+#naverBtn {
+	top: 82%;
+	background: #57b846;
+	/* background-image: url(naver13.png);
+    background-size: 270px 70px;
+     */
+	background-image: url(naver17.png);
+	background-size: 300px 80px;
+	background-position: 30px;
+
+	/* background-position: left;
+    background-position: -20px; */
+}
+
+.rmb {
+	position: absolute;
+	margin-left: -24%;
+	margin-top: 0px;
+	color: #a1a4ad;
+	font-size: 13px;
+}
+
+.forgetidpw {
+	font-family: 'Nanum Gothic', sans-serif;
+	color: black;
+	font-size: 13px;
+	position: absolute;
+	text-align: center;
+	top: 93%;
+	left: 20%;
+	cursor: pointer;
+}
+
+.dnthave {
+	position: absolute;
+	text-align: center;
+	top: 93%;
+	left: 60%;
+}
+
+[type=checkbox]:checked+span:before /*style its checked state  */ {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 16px;
+	content: "\f00c";
+	position: absolute;
+	top: -4px;
+	color: #ED1C16;
+	left: -1px;
+	width: 13px;
+}
+
+.typcn {
+	position: absolute;
+	left: 339px;
+	top: 282px;
+	color: #c8b6b6;
+	font-size: 22px;
+	cursor: pointer;
+}
+
+.typcn.active {
+	color: #b7c2b5;
+}
+
+.error {
+	background: #ff3333;
+	text-align: center;
+	width: 337px;
+	height: 20px;
+	padding: 2px;
+	border: 0;
+	border-radius: 5px;
+	margin: 10px auto 10px;
+	position: absolute;
+	top: 19%;
+	left: 7.2%;
+	color: white;
+	display: none;
+}
+
+#naverIdLogin {
+	width: 215px;
+	height: 55px;
+	background-color: rgb(3, 199, 90);
+	font-size: 18px;
+}
+
+.eyes {
+	cursor: pointer;
+	margin-left: 330px;
+	margin-top: -63px;
+	position: absolute;
+}
+
+.input-wrap {
+	font-size: 13px;
+}
+
+#checkId {
+	margin-left: -226px;
 }
 
 
-.card-3d-wrap {
-  position: relative;
-  width: 440px;
-  max-width: 100%;
-  height: 400px;
-  perspective: 800px;
-  margin-top: 60px;
-}
-.card-3d-wrapper {
-  width: 100%;
-  height: 100%;
-  position:absolute;    
-  top: 0;
-  left: 0;  
-  transition: all 600ms ease-out; 
-}
-.card {
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff;
-  background-position: bottom center;
-  background-repeat: no-repeat;
-  background-size: 300%;
-  position: absolute;
-  border-radius: 6px;
-  left: 0;
-  top: 0;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden;
+#naverIdLogin img {
+	width: 100%;
+	height: 100%;
+	opacity: 0;
 }
 
-.center-wrap{
-  position: absolute;
-  width: 100%;
-  padding: 0 35px;
-  top: 50%;
-  left: 0;
-  transform: translate3d(0, -50%, 35px) perspective(100px);
-  z-index: 20;
-  display: block;
+#naverIdLogin {
+	background-color: #ED1C1600;
+}
+
+#naverIdLogin {
+	width: 330px;
+	height: 47px;	
+	position: relative;
+	top: 18px;
+	cursor: pointer;
+	margin-left: 42px;
+	margin-top: 10px;
+	font-size: 18px;
 }
 
 
-.form-group{ 
-  position: relative;
-  display: block;
-    margin: 0;
-    padding: 0;
-}
-.form-style {
-  padding: 13px 20px;
-  padding-left: 55px;
-  height: 48px;
-  width: 100%;
-  font-weight: 500;
-  border-radius: 4px;
-  font-size: 14px;
-  line-height: 22px;
-  letter-spacing: 0.5px;
-  outline: none;
-  color: #c4c3ca;
-  background-color: #f2f2f2;
-  border: none;
-  -webkit-transition: all 200ms linear;
-  transition: all 200ms linear;
-  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
-}
-.form-style:focus,
-.form-style:active {
-  border: none;
-  outline: none;
-  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
-}
 
-.form-group input:-ms-input-placeholder  {
-  color: #c4c3ca;
-  opacity: 0.7;
-  -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
-}
-.form-group input::-moz-placeholder  {
-  color: #c4c3ca;
-  opacity: 0.7;
-  -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
-}
-.form-group input:-moz-placeholder  {
-  color: #c4c3ca;
-  opacity: 0.7;
-  -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
-}
-.form-group input::-webkit-input-placeholder  {
-  color: #c4c3ca;
-  opacity: 0.7;
-  -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
-}
-.form-group input:focus:-ms-input-placeholder  {
-  opacity: 0;
-  -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
-}
-.form-group input:focus::-moz-placeholder  {
-  opacity: 0;
-  -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
-}
-.form-group input:focus:-moz-placeholder  {
-  opacity: 0;
-  -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
-}
-.form-group input:focus::-webkit-input-placeholder  {
-  opacity: 0;
-  -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
-}
-
-.btn{  
-  border-radius: 4px;
-  height: 44px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  -webkit-transition : all 200ms linear;
-  transition: all 200ms linear;
-  padding: 0 30px;
-  letter-spacing: 1px;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  -ms-flex-pack: center;
-  text-align: center;
-  border: none;
-  background-color: #57b846;
-  color: #ffffff;
-  box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
-}
-.btn:active,
-.btn:focus{  
-  background-color: #4dae3c;
-  color: #ffffff;
-  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
-}
-.btn:hover{  
-  background-color: #4dae3c;
-  color: #ffffff;
-  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+#kakaobtn2 {
+	width: 333px;
+	height: 47px;
+	position: relative;
+	top: 18px;
+	cursor: pointer;
+	margin-left: 37px;
+	margin-top: 57px;
+	font-size: 18px;
+	opacity: 0;
 }
 
 </style>
 
+<body id="particles-js"></body>
+<div class="animated bounceInDown">
+	<div class="container">
+		<span class="error animated tada" id="msg"></span>
+		<form name="form1" class="box" onsubmit="return checkStuff()">
+			<h4>KHPLATE</h4>
+			<h5>오늘은 뭐 먹지?</h5>
+			<div class="input password">
+				<input type="text" name="id" id="id" placeholder="ID"
+					autocomplete="off"> <i class="typcn typcn-eye" id="eye"></i>
 
-<body>
-	<form id="frm" action="" method="post">
-	  <div class="section">
-		<div class="container">
-		  <div class="row full-height justify-content-center">
-			<div class="col-12 text-center align-self-center py-5">
-			  <div class="section pb-5 pt-5 pt-sm-2 text-center">
-				<div class="card-3d-wrap mx-auto">
-				  <div class="card-3d-wrapper">
-					<div class="card">
-					  <div class="center-wrap">
-						<div class="section text-center">
-						  <h4 class="mb-4 pb-3">비밀번호 재발급</h4>
-						  <div class="form-group">
-							<input type="password" name="pw1" class="form-style" id="pw1" placeholder="새로운 비밀번호 입력" autocomplete="off"> 
-						  </div>  
-						  <div class="form-group mt-2">
-							<input type="password" id="pw2" name="pw2" class="form-style" placeholder="비밀번호 재입력" autocomplete="off">
-						  </div>
-						  <a href="#" class="btn mt-4">제출하기</a>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div>
+				<input type="password" name="password" id="password"
+					placeholder="PW" autocomplete="off" class="form-input">
+				<div class="box">
+
+					<span class="input-wrap"> <input type="checkbox"
+						id="checkId" name="checkId"> <label for="checkId"><span></span></label>
+						아이디 저장 
+					</span>
+					<!-- <div id="idsave">아이디 저장</div> -->
 				</div>
-			  </div>
-		  </div>
-	  </div>
+				<div class="eyes">
+					<i class="fa fa-eye fa-lg"></i>
+				</div>
+			</div>
+			<!-- <label> <input type="checkbox"> <span></span> <small
+				class="rmb">ID 기억하기</small></label> -->
+			<input type="submit" value="제출하기" class="btn" id="signupBtn">
+			<input type="button" value="" class="btn" id="kakaoBtn"> 
+			  <div id="kakaobtn2" onclick="kakaoLogin();">
+                    <a href="javascript:void(0)">
+                        
+                    </a>
+                </div>
+			
+			<input type="button" value="" class="btn" id="naverBtn">
+			<div id="naverIdLogin"></div>
+		</form>
+		<div class="forgetidpw"> 아이디/비밀번호 찾기</div>
+		<a href="/joinform/joinform.jsp" class="dnthave">회원가입하기</a>
+	</div>
+</div>
 
+
+<script>
+
+$(".forgetidpw").on("click", function() {
+	window.open("/memberSearch/idsearch.jsp","","width=480px,height=750px");
 	
-	</form>
+})
 
 
-
+	$("#signup").on("click", function() {
 	
-
-    <script>
-
-
-        $("#pw2").on(
-            "keyup",
-            function () { //비밀번호 일치여부 표시
-                if ($("#pw2").val() == $("#pw1").val()) {
-                    $("#pwCheck").html("비밀번호가 일치합니다 :)").css("color",
-                        "dodgerblue");
-                } else {
-                    $("#pwCheck").html("비밀번호를 확인하세요 :(").css("color",
-                        "red", font - size);
-                }
-            });
+	location.href = "/joinform/joinform.jsp";
+})
 
 
-        $("#frm").on(
-            "submit",
-            function () {
-                //입력 형식 제한
 
+	var pw = document.getElementById('password');
+	var eye = document.getElementById('eye');
 
-                var regexPW = /^[A-Za-z0-9]{7,13}$/;
+	eye.addEventListener('click', togglePass);
 
+	function togglePass() {
 
-                var pw1 = $("#pw1").val();
-                var pw2 = $("#pw2").val();
+		eye.classList.toggle('active');
 
+		(pw.type == 'password') ? pw.type = 'text' : pw.type = 'password';
+	}
 
-                if (pw2 == "") { //필수항목 입력 여부 체크
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "비밀번호를 입력해주세요."
-                    });
-                    return false;
-                }
-                if (pw1 != pw2) { //패스워드 일치 여부 체크
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "패스워드를 다시 확인해주세요"
-                    });
-                    return false;
-                }
+	$(function() {
+		// 눈표시 클릭 시 패스워드 보이기
+		$('.eyes').on(
+				'click',
+				function() {
+					$('.input.password').toggleClass('active');
 
+					if ($('.input.password').hasClass('active') == true) {
+						$(this).find('.fa-eye').attr('class',
+								"fa fa-eye-slash fa-lg").parents('.input')
+								.find('#password').attr('type', "text");
+						// i 클래스                // 텍스트 보이기 i 클래스
+					} else {
+						$(this).find('.fa-eye-slash').attr('class',
+								"fa fa-eye fa-lg").parents('.input').find(
+								'#password').attr('type', 'password');
+					}
+				});
+	});
+	//
+	$(document).ready(function() {
+		// 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
+		var key = getCookie("key");
+		$("#id").val(key);
 
-                //형식 제한 준수 여부 체크
+		// 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
+		if ($("#id").val() != "") {
+			$("#checkId").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+		}
+	})
+	$("#checkId").change(function() { // 체크박스에 변화가 있다면,
+		if ($("#checkId").is(":checked")) { // ID 저장하기 체크했을 때,
+			setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
+		} else { // ID 저장하기 체크 해제 시,
+			deleteCookie("key");
+		}
+	});
 
+	// ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+	$("#id").keyup(function() { // ID 입력 칸에 ID를 입력할 때,
+		if ($("#checkId").is(":checked")) { // ID 저장하기를 체크한 상태라면,
+			setCookie("key", $("#id").val(), 7); // 7일 동안 쿠키 보관
+		}
+	});
 
-                if (!regexPW.test(pw1)) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Password 형식 오류",
-                        text: "7-13자의 알파벳 대소문자, 숫자",
-                    });
-                    return false;
-                }
-            })
-    </script>
+	// 쿠키 저장하기 
+	// setCookie => saveid함수에서 넘겨준 시간이 현재시간과 비교해서 쿠키를 생성하고 지워주는 역할
+	function setCookie(cookieName, value, exdays) {
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var cookieValue = escape(value)
+				+ ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+		document.cookie = cookieName + "=" + cookieValue;
+	}
 
+	// 쿠키 삭제
+	function deleteCookie(cookieName) {
+		var expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() - 1);
+		document.cookie = cookieName + "= " + "; expires="
+				+ expireDate.toGMTString();
+	}
+
+	// 쿠키 가져오기
+	function getCookie(cookieName) {
+		cookieName = cookieName + '=';
+		var cookieData = document.cookie;
+		var start = cookieData.indexOf(cookieName);
+		var cookieValue = '';
+		if (start != -1) { // 쿠키가 존재하면
+			start += cookieName.length;
+			var end = cookieData.indexOf(';', start);
+			if (end == -1) // 쿠키 값의 마지막 위치 인덱스 번호 설정 
+				end = cookieData.length;
+			console.log("end위치  : " + end);
+			cookieValue = cookieData.substring(start, end);
+		}
+		return unescape(cookieValue);
+	}
+
+	//naver
+	const naverLogin = new naver.LoginWithNaverId({
+		clientId : "Mm9YQgxstdSEuf5xt0jg",
+		callbackUrl : "http://127.0.0.1:8090/naver-login",
+		loginButton : {
+			color : "green",
+			type : 2,
+			height : 40
+		}
+	});
+	naverLogin.init(); // 로그인 설정
+
+	naverLogin.getLoginStatus(function(status) {
+		if (status) {
+			const nickName = naverLogin.user.getNickName();
+			const age = naverLogin.user.getAge();
+			const birthday = naverLogin.user.getBirthday();
+
+			//닉네임을 선택하지 않으면 선택창으로 돌아갑니다.
+			if (nickName === null || nickName === undefined) {
+				alert("별명이 필요합니다. 정보제공을 동의해주세요.");
+				naverLogin.reprompt();
+				return;
+			} else {
+				setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
+			}
+		}
+	});
+	naverLogin.init(); // 로그인 설정
+
+	//kakao
+
+	Kakao.init('25e12e36964674d52a9931b02d3b7cc1'); //발급받은 키 중 javascript키를 사용해준다.
+	console.log(Kakao.isInitialized()); // sdk초기화여부판단
+
+	//카카오로그인
+	function kakaoLogin() {
+		Kakao.Auth.login({
+			success : function(response) {
+				Kakao.API.request({
+					url : '/v2/user/me',
+					success : function(response) {
+						console.log(response)
+					},
+					fail : function(error) {
+						console.log(error)
+					},
+				})
+			},
+			fail : function(error) {
+				console.log(error)
+			},
+		})
+	}
+
+	// Form Validation
+
+	function checkStuff() {
+		var id = document.form1.id;
+		var password = document.form1.password;
+		var msg = document.getElementById('msg');
+
+		if (id.value == "") {
+			msg.style.display = 'block';
+			msg.innerHTML = "Please enter your id";
+			id.focus();
+			return false;
+		} else {
+			msg.innerHTML = "";
+		}
+
+		if (password.value == "") {
+			msg.innerHTML = "Please enter your password";
+			password.focus();
+			return false;
+		} else {
+			msg.innerHTML = "";
+		}
+// 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		var re = /^[a-z0-9_]{7,13}$/;
+		
+		if (!re.test(id.value)) {
+			msg.innerHTML = "Please enter a valid id";
+			id.focus();
+			return false;
+		} else {
+			msg.innerHTML = "";
+		}
+
+		// 정규식 검사에 해당되지 않으면 로그인
+		$.ajax({
+			url : "/login.members",
+			type : "post",
+			data : {
+				id : $("#id").val(),
+				password : $("#password").val()
+			}
+		}).done(function(resp) {
+			if (resp == "1") {
+				alert("ID가 잘못 되었습니다.");
+			} else if(resp == "2"){
+				alert("비밀번호가 잘못 되었습니다.");
+			} else if(resp == "3"){
+				alert("이메일 인증이 되지 않았습니다.");
+			} else {
+				alert("로그인 되었습니다.");
+				location.href = "/page/main.jsp";
+			}
+		})
+// 		$("#loginForm").submit();
+	}
+
+	// ParticlesJS
+
+	// ParticlesJS Config.
+	particlesJS("particles-js", {
+		"particles" : {
+			"number" : {
+				"value" : 60,
+				"density" : {
+					"enable" : true,
+					"value_area" : 800
+				}
+			},
+			"color" : {
+				"value" : "#ffffff"
+			},
+			"shape" : {
+				"type" : "circle",
+				"stroke" : {
+					"width" : 0,
+					"color" : "#000000"
+				},
+				"polygon" : {
+					"nb_sides" : 5
+				},
+				"image" : {
+					"src" : "img/github.svg",
+					"width" : 100,
+					"height" : 100
+				}
+			},
+			"opacity" : {
+				"value" : 0.1,
+				"random" : false,
+				"anim" : {
+					"enable" : false,
+					"speed" : 1,
+					"opacity_min" : 0.1,
+					"sync" : false
+				}
+			},
+			"size" : {
+				"value" : 6,
+				"random" : false,
+				"anim" : {
+					"enable" : false,
+					"speed" : 40,
+					"size_min" : 0.1,
+					"sync" : false
+				}
+			},
+			"line_linked" : {
+				"enable" : true,
+				"distance" : 150,
+				"color" : "#ffffff",
+				"opacity" : 0.1,
+				"width" : 2
+			},
+			"move" : {
+				"enable" : true,
+				"speed" : 1.5,
+				"direction" : "top",
+				"random" : false,
+				"straight" : false,
+				"out_mode" : "out",
+				"bounce" : false,
+				"attract" : {
+					"enable" : false,
+					"rotateX" : 600,
+					"rotateY" : 1200
+				}
+			}
+		},
+		"interactivity" : {
+			"detect_on" : "canvas",
+			"events" : {
+				"onhover" : {
+					"enable" : false,
+					"mode" : "repulse"
+				},
+				"onclick" : {
+					"enable" : false,
+					"mode" : "push"
+				},
+				"resize" : true
+			},
+			"modes" : {
+				"grab" : {
+					"distance" : 400,
+					"line_linked" : {
+						"opacity" : 1
+					}
+				},
+				"bubble" : {
+					"distance" : 400,
+					"size" : 40,
+					"duration" : 2,
+					"opacity" : 8,
+					"speed" : 3
+				},
+				"repulse" : {
+					"distance" : 200,
+					"duration" : 0.4
+				},
+				"push" : {
+					"particles_nb" : 4
+				},
+				"remove" : {
+					"particles_nb" : 2
+				}
+			}
+		},
+		"retina_detect" : true
+	});
+</script>
 </body>
-
 </html>
+
