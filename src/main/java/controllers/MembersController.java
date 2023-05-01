@@ -86,7 +86,7 @@ public class MembersController extends HttpServlet {
 				String to = email;
 				String subject ="이메일 인증 입니다";
 				String content = "다음 링크에 접속하여 이메일인증을 진행하세요" +
-						"<br><a href='" + host + "emailVerified.members?code="+ SecurityUtils.sha512(to)+ "'>이메일 인증하기</a>";
+						"<br><a href='" + host + "emailVerified.members?code="+ SecurityUtils.sha512(userid)+ "'>이메일 인증하기</a>";
 
 				// [ SMTP 서버 정보 설정 ]
 				Properties p = new Properties();

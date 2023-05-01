@@ -71,9 +71,10 @@
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	font-size: 14px;
-	margin-top:30px;
-	box-shadow:1px 1px 5px 1px silver;
+	margin-top: 55px;
+	font-size: 20px;
+	margin-left: auto; 
+	margin-right:auto;
 }
 </style>
 </head>

@@ -9,43 +9,35 @@
 <!-- Required meta tags-->
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
 
 
 <!-- Title Page-->
 <title>Login Form</title>
 
-<link
-	rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-	rel="stylesheet">
+<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
-	charset="utf-8"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-
-
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.1.2/typicons.min.css">
-
-<!-- Font special for pages-->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400'"
-	rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.1.2/typicons.min.css">
 
 <!-- Main CSS-->
 <link href="css/main.css" rel="stylesheet" media="all">
 </head>
+
+
+
 <style>
+	
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
 body, html {
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	background-color: #ED1C16;
 	padding: 0;
 	margin: 0;
@@ -58,6 +50,7 @@ body, html {
 }
 
 .container {
+	font-family: 'Nanum Gothic', sans-serif;
 	margin: 0;
 	top: 50px;
 	left: 50%;
@@ -73,19 +66,19 @@ body, html {
 }
 
 .box h4 {
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	color: #ED1C16;
-	font-size: 18px;
+	font-size: 25px;
 	margin-top: 55px;;
 }
 
 .box h5 {
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 13px;
 	color: #a1a4ad;
 	letter-spacing: 1.5px;
 	margin-top: -15px;
-	margin-bottom: 70px;
+	margin-bottom: 60px;
 }
 
 .box input[type="text"], .box input[type="password"] {
@@ -114,7 +107,9 @@ body, html {
 }
 
 a {
-	color: #5c7fda;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: black;
+	font-size: 13px;
 	text-decoration: none;
 }
 
@@ -191,20 +186,22 @@ label input[type="checkbox"] {
 	font-size: 13px;
 }
 
-.forgetpass {
-	position: relative;
-	float: right;
-	right: 40px;
+.forgetidpw {
+	position: absolute;
+	text-align: center;
+	top: 93%;
+	left: 20%;
 }
 
 .dnthave {
 	position: absolute;
+	text-align: center;
 	top: 93%;
-	left: 28%;
+	left: 60%;
 }
 
 [type=checkbox]:checked+span:before /*style its checked state  */ {
-	font-family: FontAwesome;
+	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 16px;
 	content: "\f00c";
 	position: absolute;
@@ -253,7 +250,7 @@ label input[type="checkbox"] {
 .eyes {
 	cursor: pointer;
 	margin-left: 330px;
-	margin-top: -71px;
+	margin-top: -63px;
 	position: absolute;
 }
 
@@ -262,12 +259,9 @@ label input[type="checkbox"] {
 }
 
 #checkId {
-	margin-left: -117px;
+	margin-left: -226px;
 }
 
-.forgetpass {
-	margin-top: 3px;
-}
 
 #naverIdLogin img {
 	width: 100%;
@@ -304,18 +298,13 @@ label input[type="checkbox"] {
 	opacity: 0;
 }
 
-.forgetpass{
-cursor:pointer;}
-
-
-
 </style>
 
 <body id="particles-js"></body>
 <div class="animated bounceInDown">
 	<div class="container">
 		<span class="error animated tada" id="msg"></span>
-		<form name="form1" class="box" onsubmit="return checkStuff()">
+		<form name="form1" class="box" onsubmit="return false;">
 			<h4>KHPLATE</h4>
 			<h5>오늘은 뭐 먹지?</h5>
 			<div class="input password">
@@ -325,9 +314,10 @@ cursor:pointer;}
 				<input type="password" name="password" id="password"
 					placeholder="PW" autocomplete="off" class="form-input">
 				<div class="box">
+
 					<span class="input-wrap"> <input type="checkbox"
 						id="checkId" name="checkId"> <label for="checkId"><span></span></label>
-						아이디저장 <div class="forgetpass"> 아이디/비밀번호 찾기</div>
+						아이디 저장 
 					</span>
 					<!-- <div id="idsave">아이디 저장</div> -->
 				</div>
@@ -337,7 +327,7 @@ cursor:pointer;}
 			</div>
 			<!-- <label> <input type="checkbox"> <span></span> <small
 				class="rmb">ID 기억하기</small></label> -->
-			<input type="submit" value="Sign in" class="btn" id="signupBtn">
+			<input type="button" value="제출하기" class="btn" id="signupBtn">
 			<input type="button" value="" class="btn" id="kakaoBtn"> 
 			  <div id="kakaobtn2" onclick="kakaoLogin();">
                     <a href="javascript:void(0)">
@@ -348,7 +338,8 @@ cursor:pointer;}
 			<input type="button" value="" class="btn" id="naverBtn">
 			<div id="naverIdLogin"></div>
 		</form>
-		<a href="/joinform/joinform.jsp" class="dnthave">처음이세요? 회원가입하기</a>
+		<a href="/memberSearch/idpwsearch.jsp" class="forgetidpw"> 아이디/비밀번호 찾기</a>
+		<a href="/joinform/joinform.jsp" class="dnthave">회원가입하기</a>
 	</div>
 </div>
 
@@ -517,7 +508,7 @@ $(".forgetpass").on("click", function() {
 
 	// Form Validation
 
-	function checkStuff() {
+	$("#signupBtn").on("click",function(){
 		var id = document.form1.id;
 		var password = document.form1.password;
 		var msg = document.getElementById('msg');
@@ -569,8 +560,7 @@ $(".forgetpass").on("click", function() {
 				location.href = "/page/main.jsp";
 			}
 		})
-// 		$("#loginForm").submit();
-	}
+	});
 
 	// ParticlesJS
 
