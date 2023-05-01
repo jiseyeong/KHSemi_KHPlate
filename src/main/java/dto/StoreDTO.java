@@ -29,7 +29,7 @@ public class StoreDTO {
 		this.avgScore = avgScore;
 		this.introduction = introduction;
 		this.category = category;
-		reviewCount = reviewCount;
+		this.reviewCount = reviewCount;
 		this.priceRange = priceRange;
 	}
 

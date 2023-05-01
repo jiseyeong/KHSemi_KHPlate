@@ -466,8 +466,10 @@ label span {
 				alert("ID가 잘못 되었습니다.");
 			} else if(resp == "2"){
 				alert("비밀번호가 잘못 되었습니다.");
+			} else if(resp == "3"){
+				alert("이메일 인증이 되지 않았습니다.");
 			} else {
-				alert("로그인 성공");
+				alert("로그인 되었습니다.");
 				location.href = "/page/main.jsp";
 			}
 		})

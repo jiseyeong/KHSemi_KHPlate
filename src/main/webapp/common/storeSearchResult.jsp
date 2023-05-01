@@ -32,8 +32,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-	.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
+
+.nanum-gothic {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -105,7 +111,7 @@ hr {
 }
 
 .print_searchResult_layout {
-	position :relative;
+	position: relative;
 	width: 100%;
 }
 
@@ -497,6 +503,17 @@ hr {
 	background-color: white;
 	border: 2px solid silver;
 }
+
+.istrue{
+	background-color:red;
+	border:2px solid silver;
+}
+
+.isfalse{
+	background-color:white;
+	border:2px solid silver;
+}
+
 </style>
 </head>
 
@@ -507,12 +524,12 @@ hr {
 				<div class="search_category_layout">
 					<div class="search_category_title_layout">
 						<c:choose>
-						<c:when test="${food_category.length()==0}">
-							<p class="search_category_title">가게 검색 결과</p>
-						</c:when>
-						<c:otherwise>
-							<p class="search_category_title">${food_category} List</p>
-						</c:otherwise>						
+							<c:when test="${food_category.length()==0}">
+								<p class="search_category_title">가게 검색 결과</p>
+							</c:when>
+							<c:otherwise>
+								<p class="search_category_title">${food_category}List</p>
+							</c:otherwise>
 						</c:choose>
 					</div>
 					<div class="show_filterForm_layout">
@@ -529,8 +546,8 @@ hr {
 
 					<form action="/searchStoreBySearchFilter.store" id="searchForm"
 						onsubmit="return false;">
-<!-- 						<input type="text" name="cpage" value="1" -->
-<!-- 							style="display: none;"> -->
+						<!-- 						<input type="text" name="cpage" value="1" -->
+						<!-- 							style="display: none;"> -->
 						<input type="text" name="searchedBy" value="mainSearch"
 							style="display: none;">
 						<div id="sort_layout" style="display: none;">
@@ -700,9 +717,23 @@ hr {
 																	style="display: none;"> <input type="text"
 																	name="addFavorite_userno" value="${userno}"
 																	style="display: none;">
-																<button class="addFavorite_btn">
-																	<i class="fa-regular fa-heart"></i>
-																</button>
+																	
+<!-- 																즐겨찾기 여부 체크 -->
+																<c:set var="favoriteCheck" value="false"/>
+																<c:forEach var="favorite" items="${Favorite_list}" varStatus="status">
+																	<c:if test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
+																		<button class="addFavorite_btn istrue">
+																			<i class="fa-regular fa-heart"></i>
+																		</button>
+																		<c:set var="favoriteCheck" value="true"/>
+																	</c:if>
+																</c:forEach>
+																<c:if test="${favoriteCheck==false}">
+																	<button class="addFavorite_btn isfalse">
+																		<i class="fa-regular fa-heart"></i>
+																	</button>
+																</c:if>
+																
 															</div>
 														</div>
 														<div class="info_layout">
@@ -759,9 +790,22 @@ hr {
 																	style="display: none;"> <input type="text"
 																	name="addFavorite_userno" value="${userno}"
 																	style="display: none;">
-																<button class="addFavorite_btn">
-																	<i class="fa-regular fa-heart"></i>
-																</button>
+																	
+																<c:set var="favoriteCheck" value="false"/>
+																<c:forEach var="favorite" items="${Favorite_list}" varStatus="status">
+																	<c:if test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
+																		<button class="addFavorite_btn istrue">
+																			<i class="fa-regular fa-heart"></i>
+																		</button>
+																		<c:set var="favoriteCheck" value="true"/>
+																	</c:if>
+																</c:forEach>
+																<c:if test="${favoriteCheck==false}">
+																	<button class="addFavorite_btn isfalse">
+																		<i class="fa-regular fa-heart"></i>
+																	</button>
+																</c:if>
+																
 															</div>
 														</div>
 														<div class="info_layout">
@@ -1010,57 +1054,53 @@ hr {
 			}
 			
 			
-			
-			
 			// 즐겨찾기 등록,삭제 버튼
-			let addFavoriteStoreCheck = false;
-			$(".addFavorite_btn").on("click",function(){
+			$(".addFavorite_btn").each(function (index, item) {
 				
-				if(addFavoriteStoreCheck==false){
-					$.ajax({
-						url:"/addFavoriteStore.store",
-						type:"post",
-						data:{
-							addFavorite_storeID:$(this).prev().prev().val(),
-							addFavorite_userno:$(this).prev().val()
-						},
-						success: function(response) {
-							console.log("[response] : " + response);
-						},
-						error: function(xhr) {
-							console.log("[error] : " + xhr);
-						}
-					}).done(function(resp){
-						if(resp=="true"){
-							addFavoriteStoreCheck = true;
-							$(this).css({
-								"background-color":"red"
-							})
-						}
-					})
+				let addFavoriteStoreCheck;
+				
+				if($(item).attr("class")=="addFavorite_btn istrue"){
+					addFavoriteStoreCheck = true;
 				}else{
-					$.ajax({
-						url:"/deleteFavoriteStore.store",
-						type:"post",
-						data:{
-							addFavorite_storeID:$(this).prev().prev().val(),
-							addFavorite_userno:$(this).prev().val()
-						},
-						success: function(response) {
-							console.log("[response] : " + response);
-						},
-						error: function(xhr) {
-							console.log("[error] : " + xhr);
-						}
-					}).done(function(resp){
-						if(resp=="true"){
-							addFavoriteStoreCheck = false;
-							$(this).css({
-								"background-color":"white"
-							})
-						}
-					})
+					addFavoriteStoreCheck = false;
 				}
+
+				$(this).on("click",function(){
+				
+					let addFavorite_btn = $(this);
+				
+					if(addFavoriteStoreCheck==false){
+						$.ajax({
+							url:"/addFavoriteStore.store",
+							type:"post",
+							data:{
+								addFavorite_storeID:addFavorite_btn.prev().prev().val()
+							}
+						}).done(function(resp){
+							if(resp=="true"){
+								addFavoriteStoreCheck = true;
+								addFavorite_btn.removeClass("isfalse");
+								addFavorite_btn.addClass("istrue");
+								console.log(addFavorite_btn);
+							}
+						})
+					}else{
+						$.ajax({
+							url:"/deleteFavoriteStore.store",
+							type:"post",
+							data:{
+								addFavorite_storeID:addFavorite_btn.prev().prev().val()
+							}
+						}).done(function(resp){
+							if(resp=="true"){
+								addFavoriteStoreCheck = false;
+								addFavorite_btn.removeClass("istrue");
+								addFavorite_btn.addClass("isfalse");
+								console.log(addFavorite_btn);
+							}
+						})
+					}
+				})
 			});
 		})
 		

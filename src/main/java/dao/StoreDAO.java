@@ -506,32 +506,4 @@ public class StoreDAO {
 			}
 		}
 	}
-
-
-	// 즐겨찾기 등록 dao
-	public int addFavoriteStore(int storeID, int userno) throws Exception {
-		String sql = "insert into favoritepage values (favoritepage_favoriteid.seq.nextval, ?, ?)";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				){
-			pstat.setInt(1, storeID);
-			pstat.setInt(2, userno);
-			int result = pstat.executeUpdate();
-			con.commit();
-			return result;
-		}
-	}
-
-	public int deleteFavoriteStore(int storeID, int userno) throws Exception {
-		String sql = "delete from favoritepage where storeID = ? and userno = ?";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				){
-			pstat.setInt(1, storeID);
-			pstat.setInt(2, userno);
-			int result = pstat.executeUpdate();
-			con.commit();
-			return result;
-		}
-	}
 }
