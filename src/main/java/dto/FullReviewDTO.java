@@ -5,8 +5,8 @@ import java.sql.Timestamp;
 public class FullReviewDTO {
 	
 	private int reviewID;
-	private String reviewBody;
 	private String title;
+	private String reviewBody;
 	private int score;
 	private int storeID;
 	private int userNO;

@@ -23,6 +23,7 @@ public class FullReviewController extends HttpServlet {
 		FullReviewDAO frdao = FullReviewDAO.getInstance();
 
 		try {
+
 			if(cmd.equals("/write.fullreview")) {
 				System.out.println(cmd);
 
@@ -35,7 +36,7 @@ public class FullReviewController extends HttpServlet {
 				int storeId = Integer.parseInt(request.getParameter("storeId"));
 				int userNo= Integer.parseInt(request.getParameter("userNo"));
 
-				int result = frdao.writeFullReview(reviewbody,score,storeId,userNo);
+				int result = frdao.writeFullReview(title,reviewbody,score,storeId,userNo);
 
 				if (result>0) {
 					System.out.println("진심리뷰 작성완료");
@@ -86,6 +87,7 @@ public class FullReviewController extends HttpServlet {
 				request.setAttribute("FullReviewNavi", FullReviewNavi);
 				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
 			}
+
 
 		}catch(Exception e) {
 			e.printStackTrace();

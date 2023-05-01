@@ -32,26 +32,19 @@ public class FullReviewDAO {
 		return ds.getConnection();
 	}
 	
-	public int writeFullReview(String reviewbody, int score, int storeId, int userNo) throws Exception {
-		String sql = "insert into FullReview values (fullreview_reviewid.nexval,?,?,?,?,sysdate)";
+	public int writeFullReview(String title,String reviewbody, int score, int storeId, int userNo) throws Exception {
+		String sql = "insert into FullReview values (fullreview_reviewid.nexval,?,?,?,?,sysdate,?)";
 		try(Connection con = this.getConnection();
 		PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1, reviewbody);
 			pstat.setInt(2, score);
 			pstat.setInt(3, storeId);
 			pstat.setInt(4, userNo);
-			
+			pstat.setString(5, title);
 			int result = pstat.executeUpdate();
 			return result;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	public int deleteFullReview(int reviewId) throws Exception {
@@ -61,6 +54,19 @@ public class FullReviewDAO {
 			pstat.setInt(1, reviewId);
 			int result = pstat.executeUpdate();
 			return result;
+		}
+	}
+	
+	public int update(String title, String reviewbody, int score,int reviewId) throws Exception {
+		String sql = "update fullreview set title=?, reviewbody=?, score=? where reviewid = ?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+		pstat.setString(1, title);
+		pstat.setString(2, reviewbody);
+		pstat.setInt(3, score);
+		pstat.setInt(4, reviewId);
+		int result = pstat.executeUpdate();
+		return result;
 		}
 	}
 	
