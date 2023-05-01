@@ -49,6 +49,7 @@ p{font-weight:bold;}
 .ck-editor__editable_inline {
     min-height: 400px;
 }
+#input_image{width:100%}
 #toList {
 	width: 100px;
 	height: 40px;
