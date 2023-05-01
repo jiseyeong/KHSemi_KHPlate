@@ -144,7 +144,7 @@ public class StoreDAO {
 	}
 
 
-	
+
 
 
 	// 맛집 검색 SQL (검색 필터 기능 포함)
@@ -153,7 +153,7 @@ public class StoreDAO {
 			String food_category_japanese, String food_category_asian, String food_category_fastfood,String food_category_dessert_drink, 
 			String food_category_etc) throws Exception{
 		String sql = "";
-		
+
 		// Order BY에서는 PreparedStatement를 사용할 수 없음
 		// 정렬 기준만 sql문을 if로 별도로 구분
 		if(sortMethod.equals("order_by_distance")) {
@@ -169,7 +169,7 @@ public class StoreDAO {
 					+ "(select store.*, row_number() over(order by storeID desc) row_num from store where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?)) "
 					+ "where row_num between ? and ?";
 		}
-		
+
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 
@@ -391,100 +391,127 @@ public class StoreDAO {
 			}
 		}
 	}
+
+	// 즐겨찾기 등록 dao
+	public int addFavoriteStore(int storeID, int userno) throws Exception {
+		String sql = "insert into favoritepage values (favoritepage_favoriteid.seq.nextval, ?, ?)";
+			try(	Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, storeID);
+				pstat.setInt(2, userno);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+	}
 	
+	public int deleteFavoriteStore(int storeID, int userno) throws Exception {
+		String sql = "delete from favoritepage where storeID = ? and userno = ?";
+			try(	Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, storeID);
+				pstat.setInt(2, userno);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+	}
+
 	// 기타 맛집 검색 SQL (예비)
-		//	public List<StoreDTO> searchStore(String search, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception{
-		//		String sql = "select * from "
-		//				+ "(select store.*, row_number() over(order by storeID desc) row_num from store where name like ?) "
-		//				+ "where row_num between ? and ?";
-		//		try(	Connection con = this.getConnection();
-		//				PreparedStatement pstat = con.prepareStatement(sql);){
-		//			pstat.setString(1,"%"+search+"%");
-		//			pstat.setInt(2, start_Record_Row_Num);
-		//			pstat.setInt(3, end_Record_Row_Num);
-		//			try (	ResultSet rs = pstat.executeQuery();){
-		//				return transAllRsToList(rs);
-		//			}
-		//		}
-		//	}
-		//
-		//	public String getNavi(int currentpage, String search) throws Exception{
-		//		int record_total_count = getSearchStore_RecordCount(); // 13
-		//		int record_count_per_page = Settings.SEARCH_STORE_RECORD_COUNT_PER_PAGE; // 15
-		//		int navi_count_per_page = Settings.SEARCH_STORE_NAVI_COUNT_PER_PAGE; // 10
-		//		int page_total_count = 0;
-		//
-		//		// 총 페이지의 수
-		//		if(record_total_count%record_count_per_page==0) {
-		//			page_total_count = record_total_count/record_count_per_page;
-		//		}else {	
-		//			page_total_count = (record_total_count/record_count_per_page)+1;
-		//		}
-		//
-		//		// 페이지 범위 초과 시 자동 조정 (필수 x)
-		//		if(currentpage<1)
-		//			currentpage = 1;
-		//		else if(currentpage > page_total_count)
-		//			currentpage=page_total_count;
-		//
-		//
-		//		int startNavi = ((currentpage - 1)/navi_count_per_page * navi_count_per_page)+1;
-		//		int endNavi = startNavi + (navi_count_per_page - 1);
-		//
-		//		if(startNavi<1)
-		//			startNavi = 1;
-		//		else if(endNavi>page_total_count)
-		//			endNavi = page_total_count;
-		//
-		//		StringBuilder sb = new StringBuilder();
-		//
-		//		boolean needPrev = true;
-		//		boolean needNext = true;
-		//
-		//		if(startNavi == 1)
-		//			needPrev = false;
-		//		if(endNavi == page_total_count)
-		//			needNext = false;
-		//
-		//		if(needPrev) {
-		//			sb.append("<li class='navigator_list_item'>"
-		//					+ "		<div class='navigator_list_item_btn_layout'>"
-		//					+ "			<a href='/searchToMain.store?cpage="+(startNavi-1)+"&search="+search+"'>"
-		//					+ "				<button class='navigator_direction_btn'>"
-		//					+ "					<i class='fa-solid fa-angle-left'></i>"
-		//					+ "				</button>"
-		//					+ "			</a>"
-		//					+ "		</div>"
-		//					+ "</li>");
-		//		}
-		//		for(int i = startNavi ; i <= endNavi ; i++) {
-		//			sb.append("<li class='navigator_list_item'>"
-		//					+ "		<div class='navigator_list_item_btn_layout'>"
-		//					+ "			<a class='item' href='/searchToMain.store?cpage="+i+"&search="+search+"'>"+i+"</a>"
-		//					+ "		</div>"
-		//					+ "</li>");
-		//		}
-		//		if(needNext) {
-		//			sb.append("<li class='navigator_list_item'>"
-		//					+ "		<div class='navigator_list_item_btn_layout'>"
-		//					+ "			<a href='/searchToMain.store?cpage="+(endNavi+1)+"&search="+search+"'>"
-		//					+ "				<button class='navigator_direction_btn'>"
-		//					+ "					<i class='fa-solid fa-angle-right'></i>"
-		//					+ "				</button>"
-		//					+ "			</a>"
-		//					+ "		</div>"
-		//					+ "</li>");
-		//		}
-		//		return sb.toString();
-		//	}
-		//
-		//	public int getSearchStore_RecordCount() throws Exception{
-		//		String sql = "select count(*) from store";
-		//		try(	Connection con = this.getConnection();
-		//				PreparedStatement pstat = con.prepareStatement(sql);
-		//				ResultSet rs = pstat.executeQuery();){
-		//			rs.next();
-		//			return rs.getInt(1);
-		//		}
-		//	}
+	//	public List<StoreDTO> searchStore(String search, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception{
+	//		String sql = "select * from "
+	//				+ "(select store.*, row_number() over(order by storeID desc) row_num from store where name like ?) "
+	//				+ "where row_num between ? and ?";
+	//		try(	Connection con = this.getConnection();
+	//				PreparedStatement pstat = con.prepareStatement(sql);){
+	//			pstat.setString(1,"%"+search+"%");
+	//			pstat.setInt(2, start_Record_Row_Num);
+	//			pstat.setInt(3, end_Record_Row_Num);
+	//			try (	ResultSet rs = pstat.executeQuery();){
+	//				return transAllRsToList(rs);
+	//			}
+	//		}
+	//	}
+	//
+	//	public String getNavi(int currentpage, String search) throws Exception{
+	//		int record_total_count = getSearchStore_RecordCount(); // 13
+	//		int record_count_per_page = Settings.SEARCH_STORE_RECORD_COUNT_PER_PAGE; // 15
+	//		int navi_count_per_page = Settings.SEARCH_STORE_NAVI_COUNT_PER_PAGE; // 10
+	//		int page_total_count = 0;
+	//
+	//		// 총 페이지의 수
+	//		if(record_total_count%record_count_per_page==0) {
+	//			page_total_count = record_total_count/record_count_per_page;
+	//		}else {	
+	//			page_total_count = (record_total_count/record_count_per_page)+1;
+	//		}
+	//
+	//		// 페이지 범위 초과 시 자동 조정 (필수 x)
+	//		if(currentpage<1)
+	//			currentpage = 1;
+	//		else if(currentpage > page_total_count)
+	//			currentpage=page_total_count;
+	//
+	//
+	//		int startNavi = ((currentpage - 1)/navi_count_per_page * navi_count_per_page)+1;
+	//		int endNavi = startNavi + (navi_count_per_page - 1);
+	//
+	//		if(startNavi<1)
+	//			startNavi = 1;
+	//		else if(endNavi>page_total_count)
+	//			endNavi = page_total_count;
+	//
+	//		StringBuilder sb = new StringBuilder();
+	//
+	//		boolean needPrev = true;
+	//		boolean needNext = true;
+	//
+	//		if(startNavi == 1)
+	//			needPrev = false;
+	//		if(endNavi == page_total_count)
+	//			needNext = false;
+	//
+	//		if(needPrev) {
+	//			sb.append("<li class='navigator_list_item'>"
+	//					+ "		<div class='navigator_list_item_btn_layout'>"
+	//					+ "			<a href='/searchToMain.store?cpage="+(startNavi-1)+"&search="+search+"'>"
+	//					+ "				<button class='navigator_direction_btn'>"
+	//					+ "					<i class='fa-solid fa-angle-left'></i>"
+	//					+ "				</button>"
+	//					+ "			</a>"
+	//					+ "		</div>"
+	//					+ "</li>");
+	//		}
+	//		for(int i = startNavi ; i <= endNavi ; i++) {
+	//			sb.append("<li class='navigator_list_item'>"
+	//					+ "		<div class='navigator_list_item_btn_layout'>"
+	//					+ "			<a class='item' href='/searchToMain.store?cpage="+i+"&search="+search+"'>"+i+"</a>"
+	//					+ "		</div>"
+	//					+ "</li>");
+	//		}
+	//		if(needNext) {
+	//			sb.append("<li class='navigator_list_item'>"
+	//					+ "		<div class='navigator_list_item_btn_layout'>"
+	//					+ "			<a href='/searchToMain.store?cpage="+(endNavi+1)+"&search="+search+"'>"
+	//					+ "				<button class='navigator_direction_btn'>"
+	//					+ "					<i class='fa-solid fa-angle-right'></i>"
+	//					+ "				</button>"
+	//					+ "			</a>"
+	//					+ "		</div>"
+	//					+ "</li>");
+	//		}
+	//		return sb.toString();
+	//	}
+	//
+	//	public int getSearchStore_RecordCount() throws Exception{
+	//		String sql = "select count(*) from store";
+	//		try(	Connection con = this.getConnection();
+	//				PreparedStatement pstat = con.prepareStatement(sql);
+	//				ResultSet rs = pstat.executeQuery();){
+	//			rs.next();
+	//			return rs.getInt(1);
+	//		}
+	//	}
 }

@@ -164,6 +164,7 @@ public class MembersDAO {
 			pstat.setString(5, classes);
 
 			int result = pstat.executeUpdate();
+			con.commit();
 			return result;
 		}
 
@@ -183,7 +184,7 @@ public class MembersDAO {
 
 	// 이메일 인증 부분입니다.
 	// 이메일 인증 시 해당 유저가 있는 지 검사
-	public int getUserEmailVerified(String code) throws Exception{
+	public String getUserEmailVerified(String code) throws Exception{
 		String sql = "select * from members";
 		try
 		(Connection con = this.getConnection();
@@ -192,10 +193,10 @@ public class MembersDAO {
 			while(rs.next()) {
 				String email = rs.getString("email");
 				if(SecurityUtils.sha512(email).equals(code)) {
-					return rs.getInt("userno");
+					return rs.getString("userid");
 				}
 			}
-			return 0;
+			return "";
 		}
 	}
 	
@@ -206,6 +207,7 @@ public class MembersDAO {
 		PreparedStatement pstat= con.prepareStatement(sql);){
 			pstat.setInt(1, userno);
 			int result = pstat.executeUpdate();
+			con.commit();
 			return result;
 		}
 	}

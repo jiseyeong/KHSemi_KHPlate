@@ -354,6 +354,26 @@ public class StoreController extends HttpServlet {
 				}else if(searchedBy.equals("mapSearch")) {
 					request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
 				}
+			
+			// 즐겨찾기 추가 controller
+			}else if(cmd.equals("/addFavoriteStore.store")) {
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				int userno = (int) request.getSession().getAttribute("userno");
+				
+				int result = StoreDAO.getInstance().addFavoriteStore(storeID, userno);
+				if(result>0) {
+					System.out.println("즐찾 등록 성공");
+					response.getWriter().append("true");
+				}
+			}else if(cmd.equals("/deleteFavoriteStore.store")) {
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				int userno = (int) request.getSession().getAttribute("userno");
+				
+				int result = StoreDAO.getInstance().addFavoriteStore(storeID, userno);
+				if(result>0) {
+					System.out.println("즐찾 해제 성공");
+					response.getWriter().append("true");
+				}
 			}
 
 		}catch(Exception e) {

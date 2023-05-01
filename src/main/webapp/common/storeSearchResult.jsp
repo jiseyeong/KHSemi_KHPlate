@@ -556,6 +556,12 @@ hr {
 															<img src="/common/restaurant_img1.jpg"
 																class="restaurant_img">
 															<div class="restaurant_addFavorite">
+																<input type="text" name="addFavorite_storeID"
+																	val="${search_store_list.get(index).storeID}"
+																	style="display: none;"> 
+																<input type="text"
+																	name="addFavorite_userno" val="${userno}"
+																	style="display: none;">
 																<button class="addFavorite_btn">
 																	<i class="fa-regular fa-heart"></i>
 																</button>
@@ -598,6 +604,11 @@ hr {
 															<img src="/common/restaurant_img1.jpg"
 																class="restaurant_img">
 															<div class="restaurant_addFavorite">
+																<input type="text" name="addFavorite_storeID"
+																	val="${search_store_list.get(index).storeID}"
+																	style="display: none;"> <input type="text"
+																	name="addFavorite_userno" val="${userno}"
+																	style="display: none;">
 																<button class="addFavorite_btn">
 																	<i class="fa-regular fa-heart"></i>
 																</button>
@@ -1030,7 +1041,68 @@ hr {
 			$("#searchForm").prop("onsubmit",true);
 			$("#searchForm").submit();
 		})
-
+		
+		
+		// 즐겨찾기 등록 버튼
+		$(function(){
+			let addFavoriteStoreCheck = false;
+			$(".addFavorite_btn").on("click",function(){
+				if(addFavoriteStoreCheck==false){
+					$.ajax({
+						url:"/addFavoriteStore.store",
+						type:"post",
+						data:{
+							storeID:$(this).prev().prev().val(),
+							userno:$(this).prev().val()
+						},
+						success: function(response) {
+							console.log("[response] : " + response);
+						},
+						error: function(xhr) {
+							console.log("[error] : " + xhr);
+						}
+					}).done(function(resp){
+						if(resp=="true"){
+							addFavoriteStoreCheck = true;
+							$(this).css({
+								"background-color":"red"
+							})
+						}
+					})
+				}else{
+					$.ajax({
+						url:"/deleteFavoriteStore.store",
+						type:"post",
+						data:{
+							storeID:$(this).prev().prev().val(),
+							userno:$(this).prev().val()
+						},
+						success: function(response) {
+							console.log("[response] : " + response);
+						},
+						error: function(xhr) {
+							console.log("[error] : " + xhr);
+						}
+					}).done(function(resp){
+						if(resp=="true"){
+							addFavoriteStoreCheck = false;
+							$(this).css({
+								"background-color":"white"
+							})
+						}
+					})
+				}
+			});
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</script>
 </body>
 
