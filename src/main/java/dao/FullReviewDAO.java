@@ -41,4 +41,22 @@ public class FullReviewDAO {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	public int deleteFullReview(int reviewId) throws Exception {
+		String sql = "delete from fullreview where reviewid = ?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, reviewId);
+			int result = pstat.executeUpdate();
+			return result;
+		}
+	}
+	
+	
+	
 }
