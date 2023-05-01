@@ -27,12 +27,12 @@ public class FullRevireController extends HttpServlet {
 			String title = request.getParameter("title");
 			
 			
-			String body = request.getParameter("body");
+			String reviewbody = request.getParameter("reviewbody");
 			int score = Integer.parseInt(request.getParameter("score"));
 			int storeId = Integer.parseInt(request.getParameter("storeId"));
 			int userNo= Integer.parseInt(request.getParameter("userNo"));
 			
-			int result = frdao.writeFullReview(body,score,storeId,userNo);
+			int result = frdao.writeFullReview(reviewbody,score,storeId,userNo);
 			
 			if (result>0) {
 				System.out.println("진심리뷰 작성완료");
