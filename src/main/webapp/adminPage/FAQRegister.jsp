@@ -22,9 +22,13 @@
 
 <style>
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');/* 나눔고딕 import */
+
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .body {
@@ -38,20 +42,37 @@
 /* 하단부터 메인부분 스타일 작성 요망 */
 .inputContent {
 	margin-top: 3%;
-	margin-bottom: 1%;
+	font-weight:bold;
+	font-size:25px;
+	color:#57b846;
 }
-
+.input-group {
+	width:100%;
+}
+.input-group>span{
+	margin-top:20px;
+	margin-bottom:20px;
+	font-size:14px;
+}
+.input-group>input{
+	margin-top:20px;
+	margin-bottom:20px;
+	font-size:14px;
+}
+.ck-editor__editable_inline {
+    min-height: 400px;
+}
 #submitBtn {
-	width: 150px;
-	height: 50px;
+	width: 100px;
+	height: 40px;
 	background-color: #57b846;
 	border:  #57b846;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-left: 600px;
-	margin-top: 55px;
-	font-size: 20px;
+	font-size: 14px;
+	margin-top:30px;
+	box-shadow:1px 1px 5px 1px silver;
 }
 </style>
 </head>
@@ -71,21 +92,22 @@
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<form action="/register.faq" method="get">
 					<div class="row">
-						<div class="col-12">
-							<fieldset>
-								<legend>FAQ 등록</legend>
-								<div class="col-12">
+						<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+							<div class="inputContent">FAQ 등록</div>
+							<hr style="border-style:dotted;">
+								<div class="col-12 col-lg-12">
 									<div class="input-group">
 										<span class="input-group-text">제목</span>
 										<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요">
-										<div class="col-12 inputContent">FAQ 내용</div>
+	
 										<div class="col-12">
 											<textarea name="body" id="editor"></textarea>
 										</div>
+										<div class="col-12 text-center">
 										<button type="submit" id="submitBtn">제출하기</button>
+										</div>
 									</div>
 								</div>
-							</fieldset>
 						</div>
 					</div>
 				</form>

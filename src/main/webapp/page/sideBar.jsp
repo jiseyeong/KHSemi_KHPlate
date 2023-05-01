@@ -75,7 +75,7 @@ a:link {text-decoration: none;}
       <ul class="nanum-gothic ulTag">
          <li class="firstLi">Menu</li>
          
-<!--          카테고리 접근을 위한 a태그 추가 -->
+<!--   카테고리 접근을 위한 a태그 추가 -->
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=한식"><li>한식</li></a>
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=양식"><li>양식</li></a>
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=중식"><li>중식</li></a>
