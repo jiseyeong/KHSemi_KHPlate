@@ -60,7 +60,39 @@
 		
 		
 		<!-- 댓글목록란 -->
-		
+		<c:if test="${replyList!=null}">
+		<c:forEach var="i" items="${replyList}">
+			<form action="update.fullreviewreply" method="post">
+				<table border="1">
+					<tr>
+						<td colspan="2">작성자 id : <input type="text"
+							class="re_lsit_writer" value="${i.writer }" readonly></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="${i.contents }"
+							class="re_list_contents" name="re_li_contents" readonly></td>
+
+						<td><c:choose>
+								<c:when test="${sessionScope.loginId eq i.writer}">
+									<button class="re_list_updbtn" type="button">수정</button>
+									<button class="re_list_delbtn" type="button" re_seq="${i.seq }"
+										re_pa_seq="${dto.seq }">삭제</button>
+									<input type="submit" value="수정완료" class="re_list_updCompBtn"
+										style="display: none">
+
+									<input type="text" class="seq" id="re_pa_seq" name="re_pa_seq"
+										value="${dto.seq }">
+									<input type="text" class="seq" id="re_seq" name="re_seq"
+										value="${i.seq }">
+
+								</c:when>
+							</c:choose></td>
+					</tr>
+				</table>
+			</form>
+			<br>
+		</c:forEach>
+	</c:if>
 		
 	</div>
 	
