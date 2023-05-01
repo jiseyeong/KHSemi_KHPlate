@@ -196,6 +196,20 @@ public class MembersDAO {
 		}
 	}
 	
+	// 이메일 인증 확인
+	public boolean emailVerify(String id) throws Exception {
+		String sql = "select * from members where userid = ? and userEmailChecked = 't'";
+		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
+			ppst.setString(1, id);
+			try (ResultSet rs = ppst.executeQuery()) {
+				return rs.next();
+			}
+		}
+	}
+	
+	
+	
+	
 	public int getUserno(String id) throws Exception {
 		String sql = "select userno from members where userid = ?";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
@@ -226,13 +240,13 @@ public class MembersDAO {
 		}
 	}
 	
-	// 이메일 인증 후 해당 유저의 userEmailChecked 를 y값으로 변경
-	public int updateuserEmailChecked(int userno) throws Exception{
-		String sql = "update members set userEmailChecked = 'y' where userno = ?";
+	// 이메일 인증 후 해당 유저의 userEmailChecked 를 t값으로 변경
+	public int updateuserEmailChecked(String userid) throws Exception{
+		String sql = "update members set userEmailChecked = 't' where userid = ?";
 		try
 		(Connection con = this.getConnection();
 		PreparedStatement pstat= con.prepareStatement(sql);){
-			pstat.setInt(1, userno);
+			pstat.setString(1, userid);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;

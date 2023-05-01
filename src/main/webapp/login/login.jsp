@@ -538,7 +538,8 @@ $(".forgetpass").on("click", function() {
 		} else {
 			msg.innerHTML = "";
 		}
-		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		var re = /^[a-z0-9_]{7,13}$/;
 		if (!re.test(id.value)) {
 			msg.innerHTML = "Please enter a valid id";
 			id.focus();
@@ -546,6 +547,28 @@ $(".forgetpass").on("click", function() {
 		} else {
 			msg.innerHTML = "";
 		}
+
+		// 정규식 검사에 해당되지 않으면 로그인
+		$.ajax({
+			url : "/login.members",
+			type : "post",
+			data : {
+				id : $("#id").val(),
+				password : $("#pw").val()
+			}
+		}).done(function(resp) {
+			if (resp == "1") {
+				alert("ID가 잘못 되었습니다.");
+			} else if(resp == "2"){
+				alert("비밀번호가 잘못 되었습니다.");
+			} else if(resp == "3"){
+				alert("이메일 인증이 되지 않았습니다.");
+			} else {
+				alert("로그인 되었습니다.");
+				location.href = "/page/main.jsp";
+			}
+		})
+// 		$("#loginForm").submit();
 	}
 
 	// ParticlesJS

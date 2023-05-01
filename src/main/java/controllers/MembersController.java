@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import commons.Gmail;
 import commons.SecurityUtils;
 import dao.MembersDAO;
-import dao.StoreDAO;
 import dto.MembersDTO;
 
 
@@ -66,9 +65,7 @@ public class MembersController extends HttpServlet {
 				String email = request.getParameter("email");
 				String classes = request.getParameter("classes");
 
-				System.out.println(pw);
-
-				int result = dao.join(userid,pw,name,email,classes);
+				int result = dao.join(userid,sha512pw,name,email,classes);
 
 				if(result>0) {
 					System.out.println(userid +" 회원가입 완료");
@@ -131,14 +128,16 @@ public class MembersController extends HttpServlet {
 			}else if(cmd.equals("/emailVerified.members")) {
 				String code = request.getParameter("code");
 				
+				// code에 해당하는 유저 정보 추출
 				String userid = dao.getUserEmailVerified(code);
 				
 				if(userid.equals("")) {
 					System.out.println("인증실패");
 				}else {
 					System.out.println("인증성공");
+					
 					// 이메일 인증 확인 dao
-//					dao.updateuserEmailChecked(userno);
+					int result = dao.updateuserEmailChecked(userid);
 					
 					// 이후 인증완료 페이지로 이동
 					request.setAttribute("userid", userid);
@@ -205,12 +204,19 @@ public class MembersController extends HttpServlet {
 					response.getWriter().append("2");
 					return;
 					
+				}
+				boolean emailVerify = dao.emailVerify(userId);
+				
+				if(!emailVerify) {	
+					System.out.println("이메일 미인증");
+					response.getWriter().append("3");
+					return;
 				}else {
 					System.out.println("로그인에 성공하였습니다.");
 					request.getSession().setAttribute("userId", userId);
 					int userno = dao.getUserno(userId);
 					request.getSession().setAttribute("userno", userno);
-					response.getWriter().append("3");
+					response.getWriter().append("4");
 					return;
 				}
 			}
