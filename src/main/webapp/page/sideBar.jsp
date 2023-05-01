@@ -88,7 +88,7 @@ a:link {text-decoration: none;}
       <ul class="nanum-gothic ulTag">
          <li class="firstLi">Community</li>
          <li>잡담 게시판</li>
-         <li>리뷰 게시판</li>
+         <a href="/select.fullreview"><li>리뷰 게시판</li></a>
       </ul>
       <ul class="nanum-gothic ulTag">
          <li class="firstLi">고객센터</li>

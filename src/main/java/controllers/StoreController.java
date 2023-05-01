@@ -257,8 +257,6 @@ public class StoreController extends HttpServlet {
 					request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
 				}
 			}
-
-			
 			
 			// 필터 적용 검색 controller
 			else if(cmd.equals("/searchStoreBySearchFilter.store")) {
