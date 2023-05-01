@@ -72,6 +72,34 @@ public class CommentReviewController extends HttpServlet {
 				int result = PhotoDAO.getInstance().delete(imageID);
 
 				response.sendRedirect("/view.store?storeID="+storeID);
+			}else if(cmd.equals("/update.commentReview")) {
+				String realPath = request.getServletContext().getRealPath("CommentReview");
+				int maxSize = 1024 * 1024 * 10; //10Mb
+				System.out.println(realPath);
+				File realPathFile = new File(realPath);
+				if(!realPathFile.exists()) {
+					realPathFile.mkdir();
+				}
+				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
+				
+				int score = Integer.parseInt(multi.getParameter("modifyScore"));
+				String body = multi.getParameter("modifyBody");
+				body = SecurityUtils.XSSCheck(body);
+				int reviewID = Integer.parseInt(multi.getParameter("reviewID"));	
+				int storeID = Integer.parseInt(multi.getParameter("storeID"));
+				int result = CommentReviewDAO.getInstance().update(reviewID, body, score);
+				
+				Enumeration<String> names = multi.getFileNames();
+				while(names.hasMoreElements()) {
+					String fileName = names.nextElement();
+					if(multi.getFile(fileName) != null){
+						String oriName = multi.getOriginalFileName(fileName);
+						String sysName = multi.getFilesystemName(fileName);
+						CommentReviewDAO.getInstance().insertPhoto(sysName, oriName, reviewID);
+					}
+				}
+				
+				response.sendRedirect("/view.store?storeID="+storeID);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

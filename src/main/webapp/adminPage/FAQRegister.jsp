@@ -29,6 +29,7 @@
 	box-sizing: border-box;
 	padding: 0px;
 	font-family: 'Nanum Gothic', sans-serif;
+	margin-bottom: 10px;
 }
 
 .body {
@@ -80,9 +81,6 @@
 	<div class="container-fluid themed-container m-0 g-0">
 		<!-- 헤더부분 건들지 말것 -->
 		<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
-
-
-
 		<!-- body 부분 row div 건들지 말것 -->
 		<div class="row g-0 justify-content-center body" style="margin-top:70px;">
 			<!-- sideBar부분 건들지 말것 -->
@@ -99,7 +97,6 @@
 									<div class="input-group">
 										<span class="input-group-text">제목</span>
 										<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요">
-	
 										<div class="col-12">
 											<textarea name="body" id="editor"></textarea>
 										</div>

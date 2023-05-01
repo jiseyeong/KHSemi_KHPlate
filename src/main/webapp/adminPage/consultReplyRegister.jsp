@@ -21,10 +21,16 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	margin-bottom: 10px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .body {
@@ -33,6 +39,17 @@
 
 .sideList {
 	border: 1px solid black;
+}
+
+.input-group-text {
+	margin-bottom: 0px;
+}
+
+.legend {
+color: #ED1C16;
+font-size: 25px;
+font-weight: bold;
+margin-bottom: 25px;
 }
 
 #submitBtn {
@@ -65,29 +82,28 @@
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<fieldset style="margin-bottom:50px">
 					<div class="row">
-						<legend>대상 고객 글</legend>
+						<legend class="legend">고객의 소리</legend>
 					<div class="row">
 						<div class="col-12 col-lg-3">
 							<div class="input-group">
 								<span class="input-group-text">카테고리</span>
 								<input type="text" value="${parentDTO.category}" class="form-control" readonly>
 							</div>
-						</div>
-						<div class="col-12 col-lg-9">
-							<div class="input-group">
-								<span class="input-group-text">제목</span>
-								<input type="text" class="form-control" value="${parentDTO.title}" readonly> 
-							</div>
-						</div>
+						</div>	
 						<div class="col-12 col-lg-3">
 							<div class="input-group">
 								<span class="input-group-text">작성자</span>
 								<input type="text" class="form-control" value="${parentWriter}" readonly>
 							</div>
 						</div>
+						<div class="col-12">
+							<div class="input-group">
+								<span class="input-group-text">제목</span>
+								<input type="text" class="form-control" value="${parentDTO.title}" readonly> 
+							</div>
+						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 text-center">작성내용</div>
 						<div class="col-12 col-lg-3">
 							<img src="${parentImage}" alt="${parentImage}" id="image" class="w-100 object-fit-contain">
 						</div>
@@ -100,7 +116,7 @@
 
 				<form action="/replyRegister.consult" method="get">
 					<fieldset>
-						<legend>답변 등록</legend>
+						<legend class="legend">답변 등록</legend>
 						<input type="text" name="writer" value="${sessionScope.loginNo}" style="display:none;">
 						<input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
 						<div class="row">

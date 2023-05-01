@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FullReviewDAO;
+import dao.MembersDAO;
 import dto.FullReviewDTO;
+import dto.MembersDTO;
 import statics.Settings;
 
 @WebServlet("*.fullreview")
@@ -23,6 +25,7 @@ public class FullReviewController extends HttpServlet {
 		FullReviewDAO frdao = FullReviewDAO.getInstance();
 
 		try {
+
 			if(cmd.equals("/write.fullreview")) {
 				System.out.println(cmd);
 
@@ -35,7 +38,7 @@ public class FullReviewController extends HttpServlet {
 				int storeId = Integer.parseInt(request.getParameter("storeId"));
 				int userNo= Integer.parseInt(request.getParameter("userNo"));
 
-				int result = frdao.writeFullReview(reviewbody,score,storeId,userNo);
+				int result = frdao.writeFullReview(title,reviewbody,score,storeId,userNo);
 
 				if (result>0) {
 					System.out.println("진심리뷰 작성완료");
@@ -56,8 +59,8 @@ public class FullReviewController extends HttpServlet {
 				if(request.getParameter("searchUserno")!=null) {
 					searchUserno = Integer.parseInt(request.getParameter("searchUserno"));
 				}
-				if(request.getParameter("searchFullReviewTitle")!=null) {
-					searchFullReviewTitle = request.getParameter("searchFullReviewTitle");
+				if(request.getParameter("search")!=null) {
+					searchFullReviewTitle = request.getParameter("search");
 				}
 				
 				System.out.println("검색 유저 : "+searchUserno);
@@ -77,15 +80,18 @@ public class FullReviewController extends HttpServlet {
 				System.out.println("시작 번호 : "+start_Record_Row_Num);
 				System.out.println("끝 번호 : "+end_Record_Row_Num);
 				
-				List<FullReviewDTO> FullReviewList = frdao.selectFullReview(searchUserno, searchFullReviewTitle,start_Record_Row_Num,end_Record_Row_Num);
-				String FullReviewNavi = frdao.getFullReviewNavi(searchUserno, searchUserno, searchFullReviewTitle, searchFullReviewTitle);
+				List<FullReviewDTO> fullReviewList = frdao.selectFullReview(searchUserno, searchFullReviewTitle,start_Record_Row_Num,end_Record_Row_Num);
+				String fullReviewNavi = frdao.getFullReviewNavi(searchUserno, searchUserno, searchFullReviewTitle, searchFullReviewTitle);
+				List<MembersDTO> fullReviewUserList = MembersDAO.getInstance().selectfullReviewUserList(fullReviewList);
 				
-				System.out.println("리스트 사이즈 : "+FullReviewList.size());
+				System.out.println("리스트 사이즈 : "+fullReviewList.size());
 				
-				request.setAttribute("FullReviewList", FullReviewList);
-				request.setAttribute("FullReviewNavi", FullReviewNavi);
+				request.setAttribute("FullReviewList", fullReviewList);
+				request.setAttribute("FullReviewNavi", fullReviewNavi);
+				request.setAttribute("fullReviewUserList", fullReviewUserList);
 				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
 			}
+
 
 		}catch(Exception e) {
 			e.printStackTrace();

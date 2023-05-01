@@ -40,8 +40,19 @@ public class StoreController extends HttpServlet {
 
 			}else if(cmd.equals("/view.store")) {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
-				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);
+						
 				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectByStoreID(storeID);
+				
+				//풀리뷰 추가되면 풀리뷰도 포함해서
+				int sum = 0;
+				int cnt = commentList.size();
+				for(CommentReviewDTO i : commentList) {
+					sum += i.getScore();
+				}
+				StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
+				StoreDAO.getInstance().updateReviewCount(cnt, storeID);
+				
+				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);	
 				ArrayList<String> userIDList = new ArrayList<>();
 				for(int i = 0; i < commentList.size(); i++) {
 					userIDList.add(MembersDAO.getInstance().getIDByNo(commentList.get(i).getUserNo()));
@@ -178,19 +189,14 @@ public class StoreController extends HttpServlet {
 
 				if(request.getParameter("search")!=null) {
 					search = request.getParameter("search");
-					request.getSession().setAttribute("search", search);
-				}else if(request.getSession().getAttribute("search")!=null){
-					search = (String) request.getSession().getAttribute("search");
 				}else {
 					search = "";
-					request.getSession().setAttribute("search", search);
 				}
 
 				System.out.println("검색어 : "+search);
 
 				if(request.getParameter("food_category")!=null) {
 					food_category = request.getParameter("food_category");
-					request.setAttribute("food_category", food_category);
 				}else {
 					food_category = "";
 				}

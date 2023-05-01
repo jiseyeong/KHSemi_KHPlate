@@ -32,26 +32,19 @@ public class FullReviewDAO {
 		return ds.getConnection();
 	}
 	
-	public int writeFullReview(String reviewbody, int score, int storeId, int userNo) throws Exception {
-		String sql = "insert into FullReview values (fullreview_reviewid.nexval,?,?,?,?,sysdate)";
+	public int writeFullReview(String title,String reviewbody, int score, int storeId, int userNo) throws Exception {
+		String sql = "insert into FullReview values (fullreview_reviewid.nexval,?,?,?,?,sysdate,?)";
 		try(Connection con = this.getConnection();
 		PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1, reviewbody);
 			pstat.setInt(2, score);
 			pstat.setInt(3, storeId);
 			pstat.setInt(4, userNo);
-			
+			pstat.setString(5, title);
 			int result = pstat.executeUpdate();
 			return result;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	public int deleteFullReview(int reviewId) throws Exception {
@@ -61,6 +54,19 @@ public class FullReviewDAO {
 			pstat.setInt(1, reviewId);
 			int result = pstat.executeUpdate();
 			return result;
+		}
+	}
+	
+	public int update(String title, String reviewbody, int score,int reviewId) throws Exception {
+		String sql = "update fullreview set title=?, reviewbody=?, score=? where reviewid = ?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+		pstat.setString(1, title);
+		pstat.setString(2, reviewbody);
+		pstat.setInt(3, score);
+		pstat.setInt(4, reviewId);
+		int result = pstat.executeUpdate();
+		return result;
 		}
 	}
 	
@@ -137,7 +143,7 @@ public class FullReviewDAO {
 		if(needPrev) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a href='/select.fullreview?cpage="+(startNavi-1)+"'>"
+					+ "			<a href='/select.fullreview?cpage="+(startNavi-1)+"&search="+searchFullReviewTitle+"'>"
 					+ "				<button class='navigator_direction_btn'>"
 					+ "					<i class='fa-solid fa-angle-left'></i>"
 					+ "				</button>"
@@ -148,14 +154,14 @@ public class FullReviewDAO {
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a class='item' href='/select.fullreview?cpage="+i+"'>"+i+"</a>"
+					+ "			<a class='item' href='/select.fullreview?cpage="+i+"&search="+searchFullReviewTitle+"'>"+i+"</a>"
 					+ "		</div>"
 					+ "</li>");
 		}
 		if(needNext) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a href='/select.fullreview?cpage="+(endNavi+1)+"'>"
+					+ "			<a href='/select.fullreview?cpage="+(endNavi+1)+"&search="+searchFullReviewTitle+"'>"
 					+ "				<button class='navigator_direction_btn'>"
 					+ "					<i class='fa-solid fa-angle-right'></i>"
 					+ "				</button>"
@@ -207,5 +213,36 @@ public class FullReviewDAO {
 		}
 		return result;
 	}		
+	
+	public FullReviewDTO contentByReviewId(int reviewid) throws Exception {
+		String sql = "select * from fullreview where reviewid = ?";
+		try (Connection con = this.getConnection(); 
+				PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setInt(1, reviewid);
+			try (ResultSet rs = pstat.executeQuery()) {
+				FullReviewDTO result = new FullReviewDTO();
+				int rsreviewid = rs.getInt("reviewid");
+				String rsreviewbody = rs.getString("reviewbody");
+				int rsscore = rs.getInt("score");
+				int rsstoreid = rs.getInt("storeid");
+				int rsuserno = rs.getInt("userno");
+				Timestamp writedate = rs.getTimestamp("writedate");
+				
+				rs.next();
+				
+				result.setReviewID(rsreviewid);
+				result.setReviewBody(rsreviewbody);
+				result.setScore(rsscore);
+				result.setStoreID(rsstoreid);
+				result.setUserNO(rsuserno);
+				result.setWritedate(writedate);
+
+				return result;
+			}
+		}
+	};
+	
+	
+	
 	
 }

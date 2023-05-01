@@ -33,7 +33,7 @@
 	<div class="container">
 		<form action="/write.fullreview">
 			<input type="text" placeholder="제목란" class="title" name="title">
-			<div class="storeId" name="storeId">음식점 선택란</div>
+			<div class="storeId" name="storeId"></div>
 			<div class="score" name="score">별점란</div>
 			<div class="bodyBox">
 				<textarea class="reviewBody"></textarea>

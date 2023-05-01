@@ -66,6 +66,9 @@
 	width: 30%;
 	margin-bottom: 30px;
 }
+.card:hover{
+	cursor:pointer;
+} 
 
 .btnBox {
 	height: 100px;
@@ -144,6 +147,8 @@
 	justify-content: center;
 	align-items: center;
 }
+
+
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -161,14 +166,16 @@
 
 				<c:choose>
 					<c:when test="${FullReviewList!=null}">
-						<c:forEach var="i" items="${FullReviewList}">
+						<c:forEach var="reviewList" items="${FullReviewList}" varStatus="status">
+<!-- 						유저 정보를 같이 받고 index로 값을 전달 -->
+						<c:set var="userList" value="${fullReviewUserList}"/>
 							<div class="card">
-								<div class="reviewId">${i.reviewID}</div>
+								<div class="reviewId">${reviewList.reviewID}</div>
 								<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
 								<div class="card-body">
-									<div class="title">${i.title}</div>
-									<div class="writer">${i.userNO}</div>
-									<div class="stars">${i.score}</div>
+									<div class="title">${reviewList.title}</div>
+									<div class="writer">${userList.get(status.index).userID}</div>
+									<div class="stars">${reviewList.score}</div>
 								</div>
 							</div>
 						</c:forEach>
@@ -269,7 +276,7 @@
 		})
 		
 		$(".card").on("click",function(){
-			location.href="/FullReview/FullReviewContent?reviewId="${list.reviewId};
+			location.href="/FullReview/FullReviewContent.jsp";
 		})
 		
 	</script>

@@ -21,11 +21,17 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	margin-bottom: 10px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
+
 
 .body {
 	margin: auto;
@@ -33,6 +39,18 @@
 
 .sideList {
 	border: 1px solid black;
+}
+
+.input-group-text {
+	margin-bottom: 0px;
+}
+
+
+.legend {
+color: #ED1C16;
+font-size: 25px;
+font-weight: bold;
+margin-bottom: 25px;
 }
 
 #btn_reply {
@@ -64,29 +82,29 @@
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<fieldset style="margin-bottom:50px">
-					<legend>대상 고객 글</legend>
+					<div class="row">
+						<legend class="legend">고객의 소리</legend>
 					<div class="row">
 						<div class="col-12 col-lg-3">
 							<div class="input-group">
 								<span class="input-group-text">카테고리</span>
 								<input type="text" value="${dto.category}" class="form-control" readonly>
 							</div>
-						</div>
-						<div class="col-12 col-lg-9">
-							<div class="input-group">
-								<span class="input-group-text">제목</span>
-								<input type="text" class="form-control" value="${dto.title}" readonly> 
-							</div>
-						</div>
+						</div>	
 						<div class="col-12 col-lg-3">
 							<div class="input-group">
 								<span class="input-group-text">작성자</span>
 								<input type="text" class="form-control" value="${writer}" readonly>
 							</div>
 						</div>
+						<div class="col-12">
+							<div class="input-group">
+								<span class="input-group-text">제목</span>
+								<input type="text" class="form-control" value="${dto.title}" readonly> 
+							</div>
+						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 text-center">작성내용</div>
 						<div class="col-12 col-lg-3">
 							<img src="${image}" alt="${image}" id="image" class="w-100 object-fit-contain">
 						</div>
@@ -99,7 +117,7 @@
 				<c:choose>
 					<c:when test="${not empty replyDTO}">
 						<fieldset>
-							<legend>답글</legend>
+							<legend class="legend">답글</legend>
 							<div class="row">
 								<div class="col-12 col-lg-9">
 									<div class="input-group">
@@ -115,9 +133,10 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-12 text-center">작성 내용</div>
+								<div class="col-12 text-center">
 								<div id="readEditor2">${replyDTO.body}</div>
 							</div>
+						</div>
 							<script>
                                 ClassicEditor
                                     .create(document.querySelector("#readEditor2"))
