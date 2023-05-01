@@ -56,9 +56,10 @@ margin-bottom: 5px;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-left: 600px;
 	margin-top: 55px;
 	font-size: 20px;
+	margin-left: auto; 
+	margin-right:auto;
 }
 </style>
 </head>

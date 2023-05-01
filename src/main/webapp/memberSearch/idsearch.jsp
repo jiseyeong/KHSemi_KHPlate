@@ -17,9 +17,6 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet"
 	href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
-	<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400'"
-	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -28,8 +25,11 @@
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
 body{
-  font-family: 'Source Sans Pro', sans-serif;
+ font-family: 'Nanum Gothic', sans-serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
@@ -45,7 +45,7 @@ a:hover {
   text-decoration: none;
 }
 .link {
-  color: #c4c3ca;
+  color: #ffffff;
 }
 .link:hover {
   color: #ffeba7;
@@ -59,7 +59,7 @@ h4 {
   font-weight: 600;
 }
 h6 span{
-	color: #c4c3ca;
+	color: #ffffff;
   padding: 0 20px;
   text-transform: uppercase;
   font-weight: 700;
