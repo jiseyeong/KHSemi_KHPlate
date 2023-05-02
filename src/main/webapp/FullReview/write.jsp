@@ -31,12 +31,17 @@
 </head>
 <body>
 	<div class="container">
-		<form action="/write.fullreview">
+		<form action="/write.fullreview" method="post">
 			<input type="text" placeholder="제목란" class="title" name="title">
+			<input type="text" class="userId" name="userId" value="${sessionScope.userId}" readonly>
+			<input type="text" class="userNo" name="userNo" value="${sessionScope.userno}" style="display:none">
+			<div class="void"><br></div>
+			<input type="text" placeholder="음식점 선택란" class="storeId" name="storeId">
+			<input type="text" placeholder="별점" class="score" name="score">
+			<div class="void"><br></div>
 			<div class="storeId" name="storeId"></div>
-			<div class="score" name="score">별점란</div>
 			<div class="bodyBox">
-				<textarea class="reviewBody"></textarea>
+				<textarea class="reviewBody" name="reviewBody"></textarea>
 			</div>
 			<br>
 			<div>

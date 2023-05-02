@@ -62,7 +62,9 @@
 }
 
 .card {
-	margin-right:30px;
+	padding:10px;
+	margin-right:20px;
+	margin-left:20px;
 	width: 30%;
 	margin-bottom: 30px;
 }
@@ -70,7 +72,7 @@
 	cursor:pointer;
 } 
 
-.btnBox {
+.btnBox2 {
 	height: 100px;
 	padding-left: 80%;
 }
@@ -158,18 +160,19 @@
 	<div class="album py-5 bg-light">
 		<div class="container">
 
-			<div class="btnBox">
+			<div class="btnBox2">
 				<img src="/FullReview/writeBtn.png" class="writeBtn">
 			</div>
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-0"
 				style="padding-top: 40px;">
 
 				<c:choose>
 					<c:when test="${FullReviewList!=null}">
 						<c:forEach var="reviewList" items="${FullReviewList}" varStatus="status">
-<!-- 						유저 정보를 같이 받고 index로 값을 전달 -->
+						<!--유저 정보를 같이 받고 index로 값을 전달 -->
 							<div class="card">
-								<div class="reviewId">${reviewList.reviewID}</div>
+								<input type="hidden" value="${reviewList.reviewID}" class="hiddencard">
+								<div class="reviewId" >${reviewList.reviewID}</div>
 								<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
 								<div class="card-body">
 									<div class="title">${reviewList.title}</div>
@@ -273,9 +276,8 @@
 		$(".writeBtn").on("click",function(){
 			location.href="/FullReview/writeFullReview.jsp";
 		})
-		
 		$(".card").on("click",function(){
-			location.href="/content.fullreview?reviewid="+${reviewList.reviewID};
+			location.href="/content.fullreview?reviewid="+$(this).find('.hiddencard').val();
 		})
 		
 	</script>
