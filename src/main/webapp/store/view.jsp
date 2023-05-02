@@ -20,10 +20,12 @@
 				<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 
 				<style>
+					@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');/*나눔고딕 폰트 import */
 					/* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 					* {
 						box-sizing: border-box;
 						padding: 0px;
+						font-family: 'Nanum Gothic', sans-serif;
 					}
 
 					.body {
@@ -140,11 +142,11 @@
 												</c:when>
 												<c:otherwise>
 													<div class="carousel-item active">
-														<img src="/store/아비꼬1.jpg" class="d-block object-fit-contain"
+														<img src="/store/carouselimage1.jpg" class="d-block object-fit-contain"
 															alt="..." style="height: 500px;">
 													</div>
 													<div class="carousel-item">
-														<img src="/store/아비꼬2.jpg" class="d-block object-fit-contain"
+														<img src="/store/carouselimage2.jpg" class="d-block object-fit-contain"
 															alt="..." style="height: 500px;">
 													</div>
 												</c:otherwise>
@@ -237,7 +239,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-12 col-lg-8">
+								<div class="col-12 col-lg-6">
 									<div class="input-group">
 										<span class="input-group-text">가게 이름</span>
 										<input type="text" class="form-control" name="name" value="${dto.name}"
