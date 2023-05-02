@@ -190,15 +190,19 @@ label input[type="checkbox"] {
 .forgetidpw {
 	position: absolute;
 	text-align: center;
-	top: 93%;
+	top: 94%;
 	left: 20%;
+	cursor:pointer;
+	font-size: 13px;
 }
 
 .dnthave {
 	position: absolute;
 	text-align: center;
-	top: 93%;
+	top: 94%;
 	left: 60%;
+	cursor:pointer;
+	font-size: 13px;
 }
 
 [type=checkbox]:checked+span:before /*style its checked state  */ {
@@ -251,7 +255,7 @@ label input[type="checkbox"] {
 .eyes {
 	cursor: pointer;
 	margin-left: 330px;
-	margin-top: -63px;
+	margin-top: -65px;
 	position: absolute;
 }
 
@@ -336,21 +340,27 @@ label input[type="checkbox"] {
 			<input type="button" value="" class="btn" id="naverBtn">
 			<div id="naverIdLogin"></div>
 		</form>
-		<a href="/memberSearch/idpwsearch.jsp" class="forgetidpw"> 아이디/비밀번호 찾기</a>
-		<a href="/joinform/joinform.jsp" class="dnthave">회원가입하기</a>
+		<div class="forgetidpw"> 아이디/비밀번호 찾기 </div>
+		<div class="dnthave">회원가입하기</div>
 	</div>
 </div>
 
 
 <script>
 
-$(".forgetpass").on("click", function() {
+$(".forgetidpw").on("click", function() {
 	window.open("/memberSearch/idsearch.jsp","","width=480px,height=750px");
 	
 })
 
 
 	$("#signup").on("click", function() {
+	
+	location.href = "/joinform/joinform.jsp";
+})
+
+
+	$(".dnthave").on("click", function() {
 	
 	location.href = "/joinform/joinform.jsp";
 })
