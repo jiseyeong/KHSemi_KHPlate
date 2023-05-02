@@ -218,9 +218,8 @@ button:hover {
 	background-color: rgb(240, 240, 240);
 	border: 1px solid black;
 	padding: 30px;
-	
-/* 	하단 네비게이터를 붙이기 위한 position 부여 */
-	position : relative;
+	/* 	하단 네비게이터를 붙이기 위한 position 부여 */
+	position: relative;
 }
 
 .body2Contents>table {
@@ -310,7 +309,6 @@ button:hover {
 	justify-content: center;
 	align-items: center;
 }
-
 </style>
 </head>
 <body>
@@ -390,14 +388,8 @@ button:hover {
 							<th>작성일</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>bootstrap</td>
-							<td>세영</td>
-							<td>1</td>
-							<td>2023.05.01</td>
-						</tr>
+					<tbody id="writeListToPrint">
+						<!-- 						리스트 출력 구간 -->
 					</tbody>
 				</table>
 				<table border-bottom="1" class="table" id="replyList">
@@ -474,10 +466,10 @@ button:hover {
 						</tr>
 					</thead>
 					<tbody id="favoriteStoreListToPrint">
-<!-- 						리스트 출력 구간 -->
+						<!-- 						리스트 출력 구간 -->
 					</tbody>
 				</table>
-				
+
 				<table border-bottom="1" class="table" id="consultList">
 					<!-- 1:1문의 리스트 -->
 					<colgroup>
@@ -506,13 +498,13 @@ button:hover {
 						</tr>
 					</tbody>
 				</table>
-				
-<!-- 				추가한 네비게이터 -->
+
+				<!-- 				추가한 네비게이터 -->
 				<div class="body2listNavi">
 					<ul class="navigator_list">${search_store_list_navi}</ul>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 	<script>
@@ -548,13 +540,36 @@ button:hover {
                         $("input").attr("readonly", true);
                      })
 
+                     
+                     
                      $(".myContents").on("click", function() { //내가 쓴글...등 버튼 이벤트
-                              $(this).css("border-bottom", "none");
-                              $(".myContents").not(this).css(
-                                    "border-bottom",
-                                    "1px solid black");
-                           })
+                         $(this).css("border-bottom", "none");
+                         $(".myContents").not(this).css(
+                               "border-bottom",
+                               "1px solid black");
+                      })
+                           
+                           
+                           
                      $("#writeListBtn").on("click",function(){ //내가 쓴 글 버튼 누르면 관련 테이블 나오게 이벤트
+                    	 $.ajax({
+ 	      	  				url:"/selectBymypage.fullreview",
+ 	      	  				type:"post",
+ 	      	  				dataType:"json"
+ 	      	  			}).done(function(resp){
+ 	      	  				$("#writeListToPrint").html("");
+ 	      	  				$(".navigator_list").html("");
+ 	      	  				let WriteFullReviewList = JSON.parse(resp.WriteFullReviewList);
+ 	      	  				let WriteFullReviewNavi = JSON.parse(resp.WriteFullReviewNavi);
+ 	      	  				$("#writeListToPrint").append(FavoriteStoreList);
+ 	      	  				$(".navigator_list").append(FavoriteStoreNavi);
+ 	      	  				
+ 		      	  			$("#writeList").css("display","table");
+ 		      	  			$("table").not("table#writeList").css("display","none");
+ 		      	  			
+ 		      	  			setnavi();
+ 	      	  			})
+ 	      	  			
 	    	  			 $("#writeList").css("display","table");
 	      	  			 $("table").not("table#writeList").css("display","none");
      				 })
@@ -579,20 +594,52 @@ button:hover {
 	      	  				$(".navigator_list").html("");
 	      	  				let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
 	      	  				let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
-	      	  				console.log(FavoriteStoreList);
-	      	  				console.log(FavoriteStoreNavi);
 	      	  				$("#favoriteStoreListToPrint").append(FavoriteStoreList);
 	      	  				$(".navigator_list").append(FavoriteStoreNavi);
+	      	  				
+		      	  			$("#favoriteStoreList").css("display","table");
+		      	  			$("table").not("table#favoriteStoreList").css("display","none");
+		      	  			
+		      	  			setnavi();
 	      	  			})
-	    	 			$("#favoriteStoreList").css("display","table");
-	      	  			$("table").not("table#favoriteStoreList").css("display","none");
       				})
-      
-      				$("#consultListBtn").on("click",function(){ //1:1문의 버튼 누르면 관련 테이블 나오게 이벤트
-	    	  			$("#consultList").css("display","table");
-	      	  			$("table").not("table#consultList").css("display","none");
-      				})        
-                  })
+      				
+      				function setnavi(){
+	    	  			$(".navibtn").on("click",function(){
+	    	  				if($(this).attr("searchto")=="FavoriteStoreList"){
+	    	  					let location = $(this).attr("location");
+		            		  	console.log(location)
+		                	  	$.ajax({
+			      	  				url:"/selectFavoriteStore.store",
+			      	  				type:"post",
+			      	  				data:{
+			      	  					cpage:location
+			      	  				},
+			      	  				dataType:"json",
+		      	  				}).done(function(resp){
+			      	  				$("#favoriteStoreListToPrint").html("");
+			      	  				$(".navigator_list").html("");
+			      	  				let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+			      	  				let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+			      	  				$("#favoriteStoreListToPrint").append(FavoriteStoreList);
+			      	  				$(".navigator_list").append(FavoriteStoreNavi);
+			  	    	 			$("#favoriteStoreList").css("display","table");
+			  	      	  			$("table").not("table#favoriteStoreList").css("display","none");
+			  	      	  			
+			  	      	  			setnavi();
+		      	  				})
+	    	  				}else if($(this).attr("searchto")=="writeList")){
+	    	  				
+	    	  				}
+	                	})
+    	  		  	}
+      				
+	    	 			
+   				$("#consultListBtn").on("click",function(){ //1:1문의 버튼 누르면 관련 테이블 나오게 이벤트
+    	  			$("#consultList").css("display","table");
+      	  			$("table").not("table#consultList").css("display","none");
+				})        
+          	})
 
       $("#updateForm").on("submit",function() { //수정 regex
 

@@ -584,7 +584,7 @@ hr {
 			<div class="store_list">
 				<div class="search_layout">
 					<div class="toBack_layout">
-						<button id="toBack_btn" onclick="location.href='/index.jsp'">
+						<button id="toBack_btn">
 							<i class="fa-solid fa-rotate-left"></i>
 						</button>
 					</div>
@@ -799,7 +799,6 @@ hr {
 			</div>
 		</form>
 	</div>
-	</div>
 
 	<c:if test="${search_store_list!=null}">
 		<c:forEach var="dto" items="${search_store_list}" varStatus="status">
@@ -858,36 +857,6 @@ hr {
 	<input type="text" class="search_store_filter_toScript"
 		id="fillter_settings_food_category_etc" value="${food_category_etc}"
 		style="display: none;">
-
-	<!-- 
-	<c:if test="${search_store_list!=null}">
-		<c:forEach var="dto" items="${search_store_list}" varStatus="status">
-			<input type="text" class="search_store_list_toScript"
-				id="search_store_list_storeID${status.index}" value="${dto.storeID}">
-			<input type="text" class="search_store_list_toScript"
-				id="search_store_list_distance${status.index}"
-				value="${dto.distance}">
-			<input type="text" class="search_store_list_toScript"
-				id="search_store_list_name${status.index}" value="${dto.name}">
-			<input type="text" class="search_store_list_toScript"
-				id="search_store_list_lat${status.index}" value="${dto.lat}">
-			<input type="text" class="search_store_list_toScript"
-				id="search_store_list_lng${status.index}" value="${dto.lng}">
-			<input type="text" class="search_store_list_toScript"
-				id="search_store_list_address${status.index}" value="${dto.address}">
-			<input type="text" class="search_store_list_toScript"
-				id="search_store_list_avgScore${status.index}"
-				value="${dto.avgScore}">
-			<input type="text" class="search_store_list_toScript"
-				id="search_store_list_introduction${status.index}"
-				value="${dto.introduction}">
-			<input type="text" class="search_store_list_toScript"
-				id="search_store_list_category${status.index}"
-				value="${dto.category}">
-		</c:forEach>
-	</c:if>
-	
-	 -->
 
 	<!-- 별점 등록 Script -->
 	<script>
@@ -1079,13 +1048,24 @@ hr {
 				range_result.html("20000원 이상");
 			}
 		}
-		
+		// 뒤로가기 버튼
+		$("#toBack_btn").on("click",function(){
+			location.href="/page/main.jsp";
+		})
 		
 		// 검색 버튼
 		$("#searchBtn").on("click",function(){
 			$("#searchForm").prop("onsubmit",true);
 			$("#searchForm").submit();
-		});
+		})
+		
+		// 엔터 입력 시 검색 적용
+		$("#search").on("keyup",function(input){
+			if (input.keyCode == 13) {
+				$("#searchForm").prop("onsubmit",true);
+				$("#searchForm").submit();
+		    }
+		})
 		
 		// 검색 정렬 확인 버튼
 		$("#apply_btn").on("click",function(){
@@ -1117,19 +1097,6 @@ hr {
 
 
 	<script>
-		
-	
-		/*
-		let storeId = $("#search_store_list_storeID"+0).val();
-		let distance = $("#search_store_list_distance"+0).val();
-		let name = $("#search_store_list_name"+0).val();
-		let lat = $("#search_store_list_lat"+0).val();
-		let lng = $("#search_store_list_lng"+0).val();
-		let address = $("#search_store_list_address"+0).val();
-		let avgScore = $("#search_store_list_avgScore"+0).val();
-		let introduction = $("#search_store_list_introduction"+0).val();
-		let category = $("#search_store_list_category"+0).val();
-		*/
 		
 		// 학원 지도 설정
 		var container = document.getElementById('map');

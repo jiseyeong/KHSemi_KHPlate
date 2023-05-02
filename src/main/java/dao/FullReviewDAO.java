@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.FullReviewDTO;
+import dto.FullReviewUserDTO;
 import statics.Settings;
 
 public class FullReviewDAO {
@@ -72,34 +73,50 @@ public class FullReviewDAO {
 	
 	
 	// 블로그 리뷰 조회
-	public List<FullReviewDTO> selectFullReview(int searchUserno, String searchFullReviewTitle, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception {
+	public List<FullReviewUserDTO> selectFullReview(int searchUserno, String searchFullReviewTitle, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception {
 		String sql="";
+		
 		if(searchUserno==0) {
-			sql = "select * from "
-					+ "(select fullreview.*, row_number() over(order by reviewID desc) row_num from fullreview where title like ?)"
-					+ "where row_num between ? and ?";
+			sql = "select * from"
+					+" (select fullreview.*, row_number() over(order by reviewID desc) row_num from fullreview where title like ?)"
+					+" f join members m on f.userno = m.userno"
+					+" where row_num between ? and ?";
 		}else {
-			sql = "select * from fullreview where title like ? and userno = ?";
+			sql = "select * from"
+					+" (select fullreview.*, row_number() over(order by reviewID desc) row_num from fullreview where title like ? and userno = ?)"
+					+" f join members m on f.userno = m.userno"
+					+" where row_num between ? and ?";
 		}
+		
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1, "%"+searchFullReviewTitle+"%");
-			if(searchUserno!=0) {
+			if(searchUserno==0) {
+				pstat.setInt(2, start_Record_Row_Num);
+				pstat.setInt(3, end_Record_Row_Num);
+			}else {
 				pstat.setInt(2, searchUserno);
 				pstat.setInt(3, start_Record_Row_Num);
 				pstat.setInt(4, end_Record_Row_Num);
-			}else {
-				pstat.setInt(2, start_Record_Row_Num);
-				pstat.setInt(3, end_Record_Row_Num);
 			}
 			
 			try(ResultSet rs = pstat.executeQuery();){
-				return transToList(rs);
+				List<FullReviewUserDTO> result = new ArrayList<>();
+				while(rs.next()) {
+					int reviewID = rs.getInt("reviewid");
+					int score = rs.getInt("score");
+					int storeID = rs.getInt("storeid");
+					int userno = rs.getInt("userno");
+					Timestamp writedate = rs.getTimestamp("writedate");
+					String title = rs.getString("title");
+					String userID = rs.getString("userid");
+					String nickname = rs.getString("nickname");
+				}
 			}
 		}
 	}
 	
-	public String getFullReviewNavi(int currentpage, int searchUserno, String searchFullReviewTitle, String food_category) throws Exception {
+	public String getFullReviewNavi(int currentpage, int searchUserno, String searchFullReviewTitle) throws Exception {
 
 		int record_total_count = getSearchdFullReview_RecordCount(searchUserno,searchFullReviewTitle);
 		int record_count_per_page = Settings.SEARCH_FULLREVIEW_RECORD_COUNT_PER_PAGE; // 15
@@ -196,9 +213,6 @@ public class FullReviewDAO {
 	}
 	
 	
-	
-	
-	
 	private List<FullReviewDTO> transToList(ResultSet rs) throws Exception {
 		List<FullReviewDTO> result = new ArrayList<>();
 		while(rs.next()) {
@@ -212,7 +226,8 @@ public class FullReviewDAO {
 			result.add(new FullReviewDTO(reviewID,title,reviewBody,score,storeID,userno,writedate));
 		}
 		return result;
-	}		
+	}
+	
 	
 	public FullReviewDTO contentByReviewId(int reviewid) throws Exception {
 		String sql = "select * from fullreview where reviewid = ?";
