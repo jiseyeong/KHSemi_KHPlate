@@ -62,7 +62,7 @@ public class StoreController extends HttpServlet {
 					userIDList.add(MembersDAO.getInstance().getIDByNo(commentList.get(i).getUserNo()));
 				}
 				ArrayList<StoreMenuDTO> menuList = StoreMenuDAO.getInstance().selectAllByStoreID(storeID);
-				ArrayList<PhotoDTO> imgList = StoreDAO.getInstance().selectPhoto(storeID);
+				ArrayList<PhotoDTO> imgList = PhotoDAO.getInstance().selectByStoreID(storeID);
 				//				ArrayList<String> imgPathList = new ArrayList<>();
 				//				for(PhotoDTO i : imgList) {
 				//					imgPathList.add("/store/" + i.getSysName());
@@ -116,15 +116,19 @@ public class StoreController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						StoreDAO.getInstance().insertPhoto(sysName, oriName, currval);
+						PhotoDAO.getInstance().insertByStoreID(sysName, oriName, currval);
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+currval);
 			}else if(cmd.equals("/deletePhoto.store")) {
 				int imageID = Integer.parseInt(request.getParameter("imageID"));
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
-
-				int result = PhotoDAO.getInstance().delete(imageID);
+				
+				String realPath = request.getServletContext().getRealPath("store");
+				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getSysName());
+				if(realPathFile.delete()) {
+					int result = PhotoDAO.getInstance().delete(imageID);
+				}
 
 				response.sendRedirect("/view.store?storeID="+storeID);
 			}else if(cmd.equals("/update.store")) {
@@ -158,7 +162,7 @@ public class StoreController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						StoreDAO.getInstance().insertPhoto(sysName, oriName, storeID);
+						PhotoDAO.getInstance().insertByStoreID(sysName, oriName, storeID);
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+storeID);

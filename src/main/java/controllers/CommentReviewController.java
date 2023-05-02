@@ -53,14 +53,14 @@ public class CommentReviewController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						CommentReviewDAO.getInstance().insertPhoto(sysName, oriName, currval);
+						PhotoDAO.getInstance().insertByCReviewID(sysName, oriName, currval);
 					}
 				}
 				
 				response.sendRedirect("/view.store?storeID="+storeID);
 			}else if(cmd.equals("/getPhotoList.commentReview")) {
 				int reviewID = Integer.parseInt(request.getParameter("reviewID"));
-				ArrayList<PhotoDTO> imgList = CommentReviewDAO.getInstance().selectPhoto(reviewID);
+				ArrayList<PhotoDTO> imgList = PhotoDAO.getInstance().selectByCReviewID(reviewID);
 				
 				String resp = g.toJson(imgList);
 				
@@ -95,10 +95,34 @@ public class CommentReviewController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						CommentReviewDAO.getInstance().insertPhoto(sysName, oriName, reviewID);
+						PhotoDAO.getInstance().insertByCReviewID(sysName, oriName, reviewID);
 					}
 				}
 				
+				response.sendRedirect("/view.store?storeID="+storeID);
+			}else if(cmd.equals("/delete.commentReview")) {
+				int reviewID = Integer.parseInt(request.getParameter("reviewID"));
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				
+				String realPath = request.getServletContext().getRealPath("CommentReview");
+				for(PhotoDTO i : PhotoDAO.getInstance().selectByCReviewID(reviewID)) {
+					File realPathFile = new File(realPath+"/"+i.getSysName());
+					realPathFile.delete();
+				}
+				
+				int result1 = PhotoDAO.getInstance().deleteByCReviewID(reviewID);
+				int result2 = CommentReviewDAO.getInstance().delete(reviewID);
+				
+				response.sendRedirect("/view.store?storeID="+storeID);
+			}else if(cmd.equals("/deletePhoto.commentReview")) {
+				int imageID = Integer.parseInt(request.getParameter("imageID"));
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				
+				String realPath = request.getServletContext().getRealPath("CommentReview");
+				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getSysName());
+				if(realPathFile.delete()) {
+					PhotoDAO.getInstance().delete(imageID);
+				}
 				response.sendRedirect("/view.store?storeID="+storeID);
 			}
 		}catch(Exception e) {
