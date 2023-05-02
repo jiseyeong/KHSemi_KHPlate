@@ -97,7 +97,7 @@ hr {
 	width: 20%;
 	height: 100%;
 	float: left;
-	diplay: flex;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 }
