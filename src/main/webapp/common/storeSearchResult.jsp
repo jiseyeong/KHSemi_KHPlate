@@ -771,7 +771,7 @@ hr {
 												</div>
 												<script>
 													$.ajax({
-														url:"/getPhoto.store",
+														url:"/getMainPhoto.store",
 														type:"get",
 														data:{
 															storeID: "${search_store_list.get(index).storeID}"
