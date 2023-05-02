@@ -105,6 +105,17 @@ public class StoreDAO {
 			return result;
 		}
 	}
+	
+	public int delete(int storeID) throws Exception{
+		String sql = "delete from STORE where STOREID=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, storeID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 
 	public int updateReviewCount(int reviewCount, int storeID) throws Exception{
 		String sql = "update STORE set REVIEWCOUNT=? where STOREID=?";

@@ -166,6 +166,17 @@ public class StoreController extends HttpServlet {
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+storeID);
+			}else if(cmd.equals("/delete.store")) {
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				
+				String realPath = request.getServletContext().getRealPath("store");
+				for(PhotoDTO i : PhotoDAO.getInstance().selectByStoreID(storeID)) {
+					File realPathFile = new File(realPath +"/"+ i.getSysName());
+					realPathFile.delete();
+				}
+				int result = StoreDAO.getInstance().delete(storeID);
+				
+				//검색 결과 리스트창 등으로 넘길 것.
 			}
 
 
