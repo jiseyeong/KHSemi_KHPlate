@@ -12,6 +12,7 @@ public class FullReviewUserDTO {
 	private int storeID;
 	private int userNO;
 	private Timestamp writedate;
+	
 	private String userID;
 	private String pw;
 	private String nickname;

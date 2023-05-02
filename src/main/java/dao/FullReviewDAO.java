@@ -340,6 +340,5 @@ public class FullReviewDAO {
 					+ "</li>");
 		}
 		return sb.toString();
-
 	}
 }

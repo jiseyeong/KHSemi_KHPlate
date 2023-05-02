@@ -5,13 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.CommentReviewDTO;
+import dto.CommentReviewUserDTO;
 import dto.PhotoDTO;
+import statics.Settings;
 
 public class CommentReviewDAO {
 	private static CommentReviewDAO instance = null;
@@ -21,17 +24,17 @@ public class CommentReviewDAO {
 		}
 		return instance;
 	}
-	
+
 	private CommentReviewDAO() {
 		super();
 	}
-	
+
 	private Connection getConnection() throws Exception {
 		Context iContext = new InitialContext();
 		DataSource ds = (DataSource)iContext.lookup("java:/comp/env/jdbc/ora");
 		return ds.getConnection();
 	}
-	
+
 	public int insert(CommentReviewDTO dto) throws Exception{
 		String sql = "insert into COMMENTREVIEW(REVIEWID, BODY, SCORE, STOREID, USERNO, WRITEDATE, TOTALLIKE)"
 				+ " values(COMMENTREVIEW_REVIEWID_SEQ.nextval, ?, ?, ?, ?, sysdate, 0)";
@@ -46,7 +49,7 @@ public class CommentReviewDAO {
 			return result;
 		}
 	}
-	
+
 	public int update(int reviewID, String body, int score) throws Exception{
 		String sql = "update COMMENTREVIEW"
 				+ " set BODY=?, SCORE=?"
@@ -61,7 +64,7 @@ public class CommentReviewDAO {
 			return result;
 		}
 	}
-	
+
 	public ArrayList<CommentReviewDTO> selectByStoreID(int storeID) throws Exception{
 		String sql = "select * from COMMENTREVIEW where STOREID = ?";
 		try(	Connection con = this.getConnection();
@@ -72,7 +75,7 @@ public class CommentReviewDAO {
 			}
 		}
 	}
-	
+
 	public ArrayList<CommentReviewDTO> selectByUserNo(int userNo) throws Exception{
 		String sql = "select * from COMMENTREVIEW where USERNO = ?";
 		try(	Connection con = this.getConnection();
@@ -83,7 +86,7 @@ public class CommentReviewDAO {
 			}
 		}
 	}
-	
+
 	public int getCurrval() throws Exception{
 		String sql = "select COMMENTREVIEW_REVIEWID_SEQ.currval from dual";
 		try(	Connection con = this.getConnection();
@@ -93,7 +96,7 @@ public class CommentReviewDAO {
 			return rs.getInt(1);
 		}
 	}
-	
+
 	public int delete(int reviewID) throws Exception{
 		String sql = "delete from COMMENTREVIEW where REVIEWID=?";
 		try(	Connection con = this.getConnection();
@@ -105,7 +108,7 @@ public class CommentReviewDAO {
 		}
 	}
 
-	
+
 	private ArrayList<CommentReviewDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<CommentReviewDTO> result = new ArrayList<>();
 		while(rs.next()) {
@@ -116,11 +119,133 @@ public class CommentReviewDAO {
 			int userNo = rs.getInt("USERNO");
 			Timestamp writeDate = rs.getTimestamp("WRITEDATE");
 			int totalLike = rs.getInt("TOTALLIKE");
-			
+
 			result.add(new CommentReviewDTO(reviewID, body, score, storeID, userNo, writeDate, totalLike));
 		}
 		return result;
 	}
-	
-	
+
+
+	// 마이페이지에 표시될 나의 댓글 리스트 출력, 네비 출력 사항
+	public String selectwriteCommentListToJSP(int userno, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception {
+
+		List<CommentReviewUserDTO> userList = selectwriteCommentList(userno, start_Record_Row_Num, end_Record_Row_Num);
+		StringBuilder sb = new StringBuilder();
+
+		for(CommentReviewUserDTO user : userList) {
+			sb.append("<tr>");
+			sb.append("<td>"+user.getReviewID()+"</td>");
+			sb.append("<td>"+user.getStoreName()+"</td>");
+			sb.append("<td>"+user.getBody()+"</td>");
+			sb.append("<td>"+user.getScore()+"</td>");
+			sb.append("<td>"+user.getWriteDate()+"</td>");
+			sb.append("</tr>");
+		}
+		return sb.toString();
+	}
+
+	public List<CommentReviewUserDTO> selectwriteCommentList(int userno, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception {
+		String sql = "select * from "
+				+ "(select a.*, row_number() over(order by a.storeID desc) row_num from"
+				+ "(select * from members m join"
+				+ "(select * from commentreview join store using (storeid)) c on m.userno = c.userno where c.userno = ?) a)"
+				+ "where row_num between ? and ?";
+		try (Connection con = this.getConnection(); 
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, userno);
+			pstat.setInt(2, start_Record_Row_Num);
+			pstat.setInt(3, end_Record_Row_Num);
+			try(ResultSet rs = pstat.executeQuery();) {
+				List<CommentReviewUserDTO> result = new ArrayList<>();
+				while (rs.next()) {
+					int reviewID = rs.getInt("reviewid");
+					String StoreName = rs.getString(23);
+					String body = rs.getString("body");
+					int score = rs.getInt("score");
+					Timestamp writeDate = rs.getTimestamp("writedate");
+					result.add(new CommentReviewUserDTO(reviewID,StoreName,body,score,writeDate));
+				}
+				return result;
+			}
+		}
+	}
+
+	public String selectwriteCommentNaviToJSP(int currentpage, int searchUserno) throws Exception {
+
+		int record_total_count = selectwriteCommentList_RecordCount(searchUserno);
+		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE; // 15
+		int navi_count_per_page = Settings.MYPAGE_LIST_NAVI_COUNT_PER_PAGE; // 10
+
+		System.out.println("리스트 전체 글 개수 : "+record_total_count);
+
+		int page_total_count = 0;
+
+		// 총 페이지의 수
+		if(record_total_count%record_count_per_page==0) {
+			page_total_count = record_total_count/record_count_per_page;
+		}else {	
+			page_total_count = (record_total_count/record_count_per_page)+1;
+		}
+
+		// 페이지 범위 초과 시 자동 조정 (필수 x)
+		if(currentpage<1)
+			currentpage = 1;
+		else if(currentpage > page_total_count)
+			currentpage=page_total_count;
+
+		int startNavi = ((currentpage - 1)/navi_count_per_page * navi_count_per_page)+1;
+		int endNavi = startNavi + (navi_count_per_page - 1);
+
+		if(startNavi<1)
+			startNavi = 1;
+		else if(endNavi>page_total_count)
+			endNavi = page_total_count;
+
+		StringBuilder sb = new StringBuilder();
+
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1)
+			needPrev = false;
+		if(endNavi == page_total_count)
+			needNext = false;
+
+		if(needPrev) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='writeMyCommentList' location='"+(startNavi-1)+"'>"
+					+ "				<i class='fa-solid fa-angle-left'></i>"
+					+ "			</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		for(int i = startNavi ; i <= endNavi ; i++) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navibtn item' searchto='writeMyCommentList' location='"+i+"'>"+i+"</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		if(needNext) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='writeMyCommentList' location='"+(endNavi+1)+"'>"
+					+ "				<i class='fa-solid fa-angle-right'></i>"
+					+ "			</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		return sb.toString();
+	}
+
+	public int selectwriteCommentList_RecordCount(int searchUserno) throws Exception{
+		String sql = "select count(*) from commentreview";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			rs.next();
+			return rs.getInt(1);
+		}
+	}
 }

@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import dao.FullReviewReplyDAO;
-import dao.MembersDAO;
+import statics.Settings;
 
 @WebServlet("*.fullreviewreply")
 public class FullReviewReplyController extends HttpServlet {
@@ -58,8 +62,7 @@ public class FullReviewReplyController extends HttpServlet {
 					System.out.println(reviewid + "댓글 수정 성공");
 				}
 				
-			// 마이페이지에 출력할 ReplyList
-			}			
+			} 
 
 		} catch (Exception e) {
 			e.printStackTrace();

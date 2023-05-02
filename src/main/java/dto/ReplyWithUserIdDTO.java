@@ -48,6 +48,4 @@ public class ReplyWithUserIdDTO {
 	public void setReviewid(int reviewid) {
 		this.reviewid = reviewid;
 	}
-	
-	
 }

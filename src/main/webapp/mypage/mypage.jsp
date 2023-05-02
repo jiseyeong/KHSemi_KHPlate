@@ -340,19 +340,16 @@ button:hover {
 				<form action="/update.members" method="post" id="updateForm">
 					<div class="inpocontents2">
 						<input type="text" value="${my.userID}" id="id" readonly><br>
-						<input type="password" value="${my.pw}" id="pw1" name="pw"
-							readonly><br> <input type="password" id="pw2"
-							readonly id="pwConfirm"><br> <input type="text"
-							value="${my.name}" readonly><br> <input type="text"
-							value="${my.nickname}" id="nickname" name="nickname" readonly><br>
-						<input type="text" value="${my.phone}" id="phone" name="phone"
-							readonly><br> <input type="text" value="${my.email}"
-							id="email" name="email" readonly><br> <input
-							type="text" value="${my.classes}" readonly><br> <input
-							type="text" value="${my.selfcomment}" id="selfcomment"
-							name="selfcomment" readonly><br> <input type="text"
-							value="${my.favoriteFood}" id="favoriteFood" name="favoriteFood"
-							readonly><br>
+						<input type="password" value="${my.pw}" id="pw1" name="pw"readonly><br>
+						<input type="password" id="pw2" readonly id="pwConfirm"><br>
+						<input type="text" value="${my.name}" readonly><br>
+						<input type="text" value="${my.nickname}" id="nickname" name="nickname" readonly><br>
+						<input type="text" value="${my.phone}" id="phone" name="phone" readonly><br>
+						<input type="text" value="${my.email}" id="email" name="email" readonly><br>
+						<input type="text" value="${my.classes}" readonly><br>
+						<input type="text" value="${my.selfcomment}" id="selfcomment" name="selfcomment" readonly><br>
+						<input type="text" value="${my.favoriteFood}" id="favoriteFood" name="favoriteFood" readonly><br>
+						
 						<button id="modiBtn" type="button">수정하기</button>
 						<button id="modiComBtn" type="submit">수정완료</button>
 						<button id="memberoutBtn" type="button">회원탈퇴</button>
@@ -362,12 +359,11 @@ button:hover {
 		</div>
 		<div class="body2">
 			<div class="body2Navi">
-				<a href="#null" class="myContents" id="writeListBtn">내가 쓴 글</a> <a
-					href="#null" class="myContents" id="replyListBtn">내가 쓴 댓글</a> <a
-					href="#null" class="myContents" id="reviewMarkBtn">내가 스크랩한 리뷰</a> <a
-					href="#null" class="myContents" id="favoriteStoreListBtn">내가
-					즐겨찾기한 가게</a> <a href="#null" class="myContents" id="consultListBtn">1:1
-					문의</a>
+				<a href="#null" class="myContents" id="writeListBtn">내가 쓴 글</a> 
+				<a href="#null" class="myContents" id="replyListBtn">내가 쓴 댓글</a> 
+				<a href="#null" class="myContents" id="reviewMarkBtn">내가 스크랩한 리뷰</a>
+				<a href="#null" class="myContents" id="favoriteStoreListBtn">내가즐겨찾기한 가게</a>
+				<a href="#null" class="myContents" id="consultListBtn">1:1 문의</a>
 			</div>
 			<div class="body2Contents">
 				<table border-bottom="1" class="table" id="writeList">
@@ -387,32 +383,29 @@ button:hover {
 						</tr>
 					</thead>
 					<tbody id="writeListToPrint">
-						<!-- 						리스트 출력 구간 -->
+						<!-- 리스트 출력 구간 -->
 					</tbody>
 				</table>
 				<table border-bottom="1" class="table" id="replyList">
 					<!--내가 쓴 댓글 리스트 뽑아내기-->
 					<colgroup>
 						<col width="5%">
+						<col width="30%">
 						<col width="40%">
-						<col width="40%">
+						<col width="10%">
 						<col width="15%">
 					</colgroup>
 					<thead>
 						<tr>
 							<th>번호</th>
-							<th>글 제목</th>
+							<th>맛집 이름</th>
 							<th>댓글 내용</th>
+							<th>평점</th>
 							<th>작성일</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>2</td>
-							<td>bootstrap</td>
-							<td>세영</td>
-							<td>1</td>
-						</tr>
+					<tbody id="replyListToPrint">
+						<!-- 리스트 출력 구간 -->
 					</tbody>
 				</table>
 				<table border-bottom="1" class="table" id="reviewMark">
@@ -429,18 +422,12 @@ button:hover {
 							<th>번호</th>
 							<th>제목</th>
 							<th>작성자</th>
-							<th>조회수</th>
-							<th>작성일</th>
+							<th>맛집 이름</th>
+							<th>리뷰 작성일</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>3</td>
-							<td>bootstrap</td>
-							<td>세영</td>
-							<td>1</td>
-							<td>2023.05.01</td>
-						</tr>
+					<tbody id="reviewMarkToPrint">
+						<!-- 리스트 출력 구간 -->
 					</tbody>
 				</table>
 
@@ -464,7 +451,7 @@ button:hover {
 						</tr>
 					</thead>
 					<tbody id="favoriteStoreListToPrint">
-						<!-- 						리스트 출력 구간 -->
+						<!-- 리스트 출력 구간 -->
 					</tbody>
 				</table>
 
@@ -497,9 +484,9 @@ button:hover {
 					</tbody>
 				</table>
 
-				<!-- 				추가한 네비게이터 -->
+				<!-- 추가한 네비게이터 -->
 				<div class="body2listNavi">
-					<ul class="navigator_list">${search_store_list_navi}</ul>
+					<ul class="navigator_list"></ul>
 				</div>
 			</div>
 
@@ -567,42 +554,49 @@ button:hover {
 
 					setnavi();
 				})
-
-				$("#writeList").css("display","table");
-				$("table").not("table#writeList").css("display", "none");
 			})
 
-			
 			
 			$("#replyListBtn").on("click",function() { //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
 				
 				$.ajax({
-					url : "/selectBymypage.fullreview",
+					url : "/selectBymypage.commentReview",
 					type : "post",
 					dataType : "json"
 				}).done(function(resp){
-					$("#writeListToPrint").html("");
+					$("#replyListToPrint").html("");
 					$(".navigator_list").html("");
-					let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
-					let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
-					$("#writeListToPrint").append(writeFullReviewList);
-					$(".navigator_list").append(writeFullReviewNavi);
+					let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
+					let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
+					$("#replyListToPrint").append(writeMyCommentList);
+					$(".navigator_list").append(writeMyCommentNavi);
 
-					$("#writeList").css("display","table");
-					$("table").not("table#writeList").css("display","none");
+					$("#replyList").css("display","table");
+					$("table").not("table#replyList").css("display","none");
 
 					setnavi();
 				})
-				
-				$("#replyList").css("display","table");
-				$("table").not("table#replyList").css("display", "none");
 			})
 
-			
-			
-			$("#replyListBtn").on("click",function() { //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
-				$("#reviewMark").css("display", "table");
-				$("table").not("table#reviewMark").css("display", "none");
+			$("#reviewMarkBtn").on("click",function() { //내가 스크랩한 블로그 버튼 누르면 관련 테이블 나오게 이벤트
+				
+				$.ajax({
+					url : "/selectBymypage.commentReview",
+					type : "post",
+					dataType : "json"
+				}).done(function(resp){
+					$("#replyListToPrint").html("");
+					$(".navigator_list").html("");
+					let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
+					let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
+					$("#replyListToPrint").append(writeMyCommentList);
+					$(".navigator_list").append(writeMyCommentNavi);
+
+					$("#reviewMark").css("display", "table");
+					$("table").not("table#reviewMark").css("display", "none");
+					
+					setnavi();
+				})
 			})
 
 			
@@ -657,6 +651,28 @@ button:hover {
 						})
 
 					} else if ($(this).attr("searchto") == "writeFullReviewList") {
+						$.ajax({
+							url : "/selectBymypage.fullreview",
+							type : "post",
+							data : {
+								cpage : location
+							},
+							dataType : "json"
+						}).done(function(resp){
+							$("#writeListToPrint").html("");
+							$(".navigator_list").html("");
+							let WriteFullReviewList = JSON.parse(resp.WriteFullReviewList);
+							let WriteFullReviewNavi = JSON.parse(resp.WriteFullReviewNavi);
+							$("#writeListToPrint").append(FavoriteStoreList);
+							$(".navigator_list").append(FavoriteStoreNavi);
+
+							$("#writeList").css("display","table");
+							$("table").not("table#writeList").css("display","none");
+
+							setnavi();
+						})
+						
+					} else if ($(this).attr("searchto") == "writeMyCommentList") {
 						$.ajax({
 							url : "/selectBymypage.fullreview",
 							type : "post",
