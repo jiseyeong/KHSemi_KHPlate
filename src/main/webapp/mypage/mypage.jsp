@@ -218,9 +218,8 @@ button:hover {
 	background-color: rgb(240, 240, 240);
 	border: 1px solid black;
 	padding: 30px;
-	
-/* 	하단 네비게이터를 붙이기 위한 position 부여 */
-	position : relative;
+	/* 	하단 네비게이터를 붙이기 위한 position 부여 */
+	position: relative;
 }
 
 .body2Contents>table {
@@ -310,7 +309,6 @@ button:hover {
 	justify-content: center;
 	align-items: center;
 }
-
 </style>
 </head>
 <body>
@@ -474,10 +472,10 @@ button:hover {
 						</tr>
 					</thead>
 					<tbody id="favoriteStoreListToPrint">
-<!-- 						리스트 출력 구간 -->
+						<!-- 						리스트 출력 구간 -->
 					</tbody>
 				</table>
-				
+
 				<table border-bottom="1" class="table" id="consultList">
 					<!-- 1:1문의 리스트 -->
 					<colgroup>
@@ -506,13 +504,13 @@ button:hover {
 						</tr>
 					</tbody>
 				</table>
-				
-<!-- 				추가한 네비게이터 -->
+
+				<!-- 				추가한 네비게이터 -->
 				<div class="body2listNavi">
 					<ul class="navigator_list">${search_store_list_navi}</ul>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 	<script>
@@ -579,20 +577,48 @@ button:hover {
 	      	  				$(".navigator_list").html("");
 	      	  				let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
 	      	  				let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
-	      	  				console.log(FavoriteStoreList);
-	      	  				console.log(FavoriteStoreNavi);
 	      	  				$("#favoriteStoreListToPrint").append(FavoriteStoreList);
 	      	  				$(".navigator_list").append(FavoriteStoreNavi);
+	      	  				
+		      	  			$("#favoriteStoreList").css("display","table");
+		      	  			$("table").not("table#favoriteStoreList").css("display","none");
+		      	  			
+		      	  			setnavi();
 	      	  			})
-	    	 			$("#favoriteStoreList").css("display","table");
-	      	  			$("table").not("table#favoriteStoreList").css("display","none");
       				})
-      
-      				$("#consultListBtn").on("click",function(){ //1:1문의 버튼 누르면 관련 테이블 나오게 이벤트
-	    	  			$("#consultList").css("display","table");
-	      	  			$("table").not("table#consultList").css("display","none");
-      				})        
-                  })
+      				
+      				function setnavi(){
+	    	  			$(".navibtn").on("click",function(){
+	            		  	let location = $(this).attr("location");
+	            		  	console.log(location)
+	                	  	$.ajax({
+		      	  				url:"/selectFavoriteStore.store",
+		      	  				type:"post",
+		      	  				data:{
+		      	  					cpage:location
+		      	  				},
+		      	  				dataType:"json",
+	      	  				}).done(function(resp){
+		      	  				$("#favoriteStoreListToPrint").html("");
+		      	  				$(".navigator_list").html("");
+		      	  				let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+		      	  				let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+		      	  				$("#favoriteStoreListToPrint").append(FavoriteStoreList);
+		      	  				$(".navigator_list").append(FavoriteStoreNavi);
+		  	    	 			$("#favoriteStoreList").css("display","table");
+		  	      	  			$("table").not("table#favoriteStoreList").css("display","none");
+		  	      	  			
+		  	      	  			setnavi();
+	      	  				})
+	                	})
+    	  		  	}
+      				
+	    	 			
+   				$("#consultListBtn").on("click",function(){ //1:1문의 버튼 누르면 관련 테이블 나오게 이벤트
+    	  			$("#consultList").css("display","table");
+      	  			$("table").not("table#consultList").css("display","none");
+				})        
+          	})
 
       $("#updateForm").on("submit",function() { //수정 regex
 

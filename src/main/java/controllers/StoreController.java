@@ -514,9 +514,8 @@ public class StoreController extends HttpServlet {
 				String FavoriteStoreList = StoreDAO.getInstance().selectFavoriteStoreToJSP(userno,start_Record_Row_Num,end_Record_Row_Num);
 				String FavoriteStoreNavi = StoreDAO.getInstance().selectFavoriteStoreNaviToJSP(userno,currentpage);
 				
-				System.out.println(FavoriteStoreList);
-				System.out.println(FavoriteStoreNavi);
 				Gson g = new Gson();
+				
 				FavoriteStoreList = g.toJson(FavoriteStoreList);
 				FavoriteStoreNavi = g.toJson(FavoriteStoreNavi);
 				

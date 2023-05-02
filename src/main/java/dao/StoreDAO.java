@@ -632,7 +632,7 @@ public class StoreDAO {
 		if(needPrev) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<button class='navigator_direction_btn cpage"+(startNavi-1)+"'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='FavoriteStoreList' location='"+(startNavi-1)+"'>"
 					+ "				<i class='fa-solid fa-angle-left'></i>"
 					+ "			</button>"
 					+ "		</div>"
@@ -641,14 +641,14 @@ public class StoreDAO {
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<button class='item cpage"+i+"'>"+i+"</button>"
+					+ "			<button class='navibtn item' searchto='FavoriteStoreList' location='"+i+"'>"+i+"</button>"
 					+ "		</div>"
 					+ "</li>");
 		}
 		if(needNext) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<button class='navigator_direction_btn cpage"+(endNavi+1)+"'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='FavoriteStoreList' location='"+(endNavi+1)+"'>"
 					+ "				<i class='fa-solid fa-angle-right'></i>"
 					+ "			</button>"
 					+ "		</div>"
