@@ -97,7 +97,7 @@ hr {
 	width: 20%;
 	height: 100%;
 	float: left;
-	diplay: flex;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 }
@@ -707,7 +707,7 @@ hr {
 												<div class="inner_cover_layout">
 													<div class="inner_layout">
 														<div class="img_layout">
-															<img src="/common/restaurant_img1.jpg"
+															<img id="img${index}" src="/common/restaurant_img1.jpg"
 																class="restaurant_img">
 															<div class="restaurant_addFavorite">
 																<input type="text" name="addFavorite_storeID"
@@ -769,7 +769,23 @@ hr {
 														</div>
 													</div>
 												</div>
-
+												<script>
+													$.ajax({
+														url:"/getMainPhoto.store",
+														type:"get",
+														data:{
+															storeID: "${search_store_list.get(index).storeID}"
+														},
+														dataType:"json"
+													}).done(function(resp){
+														if(resp.imageID == -1){
+															$("#img"+"${index}").attr("src", "/common/restaurant_img1.jpg" )
+														}else{
+															$("#img"+"${index}").attr("src", "/store/"+resp.sysName);
+														}
+													});
+													
+												</script>
 												<c:set var="list_count" value="${list_count-1}" />
 												<c:set var="index" value="${index+1}" />
 											</c:forEach>
