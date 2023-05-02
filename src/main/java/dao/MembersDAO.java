@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import commons.SecurityUtils;
 import dto.FullReviewDTO;
 import dto.MembersDTO;
+import dto.ReplyWithUserIdDTO;
 
 public class MembersDAO {
 
@@ -184,7 +185,7 @@ public class MembersDAO {
 		}
 
 	}
-	
+
 	// 비밀번호 검사 후 로그인 적용
 	// 일치하지 않을 경우 PW가 틀렸다고 사용자에게 표시
 	public boolean isPwExist(String id, String pw) throws Exception {
@@ -197,7 +198,7 @@ public class MembersDAO {
 			}
 		}
 	}
-	
+
 	// 이메일 인증 확인
 	public boolean emailVerify(String id) throws Exception {
 		String sql = "select * from members where userid = ? and userEmailChecked = 't'";
@@ -208,10 +209,10 @@ public class MembersDAO {
 			}
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	public int getUserno(String id) throws Exception {
 		String sql = "select userno from members where userid = ?";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
@@ -222,16 +223,16 @@ public class MembersDAO {
 			}
 		}
 	}
-	
-	
+
+
 	// 이메일 인증 부분입니다.
 	// 이메일 인증 시 해당 유저가 있는 지 검사
 	public String getUserEmailVerified(String code) throws Exception{
 		String sql = "select * from members";
 		try
 		(Connection con = this.getConnection();
-		PreparedStatement pstat= con.prepareStatement(sql);
-		ResultSet rs = pstat.executeQuery();){
+				PreparedStatement pstat= con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
 			while(rs.next()) {
 				String userid = rs.getString("userid");
 				if(SecurityUtils.sha512(userid).equals(code)) {
@@ -241,28 +242,28 @@ public class MembersDAO {
 			return "";
 		}
 	}
-	
+
 	// 이메일 인증 후 해당 유저의 userEmailChecked 를 t값으로 변경
 	public int updateuserEmailChecked(String userid) throws Exception{
 		String sql = "update members set userEmailChecked = 't' where userid = ?";
 		try
 		(Connection con = this.getConnection();
-		PreparedStatement pstat= con.prepareStatement(sql);){
+				PreparedStatement pstat= con.prepareStatement(sql);){
 			pstat.setString(1, userid);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
 		}
 	}
-	
-	
+
+
 	// FullReviewController에서 리스트 출력 시 유저 정보를 가져올 때 사용
 	public List<MembersDTO> selectfullReviewUserList(List<FullReviewDTO> fullReviewList) throws Exception {
 		List<MembersDTO> result = new ArrayList<>();
 		for(FullReviewDTO users : fullReviewList) {
 			String sql = "select * from members where userno = ?";
 			try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-				
+
 				pstat.setInt(1, users.getUserNO());
 				try(ResultSet rs = pstat.executeQuery();){
 					rs.next();
@@ -275,7 +276,7 @@ public class MembersDAO {
 					String classes = rs.getString("classes");
 					String selfcomment = rs.getString("selfcomment");
 					String favoritefood = rs.getString("favoritefood");
-					
+
 					result.add(new MembersDTO(userID, pw, nickname, name, email, phone, classes, selfcomment,
 							favoritefood));
 				}
@@ -283,4 +284,7 @@ public class MembersDAO {
 		}
 		return result;
 	}
+
+
+
 }

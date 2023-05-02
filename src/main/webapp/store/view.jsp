@@ -685,13 +685,10 @@
 																$(replyControl).prepend(btn_confirm_body);
 																$(replyControl).prepend(btn_cancel_body);
 
-																let review_imgsLength;
-
 																$.ajax({
 																	url: "/getPhotoList.commentReview?reviewID=" + reviewID,
 																	dataType: "json"
 																}).done(function (resp) {
-																	review_imgsLength = resp.length;
 
 																	let row1 = $("<div>").addClass("row"),
 																		col1 = $("<div>").addClass("col-12"),
@@ -704,14 +701,14 @@
 																	col1.append(fieldSet1);
 																	fieldSet1.append(legend1);
 																	fieldSet1.append(row2);
-																	for (let j = 0; j < resp.length; j++) {
+																	resp.each(function(){
 																		let form = $("<form>").attr("action", "/deletePhoto.commentReview");
 
-																		let input_imageID = $("<input>").attr("type", "text").attr("name", "imageID").attr("value", resp[j].imageID).css({ "display": "none" });
+																		let input_imageID = $("<input>").attr("type", "text").attr("name", "imageID").attr("value", this.imageID).css({ "display": "none" });
 																		let input_storeID = $("<input>").attr("type", "text").attr("name", "storeID").attr("value", "${dto.storeID}").css({ "display": "none" });
 																		let sub_col1 = $("<div>").addClass("col-8"),
 																			sub_col2 = $("<div>").addClass("col-4"),
-																			imgSource = "/CommentReview/" + resp[j].sysName;
+																			imgSource = "/CommentReview/" + this.sysName;
 																		sub_col1_content = $("<img>").attr("src", imgSource).addClass("w-100").addClass("object-fit-contain"),
 																			sub_col2_content = $("<button>").text("삭제").attr("type", "button").addClass("btn").addClass("btn-outline-secondary");
 
@@ -727,7 +724,7 @@
 																		form.append(sub_col2);
 
 																		row2.append(form);
-																	}
+																	})
 																});
 
 																//밖에 꺼내면 변수명 문제가 생겨서, 클로저 개념 기대하며 제작.
