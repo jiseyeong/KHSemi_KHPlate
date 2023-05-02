@@ -3,380 +3,172 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <!-- Required meta tags-->
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
-<meta name="description" content="Colorlib Templates">
-<meta name="author" content="Colorlib">
-<meta name="keywords" content="Colorlib Templates">
+
 
 <!-- Title Page-->
-<title>아이디 확인</title>
+<title>Member Out</title>
 
+<link
+	rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script
+	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
+	charset="utf-8"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-
-<!-- Icons font CSS-->
-<link href="vendor/mdi-font/css/material-design-iconic-font.min.css"
-	rel="stylesheet" media="all">
-<link href="vendor/font-awesome-4.7/css/font-awesome.min.css"
-	rel="stylesheet" media="all">
-<!-- Font special for pages-->
 <link
-	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-	rel="stylesheet">
-
-<!-- Vendor CSS-->
-<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-<link href="vendor/datepicker/daterangepicker.css" rel="stylesheet"
-	media="all">
+	href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.1.2/typicons.min.css">
 
 <!-- Main CSS-->
 <link href="css/main.css" rel="stylesheet" media="all">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 </head>
+
+
+
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
 
-/* ==========================================================================
-   #FONT
-   ========================================================================== */
-.font-robo {
-	font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
-}
-
-/* ==========================================================================
-   #GRID
-   ========================================================================== */
-.row {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-}
-
-.row-space {
-	-webkit-box-pack: justify;
-	-webkit-justify-content: space-between;
-	-moz-box-pack: justify;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
-}
-
-.col-2 {
-	width: -webkit-calc(( 100% - 60px)/2);
-	width: -moz-calc(( 100% - 60px)/2);
-	width: calc(( 100% - 60px)/2);
-}
-
-@media ( max-width : 767px) {
-	.col-2 {
-		width: 100%;
-	}
-}
-
-/* ==========================================================================
-   #BOX-SIZING
-   ========================================================================== */
-/**
- * More sensible default box-sizing:
- * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
- */
 html {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-* {
+	font-family: 'Nanum Gothic', sans-serif;
+	background-color: #ED1C16;
 	padding: 0;
 	margin: 0;
 }
 
-*, *:before, *:after {
-	-webkit-box-sizing: inherit;
-	-moz-box-sizing: inherit;
-	box-sizing: inherit;
-}
-
-/* ==========================================================================
-   #RESET
-   ========================================================================== */
-/**
- * A very simple reset that sits on top of Normalize.css.
- */
-body, h1, h2, h3, h4, h5, h6, blockquote, p, pre, dl, dd, ol, ul, figure,
-	hr, fieldset, legend {
+.container {
+	font-family: 'Nanum Gothic', sans-serif;
 	margin: 0;
-	padding: 0;
+	top: 50px;
+	left: 50%;
+	position: absolute;
+	text-align: center;
+	transform: translateX(-50%);
+	background-color: white;
+	border-radius: 9px;
+	border-top: 10px solid #57b846;
+	border-bottom: 10px solid #57b846;
+	width: 400px;
+	height: 550px;
 }
 
-/**
- * Remove trailing margins from nested lists.
- */
-li>ol, li>ul {
-	margin-bottom: 0;
-}
-
-/**
- * Remove default table spacing.
- */
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-/**
- * 1. Reset Chrome and Firefox behaviour which sets a `min-width: min-content;`
- *    on fieldsets.
- */
-fieldset {
-	min-width: 0;
-	/* [1] */
+.btn {
+	font-family: 'Nanum Gothic', sans-serif;
+	background: #57b846;
+	color: #dfdeee;
 	border: 0;
-}
-
-button {
-	outline: none;
-	background: none;
-	border: none;
-}
-
-/* ==========================================================================
-   #PAGE WRAPPER
-   ========================================================================== */
-.page-wrapper {
-	min-height: 100vh;
-}
-
-body {
-	font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
-	font-weight: 400;
-	font-size: 14px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-weight: 400;
+	border-radius: 100px;
+	width: 340px;
+	height: 49px;
+	font-size: 16px;
+	position: absolute;
+	left: 8%;
+	transition: 0.3s;
+	cursor: pointer;
 }
 
 h1 {
-	font-size: 36px;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #57b846;
+	margin-top: 80px;;
 }
-
 h2 {
-	font-size: 30px;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #57b846;
+	margin-top: 80px;;
 }
 
-h3 {
-	font-size: 24px;
+#close {
+	position: absolute;
+	font-size: 25px;
+	cursor: pointer;
+	margin-left: 175px;
+	margin-top: 160px;
 }
 
-h4 {
-	font-size: 18px;
+#member {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 25px;
 }
 
-h5 {
-	font-size: 15px;
-}
-
-h6 {
-	font-size: 13px;
-}
-
-/* ==========================================================================
-   #BACKGROUND
-   ========================================================================== */
-.bg-red {
-	background: #ED1C16;
-}
-
-/* ==========================================================================
-   #SPACING
-   ========================================================================== */
-.p-t-100 {
-	padding-top: 100px;
-}
-
-.p-t-180 {
-	padding-top: 180px;
-}
-
-.p-t-20 {
-	padding-top: 20px;
-}
-
-.p-t-30 {
-	padding-top: 30px;
-}
-
-.p-b-100 {
-	padding-bottom: 100px;
-}
-
-/* ==========================================================================
-   #WRAPPER
-   ========================================================================== */
-.wrapper {
-	margin: 0 auto;
-}
-
-.wrapper--w960 {
-	max-width: 960px;
-}
-
-.wrapper--w680 {
-	max-width: 680px;
-}
-
-/* ==========================================================================
-   #TITLE
-   ========================================================================== */
-.title {
-	text-transform: uppercase;
-	font-weight: 700;
-	margin-bottom: 35px;
-}
-
-/* ==========================================================================
-   #CARD
-   ========================================================================== */
-.card {
-	overflow: hidden;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	background: #fff;
-}
-
-.card-2 {
-	-webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	width: 100%;
-	display: table;
-}
-
-.card-2 .card-heading {
-	background:
-		url("https://cdn.crowdpic.net/detail-thumb/thumb_d_D6F554AC3A121A60B724FA4A303AA273.jpg")
-		top left/cover no-repeat;
-	width: 29%;
-	display: table-cell;
-}
-
-.card-2 .card-body {
-	display: table-cell;
-	padding: 70px 80px;
-	padding-bottom: 88px;
-}
-
-@media ( max-width : 767px) {
-	.card-2 {
-		display: block;
-	}
-	.card-2 .card-heading {
-		width: 100%;
-		display: block;
-		padding-top: 300px;
-		background-position: left center;
-	}
-	g
-  .card-2 .card-body {
-		display: block;
-		padding: 60px 50px;
-	}
+#memberimg img {
+	width: 40%;
+	height: 40%;
 }
 </style>
 
-<body>
-	<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
-		<div class="wrapper wrapper--w960">
-			<div class="card card-2">
-				<div class="card-heading"></div>
-				<div class="card-body">
-					
-					
-					
-					
-					
-					
+<body id="particles-js">
+	<div class="animated bounceInDown">
+		<div class="container">
 
-	<c:choose>
 
-		<c:when test="${userid!=null}"> 
-			<table border="1">
-				<tr>
-					<th>중복검사 결과</th>
-				</tr>
-				<tr>
-					<td>귀하의 아이디는 ${userid} 입니다</td>
-				</tr>
-				<tr>
-					<td><button id="close">닫기</button></td>
-					<script>
-						$("#close").on("click",function(){
-							window.close();
-							//팝업은 child window, 팝업을 띄운 창은 parent window 
-							// 팝업에서 parent window를 호출하기 위해선 opener
-							opener.document.getElementById("id").value="";
-						})
-					</script>
-				</tr>
-			</table>
-		</c:when>
-		
-		<c:otherwise> 
-			<table border="1">
-				<tr>
-					<th colspan=2>검사 결과</th>
-				</tr>
-				<tr>
-					<td colspan=2 >존재하는 아이디가 없습니다</td>
-				</tr>
-			
-				</tr>
-			</table>
-		</c:otherwise>
-	</c:choose>
-
-					
-					
-					
-					
-					
-					
-					
-					
-					
-				</div>
-			</div>
+			<div id="memberimg"><img src="/login/member2.png"></div>
+			<c:choose>
+				<c:when test="${userid!=null}">
+					<h1 id="member">귀하의 아이디는 ${userid} 입니다</h1>
+				</c:when>
+				<c:otherwise>
+					<h2 id=nomember>존재하는 아이디가 없습니다</h2>
+				</c:otherwise>
+			</c:choose>
+			<div id=close>닫기</div>
 		</div>
 	</div>
 
-	<!-- Jquery JS-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<!-- Vendor JS-->
-	<script src="vendor/select2/select2.min.js"></script>
-	<script src="vendor/datepicker/moment.min.js"></script>
-	<script src="vendor/datepicker/daterangepicker.js"></script>
 
-	<!-- Main JS-->
-	<script src="js/global.js"></script>
 
+	<script>
+
+
+        $("#close").on("click", function () {
+            window.close();
+            //팝업은 child window, 팝업을 띄운 창은 parent window 
+            // 팝업에서 parent window를 호출하기 위해선 opener
+            opener.document.getElementById("id").value = "";
+        })
+
+        
+        
+
+    
+    </script>
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
