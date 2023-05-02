@@ -22,11 +22,12 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}/*나눔고딕 폰트 import */
+/*나눔고딕 폰트 import */
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .body {
@@ -114,14 +115,14 @@ p{font-weight:bold; font-size:25px; color:#57b846;}
 						</div>
 					<div class="row file" style="margin-top:20px;">
 						<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
-							<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+							<div class="col-12" style="margin-left:auto; margin-right:auto;">
 								<img src="#none" alt="#none" id="image" class="w-100 object-fit-contain" style="display:none; margin-bottom:20px;">
 								<input id="input_image" name="img" type="file" accept="image/*" class="nanum-gothic form-control" style="font-size:13px;">
 							</div>
 							</div>
 					</div>
 					<div class="row" style="margin-top:80px;">
-						<div class="col-12 col-lg-8 text-center" style="margin-left:auto; margin-right:auto;">
+						<div class="col-12 text-center" style="margin-left:auto; margin-right:auto;">
 							<input type="button" name="toList" id="toList" value="목록으로" class="nanum-gothic">
 							<input type="submit" name="submitBtn" id="submitBtn" value="제출하기" class="nanum-gothic">
 						</div>

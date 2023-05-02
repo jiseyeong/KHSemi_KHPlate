@@ -18,8 +18,7 @@
     
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
    .nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
-   
-   
+
         * {
             box-sizing: border-box;
         }
@@ -80,9 +79,10 @@
         
         #searchBox{
            margin-top:12px;
+           padding-left:10px;
         }
         .btnBox{
-           width:100%;
+         width:100%;
          line-height:76px;
          text-align:center;
         }

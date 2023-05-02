@@ -353,8 +353,6 @@
 							window.close();
 						});
 					</script>
-				</tr>
-			</table>
 		</c:otherwise>
 	</c:choose>
 

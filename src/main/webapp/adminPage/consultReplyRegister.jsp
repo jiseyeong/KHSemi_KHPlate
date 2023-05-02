@@ -45,7 +45,7 @@
 	margin-bottom: 0px;
 }
 
-.legend {
+p{
 color: #57b846;
 font-size: 25px;
 font-weight: bold;
@@ -61,9 +61,12 @@ font-weight: bold;
 	color: white;
 	margin-top: 50px;
 	font-size: 20px;
-  margin-left: auto; 
+  	margin-left: auto; 
 	margin-right:auto;
 
+}
+#readEditor{
+	height:300px;
 }
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
@@ -84,35 +87,34 @@ font-weight: bold;
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<fieldset style="margin-bottom:50px">
 					<div class="row">
-						<legend class="legend">고객의 소리</legend>
-            
+						<p>고객의 소리</p>
 						<hr style="border-style:dotted; margin-bottom:25px;">
 
 					<div class="row">
-						<div class="col-12 col-lg-3">
+						<div class="col-12 col-lg-2" style="margin-left:auto;">
 							<div class="input-group">
 								<span class="input-group-text">카테고리</span>
 								<input type="text" value="${parentDTO.category}" class="form-control" readonly>
 							</div>
 						</div>	
-						<div class="col-12 col-lg-3">
-							<div class="input-group">
-								<span class="input-group-text">작성자</span>
-								<input type="text" class="form-control" value="${parentWriter}" readonly>
-							</div>
-						</div>
-						<div class="col-12">
+						<div class="col-12 col-lg-5">
 							<div class="input-group">
 								<span class="input-group-text">제목</span>
 								<input type="text" class="form-control" value="${parentDTO.title}" readonly> 
 							</div>
 						</div>
+						<div class="col-12 col-lg-2" style="margin-right:auto;">
+							<div class="input-group">
+								<span class="input-group-text">작성자</span>
+								<input type="text" class="form-control" value="${parentWriter}" readonly>
+							</div>
+						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 col-lg-3">
+						<div class="col-12 col-lg-3" style="margin-left:auto;">
 							<img src="${parentImage}" alt="${parentImage}" id="image" class="w-100 object-fit-contain">
 						</div>
-						<div class="col-12 col-lg-9">
+						<div class="col-12 col-lg-6" style="margin-right:auto;">
 							<div id="readEditor">${parentDTO.body}</div>
 						</div>
 					</div>
