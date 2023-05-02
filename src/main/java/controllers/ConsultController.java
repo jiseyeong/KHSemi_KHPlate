@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -19,11 +21,14 @@ import dao.ConsultReplyDAO;
 import dao.MembersDAO;
 import dto.ConsultDTO;
 import dto.ConsultReplyDTO;
+import statics.Settings;
 
 @WebServlet("*.consult")
 public class ConsultController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
+		response.setContentType("text/html; charset=utf8;");
+		
 		String cmd = request.getRequestURI();
 		
 		try {
@@ -95,6 +100,38 @@ public class ConsultController extends HttpServlet {
 				int result = ConsultReplyDAO.getInstance().insert(new ConsultReplyDTO(0, title, body, consultID, userNo, null));
 				int replyResult = ConsultDAO.getInstance().updateReply(consultID, "Y");
 				response.sendRedirect("/view.consult?consultID="+consultID);
+				
+				
+				// 마이 페이지에서 1:1문의 리스트 출력
+			}else if(cmd.equals("/selectConsultListBymypage.consult")) {
+				int userno = (int) request.getSession().getAttribute("userno");
+				int currentpage = 1;
+
+				if(request.getParameter("cpage")!=null) {
+					currentpage = Integer.parseInt(request.getParameter("cpage"));
+				}
+
+				System.out.println("현재 페이지 : "+currentpage);
+
+				int end_Record_Row_Num = currentpage * Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
+				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE-1);
+
+				System.out.println("시작 번호 : "+start_Record_Row_Num);
+				System.out.println("끝 번호 : "+end_Record_Row_Num);
+
+				String myConsultList = ConsultDAO.getInstance().selectMyConsultList(userno, start_Record_Row_Num, end_Record_Row_Num);
+				String myConsultNavi = ConsultDAO.getInstance().selectMyConsultNaviToJSP(currentpage, userno);
+
+				Gson g = new Gson();
+
+				myConsultList = g.toJson(myConsultList);
+				myConsultNavi = g.toJson(myConsultNavi);
+
+				JsonObject resp = new JsonObject();
+				resp.addProperty("myConsultList", myConsultList);
+				resp.addProperty("myConsultNavi", myConsultNavi);
+
+				response.getWriter().append(resp.toString());
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

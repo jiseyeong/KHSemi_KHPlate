@@ -4,16 +4,19 @@ import java.sql.Timestamp;
 
 public class MyFullReviewScrapDTO {
 
+	//scrap
 	private int scrapID;
 	private int reviewID;
 	private int userNO;
 	
+	//fullreview
 	private String title;
 	private String reviewBody;
 	private int score;
 	private int storeID;
 	private Timestamp writedate;
 	
+	//member
 	private String userID;
 	private String pw;
 	private String nickname;
@@ -28,6 +31,7 @@ public class MyFullReviewScrapDTO {
 	private String naver;
 	private String google;
 	
+	//store
 	private int distance;
 	private String StoreName;
 	private double lat;

@@ -280,7 +280,7 @@ public class FullReviewDAO {
 	public String getFullReviewNaviToJSP(int currentpage, int searchUserno, String searchFullReviewTitle) throws Exception {
 
 		int record_total_count = getSearchdFullReview_RecordCount(searchUserno,searchFullReviewTitle);
-		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE; // 15
+		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE; // 10
 		int navi_count_per_page = Settings.MYPAGE_LIST_NAVI_COUNT_PER_PAGE; // 10
 		
 		System.out.println("리스트 전체 글 개수 : "+record_total_count);
@@ -350,10 +350,10 @@ public class FullReviewDAO {
 	public String selectMyFullReviewScrapList(int userno, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception {
 		String sql = "select * from "
 				+ "(select total.*, row_number() over(order by total.storeID desc) row_num from "
-				+ "(select * from (select * from (select * from commentreview "
-				+ "join store using (storeid) where userno = ?) c join members m on m.userno = c.userno) a "
-				+ "join fullreviewscrap f on a.reviewid = f.reviewid) total) " 
-				+ "where row_num between ? AND ?";
+				+ "(select * from (select * from (select * from fullreview "
+				+ "join store using (storeid)) c join members m on m.userno = c.userno) a "
+				+ "join fullreviewscrap f on a.reviewid = f.reviewid where userno = ?) total) " 
+				+ "where row_num between ? and ?";
 		
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
@@ -366,11 +366,10 @@ public class FullReviewDAO {
 					int scrapID = rs.getInt("scrapID");
 					String title = rs.getString("title");
 					String userID = rs.getString("userid");
-					String StoreName = rs.getString("name");
+					String StoreName = rs.getString(9);
 					Timestamp writedate = rs.getTimestamp("writedate");
 					result.add(new MyFullReviewScrapDTO(scrapID,title,userID,StoreName,writedate));
 				}
-				System.out.println("리스트 : "+result.size());
 				return selectMyFullReviewScrapListToJSP(result);
 			}
 		}

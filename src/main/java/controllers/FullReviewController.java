@@ -180,7 +180,7 @@ public class FullReviewController extends HttpServlet {
 				String myFullReviewScrapNavi = frdao.selectMyFullReviewScrapNaviToJSP(currentpage, userno);
 
 				Gson g = new Gson();
-
+				
 				myFullReviewScrapList = g.toJson(myFullReviewScrapList);
 				myFullReviewScrapNavi = g.toJson(myFullReviewScrapNavi);
 

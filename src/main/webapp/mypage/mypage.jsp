@@ -362,17 +362,18 @@ button:hover {
 				<a href="#null" class="myContents" id="writeListBtn">내가 쓴 글</a> 
 				<a href="#null" class="myContents" id="replyListBtn">내가 쓴 댓글</a> 
 				<a href="#null" class="myContents" id="reviewMarkBtn">내가 스크랩한 리뷰</a>
-				<a href="#null" class="myContents" id="favoriteStoreListBtn">내가즐겨찾기한 가게</a>
+				<a href="#null" class="myContents" id="favoriteStoreListBtn">내가 즐겨찾기한 가게</a>
 				<a href="#null" class="myContents" id="consultListBtn">1:1 문의</a>
 			</div>
 			<div class="body2Contents">
 				<table border-bottom="1" class="table" id="writeList">
 					<!--내가 쓴 글 리스트 뽑아내기-->
 					<colgroup>
-						<col width="10%">
-						<col width="50%">
-						<col width="15%">
+						<col width="5%">
+						<col width="45%">
 						<col width="25%">
+						<col width="15%">
+						<col width="10%">
 					</colgroup>
 					<thead>
 						<tr>
@@ -380,6 +381,7 @@ button:hover {
 							<th>제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody id="writeListToPrint">
@@ -390,10 +392,10 @@ button:hover {
 					<!--내가 쓴 댓글 리스트 뽑아내기-->
 					<colgroup>
 						<col width="5%">
-						<col width="30%">
-						<col width="40%">
-						<col width="10%">
+						<col width="45%">
+						<col width="25%">
 						<col width="15%">
+						<col width="10%">
 					</colgroup>
 					<thead>
 						<tr>
@@ -411,11 +413,11 @@ button:hover {
 				<table border-bottom="1" class="table" id="reviewMark">
 					<!--블로그형 리뷰 스크랩-->
 					<colgroup>
-						<col width="10%">
-						<col width="40%">
+						<col width="5%">
+						<col width="45%">
+						<col width="25%">
 						<col width="15%">
 						<col width="10%">
-						<col width="25%">
 					</colgroup>
 					<thead>
 						<tr>
@@ -435,19 +437,19 @@ button:hover {
 				<table border-bottom="1" class="table" id="favoriteStoreList">
 					<!-- 가게 즐겨찾기 리스트-->
 					<colgroup>
-						<col width="8%">
-						<col width="30%">
-						<col width="12%">
+						<col width="5%">
+						<col width="45%">
+						<col width="25%">
 						<col width="15%">
-						<col width="35%">
+						<col width="10%">
 					</colgroup>
 					<thead>
 						<tr>
 							<th>맛집 no.</th>
 							<th>맛집 이름</th>
-							<th>맛집 평점</th>
-							<th>맛집 카테고리</th>
 							<th>맛집 주소</th>
+							<th>맛집 카테고리</th>
+							<th>맛집 평점</th>
 						</tr>
 					</thead>
 					<tbody id="favoriteStoreListToPrint">
@@ -458,11 +460,11 @@ button:hover {
 				<table border-bottom="1" class="table" id="consultList">
 					<!-- 1:1문의 리스트 -->
 					<colgroup>
-						<col width="10%">
-						<col width="40%">
+						<col width="5%">
+						<col width="45%">
+						<col width="25%">
 						<col width="15%">
 						<col width="10%">
-						<col width="25%">
 					</colgroup>
 					<thead>
 						<tr>
@@ -473,14 +475,8 @@ button:hover {
 							<th>작성일</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>4</td>
-							<td>bootstrap</td>
-							<td>세영</td>
-							<td>1</td>
-							<td>2023.05.01</td>
-						</tr>
+					<tbody id="consultListToPrint">
+						<!-- 리스트 출력 구간 -->
 					</tbody>
 				</table>
 
@@ -556,6 +552,7 @@ button:hover {
 					setnavi();
 				})
 			})
+			
 
 			//내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
 			$("#replyListBtn").on("click",function() { 
@@ -591,6 +588,7 @@ button:hover {
 					$(".navigator_list").html("");
 					let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
 					let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
+					
 					$("#reviewMarkToPrint").append(myFullReviewScrapList);
 					$(".navigator_list").append(myFullReviewScrapNavi);
 
@@ -613,8 +611,6 @@ button:hover {
 					$(".navigator_list").html("");
 					let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
 					let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
-					console.log(FavoriteStoreList);
-					console.log(FavoriteStoreNavi);
 					$("#favoriteStoreListToPrint").append(FavoriteStoreList);
 					$(".navigator_list").append(FavoriteStoreNavi);
 
@@ -624,107 +620,148 @@ button:hover {
 					setnavi();
 				})
 			})
-
 			
-			//네비게이터에 AJAX 전송 링크 부여
-			function setnavi() {
-				$(".navibtn").on("click",function() {
-					if ($(this).attr("searchto") == "FavoriteStoreList") {
-						let location = $(this).attr("location");
-						console.log(location)
-						$.ajax({
-							url : "/selectFavoriteStore.store",
-							type : "post",
-							data : {
-								cpage : location
-							},
-							dataType : "json"
-						}).done(function(resp) {
-							$("#favoriteStoreListToPrint").html("");
-							$(".navigator_list").html("");
-							let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
-							let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
-							$("#favoriteStoreListToPrint").append(FavoriteStoreList);
-							$(".navigator_list").append(FavoriteStoreNavi);
-							$("#favoriteStoreList").css("display","table");
-							$("table").not("table#favoriteStoreList").css("display","none");
+			//1:1 문의 내역 버튼 누르면 테이블 나오게 이벤트
+			$("#consultListBtn").on("click",function() { 
+				
+				$.ajax({
+					url : "/selectConsultListBymypage.consult",
+					type : "post",
+					dataType : "json"
+				}).done(function(resp) {
+					$("#consultListToPrint").html("");
+					$(".navigator_list").html("");
+					let myConsultList = JSON.parse(resp.myConsultList);
+					let myConsultNavi = JSON.parse(resp.myConsultNavi);
+					$("#consultListToPrint").append(myConsultList);
+					$(".navigator_list").append(myConsultNavi);
 
-							setnavi();
-						})
+					$("#consultList").css("display","table");
+					$("table").not("table#consultList").css("display", "none");
 
-					} else if ($(this).attr("searchto") == "writeFullReviewList") {
-						$.ajax({
-							url : "/selectBymypage.fullreview",
-							type : "post",
-							data : {
-								cpage : location
-							},
-							dataType : "json"
-						}).done(function(resp){
-							$("#writeListToPrint").html("");
-							$(".navigator_list").html("");
-							let WriteFullReviewList = JSON.parse(resp.WriteFullReviewList);
-							let WriteFullReviewNavi = JSON.parse(resp.WriteFullReviewNavi);
-							$("#writeListToPrint").append(FavoriteStoreList);
-							$(".navigator_list").append(FavoriteStoreNavi);
-
-							$("#writeList").css("display","table");
-							$("table").not("table#writeList").css("display","none");
-
-							setnavi();
-						})
-						
-					} else if ($(this).attr("searchto") == "writeMyCommentList") {
-						$.ajax({
-							url : "/selectBymypage.commentReview",
-							type : "post",
-							data : {
-								cpage : location
-							},
-							dataType : "json"
-						}).done(function(resp){
-							$("#writeListToPrint").html("");
-							$(".navigator_list").html("");
-							let WriteFullReviewList = JSON.parse(resp.WriteFullReviewList);
-							let WriteFullReviewNavi = JSON.parse(resp.WriteFullReviewNavi);
-							$("#writeListToPrint").append(FavoriteStoreList);
-							$(".navigator_list").append(FavoriteStoreNavi);
-
-							$("#writeList").css("display","table");
-							$("table").not("table#writeList").css("display","none");
-
-							setnavi();
-						})
-						
-					} else if ($(this).attr("searchto") == "writeMyFullReviewScrapList") {
-						$.ajax({
-							url : "/selectScrapListBymypage.fullreview",
-							type : "post",
-							data : {
-								cpage : location
-							},
-						}).done(function(resp){
-							$("#reviewMarkToPrint").html("");
-							$(".navigator_list").html("");
-							let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
-							let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
-							$("#reviewMarkToPrint").append(myFullReviewScrapList);
-							$(".navigator_list").append(myFullReviewScrapNavi);
-
-							$("#reviewMark").css("display", "table");
-							$("table").not("table#reviewMark").css("display", "none");
-							
-							setnavi();
-						})
-					}
+					setnavi();
 				})
-			}
-
-			$("#consultListBtn").on("click",function() { //1:1문의 버튼 누르면 관련 테이블 나오게 이벤트
-				$("#consultList").css("display","table");
-				$("table").not("table#consultList").css("display", "none");
 			})
 		})
+		
+		//네비게이터에 AJAX 전송 링크 부여
+		function setnavi() {
+			$(".navibtn").on("click",function() {
+
+				if ($(this).attr("searchto") == "writeFullReviewList") {
+					let location = $(this).attr("location");
+					$.ajax({
+						url : "/selectBymypage.fullreview",
+						type : "post",
+						data : {
+							cpage : location
+						},
+						dataType : "json"
+					}).done(function(resp){
+						$("#writeListToPrint").html("");
+						$(".navigator_list").html("");
+						let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
+						let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
+						$("#writeListToPrint").append(writeFullReviewList);
+						$(".navigator_list").append(writeFullReviewNavi);
+
+						$("#writeList").css("display","table");
+						$("table").not("table#writeList").css("display","none");
+
+						setnavi();
+					})
+					
+				} else if ($(this).attr("searchto") == "writeMyCommentList") {
+					let location = $(this).attr("location");
+					$.ajax({
+						url : "/selectBymypage.commentReview",
+						type : "post",
+						data : {
+							cpage : location
+						},
+						dataType : "json"
+					}).done(function(resp){
+						$("#replyListToPrint").html("");
+						$(".navigator_list").html("");
+						let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
+						let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
+						$("#replyListToPrint").append(writeMyCommentList);
+						$(".navigator_list").append(writeMyCommentNavi);
+
+						$("#replyList").css("display","table");
+						$("table").not("table#replyList").css("display","none");
+
+						setnavi();
+					})
+					
+				} else if ($(this).attr("searchto") == "writeMyFullReviewScrapList") {
+					let location = $(this).attr("location");
+					$.ajax({
+						url : "/selectScrapListBymypage.fullreview",
+						type : "post",
+						data : {
+							cpage : location
+						},
+						dataType : "json"
+					}).done(function(resp){
+						$("#reviewMarkToPrint").html("");
+						$(".navigator_list").html("");
+						let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
+						let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
+						$("#reviewMarkToPrint").append(myFullReviewScrapList);
+						$(".navigator_list").append(myFullReviewScrapNavi);
+
+						$("#reviewMark").css("display", "table");
+						$("table").not("table#reviewMark").css("display", "none");
+						
+						setnavi();
+					})
+					
+				} else if ($(this).attr("searchto") == "FavoriteStoreList") {
+					let location = $(this).attr("location");
+					$.ajax({
+						url : "/selectFavoriteStore.store",
+						type : "post",
+						data : {
+							cpage : location
+						},
+						dataType : "json"
+					}).done(function(resp) {
+						$("#favoriteStoreListToPrint").html("");
+						$(".navigator_list").html("");
+						let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+						let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+						$("#favoriteStoreListToPrint").append(FavoriteStoreList);
+						$(".navigator_list").append(FavoriteStoreNavi);
+						$("#favoriteStoreList").css("display","table");
+						$("table").not("table#favoriteStoreList").css("display","none");
+
+						setnavi();
+					})
+					
+				} else if ($(this).attr("searchto") == "myConsultList") {
+					let location = $(this).attr("location");
+					$.ajax({
+						url : "/selectConsultListBymypage.consult",
+						type : "post",
+						dataType : "json"
+					}).done(function(resp) {
+						$("#consultListToPrint").html("");
+						$(".navigator_list").html("");
+						let myConsultList = JSON.parse(resp.myConsultList);
+						let myConsultNavi = JSON.parse(resp.myConsultNavi);
+						$("#consultListToPrint").append(myConsultList);
+						$(".navigator_list").append(myConsultNavi);
+
+						$("#consultList").css("display","table");
+						$("table").not("table#consultList").css("display", "none");
+
+						setnavi();
+					})
+				}
+			})
+		}
+		
 
 		$("#updateForm").on("submit",function() { //수정 regex
 
