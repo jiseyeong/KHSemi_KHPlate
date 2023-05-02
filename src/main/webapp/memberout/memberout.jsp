@@ -115,7 +115,6 @@ body, html {
 	width: 340px;
 	height: 49px;
 	font-size: 16px;
-	position: absolute;
 	left: 8%;
 	transition: 0.3s;
 	cursor: pointer;
@@ -127,6 +126,7 @@ body, html {
 
 #memberout{
   top: 62%;
+  margin-bottom: 10px;
   animation-name: noexit;
   animation-duration: 4s;
   animation-iteration-count: infinite;

@@ -19,8 +19,13 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
+
 * {
 	box-sizing: border-box;
+		font-family: 'Nanum Gothic', sans-serif;
 }
 
 a {

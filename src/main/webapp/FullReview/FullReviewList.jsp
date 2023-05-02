@@ -20,9 +20,13 @@
 	crossorigin="anonymous"></script>
 
 <style>
-/* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
+
 * {
 	box-sizing: border-box;
+		font-family: 'Nanum Gothic', sans-serif;
 	padding: 0px;
 }
 
