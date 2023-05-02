@@ -128,7 +128,7 @@ public class StoreController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				
 				String realPath = request.getServletContext().getRealPath("store");
-				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getSysName());
+				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getOriName());
 				if(realPathFile.delete()) {
 					int result = PhotoDAO.getInstance().delete(imageID);
 				}
@@ -174,7 +174,7 @@ public class StoreController extends HttpServlet {
 				
 				String realPath = request.getServletContext().getRealPath("store");
 				for(PhotoDTO i : PhotoDAO.getInstance().selectByStoreID(storeID)) {
-					File realPathFile = new File(realPath +"/"+ i.getSysName());
+					File realPathFile = new File(realPath +"/"+ i.getOriName());
 					realPathFile.delete();
 				}
 				PhotoDAO.getInstance().deleteByStoreID(storeID);
