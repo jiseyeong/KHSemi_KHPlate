@@ -180,6 +180,7 @@ public class StoreController extends HttpServlet {
 				int result = StoreDAO.getInstance().delete(storeID);
 				
 				//검색 결과 리스트창 등으로 넘길 것.
+				response.sendRedirect("/common/main_storeSearchResult.jsp");
 			}else if(cmd.equals("/getMainPhoto.store")) {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				ArrayList<PhotoDTO> list = PhotoDAO.getInstance().selectByStoreID(storeID);

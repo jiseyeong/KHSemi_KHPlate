@@ -167,6 +167,7 @@
 								<div class="col-12 text-end">
 									<button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점
 										수정</button>
+									<button type="button" id="btn_store_update_delete" class="nonactive">상점 삭제</button>
 									<button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
 									<button type="submit" id="btn_store_update_cancel" class="nonactive">취소</button>
 								</div>
@@ -184,7 +185,7 @@
 																<input type="text" name="storeID" value="${dto.storeID}"
 																	style="display: none;" readonly>
 																<div class="col-8">
-																	<img src="/store/${i.sysName}"
+																	<img src="/store/${i.oriName}"
 																		class="w-100 object-fit-contain">
 																</div>
 																<div class="col-4">
@@ -533,7 +534,7 @@
 															if (j++ == 0) {
 																div_carousel.addClass("active");
 															}
-															let imgSource = "/CommentReview/" + this.sysName;
+															let imgSource = "/CommentReview/" + this.oriName;
 															let img = $("<img>").attr("src", imgSource).attr("alt", imgSource).addClass("d-block").addClass("object-fit-contain").addClass("w-100").css({ "height": "500px" });
 															let img2 = $("<img>").attr("src", imgSource).attr("alt", imgSource).addClass("d-block").addClass("object-fit-contain").addClass("w-100").css({ "height": "500px" });
 
@@ -710,7 +711,7 @@
 																		let input_storeID = $("<input>").attr("type", "text").attr("name", "storeID").attr("value", "${dto.storeID}").css({ "display": "none" });
 																		let sub_col1 = $("<div>").addClass("col-8"),
 																			sub_col2 = $("<div>").addClass("col-4"),
-																			imgSource = "/CommentReview/" + this.sysName;
+																			imgSource = "/CommentReview/" + this.oriName;
 																		sub_col1_content = $("<img>").attr("src", imgSource).addClass("w-100").addClass("object-fit-contain"),
 																			sub_col2_content = $("<button>").text("삭제").attr("type", "button").addClass("btn").addClass("btn-outline-secondary");
 
@@ -837,6 +838,7 @@
 								$("#btn_store_update").click(function () {
 									$("#btn_store_update_confirm").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
 									$("#btn_store_update_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
+									$("#btn_store_update_delete").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
 									$(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
 
 									updateOn = true;
@@ -852,6 +854,11 @@
 								$("#btn_store_update_confirm").click(function () {
 									$("#updateForm").submit();
 								});
+
+								$("#btn_store_update_delete").click(function(){
+									let storeID = "<c:out value='${dto.storeID}'></c:out>";
+									location.href = "/delete.store?storeID="+storeID;
+								})
 
 								$("#btn_store_update_cancel").click(function () {
 									let storeID = "<c:out value='${dto.storeID}'></c:out>";
