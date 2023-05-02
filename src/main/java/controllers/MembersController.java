@@ -230,7 +230,7 @@ public class MembersController extends HttpServlet {
 			else if(cmd.equals("/IdCheck.members")) {
 				String id = request.getParameter("id");
 				System.out.println("입력 id = " + id);
-
+				
 				boolean result = dao.isIdExist(id);
 				
 				request.setAttribute("result", result);
