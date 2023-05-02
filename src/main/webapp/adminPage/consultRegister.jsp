@@ -59,7 +59,7 @@ p{font-weight:bold; font-size:25px; color:#57b846;}
 	color: white;
 	font-size: 14px;
 	margin-right:20px;
-	box-shadow:1px 1px 5px 1px silver;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
 }
 
 #submitBtn {
@@ -71,7 +71,7 @@ p{font-weight:bold; font-size:25px; color:#57b846;}
 	border:none;
 	color: white;
 	font-size: 14px;
-	box-shadow:1px 1px 5px 1px silver;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
 }
 </style>
 </head>

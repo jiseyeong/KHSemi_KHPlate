@@ -71,10 +71,11 @@
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-top: 55px;
-	font-size: 20px;
+	margin-top:30px;
+	font-size: 14px;
 	margin-left: auto; 
 	margin-right:auto;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
 }
 </style>
 </head>
