@@ -9,9 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
-<meta name="description" content="Colorlib Templates">
-<meta name="author" content="Colorlib">
-<meta name="keywords" content="Colorlib Templates">
+
 
 <!-- Title Page-->
 <title>Re</title>
@@ -26,10 +24,6 @@
 	rel="stylesheet" media="all">
 <link href="vendor/font-awesome-4.7/css/font-awesome.min.css"
 	rel="stylesheet" media="all">
-<!-- Font special for pages-->
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-	rel="stylesheet">
 
 <!-- Vendor CSS-->
 <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -46,9 +40,7 @@
 /* ==========================================================================
    #FONT
    ========================================================================== */
-.font-robo {
-	font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
-}
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 /* ==========================================================================
    #GRID
@@ -159,9 +151,9 @@ button {
 }
 
 body {
-	font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 15px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -298,19 +290,69 @@ h6 {
 		padding: 60px 50px;
 	}
 }
+
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #57b846;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+  background: #4dae3c;
+}
+
 </style>
+
 <body>
-<body>
-	<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+	<div class="page-wrapper bg-red p-t-180 p-b-100">
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
-				<div class="card-heading"></div>
+			
 				<div class="card-body">
+					<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+						<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+					  </svg>
 					<h1 class="title">${userid}님 환영합니다!!</h1>
-					<h3 class="title">이메일 인증이 완료되었습니다</h3>
+					<h3 class="title">이메일 인증이 완료되었습니다.</h3>
 					<h3 class="title">이제 로그인 후 이용이 가능합니다.</h3>
 					
-					<h3 class="title"><a href="/page/main.jsp">메인 페이지로 이동</a></h3>
+					<button class="button" id="toMain"><span>메인 페이지로 이동 </span></button>
+
 				</div>
 			</div>
 		</div>
@@ -322,9 +364,12 @@ h6 {
 	<script src="vendor/select2/select2.min.js"></script>
 	<script src="vendor/datepicker/moment.min.js"></script>
 	<script src="vendor/datepicker/daterangepicker.js"></script>
-
 	<!-- Main JS-->
 	<script src="js/global.js"></script>
+	<script>
+$("#toMain").on("click",function () {
+			location.href = "/page/main.jsp"});
+		</script>
 
 </body>
 </html>
