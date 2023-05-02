@@ -57,8 +57,9 @@ public class FullReviewReplyController extends HttpServlet {
 				} else {
 					System.out.println(reviewid + "댓글 수정 성공");
 				}
-			}
-			
+				
+			// 마이페이지에 출력할 ReplyList
+			}			
 
 		} catch (Exception e) {
 			e.printStackTrace();

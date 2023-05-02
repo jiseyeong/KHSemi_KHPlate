@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import dao.FullReviewDAO;
 import dao.FullReviewReplyDAO;
 import dto.FullReviewDTO;
@@ -90,6 +93,45 @@ public class FullReviewController extends HttpServlet {
 				request.setAttribute("FullReviewNavi", fullReviewNavi);
 				
 				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
+				
+				
+				
+				// 마이페이지에 표시할 fullReviewList 출력
+			}else if (cmd.equals("/selectBymypage.fullreview")) {
+				
+				int userno = (int) request.getSession().getAttribute("userno");
+				int currentpage = 1;
+				
+				if(request.getParameter("cpage")!=null) {
+					currentpage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				
+				System.out.println("현재 페이지 : "+currentpage);
+				
+				int end_Record_Row_Num = currentpage * Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
+				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE-1);
+				
+				System.out.println("시작 번호 : "+start_Record_Row_Num);
+				System.out.println("끝 번호 : "+end_Record_Row_Num);
+				
+				List<FullReviewUserDTO> fullReviewListBeforeChange = frdao.selectFullReview(userno, "", start_Record_Row_Num, end_Record_Row_Num);
+				String writeFullReviewList = frdao.selectFullReviewListToJSP(fullReviewListBeforeChange);
+				String writeFullReviewNavi = frdao.getFullReviewNaviToJSP(currentpage, userno, "");
+				
+				System.out.println("리스트 사이즈 : "+fullReviewListBeforeChange.size());
+				
+				Gson g = new Gson();
+				
+				writeFullReviewList = g.toJson(writeFullReviewList);
+				writeFullReviewNavi = g.toJson(writeFullReviewNavi);
+				
+				JsonObject resp = new JsonObject();
+				resp.addProperty("writeFullReviewList", writeFullReviewList);
+				resp.addProperty("writeFullReviewNavi", writeFullReviewNavi);
+				
+				response.getWriter().append(resp.toString());
+				
+				
 				
 			}else if(cmd.equals("/content.fullreview")) {
 				

@@ -374,9 +374,8 @@ button:hover {
 					<!--내가 쓴 글 리스트 뽑아내기-->
 					<colgroup>
 						<col width="10%">
-						<col width="40%">
+						<col width="50%">
 						<col width="15%">
-						<col width="10%">
 						<col width="25%">
 					</colgroup>
 					<thead>
@@ -384,7 +383,6 @@ button:hover {
 							<th>번호</th>
 							<th>제목</th>
 							<th>작성자</th>
-							<th>조회수</th>
 							<th>작성일</th>
 						</tr>
 					</thead>
@@ -508,192 +506,240 @@ button:hover {
 		</div>
 	</div>
 	<script>
-      $("#postSearch").on("click", function() { // 주소 API
+		$("#postSearch").on("click", function() { // 주소 API
 
-         new daum.Postcode({
-            oncomplete : function(data) {
-               let roadAddr = data.roadAddress;
-               document.getElementById('zipCode').value = data.zonecode;
-               document.getElementById("address1").value = roadAddr;
-            }
-         }).open();
-      })
+			new daum.Postcode({
+				oncomplete : function(data) {
+					let roadAddr = data.roadAddress;
+					document.getElementById('zipCode').value = data.zonecode;
+					document.getElementById("address1").value = roadAddr;
+				}
+			}).open();
+		})
 
-      $("document").ready(function(){
-    	  
-    	  		  $("#memberoutBtn").on("click",function(){ //탈퇴하기 버튼 누를 때 이동
-    	  			  location.href = "/memberout/memberout.jsp";  
-    	  		  })
-    	  		  
-                   $("#modiBtn").on("click",function() { //수정하기
+		$("document").ready(function() {
 
-                         $("#postSearch").css("display","inline-block");
-                         $("#modiBtn").css("display","none");
-                         $("#modiComBtn").css("display","inline-block");
-                         $("#pw1,#pw2,#nickname,#phone,#email,#zipCode,#address1,#address2,#selfcomment,#favoriteFood").removeAttr("readonly");  
-                     })
+			$("#memberoutBtn").on("click", function() { //탈퇴하기 버튼 누를 때 이동
+				location.href = "/memberout/memberout.jsp";
+			})
 
-                     $("#modiComBtn").on("click", function() { //수정완료
-                        $("#modiComBtn").css("display", "none");
-                        $("#modiBtn").css("display", "inline-block");
-                        $("#postSearch").css("display", "none");
-                        $("input").attr("readonly", true);
-                     })
+			$("#modiBtn").on("click",function() { //수정하기
 
-                     
-                     
-                     $(".myContents").on("click", function() { //내가 쓴글...등 버튼 이벤트
-                         $(this).css("border-bottom", "none");
-                         $(".myContents").not(this).css(
-                               "border-bottom",
-                               "1px solid black");
-                      })
-                           
-                           
-                           
-                     $("#writeListBtn").on("click",function(){ //내가 쓴 글 버튼 누르면 관련 테이블 나오게 이벤트
-                    	 $.ajax({
- 	      	  				url:"/selectBymypage.fullreview",
- 	      	  				type:"post",
- 	      	  				dataType:"json"
- 	      	  			}).done(function(resp){
- 	      	  				$("#writeListToPrint").html("");
- 	      	  				$(".navigator_list").html("");
- 	      	  				let WriteFullReviewList = JSON.parse(resp.WriteFullReviewList);
- 	      	  				let WriteFullReviewNavi = JSON.parse(resp.WriteFullReviewNavi);
- 	      	  				$("#writeListToPrint").append(FavoriteStoreList);
- 	      	  				$(".navigator_list").append(FavoriteStoreNavi);
- 	      	  				
- 		      	  			$("#writeList").css("display","table");
- 		      	  			$("table").not("table#writeList").css("display","none");
- 		      	  			
- 		      	  			setnavi();
- 	      	  			})
- 	      	  			
-	    	  			 $("#writeList").css("display","table");
-	      	  			 $("table").not("table#writeList").css("display","none");
-     				 })
-      
-       				 $("#replyListBtn").on("click",function(){ //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
-	    	 			 $("#replyList").css("display","table");
-	      				 $("table").not("table#replyList").css("display","none");
-      				})
-      				
-      				$("#replyListBtn").on("click",function(){ //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
-	    	 			 $("#reviewMark").css("display","table");
-	      				 $("table").not("table#reviewMark").css("display","none");
-      				})
-      
-       				$("#favoriteStoreListBtn").on("click",function(){ //즐겨찾기 버튼 누르면 관련 테이블 나오게 이벤트
-	      	  			$.ajax({
-	      	  				url:"/selectFavoriteStore.store",
-	      	  				type:"post",
-	      	  				dataType:"json"
-	      	  			}).done(function(resp){
-	      	  				$("#favoriteStoreListToPrint").html("");
-	      	  				$(".navigator_list").html("");
-	      	  				let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
-	      	  				let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
-	      	  				$("#favoriteStoreListToPrint").append(FavoriteStoreList);
-	      	  				$(".navigator_list").append(FavoriteStoreNavi);
-	      	  				
-		      	  			$("#favoriteStoreList").css("display","table");
-		      	  			$("table").not("table#favoriteStoreList").css("display","none");
-		      	  			
-		      	  			setnavi();
-	      	  			})
-      				})
-      				
-      				function setnavi(){
-	    	  			$(".navibtn").on("click",function(){
-	    	  				if($(this).attr("searchto")=="FavoriteStoreList"){
-	    	  					let location = $(this).attr("location");
-		            		  	console.log(location)
-		                	  	$.ajax({
-			      	  				url:"/selectFavoriteStore.store",
-			      	  				type:"post",
-			      	  				data:{
-			      	  					cpage:location
-			      	  				},
-			      	  				dataType:"json",
-		      	  				}).done(function(resp){
-			      	  				$("#favoriteStoreListToPrint").html("");
-			      	  				$(".navigator_list").html("");
-			      	  				let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
-			      	  				let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
-			      	  				$("#favoriteStoreListToPrint").append(FavoriteStoreList);
-			      	  				$(".navigator_list").append(FavoriteStoreNavi);
-			  	    	 			$("#favoriteStoreList").css("display","table");
-			  	      	  			$("table").not("table#favoriteStoreList").css("display","none");
-			  	      	  			
-			  	      	  			setnavi();
-		      	  				})
-	    	  				}else if($(this).attr("searchto")=="writeList")){
-	    	  				
-	    	  				}
-	                	})
-    	  		  	}
-      				
-	    	 			
-   				$("#consultListBtn").on("click",function(){ //1:1문의 버튼 누르면 관련 테이블 나오게 이벤트
-    	  			$("#consultList").css("display","table");
-      	  			$("table").not("table#consultList").css("display","none");
-				})        
-          	})
+				$("#postSearch").css("display","inline-block");
+				$("#modiBtn").css("display","none");
+				$("#modiComBtn").css("display","inline-block");
+				$("#pw1,#pw2,#nickname,#phone,#email,#zipCode,#address1,#address2,#selfcomment,#favoriteFood").removeAttr("readonly");
+			})
 
-      $("#updateForm").on("submit",function() { //수정 regex
+			$("#modiComBtn").on("click", function() { //수정완료
+				$("#modiComBtn").css("display", "none");
+				$("#modiBtn").css("display", "inline-block");
+				$("#postSearch").css("display", "none");
+				$("input").attr("readonly", true);
+			})
 
-               let regexPw = /^[A-Za-z0-9]{7,13}$/;
-               let regexPhone = /^010[0-9]{8}$/;
-               let regexEmail = /.+@.+\..+/;
+			$(".myContents").on("click",function() { //내가 쓴글...등 버튼 이벤트
+				$(this).css("border-bottom", "none");
+				$(".myContents").not(this).css(
+					"border-bottom",
+					"1px solid black"
+				);
+			})
 
-               let pw1 = $("#pw1");
-               let pw2 = $("#pw2");
-               let phone = $("#phone");
-               let email = $("#email");
+			
+			// ajax로 list와 navi 값 return
+			$("#writeListBtn").on("click",function() { //내가 쓴 글 버튼 누르면 관련 테이블 나오게 이벤트
+				
+				$.ajax({
+					url : "/selectBymypage.fullreview",
+					type : "post",
+					dataType : "json"
+				}).done(function(resp){
+					$("#writeListToPrint").html("");
+					$(".navigator_list").html("");
+					let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
+					let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
+					$("#writeListToPrint").append(writeFullReviewList);
+					$(".navigator_list").append(writeFullReviewNavi);
 
-               if (pw1.value != "" && pw2.value != "" && phone.value != ""
-                     && email.value != "") {
+					$("#writeList").css("display","table");
+					$("table").not("table#writeList").css("display","none");
 
-                  let result1 = regexPw.test(pw2.value);
-                  let result2 = regexPhone.test(phone.value);
-                  let result3 = regexEmail.test(email.value);
+					setnavi();
+				})
 
-                  if (pw1.value != pw2.value) {
-                     alert("패스워드를 다시 확인해주세요.");
-                     return false;
-                  } else if (!result1) {
-                     alert("패스워드 형식이 잘못됐습니다.");
-                     return false;
-                  } else if (!result2) {
-                     alert("핸드폰 번호 형식이 잘못됐습니다.")
-                     return false;
-                  } else if (!result3) {
-                     alert("이메일 형식이 잘못됐습니다.")
-                     return false;
-                  } else {
-                     alert("정보를 다 입력해주세요.")
-                     return false;
-                  }
-               }
-            })
+				$("#writeList").css("display","table");
+				$("table").not("table#writeList").css("display", "none");
+			})
 
-      $("#pw2").on("keyup", function() { //패스워드 일치여부
-         let inputPw1 = $("#pw1");
-         let inputPw2 = $("#pw2");
+			
+			
+			$("#replyListBtn").on("click",function() { //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
+				
+				$.ajax({
+					url : "/selectBymypage.fullreview",
+					type : "post",
+					dataType : "json"
+				}).done(function(resp){
+					$("#writeListToPrint").html("");
+					$(".navigator_list").html("");
+					let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
+					let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
+					$("#writeListToPrint").append(writeFullReviewList);
+					$(".navigator_list").append(writeFullReviewNavi);
 
-         if (inputPw1.val() == inputPw2.val()) {
-            $("#pwConfirm").html("패스워드가 일치합니다").css({
-               "color" : "blue",
-               "font-size" : "13px"
-            });
-         } else {
-            $("#pwConfirm").html("패스워드가 일치하지 않습니다").css({
-               "color" : "red",
-               "font-size" : "13px"
-            });
-         }
-      })
-   </script>
+					$("#writeList").css("display","table");
+					$("table").not("table#writeList").css("display","none");
+
+					setnavi();
+				})
+				
+				$("#replyList").css("display","table");
+				$("table").not("table#replyList").css("display", "none");
+			})
+
+			
+			
+			$("#replyListBtn").on("click",function() { //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
+				$("#reviewMark").css("display", "table");
+				$("table").not("table#reviewMark").css("display", "none");
+			})
+
+			
+			// ajax로 list와 navi 값 return
+			$("#favoriteStoreListBtn").on("click",function() { //즐겨찾기 버튼 누르면 관련 테이블 나오게 이벤트
+				
+				$.ajax({
+					url : "/selectFavoriteStore.store",
+					type : "post",
+					dataType : "json"
+				}).done(function(resp) {
+					$("#favoriteStoreListToPrint").html("");
+					$(".navigator_list").html("");
+					let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+					let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+					console.log(FavoriteStoreList);
+					console.log(FavoriteStoreNavi);
+					$("#favoriteStoreListToPrint").append(FavoriteStoreList);
+					$(".navigator_list").append(FavoriteStoreNavi);
+
+					$("#favoriteStoreList").css("display","table");
+					$("table").not("table#favoriteStoreList").css("display","none");
+
+					setnavi();
+				})
+			})
+
+			//네비게이터에 AJAX 전송 링크 부여
+			function setnavi() {
+				$(".navibtn").on("click",function() {
+					if ($(this).attr("searchto") == "FavoriteStoreList") {
+						let location = $(this).attr("location");
+						console.log(location)
+						$.ajax({
+							url : "/selectFavoriteStore.store",
+							type : "post",
+							data : {
+								cpage : location
+							},
+							dataType : "json"
+						}).done(function(resp) {
+							$("#favoriteStoreListToPrint").html("");
+							$(".navigator_list").html("");
+							let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+							let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+							$("#favoriteStoreListToPrint").append(FavoriteStoreList);
+							$(".navigator_list").append(FavoriteStoreNavi);
+							$("#favoriteStoreList").css("display","table");
+							$("table").not("table#favoriteStoreList").css("display","none");
+
+							setnavi();
+						})
+
+					} else if ($(this).attr("searchto") == "writeFullReviewList") {
+						$.ajax({
+							url : "/selectBymypage.fullreview",
+							type : "post",
+							data : {
+								cpage : location
+							},
+							dataType : "json"
+						}).done(function(resp){
+							$("#writeListToPrint").html("");
+							$(".navigator_list").html("");
+							let WriteFullReviewList = JSON.parse(resp.WriteFullReviewList);
+							let WriteFullReviewNavi = JSON.parse(resp.WriteFullReviewNavi);
+							$("#writeListToPrint").append(FavoriteStoreList);
+							$(".navigator_list").append(FavoriteStoreNavi);
+
+							$("#writeList").css("display","table");
+							$("table").not("table#writeList").css("display","none");
+
+							setnavi();
+						})
+					}
+				})
+			}
+
+			$("#consultListBtn").on("click",function() { //1:1문의 버튼 누르면 관련 테이블 나오게 이벤트
+				$("#consultList").css("display","table");
+				$("table").not("table#consultList").css("display", "none");
+			})
+		})
+
+		$("#updateForm").on("submit",function() { //수정 regex
+
+			let regexPw = /^[A-Za-z0-9]{7,13}$/;
+			let regexPhone = /^010[0-9]{8}$/;
+			let regexEmail = /.+@.+\..+/;
+
+			let pw1 = $("#pw1");
+			let pw2 = $("#pw2");
+			let phone = $("#phone");
+			let email = $("#email");
+
+			if (pw1.value != "" && pw2.value != "" && phone.value != ""
+					&& email.value != "") {
+
+				let result1 = regexPw.test(pw2.value);
+				let result2 = regexPhone.test(phone.value);
+				let result3 = regexEmail.test(email.value);
+
+				if (pw1.value != pw2.value) {
+					alert("패스워드를 다시 확인해주세요.");
+					return false;
+				} else if (!result1) {
+					alert("패스워드 형식이 잘못됐습니다.");
+					return false;
+				} else if (!result2) {
+					alert("핸드폰 번호 형식이 잘못됐습니다.")
+					return false;
+				} else if (!result3) {
+					alert("이메일 형식이 잘못됐습니다.")
+					return false;
+				} else {
+					alert("정보를 다 입력해주세요.")
+					return false;
+				}
+			}
+		})
+
+		$("#pw2").on("keyup", function() { //패스워드 일치여부
+			let inputPw1 = $("#pw1");
+			let inputPw2 = $("#pw2");
+
+			if (inputPw1.val() == inputPw2.val()) {
+				$("#pwConfirm").html("패스워드가 일치합니다").css({
+					"color" : "blue",
+					"font-size" : "13px"
+				});
+			} else {
+				$("#pwConfirm").html("패스워드가 일치하지 않습니다").css({
+					"color" : "red",
+					"font-size" : "13px"
+				});
+			}
+		})
+	</script>
 </body>
 </html>

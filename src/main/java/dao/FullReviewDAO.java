@@ -259,7 +259,87 @@ public class FullReviewDAO {
 		}
 	};
 	
+	public String selectFullReviewListToJSP(List<FullReviewUserDTO> fullReviewList) throws Exception {
+			
+		StringBuilder sb = new StringBuilder();
+		for(FullReviewUserDTO user : fullReviewList) {
+			sb.append("<tr>");
+			sb.append("<td>"+user.getReviewID()+"</td>");
+			sb.append("<td>"+user.getTitle()+"</td>");
+			sb.append("<td>"+user.getUserID()+"</td>");
+			sb.append("<td>"+user.getWritedate()+"</td>");
+			sb.append("</tr>");
+		}
+		return sb.toString();
+	}
 	
-	
-	
+	public String getFullReviewNaviToJSP(int currentpage, int searchUserno, String searchFullReviewTitle) throws Exception {
+
+		int record_total_count = getSearchdFullReview_RecordCount(searchUserno,searchFullReviewTitle);
+		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE; // 15
+		int navi_count_per_page = Settings.MYPAGE_LIST_NAVI_COUNT_PER_PAGE; // 10
+		
+		System.out.println("리스트 전체 글 개수 : "+record_total_count);
+
+		int page_total_count = 0;
+
+		// 총 페이지의 수
+		if(record_total_count%record_count_per_page==0) {
+			page_total_count = record_total_count/record_count_per_page;
+		}else {	
+			page_total_count = (record_total_count/record_count_per_page)+1;
+		}
+
+		// 페이지 범위 초과 시 자동 조정 (필수 x)
+		if(currentpage<1)
+			currentpage = 1;
+		else if(currentpage > page_total_count)
+			currentpage=page_total_count;
+
+		int startNavi = ((currentpage - 1)/navi_count_per_page * navi_count_per_page)+1;
+		int endNavi = startNavi + (navi_count_per_page - 1);
+
+		if(startNavi<1)
+			startNavi = 1;
+		else if(endNavi>page_total_count)
+			endNavi = page_total_count;
+
+		StringBuilder sb = new StringBuilder();
+
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1)
+			needPrev = false;
+		if(endNavi == page_total_count)
+			needNext = false;
+
+		if(needPrev) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='writeFullReviewList' location='"+(startNavi-1)+"'>"
+					+ "				<i class='fa-solid fa-angle-left'></i>"
+					+ "			</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		for(int i = startNavi ; i <= endNavi ; i++) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navibtn item' searchto='writeFullReviewList' location='"+i+"'>"+i+"</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		if(needNext) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='writeFullReviewList' location='"+(endNavi+1)+"'>"
+					+ "				<i class='fa-solid fa-angle-right'></i>"
+					+ "			</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		return sb.toString();
+
+	}
 }
