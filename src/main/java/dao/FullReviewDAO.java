@@ -111,7 +111,9 @@ public class FullReviewDAO {
 					String title = rs.getString("title");
 					String userID = rs.getString("userid");
 					String nickname = rs.getString("nickname");
+					result.add(new FullReviewUserDTO(reviewID,score,storeID,userno,writedate,title,userID,nickname));
 				}
+				return result;
 			}
 		}
 	}

@@ -168,13 +168,12 @@
 					<c:when test="${FullReviewList!=null}">
 						<c:forEach var="reviewList" items="${FullReviewList}" varStatus="status">
 <!-- 						유저 정보를 같이 받고 index로 값을 전달 -->
-						<c:set var="userList" value="${fullReviewUserList}"/>
 							<div class="card">
 								<div class="reviewId">${reviewList.reviewID}</div>
 								<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
 								<div class="card-body">
 									<div class="title">${reviewList.title}</div>
-									<div class="writer">${userList.get(status.index).userID}</div>
+									<div class="writer">${reviewList.userID}</div>
 									<div class="stars">${reviewList.score}</div>
 								</div>
 							</div>
