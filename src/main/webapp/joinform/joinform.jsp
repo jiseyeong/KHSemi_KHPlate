@@ -7,11 +7,8 @@
 <!-- Required meta tags-->
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
-<meta name="description" content="Colorlib Templates">
-<meta name="author" content="Colorlib">
-<meta name="keywords" content="Colorlib Templates">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+
 
 <!-- Title Page-->
 <title>Register Form</title>
@@ -46,9 +43,8 @@
 /* ==========================================================================
    #FONT
    ========================================================================== */
-.font-robo {
-	font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
-}
+   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 
 /* ==========================================================================
    #GRID
@@ -159,7 +155,7 @@ button {
 }
 
 body {
-	font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 400;
 	font-size: 14px;
 }
@@ -246,7 +242,7 @@ h6 {
 	padding: 0 25px;
 	cursor: pointer;
 	color: #fff;
-	font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	-webkit-transition: all 0.4s ease;
 	-o-transition: all 0.4s ease;
 	-moz-transition: all 0.4s ease;
@@ -281,7 +277,7 @@ input {
 	box-shadow: none;
 	width: 100%;
 	font-size: 14px;
-	font-family: inherit;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 /* input group 1 */
