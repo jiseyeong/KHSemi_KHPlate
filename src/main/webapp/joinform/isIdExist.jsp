@@ -7,8 +7,7 @@
 	<!-- Required meta tags-->
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
 	
 	
 	<!-- Title Page-->
@@ -16,8 +15,7 @@
 
 	
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	
 	<!-- Icons font CSS-->
@@ -28,13 +26,10 @@
 	
 	<!-- Vendor CSS-->
 	<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-	<link href="vendor/datepicker/daterangepicker.css" rel="stylesheet"
-		media="all">
 	
 	<!-- Main CSS-->
 	<link href="css/main.css" rel="stylesheet" media="all">
-	<link rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	</head>
 	<style>
 	
@@ -311,8 +306,9 @@
 	background: #4dae3c;
 }
 
-
 </style>
+
+
 <body>
 	<div class="page-wrapper bg-red p-t-180 p-b-100">
 		<div class="wrapper wrapper--w960">
@@ -327,7 +323,7 @@
 		<c:when test="${result==true}"> 
 			<div id="result1">이미 사용중인 ID입니다.</div>
 			<br>
-			<button class="btn btn--radius btn--green" id="close">닫기</button></td>
+			<button class="btn btn--radius btn--green" id="close" style="margin-left:45%;">닫기</button></td>
 					<script>
 						$("#close").on("click",function(){
 							window.close();
@@ -344,8 +340,8 @@
 			<br>
 					<div id="result2">이 아이디를 사용하시겠습니까?</div>
 			<br>
-			<button class="btn btn--radius btn--green" type="button" id="use">사용</button>
-			<button class="btn btn--radius btn--green" type="button" id="cancle">취소</button>
+			<button class="btn btn--radius btn--green" type="button" id="use" style="margin-left:40%;">사용</button>
+			<button class="btn btn--radius btn--green" type="button" id="cancle" style="margin-left:3%;">취소</button>
 				<script>
 						$("#use").on("click",function(){
 							opener.idValidFlag= true; //회원가입에 id 중복여부 확인 체크
