@@ -23,10 +23,6 @@
 	rel="stylesheet" media="all">
 <link href="vendor/font-awesome-4.7/css/font-awesome.min.css"
 	rel="stylesheet" media="all">
-<!-- Font special for pages-->
-<link
-	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-	rel="stylesheet">
 
 <!-- Vendor CSS-->
 <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -161,6 +157,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 400;
 }
 
@@ -170,6 +167,7 @@ h1 {
 
 h2 {
 	font-size: 30px;
+	font-weight: bolder;
 }
 
 h3 {
@@ -479,11 +477,58 @@ input {
 		padding-top: 300px;
 		background-position: left center;
 	}
-	g
+	
   .card-2 .card-body {
 		display: block;
 		padding: 60px 50px;
 	}
+}
+
+#enter {
+  font-family: 'Nanum Gothic', sans-serif;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #57b846;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.5s;
+  cursor: pointer;
+  line-height: 40px;
+  padding: 0 25px;
+}
+
+#enter span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#enter span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#enter:hover {
+  padding-right: 25px;
+  background: #4dae3c;
+}
+
+#enter:hover span {
+  padding-right: 25px;
+  background: #4dae3c;
+}
+
+#enter:hover span:after {
+  opacity: 1;
+  right: 0;
+  background: #4dae3c;
 }
 </style>
 <body>
@@ -577,7 +622,7 @@ input {
 
 						<div class="p-t-10">
 							<button class="btn btn--radius btn--green" type="submit"
-								id="enter">냠냠!</button>
+								id="enter"><span>냠냠!</span></button>
 						</div>
 					</form>
 				</div>

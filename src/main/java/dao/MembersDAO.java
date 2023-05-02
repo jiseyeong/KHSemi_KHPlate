@@ -285,6 +285,61 @@ public class MembersDAO {
 		return result;
 	}
 
+	
+	
+	public String idsearch(String name, String email, String classes) throws Exception{
+		String sql = "select userid from members where name = ? and email = ? and classes=? ";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, name);
+			pstat.setString(2, email);
+			pstat.setString(3, classes);
+
+			ResultSet rs = pstat.executeQuery(); {
+
+				if(rs.next()) {
+					String result = rs.getString("userid");
+					return result;
+				}else {
+					return null;
+				}
+			}		
+		}
+	}
+	
+	public String pwsearch(String pwname, String pwemail,String pwid)throws Exception{
+		String sql = "select userid from members where userid = ? and name = ? and email=?";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, pwid);
+			pstat.setString(2, pwname);
+			pstat.setString(3, pwemail);
+
+			
+			try (ResultSet rs = pstat.executeQuery()) {
+				if(rs.next()) {
+					String result = rs.getString("userid");
+					return result;
+				}else return null;
+			}
+		}
+	}
+
+	public int updatepw(String pw1 ,String userid) throws Exception{
+			String sql = "update members set pw=? where userid=?";
+			try
+			(Connection con = this.getConnection();
+					PreparedStatement pstat= con.prepareStatement(sql);){
+				pstat.setString(1, pw1);
+				pstat.setString(2,userid );
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			
+		}
+
+	}
+	
+	
+	
 
 
 }

@@ -230,12 +230,46 @@ public class MembersController extends HttpServlet {
 			else if(cmd.equals("/IdCheck.members")) {
 				String id = request.getParameter("id");
 				System.out.println("입력 id = " + id);
-
+				
 				boolean result = dao.isIdExist(id);
 				
 				request.setAttribute("result", result);
 				request.getRequestDispatcher("/joinform/isIdExist.jsp").forward(request, response);
 			}
+			
+			//
+			
+			else if (cmd.equals("/idsearch.members")) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String classes = request.getParameter("classes");
+				String userid = dao.idsearch(name,email,classes);
+				request.setAttribute("userid", userid);
+				request.getRequestDispatcher("/login/idconfirm.jsp").forward(request, response);
+			} else if (cmd.equals("/pwsearch.members")) {
+				String pwname = request.getParameter("pwname");
+				String pwemail = request.getParameter("pwemail");
+				String pwid = request.getParameter("pwid");
+				String userid = dao.pwsearch(pwname,pwemail,pwid);
+				if (userid==null) {
+					response.sendRedirect("/login/newpw.jsp");
+					} else {
+						request.setAttribute("userid",userid);
+						request.getRequestDispatcher("/memberSearch/newpassword.jsp").forward(request, response);
+								
+				}
+			}else if(cmd.equals("/newpwset.members")) {
+				String pw2 = SecurityUtils.sha512(request.getParameter("pw2"));
+             //	int pw2=Integer.parseInt(request.getParameter("pw2"));
+				String userid =request.getParameter("userid"); 
+				int result=dao.updatepw(pw2,userid);
+				request.setAttribute("result", result);
+				request.getRequestDispatcher("/memberSearch/idsearch.jsp").forward(request, response);
+				
+				
+			}
+			
+			//
 			
 		}catch(Exception e) {
 			e.printStackTrace();
