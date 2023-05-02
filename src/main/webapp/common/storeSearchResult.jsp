@@ -333,7 +333,7 @@ hr {
 }
 
 /* 정렬 필터 영역 */
-#searchForm {
+#searchFilterForm {
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -544,10 +544,8 @@ hr {
 				<div class="print_searchResult_layout">
 					<!-- 필터 영역 -->
 
-					<form action="/searchStoreBySearchFilter.store" id="searchForm"
+					<form action="/searchStoreBySearchFilter.store" id="searchFilterForm"
 						onsubmit="return false;">
-						<!-- 						<input type="text" name="cpage" value="1" -->
-						<!-- 							style="display: none;"> -->
 						<input type="text" name="searchedBy" value="mainSearch"
 							style="display: none;">
 						<div id="sort_layout" style="display: none;">
@@ -1134,8 +1132,8 @@ hr {
 		
 		// 검색 정렬 확인 버튼
 		$("#apply_btn").on("click",function(){
-			$("#searchForm").prop("onsubmit",true);
-			$("#searchForm").submit();
+			$("#searchFilterForm").prop("onsubmit",true);
+			$("#searchFilterForm").submit();
 		});
 		
 		// 검색 정렬 취소 버튼
@@ -1147,8 +1145,8 @@ hr {
 			    $(item).val("true");
 			});
 			
-			$("#searchForm").prop("onsubmit",true);
-			$("#searchForm").submit();
+			$("#searchFilterForm").prop("onsubmit",true);
+			$("#searchFilterForm").submit();
 		})
 		
 	</script>

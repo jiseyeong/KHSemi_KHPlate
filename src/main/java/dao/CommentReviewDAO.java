@@ -94,37 +94,17 @@ public class CommentReviewDAO {
 		}
 	}
 	
-	public int insertPhoto(String sysName, String oriName, int cReviewID) throws Exception{
-		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, cReviewID)"
-				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
+	public int delete(int reviewID) throws Exception{
+		String sql = "delete from COMMENTREVIEW where REVIEWID=?";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setString(1, sysName);
-			pstat.setString(2, oriName);
-			pstat.setInt(3, cReviewID);
+			pstat.setInt(1, reviewID);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
 		}
 	}
-	
-	public ArrayList<PhotoDTO> selectPhoto(int cReviewID) throws Exception{
-		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where CREVIEWID = ?";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setInt(1, cReviewID);
-			try(ResultSet rs = pstat.executeQuery();){
-				ArrayList<PhotoDTO> result = new ArrayList<>();
-				while(rs.next()) {
-					int imageID = rs.getInt("IMAGEID");
-					String oriName = rs.getString("ORINAME");
-					String sysName = rs.getString("SYSNAME");
-					result.add(new PhotoDTO(imageID, oriName, sysName));
-				}
-				return result;
-			}
-		}
-	}
+
 	
 	private ArrayList<CommentReviewDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<CommentReviewDTO> result = new ArrayList<>();
