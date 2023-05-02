@@ -34,7 +34,7 @@
 			<br>
 			<div>
 				<button class="modiBtn" type="button">수정하기</button>
-				<button class="delBtn" type="button" reviewId="${contents.reviewId }">삭제하기</button>
+				<button class="delBtn" type="button" reviewId="${contents.reviewid }">삭제하기</button>
 				<button class="submitBtn" type="submit" style="display:none">수정완료</button>
 				<button class="toListBtn" type="button">목록으로</button>
 			</div>
@@ -44,14 +44,14 @@
 			<form action="write.fullreviewreply" method="post">
 		<table border="1">
 			<tr>
-				<td colspan="2">작성자 ID : <input type="text" id="re_writer"
-					name="re_writer" value="${sessionScope.loginId}" readonly>
-					<input type="text" class="seq" name="seq" value="${dto.seq }">
+				<td colspan="2">작성자 ID : <input type="text" id="userno"
+					name="userno" value="${sessionScope.userId}" readonly>
+					<input type="text" class="reviewid" name="reviewid" value="${contents.reviewid }">
 				</td>
 			</tr>
 			<tr>
-				<td><input type="text" id="re_contents" name="re_contents"
-					placeholder="작성할 댓글 입력" size="87%"></td>
+				<td><input type="text" id="re_body" name="re_body"
+					placeholder="작성할 댓글 입력"></td>
 				<td><input type="submit" value="작성완료" id="re_write_btn"
 					name="re_write_btn"></td>
 			</tr>
@@ -66,24 +66,24 @@
 				<table border="1">
 					<tr>
 						<td colspan="2">작성자 id : <input type="text"
-							class="re_lsit_writer" value="${i.writer }" readonly></td>
+							class="re_list_writer" value="${i.userid }" readonly></td>
 					</tr>
 					<tr>
-						<td><input type="text" value="${i.contents }"
-							class="re_list_contents" name="re_li_contents" readonly></td>
+						<td><input type="text" value="${i.body }"
+							class="re_list_body" name="re_list_body" readonly></td>
 
 						<td><c:choose>
-								<c:when test="${sessionScope.loginId eq i.writer}">
+								<c:when test="${sessionScope.userId eq i.userid}">
 									<button class="re_list_updbtn" type="button">수정</button>
-									<button class="re_list_delbtn" type="button" re_seq="${i.seq }"
-										re_pa_seq="${dto.seq }">삭제</button>
+									<button class="re_list_delbtn" type="button" commentid="${i.commentid }"
+										reviewid="${contents.reviewid }">삭제</button>
 									<input type="submit" value="수정완료" class="re_list_updCompBtn"
 										style="display: none">
 
-									<input type="text" class="seq" id="re_pa_seq" name="re_pa_seq"
-										value="${dto.seq }">
-									<input type="text" class="seq" id="re_seq" name="re_seq"
-										value="${i.seq }">
+									<input type="text" class="reviewid" id="reviewid" name="reviewid"
+										value="${contents.reviewid }">
+									<input type="text" class="commentid" id="commentid" name="commentid"
+										value="${i.commentid }">
 
 								</c:when>
 							</c:choose></td>
@@ -110,7 +110,7 @@
 
 		$(".delBtn").on("click",function(){
 			if (confirm("게시글을 정말로 삭제하시겠습니까?")) {
-				location.href = "/delete.FullReview?reviewId=" + $(this).attr("reviewId");
+				location.href = "/delete.FullReview?reviewid=" + $(this).attr("reviewid");
 			} else {
 				return false;
 			}
