@@ -18,7 +18,6 @@
     
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
    .nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
-
         * {
             box-sizing: border-box;
         }
@@ -52,7 +51,6 @@
             top:5px;
             left:30px;
         }
-
         #searchBtn {
             position: relative;
             top:17px;
@@ -68,7 +66,6 @@
             width: 100%;
             padding-left: 10px;
         }
-
         #mypageBtn {
             display: inline-block;
             width: 50px;
