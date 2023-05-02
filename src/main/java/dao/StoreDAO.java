@@ -559,9 +559,9 @@ public class StoreDAO {
 					sb.append("<tr>");
 					sb.append("<td>"+rs.getInt("STOREID")+"</td>");
 					sb.append("<td>"+rs.getString("NAME")+"</td>");
-					sb.append("<td>"+rs.getDouble("AVGSCORE")+"</td>");
-					sb.append("<td>"+rs.getString("CATEGORY")+"</td>");
 					sb.append("<td>"+rs.getString("ADDRESS")+"</td>");
+					sb.append("<td>"+rs.getString("CATEGORY")+"</td>");
+					sb.append("<td>"+rs.getDouble("AVGSCORE")+"</td>");
 					sb.append("</tr>");
 				}
 				return sb.toString();
