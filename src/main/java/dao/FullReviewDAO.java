@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 
 import dto.FullReviewDTO;
 import dto.FullReviewUserDTO;
+import dto.MyFullReviewScrapDTO;
 import statics.Settings;
 
 public class FullReviewDAO {
@@ -343,5 +344,131 @@ public class FullReviewDAO {
 					+ "</li>");
 		}
 		return sb.toString();
+	}
+	
+	
+	public String selectMyFullReviewScrapList(int userno, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception {
+		String sql = "select * from "
+				+ "(select total.*, row_number() over(order by total.storeID desc) row_num from "
+				+ "(select * from (select * from (select * from commentreview "
+				+ "join store using (storeid) where userno = ?) c join members m on m.userno = c.userno) a "
+				+ "join fullreviewscrap f on a.reviewid = f.reviewid) total) " 
+				+ "where row_num between ? AND ?";
+		
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setInt(1, userno);
+				pstat.setInt(2, start_Record_Row_Num);
+				pstat.setInt(3, end_Record_Row_Num);
+			try(ResultSet rs = pstat.executeQuery();){
+				List<MyFullReviewScrapDTO> result = new ArrayList<>();
+				while(rs.next()) {
+					int scrapID = rs.getInt("scrapID");
+					String title = rs.getString("title");
+					String userID = rs.getString("userid");
+					String StoreName = rs.getString("name");
+					Timestamp writedate = rs.getTimestamp("writedate");
+					result.add(new MyFullReviewScrapDTO(scrapID,title,userID,StoreName,writedate));
+				}
+				System.out.println("리스트 : "+result.size());
+				return selectMyFullReviewScrapListToJSP(result);
+			}
+		}
+	}
+	
+	public String selectMyFullReviewScrapListToJSP(List<MyFullReviewScrapDTO> MyFullReviewScrapList) throws Exception {
+		
+		StringBuilder sb = new StringBuilder();
+		for(MyFullReviewScrapDTO user : MyFullReviewScrapList) {
+			sb.append("<tr>");
+			sb.append("<td>"+user.getReviewID()+"</td>");
+			sb.append("<td>"+user.getTitle()+"</td>");
+			sb.append("<td>"+user.getUserID()+"</td>");
+			sb.append("<td>"+user.getStoreName()+"</td>");
+			sb.append("<td>"+user.getWritedate()+"</td>");
+			sb.append("</tr>");
+		}
+		return sb.toString();
+	}
+	
+	public String selectMyFullReviewScrapNaviToJSP(int currentpage, int userno) throws Exception {
+
+		int record_total_count = getMyFullReviewScrapNavi_RecordCount(userno);
+		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE; // 10
+		int navi_count_per_page = Settings.MYPAGE_LIST_NAVI_COUNT_PER_PAGE; // 10
+		
+		System.out.println("리스트 전체 글 개수 : "+record_total_count);
+
+		int page_total_count = 0;
+
+		// 총 페이지의 수
+		if(record_total_count%record_count_per_page==0) {
+			page_total_count = record_total_count/record_count_per_page;
+		}else {	
+			page_total_count = (record_total_count/record_count_per_page)+1;
+		}
+
+		// 페이지 범위 초과 시 자동 조정 (필수 x)
+		if(currentpage<1)
+			currentpage = 1;
+		else if(currentpage > page_total_count)
+			currentpage=page_total_count;
+
+		int startNavi = ((currentpage - 1)/navi_count_per_page * navi_count_per_page)+1;
+		int endNavi = startNavi + (navi_count_per_page - 1);
+
+		if(startNavi<1)
+			startNavi = 1;
+		else if(endNavi>page_total_count)
+			endNavi = page_total_count;
+
+		StringBuilder sb = new StringBuilder();
+
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1)
+			needPrev = false;
+		if(endNavi == page_total_count)
+			needNext = false;
+
+		if(needPrev) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='writeMyFullReviewScrapList' location='"+(startNavi-1)+"'>"
+					+ "				<i class='fa-solid fa-angle-left'></i>"
+					+ "			</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		for(int i = startNavi ; i <= endNavi ; i++) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navibtn item' searchto='writeMyFullReviewScrapList' location='"+i+"'>"+i+"</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		if(needNext) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='writeMyFullReviewScrapList' location='"+(endNavi+1)+"'>"
+					+ "				<i class='fa-solid fa-angle-right'></i>"
+					+ "			</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		return sb.toString();
+	}
+	
+	public int getMyFullReviewScrapNavi_RecordCount(int userno) throws Exception{
+		String sql = "select count(*) from fullreviewscrap where userno = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setInt(1, userno);
+				try(ResultSet rs = pstat.executeQuery();){
+				rs.next();
+				return rs.getInt(1);
+			}
+		}
 	}
 }

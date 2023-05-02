@@ -157,6 +157,7 @@ public class FullReviewController extends HttpServlet {
 
 				request.getRequestDispatcher("/FullReview/FullReviewContent.jsp").forward(request, response);
 
+				
 				// 마이페이지에 표시할 내가 스크랩한 리스트 출력
 			} else if (cmd.equals("/selectScrapListBymypage.fullreview")) {
 
@@ -175,20 +176,17 @@ public class FullReviewController extends HttpServlet {
 				System.out.println("시작 번호 : "+start_Record_Row_Num);
 				System.out.println("끝 번호 : "+end_Record_Row_Num);
 
-				List<FullReviewUserDTO> fullReviewListBeforeChange = frdao.selectFullReview(userno, "", start_Record_Row_Num, end_Record_Row_Num);
-				String writeFullReviewList = frdao.selectFullReviewListToJSP(fullReviewListBeforeChange);
-				String writeFullReviewNavi = frdao.getFullReviewNaviToJSP(currentpage, userno, "");
-
-				System.out.println("리스트 사이즈 : "+fullReviewListBeforeChange.size());
+				String myFullReviewScrapList = frdao.selectMyFullReviewScrapList(userno, start_Record_Row_Num, end_Record_Row_Num);
+				String myFullReviewScrapNavi = frdao.selectMyFullReviewScrapNaviToJSP(currentpage, userno);
 
 				Gson g = new Gson();
 
-				writeFullReviewList = g.toJson(writeFullReviewList);
-				writeFullReviewNavi = g.toJson(writeFullReviewNavi);
+				myFullReviewScrapList = g.toJson(myFullReviewScrapList);
+				myFullReviewScrapNavi = g.toJson(myFullReviewScrapNavi);
 
 				JsonObject resp = new JsonObject();
-				resp.addProperty("writeFullReviewList", writeFullReviewList);
-				resp.addProperty("writeFullReviewNavi", writeFullReviewNavi);
+				resp.addProperty("myFullReviewScrapList", myFullReviewScrapList);
+				resp.addProperty("myFullReviewScrapNavi", myFullReviewScrapNavi);
 
 				response.getWriter().append(resp.toString());
 

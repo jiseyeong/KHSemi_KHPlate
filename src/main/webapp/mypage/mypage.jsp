@@ -535,7 +535,8 @@ button:hover {
 
 			
 			// ajax로 list와 navi 값 return
-			$("#writeListBtn").on("click",function() { //내가 쓴 글 버튼 누르면 관련 테이블 나오게 이벤트
+			//내가 쓴 글 버튼 누르면 관련 테이블 나오게 이벤트
+			$("#writeListBtn").on("click",function() { 
 				
 				$.ajax({
 					url : "/selectBymypage.fullreview",
@@ -556,8 +557,8 @@ button:hover {
 				})
 			})
 
-			
-			$("#replyListBtn").on("click",function() { //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
+			//내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
+			$("#replyListBtn").on("click",function() { 
 				
 				$.ajax({
 					url : "/selectBymypage.commentReview",
@@ -577,20 +578,21 @@ button:hover {
 					setnavi();
 				})
 			})
-
-			$("#reviewMarkBtn").on("click",function() { //내가 스크랩한 블로그 버튼 누르면 관련 테이블 나오게 이벤트
+			
+ 			//내가 스크랩한 블로그 버튼 누르면 관련 테이블 나오게 이벤트\
+			$("#reviewMarkBtn").on("click",function() {
 				
 				$.ajax({
-					url : "/selectBymypage.commentReview",
+					url : "/selectScrapListBymypage.fullreview",
 					type : "post",
 					dataType : "json"
 				}).done(function(resp){
-					$("#replyListToPrint").html("");
+					$("#reviewMarkToPrint").html("");
 					$(".navigator_list").html("");
-					let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
-					let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
-					$("#replyListToPrint").append(writeMyCommentList);
-					$(".navigator_list").append(writeMyCommentNavi);
+					let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
+					let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
+					$("#reviewMarkToPrint").append(myFullReviewScrapList);
+					$(".navigator_list").append(myFullReviewScrapNavi);
 
 					$("#reviewMark").css("display", "table");
 					$("table").not("table#reviewMark").css("display", "none");
@@ -599,9 +601,8 @@ button:hover {
 				})
 			})
 
-			
-			// ajax로 list와 navi 값 return
-			$("#favoriteStoreListBtn").on("click",function() { //즐겨찾기 버튼 누르면 관련 테이블 나오게 이벤트
+			//즐겨찾기 버튼 누르면 관련 테이블 나오게 이벤트
+			$("#favoriteStoreListBtn").on("click",function() { 
 				
 				$.ajax({
 					url : "/selectFavoriteStore.store",
@@ -624,6 +625,7 @@ button:hover {
 				})
 			})
 
+			
 			//네비게이터에 AJAX 전송 링크 부여
 			function setnavi() {
 				$(".navibtn").on("click",function() {
@@ -674,7 +676,7 @@ button:hover {
 						
 					} else if ($(this).attr("searchto") == "writeMyCommentList") {
 						$.ajax({
-							url : "/selectBymypage.fullreview",
+							url : "/selectBymypage.commentReview",
 							type : "post",
 							data : {
 								cpage : location
@@ -691,6 +693,27 @@ button:hover {
 							$("#writeList").css("display","table");
 							$("table").not("table#writeList").css("display","none");
 
+							setnavi();
+						})
+						
+					} else if ($(this).attr("searchto") == "writeMyFullReviewScrapList") {
+						$.ajax({
+							url : "/selectScrapListBymypage.fullreview",
+							type : "post",
+							data : {
+								cpage : location
+							},
+						}).done(function(resp){
+							$("#reviewMarkToPrint").html("");
+							$(".navigator_list").html("");
+							let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
+							let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
+							$("#reviewMarkToPrint").append(myFullReviewScrapList);
+							$(".navigator_list").append(myFullReviewScrapNavi);
+
+							$("#reviewMark").css("display", "table");
+							$("table").not("table#reviewMark").css("display", "none");
+							
 							setnavi();
 						})
 					}
