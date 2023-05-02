@@ -25,6 +25,7 @@ import dto.PhotoDTO;
 public class CommentReviewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
+		response.setContentType("text/html; charset=utf8");
 		String cmd = request.getRequestURI();
 		Gson g = new Gson();
 		
