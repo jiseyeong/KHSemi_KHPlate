@@ -447,6 +447,15 @@
 											</div>
 										</div>
 									</form>
+									<script>
+										ClassicEditor
+											.create(document.querySelector("#review_editor"))
+											.then(function (editor) {
+												const toolbarElement = editor.ui.view.toolbar.element;
+												toolbarElement.style.display = 'none';
+											})
+											.catch(error => { console.error(error) });
+									</script>
 								</c:if>
 								<c:if test="${fn:length(commentList) > 0}">
 									<div class="col-12">한줄 리뷰 목록</div>
@@ -472,7 +481,7 @@
 											<div id="commentImgs${i}" class="col-12 nonactive">
 												<div id="carouselControls${i}" class="carousel slide carousel-fade"
 													data-bs-ride="carousel">
-													<div id="commentCarousel{i}" class="carousel-inner">
+													<div id="commentCarousel${i}" class="carousel-inner">
 
 													</div>
 												</div>
@@ -495,15 +504,15 @@
 													<tr>
 														<th width="70%">이미지</th>
 														<th width="30%">버튼</th>
-														<form id="commentImgsRemoveForm${i}"
-															action="/deletePhoto.commentReview" method="get">
-															<input type="text" name="imageID" id="deleteImageID${i}"
-																style="display: none;">
-															<input type="text" name="storeID" value="{dto.storeID}"
-																style="display: none;">
-														</form>
 													</tr>
 												</table>
+												<form id="commentImgsRemoveForm${i}" action="/deletePhoto.commentReview"
+													method="get">
+													<input type="text" name="imageID" id="deleteImageID${i}"
+														style="display: none;">
+													<input type="text" name="storeID" value="${dto.storeID}"
+														style="display: none;">
+												</form>
 											</div>
 
 											<script>
@@ -515,36 +524,38 @@
 													let i = "<c:out value='${i}'></c:out>";
 													if (resp.length > 0) {
 														$("#commentImgs" + i).removeClass("nonactive");
-														for (let j = 0; j < resp.length; i++) {
+														let j = 0;
+														$(resp).each(function () {
 															//이미지 세팅
 															let div_carousel = $("<div>").addClass("carousel-item");
-															if (j == 0) {
+															if (j++ == 0) {
 																div_carousel.addClass("active");
 															}
-															let imgSource = "/CommentReview/" + resp[i].sysName;
-															let img = $("<img>").attr("src", imgSource).attr("alt", imgSource).addClass("d-block").addClass("object-fit-contain").css({ "height": "500px" });
+															let imgSource = "/CommentReview/" + this.sysName;
+															let img = $("<img>").attr("src", imgSource).attr("alt", imgSource).addClass("d-block").addClass("object-fit-contain").addClass("w-100").css({ "height": "500px" });
+															let img2 = $("<img>").attr("src", imgSource).attr("alt", imgSource).addClass("d-block").addClass("object-fit-contain").addClass("w-100").css({ "height": "500px" });
 
 															div_carousel.append(img);
 															$("#commentCarousel" + i).append(div_carousel);
 
 															//삭제용 테이블 세팅
 															let tr = $("<tr>"),
-																td1 = $("<td1>"),
-																td2 = $("<td2>"),
+																td1 = $("<td>"),
+																td2 = $("<td>"),
 																btn_confirm = $("<button>").text("삭제"),
 																commentImgsRemoveForm = "#commentImgsRemoveForm" + i;
 
-															$("#deleteImageID" + i).attr("value", resp[i].imageID);
+															$("#deleteImageID" + i).attr("value", this.imageID);
 															btn_confirm.click(function () {
-																commentImgsRemoveForm.submit();
+																$(commentImgsRemoveForm).submit();
 															});
 															btn_confirm.addClass("btn").addClass("btn-outline-secondary");
-															td1.append(img);
+															td1.append(img2);
 															td2.append(btn_confirm);
 															tr.append(td1);
 															tr.append(td2);
 															$("#commentImgsRemoveTable" + i).append(tr);
-														}
+														});
 													}
 												});
 											</script>
@@ -944,13 +955,6 @@
 											}
 										});
 										editor.enableReadOnlyMode('');
-									})
-									.catch(error => { console.error(error) });
-								ClassicEditor
-									.create(document.querySelector("#review_editor"))
-									.then(function (editor) {
-										const toolbarElement = editor.ui.view.toolbar.element;
-										toolbarElement.style.display = 'none';
 									})
 									.catch(error => { console.error(error) });
 
