@@ -94,6 +94,31 @@ public class FullReviewController extends HttpServlet {
 				
 			}else if (cmd.equals("/selectBymypage.fullreview")) {
 				
+				int userno = (int) request.getSession().getAttribute("userno");
+				
+				int currentpage = 1;
+				
+				if(request.getParameter("cpage")!=null) {
+					currentpage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				
+				System.out.println("현재 페이지 : "+currentpage);
+				
+				int end_Record_Row_Num = currentpage * Settings.SEARCH_FULLREVIEW_RECORD_COUNT_PER_PAGE;
+				int start_Record_Row_Num = end_Record_Row_Num - (Settings.SEARCH_FULLREVIEW_RECORD_COUNT_PER_PAGE-1);
+				
+				System.out.println("시작 번호 : "+start_Record_Row_Num);
+				System.out.println("끝 번호 : "+end_Record_Row_Num);
+				
+//				List<FullReviewUserDTO> fullReviewList = frdao.selectFullReview(userno, searchFullReviewTitle,start_Record_Row_Num,end_Record_Row_Num);
+//				String fullReviewNavi = frdao.getFullReviewNavi(currentpage, userno, searchFullReviewTitle);
+//				
+//				System.out.println("리스트 사이즈 : "+fullReviewList.size());
+//				
+//				request.setAttribute("FullReviewList", fullReviewList);
+//				request.setAttribute("FullReviewNavi", fullReviewNavi);
+				
+				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
 			}
 
 		}catch(Exception e) {
