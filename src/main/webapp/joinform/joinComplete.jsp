@@ -7,16 +7,14 @@
 <!-- Required meta tags-->
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
 
 
 <!-- Title Page-->
 <title>Re</title>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 
 <!-- Icons font CSS-->
@@ -27,16 +25,15 @@
 
 <!-- Vendor CSS-->
 <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-<link href="vendor/datepicker/daterangepicker.css" rel="stylesheet"
-	media="all">
+
 
 <!-- Main CSS-->
 <link href="css/main.css" rel="stylesheet" media="all">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 </head>
-<style>
 
+<style>
 /* ==========================================================================
    #FONT
    ========================================================================== */
@@ -151,38 +148,26 @@ button {
 }
 
 body {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-weight: 400;
 	font-size: 15px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-weight: 400;
-}
 
 h1 {
 	font-size: 36px;
+	font-weight: bold;
+	font-weight: 400;
+	font-family: 'Nanum Gothic', sans-serif;
+
 }
 
-h2 {
-	font-size: 30px;
-}
-
-h3 {
-	font-size: 24px;
-}
 
 h4 {
 	font-size: 18px;
+	font-weight: 400;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
-h5 {
-	font-size: 15px;
-}
 
-h6 {
-	font-size: 13px;
-}
 
 /* ==========================================================================
    #BACKGROUND
@@ -194,20 +179,9 @@ h6 {
 /* ==========================================================================
    #SPACING
    ========================================================================== */
-.p-t-100 {
-	padding-top: 100px;
-}
 
 .p-t-180 {
 	padding-top: 180px;
-}
-
-.p-t-20 {
-	padding-top: 20px;
-}
-
-.p-t-30 {
-	padding-top: 30px;
 }
 
 .p-b-100 {
@@ -284,7 +258,7 @@ h6 {
 		padding-top: 300px;
 		background-position: left center;
 	}
-	g
+
   .card-2 .card-body {
 		display: block;
 		padding: 60px 50px;
@@ -299,14 +273,13 @@ h6 {
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
   padding: 20px;
   width: 200px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 40%;
 }
 
 .button span {
@@ -335,21 +308,43 @@ h6 {
   background: #4dae3c;
 }
 
+#checked {
+  position: relative;
+  animation-name: checking;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes checking {
+  from {color:transparent;}
+  to {color:#57b846;}
+}
+
 </style>
 
 <body>
 	<div class="page-wrapper bg-red p-t-180 p-b-100">
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
-			
 				<div class="card-body">
-					<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
-						<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-						<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-					  </svg>
-					<h1 class="title">${userid}님 환영합니다!!</h1>
-					<h3 class="title">이메일 인증이 완료되었습니다.</h3>
-					<h3 class="title">이제 로그인 후 이용이 가능합니다.</h3>
+					<div class="row row-space">
+						<div class="col-2">
+							<div class="input-group">
+								<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" id="checked" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+									<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+								  </svg>
+							</div>
+						</div>
+						<div class="col-2">
+							<br>
+							<h1 class="title">${userid}님,<br><br>오늘은 뭐 드실래요?</h1>
+						</div>
+					</div>
+					<br>
+					<br>
+					<h4 class="title">이메일 인증이 완료되었습니다.</h4>
+					<h4 class="title">이제 로그인 후 이용이 가능합니다.</h4>
 					
 					<button class="button" id="toMain"><span>메인 페이지로 이동 </span></button>
 
