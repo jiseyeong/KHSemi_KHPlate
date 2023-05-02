@@ -55,7 +55,7 @@
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 
-			<jsp:include page="/content.fullreview" flush="false"></jsp:include>
+			<jsp:include page="/select.fullreview" flush="false"></jsp:include>
 
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>

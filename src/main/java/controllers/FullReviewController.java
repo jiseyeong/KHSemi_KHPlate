@@ -91,7 +91,7 @@ public class FullReviewController extends HttpServlet {
 				request.setAttribute("FullReviewList", fullReviewList);
 				request.setAttribute("FullReviewNavi", fullReviewNavi);
 				request.setAttribute("fullReviewUserList", fullReviewUserList);
-				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
+				request.getRequestDispatcher("/FullReview/List.jsp").forward(request, response);
 			
 			}else if(cmd.equals("/content.fullreview")) {
 				
