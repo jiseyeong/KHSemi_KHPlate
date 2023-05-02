@@ -1,99 +1,172 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>회원탈퇴</title>
+<!-- Required meta tags-->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+
+
+<!-- Title Page-->
+<title>Member Out</title>
+
+<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.1.2/typicons.min.css">
+
+<!-- Main CSS-->
+<link href="css/main.css" rel="stylesheet" media="all">
 </head>
+
+
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-	.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
+	
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 
-	*{box-sizing:border-box;}
-	body{background-color:#ED1C16;}
-	.container{
-		width:500px;
-		height:600px;
-        margin:auto;
-        margin-top:100px;
-        background-color:white;
-        border-radius:10px;
-	}
-    .lead1{
-        height:2%;
-        background-color:#4dae3c;
-        border-top-left-radius:10px;
-        border-top-right-radius:10px;
-    }
-    .lead2{
-        height:2%;
-        background-color:#4dae3c;
-        border-bottom-left-radius:10px;
-        border-bottom-right-radius:10px;
-    }
-    .contents{
-        height:72%;
-        text-align:center;
-    }
-    .contents>div{
-        margin-top:30%;
-        font-size:18px;
-        font-weight:bold;
-    }
-    input{
-        margin-top:20px;
-        width:350px;
-        height:40px;
-        border:none;
-        background-color: rgb(245, 245, 245);
-        padding-left:10px;
-    }
-    #inputPw{
-    	margin-bottom:40px;
-    }
-    #memberout{
-    	background-color:#4dae3c;
-    	border:none;
-    	border-radius:15px;
-    	width:350px;
-    	height:40px;
-    	color:white;
-    }
-    #cancel{
-    	background-color:#4dae3c;
-    	border:none;
-    	border-radius:15px;
-    	width:350px;
-    	height:40px;
-    	color:white;
-    	margin-top:15px;
-    }
-    button{
-    	cursor:pointer;
-    }
-    button:hover{
-    	opacity:80%;
-    }
-	</style>
-	<body>
+body, html {
+	font-family: 'Nanum Gothic', sans-serif;
+	background-color: #ED1C16;
+	padding: 0;
+	margin: 0;
+}
+
+#particles-js {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	font-family: 'Nanum Gothic', sans-serif;
+	margin: 0;
+	top: 50px;
+	left: 50%;
+	position: absolute;
+	text-align: center;
+	transform: translateX(-50%);
+	background-color: white;
+	border-radius: 9px;
+	border-top: 10px solid #57b846;
+	border-bottom: 10px solid #57b846;
+	width: 400px;
+	height: 550px;
+}
+
+.box h4 {
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #ED1C16;
+	font-size: 25px;
+	margin-top: 55px;;
+}
+
+.box h5 {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 15px;
+	color: #a1a4ad;
+	letter-spacing: 1.5px;
+	margin-top: -15px;
+	margin-bottom: 60px;
+}
+
+.box input[type="text"], .box input[type="password"] {
+	display: block;
+	margin: 20px auto;
+	background: #f2f2f2;
+	border: 0;
+	border-radius: 5px;
+	padding: 14px 10px;
+	width: 320px;
+	outline: none;
+	color: #000000;
+	-webkit-transition: all .2s ease-out;
+	-moz-transition: all .2s ease-out;
+	-ms-transition: all .2s ease-out;
+	-o-transition: all .2s ease-out;
+	transition: all .2s ease-out;
+}
+
+::-webkit-input-placeholder {
+	color: #565f79;
+}
+
+.box input[type="text"]:focus, .box input[type="password"]:focus {
+	border: 1px solid #79A6FE;
+}
+
+.btn {
+    font-family: 'Nanum Gothic', sans-serif;
+    background: #57b846;
+	color: #dfdeee;
+	border: 0;
+	border-radius: 100px;
+	width: 340px;
+	height: 49px;
+	font-size: 16px;
+	position: absolute;
+	left: 8%;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background: #4dae3c;
+}
+
+#memberout{
+  top: 62%;
+  animation-name: noexit;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes noexit {
+  0%   {opacity: 0%; left:0px; top:0px;}
+  25%  {opacity: 50%; left:0px; top:0px;}
+  50%  {opacity: 100%; left:0px; top:0px;}
+  75%  {opacity: 50%; left:0px; top:0px;}
+  100% {opacity: 0%; left:0px; top:0px;}
+}
+
+#cancel {
+    top: 72%;
+}
+
+</style>
+
+<body id="particles-js">
+<div class="animated bounceInDown">
 	<div class="container">
-		<div class="lead1"></div>
-        <div class="nanum-gothic contents">
-        <div>정말 탈퇴 하실건가요?</div><br>
-        <form action="/memberout.member" method="get">
-        <input type="text" value="${sessionScope.loginID}" id="inputId" name="userId" placeholder="ID"><br>
-        <input type="password" id="inputPw" name="userPw" placeholder="PW"><br>
-        <button id="memberout">탈퇴하기</button><br>
-        <button id="cancel" onclick="history.back()" type="button">취소하기</button>
-        </form>
-        </div>
-        <div class="lead2"></div>
+		<span class="error animated tada" id="msg"></span>
+		<form name="form1" class="box" action="/memberout.member" method="get">
+			<h4>정말 탈퇴하실 건가요?</h4>
+             <h5>내일은 뭐 먹게...</h5>
+			<div class="input password">
+                <input type="text" value="${sessionScope.loginID}" id="inputId" name="userId" placeholder="ID" autocomplete="off">
+				<input type="password" name="userPw" id="inputPw" placeholder="PW" autocomplete="off" class="form-input">
+		</div>
+			<input type="button" value="탈퇴하기" class="btn" id="memberout">
+			<input type="button" value="취소하기" class="btn" id="cancel">
+            </form>
 	</div>
-	<script>
+</div>
+
+cancel" onclick="history.back()"
+
+
+<script>
 	$("#memberout").on("submit",function(){
 		$.ajax({
 			url:"/memberout.members"
@@ -110,3 +183,11 @@
 	</script>
 </body>
 </html>
+
+
+
+	
+
+
+
+	

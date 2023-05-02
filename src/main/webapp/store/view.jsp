@@ -20,10 +20,12 @@
 				<script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 
 				<style>
+					@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');/*나눔고딕 폰트 import */
 					/* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 					* {
 						box-sizing: border-box;
 						padding: 0px;
+						font-family: 'Nanum Gothic', sans-serif;
 					}
 
 					.body {
@@ -121,16 +123,16 @@
 												<c:when test="${fn:length(imgList) > 0}">
 													<c:forEach var="i" begin="0" end="${fn:length(imgList)-1}" step="1">
 														<c:choose>
-															<c:when test="${i} == 0">
+															<c:when test="${i == 0}">
 																<div class="carousel-item active">
-																	<img src="/store/${imgList.get(i).sysName}"
+																	<img src="/store/${imgList.get(i).oriName}"
 																		class="d-block object-fit-contain" alt="..."
 																		style="height: 500px;">
 																</div>
 															</c:when>
 															<c:otherwise>
 																<div class="carousel-item">
-																	<img src="/store/${imgList.get(i).sysName}"
+																	<img src="/store/${imgList.get(i).oriName}"
 																		class="d-block object-fit-contain" alt="..."
 																		style="height: 500px;">
 																</div>
@@ -140,11 +142,11 @@
 												</c:when>
 												<c:otherwise>
 													<div class="carousel-item active">
-														<img src="/store/아비꼬1.jpg" class="d-block object-fit-contain"
+														<img src="/store/carouselimage1.jpg" class="d-block object-fit-contain"
 															alt="..." style="height: 500px;">
 													</div>
 													<div class="carousel-item">
-														<img src="/store/아비꼬2.jpg" class="d-block object-fit-contain"
+														<img src="/store/carouselimage2.jpg" class="d-block object-fit-contain"
 															alt="..." style="height: 500px;">
 													</div>
 												</c:otherwise>
@@ -165,6 +167,7 @@
 								<div class="col-12 text-end">
 									<button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점
 										수정</button>
+									<button type="button" id="btn_store_update_delete" class="nonactive">상점 삭제</button>
 									<button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
 									<button type="submit" id="btn_store_update_cancel" class="nonactive">취소</button>
 								</div>
@@ -175,14 +178,14 @@
 												<fieldset>
 													<legend>이미지 삭제</legend>
 													<div class="row">
-														<c:forEach var="i" items="imgList">
+														<c:forEach var="i" items="${imgList}">
 															<form action="/deletePhoto.store" method="get">
 																<input type="text" name="imageID" value="${i.imageID}"
 																	style="display: none;" readonly>
 																<input type="text" name="storeID" value="${dto.storeID}"
 																	style="display: none;" readonly>
 																<div class="col-8">
-																	<img src="/store/i.sysName"
+																	<img src="/store/${i.oriName}"
 																		class="w-100 object-fit-contain">
 																</div>
 																<div class="col-4">
@@ -237,7 +240,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-12 col-lg-8">
+								<div class="col-12 col-lg-6">
 									<div class="input-group">
 										<span class="input-group-text">가게 이름</span>
 										<input type="text" class="form-control" name="name" value="${dto.name}"
@@ -531,7 +534,7 @@
 															if (j++ == 0) {
 																div_carousel.addClass("active");
 															}
-															let imgSource = "/CommentReview/" + this.sysName;
+															let imgSource = "/CommentReview/" + this.oriName;
 															let img = $("<img>").attr("src", imgSource).attr("alt", imgSource).addClass("d-block").addClass("object-fit-contain").addClass("w-100").css({ "height": "500px" });
 															let img2 = $("<img>").attr("src", imgSource).attr("alt", imgSource).addClass("d-block").addClass("object-fit-contain").addClass("w-100").css({ "height": "500px" });
 
@@ -708,7 +711,7 @@
 																		let input_storeID = $("<input>").attr("type", "text").attr("name", "storeID").attr("value", "${dto.storeID}").css({ "display": "none" });
 																		let sub_col1 = $("<div>").addClass("col-8"),
 																			sub_col2 = $("<div>").addClass("col-4"),
-																			imgSource = "/CommentReview/" + this.sysName;
+																			imgSource = "/CommentReview/" + this.oriName;
 																		sub_col1_content = $("<img>").attr("src", imgSource).addClass("w-100").addClass("object-fit-contain"),
 																			sub_col2_content = $("<button>").text("삭제").attr("type", "button").addClass("btn").addClass("btn-outline-secondary");
 
@@ -835,6 +838,7 @@
 								$("#btn_store_update").click(function () {
 									$("#btn_store_update_confirm").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
 									$("#btn_store_update_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
+									$("#btn_store_update_delete").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
 									$(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
 
 									updateOn = true;
@@ -850,6 +854,11 @@
 								$("#btn_store_update_confirm").click(function () {
 									$("#updateForm").submit();
 								});
+
+								$("#btn_store_update_delete").click(function(){
+									let storeID = "<c:out value='${dto.storeID}'></c:out>";
+									location.href = "/delete.store?storeID="+storeID;
+								})
 
 								$("#btn_store_update_cancel").click(function () {
 									let storeID = "<c:out value='${dto.storeID}'></c:out>";

@@ -74,7 +74,7 @@ body, html {
 
 .box h5 {
 	font-family: 'Nanum Gothic', sans-serif;
-	font-size: 13px;
+	font-size: 15px;
 	color: #a1a4ad;
 	letter-spacing: 1.5px;
 	margin-top: -15px;
@@ -134,6 +134,7 @@ label input[type="checkbox"] {
 	left: 7.5%;
 } */
 .btn {
+	font-family: 'Nanum Gothic', sans-serif;
 	border: 0;
 	border-radius: 100px;
 	width: 340px;
@@ -304,7 +305,7 @@ label input[type="checkbox"] {
 
 </style>
 
-<body id="particles-js"></body>
+<body id="particles-js">
 <div class="animated bounceInDown">
 	<div class="container">
 		<span class="error animated tada" id="msg"></span>
@@ -334,11 +335,8 @@ label input[type="checkbox"] {
 			<input type="button" value="제출하기" class="btn" id="signupBtn">
 			<input type="button" value="" class="btn" id="kakaoBtn"> 
 			  <div id="kakaobtn2" onclick="kakaoLogin();">
-                    <a href="javascript:void(0)">
-                        
-                    </a>
+                    <a href="javascript:void(0)"></a>
                 </div>
-			
 			<input type="button" value="" class="btn" id="naverBtn">
 			<div id="naverIdLogin"></div>
 		</form>
