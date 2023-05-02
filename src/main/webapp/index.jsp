@@ -22,8 +22,6 @@
 	블로그형 글 검색 결과 -> <a href="/common/main_blogSearchResult.jsp">main_blogSearchResult.jsp</a><br>
 	검색 필터 -> <a href="/common/sort_filter.html">sort_filter.html</a><br>
 	<hr>
-	블로그형 글 리스트 -><a href="/FullReview/FullReviewList.jsp">FullReviewList.jsp</a>
-	<hr>
 	가게 정보 확인 -> <a href="/store/view.jsp">view.jsp</a>
 	<hr>
 	<p>수정 완료 > 컨트롤러 적용 예정</p>
@@ -35,6 +33,9 @@
 	<p>컨트롤러 적용 완료</p><br>
 	문의 답변 작성 -> <a href="/adminPage/consultReplyRegister.jsp">consultReplyRegister.jsp</a><br>
 	문의 글 보기 -> <a href="/adminPage/consultView.jsp">consultView.jsp</a><br>
+	블로그 리뷰 글보기 -> <a href="FullReview/FullReviewContent.jsp">FullReviewContent.jsp</a><br>
+	블로그 리뷰 리스트 -> <a href="FullReview/FullReviewList.jsp">FullReviewList.jsp</a><br>
+	블로그 리뷰 글쓰기 -> <a href="FullReview/writeFullReview.jsp">writeFullReview.jsp</a>
 	<hr>
 	가게 정보 등록 -> <a href="/store/registerForm.jsp">registerForm.jsp</a><br>
 	<br>

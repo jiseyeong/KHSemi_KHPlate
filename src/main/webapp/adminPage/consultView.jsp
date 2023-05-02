@@ -28,7 +28,6 @@
 * {
 	box-sizing: border-box;
 	padding: 0px;
-	margin-bottom: 10px;
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -44,12 +43,15 @@
 .input-group-text {
 	margin-bottom: 0px;
 }
-
-
+p {
+	color: #57b846;
+	font-size: 25px;
+	font-weight: bold;
+}
 .legend {
-color: #57b846;
-font-size: 25px;
-font-weight: bold;
+	color: #57b846;
+	font-size: 25px;
+	font-weight: bold;
 }
 
 #btn_reply {
@@ -83,42 +85,40 @@ font-weight: bold;
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
-				<fieldset style="margin-bottom:50px">
 					<div class="row">
-						<legend class="legend">고객의 소리</legend>
-            
+						<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
+						<p>고객의 소리</p>
 						<hr style="border-style:dotted; margin-bottom:25px;">
-
-					<div class="row">
-						<div class="col-12 col-lg-3">
+						</div>
+					</div>
+					<div class="row" style="margin-bottom:20px;">
+						<div class="col-12 col-lg-2" style="margin-left:auto;">
 							<div class="input-group">
 								<span class="input-group-text">카테고리</span>
 								<input type="text" value="${dto.category}" class="form-control" readonly>
 							</div>
 						</div>	
-						<div class="col-12 col-lg-3">
+						<div class="col-12 col-lg-5">
+						<div class="input-group">
+								<span class="input-group-text">제목</span>
+								<input type="text" class="form-control" value="${dto.title}" readonly> 
+						</div>
+						</div>
+						<div class="col-12 col-lg-2" style="margin-right:auto;">
 							<div class="input-group">
 								<span class="input-group-text">작성자</span>
 								<input type="text" class="form-control" value="${writer}" readonly>
 							</div>
 						</div>
-						<div class="col-12">
-							<div class="input-group">
-								<span class="input-group-text">제목</span>
-								<input type="text" class="form-control" value="${dto.title}" readonly> 
-							</div>
-						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 col-lg-3">
+						<div class="col-12 col-lg-3" style="border:1px solid black; margin-left:auto;">
 							<img src="${image}" alt="${image}" id="image" class="w-100 object-fit-contain">
 						</div>
-						<div class="col-12 col-lg-9">
+						<div class="col-12 col-lg-6" style="margin-right:auto;">
 							<div id="readEditor">${dto.body}</div>
 						</div>
 					</div>
-				</fieldset>
-
 				<c:choose>
 					<c:when test="${not empty replyDTO}">
 						<fieldset>

@@ -30,7 +30,7 @@
 }
 table{
 	text-align:center;
-	font-size:12px;
+	font-size:15px;
 }
 .body {
 	margin: auto;
