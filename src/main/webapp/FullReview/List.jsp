@@ -276,7 +276,7 @@
 		})
 		
 		$(".card").on("click",function(){
-			location.href="/FullReview/FullReviewContent.jsp";
+			location.href="/content.fullreview?reviewid="+${reviewList.reviewID};
 		})
 		
 	</script>

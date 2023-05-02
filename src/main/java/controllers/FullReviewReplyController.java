@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FullReviewReplyDAO;
+import dao.MembersDAO;
 
 @WebServlet("*.fullreviewreply")
 public class FullReviewReplyController extends HttpServlet {
@@ -50,13 +51,12 @@ public class FullReviewReplyController extends HttpServlet {
 				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
 
 				int result = frrdao.updateReply(body, reviewid);
-
+				
 				if (result == 0) {
 					System.out.println(reviewid + "댓글 수정 실패");
 				} else {
 					System.out.println(reviewid + "댓글 수정 성공");
 				}
-
 			}
 			
 

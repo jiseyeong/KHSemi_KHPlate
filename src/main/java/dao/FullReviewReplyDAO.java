@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.FullReviewReplyDTO;
+import dto.ReplyWithUserIdDTO;
 
 public class FullReviewReplyDAO {
 	private static FullReviewReplyDAO instance = null;
@@ -64,22 +65,22 @@ public class FullReviewReplyDAO {
 	}
 
 
-	public List<FullReviewReplyDTO> listReplyByPa_seq(int reviewid) throws Exception {
-		String sql = "select * from FullReviewReply where reviewid = ?";
+	public List<ReplyWithUserIdDTO> listReplyByreviewid(int reviewid) throws Exception {
+		String sql = "select * from (select m.userid, f.commentid, f.body, f.userno, f.reviewid from members m, fullreviewreply f where m.userno=f.userno) where reviewid = ?";
 		try (Connection con = this.getConnection(); 
-				PreparedStatement ppst = con.prepareStatement(sql);) {
-			ppst.setInt(1, reviewid);
-
-			try (ResultSet rs = ppst.executeQuery();) {
-				List<FullReviewReplyDTO> result = new ArrayList<>();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+					pstat.setInt(1, reviewid);
+				try(ResultSet rs = pstat.executeQuery();) {
+				List<ReplyWithUserIdDTO> result = new ArrayList<>();
 				while (rs.next()) {
-					int rscommentid =rs.getInt("commentid");
-					String rsbody = rs.getString("body");
-					int rsuserno =rs.getInt("userno");
-					int rsreviewid=rs.getInt("reviewid");
 					
-					FullReviewReplyDTO dto = new FullReviewReplyDTO(rscommentid,rsbody,rsuserno,rsreviewid);
-					result.add(dto);
+					ReplyWithUserIdDTO rdto = new ReplyWithUserIdDTO();
+					rdto.setUserid(rs.getString("userid"));
+					rdto.setCommentid(rs.getInt("commentid"));
+					rdto.setBody(rs.getString("body"));
+					rdto.setUserno(rs.getInt("userno"));
+					rdto.setReviewid(rs.getInt("reviewid"));
+					result.add(rdto);
 				}
 				return result;
 			}
@@ -87,6 +88,8 @@ public class FullReviewReplyDAO {
 	}
 	
 
+	
+	
 
 
 
