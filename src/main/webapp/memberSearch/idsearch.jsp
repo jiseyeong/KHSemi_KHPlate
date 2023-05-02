@@ -17,6 +17,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet"
 	href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -302,196 +304,334 @@ h6 span{
 
 
 <body>
-	<form id="frm" action="/idsearch.members" method="post">
-	  <div class="section">
-		<div class="container">
-		  <div class="row full-height justify-content-center">
-			<div class="col-12 text-center align-self-center py-5">
-			  <div class="section pb-5 pt-5 pt-sm-2 text-center">
-				<h6 class="mb-0 pb-3"><span>아이디 찾기</span><span>비밀번호 찾기</span></h6>
-					  <input class="checkbox" type="checkbox" id="reg-log" name="reg-log">
-					  <label for="reg-log"></label>
-				<div class="card-3d-wrap mx-auto">
-				  <div class="card-3d-wrapper">
-					<div class="card-front">
-					  <div class="center-wrap">
-						<div class="section text-center">
-						<form action="" method="post">
-						  <h4 class="mb-4 pb-3">아이디 찾기</h4>
-						  <div class="form-group">
-							<input type="text" name="name" class="form-style" id="name" placeholder="이름 입력" autocomplete="off">
-						  </div>  
-						  
-						  <div class="form-group mt-2">
-								  <div class="searchClass">
-							<select id="class" name="classes">
-								<option disabled="disabled" selected="selected">Class</option>
-								<option value="A">A</option>
-								<option value="B">B</option>
-								<option value="C">C</option>
-								<option value="D">D</option>
-								<option value="E">E</option>
-								<option value="F">F</option>
-							</select>
-							<div class="select-dropdown"></div>
-						</div>
-						  </div> 
 
-						  <div class="form-group mt-2">
-							<input type="text" id="email" name="email" class="form-style" placeholder="이메일 입력" autocomplete="off">
-						  </div>
-						  <a href="#" class="btn mt-4">제출하기</a>
-										<p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
-							</div>
-						  </div>
-						</div>
-					</form>
-					
-					
-					<div class="card-back">
-					  <div class="center-wrap">
-						<div class="section text-center">
-						  <h4 class="mb-4 pb-3">비밀번호 찾기</h4>
-						  <div class="form-group">
-							<input type="text" name="name" class="form-style" id="name" placeholder="이름 입력" autocomplete="off"> 
-						  </div>  
-						  <div class="form-group mt-2">
-							<input type="text" id="id" name="id" class="form-style" placeholder="아이디 입력" autocomplete="off">
-						  </div>
-						  <div class="form-group mt-2">
-							<input type="text" id="email" name="email" class="form-style" placeholder="이메일 입력" autocomplete="off">
-						  </div>
-						  <a href="#" class="btn mt-4">제출하기</a>
-							</div>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div>
-				</div>
-			  </div>
-		  </div>
-	  </div>
+<c:if test="${result!=null}">
+<script>
+	alert("비밀번호 변경완료하였습니다");
+	location.href="/page/main.jsp"
+</script>
+</c:if>
 
-	
+	<form id="frm" method="post" onsubmit="return false;">
+		<div class="section">
+			<div class="container">
+				<div class="row full-height justify-content-center">
+					<div class="col-12 text-center align-self-center py-5">
+						<div class="section pb-5 pt-5 pt-sm-2 text-center">
+							<h6 class="mb-0 pb-3">
+								<span>아이디 찾기</span><span>비밀번호 찾기</span>
+							</h6>
+							<input class="checkbox" type="checkbox" id="reg-log"
+								name="reg-log"> <label for="reg-log"></label>
+							<div class="card-3d-wrap mx-auto">
+								<div class="card-3d-wrapper">
+									<div class="card-front">
+										<div class="center-wrap">
+											<div class="section text-center">
+												<!-- 						<form action="" method="post"> -->
+												<h4 class="mb-4 pb-3">아이디 찾기</h4>
+												
+												
+												
+													<!-- 아이디 찾기 -->
+												<div class="form-group">
+													<input type="text" name="name" class="form-style" id="name"
+														placeholder="이름 입력" autocomplete="off">
+												</div>
+
+												<div class="form-group mt-2">
+													<div class="searchClass">
+														<select id="class" name="classes">
+															<option disabled="disabled" selected="selected">Class</option>
+															<option value="A">A</option>
+															<option value="B">B</option>
+															<option value="C">C</option>
+															<option value="D">D</option>
+															<option value="E">E</option>
+															<option value="F">F</option>
+														</select>
+														<div class="select-dropdown"></div>
+													</div>
+												</div>
+													
+												<div class="form-group mt-2">
+													<input type="text" id="email" name="email"
+														class="form-style" placeholder="이메일 입력" autocomplete="off">
+												</div>
+												<input type="button" value=제출하기 class="btn mt-4"
+													id="idsearch">
+													
+													
+													
+													
+													
+													
+													
+								<!-- 비밀번호 찾기 -->
+													
+												<p class="mb-0 mt-4 text-center">
+													<a href="#0" class="link">Forgot your password?</a>
+												</p>
+											</div>
+										</div>
+									</div>
+
+
+
+									<div class="card-back">
+										<div class="center-wrap">
+											<div class="section text-center">
+												<h4 class="mb-4 pb-3">비밀번호 찾기</h4>
+												<div class="form-group">
+													<input type="text" name="pwname" class="form-style" id="pwname"
+														placeholder="이름 입력" autocomplete="off">
+												</div>
+												<div class="form-group mt-2">
+													<input type="text" id="pwid" name="pwid" class="form-style"
+														placeholder="아이디 입력" autocomplete="off">
+												</div>
+												<div class="form-group mt-2">
+													<input type="text" id="pwemail" name="pwemail"
+														class="form-style" placeholder="이메일 입력" autocomplete="off">
+												</div>
+												<input type="button" value=제출하기 id="passwordcheck"
+													class="btn mt-4">
+											</div>
+										</div>
+									</div>
 	</form>
 
 
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 
-	
+
+	<!-- 	</form> -->
+
+
+
+
 
 
 	<script>
-     
-        $("#frm").on(
-            "submit",
-            function () {
+		$("#idsearch").on("click", function() {
 
-                //입력 형식 제한
-                var regexName = /^[가-힣]+$/;
-                var regexEmail = /.+@.+\..+/;
-
-
-                var name = $("#name").val();
-                var email = $("#email").val();
-
-                if (name == "" || class.checked! == true || email == "") { //필수항목 입력 여부 체크
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "필수 항목을 모두 입력해주세요."
-                    });
-                    return false;
-                }
-
-
-                //형식 제한 준수 여부 체크
-
-                if (!regexName.test(name)) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "NAME 형식 오류",
-                        text: "한글만 입력 가능",
-                    });
-                    return false;
-                }
-        
-                
-                if (!regexEmail.test(email)) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "EMAIL 형식 오류",
-                        text: "ID@address 형식으로 입력",
-                    });
-                    return false;
-                }
-            });
-    </script>
-
-
-
-
-
-
-  <script>
-
-	$("#frm").on(
-		"submit",
-		function () {
 			//입력 형식 제한
-			var regexID = /^[a-z0-9_]{7,13}$/;
-			var regexPW = /^[A-Za-z0-9]{7,13}$/;
 			var regexName = /^[가-힣]+$/;
 			var regexEmail = /.+@.+\..+/;
 
-
-			var id = $("#id").val();
-			var pw1 = $("#pw1").val();
 			var name = $("#name").val();
 			var email = $("#email").val();
 
-
-
-			if (id == "" || name == ""
-				|| email == "") { //필수항목 입력 여부 체크
+			if (name == "" || email == "") { //필수항목 입력 여부 체크
 				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "필수 항목을 모두 입력해주세요."
+					icon : "error",
+					title : "Oops...",
+					text : "필수 항목을 모두 입력해주세요."
 				});
 				return false;
 			}
-
-
 
 			//형식 제한 준수 여부 체크
-			if (!regexID.test(id)) {
-				Swal.fire({
-					icon: "error",
-					title: "ID 형식 오류",
-					text: "7-13자의 알파벳 소문자, 숫자, _",
-				});
-				return false;
-			}
 
 			if (!regexName.test(name)) {
 				Swal.fire({
-					icon: "error",
-					title: "NAME 형식 오류",
-					text: "한글만 입력 가능",
+					icon : "error",
+					title : "NAME 형식 오류",
+					text : "한글만 입력 가능"
 				});
 				return false;
 			}
+
 			if (!regexEmail.test(email)) {
 				Swal.fire({
-					icon: "error",
-					title: "EMAIL 형식 오류",
-					text: "ID@address 형식으로 입력",
+					icon : "error",
+					title : "EMAIL 형식 오류",
+					text : "ID@address 형식으로 입력"
 				});
 				return false;
 			}
+
+			$("#frm").prop("action", "/idsearch.members");
+			$("#frm").prop("onsubmit", true);
+
+			$("#frm").submit();
 		});
-</script>
+
+		
+		
+		
+		
+		
+		$("#passwordcheck").on("click", function() {
+
+			//입력 형식 제한
+			var regexID = /^[a-z0-9_]{7,13}$/;
+			var regexName = /^[가-힣]+$/;
+			var regexEmail = /.+@.+\..+/;
+
+			var name = $("#pwname").val();
+			var email = $("#pwemail").val();
+			var id = $("#pwid").val();
+			
+
+			if (name == "" || email == "" || id == "") { //필수항목 입력 여부 체크
+				Swal.fire({
+					icon : "error",
+					title : "Oops...",
+					text : "필수 항목을 모두 입력해주세요."
+				});
+
+				return false;
+			}
+
+			//형식 제한 준수 여부 체크
+
+			if (!regexName.test(name)) {
+				Swal.fire({
+					icon : "error",
+					title : "NAME 형식 오류",
+					text : "한글만 입력 가능"
+				});
+				return false;
+			}
+
+			if (!regexEmail.test(email)) {
+				Swal.fire({
+					icon : "error",
+					title : "EMAIL 형식 오류",
+					text : "ID@address 형식으로 입력"
+				});
+				return false;
+			}
+
+			if (!regexID.test(id)) {
+				Swal.fire({
+					icon : "error",
+					title : "ID 형식 오류",
+					text : "7-13자의 알파벳 소문자, 숫자, _",
+				});
+				return false;
+			}
+
+			$("#frm").prop("action", "/pwsearch.members");
+			$("#frm").prop("onsubmit", true);
+
+			$("#frm").submit();
+
+		});
+		
+		</script>
+
+<!-- 		//         $("#frm").on( -->
+<!-- 		//             "submit", -->
+<!-- 		//             function () { -->
+
+<!-- 		//                 //입력 형식 제한 -->
+<!-- 		//                 var regexName = /^[가-힣]+$/; -->
+<!-- 		//                 var regexEmail = /.+@.+\..+/; -->
+
+<!-- 		//                 var name = $("#name").val(); -->
+<!-- 		//                 var email = $("#email").val(); -->
+
+<!-- 		//                 if (name == "" || email == ""  ) { //필수항목 입력 여부 체크 -->
+<!-- 		//                     Swal.fire({ -->
+<!-- 		//                         icon: "error", -->
+<!-- 		//                         title: "Oops...", -->
+<!-- 		//                         text: "필수 항목을 모두 입력해주세요." -->
+<!-- 		//                     }); -->
+<!-- 		//                     return false; -->
+<!-- 		//                 } -->
+
+<!-- 		//                 //형식 제한 준수 여부 체크 -->
+
+<!-- 		//                 if (!regexName.test(name)) { -->
+<!-- 		//                     Swal.fire({ -->
+<!-- 		//                         icon: "error", -->
+<!-- 		//                         title: "NAME 형식 오류", -->
+<!-- 		//                         text: "한글만 입력 가능" -->
+<!-- 		//                     }); -->
+<!-- 		//                     return false; -->
+<!-- 		//                 } -->
+
+<!-- 		//                 if (!regexEmail.test(email)) { -->
+<!-- 		//                     Swal.fire({ -->
+<!-- 		//                         icon: "error", -->
+<!-- 		//                         title: "EMAIL 형식 오류", -->
+<!-- 		//                         text: "ID@address 형식으로 입력" -->
+<!-- 		//                     }); -->
+<!-- 		//                     return false; -->
+<!-- 		//                 } -->
+<!-- 		//             }); -->
+
+		
+
+
+
+
+
+
+	<!-- // <script>	$("#frm").on( -->
+	<!-- // 		"submit", -->
+	<!-- // 		function () { -->
+	<!-- // 			//입력 형식 제한 -->
+	<!-- // 			var regexID = /^[a-z0-9_]{7,13}$/; -->
+	<!-- // 			var regexPW = /^[A-Za-z0-9]{7,13}$/; -->
+	<!-- // 			var regexName = /^[가-힣]+$/; -->
+	<!-- // 			var regexEmail = /.+@.+\..+/; -->
+
+
+	<!-- // 			var id = $("#id").val(); -->
+	<!-- // 			var pw1 = $("#pw1").val(); -->
+	<!-- // 			var name = $("#name").val(); -->
+	<!-- // 			var email = $("#email").val(); -->
+
+
+
+	<!-- // 			if (id == "" || name == "" -->
+	<!-- // 				|| email == "") { //필수항목 입력 여부 체크 -->
+	<!-- // 				Swal.fire({ -->
+	<!-- // 					icon: "error", -->
+	<!-- // 					title: "Oops...", -->
+	<!-- // 					text: "필수 항목을 모두 입력해주세요." -->
+	<!-- // 				}); -->
+	<!-- // 				return false; -->
+	<!-- // 			} -->
+
+
+
+	<!-- // 			//형식 제한 준수 여부 체크 -->
+	<!-- // 			if (!regexID.test(id)) { -->
+	<!-- // 				Swal.fire({ -->
+	<!-- // 					icon: "error", -->
+	<!-- // 					title: "ID 형식 오류", -->
+	<!-- // 					text: "7-13자의 알파벳 소문자, 숫자, _", -->
+	<!-- // 				}); -->
+	<!-- // 				return false; -->
+	<!-- // 			} -->
+
+	<!-- // 			if (!regexName.test(name)) { -->
+	<!-- // 				Swal.fire({ -->
+	<!-- // 					icon: "error", -->
+	<!-- // 					title: "NAME 형식 오류", -->
+	<!-- // 					text: "한글만 입력 가능", -->
+	<!-- // 				}); -->
+	<!-- // 				return false; -->
+	<!-- // 			} -->
+	<!-- // 			if (!regexEmail.test(email)) { -->
+	<!-- // 				Swal.fire({ -->
+	<!-- // 					icon: "error", -->
+	<!-- // 					title: "EMAIL 형식 오류", -->
+	<!-- // 					text: "ID@address 형식으로 입력", -->
+	<!-- // 				}); -->
+	<!-- // 				return false; -->
+	<!-- // 			} -->
+	<!-- // 		}); -->
 
 </body>
 
