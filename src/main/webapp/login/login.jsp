@@ -74,7 +74,7 @@ body, html {
 
 .box h5 {
 	font-family: 'Nanum Gothic', sans-serif;
-	font-size: 13px;
+	font-size: 15px;
 	color: #a1a4ad;
 	letter-spacing: 1.5px;
 	margin-top: -15px;
@@ -134,6 +134,7 @@ label input[type="checkbox"] {
 	left: 7.5%;
 } */
 .btn {
+	font-family: 'Nanum Gothic', sans-serif;
 	border: 0;
 	border-radius: 100px;
 	width: 340px;
@@ -189,15 +190,19 @@ label input[type="checkbox"] {
 .forgetidpw {
 	position: absolute;
 	text-align: center;
-	top: 93%;
+	top: 94%;
 	left: 20%;
+	cursor:pointer;
+	font-size: 13px;
 }
 
 .dnthave {
 	position: absolute;
 	text-align: center;
-	top: 93%;
+	top: 94%;
 	left: 60%;
+	cursor:pointer;
+	font-size: 13px;
 }
 
 [type=checkbox]:checked+span:before /*style its checked state  */ {
@@ -250,7 +255,7 @@ label input[type="checkbox"] {
 .eyes {
 	cursor: pointer;
 	margin-left: 330px;
-	margin-top: -63px;
+	margin-top: -65px;
 	position: absolute;
 }
 
@@ -300,7 +305,7 @@ label input[type="checkbox"] {
 
 </style>
 
-<body id="particles-js"></body>
+<body id="particles-js">
 <div class="animated bounceInDown">
 	<div class="container">
 		<span class="error animated tada" id="msg"></span>
@@ -330,29 +335,32 @@ label input[type="checkbox"] {
 			<input type="button" value="제출하기" class="btn" id="signupBtn">
 			<input type="button" value="" class="btn" id="kakaoBtn"> 
 			  <div id="kakaobtn2" onclick="kakaoLogin();">
-                    <a href="javascript:void(0)">
-                        
-                    </a>
+                    <a href="javascript:void(0)"></a>
                 </div>
-			
 			<input type="button" value="" class="btn" id="naverBtn">
 			<div id="naverIdLogin"></div>
 		</form>
-		<a href="/memberSearch/idpwsearch.jsp" class="forgetidpw"> 아이디/비밀번호 찾기</a>
-		<a href="/joinform/joinform.jsp" class="dnthave">회원가입하기</a>
+		<div class="forgetidpw"> 아이디/비밀번호 찾기 </div>
+		<div class="dnthave">회원가입하기</div>
 	</div>
 </div>
 
 
 <script>
 
-$(".forgetpass").on("click", function() {
+$(".forgetidpw").on("click", function() {
 	window.open("/memberSearch/idsearch.jsp","","width=480px,height=750px");
 	
 })
 
 
 	$("#signup").on("click", function() {
+	
+	location.href = "/joinform/joinform.jsp";
+})
+
+
+	$(".dnthave").on("click", function() {
 	
 	location.href = "/joinform/joinform.jsp";
 })

@@ -17,19 +17,18 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet"
 	href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900">
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-<title>아이디/비번 찾기</title>
+<title>비밀번호 재발급</title>
 </head>
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-
-
 body{
- font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
@@ -45,7 +44,7 @@ a:hover {
   text-decoration: none;
 }
 .link {
-  color: #ffffff;
+  color: #c4c3ca;
 }
 .link:hover {
   color: #ffeba7;
@@ -58,12 +57,7 @@ p {
 h4 {
   font-weight: 600;
 }
-h6 span{
-	color: #ffffff;
-  padding: 0 20px;
-  text-transform: uppercase;
-  font-weight: 700;
-}
+
 .section{
   position: relative;
   width: 100%;
@@ -72,46 +66,6 @@ h6 span{
 .full-height{
   min-height: 100vh;
 }
-[type="checkbox"]:checked,
-[type="checkbox"]:not(:checked){
-  position: absolute;
-  left: -9999px;
-}
-.checkbox:checked + label,
-.checkbox:not(:checked) + label{
-  position: relative;
-  display: block;
-  text-align: center;
-  width: 60px;
-  height: 16px;
-  border-radius: 8px;
-  padding: 0;
-  margin: 10px auto;
-  cursor: pointer;
-  background-color: #ffeba7;
-}
-.checkbox:checked + label:before,
-.checkbox:not(:checked) + label:before{
-  position: absolute;
-  display: block;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  color: #ffeba7;
-  background-color: #57b846;
-  font-family: 'unicons';
-  content: '\eb4f';
-  z-index: 20;
-  top: -10px;
-  left: -10px;
-  line-height: 36px;
-  text-align: center;
-  font-size: 24px;
-  transition: all 0.5s ease;
-}
-.checkbox:checked + label:before {
-  transform: translateX(44px) rotate(-270deg);
-}
 
 
 .card-3d-wrap {
@@ -119,8 +73,6 @@ h6 span{
   width: 440px;
   max-width: 100%;
   height: 400px;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
   perspective: 800px;
   margin-top: 60px;
 }
@@ -130,11 +82,9 @@ h6 span{
   position:absolute;    
   top: 0;
   left: 0;  
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
   transition: all 600ms ease-out; 
 }
-.card-front, .card-back {
+.card {
   width: 100%;
   height: 100%;
   background-color: #ffffff;
@@ -145,19 +95,12 @@ h6 span{
   border-radius: 6px;
   left: 0;
   top: 0;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-.card-back {
-  transform: rotateY(180deg);
-}
-.checkbox:checked ~ .card-3d-wrap .card-3d-wrapper {
-  transform: rotateY(180deg);
-}
+
 .center-wrap{
   position: absolute;
   width: 100%;
@@ -199,18 +142,6 @@ h6 span{
   border: none;
   outline: none;
   box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
-}
-.input-icon {
-  position: absolute;
-  top: 0;
-  left: 18px;
-  height: 48px;
-  font-size: 24px;
-  line-height: 48px;
-  text-align: left;
-  color: #ffeba7;
-  -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
 }
 
 .form-group input:-ms-input-placeholder  {
@@ -298,70 +229,42 @@ h6 span{
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
+#pwCheck{
+	margin-top:25px;
+
+	 height:35px;
+}
+
+
+
+
 </style>
 
 
 <body>
-	<form id="frm" action="/idsearch.members" method="post">
+	<form id="frm" action="/newpwset.members" method="post">
 	  <div class="section">
 		<div class="container">
 		  <div class="row full-height justify-content-center">
 			<div class="col-12 text-center align-self-center py-5">
 			  <div class="section pb-5 pt-5 pt-sm-2 text-center">
-				<h6 class="mb-0 pb-3"><span>아이디 찾기</span><span>비밀번호 찾기</span></h6>
-					  <input class="checkbox" type="checkbox" id="reg-log" name="reg-log">
-					  <label for="reg-log"></label>
 				<div class="card-3d-wrap mx-auto">
 				  <div class="card-3d-wrapper">
-					<div class="card-front">
+					<div class="card">
 					  <div class="center-wrap">
 						<div class="section text-center">
-						<form action="" method="post">
-						  <h4 class="mb-4 pb-3">아이디 찾기</h4>
+						  <h4 class="mb-4 pb-3">비밀번호 재발급</h4>
 						  <div class="form-group">
-							<input type="text" name="name" class="form-style" id="name" placeholder="이름 입력" autocomplete="off">
+						  	<input type="text" name="userid" style="display:none" value=${userid} >
+							<input type="password" name="pw1" class="form-style" id="pw1" placeholder="새로운 비밀번호 입력" autocomplete="off"> 
 						  </div>  
+						  <div class="form-group mt-2">
+							<input type="password" id="pw2" name="pw2" class="form-style" placeholder="비밀번호 재입력" autocomplete="off">
+							<div id=pwCheck></div>
+						  </div>
 						  
-						  <div class="form-group mt-2">
-								  <div class="searchClass">
-							<select id="class" name="classes">
-								<option disabled="disabled" selected="selected">Class</option>
-								<option value="A">A</option>
-								<option value="B">B</option>
-								<option value="C">C</option>
-								<option value="D">D</option>
-								<option value="E">E</option>
-								<option value="F">F</option>
-							</select>
-							<div class="select-dropdown"></div>
-						</div>
-						  </div> 
+						  <input type="submit" value = 제출하기 class="btn mt-4 value=제출하기 id="passwordcheck">
 
-						  <div class="form-group mt-2">
-							<input type="text" id="email" name="email" class="form-style" placeholder="이메일 입력" autocomplete="off">
-						  </div>
-						  <a href="#" class="btn mt-4">제출하기</a>
-										<p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p>
-							</div>
-						  </div>
-						</div>
-					</form>
-					
-					
-					<div class="card-back">
-					  <div class="center-wrap">
-						<div class="section text-center">
-						  <h4 class="mb-4 pb-3">비밀번호 찾기</h4>
-						  <div class="form-group">
-							<input type="text" name="name" class="form-style" id="name" placeholder="이름 입력" autocomplete="off"> 
-						  </div>  
-						  <div class="form-group mt-2">
-							<input type="text" id="id" name="id" class="form-style" placeholder="아이디 입력" autocomplete="off">
-						  </div>
-						  <div class="form-group mt-2">
-							<input type="text" id="email" name="email" class="form-style" placeholder="이메일 입력" autocomplete="off">
-						  </div>
-						  <a href="#" class="btn mt-4">제출하기</a>
 							</div>
 						  </div>
 						</div>
@@ -380,26 +283,48 @@ h6 span{
 
 	
 
+    <script>
 
-	<script>
-     
+
+        $("#pw2").on(
+            "keyup",
+            function () { //비밀번호 일치여부 표시
+                if ($("#pw2").val() == $("#pw1").val()) {
+                    $("#pwCheck").html("비밀번호가 일치합니다 :)").css("color",
+                        "dodgerblue");
+                } else {
+                    $("#pwCheck").html("비밀번호를 확인하세요 :(").css("color",
+                        "red", font - size);
+                }
+            });
+
+
         $("#frm").on(
             "submit",
             function () {
-
                 //입력 형식 제한
-                var regexName = /^[가-힣]+$/;
-                var regexEmail = /.+@.+\..+/;
+				
+					
+                var regexPW = /^[A-Za-z0-9]{7,13}$/;
 
 
-                var name = $("#name").val();
-                var email = $("#email").val();
+                var pw1 = $("#pw1").val();
+                var pw2 = $("#pw2").val();
 
-                if (name == "" || class.checked! == true || email == "") { //필수항목 입력 여부 체크
+
+                if (pw2 == "") { //필수항목 입력 여부 체크
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "필수 항목을 모두 입력해주세요."
+                        text: "비밀번호를 입력해주세요."
+                    });
+                    return false;
+                }
+                if (pw1 != pw2) { //패스워드 일치 여부 체크
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "패스워드를 다시 확인해주세요"
                     });
                     return false;
                 }
@@ -407,91 +332,17 @@ h6 span{
 
                 //형식 제한 준수 여부 체크
 
-                if (!regexName.test(name)) {
+
+                if (!regexPW.test(pw1)) {
                     Swal.fire({
                         icon: "error",
-                        title: "NAME 형식 오류",
-                        text: "한글만 입력 가능",
+                        title: "Password 형식 오류",
+                        text: "7-13자의 알파벳 대소문자, 숫자",
                     });
                     return false;
                 }
-        
-                
-                if (!regexEmail.test(email)) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "EMAIL 형식 오류",
-                        text: "ID@address 형식으로 입력",
-                    });
-                    return false;
-                }
-            });
+            })
     </script>
-
-
-
-
-
-
-  <script>
-
-	$("#frm").on(
-		"submit",
-		function () {
-			//입력 형식 제한
-			var regexID = /^[a-z0-9_]{7,13}$/;
-			var regexPW = /^[A-Za-z0-9]{7,13}$/;
-			var regexName = /^[가-힣]+$/;
-			var regexEmail = /.+@.+\..+/;
-
-
-			var id = $("#id").val();
-			var pw1 = $("#pw1").val();
-			var name = $("#name").val();
-			var email = $("#email").val();
-
-
-
-			if (id == "" || name == ""
-				|| email == "") { //필수항목 입력 여부 체크
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "필수 항목을 모두 입력해주세요."
-				});
-				return false;
-			}
-
-
-
-			//형식 제한 준수 여부 체크
-			if (!regexID.test(id)) {
-				Swal.fire({
-					icon: "error",
-					title: "ID 형식 오류",
-					text: "7-13자의 알파벳 소문자, 숫자, _",
-				});
-				return false;
-			}
-
-			if (!regexName.test(name)) {
-				Swal.fire({
-					icon: "error",
-					title: "NAME 형식 오류",
-					text: "한글만 입력 가능",
-				});
-				return false;
-			}
-			if (!regexEmail.test(email)) {
-				Swal.fire({
-					icon: "error",
-					title: "EMAIL 형식 오류",
-					text: "ID@address 형식으로 입력",
-				});
-				return false;
-			}
-		});
-</script>
 
 </body>
 

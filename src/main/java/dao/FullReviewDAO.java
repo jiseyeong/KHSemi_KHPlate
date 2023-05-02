@@ -34,7 +34,7 @@ public class FullReviewDAO {
 	}
 	
 	public int writeFullReview(String title,String reviewbody, int score, int storeId, int userNo) throws Exception {
-		String sql = "insert into FullReview values (fullreview_reviewid.nexval,?,?,?,?,sysdate,?)";
+		String sql = "insert into FullReview values (fullreview_reviewid_seq.nextval,?,?,?,?,sysdate,?)";
 		try(Connection con = this.getConnection();
 		PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1, reviewbody);
@@ -58,14 +58,15 @@ public class FullReviewDAO {
 		}
 	}
 	
-	public int update(String title, String reviewbody, int score,int reviewId) throws Exception {
-		String sql = "update fullreview set title=?, reviewbody=?, score=? where reviewid = ?";
+	public int update(String title, String reviewbody, int score, int storeid, int reviewId) throws Exception {
+		String sql = "update fullreview set title=?, reviewbody=?, score=? ,storeid=? where reviewid = ?";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 		pstat.setString(1, title);
 		pstat.setString(2, reviewbody);
 		pstat.setInt(3, score);
-		pstat.setInt(4, reviewId);
+		pstat.setInt(4, storeid);
+		pstat.setInt(5, reviewId);
 		int result = pstat.executeUpdate();
 		return result;
 		}
@@ -236,8 +237,11 @@ public class FullReviewDAO {
 		try (Connection con = this.getConnection(); 
 				PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setInt(1, reviewid);
+			FullReviewDTO result = new FullReviewDTO();
 			try (ResultSet rs = pstat.executeQuery()) {
-				FullReviewDTO result = new FullReviewDTO();
+				rs.next();
+				
+				String title = rs.getString("title");
 				int rsreviewid = rs.getInt("reviewid");
 				String rsreviewbody = rs.getString("reviewbody");
 				int rsscore = rs.getInt("score");
@@ -245,8 +249,7 @@ public class FullReviewDAO {
 				int rsuserno = rs.getInt("userno");
 				Timestamp writedate = rs.getTimestamp("writedate");
 				
-				rs.next();
-				
+				result.setTitle(title);
 				result.setReviewID(rsreviewid);
 				result.setReviewBody(rsreviewbody);
 				result.setScore(rsscore);

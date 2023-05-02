@@ -51,11 +51,13 @@ public class StoreController extends HttpServlet {
 				//풀리뷰 추가되면 풀리뷰도 포함해서
 				int sum = 0;
 				int cnt = commentList.size();
-				for(CommentReviewDTO i : commentList) {
-					sum += i.getScore();
+				if(cnt != 0) {
+					for(CommentReviewDTO i : commentList) {
+						sum += i.getScore();
+					}
+					StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
+					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
 				}
-				StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
-				StoreDAO.getInstance().updateReviewCount(cnt, storeID);
 				
 				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);	
 				ArrayList<String> userIDList = new ArrayList<>();
@@ -126,7 +128,7 @@ public class StoreController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				
 				String realPath = request.getServletContext().getRealPath("store");
-				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getSysName());
+				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getOriName());
 				if(realPathFile.delete()) {
 					int result = PhotoDAO.getInstance().delete(imageID);
 				}
@@ -172,12 +174,14 @@ public class StoreController extends HttpServlet {
 				
 				String realPath = request.getServletContext().getRealPath("store");
 				for(PhotoDTO i : PhotoDAO.getInstance().selectByStoreID(storeID)) {
-					File realPathFile = new File(realPath +"/"+ i.getSysName());
+					File realPathFile = new File(realPath +"/"+ i.getOriName());
 					realPathFile.delete();
 				}
+				PhotoDAO.getInstance().deleteByStoreID(storeID);
 				int result = StoreDAO.getInstance().delete(storeID);
 				
 				//검색 결과 리스트창 등으로 넘길 것.
+				response.sendRedirect("/common/main_storeSearchResult.jsp");
 			}else if(cmd.equals("/getMainPhoto.store")) {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				ArrayList<PhotoDTO> list = PhotoDAO.getInstance().selectByStoreID(storeID);
