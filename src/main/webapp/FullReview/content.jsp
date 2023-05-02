@@ -9,6 +9,14 @@
 <title>리뷰 게시판</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+
+
+* {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
 .title {
 	width: 100%;
 }

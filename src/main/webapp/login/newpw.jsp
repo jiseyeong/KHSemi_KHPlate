@@ -292,7 +292,7 @@ h6 {
 		padding-top: 300px;
 		background-position: left center;
 	}
-	g
+	
   .card-2 .card-body {
 		display: block;
 		padding: 60px 50px;
@@ -304,7 +304,6 @@ h6 {
 	<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
-				<div class="card-heading"></div>
 				<div class="card-body">
 					
 					
@@ -354,9 +353,6 @@ h6 {
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<!-- Vendor JS-->
 	<script src="vendor/select2/select2.min.js"></script>
-	<script src="vendor/datepicker/moment.min.js"></script>
-	<script src="vendor/datepicker/daterangepicker.js"></script>
-
 	<!-- Main JS-->
 	<script src="js/global.js"></script>
 

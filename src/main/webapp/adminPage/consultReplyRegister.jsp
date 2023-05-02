@@ -48,21 +48,22 @@
 p{
 color: #57b846;
 font-size: 25px;
-font-weight: bold;
+font-weight: bolder;
 }
 
 #submitBtn {
-	width: 150px;
-	height: 50px;
+	width: 100px;
+	height: 40px;
 	background-color: #57b846;
 	border:  #57b846;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
 	margin-top: 50px;
-	font-size: 20px;
+	font-size: 14px;
   	margin-left: auto; 
 	margin-right:auto;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
 
 }
 #readEditor{

@@ -39,9 +39,9 @@
 }
 
 /* 하단부터 메인부분 스타일 작성 요망 */
-p{font-weight:bold; font-size:25px; color:#57b846;}
-.row>div>select{font-size:12px;}
-.row>div>input{font-size:12px;}
+p{font-weight:bolder; font-size:25px; color:#57b846;}
+.row>div>select{font-size:13px;}
+.row>div>input{font-size:13px;}
 .writeBody>div{
 	margin-left:auto;
 	margin-right:auto;
