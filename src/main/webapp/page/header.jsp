@@ -74,6 +74,7 @@
    font-family: 'Nanum Gothic', sans-serif;
 font-weight: bold;
 font-size: 18px;
+color: #57b846;
   width: 150px;
   height: 35px;
   left: 25%;
@@ -102,7 +103,7 @@ font-family: 'Nanum Gothic', sans-serif;
 
         #searchBox {
             height: 45px;
-            width: 65%;
+            width: 75%;
             font-size: 13px;
             position:relative;
             top:-1px;
@@ -115,7 +116,7 @@ font-family: 'Nanum Gothic', sans-serif;
             top:-3px;
             height: 30px;
             width: 30px;
-            left: 120px;
+            left: 30px;
             background-color: #ffffff;
             border: 1px solid #ffffff;
             cursor: pointer;

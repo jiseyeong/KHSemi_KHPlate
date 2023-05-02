@@ -49,21 +49,23 @@
 .legend {
 color: #57b846;
 font-size: 25px;
-font-weight: bold;
+font-weight: bolder;
 }
 
 #btn_reply {
-	width: 150px;
-	height: 50px;
+	width: 100px;
+	height: 40px;
 	background-color: #57b846;
 	border:  #57b846;
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
 	margin-top: 50px;
-	font-size: 20px;
-	margin-left: auto; 
+	font-size: 14px;
+  	margin-left: auto; 
 	margin-right:auto;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
+
 
 }
 /* 하단부터 메인부분 스타일 작성 요망 */

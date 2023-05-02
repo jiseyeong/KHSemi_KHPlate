@@ -27,17 +27,12 @@
 	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<!-- 구글 폰트 api -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&family=Roboto&display=swap"
-	rel="stylesheet">
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 * {
 	box-sizing: border-box;
-	font-family: 'Roboto', sans-serif;
+	 font-family: 'Nanum Gothic', sans-serif;
 }
 
 hr {
@@ -203,8 +198,6 @@ hr {
 	justify-content: center;
 	align-items: center;
 }
-
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
 :root {
 	box-sizing: border-box;
