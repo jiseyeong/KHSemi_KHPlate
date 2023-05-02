@@ -177,6 +177,7 @@ public class StoreController extends HttpServlet {
 					File realPathFile = new File(realPath +"/"+ i.getSysName());
 					realPathFile.delete();
 				}
+				PhotoDAO.getInstance().deleteByStoreID(storeID);
 				int result = StoreDAO.getInstance().delete(storeID);
 				
 				//검색 결과 리스트창 등으로 넘길 것.
