@@ -47,7 +47,7 @@ li {
 }
 
 li:not(.firstLi):hover {
-   color: rgb(237, 28, 22);
+   color: #Ed1c16;
 }
 
 .ulTag {
