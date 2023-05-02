@@ -593,8 +593,8 @@ public class StoreDAO {
 	// 즐겨찾기 리스트 네비게이터
 	public String selectFavoriteStoreNaviToJSP(int userno, int currentpage) throws Exception {
 		int record_total_count = getFavoriteStoreRecordCount(userno);
-		int record_count_per_page = Settings.MYPAGE_FAVORITE_STORE_RECORD_COUNT_PER_PAGE;
-		int navi_count_per_page = Settings.MYPAGE_FAVORITE_STORE_NAVI_COUNT_PER_PAGE;
+		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
+		int navi_count_per_page = Settings.MYPAGE_LIST_NAVI_COUNT_PER_PAGE;
 		
 		System.out.println(record_total_count);
 		

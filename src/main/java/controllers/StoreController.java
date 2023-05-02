@@ -454,7 +454,10 @@ public class StoreController extends HttpServlet {
 				
 				System.out.println("리스트 사이즈 : "+search_store_list.size());
 				
-				int userno = (int) request.getSession().getAttribute("userno");
+				int userno = 0;
+				if(request.getSession().getAttribute("userno")!=null) {
+					userno = (int) request.getSession().getAttribute("userno");
+				}
 				List<FavoritePageDTO> Favorite_list = FavoriteStoreDAO.getInstance().isFavoriteStore(search_store_list,userno);
 				
 				System.out.println("===================");
@@ -508,8 +511,8 @@ public class StoreController extends HttpServlet {
 				System.out.println("현재 페이지 : "+currentpage);
 
 				// 검색방식에 따라 네비 갯수 변경
-				int end_Record_Row_Num = currentpage * Settings.MYPAGE_FAVORITE_STORE_RECORD_COUNT_PER_PAGE;
-				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_FAVORITE_STORE_RECORD_COUNT_PER_PAGE-1);
+				int end_Record_Row_Num = currentpage * Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
+				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE-1);
 				
 				String FavoriteStoreList = StoreDAO.getInstance().selectFavoriteStoreToJSP(userno,start_Record_Row_Num,end_Record_Row_Num);
 				String FavoriteStoreNavi = StoreDAO.getInstance().selectFavoriteStoreNaviToJSP(userno,currentpage);
