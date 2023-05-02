@@ -100,6 +100,8 @@ public class CommentReviewController extends HttpServlet {
 				}
 				
 				response.sendRedirect("/view.store?storeID="+storeID);
+			}else if(cmd.equals("/delete.commentReview")) {
+				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

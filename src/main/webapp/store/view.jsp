@@ -407,45 +407,47 @@
 
 							<!-- 리뷰 -->
 							<div class="row">
-								<div class="col-12">한줄 리뷰 추가</div>
-								<form id="createCommentForm" action="/create.commentReview" method="post"
-									enctype="multipart/form-data">
-									<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
-									<input type="text" name="userNo" value="${sessionScope.userno}"
-										style="display: none;">
-									<div class="col-12">
-										이미지 등록
-										<button type="button" id="btn_review_image_add"
-											class="btn btn-outline-secondary">+</button>
-									</div>
-									<div class="col-12">
-										<fieldset>
-											<legend>image list</legend>
-											<div id="review_img_field"></div>
-										</fieldset>
-									</div>
-									<div class="col-12">
-										<div class="row align-items-center">
-											<div class="col-12">
-												<div class="star">
-													<input type="text" name="score" value="0" style="display:none;"
-														id="score">
-													<a href="#null" value="1">★</a>
-													<a href="#null" value="2">★</a>
-													<a href="#null" value="3">★</a>
-													<a href="#null" value="4">★</a>
-													<a href="#null" value="5">★</a>
+								<c:if test="${not empty sessionScope.userno}">
+									<div class="col-12">한줄 리뷰 추가</div>
+									<form id="createCommentForm" action="/create.commentReview" method="post"
+										enctype="multipart/form-data">
+										<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
+										<input type="text" name="userNo" value="${sessionScope.userno}"
+											style="display: none;">
+										<div class="col-12">
+											이미지 등록
+											<button type="button" id="btn_review_image_add"
+												class="btn btn-outline-secondary">+</button>
+										</div>
+										<div class="col-12">
+											<fieldset>
+												<legend>image list</legend>
+												<div id="review_img_field"></div>
+											</fieldset>
+										</div>
+										<div class="col-12">
+											<div class="row align-items-center">
+												<div class="col-12">
+													<div class="star">
+														<input type="text" name="score" value="0" style="display:none;"
+															id="score">
+														<a href="#null" value="1">★</a>
+														<a href="#null" value="2">★</a>
+														<a href="#null" value="3">★</a>
+														<a href="#null" value="4">★</a>
+														<a href="#null" value="5">★</a>
+													</div>
+												</div>
+												<div class="col-9">
+													<textarea id="review_editor" name="body"></textarea>
+												</div>
+												<div class="col-3">
+													<button class="btn btn-outline-secondary">등록</button>
 												</div>
 											</div>
-											<div class="col-9">
-												<textarea id="review_editor" name="body"></textarea>
-											</div>
-											<div class="col-3">
-												<button class="btn btn-outline-secondary">등록</button>
-											</div>
 										</div>
-									</div>
-								</form>
+									</form>
+								</c:if>
 								<c:if test="${fn:length(commentList) > 0}">
 									<div class="col-12">한줄 리뷰 목록</div>
 									<div class="row">
@@ -571,10 +573,10 @@
 
 														let writeStar = "#writeStar" + i;
 														let score = "#score" + i;
-														
+
 														let replyControl = "#replyControl" + i;
 														let updateForm = "#updateCommentForm" + i;
-														
+
 														let reviewImageModify = "#reviewImageModify" + i;
 														let modifyAddImage = "#modifyAddImage" + i;
 														//별점 버튼 이벤트 등록

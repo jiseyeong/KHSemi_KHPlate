@@ -58,7 +58,7 @@ public class StoreController extends HttpServlet {
 					userIDList.add(MembersDAO.getInstance().getIDByNo(commentList.get(i).getUserNo()));
 				}
 				ArrayList<StoreMenuDTO> menuList = StoreMenuDAO.getInstance().selectAllByStoreID(storeID);
-				ArrayList<PhotoDTO> imgList = StoreDAO.getInstance().selectPhoto(storeID);
+				ArrayList<PhotoDTO> imgList = PhotoDAO.getInstance().selectPhotoByStoreID(storeID);
 				//				ArrayList<String> imgPathList = new ArrayList<>();
 				//				for(PhotoDTO i : imgList) {
 				//					imgPathList.add("/store/" + i.getSysName());
@@ -112,7 +112,7 @@ public class StoreController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						StoreDAO.getInstance().insertPhoto(sysName, oriName, currval);
+						PhotoDAO.getInstance().insertByStoreID(sysName, oriName, currval);
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+currval);
@@ -154,7 +154,7 @@ public class StoreController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						StoreDAO.getInstance().insertPhoto(sysName, oriName, storeID);
+						PhotoDAO.getInstance().insertByStoreID(sysName, oriName, storeID);
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+storeID);
