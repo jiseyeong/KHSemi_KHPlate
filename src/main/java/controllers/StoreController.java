@@ -51,11 +51,13 @@ public class StoreController extends HttpServlet {
 				//풀리뷰 추가되면 풀리뷰도 포함해서
 				int sum = 0;
 				int cnt = commentList.size();
-				for(CommentReviewDTO i : commentList) {
-					sum += i.getScore();
+				if(cnt != 0) {
+					for(CommentReviewDTO i : commentList) {
+						sum += i.getScore();
+					}
+					StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
+					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
 				}
-				StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
-				StoreDAO.getInstance().updateReviewCount(cnt, storeID);
 				
 				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);	
 				ArrayList<String> userIDList = new ArrayList<>();
