@@ -107,7 +107,7 @@ public class CommentReviewController extends HttpServlet {
 				
 				String realPath = request.getServletContext().getRealPath("CommentReview");
 				for(PhotoDTO i : PhotoDAO.getInstance().selectByCReviewID(reviewID)) {
-					File realPathFile = new File(realPath+"/"+i.getSysName());
+					File realPathFile = new File(realPath+"/"+i.getOriName());
 					realPathFile.delete();
 				}
 				
@@ -120,7 +120,7 @@ public class CommentReviewController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				
 				String realPath = request.getServletContext().getRealPath("CommentReview");
-				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getSysName());
+				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getOriName());
 				if(realPathFile.delete()) {
 					PhotoDAO.getInstance().delete(imageID);
 				}
