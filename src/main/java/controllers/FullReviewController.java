@@ -23,18 +23,15 @@ public class FullReviewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String cmd = request.getRequestURI();
+		System.out.println(cmd);
 		FullReviewDAO frdao = FullReviewDAO.getInstance();
 
 		try {
 
 			if(cmd.equals("/write.fullreview")) {
-				System.out.println(cmd);
 
-				String writer = request.getParameter("writer");
 				String title = request.getParameter("title");
-
-
-				String reviewbody = request.getParameter("reviewbody");
+				String reviewbody = request.getParameter("reviewBody");
 				int score = Integer.parseInt(request.getParameter("score"));
 				int storeId = Integer.parseInt(request.getParameter("storeId"));
 				int userNo= Integer.parseInt(request.getParameter("userNo"));
@@ -43,14 +40,27 @@ public class FullReviewController extends HttpServlet {
 
 				if (result>0) {
 					System.out.println("진심리뷰 작성완료");
-					response.sendRedirect("/FullReview/FullReviewList.jsp");
+					response.sendRedirect("/select.fullreview");
 				}else {
 					response.sendRedirect("error.jsp");
 				}
 
 			}else if (cmd.equals("/update.fullreview")){
-				System.out.println(cmd);
+					
+				String title = request.getParameter("title");
+				String reviewbody = request.getParameter("reviewbody");
+				int score = Integer.parseInt(request.getParameter("score"));
+				int storeId = Integer.parseInt(request.getParameter("storeId"));
+				int reviewid= Integer.parseInt(request.getParameter("reviewid"));
+				
+				int result = frdao.update(title, reviewbody, score, storeId, reviewid);
 
+				if (result>0) {
+					System.out.println("진심리뷰 수정완료");
+					response.sendRedirect("content.fullreview?reviewid="+reviewid);
+				}else {
+					response.sendRedirect("error.jsp");
+				}
 
 				// 리뷰 글 목록 조회 + 검색 조회
 			}else if (cmd.equals("/select.fullreview")) {
@@ -94,6 +104,7 @@ public class FullReviewController extends HttpServlet {
 			}else if(cmd.equals("/content.fullreview")) {
 				
 				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
+				System.out.println("선택한 리뷰는 "+reviewid);
 				
 				FullReviewDTO contents = frdao.contentByReviewId(reviewid);
 				
@@ -102,38 +113,14 @@ public class FullReviewController extends HttpServlet {
 				request.setAttribute("contents", contents);
 				request.setAttribute("replyList", replyList);
 				
-				request.getRequestDispatcher("/FullReview/content.jsp").forward(request, response);
+				request.getRequestDispatcher("/FullReview/FullReviewContent.jsp").forward(request, response);
 				
-				int userno = (int) request.getSession().getAttribute("userno");
 				
-				int currentpage = 1;
-				
-				if(request.getParameter("cpage")!=null) {
-					currentpage = Integer.parseInt(request.getParameter("cpage"));
-				}
-				
-				System.out.println("현재 페이지 : "+currentpage);
-				
-				int end_Record_Row_Num = currentpage * Settings.SEARCH_FULLREVIEW_RECORD_COUNT_PER_PAGE;
-				int start_Record_Row_Num = end_Record_Row_Num - (Settings.SEARCH_FULLREVIEW_RECORD_COUNT_PER_PAGE-1);
-				
-				System.out.println("시작 번호 : "+start_Record_Row_Num);
-				System.out.println("끝 번호 : "+end_Record_Row_Num);
-				
-//				List<FullReviewUserDTO> fullReviewList = frdao.selectFullReview(userno, searchFullReviewTitle,start_Record_Row_Num,end_Record_Row_Num);
-//				String fullReviewNavi = frdao.getFullReviewNavi(currentpage, userno, searchFullReviewTitle);
-//				
-//				System.out.println("리스트 사이즈 : "+fullReviewList.size());
-//				
-//				request.setAttribute("FullReviewList", fullReviewList);
-//				request.setAttribute("FullReviewNavi", fullReviewNavi);
-				
-				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
 			}
 
 		}catch(Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("error.jsp");
+//			response.sendRedirect("/error.jsp");
 		}
 	}
 
