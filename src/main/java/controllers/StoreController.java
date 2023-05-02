@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -33,6 +35,8 @@ import statics.Settings;
 public class StoreController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
+		response.setContentType("text/html; charset=utf8;");
+		
 		String cmd = request.getRequestURI();
 
 		try {
@@ -492,10 +496,35 @@ public class StoreController extends HttpServlet {
 				}
 			}
 			
-			//즐겨찾기 조회 controller
+			// 마이페이지 즐겨찾기 조회 controller
 			else if(cmd.equals("/selectFavoriteStore.store")) {
-				String userid = request.getParameter("userid");
-				FavoriteStoreDAO.getInstance().
+				
+				int userno = (int) request.getSession().getAttribute("userno");
+				int currentpage = 1;
+				if(request.getParameter("cpage")!=null) {
+					currentpage = Integer.parseInt(request.getParameter("cpage"));
+				}
+
+				System.out.println("현재 페이지 : "+currentpage);
+
+				// 검색방식에 따라 네비 갯수 변경
+				int end_Record_Row_Num = currentpage * Settings.MYPAGE_FAVORITE_STORE_RECORD_COUNT_PER_PAGE;
+				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_FAVORITE_STORE_RECORD_COUNT_PER_PAGE-1);
+				
+				String FavoriteStoreList = StoreDAO.getInstance().selectFavoriteStoreToJSP(userno,start_Record_Row_Num,end_Record_Row_Num);
+				String FavoriteStoreNavi = StoreDAO.getInstance().selectFavoriteStoreNaviToJSP(userno,currentpage);
+				
+				System.out.println(FavoriteStoreList);
+				System.out.println(FavoriteStoreNavi);
+				Gson g = new Gson();
+				FavoriteStoreList = g.toJson(FavoriteStoreList);
+				FavoriteStoreNavi = g.toJson(FavoriteStoreNavi);
+				
+				JsonObject resp = new JsonObject();
+				resp.addProperty("FavoriteStoreList", FavoriteStoreList);
+				resp.addProperty("FavoriteStoreNavi", FavoriteStoreNavi);
+				
+				response.getWriter().append(resp.toString());
 			}
 
 		}catch(Exception e) {

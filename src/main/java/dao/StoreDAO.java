@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.FavoritePageDTO;
 import dto.PhotoDTO;
 import dto.StoreDTO;
 import statics.Settings;
@@ -72,6 +73,7 @@ public class StoreDAO {
 			}
 		}
 	}
+
 	public int insertPhoto(String sysName, String oriName, int storeID) throws Exception{
 		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, STOREID)"
 				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
@@ -123,7 +125,7 @@ public class StoreDAO {
 			return result;
 		}
 	}
-	
+
 	public int updateAvgScore(double avgScore, int storeID) throws Exception{
 		String sql = "update STORE set AVGSCORE=? where STOREID=?";
 		try(	Connection con = this.getConnection();
@@ -135,7 +137,7 @@ public class StoreDAO {
 			return result;
 		}
 	}
-	
+
 	public int updateReviewCount(int reviewCount, int storeID) throws Exception{
 		String sql = "update STORE set REVIEWCOUNT=? where STOREID=?";
 		try(	Connection con = this.getConnection();
@@ -530,4 +532,142 @@ public class StoreDAO {
 			}
 		}
 	}
+
+	public List<StoreDTO> selectAll(List<FavoritePageDTO> FavoriteStoreList) throws Exception {
+		String sql = "select * from STORE where STOREID = ?";
+		List<StoreDTO> result = new ArrayList<>();
+		for(FavoritePageDTO favorite : FavoriteStoreList) {
+			try(	Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setInt(1, favorite.getStoreID());
+				try(ResultSet rs = pstat.executeQuery();){
+					while(rs.next()) {
+						int storeID = rs.getInt("STOREID");
+						int distance = rs.getInt("DISTANCE");
+						String name = rs.getString("NAME");
+						double lat = rs.getDouble("LAT");
+						double lng = rs.getDouble("LNG");
+						String address = rs.getString("ADDRESS");
+						double avgScore = rs.getDouble("AVGSCORE");
+						String introduction = rs.getString("INTRODUCTION");
+						String category = rs.getString("CATEGORY");
+						int reviewCount = rs.getInt("REVIEWCOUNT"); 
+						String priceRange = rs.getString("priceRange");
+						result.add(new StoreDTO(storeID, distance, name, lat, lng, address, avgScore, introduction, category, reviewCount,priceRange));
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	// 즐겨찾기된 가게 정보들 조회
+	public String selectFavoriteStoreToJSP(int userno, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception {
+		String sql = "select * from "
+				+ "(select store.*,row_number() over (order by store.storeid desc) row_num "
+				+ "from store join favoritepage on store.storeid = favoritepage.storeid where userno = ?)"
+				+ "where row_num between ? and ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, userno);
+			pstat.setInt(2, start_Record_Row_Num);
+			pstat.setInt(3, end_Record_Row_Num);
+
+			try(ResultSet rs = pstat.executeQuery();){
+				StringBuilder sb = new StringBuilder();
+				while(rs.next()) {
+					sb.append("<tr>");
+					sb.append("<td>"+rs.getInt("STOREID")+"</td>");
+					sb.append("<td>"+rs.getString("NAME")+"</td>");
+					sb.append("<td>"+rs.getDouble("AVGSCORE")+"</td>");
+					sb.append("<td>"+rs.getString("CATEGORY")+"</td>");
+					sb.append("<td>"+rs.getString("ADDRESS")+"</td>");
+					sb.append("</tr>");
+				}
+				return sb.toString();
+			}
+		}
+	}
+
+	// 즐겨찾기 리스트 네비게이터
+	public String selectFavoriteStoreNaviToJSP(int userno, int currentpage) throws Exception {
+		int record_total_count = getFavoriteStoreRecordCount(userno);
+		int record_count_per_page = Settings.MYPAGE_FAVORITE_STORE_RECORD_COUNT_PER_PAGE;
+		int navi_count_per_page = Settings.MYPAGE_FAVORITE_STORE_NAVI_COUNT_PER_PAGE;
+		
+		System.out.println(record_total_count);
+		
+		int page_total_count = 0;
+
+		if(record_total_count%record_count_per_page==0) {
+			page_total_count = record_total_count/record_count_per_page;
+		}else {	
+			page_total_count = (record_total_count/record_count_per_page)+1;
+		}
+
+		if(currentpage<1)
+			currentpage = 1;
+		else if(currentpage > page_total_count)
+			currentpage=page_total_count;
+
+		int startNavi = ((currentpage - 1)/navi_count_per_page * navi_count_per_page)+1;
+		int endNavi = startNavi + (navi_count_per_page - 1);
+
+		if(startNavi<1)
+			startNavi = 1;
+		else if(endNavi>page_total_count)
+			endNavi = page_total_count;
+
+		StringBuilder sb = new StringBuilder();
+
+		boolean needPrev = true;
+		boolean needNext = true;
+
+		if(startNavi == 1)
+			needPrev = false;
+		if(endNavi == page_total_count)
+			needNext = false;
+
+		if(needPrev) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navigator_direction_btn cpage"+(startNavi-1)+"'>"
+					+ "				<i class='fa-solid fa-angle-left'></i>"
+					+ "			</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		for(int i = startNavi ; i <= endNavi ; i++) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='item cpage"+i+"'>"+i+"</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		if(needNext) {
+			sb.append("<li class='navigator_list_item'>"
+					+ "		<div class='navigator_list_item_btn_layout'>"
+					+ "			<button class='navigator_direction_btn cpage"+(endNavi+1)+"'>"
+					+ "				<i class='fa-solid fa-angle-right'></i>"
+					+ "			</button>"
+					+ "		</div>"
+					+ "</li>");
+		}
+		return sb.toString();
+	}
+	// 즐겨찾기 리스트 Record 수
+	public int getFavoriteStoreRecordCount(int userno) throws Exception{
+		String sql = "select count(*) from favoritepage where userno = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1,userno);
+			try(ResultSet rs = pstat.executeQuery();){
+				rs.next();
+				return rs.getInt(1);
+			}
+		}
+	}
+
 }
