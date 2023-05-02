@@ -89,7 +89,18 @@ public class PhotoDAO {
 		}
 	}
 	
-	public ArrayList<PhotoDTO> selectPhotoByStoreID(int storeID) throws Exception{
+	public PhotoDTO selectByImageID(int photoID) throws Exception{
+		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where IMAGEID = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, photoID);
+			try(ResultSet rs = pstat.executeQuery();){
+				return this.transAllRsToList(rs).get(0);
+			}
+		}
+	}
+	
+	public ArrayList<PhotoDTO> selectByStoreID(int storeID) throws Exception{
 		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where STOREID = ?";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){

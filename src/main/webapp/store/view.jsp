@@ -487,7 +487,23 @@
 														aria-hidden="true"></span>
 													<span class="visually-hidden">Next</span>
 												</button>
+											</div>
 
+											<div id="commentImgsRemoveList${i}" class="col-12 nonactive">
+												<table id="commentImgsRemoveTable${i}"
+													class="table table-secondary table-striped">
+													<tr>
+														<th width="70%">이미지</th>
+														<th width="30%">버튼</th>
+														<form id="commentImgsRemoveForm${i}"
+															action="/deletePhoto.commentReview" method="get">
+															<input type="text" name="imageID" id="deleteImageID${i}"
+																style="display: none;">
+															<input type="text" name="storeID" value="{dto.storeID}"
+																style="display: none;">
+														</form>
+													</tr>
+												</table>
 											</div>
 
 											<script>
@@ -500,6 +516,7 @@
 													if (resp.length > 0) {
 														$("#commentImgs" + i).removeClass("nonactive");
 														for (let j = 0; j < resp.length; i++) {
+															//이미지 세팅
 															let div_carousel = $("<div>").addClass("carousel-item");
 															if (j == 0) {
 																div_carousel.addClass("active");
@@ -509,6 +526,24 @@
 
 															div_carousel.append(img);
 															$("#commentCarousel" + i).append(div_carousel);
+
+															//삭제용 테이블 세팅
+															let tr = $("<tr>"),
+																td1 = $("<td1>"),
+																td2 = $("<td2>"),
+																btn_confirm = $("<button>").text("삭제"),
+																commentImgsRemoveForm = "#commentImgsRemoveForm" + i;
+
+															$("#deleteImageID" + i).attr("value", resp[i].imageID);
+															btn_confirm.click(function () {
+																commentImgsRemoveForm.submit();
+															});
+															btn_confirm.addClass("btn").addClass("btn-outline-secondary");
+															td1.append(img);
+															td2.append(btn_confirm);
+															tr.append(td1);
+															tr.append(td2);
+															$("#commentImgsRemoveTable" + i).append(tr);
 														}
 													}
 												});
@@ -520,20 +555,7 @@
 													style="display: none;">
 												<input type="text" name="reviewID"
 													value="${commentList.get(i).reviewID}" style="display: none;">
-												<div id="writeStar${i}" class="col-12 star nonactive">
-													<input type="text" id="score${i}" name="modifyScore" value="0"
-														style="display:none;">
-													<a href="#null" value="1">★</a>
-													<a href="#null" value="2">★</a>
-													<a href="#null" value="3">★</a>
-													<a href="#null" value="4">★</a>
-													<a href="#null" value="5">★</a>
-												</div>
-												<div class="col-12">
-													<textarea id="review_editor${i}" name="modifyBody">
-														${commentList.get(i).body}
-													</textarea>
-												</div>
+
 												<div class="col-12 nonactive" id="modifyAddImage${i}">
 													<div class="row">
 														<div class="col-12">
@@ -549,10 +571,36 @@
 														</div>
 													</div>
 												</div>
+
+												<div id="writeStar${i}" class="col-12 star nonactive">
+													<input type="text" id="score${i}" name="modifyScore" value="0"
+														style="display:none;">
+													<a href="#null" value="1">★</a>
+													<a href="#null" value="2">★</a>
+													<a href="#null" value="3">★</a>
+													<a href="#null" value="4">★</a>
+													<a href="#null" value="5">★</a>
+												</div>
+												<div class="col-12">
+													<textarea id="review_editor${i}" name="modifyBody">
+														${commentList.get(i).body}
+													</textarea>
+												</div>
 											</form>
 											<c:if test="${commentList.get(i).userNo == sessionScope.userno}">
 												<div id="replyControl${i}" class="col-12 text-end">
-													<button type="button" id="btn_modify${i}" class="active">수정</button>
+													<button type="button" id="btn_modify${i}"
+														class="btn btn-outline-secondary">수정</button>
+													<button type="button" id="btn_delete${i}"
+														class="nonactive">삭제</button>
+													<form id="commentDeleteForm${i}" action="/delete.commentReview"
+														method="get">
+														<input type="text" name="reviewID"
+															value="${commentList.get(i).reviewID}"
+															style="display: none;">
+														<input type="text" name="storeID" value="${dto.storeID}"
+															style="display: none;">
+													</form>
 												</div>
 											</c:if>
 
@@ -567,9 +615,14 @@
 														editor.enableReadOnlyMode('');
 
 														let btn_modify = "#btn_modify" + i;
+														let btn_delete = "#btn_delete" + i;
+														let commentDeleteForm = "#commentDeleteForm" + i;
 														let readStar = "#readStar" + i;
 														let btn_confirm = "#btn_confirm" + i;
+														let btn_confirm_id = "btn_confirm" + i;
 														let btn_cancel = "#btn_cancel" + i;
+														let btn_cancel_id = "btn_cancel" + i;
+														let commentImgsRemoveList = "#commentImgsRemoveList" + i;
 
 														let writeStar = "#writeStar" + i;
 														let score = "#score" + i;
@@ -586,29 +639,36 @@
 															$(score).attr("value", $(this).attr("value"));
 														});
 
-														$(btn_modify).click(function () {
+														$(btn_delete).click(function () {
+															$(commentDeleteForm).submit();
+														});
 
+														$(btn_modify).click(function () {
+															console.log($(btn_confirm));
 															if (!($(btn_confirm).length > 0)) {
 																let btn_confirm_body = $("<button>");
 																let btn_cancel_body = $("<button>");
 
 																btn_confirm_body.text("수정완료");
-																btn_confirm_body.attr("id", btn_confirm);
+																btn_confirm_body.attr("id", btn_confirm_id);
 																btn_confirm_body.attr("type", "button");
+																btn_confirm_body.addClass("btn").addClass("btn-outline-secondary");
 																btn_confirm_body.click(function () {
 																	$(updateForm).submit();
 																});
 
 																btn_cancel_body.attr("type", "button");
-																btn_cancel_body.attr("id", btn_cancel);
+																btn_cancel_body.attr("id", btn_cancel_id);
+																btn_cancel_body.addClass("btn").addClass("btn-outline-secondary");
 																btn_cancel_body.text("취소");
 																btn_cancel_body.click(function () {
 																	$(btn_modify + "," + readStar).removeClass("nonactive");
-																	$(btn_confirm + "," + btn_cancel + "," + writeStar).addClass("nonactive");
+																	$(btn_modify).addClass("btn").addClass("btn-outline-secondary");
+																	$(btn_delete + "," + btn_confirm + "," + btn_cancel).removeClass("btn").removeClass("btn-outline-secondary");
+																	$(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete + "," + commentImgsRemoveList).addClass("nonactive");
 																	editor.enableReadOnlyMode("");
 																	$(reviewImageModify).addClass("nonactive");
 																	$(modifyAddImage).addClass("nonactive");
-
 																});
 
 																$(replyControl).prepend(btn_confirm_body);
@@ -700,7 +760,9 @@
 															if (editor.isReadOnly) {
 																editor.disableReadOnlyMode("");
 																$(btn_modify + "," + readStar).addClass("nonactive");
-																$(btn_confirm + "," + btn_cancel + "," + writeStar).removeClass("nonactive");
+																$(btn_modify).removeClass("btn").removeClass("btn-outline-secondary");
+																$(btn_delete + "," + btn_confirm + "," + btn_cancel).addClass("btn").addClass("btn-outline-secondary");
+																$(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete + "," + commentImgsRemoveList).removeClass("nonactive");
 																$(reviewImageModify).removeClass("nonactive");
 																$(modifyAddImage).removeClass("nonactive");
 															}
