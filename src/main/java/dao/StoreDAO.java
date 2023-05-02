@@ -74,38 +74,6 @@ public class StoreDAO {
 		}
 	}
 
-	public int insertPhoto(String sysName, String oriName, int storeID) throws Exception{
-		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, STOREID)"
-				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setString(1, sysName);
-			pstat.setString(2, oriName);
-			pstat.setInt(3, storeID);
-			int result = pstat.executeUpdate();
-			con.commit();
-			return result;
-		}
-	}
-
-	public ArrayList<PhotoDTO> selectPhoto(int storeID) throws Exception{
-		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where STOREID = ?";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setInt(1, storeID);
-			try(ResultSet rs = pstat.executeQuery();){
-				ArrayList<PhotoDTO> result = new ArrayList<>();
-				while(rs.next()) {
-					int imageID = rs.getInt("IMAGEID");
-					String oriName = rs.getString("ORINAME");
-					String sysName = rs.getString("SYSNAME");
-					result.add(new PhotoDTO(imageID, oriName, sysName));
-				}
-				return result;
-			}
-		}
-	}
-
 	public int update(StoreDTO dto) throws Exception{
 		String sql = "update STORE set DISTANCE=?, LAT=?, LNG=?, NAME=?, ADDRESS=?, INTRODUCTION=?, CATEGORY=?, PRICERANGE=?"
 				+ " where STOREID = ?";
@@ -593,8 +561,8 @@ public class StoreDAO {
 	// 즐겨찾기 리스트 네비게이터
 	public String selectFavoriteStoreNaviToJSP(int userno, int currentpage) throws Exception {
 		int record_total_count = getFavoriteStoreRecordCount(userno);
-		int record_count_per_page = Settings.MYPAGE_FAVORITE_STORE_RECORD_COUNT_PER_PAGE;
-		int navi_count_per_page = Settings.MYPAGE_FAVORITE_STORE_NAVI_COUNT_PER_PAGE;
+		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
+		int navi_count_per_page = Settings.MYPAGE_LIST_NAVI_COUNT_PER_PAGE;
 		
 		System.out.println(record_total_count);
 		
@@ -632,7 +600,7 @@ public class StoreDAO {
 		if(needPrev) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<button class='navigator_direction_btn cpage"+(startNavi-1)+"'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='FavoriteStoreList' location='"+(startNavi-1)+"'>"
 					+ "				<i class='fa-solid fa-angle-left'></i>"
 					+ "			</button>"
 					+ "		</div>"
@@ -641,14 +609,14 @@ public class StoreDAO {
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<button class='item cpage"+i+"'>"+i+"</button>"
+					+ "			<button class='navibtn item' searchto='FavoriteStoreList' location='"+i+"'>"+i+"</button>"
 					+ "		</div>"
 					+ "</li>");
 		}
 		if(needNext) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<button class='navigator_direction_btn cpage"+(endNavi+1)+"'>"
+					+ "			<button class='navibtn navigator_direction_btn' searchto='FavoriteStoreList' location='"+(endNavi+1)+"'>"
 					+ "				<i class='fa-solid fa-angle-right'></i>"
 					+ "			</button>"
 					+ "		</div>"
