@@ -218,6 +218,9 @@ button:hover {
 	background-color: rgb(240, 240, 240);
 	border: 1px solid black;
 	padding: 30px;
+	
+/* 	하단 네비게이터를 붙이기 위한 position 부여 */
+	position : relative;
 }
 
 .body2Contents>table {
@@ -238,6 +241,76 @@ button:hover {
 #consultList {
 	display: none;
 }
+
+#favoriteStoreList {
+	display: none;
+}
+
+/* 하단 네비게이터 추가 */
+/* 네비게이터 영역 */
+.body2listNavi {
+	border: 1px solid black;
+	height: 60px;
+	width: 100%;
+	text-align: center;
+	margin: 20px auto 0 auto;
+	padding: 10px 0px 10px;
+	background-color: rgba(255, 255, 255, 0.9);
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	border-top: 1px solid #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	justify-content: center
+}
+
+.navigator_list {
+	list-style-type: none;
+	padding-right: 50px;
+	margin: 0px;
+	display: flex;
+	justify-content: right;
+	align-items: center;
+}
+
+.navigator_list_item {
+	width: 30px;
+	height: 30px;
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.navigator_list_item_btn_layout {
+	border: 1px solid rgb(178, 178, 178);
+	width: 30px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.item {
+	font-size: 15px;
+	text-decoration: none;
+}
+
+.navigator_direction_btn {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	right: 0px;
+	font-size: 15px;
+	background-color: white;
+	border: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 </style>
 </head>
 <body>
@@ -383,33 +456,28 @@ button:hover {
 
 				<!--     새로 추가한 내가 즐겨찾기 한 가게 리스트 -->
 				<table border-bottom="1" class="table" id="favoriteStoreList">
-					<!-- 리뷰 스크랩-->
+					<!-- 가게 즐겨찾기 리스트-->
 					<colgroup>
-						<col width="10%">
-						<col width="40%">
+						<col width="8%">
+						<col width="30%">
+						<col width="12%">
 						<col width="15%">
-						<col width="10%">
-						<col width="25%">
+						<col width="35%">
 					</colgroup>
 					<thead>
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>조회수</th>
-							<th>작성일</th>
+							<th>맛집 no.</th>
+							<th>맛집 이름</th>
+							<th>맛집 평점</th>
+							<th>맛집 카테고리</th>
+							<th>맛집 주소</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>3</td>
-							<td>bootstrap</td>
-							<td>세영</td>
-							<td>1</td>
-							<td>2023.05.01</td>
-						</tr>
+					<tbody id="favoriteStoreListToPrint">
+<!-- 						리스트 출력 구간 -->
 					</tbody>
 				</table>
+				
 				<table border-bottom="1" class="table" id="consultList">
 					<!-- 1:1문의 리스트 -->
 					<colgroup>
@@ -438,7 +506,13 @@ button:hover {
 						</tr>
 					</tbody>
 				</table>
+				
+<!-- 				추가한 네비게이터 -->
+				<div class="body2listNavi">
+					<ul class="navigator_list">${search_store_list_navi}</ul>
+				</div>
 			</div>
+			
 		</div>
 	</div>
 	<script>
@@ -498,14 +572,17 @@ button:hover {
        				$("#favoriteStoreListBtn").on("click",function(){ //즐겨찾기 버튼 누르면 관련 테이블 나오게 이벤트
 	      	  			$.ajax({
 	      	  				url:"/selectFavoriteStore.store",
-	      	  				type:"post"
+	      	  				type:"post",
+	      	  				dataType:"json"
 	      	  			}).done(function(resp){
-	      	  				resp = JSON.parse(resp);
-	      	  				console.log(resp);
-	      	  				let str = "";
-	      	  				resp.FavoriteStoreList.forEach(function (value, index){
-		      	  			  	console.log(value);
-		      	  			});
+	      	  				$("#favoriteStoreListToPrint").html("");
+	      	  				$(".navigator_list").html("");
+	      	  				let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+	      	  				let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+	      	  				console.log(FavoriteStoreList);
+	      	  				console.log(FavoriteStoreNavi);
+	      	  				$("#favoriteStoreListToPrint").append(FavoriteStoreList);
+	      	  				$(".navigator_list").append(FavoriteStoreNavi);
 	      	  			})
 	    	 			$("#favoriteStoreList").css("display","table");
 	      	  			$("table").not("table#favoriteStoreList").css("display","none");

@@ -35,6 +35,8 @@ import statics.Settings;
 public class StoreController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
+		response.setContentType("text/html; charset=utf8;");
+		
 		String cmd = request.getRequestURI();
 
 		try {
@@ -494,25 +496,33 @@ public class StoreController extends HttpServlet {
 				}
 			}
 			
-			//즐겨찾기 조회 controller
+			// 마이페이지 즐겨찾기 조회 controller
 			else if(cmd.equals("/selectFavoriteStore.store")) {
 				
 				int userno = (int) request.getSession().getAttribute("userno");
-				System.out.println("userno : "+userno);
+				int currentpage = 1;
+				if(request.getParameter("cpage")!=null) {
+					currentpage = Integer.parseInt(request.getParameter("cpage"));
+				}
+
+				System.out.println("현재 페이지 : "+currentpage);
+
+				// 검색방식에 따라 네비 갯수 변경
+				int end_Record_Row_Num = currentpage * Settings.MYPAGE_FAVORITE_STORE_RECORD_COUNT_PER_PAGE;
+				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_FAVORITE_STORE_RECORD_COUNT_PER_PAGE-1);
 				
-				List<FavoritePageDTO> FavoriteStoreList = FavoriteStoreDAO.getInstance().selectFavoriteStore(userno);
-				List<StoreDTO> FavoriteStoreInfoList = StoreDAO.getInstance().selectAll(FavoriteStoreList);
+				String FavoriteStoreList = StoreDAO.getInstance().selectFavoriteStoreToJSP(userno,start_Record_Row_Num,end_Record_Row_Num);
+				String FavoriteStoreNavi = StoreDAO.getInstance().selectFavoriteStoreNaviToJSP(userno,currentpage);
 				
+				System.out.println(FavoriteStoreList);
+				System.out.println(FavoriteStoreNavi);
 				Gson g = new Gson();
-				String FavoriteStoreListJson = g.toJson(FavoriteStoreList);
-				String FavoriteStoreInfoListJson = g.toJson(FavoriteStoreInfoList);
-				
-				System.out.println(FavoriteStoreList.size());
-				System.out.println(FavoriteStoreInfoList.size());
+				FavoriteStoreList = g.toJson(FavoriteStoreList);
+				FavoriteStoreNavi = g.toJson(FavoriteStoreNavi);
 				
 				JsonObject resp = new JsonObject();
-				resp.addProperty("FavoriteStoreList", FavoriteStoreListJson);
-				resp.addProperty("FavoriteStoreInfoList", FavoriteStoreInfoListJson);
+				resp.addProperty("FavoriteStoreList", FavoriteStoreList);
+				resp.addProperty("FavoriteStoreNavi", FavoriteStoreNavi);
 				
 				response.getWriter().append(resp.toString());
 			}

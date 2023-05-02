@@ -84,20 +84,6 @@ public class FavoriteStoreDAO {
 		}
 	}
 	
-	
-	// 즐겨찾기 조회
-	public List<FavoritePageDTO> selectFavoriteStore(int userno) throws Exception {
-		String sql = "select * from favoritepage where userno = ?";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				){
-			pstat.setInt(1, userno);
-			try(ResultSet rs = pstat.executeQuery();){
-				return transToList(rs);
-			}
-		}
-	}
-	
 	// 즐겨찾기 ResultSet=>List 자동 변환
 	private List<FavoritePageDTO> transToList(ResultSet rs)throws Exception{
 		List<FavoritePageDTO> result = new ArrayList<>();
