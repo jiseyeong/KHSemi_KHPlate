@@ -74,38 +74,6 @@ public class StoreDAO {
 		}
 	}
 
-	public int insertPhoto(String sysName, String oriName, int storeID) throws Exception{
-		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, STOREID)"
-				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setString(1, sysName);
-			pstat.setString(2, oriName);
-			pstat.setInt(3, storeID);
-			int result = pstat.executeUpdate();
-			con.commit();
-			return result;
-		}
-	}
-
-	public ArrayList<PhotoDTO> selectPhoto(int storeID) throws Exception{
-		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where STOREID = ?";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setInt(1, storeID);
-			try(ResultSet rs = pstat.executeQuery();){
-				ArrayList<PhotoDTO> result = new ArrayList<>();
-				while(rs.next()) {
-					int imageID = rs.getInt("IMAGEID");
-					String oriName = rs.getString("ORINAME");
-					String sysName = rs.getString("SYSNAME");
-					result.add(new PhotoDTO(imageID, oriName, sysName));
-				}
-				return result;
-			}
-		}
-	}
-
 	public int update(StoreDTO dto) throws Exception{
 		String sql = "update STORE set DISTANCE=?, LAT=?, LNG=?, NAME=?, ADDRESS=?, INTRODUCTION=?, CATEGORY=?, PRICERANGE=?"
 				+ " where STOREID = ?";
