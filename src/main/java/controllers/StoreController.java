@@ -38,6 +38,7 @@ public class StoreController extends HttpServlet {
 		response.setContentType("text/html; charset=utf8;");
 		
 		String cmd = request.getRequestURI();
+		Gson g = new Gson();
 
 		try {
 			if(cmd.equals("/list.store")) {
@@ -177,6 +178,17 @@ public class StoreController extends HttpServlet {
 				int result = StoreDAO.getInstance().delete(storeID);
 				
 				//검색 결과 리스트창 등으로 넘길 것.
+			}else if(cmd.equals("/getPhoto.store")) {
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				ArrayList<PhotoDTO> list = PhotoDAO.getInstance().selectByStoreID(storeID);
+				PhotoDTO dto = null;
+				if(list.size() < 1) {
+					dto = new PhotoDTO(-1, null, null);
+				}else {
+					dto = list.get(0);
+				}
+				String resp = g.toJson(dto);
+				response.getWriter().append(resp);
 			}
 
 
@@ -531,8 +543,6 @@ public class StoreController extends HttpServlet {
 				
 				String FavoriteStoreList = StoreDAO.getInstance().selectFavoriteStoreToJSP(userno,start_Record_Row_Num,end_Record_Row_Num);
 				String FavoriteStoreNavi = StoreDAO.getInstance().selectFavoriteStoreNaviToJSP(userno,currentpage);
-				
-				Gson g = new Gson();
 				
 				FavoriteStoreList = g.toJson(FavoriteStoreList);
 				FavoriteStoreNavi = g.toJson(FavoriteStoreNavi);
