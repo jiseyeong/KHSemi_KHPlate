@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FullReviewDAO;
+import dao.FullReviewReplyDAO;
 import dao.MembersDAO;
 import dto.FullReviewDTO;
 import dto.FullReviewUserDTO;
 import dto.FullReviewUserDTO;
 import dto.MembersDTO;
+import dto.ReplyWithUserIdDTO;
 import statics.Settings;
 
 @WebServlet("*.fullreview")
@@ -92,7 +94,21 @@ public class FullReviewController extends HttpServlet {
 				
 				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
 				
-			}else if (cmd.equals("/selectBymypage.fullreview")) {
+			}else if(cmd.equals("/content.fullreview")) {
+				
+				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
+				
+				FullReviewDTO contents = frdao.contentByReviewId(reviewid);
+				
+				List<ReplyWithUserIdDTO> replyList = FullReviewReplyDAO.getInstance().listReplyByreviewid(reviewid);
+				
+				
+				request.setAttribute("contents", contents);
+				request.setAttribute("replyList", replyList);
+				
+				
+				request.getRequestDispatcher("/FullReview/content.jsp").forward(request, response);
+				
 				
 				int userno = (int) request.getSession().getAttribute("userno");
 				
