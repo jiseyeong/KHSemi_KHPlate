@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Header</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,6 +18,8 @@
     
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
    .nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
+   
+   
         * {
             box-sizing: border-box;
         }
@@ -34,66 +36,113 @@
         .logo{
            text-align:center;
            padding-top:5px;
-           
-/*            로고에 클릭 포인터 추가 */
            cursor:pointer;
         }
+
       .logoimage{
          height:90%;
          width:25%;
       }
-        #searchBox {
-            height: 40px;
-            width: 70%;
-            border-radius: 10px;
-            border: 1px solid #f2f2f2;
+
+      .searchLine {
+         height: 45px;
+            width: 100%;
+            border-radius: 15px 15px 15px 0px;
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
             position:relative;
             top:5px;
-            left:30px;
+           z-index: 1;
+           margin-top:12px;
+
+      }
+
+  /* ------------------------------------------------------- */
+/* IE */
+#searchCheck::-ms-expand { 
+  display: none;
+}
+
+#searchCheck {
+-o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+#searchCheck {
+   font-family: 'Nanum Gothic', sans-serif;
+font-weight: bold;
+font-size: 18px;
+color: #57b846;
+  width: 150px;
+  height: 35px;
+  left: 25%;
+  top:5px;
+  background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+  background-size: 20px;
+  padding: 5px 30px 0px 15px;
+  border-radius: 25px;
+  border: 0px solid #ffffff;
+  outline: 0 none;
+  z-index: 3;
+}
+
+#searchCheck option {
+font-family: 'Nanum Gothic', sans-serif;
+  background: #57b846;
+  color: #fff;
+  padding: 3px 0;
+}
+
+#searchCheck option:hover {
+  background:#4dae3c;
+}
+
+
+
+        #searchBox {
+            height: 45px;
+            width: 75%;
+            font-size: 13px;
+            position:relative;
+            top:-1px;
+            z-index: 1;
+            border: 1px solid #ffffff;
         }
+        
         #searchBtn {
             position: relative;
-            top:17px;
-            height: 40px;
-            width: 40px;
-            left:15px;
-            background-color: #f2f2f2;
-            border: 1px solid #f2f2f2;
-            border-radius: 3px;
+            top:-3px;
+            height: 30px;
+            width: 30px;
+            left: 30px;
+            background-color: #ffffff;
+            border: 1px solid #ffffff;
             cursor: pointer;
+            z-index: 3;
         }
+
         .form {
             width: 100%;
             padding-left: 10px;
         }
+
         #mypageBtn {
             display: inline-block;
             width: 50px;
             height: 50px;
-            font-family: "Consolas", "Menlo", "Ubuntu Mono", monospace;
+            font-family: 'Nanum Gothic', sans-serif;
             cursor: pointer;
         }
-        
-        #searchBox{
-           margin-top:12px;
-           padding-left:10px;
-        }
+      
         .btnBox{
          width:100%;
          line-height:76px;
          text-align:center;
         }
-        #searchCheck{
-           font-size:12px;
-           position:relative;
-           top:23px;
-           width:70px;
-           height:25px;
-           left:20px;
-           text-align:center;
-           border-radius:4px;
-           background-color:rgb(241, 241, 241);
-        }
+
+      
       .btnBox>a{
       text-decoration:none;
       font-size:13px;
@@ -118,18 +167,24 @@
     <div class="row header m-0" style="margin-bottom:70px;">
         <div class="col-12 col-lg-3 themed-grid-col logo">
 <!--            다른 페이지에서도 정상 표시되기 위한 이미지 절대 경로로 지정 -->
-             <img src="/page/logowhite.png" class="logoimage">
+             <img src="logowhite.png" class="logoimage">
         </div>
-        <div class="col-12 col-lg-6  d-flex search">
+        <div class="col-12 col-lg-6 d-flex search">
            <form id=searchForm action="/searchStoreBySearchBox.store" method="get" class="form d-flex" onsubmit="return false;">           
-            <select size="1" id="searchCheck" class="nanum-gothic" name="searchSelect"> 
-              <option value="1">맛집</option>
-              <option value="2">블로그</option>
-          	</select>
-               <input type="text" name="searchedBy" value="mainSearch" style="display:none;">
+              <div class="searchLine">
+            <input type="text" name="searchedBy" value="mainSearch" style="display:none;">
+             
+                  <select size="1" id="searchCheck" class="nanum-gothic" name="searchSelect"> 
+                     <option value="1" selected>맛집 🍟</option>
+                     <option value="2">수다 🍊</option>
+                  </select>
+           
                 <input type="search" id="searchBox" name="search">
-                <button type="button" id="searchBtn" style="color:white;" class="fa-regular fa-magnifying-glass"> 
-                </button>
+                
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" id="searchBtn" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg>
+               </div>
             </form>
         </div>
         <div class="col-12 col-lg-3 themed-grid-col d-flex rightMenu">
