@@ -130,10 +130,10 @@ p{font-weight:bolder; font-size:25px; color:#57b846;}
 				</form>
 				<script>
 					ClassicEditor
-					.create(document.querySelector("#editor"), {
-						 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
-					})
-					.catch(error => { console.error(error) });
+						.create(document.querySelector("#editor"), {
+						 	toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
+						})
+						.catch(error => { console.error(error) });
 
 					$("#myForm").submit(function(){
 						let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
