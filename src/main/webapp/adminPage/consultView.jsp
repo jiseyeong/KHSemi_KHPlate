@@ -109,7 +109,7 @@ crossorigin="anonymous"></script>
                         </div>
                         <div class="row">
                             <div class="col-12 col-lg-3" style="border:1px solid black; margin-left:auto;">
-                                <img src="/consult/${image.sysName}" alt="/consult/${image.oriName}" id="image" class="w-100 object-fit-contain">
+                                <img src="/consult/${image.sysName}" alt="/consult/${image.oriName}" id="image" class="w-100 object-fit-contain" style="max-height: 500px;">
                             </div>
                             <div class="col-12 col-lg-6" style="margin-right:auto;">
                                 <div id="readEditor">${dto.body}</div>
@@ -158,10 +158,9 @@ crossorigin="anonymous"></script>
                                             })
                                             .catch(error => { console.error(error) });
                                     </script>
-                                </fieldset>
                             </c:when>
                             <c:otherwise>
-                                <c:if test="sessionScope.loginIsAdmin">
+                                <c:if test="${sessionScope.loginIsAdmin}">
                                     <div class="col-12 text-center">
                                         <a href="/replyForm.consult?consultID=${dto.consultID}">
                                             <button type="button" id="btn_reply">답글달기</button></a>

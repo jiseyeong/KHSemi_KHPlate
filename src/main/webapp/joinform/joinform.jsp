@@ -625,19 +625,21 @@ font-size: 16px;
 								id="email" name="email">
 						</div>
 
+						
+<!-- 						인증코드 발송 부분 주석처리 -->
 
-						<div class="row row-space">
-							<div class="col-2">
-								<div class="input-group">
-									<input class="input--style-2" type="text" placeholder="인증코드"
-										id="reg_code" name="reg_code">
-								</div>
-							</div>
-							<div class="col-2">
-								<button class="btn btn--radius btn--green" type="button"
-									id="reg_send">코드발송</button>
-							</div>
-						</div>
+<!-- 						<div class="row row-space"> -->
+<!-- 							<div class="col-2"> -->
+<!-- 								<div class="input-group"> -->
+<!-- 									<input class="input--style-2" type="text" placeholder="인증코드" -->
+<!-- 										id="reg_code" name="reg_code"> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 							<div class="col-2"> -->
+<!-- 								<button class="btn btn--radius btn--green" type="button" -->
+<!-- 									id="reg_send">코드발송</button> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
 
 						<div class="p-t-10">
@@ -658,16 +660,12 @@ font-size: 16px;
 	<script src="js/global.js"></script>
 
 	<script>
-	
-	
-			
-	
             var idValidFlag = false;
     
             $("#idCheck").on(
                 "click",
                 function () {
-                    window.open("/IdCheck.members?id="+$("#id").val(),"","width=500px, height=600px");
+                    window.open("/IdCheck.members?id="+$("#id").val(),"","width=450px, height=630px");
                 });
             
             $("#id").on("change", function () {
@@ -711,31 +709,17 @@ font-size: 16px;
                         return false;
                     }
                     
-                  	// 패스워드 일치 여부 체크
-                  	// 아래 항목과 중복됩니다.. 둘 중 하나를 사용해주세요.
-                  	
-//                     if (pw1 != pw2) { 
-//                         Swal.fire({
-//                             icon: "error",
-//                             title: "Oops...",
-//                             text: "패스워드를 다시 확인해주세요"
-//                         });
-//                         return false;
-//                     }
-    
-    
                     //형식 제한 준수 여부 체크
                     if (!regexID.test(id)) {
                         Swal.fire({
                             icon: "error",
                             title: "ID 형식 오류",
-                            text: "7-13자의 알파벳 소문자, 숫자, _",
+                            text: "7-13자의 알파벳 소문자, 숫자 형태로 입력해주세요",
                         });
                         return false;
                     }
                     
                     // ID 중복체크 확인 코드
-                    // 추가 완료
                     if (idValidFlag==false){
                     	Swal.fire({
                             icon: "error",
@@ -749,33 +733,37 @@ font-size: 16px;
                         Swal.fire({
                             icon: "error",
                             title: "Password 형식 오류",
-                            text: "7-13자의 알파벳 대소문자, 숫자",
+                            text: "7-13자의 알파벳 대소문자,숫자 형태로 입력해주세요",
                         });
                         return false;
                     }
-                    // 위 항목과 중복됩니다.
-                    // 둘 중 하나만 사용해주세요.
+                    
+                    // 패스워드 형식 확인 여부
                     if (pw1 != pw2) {
                     	 Swal.fire({
                              icon: "error",
                              title: "Password 불일치",
-                             text: "패스워드 불일치",
+                             text: "패스워드를 다시 확인해주세요.",
                          });
 						return false;
 					}
+                    
+                    // 이름 형식 확인 여부
                     if (!regexName.test(name)) {
                         Swal.fire({
                             icon: "error",
                             title: "NAME 형식 오류",
-                            text: "한글만 입력 가능",
+                            text: "한글만 입력 가능합니다.",
                         });
                         return false;
                     }
+                    
+                	 // 이메일 형식 확인 여부
                     if (!regexEmail.test(email)) {
                         Swal.fire({
                             icon: "error",
                             title: "EMAIL 형식 오류",
-                            text: "ID@address 형식으로 입력",
+                            text: "ID@address 형식으로 입력해주세요.",
                         });
                         return false;
                     }else{
