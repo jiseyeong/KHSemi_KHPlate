@@ -112,7 +112,7 @@ font-weight: bolder;
 					</div>
 					<div class="row">
 						<div class="col-12 col-lg-3" style="margin-left:auto;">
-							<img src="${parentImage}" alt="${parentImage}" id="image" class="w-100 object-fit-contain">
+							<img src="/consult/${parentImage.oriName}" alt="/consult/${parentImage.oriName}" id="image" class="w-100 object-fit-contain">
 						</div>
 						<div class="col-12 col-lg-6" style="margin-right:auto;">
 							<div id="readEditor">${parentDTO.body}</div>

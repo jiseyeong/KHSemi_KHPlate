@@ -48,7 +48,11 @@ public class ConsultReplyDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, consultID);
 			try(ResultSet rs = pstat.executeQuery();){
-				return this.transAllRsToList(rs).get(0);
+				ArrayList<ConsultReplyDTO> temp = this.transAllRsToList(rs);
+				if(temp.size() > 0) {
+					return temp.get(0);
+				}
+				return null;
 			}
 		}
 	}

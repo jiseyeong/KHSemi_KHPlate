@@ -3,8 +3,6 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,13 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import commons.SecurityUtils;
 import dao.CommentReviewDAO;
 import dao.PhotoDAO;
 import dto.CommentReviewDTO;
+import dto.NaviDTO;
 import dto.PhotoDTO;
 import statics.Settings;
 
@@ -96,7 +93,6 @@ public class CommentReviewController extends HttpServlet {
 				resp.addProperty("writeMyCommentNavi", writeMyCommentNavi);
 				
 				response.getWriter().append(resp.toString());
-				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

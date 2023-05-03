@@ -453,6 +453,7 @@
 								<c:if test="${fn:length(commentList) > 0}">
 									<div class="col-12">한줄 리뷰 목록</div>
 									<div class="row">
+										
 										<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
 											<div class="col-12">작성자 : ${userIDList.get(i)}</div>
 
@@ -589,6 +590,17 @@
 											</script>
 
 										</c:forEach>
+										<div class="col-12 text-center">
+											<c:if test="${navi.needNext}">
+												<a href="/view.store?storeID=${dto.storeID}&cpage=${navi.naviList.get(0) - 1}"><</a>
+											</c:if>
+											<c:forEach var="i" items="${navi.naviList}">
+												<a href="/view.store?storeID=${dto.storeID}&cpage=${i.intValue()}">${i.intValue()}</a>
+											</c:forEach>
+											<c:if test="${navi.needNext}">
+												<a href="/view.store?storeID=${dto.storeID}&cpage=${navi.naviList.get(navi.naviList.length)+1}">></a>
+											</c:if>
+										</div>
 									</div>
 								</c:if>
 							</div>
