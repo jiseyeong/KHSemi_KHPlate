@@ -111,13 +111,17 @@ public class PhotoDAO {
 		}
 	}
 	
-	public ArrayList<PhotoDTO> selectByCReviewID(int cReviewID) throws Exception{
-		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where CREVIEWID = ?";
+	public PhotoDTO selectByConsultID(int consultID) throws Exception{
+		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where CONSULTID = ?";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setInt(1, cReviewID);
+			pstat.setInt(1, consultID);
 			try(ResultSet rs = pstat.executeQuery();){
-				return this.transAllRsToList(rs);
+				ArrayList<PhotoDTO> temp = this.transAllRsToList(rs);
+				if(temp.size() > 0) {
+					return temp.get(0);
+				}
+				return null;
 			}
 		}
 	}

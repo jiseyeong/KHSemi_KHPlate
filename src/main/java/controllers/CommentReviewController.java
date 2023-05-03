@@ -93,19 +93,6 @@ public class CommentReviewController extends HttpServlet {
 				resp.addProperty("writeMyCommentNavi", writeMyCommentNavi);
 				
 				response.getWriter().append(resp.toString());
-			}else if(cmd.equals("/selectCurrentPage.commentReview")) {
-				int storeID = Integer.parseInt(request.getParameter("storeID"));
-				int currentPage = Integer.parseInt(request.getParameter("cpage"));
-				int start = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE - (Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE-1);
-				int end = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
-				ArrayList<CommentReviewDTO> list = CommentReviewDAO.getInstance().selectBound(storeID, start, end);
-				NaviDTO pageNavi = CommentReviewDAO.getInstance().getReviewNavi(currentPage);
-				
-				JsonObject jsonObject = new JsonObject();
-				jsonObject.add("list", g.toJsonTree(list));
-				jsonObject.add("navi", g.toJsonTree(pageNavi));
-				
-				response.getWriter().append(g.toJson(jsonObject));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

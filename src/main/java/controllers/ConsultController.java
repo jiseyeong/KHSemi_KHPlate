@@ -21,6 +21,7 @@ import dao.ConsultReplyDAO;
 import dao.MembersDAO;
 import dto.ConsultDTO;
 import dto.ConsultReplyDTO;
+import dto.NaviDTO;
 import statics.Settings;
 
 @WebServlet("*.consult")
@@ -61,20 +62,33 @@ public class ConsultController extends HttpServlet {
 				
 				response.sendRedirect("/list.consult");
 			}else if(cmd.equals("/list.consult")) {
-				ArrayList<ConsultDTO> list = ConsultDAO.getInstance().selectAll();
+				int currentPage = 0;
+				if(request.getParameter("cpage") == null) {
+					currentPage = 1;
+				}else {
+					currentPage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				int start = currentPage * Settings.CONSULT_RECORD_COUNT_PER_PAGE - (Settings.CONSULT_NAVI_COUNT_PER_PAGE-1);
+				int end = currentPage * Settings.CONSULT_RECORD_COUNT_PER_PAGE;
+				ArrayList<ConsultDTO> list = ConsultDAO.getInstance().selectBound(start, end);
+				NaviDTO navi = ConsultDAO.getInstance().getNavi(currentPage);
 				ArrayList<String> writerList = new ArrayList<>();
 				for(ConsultDTO i : list) {
 					writerList.add(MembersDAO.getInstance().getIDByNo(i.getUserNO()));
 				}
 				request.setAttribute("list", list);
 				request.setAttribute("writerList", writerList);
+				request.setAttribute("navi", navi);
 				request.getRequestDispatcher("/adminPage/consultList.jsp").forward(request, response);
 			}else if(cmd.equals("/view.consult")) {
 				int consultID = Integer.parseInt(request.getParameter("consultID"));
 				ConsultDTO dto = ConsultDAO.getInstance().selectOne(consultID);
 				String writer = MembersDAO.getInstance().getIDByNo(dto.getUserNO());				
 				ConsultReplyDTO replyDTO = ConsultReplyDAO.getInstance().selectOneByConsultID(consultID);
-				String replyWriter = MembersDAO.getInstance().getIDByNo(replyDTO.getUserNo());
+				String replyWriter = null;
+				if(replyDTO != null) {
+					replyWriter = MembersDAO.getInstance().getIDByNo(replyDTO.getUserNo());
+				}
 				
 				request.setAttribute("dto", dto);
 				request.setAttribute("writer", writer);

@@ -259,7 +259,7 @@ public class CommentReviewDAO {
 		}
 	}
 	
-	public NaviDTO getReviewNavi(int currentPage) throws Exception{
+	public NaviDTO getNavi(int currentPage) throws Exception{
 		int recordTotalCount = this.getRecoredCount();
 		int recordCountPerPage = Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE;
 		int naviCountPerPage = Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
