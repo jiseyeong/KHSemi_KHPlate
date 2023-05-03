@@ -252,7 +252,7 @@ public class MembersController extends HttpServlet {
 				String pwid = request.getParameter("pwid");
 				String userid = dao.pwsearch(pwname,pwemail,pwid);
 				if (userid==null) {
-					response.sendRedirect("/login/newpw.jsp");
+					response.sendRedirect("/login/wrongpw.jsp");
 				} else {
 					request.setAttribute("userid",userid);
 					request.getRequestDispatcher("/memberSearch/newpassword.jsp").forward(request, response);
