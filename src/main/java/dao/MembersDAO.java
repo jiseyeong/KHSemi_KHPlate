@@ -46,6 +46,21 @@ public class MembersDAO {
 			}
 		}
 	}
+	
+	public boolean getIsAdminByNo(int userNo) throws Exception{
+		String sql = "select ISADMIN from MEMBERS where USERNO = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, userNo);
+			try(ResultSet rs = pstat.executeQuery();){
+				rs.next();
+				if(rs.getString(1).equals("T")) {
+					return true;
+				}
+				return false;
+			}
+		}
+	}
 
 
 	public int insert(MembersDTO dto) throws Exception { // 회占쏙옙占쏙옙占쏙옙

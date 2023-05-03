@@ -216,6 +216,7 @@ public class MembersController extends HttpServlet {
 					request.getSession().setAttribute("userId", userId);
 					int userno = dao.getUserno(userId);
 					request.getSession().setAttribute("userno", userno);
+					request.getSession().setAttribute("loginIsAdmin", dao.getIsAdminByNo(userno));
 					response.getWriter().append("4");
 					return;
 				}
