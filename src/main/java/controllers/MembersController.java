@@ -225,6 +225,7 @@ public class MembersController extends HttpServlet {
 			else if(cmd.equals("/logout.members")) {
 				request.getSession().removeAttribute("userId");
 				request.getSession().removeAttribute("userno");
+				request.getSession().removeAttribute("loginIsAdmin");
 				response.sendRedirect("/page/main.jsp");
 			}
 			
