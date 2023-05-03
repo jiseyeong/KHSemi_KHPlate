@@ -73,8 +73,7 @@
 #searchCheck {
    font-family: 'Nanum Gothic', sans-serif;
 font-weight: bold;
-font-size: 18px;
-color: #57b846;
+font-size: 17px;
   width: 150px;
   height: 35px;
   left: 25%;
@@ -168,7 +167,7 @@ font-family: 'Nanum Gothic', sans-serif;
     <div class="row header m-0" style="margin-bottom:70px;">
         <div class="col-12 col-lg-3 themed-grid-col logo">
 		<!--다른 페이지에서도 정상 표시되기 위한 이미지 절대 경로로 지정 -->
-             <img src="/page/logowhite.png" class="logoimage">
+             <img src="logowhite.png" class="logoimage">
         </div>
         <div class="col-12 col-lg-6 d-flex search">
            <form id=searchForm action="/searchStoreBySearchBox.store" method="get" class="form d-flex" onsubmit="return false;">           
@@ -204,7 +203,7 @@ font-family: 'Nanum Gothic', sans-serif;
                  <c:otherwise>
                     <a href="/logout.members" class="nanum-gothic" >로그아웃 </a>
                    <a href="#null" class="nanum-gothic" >｜</a>
-                <a href="/mypage/myPageVer2.jsp" class="nanum-gothic" >마이페이지</a>
+                <a href="/mypage/mypage.jsp" class="nanum-gothic" >마이페이지</a>
                  </c:otherwise>
               </c:choose>
            </div>
