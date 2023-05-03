@@ -17,37 +17,30 @@
 
 	<hr>
 	<p>페이지 만드는 중</p><br>
-	지도로 음식점 검색? -><a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry.jsp</a><br>
-	음식점 검색 결과 -> <a href="/common/main_storeSearchResult.jsp">main_storeSearchResult.jsp</a><br>
-	블로그형 글 검색 결과 -> <a href="/common/main_blogSearchResult.jsp">main_blogSearchResult.jsp</a><br>
-	검색 필터 -> <a href="/common/sort_filter.html">sort_filter.html</a><br>
-	<hr>
-	가게 정보 확인 -> <a href="/store/view.jsp">view.jsp</a>
+	<a href="/idconfirm.jsp">idconfirm.jsp</a>
+	<a href="/newpw.jsp">newpw.jsp</a>
 	<hr>
 	<p>수정 완료 > 컨트롤러 적용 예정</p>
 	<br>
-	마이페이지 -> <a href="/mypage/myPageVer2.jsp">myPageVer2.jsp</a><br>
 	메인 페이지 -> <a href="/page/main.jsp">main.jsp</a><br>
 	<br>
 	<hr>
 	<p>컨트롤러 적용 완료</p><br>
+	가게 정보 확인 -> <a href="/store/view.jsp">view.jsp</a>
+	마이페이지 -> <a href="/mypage/myPageVer2.jsp">myPageVer2.jsp</a><br>
 	블로그 리뷰 글보기 -> <a href="FullReview/FullReviewContent.jsp">FullReviewContent.jsp</a><br>
 	블로그 리뷰 리스트 -> <a href="FullReview/FullReviewList.jsp">FullReviewList.jsp</a><br>
 	블로그 리뷰 글쓰기 -> <a href="FullReview/writeFullReview.jsp">writeFullReview.jsp</a>
 	<hr>
-	
+	카카오 로그인 -> <a href="/login/kakaologin.html">kakaologin.html</a><br>
+	네이버 로그인 -> <a href="/login/naverlogin.jsp">naverlogin</a><br>
 	<br>
 	<p>컨트롤러,디자인 적용 완료</p><br>
 	회원가입 -> <a href="/joinform/joinform.jsp">joinform.jsp</a><br>
 	아이디 중복확인 -> <a href="/joinform/isIdExist.jsp">isIdExist.jsp</a><br>
 	<hr>
-	헤더 -> <a href="/page/header.jsp">header.jsp</a><br>
-	사이드바 -> <a href="/page/sideBar.jsp">sideBar.jsp</a><br>
-	footer -> <a href="/page/footer.jsp">footer.jsp</a><br>
-	페이지 틀 -> <a href="/page/test.jsp">test.jsp</a><br>
+
 	<hr>
-	카카오 로그인 -> <a href="/login/kakaologin.html">kakaologin.html</a><br>
-	네이버 로그인 -> <a href="/login/naverlogin.jsp">naverlogin</a><br>
 	네이버 callback -> <a href="/login/navercallback.jsp">navercallback</a><br>
 	로그인 -> <a href="/login/login.jsp">login.jsp</a><br>
 	아이디 찾기 -> <a href="/memberSearch/idsearch.jsp">idsearch.jsp</a><br>
@@ -64,5 +57,16 @@
 	FAQ 리스트 -> <a href="/adminPage/FAQView.jsp">FAQView.jsp</a><br>
 	<hr>
 	가게 정보 등록 -> <a href="/store/registerForm.jsp">registerForm.jsp</a><br>
+	<hr>
+	내 근처 맛집(지도형 맛집 확인 페이지)-><a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry.jsp</a><br>
+	맛집 검색 결과 -> <a href="/common/main_storeSearchResult.jsp">main_storeSearchResult.jsp</a><br>
+	<hr>
+	<p>링크 적용 완료</p><br>
+	
+	<hr>
+	헤더 -> <a href="/page/header.jsp">header.jsp</a><br>
+	사이드바 -> <a href="/page/sideBar.jsp">sideBar.jsp</a><br>
+	footer -> <a href="/page/footer.jsp">footer.jsp</a><br>
+	페이지 틀 -> <a href="/page/test.jsp">test.jsp</a><br>
 </body>
 </html>

@@ -235,7 +235,7 @@ label input[type="checkbox"] {
 	border-radius: 5px;
 	margin: 10px auto 10px;
 	position: absolute;
-	top: 19%;
+	top: 23%;
 	left: 7.2%;
 	color: white;
 	display: none;
@@ -251,7 +251,7 @@ label input[type="checkbox"] {
 .eyes {
 	cursor: pointer;
 	margin-left: 330px;
-	margin-top: -63px;
+	margin-top: -70px;
 	position: absolute;
 }
 
@@ -336,7 +336,7 @@ label input[type="checkbox"] {
 			<input type="button" value="" class="btn" id="naverBtn">
 			<div id="naverIdLogin"></div>
 		</form>
-		<a href="/memberSearch/idpwsearch.jsp" class="forgetidpw"> 아이디/비밀번호 찾기</a>
+		<a href="#null" class="forgetidpw"> 아이디/비밀번호 찾기</a>
 		<a href="/joinform/joinform.jsp" class="dnthave">회원가입하기</a>
 	</div>
 </div>
@@ -344,8 +344,9 @@ label input[type="checkbox"] {
 
 <script>
 
-$(".forgetpass").on("click", function() {
-	window.open("/memberSearch/idsearch.jsp","","width=480px,height=750px");
+// 아이디/비밀번호 찾기 링크
+$(".forgetidpw").on("click", function() {
+	window.open("/memberSearch/idpwsearch.jsp","","width=480px,height=750px");
 	
 })
 
@@ -521,16 +522,18 @@ $(".forgetpass").on("click", function() {
 		}
 
 		if (password.value == "") {
+			msg.style.display = 'block';
 			msg.innerHTML = "Please enter your password";
 			password.focus();
 			return false;
 		} else {
 			msg.innerHTML = "";
 		}
-// 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		
 		var re = /^[a-z0-9_]{7,13}$/;
 		
 		if (!re.test(id.value)) {
+			msg.style.display = 'block';
 			msg.innerHTML = "Please enter a valid id";
 			id.focus();
 			return false;
@@ -539,6 +542,7 @@ $(".forgetpass").on("click", function() {
 		}
 
 		// 정규식 검사에 해당되지 않으면 로그인
+		msg.style.display="none";
 		$.ajax({
 			url : "/login.members",
 			type : "post",
