@@ -21,6 +21,8 @@ public class FullReviewReplyController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf8");
+		response.setContentType("text/html; charset=utf8;");
 
 		String cmd = request.getRequestURI();
 		FullReviewReplyDAO frrdao = FullReviewReplyDAO.getInstance();

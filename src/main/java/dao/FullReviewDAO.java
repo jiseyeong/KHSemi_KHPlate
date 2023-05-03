@@ -18,7 +18,7 @@ import dto.StoreDTO;
 import statics.Settings;
 
 public class FullReviewDAO {
-	
+
 	private static FullReviewDAO instance = null;
 	public synchronized static FullReviewDAO getInstance() {
 		if(instance == null) {
@@ -34,11 +34,11 @@ public class FullReviewDAO {
 		DataSource ds = (DataSource)iContext.lookup("java:/comp/env/jdbc/ora");
 		return ds.getConnection();
 	}
-	
+
 	public int writeFullReview(String title,String reviewbody, int score, int storeId, int userNo) throws Exception {
 		String sql = "insert into FullReview values (fullreview_reviewid_seq.nextval,?,?,?,?,sysdate,?)";
 		try(Connection con = this.getConnection();
-		PreparedStatement pstat = con.prepareStatement(sql);){
+				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1, reviewbody);
 			pstat.setInt(2, score);
 			pstat.setInt(3, storeId);
@@ -48,7 +48,7 @@ public class FullReviewDAO {
 			return result;
 		}
 	}
-	
+
 	public String StoreNameByReviewId(int reviewid) throws Exception{
 		String sql = "select name from store where storeid =(select storeid from fullreview where reviewid=?)";
 		try(Connection con = this.getConnection();
@@ -61,36 +61,50 @@ public class FullReviewDAO {
 			}
 		}
 	}
-	
-	
+
+	public String userIdByReviewId(int reviewid) throws Exception{
+		String sql = "select userid from members where userno = (select userno from fullreview where reviewid = ?)";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, reviewid);
+			try(ResultSet rs = pstat.executeQuery()){
+				rs.next();
+				String name = rs.getString("userid");
+				return name;
+			}
+		}
+	}
+
+
+
 	public List<StoreDTO> selectListStore()throws Exception{
 		String sql = "select * from store order by name";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				ResultSet rs = pstat.executeQuery();){
-			
+
 			List<StoreDTO> result = new ArrayList<>();
 			while(rs.next()) {
-			StoreDTO dto = new StoreDTO();
-			dto.setStoreID(rs.getInt("storeid"));
-			dto.setDistance(rs.getInt("distance"));
-			dto.setName(rs.getString("name"));
-			dto.setLat(rs.getDouble("lat"));
-			dto.setLng(rs.getDouble("lng"));
-			dto.setAddress(rs.getString("address"));
-			dto.setAvgScore(rs.getDouble("avgscore"));
-			dto.setIntroduction(rs.getString("introduction"));
-			dto.setCategory(rs.getString("category"));
-			dto.setReviewCount(rs.getInt("reviewcount"));
-			dto.setPriceRange(rs.getString("pricerange"));
-			result.add(dto);
+				StoreDTO dto = new StoreDTO();
+				dto.setStoreID(rs.getInt("storeid"));
+				dto.setDistance(rs.getInt("distance"));
+				dto.setName(rs.getString("name"));
+				dto.setLat(rs.getDouble("lat"));
+				dto.setLng(rs.getDouble("lng"));
+				dto.setAddress(rs.getString("address"));
+				dto.setAvgScore(rs.getDouble("avgscore"));
+				dto.setIntroduction(rs.getString("introduction"));
+				dto.setCategory(rs.getString("category"));
+				dto.setReviewCount(rs.getInt("reviewcount"));
+				dto.setPriceRange(rs.getString("pricerange"));
+				result.add(dto);
 			}
 			return result;
 		}
 	}
-	
-	
-	
+
+
+
 	public int deleteFullReview(int reviewId) throws Exception {
 		String sql = "delete from fullreview where reviewid = ?";
 		try(Connection con = this.getConnection();
@@ -100,26 +114,26 @@ public class FullReviewDAO {
 			return result;
 		}
 	}
-	
+
 	public int update(String title, String reviewbody, int score, int storeid, int reviewId) throws Exception {
 		String sql = "update fullreview set title=?, reviewbody=?, score=? ,storeid=? where reviewid = ?";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-		pstat.setString(1, title);
-		pstat.setString(2, reviewbody);
-		pstat.setInt(3, score);
-		pstat.setInt(4, storeid);
-		pstat.setInt(5, reviewId);
-		int result = pstat.executeUpdate();
-		return result;
+			pstat.setString(1, title);
+			pstat.setString(2, reviewbody);
+			pstat.setInt(3, score);
+			pstat.setInt(4, storeid);
+			pstat.setInt(5, reviewId);
+			int result = pstat.executeUpdate();
+			return result;
 		}
 	}
-	
-	
+
+
 	// 블로그 리뷰 조회
 	public List<FullReviewUserDTO> selectFullReview(int searchUserno, String searchFullReviewTitle, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception {
 		String sql="";
-		
+
 		if(searchUserno==0) {
 			sql = "select * from"
 					+" (select fullreview.*, row_number() over(order by reviewID desc) row_num from fullreview where title like ?)"
@@ -131,7 +145,7 @@ public class FullReviewDAO {
 					+" f join members m on f.userno = m.userno"
 					+" where row_num between ? and ?";
 		}
-		
+
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1, "%"+searchFullReviewTitle+"%");
@@ -143,7 +157,7 @@ public class FullReviewDAO {
 				pstat.setInt(3, start_Record_Row_Num);
 				pstat.setInt(4, end_Record_Row_Num);
 			}
-			
+
 			try(ResultSet rs = pstat.executeQuery();){
 				List<FullReviewUserDTO> result = new ArrayList<>();
 				while(rs.next()) {
@@ -161,13 +175,13 @@ public class FullReviewDAO {
 			}
 		}
 	}
-	
+
 	public String getFullReviewNavi(int currentpage, int searchUserno, String searchFullReviewTitle) throws Exception {
 
 		int record_total_count = getSearchdFullReview_RecordCount(searchUserno,searchFullReviewTitle);
 		int record_count_per_page = Settings.SEARCH_FULLREVIEW_RECORD_COUNT_PER_PAGE; // 15
 		int navi_count_per_page = Settings.SEARCH_FULLREVIEW_NAVI_COUNT_PER_PAGE; // 10
-		
+
 		System.out.println("리스트 전체 글 개수 : "+record_total_count);
 
 		int page_total_count = 0;
@@ -257,8 +271,8 @@ public class FullReviewDAO {
 			}
 		}
 	}
-	
-	
+
+
 	private List<FullReviewDTO> transToList(ResultSet rs) throws Exception {
 		List<FullReviewDTO> result = new ArrayList<>();
 		while(rs.next()) {
@@ -273,8 +287,8 @@ public class FullReviewDAO {
 		}
 		return result;
 	}
-	
-	
+
+
 	public FullReviewDTO contentByReviewId(int reviewid) throws Exception {
 		String sql = "select * from fullreview where reviewid = ?";
 		try (Connection con = this.getConnection(); 
@@ -283,7 +297,7 @@ public class FullReviewDAO {
 			FullReviewDTO result = new FullReviewDTO();
 			try (ResultSet rs = pstat.executeQuery()) {
 				rs.next();
-				
+
 				String title = rs.getString("title");
 				int rsreviewid = rs.getInt("reviewid");
 				String rsreviewbody = rs.getString("reviewbody");
@@ -291,7 +305,7 @@ public class FullReviewDAO {
 				int rsstoreid = rs.getInt("storeid");
 				int rsuserno = rs.getInt("userno");
 				Timestamp writedate = rs.getTimestamp("writedate");
-				
+
 				result.setTitle(title);
 				result.setReviewID(rsreviewid);
 				result.setReviewBody(rsreviewbody);
@@ -304,9 +318,9 @@ public class FullReviewDAO {
 			}
 		}
 	};
-	
+
 	public String selectFullReviewListToJSP(List<FullReviewUserDTO> fullReviewList) throws Exception {
-			
+
 		StringBuilder sb = new StringBuilder();
 		for(FullReviewUserDTO user : fullReviewList) {
 			sb.append("<tr>");
@@ -318,13 +332,13 @@ public class FullReviewDAO {
 		}
 		return sb.toString();
 	}
-	
+
 	public String getFullReviewNaviToJSP(int currentpage, int searchUserno, String searchFullReviewTitle) throws Exception {
 
 		int record_total_count = getSearchdFullReview_RecordCount(searchUserno,searchFullReviewTitle);
 		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE; // 10
 		int navi_count_per_page = Settings.MYPAGE_LIST_NAVI_COUNT_PER_PAGE; // 10
-		
+
 		System.out.println("리스트 전체 글 개수 : "+record_total_count);
 
 		int page_total_count = 0;
@@ -387,8 +401,8 @@ public class FullReviewDAO {
 		}
 		return sb.toString();
 	}
-	
-	
+
+
 	public String selectMyFullReviewScrapList(int userno, int start_Record_Row_Num, int end_Record_Row_Num) throws Exception {
 		String sql = "select * from "
 				+ "(select total.*, row_number() over(order by total.storeID desc) row_num from "
@@ -396,12 +410,12 @@ public class FullReviewDAO {
 				+ "join store using (storeid)) c join members m on m.userno = c.userno) a "
 				+ "join fullreviewscrap f on a.reviewid = f.reviewid where userno = ?) total) " 
 				+ "where row_num between ? and ?";
-		
+
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-				pstat.setInt(1, userno);
-				pstat.setInt(2, start_Record_Row_Num);
-				pstat.setInt(3, end_Record_Row_Num);
+			pstat.setInt(1, userno);
+			pstat.setInt(2, start_Record_Row_Num);
+			pstat.setInt(3, end_Record_Row_Num);
 			try(ResultSet rs = pstat.executeQuery();){
 				List<MyFullReviewScrapDTO> result = new ArrayList<>();
 				while(rs.next()) {
@@ -416,9 +430,9 @@ public class FullReviewDAO {
 			}
 		}
 	}
-	
+
 	public String selectMyFullReviewScrapListToJSP(List<MyFullReviewScrapDTO> MyFullReviewScrapList) throws Exception {
-		
+
 		StringBuilder sb = new StringBuilder();
 		for(MyFullReviewScrapDTO user : MyFullReviewScrapList) {
 			sb.append("<tr>");
@@ -431,13 +445,13 @@ public class FullReviewDAO {
 		}
 		return sb.toString();
 	}
-	
+
 	public String selectMyFullReviewScrapNaviToJSP(int currentpage, int userno) throws Exception {
 
 		int record_total_count = getMyFullReviewScrapNavi_RecordCount(userno);
 		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE; // 10
 		int navi_count_per_page = Settings.MYPAGE_LIST_NAVI_COUNT_PER_PAGE; // 10
-		
+
 		System.out.println("리스트 전체 글 개수 : "+record_total_count);
 
 		int page_total_count = 0;
@@ -500,13 +514,13 @@ public class FullReviewDAO {
 		}
 		return sb.toString();
 	}
-	
+
 	public int getMyFullReviewScrapNavi_RecordCount(int userno) throws Exception{
 		String sql = "select count(*) from fullreviewscrap where userno = ?";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-				pstat.setInt(1, userno);
-				try(ResultSet rs = pstat.executeQuery();){
+			pstat.setInt(1, userno);
+			try(ResultSet rs = pstat.executeQuery();){
 				rs.next();
 				return rs.getInt(1);
 			}
