@@ -74,7 +74,7 @@
 
 .btnBox2 {
 	height: 100px;
-	padding-left: 80%;
+	padding-left: 90%;
 }
 
 .writeBtn {
@@ -157,7 +157,7 @@
 </head>
 <body>
 
-	<div class="album py-5 bg-light">
+	<div class="album py-0 bg-0">
 		<div class="container">
 
 			<div class="btnBox2">
@@ -274,7 +274,7 @@
 
 	<script>
 		$(".writeBtn").on("click",function(){
-			location.href="/FullReview/writeFullReview.jsp";
+			location.href="/towrite.fullreview";
 		})
 		$(".card").on("click",function(){
 			location.href="/content.fullreview?reviewid="+$(this).find('.hiddencard').val();

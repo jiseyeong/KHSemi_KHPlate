@@ -17,6 +17,7 @@ import dao.FullReviewReplyDAO;
 import dto.FullReviewDTO;
 import dto.FullReviewUserDTO;
 import dto.ReplyWithUserIdDTO;
+import dto.StoreDTO;
 import statics.Settings;
 
 @WebServlet("*.fullreview")
@@ -24,7 +25,7 @@ public class FullReviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("utf8");
 		String cmd = request.getRequestURI();
 		System.out.println(cmd);
 		FullReviewDAO frdao = FullReviewDAO.getInstance();
@@ -47,6 +48,14 @@ public class FullReviewController extends HttpServlet {
 				}else {
 					response.sendRedirect("error.jsp");
 				}
+
+			}else if (cmd.equals("/towrite.fullreview")){
+				List<StoreDTO> list = frdao.selectListStore();
+
+				request.setAttribute("store", list);
+
+				request.getRequestDispatcher("/FullReview/writeFullReview.jsp").forward(request, response);
+
 
 			}else if (cmd.equals("/update.fullreview")){
 
@@ -151,13 +160,20 @@ public class FullReviewController extends HttpServlet {
 				FullReviewDTO contents = frdao.contentByReviewId(reviewid);
 
 				List<ReplyWithUserIdDTO> replyList = FullReviewReplyDAO.getInstance().listReplyByreviewid(reviewid);
-
+				
+				List<StoreDTO> list = frdao.selectListStore();
+				
+				String name = frdao.StoreNameByReviewId(reviewid);
+				
+				
+				request.setAttribute("storeName", name);
+				request.setAttribute("store", list);
 				request.setAttribute("contents", contents);
 				request.setAttribute("replyList", replyList);
 
 				request.getRequestDispatcher("/FullReview/FullReviewContent.jsp").forward(request, response);
 
-				
+
 				// 마이페이지에 표시할 내가 스크랩한 리스트 출력
 			} else if (cmd.equals("/selectScrapListBymypage.fullreview")) {
 
@@ -180,7 +196,7 @@ public class FullReviewController extends HttpServlet {
 				String myFullReviewScrapNavi = frdao.selectMyFullReviewScrapNaviToJSP(currentpage, userno);
 
 				Gson g = new Gson();
-				
+
 				myFullReviewScrapList = g.toJson(myFullReviewScrapList);
 				myFullReviewScrapNavi = g.toJson(myFullReviewScrapNavi);
 

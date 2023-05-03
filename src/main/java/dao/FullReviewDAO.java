@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import dto.FullReviewDTO;
 import dto.FullReviewUserDTO;
 import dto.MyFullReviewScrapDTO;
+import dto.StoreDTO;
 import statics.Settings;
 
 public class FullReviewDAO {
@@ -47,6 +48,47 @@ public class FullReviewDAO {
 			return result;
 		}
 	}
+	
+	public String StoreNameByReviewId(int reviewid) throws Exception{
+		String sql = "select name from store where storeid =(select storeid from fullreview where reviewid=?)";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, reviewid);
+			try(ResultSet rs = pstat.executeQuery()){
+				rs.next();
+				String name = rs.getString("name");
+				return name;
+			}
+		}
+	}
+	
+	
+	public List<StoreDTO> selectListStore()throws Exception{
+		String sql = "select * from store order by name";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			
+			List<StoreDTO> result = new ArrayList<>();
+			while(rs.next()) {
+			StoreDTO dto = new StoreDTO();
+			dto.setStoreID(rs.getInt("storeid"));
+			dto.setDistance(rs.getInt("distance"));
+			dto.setName(rs.getString("name"));
+			dto.setLat(rs.getDouble("lat"));
+			dto.setLng(rs.getDouble("lng"));
+			dto.setAddress(rs.getString("address"));
+			dto.setAvgScore(rs.getDouble("avgscore"));
+			dto.setIntroduction(rs.getString("introduction"));
+			dto.setCategory(rs.getString("category"));
+			dto.setReviewCount(rs.getInt("reviewcount"));
+			dto.setPriceRange(rs.getString("pricerange"));
+			result.add(dto);
+			}
+			return result;
+		}
+	}
+	
 	
 	
 	public int deleteFullReview(int reviewId) throws Exception {
