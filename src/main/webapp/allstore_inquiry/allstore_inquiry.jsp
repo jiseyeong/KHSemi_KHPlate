@@ -19,14 +19,17 @@
 	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 * {
 	box-sizing: border-box;
 	 font-family: 'Nanum Gothic', sans-serif;
+}
+
+a{
+	text-decoration: none;
+	color: black;
 }
 
 body {
@@ -322,6 +325,21 @@ img {
 	justify-content: center;
 	align-items: center;
 }
+.navigator_list_item_btn_layout *{
+	width:100%;
+	height:100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.navigator_direction_btn{
+	background-color : white;
+	border:1px solid silver;
+	border-radius:10px;
+}
+.navigator_direction_btn>i{
+	font-size:16px;
+}
 
 .item {
 	text-decoration: none;
@@ -568,6 +586,11 @@ hr {
 .search_store_list_toScript {
 	display: none;
 }
+
+/* 가게 정보 추가 */
+.navigator_direction_btn{
+	
+}
 </style>
 </head>
 
@@ -655,7 +678,7 @@ hr {
 				</div>
 
 			</div>
-	</form>
+	
 
 	<!--  맵 영역 -->
 	<div class="map_layout">
@@ -1210,9 +1233,7 @@ hr {
 			console.log(storeID);
 			location.href = "/view.store?storeID="+storeID;
 		})
-
 	</script>
-
 
 </body>
 
