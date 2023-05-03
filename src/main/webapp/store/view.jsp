@@ -109,6 +109,31 @@
 						margin-top:5px;
 						border:none;
 					}
+					#nameDiv {
+						font-size:40px;
+						font-weight:bold;
+					}
+					#categoryDiv{
+						font-size:17px;
+						color:green;
+						font-weight:600;
+					}
+					#priceRangeDiv{
+						font-size:15px;
+						font-weight:600;
+					}
+					#addressDiv{
+						font-size:15px;
+						font-weight:600;
+					}
+					
+					.input-group{
+						display:block;
+					}
+					.input-group>div {
+						text-align:center;
+						margin-bottom:10px;
+					}
 					.input-group-text{
 						margin-top:5px;
 					}
@@ -121,11 +146,25 @@
 					.input-group>input{
 						font-size:14px;
 					}
-				
-					.ck-editor__editable_inline {
-    					min-height: 300px;
+					input[name='updateMenuName'] {
+					 	border:none;
+					 	width:100%;
+					 	text-align:center;
 					}
-				</style>
+					input[name='updateMenuPrice'] {
+						border:none;
+						width:80%;
+					 	text-align:center;
+					}
+					.ck-editor__editable_inline {
+    					min-height: 150px;
+    					border:1px solid white;
+					}
+					.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+						border:none;
+					}
+					
+		</style>
 			</head>
 
 			<body>
@@ -266,11 +305,13 @@
 							<div class="row">
 
 								<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
-									<div class="input-group">	
-										<input type="text" class="form-control" name="name" value="${dto.name}"readonly style="border:none;"><!--가게 이름-->
+									<div class="input-group" style="display:block;">	
+										<div id="nameDiv">${dto.name}</div>
+										<input type="text" class="form-control" name="name" value="${dto.name}"readonly style="border:none; display:none;"><!--가게 이름-->
 									</div>
-									<div class="input-group">
-										<select name="category" class="form-select" disabled="disabled"><!--가게 카테고리-->
+									<div class="input-group" style="display:block;">
+										<div id="categoryDiv">${dto.category}</div>
+										<select name="category" class="form-select" disabled="disabled" style="display:none;"><!--가게 카테고리-->
 											<option>한식</option>
 											<option>양식</option>
 											<option>중식</option>
@@ -281,8 +322,9 @@
 											<option>기타</option>
 										</select>
 									</div>
-									<div class="input-group">
-										<select name="priceRange" class="form-select" disabled="disabled"><!--1인당 가격범위-->
+									<div class="input-group" style="display:block;">
+										<div id="priceRangeDiv">${dto.priceRange}</div>
+										<select name="priceRange" class="form-select" disabled="disabled" style="display:none;"><!--1인당 가격범위-->
 											<option>5000이하</option>
 											<option>5000~10000</option>
 											<option>10000~15000</option>
@@ -290,29 +332,29 @@
 											<option>20000이상</option>
 										</select>
 									</div>
-									<div class="input-group">
-										<input type="text" class="form-control" name="address" value="${dto.address}" readonly style="border:none;"><!--가게 주소-->
+									<div class="input-group" style="display:block;">
+										<div id="addressDiv">${dto.address}</div>
+										<input type="text" class="form-control" name="address" readonly style="border:none; display:none;"><!--가게 주소-->
 									</div>
 									<div class="row" style="margin-top:30px;">
-										<div class="col-2" style="text-align:center; margin-left:auto; font-weight:bold;">평균 평점</div>
-										<div class="col-2" style="margin-right:auto;">
+										<div class="col-2" style="margin-left:auto; margin-right:auto;">
 											<div class="star-ratings" style="float:left;">
-												<div class="star-ratings-fill space-x-2 text-lg"
-													style="width: ${dto.ratingToPercent()}%;">
+												<div class="star-ratings-fill space-x-2 text-lg">
 													<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 												</div>
 												<div class="star-ratings-base space-x-2 text-lg">
 													<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 												</div>
 											</div>
-											<div style="float:left;">
+											<div style="float:left; font-size:17px; font-weight:600; margin-left:20px;">
 												${dto.avgScore}
 											</div>
 										</div>
 									</div>
 									<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" style="display: none;"> -->
-									<div class="row">
-										<div class="col-12" style="font-weight:bold; margin-bottom:20px;">가게 소개</div>
+									<div class="row" style="margin-top:50px;">
+										<div class="col-12" style="font-weight:bold; margin-bottom:10px;">가게 소개</div>
+										<hr>
 										<div class="col-12">
 											<textarea id="intro_editor"
 												name="introduction">${dto.introduction}</textarea>
@@ -331,7 +373,7 @@
 														<form id="menuUpdateForm${i.menuID}" acti.storeMenu"
 															method="get">
 															<input type="text" name="menuID" value="${i.menuID}"
-																style="display: none;" readonly>
+																style="display:none;" readonly>
 															<input type="text" name="storeID" value="${dto.storeID}"
 																style="display: none;" readonly>
 															<td><input type="text" id="updateMenuName${i.menuID}"
@@ -339,7 +381,9 @@
 																	readonly></td>
 															<td><input type="text" id="updateMenuPrice${i.menuID}"
 																	name="updateMenuPrice" value="${i.menuPrice}"
-																	readonly></td>
+																	readonly>
+																 <button id="menuDelBtn" style="display:none;">x</button>	
+															</td>
 														</form>
 														<td>
 															<button type="button" class="btn_menu_update nonactive"
@@ -468,13 +512,15 @@
 									</script>
 								</c:if>
 								<c:if test="${fn:length(commentList) > 0}">
-									<div class="col-12">한줄 리뷰 목록</div>
+									<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;  font-weight:bold; margin-bottom:10px; margin-top:30px;">한줄 리뷰 목록
+									<hr>
+									</div>
 									<div class="row">
 										
 										<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
-											<div class="col-12">작성자 : ${userIDList.get(i)}</div>
+											<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">${userIDList.get(i)}</div>
 
-											<div class="col-12">
+											<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
 												<div id="readStar${i}" class="star-ratings active" style="float:left;">
 													<div class="star-ratings-fill space-x-2 text-lg"
 														style="width: ${commentList.get(i).ratingToPercent()}%;">
@@ -484,7 +530,7 @@
 														<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 													</div>
 												</div>
-												<div style="float:left;">
+												<div style="float:left; margin-left:10px;">
 													${commentList.get(i).score}
 												</div>
 											</div>
@@ -496,7 +542,7 @@
 												<input type="text" name="reviewID"
 													value="${commentList.get(i).reviewID}" style="display: none;">
 
-												<div id="writeStar${i}" class="col-12 star nonactive">
+												<div id="writeStar${i}" class="col-12 col-lg-8 star nonactive" style="margin-left:auto; margin-right:auto;">
 													<input type="text" id="score${i}" name="modifyScore" value="0"
 														style="display:none;">
 													<a href="#null" value="1">★</a>
@@ -505,7 +551,7 @@
 													<a href="#null" value="4">★</a>
 													<a href="#null" value="5">★</a>
 												</div>
-												<div class="col-12">
+												<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
 													<textarea id="review_editor${i}" name="modifyBody">
 														${commentList.get(i).body}
 													</textarea>
@@ -661,6 +707,7 @@
 									$(".btn_menu_update").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
 									$("#btn_menu_modify_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
 									$(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
+									$("#menuDelBtn").css("display","inline");
 								});
 
 								$("#btn_menu_modify_cancel").click(function () {
@@ -679,6 +726,18 @@
 									$("select[name='category']").removeAttr("disabled");
 									$("select[name='priceRange']").removeAttr("disabled");
 									$("input[name='address']").removeAttr("readonly");
+									
+									$("input[name='name']").css("display","block");
+									$("select[name='category']").css("display","block");
+									$("select[name='priceRange']").css("display","block");
+									$("input[name='address']").css("display","block");
+									
+									$("#nameDiv").css("display","none");
+									$("#categoryDiv").css("display","none");
+									$("#priceRangeDiv").css("display","none");
+									$("#addressDiv").css("display","none");
+									
+									
 									myEditor.disableReadOnlyMode("");
 									$("#imageBox").addClass("nonactive");
 									$("#imageModify").removeClass("nonactive");
