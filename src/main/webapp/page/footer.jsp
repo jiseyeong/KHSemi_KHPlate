@@ -8,13 +8,11 @@
 <title>Footer</title>
 <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
-<style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-
-		
-.footer {
-font-family: 'Nanum Gothic', sans-serif;
-   background-color: #ED1C16;
+	
+.footer{
+   font-family: 'Nanum Gothic', sans-serif;
+   background-color:#ED1C16;
    color: white;
    text-align: center;
    padding: 10px;
