@@ -57,6 +57,12 @@ textarea {
 	font-size: 14px;
 	box-shadow:1px 1px 5px 1px rgb(231, 231, 231)
 }
+
+.score{
+	margin-left:25px;
+	margin-right:25px;
+}
+
 </style>
 
 </head>
@@ -64,9 +70,14 @@ textarea {
 	<div class="container">
 		<form action="/write.fullreview" method="post">
 			<input type="text" placeholder="제목란" class="title" name="title">
+			
+			<hr style="border-style: dotted;">
+			
 			<input type="text" class="userId" name="userId" value="${sessionScope.userId}" readonly>
 			<input type="text" class="userNo" name="userNo" value="${sessionScope.userno}" style="display:none">
-			<div class="void"><br></div>
+			
+			<hr style="border-style: dotted;">
+			
 			<select id = "storeId" class="storeId" name="storeId">
 				<option selected>음식점</option>
 					<c:forEach items="${store }" var="i" varStatus="status">

@@ -160,17 +160,14 @@ public class FullReviewController extends HttpServlet {
 				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
 				System.out.println("선택한 리뷰는 "+reviewid);
 
+				String writer = frdao.userIdByReviewId(reviewid);
+				String name = frdao.StoreNameByReviewId(reviewid);
+				List<StoreDTO> list = frdao.selectListStore();
 				FullReviewDTO contents = frdao.contentByReviewId(reviewid);
-
 				List<ReplyWithUserIdDTO> replyList = FullReviewReplyDAO.getInstance().listReplyByreviewid(reviewid);
 				
-				List<StoreDTO> list = frdao.selectListStore();
 				
-				String name = frdao.StoreNameByReviewId(reviewid);
-				
-				int userno = Integer.parseInt(request.getParameter("userno"));
-				String userud = MembersDAO.getInstance().getIDByNo(userno);
-				
+				request.setAttribute("writerName", writer);
 				request.setAttribute("storeName", name);
 				request.setAttribute("store", list);
 				request.setAttribute("contents", contents);

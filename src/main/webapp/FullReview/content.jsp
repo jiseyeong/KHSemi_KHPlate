@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,10 @@
 
 * {
 	font-family: 'Nanum Gothic', sans-serif;
+}
+
+.text {
+	width: 100px;
 }
 
 .title {
@@ -54,6 +60,10 @@ textarea {
 	height: 100px;
 }
 
+.contentsBtn {
+	margin-left: 70%;
+}
+
 .contentsBtn>button {
 	width: 100px;
 	height: 40px;
@@ -88,34 +98,33 @@ textarea {
 		<!-- 본문란 -->
 		<form action="/update.fullreview" class="frm" method="post">
 			<input type="text" class="title" name="title"
-				value="${contents.title }" readonly> 
-				
-			<hr style="border-style:dotted;">
-				
-				<input type="text" class="userid" value="${contents.userNO }" readonly>
-			
-			<hr style="border-style:dotted;">
-			
-				<input type="text" class="text" value="가게 이름 : " readonly>
-				<input type="text" class="storename" name="storename" value="${storeName }" readonly>
-			<select id="storeId" class="storeId" name="storeId"
-				style="display: none">
+				value="${contents.title }" readonly>
+
+			<hr style="border-style: dotted;">
+
+			<input type="text" class="userid" value="${writerName }" readonly>
+
+			<hr style="border-style: dotted;">
+
+			<input type="text" class="text" value="가게 이름 : " readonly> <input
+				type="text" class="storename" name="storename" value="${storeName }"
+				readonly> <select id="storeId" class="storeId"
+				name="storeId" style="display: none">
 				<option selected>음식점</option>
 				<c:forEach items="${store }" var="i" varStatus="status">
 					<option value="${i.storeID }">${i.name }</option>
 				</c:forEach>
-				
-			</select> 
-			<input type="text" class="text" value="평점 : " readonly>
-			<input type="text" class="score" name="score"
-				value="${contents.score }" readonly> <input type="text"
-				class="reviewid" name="reviewid" value="${contents.reviewID }"
-				style="display: none">
-				
-				<hr style="border-style:dotted;">
-				
+
+			</select> <input type="text" class="text" value="평점 : " readonly> <input
+				type="text" class="score" name="score" value="${contents.score }"
+				readonly> <input type="text" class="reviewid"
+				name="reviewid" value="${contents.reviewID }" style="display: none">
+
+			<hr style="border-style: dotted;">
+
 			<div class="bodyBox">
-				<textarea class="reviewbody" name="reviewbody" id="intro_editor" readonly>${contents.reviewBody }</textarea>
+				<textarea class="reviewbody" name="reviewbody" id="intro_editor"
+					readonly>${contents.reviewBody }</textarea>
 			</div>
 			<br>
 			<div class="contentsBtn">
@@ -126,6 +135,7 @@ textarea {
 						<button class="delBtn" type="button"
 							reviewId="${contents.reviewID}">삭제하기</button>
 						<button class="submitBtn" type="submit" style="display: none">수정완료</button>
+						<button class="toListBtn" type="button">목록으로</button>
 					</c:when>
 
 					<c:otherwise>
