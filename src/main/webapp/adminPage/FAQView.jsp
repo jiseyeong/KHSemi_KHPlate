@@ -41,7 +41,11 @@
 	border: 1px solid #57b846;
 }
 
-
+p {
+font-weight:bolder; 
+font-size:25px; 
+color:#57b846;
+}
 
 
 </style>
@@ -59,6 +63,8 @@
 			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
+			<p class="nanum-gothic">FAQ 목록</p>
+					<hr style="border-style:dotted;">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
 				<div class="row">
 					<div class="col-12">
