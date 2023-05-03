@@ -21,6 +21,7 @@
 
 .text {
 	width: 100px;
+	margin-left:10px;
 }
 
 .title {
@@ -42,6 +43,9 @@
 	border-radius: 10px;
 }
 
+#storeId{
+}
+
 input {
 	border: none;
 	border-radius: 10px;
@@ -56,12 +60,21 @@ textarea {
 	border: none;
 }
 
+.ck-editor__editable_inline {
+	min-height: 150px;
+	border: 1px solid white;
+}
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+	border: none;
+}
+
 .re_List_Container {
 	height: 100px;
 }
 
 .contentsBtn {
-	margin-left: 70%;
+	
 }
 
 .contentsBtn>button {
@@ -106,10 +119,10 @@ textarea {
 
 			<hr style="border-style: dotted;">
 
-			<input type="text" class="text" value="가게 이름 : " readonly> <input
-				type="text" class="storename" name="storename" value="${storeName }"
-				readonly> <select id="storeId" class="storeId"
-				name="storeId" style="display: none">
+			<input type="text" class="text" value="가게 이름 : " readonly> 
+			<input type="text" class="storename" name="storename" value="${storeName }" readonly> 
+				
+				<select id="storeId" class="storeId" name="storeId" style="display: none">
 				<option selected>음식점</option>
 				<c:forEach items="${store }" var="i" varStatus="status">
 					<option value="${i.storeID }">${i.name }</option>
@@ -132,9 +145,8 @@ textarea {
 				<c:choose>
 					<c:when test="${sessionScope.userno eq contents.userNO}">
 						<button class="modiBtn" type="button">수정하기</button>
-						<button class="delBtn" type="button"
-							reviewId="${contents.reviewID}">삭제하기</button>
-						<button class="submitBtn" type="submit" style="display: none">수정완료</button>
+						<button class="submitBtn" type="submit" style="display: none;">수정완료</button>
+						<button class="delBtn" type="button" reviewId="${contents.reviewID}">삭제하기</button>
 						<button class="toListBtn" type="button">목록으로</button>
 					</c:when>
 
@@ -221,8 +233,7 @@ textarea {
 		})
 		.catch(error => { console.error(error) });
 
-	
-	
+		
 	
 		$(".toListBtn").on("click", function() {
 			location.href = "/select.fullreview";
@@ -234,11 +245,12 @@ textarea {
 			$(".toListBtn").css("display", "none");
 			$(".submitBtn").css("display", "block");
 			$(".storename").css("display", "none");
-			$(".storeId").css("display", "block");
+			$(".storeId").css("display", "inline-block");
 			$(".title").removeAttr("readonly");
 			$(".storeId").removeAttr("readonly");
 			$(".score").removeAttr("readonly");
 			$(".reviewbody").removeAttr("readonly");
+			myEditor.disableReadOnlyMode("");
 		})
 
 		$(".re_list_updbtn").on("click", function() {
