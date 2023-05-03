@@ -116,7 +116,7 @@ p{font-weight:bolder; font-size:25px; color:#57b846;}
 					<div class="row file" style="margin-top:20px;">
 						<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
 							<div class="col-12" style="margin-left:auto; margin-right:auto;">
-								<img src="#none" alt="#none" id="image" class="w-100 object-fit-contain" style="display:none; margin-bottom:20px;">
+								<img src="#none" alt="#none" id="image" class="object-fit-contain" style="display:none; margin-bottom:20px; margin-left:auto; margin-right:auto; width:500px; height:500px;">
 								<input id="input_image" name="img" type="file" accept="image/*" class="nanum-gothic form-control" style="font-size:13px;">
 							</div>
 							</div>
