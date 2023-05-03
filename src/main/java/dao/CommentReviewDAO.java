@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 import dto.CommentReviewDTO;
 import dto.CommentReviewUserDTO;
-import dto.PhotoDTO;
+import dto.NaviDTO;
 import statics.Settings;
 
 public class CommentReviewDAO {
@@ -239,7 +239,7 @@ public class CommentReviewDAO {
 		return sb.toString();
 	}
 
-	public int selectwriteCommentList_RecordCount(int searchUserno) throws Exception{
+	private int selectwriteCommentList_RecordCount(int searchUserno) throws Exception{
 		String sql = "select count(*) from commentreview";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -248,4 +248,67 @@ public class CommentReviewDAO {
 			return rs.getInt(1);
 		}
 	}
+	
+	private int getRecoredCount() throws Exception{
+		String sql = "select COUNT(*) from COMMENTREVIEW";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			rs.next();
+			return rs.getInt(1);
+		}
+	}
+	
+	public NaviDTO getReviewNavi(int currentPage) throws Exception{
+		int recordTotalCount = this.getRecoredCount();
+		int recordCountPerPage = Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE;
+		int naviCountPerPage = Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
+		
+		int pageTotalCount = recordTotalCount % recordCountPerPage > 0 ?
+				recordTotalCount/recordCountPerPage + 1
+				:recordTotalCount/recordCountPerPage;
+		
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		
+		int startNavi = (currentPage-1)/naviCountPerPage*naviCountPerPage+1;
+		int endNavi = startNavi + (naviCountPerPage-1);
+		
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		
+		boolean needPrev = true;
+		boolean needNext = true;
+		ArrayList<Integer> list = new ArrayList<>();
+		
+		if(startNavi == 1) {needPrev = false;}
+		if(endNavi == pageTotalCount) {needNext = false;}
+		for(int i = startNavi; i <= endNavi; i++) {
+			list.add(i);
+		}
+		return new NaviDTO(list, needPrev, needNext);
+	}
+	
+	public ArrayList<CommentReviewDTO> selectBound(int storeID, int start, int end) throws Exception{
+		String sql = "select *"
+				+ " from"
+				+ " (select COMMENTREVIEW.*, row_number() over(order by REVIEWID desc) rn"
+				+ " from COMMENTREVIEW"
+				+ " where STOREID = ?)"
+				+ " where rn between ? and ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, storeID);
+			pstat.setInt(2, start);
+			pstat.setInt(3, end);
+			try(ResultSet rs = pstat.executeQuery()){
+				return this.transAllRsToList(rs);
+			}
+		}
+	}
+	
 }

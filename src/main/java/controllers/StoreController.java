@@ -26,6 +26,7 @@ import dao.StoreDAO;
 import dao.StoreMenuDAO;
 import dto.CommentReviewDTO;
 import dto.FavoritePageDTO;
+import dto.NaviDTO;
 import dto.PhotoDTO;
 import dto.StoreDTO;
 import dto.StoreMenuDTO;
@@ -45,20 +46,28 @@ public class StoreController extends HttpServlet {
 
 			}else if(cmd.equals("/view.store")) {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
-						
-				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectByStoreID(storeID);
+				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeID);
 				
 				//풀리뷰 추가되면 풀리뷰도 포함해서
 				int sum = 0;
-				int cnt = commentList.size();
+				int cnt = commentListAll.size();
 				if(cnt != 0) {
-					for(CommentReviewDTO i : commentList) {
+					for(CommentReviewDTO i : commentListAll) {
 						sum += i.getScore();
 					}
 					StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
 					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
 				}
-				
+				int currentPage = 0;
+				if(request.getParameter("cpage") == null) {
+					currentPage= 1;
+				}else {
+					currentPage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				int start = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE - (Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE-1);
+				int end = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
+				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectBound(storeID, start, end);
+				NaviDTO pageNavi = CommentReviewDAO.getInstance().getReviewNavi(currentPage);
 				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);	
 				ArrayList<String> userIDList = new ArrayList<>();
 				for(int i = 0; i < commentList.size(); i++) {
@@ -74,6 +83,7 @@ public class StoreController extends HttpServlet {
 
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
+				request.setAttribute("navi", pageNavi);
 				request.setAttribute("userIDList", userIDList);
 				request.setAttribute("menuList", menuList);
 				request.setAttribute("imgList", imgList);

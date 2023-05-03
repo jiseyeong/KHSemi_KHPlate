@@ -13,4 +13,7 @@ public class Settings {
 	public static int MYPAGE_LIST_RECORD_COUNT_PER_PAGE = 10;
 	public static int MYPAGE_LIST_NAVI_COUNT_PER_PAGE = 10;
 	
+	public static int COMMENTREVIEW_RECORD_COUNT_PER_PAGE = 10;
+	public static int COMMENTREVIEW_NAVI_COUNT_PER_PAGE = 10;
+	
 }
