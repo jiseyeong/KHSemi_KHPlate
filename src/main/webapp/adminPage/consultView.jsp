@@ -48,12 +48,6 @@ p {
 	font-size: 25px;
 	font-weight: bold;
 }
-.legend {
-	color: #57b846;
-	font-size: 25px;
-	font-weight: bold;
-}
-
 #btn_reply {
 	width: 150px;
 	height: 50px;
@@ -67,6 +61,9 @@ p {
 	margin-left: auto; 
 	margin-right:auto;
 
+}
+.ck-editor__editable_inline {
+    min-height: 500px;
 }
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
@@ -91,8 +88,8 @@ p {
 						<hr style="border-style:dotted; margin-bottom:25px;">
 						</div>
 					</div>
-					<div class="row" style="margin-bottom:20px;">
-						<div class="col-12 col-lg-2" style="margin-left:auto;">
+					<div class="row" style="margin-bottom:40px;">
+						<div class="col-12 col-lg-2" style="margin-left:auto; padding:0;">
 							<div class="input-group">
 								<span class="input-group-text">카테고리</span>
 								<input type="text" value="${dto.category}" class="form-control" readonly>
