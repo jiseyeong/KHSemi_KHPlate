@@ -37,7 +37,6 @@
 					}
 
 					/* 하단부터 메인부분 스타일 작성 요망 */
-
 					.star-ratings {
 						color: #aaa9a9;
 						position: relative;
@@ -91,10 +90,40 @@
 					.carousel-inner img {
 						margin: auto;
 					}
+					.carousel-item {
+						height:520px;
+						width:500px;
+					}
+					.carousel-inner>.carousel-item>img {
+      					top: 0;
+      					left: 0;
+      					width: 100%;
+      					height:100%;
+    				} 
 
 					#map {
 						width: 100%;
-						height: 40vw;
+						height: 25vw;
+					}
+					.form-control{
+						margin-top:5px;
+						border:none;
+					}
+					.input-group-text{
+						margin-top:5px;
+					}
+					.form-select {
+						margin-top:5px;
+					}
+					.input-group>span{
+						font-size:14px;
+					}
+					.input-group>input{
+						font-size:14px;
+					}
+				
+					.ck-editor__editable_inline {
+    					min-height: 300px;
 					}
 				</style>
 			</head>
@@ -103,9 +132,6 @@
 				<div class="container-fluid themed-container m-0 g-0">
 					<!-- 헤더부분 건들지 말것 -->
 					<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
-
-
-
 					<!-- body 부분 row div 건들지 말것 -->
 					<div class="row g-0 justify-content-center body" style="margin-top:70px;">
 						<!-- sideBar부분 건들지 말것 -->
@@ -115,9 +141,8 @@
 							<!-- Main 내용 부분 하단부터 수정 요망 -->
 							<!-- 상점 헤더 이미지 -->
 							<div class="row">
-								<div class="col-12" id="imageBox">
-									<div id="carouselControls" class="carousel slide carousel-fade"
-										data-bs-ride="carousel">
+								<div class="col-12 col-lg-5" id="imageBox" style="margin-left:auto;"> <!--가게 사진 캐러쉘-->
+									<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
 										<div class="carousel-inner">
 											<c:choose>
 												<c:when test="${fn:length(imgList) > 0}">
@@ -142,12 +167,12 @@
 												</c:when>
 												<c:otherwise>
 													<div class="carousel-item active">
-														<img src="/store/carouselimage1.jpg" class="d-block object-fit-contain"
-															alt="..." style="height: 500px;">
+														<img src="/store/롤링파스타.png" class="d-block w-100 h-100 object-fit-contain"
+															alt="..." style="min-height:400px; object-fit:cover;">
 													</div>
 													<div class="carousel-item">
-														<img src="/store/carouselimage2.jpg" class="d-block object-fit-contain"
-															alt="..." style="height: 500px;">
+														<img src="/store/오로지라멘.png" class="d-block w-100 h-100 object-fit-contain"
+															alt="..." style="min-height:400px; object-fit:cover;">
 													</div>
 												</c:otherwise>
 											</c:choose>
@@ -164,9 +189,26 @@
 										</button>
 									</div>
 								</div>
-								<div class="col-12 text-end">
-									<button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점
-										수정</button>
+								<div class="col-12 col-lg-3" style="margin-right:auto;"> <!--맵 부분-->
+									<div id="map"></div>
+									<div class="mapInfo">
+										<input type="text" name="mapLat" value="${dto.lat}" style="display:none;"
+											readonly>
+										<input type="text" name="mapLng" value="${dto.lng}" style="display:none;"
+											readonly>
+										<div class="row">
+											<div class="col-12">
+												<div class="input-group">
+													<span class="input-group-text">거리(M)</span>
+													<input type="text" name="mapDistance" class="form-control"
+														value="${dto.distance}" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-lg-8 text-end" style="margin-top:30px; margin-left:auto; margin-right:auto; margin-bottom:30px;">
+									<button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점 수정</button>
 									<button type="button" id="btn_store_update_delete" class="nonactive">상점 삭제</button>
 									<button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
 									<button type="submit" id="btn_store_update_cancel" class="nonactive">취소</button>
@@ -222,33 +264,13 @@
 							</div>
 							<!-- 상점 본문 -->
 							<div class="row">
-								<div class="col-12 col-lg-4">
-									<div id="map"></div>
-									<div class="mapInfo">
-										<input type="text" name="mapLat" value="${dto.lat}" style="display:none;"
-											readonly>
-										<input type="text" name="mapLng" value="${dto.lng}" style="display:none;"
-											readonly>
-										<div class="row">
-											<div class="col-12">
-												<div class="input-group">
-													<span class="input-group-text">거리(M)</span>
-													<input type="text" name="mapDistance" class="form-control"
-														value="${dto.distance}" readonly>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-12 col-lg-6">
-									<div class="input-group">
-										<span class="input-group-text">가게 이름</span>
-										<input type="text" class="form-control" name="name" value="${dto.name}"
-											readonly>
+
+								<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+									<div class="input-group">	
+										<input type="text" class="form-control" name="name" value="${dto.name}"readonly style="border:none;"><!--가게 이름-->
 									</div>
 									<div class="input-group">
-										<span class="input-group-text">가게 카테고리</span>
-										<select name="category" class="form-select" disabled="disabled">
+										<select name="category" class="form-select" disabled="disabled"><!--가게 카테고리-->
 											<option>한식</option>
 											<option>양식</option>
 											<option>중식</option>
@@ -260,8 +282,7 @@
 										</select>
 									</div>
 									<div class="input-group">
-										<span class="input-group-text">1인당 가격범위</span>
-										<select name="priceRange" class="form-select" disabled="disabled">
+										<select name="priceRange" class="form-select" disabled="disabled"><!--1인당 가격범위-->
 											<option>5000이하</option>
 											<option>5000~10000</option>
 											<option>10000~15000</option>
@@ -270,13 +291,11 @@
 										</select>
 									</div>
 									<div class="input-group">
-										<span class="input-group-text">가게 주소</span>
-										<input type="text" class="form-control" name="address" value="${dto.address}"
-											readonly>
+										<input type="text" class="form-control" name="address" value="${dto.address}" readonly style="border:none;"><!--가게 주소-->
 									</div>
-									<div class="row">
-										<div class="col-2">평균 평점</div>
-										<div class="col-10">
+									<div class="row" style="margin-top:30px;">
+										<div class="col-2" style="text-align:center; margin-left:auto; font-weight:bold;">평균 평점</div>
+										<div class="col-2" style="margin-right:auto;">
 											<div class="star-ratings" style="float:left;">
 												<div class="star-ratings-fill space-x-2 text-lg"
 													style="width: ${dto.ratingToPercent()}%;">
@@ -293,7 +312,7 @@
 									</div>
 									<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" style="display: none;"> -->
 									<div class="row">
-										<div class="col-12">가게 소개</div>
+										<div class="col-12" style="font-weight:bold; margin-bottom:20px;">가게 소개</div>
 										<div class="col-12">
 											<textarea id="intro_editor"
 												name="introduction">${dto.introduction}</textarea>
@@ -301,17 +320,15 @@
 									</div>
 									</form>
 									<div class="row">
-										<div class="col-12">메뉴</div>
 										<div class="col-12">
-											<table class="table table-secondary table-striped">
-												<tr>
-													<th style="width:40%;">메뉴 이름</th>
-													<th style="width:30%;">메뉴 가격</th>
-													<th style="width:30%;"></th>
+											<table class="table" style="text-align:center; color:white; margin-top:20px;">
+												<tr style="background-color:#57b846;">
+													<th style="width:50%;">메뉴 이름</th>
+													<th style="width:50%;">메뉴 가격</th>
 												</tr>
 												<c:forEach var="i" items="${menuList}">
 													<tr>
-														<form id="menuUpdateForm${i.menuID}" action="/update.storeMenu"
+														<form id="menuUpdateForm${i.menuID}" acti.storeMenu"
 															method="get">
 															<input type="text" name="menuID" value="${i.menuID}"
 																style="display: none;" readonly>
@@ -411,13 +428,13 @@
 							<!-- 리뷰 -->
 							<div class="row">
 								<c:if test="${not empty sessionScope.userno}">
-									<div class="col-12">한줄 리뷰 추가</div>
+									<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">한줄 리뷰 추가</div>
 									<form id="createCommentForm" action="/create.commentReview" method="post">
 										<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
 										<input type="text" name="userNo" value="${sessionScope.userno}"
 											style="display: none;">
 										<div class="row">
-											<div class="col-12">
+											<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
 												<div class="row align-items-center">
 													<div class="col-12">
 														<div class="star">
@@ -430,10 +447,10 @@
 															<a href="#null" value="5">★</a>
 														</div>
 													</div>
-													<div class="col-9">
+													<div class="col-11">
 														<textarea id="review_editor" name="body"></textarea>
 													</div>
-													<div class="col-3">
+													<div class="col-1">
 														<button class="btn btn-outline-secondary">등록</button>
 													</div>
 												</div>
