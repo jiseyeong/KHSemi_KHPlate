@@ -106,7 +106,7 @@ p{font-weight:bolder; font-size:25px; color:#57b846;}
 								
 								<input type="text" name="title" class="nanum-gothic form-control" placeholder="제목을 입력해주세요.">
 							</div>
-							<input type="text" name="writer" id="writer" value="${sessionScope.loginNo}" style="display: none;">
+							<input type="text" name="writer" id="writer" value="${sessionScope.userno}" style="display: none;">
 						</div>
 						<div class="row writeBody">
 							<div class="col-12 col-lg-8">
@@ -134,10 +134,15 @@ p{font-weight:bolder; font-size:25px; color:#57b846;}
 						 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
 					})
 					.catch(error => { console.error(error) });
-		
+
 					$("#myForm").submit(function(){
 						let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-						if (!$("#input_image").val().match(imgForms)) {
+						if(!($("#writer").val())){
+							alert("로그인을 먼저 해주십시오.");
+							return false;
+						}else if(!$("#input_image").val()){
+
+						}else if (!$("#input_image").val().match(imgForms)) {
 							alert("이미지 파일만 업로드 가능합니다.");
 							return false;
 						}

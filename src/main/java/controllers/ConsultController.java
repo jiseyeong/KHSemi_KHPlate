@@ -31,6 +31,7 @@ public class ConsultController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
 		response.setContentType("text/html; charset=utf8;");
+		Gson g = new Gson();
 		
 		String cmd = request.getRequestURI();
 		
@@ -142,8 +143,6 @@ public class ConsultController extends HttpServlet {
 
 				String myConsultList = ConsultDAO.getInstance().selectMyConsultList(userno, start_Record_Row_Num, end_Record_Row_Num);
 				String myConsultNavi = ConsultDAO.getInstance().selectMyConsultNaviToJSP(currentpage, userno);
-
-				Gson g = new Gson();
 
 				myConsultList = g.toJson(myConsultList);
 				myConsultNavi = g.toJson(myConsultNavi);
