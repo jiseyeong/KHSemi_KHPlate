@@ -42,15 +42,15 @@
 <link href="css/main.css" rel="stylesheet" media="all">
 </head>
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
 
 /* ==========================================================================
    #FONT
    ========================================================================== */
 .font-robo {
-	 font-family: 'Nanum Gothic', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 /* ==========================================================================
@@ -67,9 +67,9 @@
 	flex-wrap: wrap;
 }
 
-
-
-<style>
+<
+style
+>
 @import
 	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
 	;
@@ -115,20 +115,21 @@ html {
 h1 {
 	font-family: 'Nanum Gothic', sans-serif;
 	color: #57b846;
-	margin-top: 80px;;
+	margin-top: 30px;
 }
+
 h2 {
 	font-family: 'Nanum Gothic', sans-serif;
 	color: #57b846;
-	margin-top: 80px;;
+	margin-top: 30px;
 }
 
 #close {
 	position: absolute;
-	font-size: 25px;
+	font-size: 28px;
 	cursor: pointer;
 	margin-left: 175px;
-	margin-top: 160px;
+	margin-top: 80px;
 }
 
 #member {
@@ -140,149 +141,114 @@ h2 {
 	width: 40%;
 	height: 40%;
 }
+
+/* 배경 색상 추가 */
+body {
+	margin:0;
+	padding:0;
+	background-color: #ED1C16;
+}
+
 </style>
 
 <body id="particles-js">
 	<div class="animated bounceInDown">
 		<div class="container">
 
-
-			<div id="memberimg"><img src="/login/member2.png"></div>
+			<div id="memberimg">
+				<img src="/login/member2.png">
+			</div>
 			<c:choose>
 				<c:when test="${userid!=null}">
-					<h1 id="member">귀하의 아이디는 ${userid} 입니다</h1>
+					<h2 id="member">귀하의 아이디는</h2> 
+					<h1>${userid}</h1>
+					<h2>입니다</h2>
 				</c:when>
 				<c:otherwise>
+					<h2>&nbsp</h2>
 					<h2 id=nomember>존재하는 아이디가 없습니다</h2>
+					<h2>&nbsp</h2>
 				</c:otherwise>
 			</c:choose>
 			<div id=close>닫기</div>
 		</div>
 	</div>
 
-
-
 	<script>
-
-
-        $("#close").on("click", function () {
-            window.close();
-            //팝업은 child window, 팝업을 띄운 창은 parent window 
-            // 팝업에서 parent window를 호출하기 위해선 opener
-            opener.document.getElementById("id").value = "";
-        })
-
-        
-        
-
-    
-    </script>
+		$("#close").on("click", function() {
+			window.close();
+			//팝업은 child window, 팝업을 띄운 창은 parent window 
+			// 팝업에서 parent window를 호출하기 위해선 opener
+			opener.document.getElementById("id").value = "";
+		})
+	</script>
 </body>
 
 </html>
 
 
 
+<!-- 아래쪽 디자인은 주석 처리하였습니다. -->
 
+<!-- @media ( max-width : 767px) { .card-2 { display: block; } .card-2 -->
+<!-- .card-heading { width: 100%; display: block; padding-top: 300px; -->
+<!-- background-position: left center; } .card-2 .card-body { display: block; -->
+<!-- padding: 60px 50px; } } -->
 
+<!-- </style> -->
 
+<!-- <body> -->
+<!-- 	<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo"> -->
+<!-- 		<div class="wrapper wrapper--w960"> -->
+<!-- 			<div class="card card-2"> -->
+<!-- 				<div class="card-body"> -->
 
+<%-- 					<c:choose> --%>
 
+<%-- 						<c:when test="${userid!=null}"> --%>
+<!-- 							<table border="1"> -->
+<!-- 								<tr> -->
+<!-- 									<th>중복검사 결과</th> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<%-- 									<td>귀하의 아이디는 ${userid} 입니다</td> --%>
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td><button id="close">닫기</button></td> -->
+<!-- 									<script>
+ 										$("#close").on("click",function() {
+											window.close();
+ 											//팝업은 child window, 팝업을 띄운 창은 parent window 
+ 											// 팝업에서 parent window를 호출하기 위해선 opener
+ 											opener.document
+ 													.getElementById("id").value = "";
+ 										})
+										</script> -->
+<!-- 								</tr> -->
+<!-- 							</table> -->
+<%-- 						</c:when> --%>
 
+<%-- 						<c:otherwise> --%>
+<!-- 							<table border="1"> -->
+<!-- 								<tr> -->
+<!-- 									<th colspan=2>검사 결과</th> -->
+<!-- 								</tr> -->
+<!-- 								<tr> -->
+<!-- 									<td colspan=2>존재하는 아이디가 없습니다</td> -->
+<!-- 								</tr> -->
+<!-- 							</table> -->
+<%-- 						</c:otherwise> --%>
+<%-- 					</c:choose> --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
-
-
-
-
-@media ( max-width : 767px) {
-	.card-2 {
-		display: block;
-	}
-	.card-2 .card-heading {
-		width: 100%;
-		display: block;
-		padding-top: 300px;
-		background-position: left center;
-	}
-	
-  .card-2 .card-body {
-		display: block;
-		padding: 60px 50px;
-	}
-}
-</style>
-
-<body>
-	<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
-		<div class="wrapper wrapper--w960">
-			<div class="card card-2">
-				<div class="card-body">
-					
-					
-					
-					
-					
-					
-
-	<c:choose>
-
-		<c:when test="${userid!=null}"> 
-			<table border="1">
-				<tr>
-					<th>중복검사 결과</th>
-				</tr>
-				<tr>
-					<td>귀하의 아이디는 ${userid} 입니다</td>
-				</tr>
-				<tr>
-					<td><button id="close">닫기</button></td>
-					<script>
-						$("#close").on("click",function(){
-							window.close();
-							//팝업은 child window, 팝업을 띄운 창은 parent window 
-							// 팝업에서 parent window를 호출하기 위해선 opener
-							opener.document.getElementById("id").value="";
-						})
-					</script>
-				</tr>
-			</table>
-		</c:when>
-		
-		<c:otherwise> 
-			<table border="1">
-				<tr>
-					<th colspan=2>검사 결과</th>
-				</tr>
-				<tr>
-					<td colspan=2 >존재하는 아이디가 없습니다</td>
-				</tr>
-			
-				</tr>
-			</table>
-		</c:otherwise>
-	</c:choose>
-
-					
-					
-					
-					
-					
-					
-					
-					
-					
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Jquery JS-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<!-- Vendor JS-->
-	<script src="vendor/select2/select2.min.js"></script>
-	<!-- Main JS-->
-	<script src="js/global.js"></script>
-
-
+<!-- Jquery JS-->
+<!-- 	<script src="vendor/jquery/jquery.min.js"></script> -->
+<!-- Vendor JS -->
+<!-- 	<script src="vendor/select2/select2.min.js"></script> -->
+<!-- Main JS -->
+<!--  	<script src="js/global.js"></script> -->
 
 
