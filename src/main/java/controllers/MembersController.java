@@ -253,18 +253,18 @@ public class MembersController extends HttpServlet {
 				String userid = dao.pwsearch(pwname,pwemail,pwid);
 				if (userid==null) {
 					response.sendRedirect("/login/newpw.jsp");
-					} else {
-						request.setAttribute("userid",userid);
-						request.getRequestDispatcher("/memberSearch/newpassword.jsp").forward(request, response);
-								
+				} else {
+					request.setAttribute("userid",userid);
+					request.getRequestDispatcher("/memberSearch/newpassword.jsp").forward(request, response);
 				}
+				
 			}else if(cmd.equals("/newpwset.members")) {
 				String pw2 = SecurityUtils.sha512(request.getParameter("pw2"));
              //	int pw2=Integer.parseInt(request.getParameter("pw2"));
 				String userid =request.getParameter("userid"); 
 				int result=dao.updatepw(pw2,userid);
 				request.setAttribute("result", result);
-				request.getRequestDispatcher("/memberSearch/idsearch.jsp").forward(request, response);
+				request.getRequestDispatcher("/memberSearch/idpwsearch.jsp").forward(request, response);
 				
 				
 			}

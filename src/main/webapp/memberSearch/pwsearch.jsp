@@ -369,132 +369,118 @@ h6 span{
 			  </div>
 		  </div>
 	  </div>
-
-	
 	</form>
 
 
+<!-- 아이디찾기 기능 -->
 
-	
-
-//아이디찾기 기능
 	<script>
-     
-        $("#frm").on(
-            "submit",
-            function () {
-
-                //입력 형식 제한
-                var regexName = /^[가-힣]+$/;
-                var regexEmail = /.+@.+\..+/;
+       $("#frm").on( "submit", function () {
+        //입력 형식 제한
+        var regexName = /^[가-힣]+$/;
+        var regexEmail = /.+@.+\..+/;
 
 
-                var name = $("#name").val();
-                var email = $("#email").val();
+        var name = $("#name").val();
+        var email = $("#email").val();
 
-                if (name == "" || class.checked! == true || email == "") { //필수항목 입력 여부 체크
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "필수 항목을 모두 입력해주세요."
-                    });
-                    return false;
-                }
-
-
-                //형식 제한 준수 여부 체크
-
-                if (!regexName.test(name)) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "NAME 형식 오류",
-                        text: "한글만 입력 가능",
-                    });
-                    return false;
-                }
-        
-                
-                if (!regexEmail.test(email)) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "EMAIL 형식 오류",
-                        text: "ID@address 형식으로 입력",
-                    });
-                    return false;
-                }
+        if (name == "" || class.checked! == true || email == "") { //필수항목 입력 여부 체크
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "필수 항목을 모두 입력해주세요."
             });
-    </script>
+            return false;
+        }
 
 
+        //형식 제한 준수 여부 체크
+
+        if (!regexName.test(name)) {
+            Swal.fire({
+                icon: "error",
+                title: "NAME 형식 오류",
+                text: "한글만 입력 가능",
+            });
+            return false;
+        }
+
+        
+        if (!regexEmail.test(email)) {
+            Swal.fire({
+                icon: "error",
+                title: "EMAIL 형식 오류",
+                text: "ID@address 형식으로 입력",
+            });
+            return false;
+        }
+    });
+   </script>
 
 
+<!-- 비번찾기 기능 -->
 
-//비번찾기 기능
-  <script>
-
-
+  	<script>
 
 	$("#reset").on("click", function () { //다시입력 버튼 클릭 시 input창 reset
 		$("input").val("");
 	});
 
-	$("#frm").on(
-		"submit",
-		function () {
-			//입력 형식 제한
-			var regexID = /^[a-z0-9_]{7,13}$/;
-			var regexPW = /^[A-Za-z0-9]{7,13}$/;
-			var regexName = /^[가-힣]+$/;
-			var regexEmail = /.+@.+\..+/;
-
-
-			var id = $("#id").val();
-			var pw1 = $("#pw1").val();
-			var name = $("#name").val();
-			var email = $("#email").val();
-
-
-
-			if (id == "" || name == ""
-				|| email == "") { //필수항목 입력 여부 체크
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "필수 항목을 모두 입력해주세요."
-				});
-				return false;
-			}
-
-
-
-			//형식 제한 준수 여부 체크
-			if (!regexID.test(id)) {
-				Swal.fire({
-					icon: "error",
-					title: "ID 형식 오류",
-					text: "7-13자의 알파벳 소문자, 숫자, _",
-				});
-				return false;
-			}
-
-			if (!regexName.test(name)) {
-				Swal.fire({
-					icon: "error",
-					title: "NAME 형식 오류",
-					text: "한글만 입력 가능",
-				});
-				return false;
-			}
-			if (!regexEmail.test(email)) {
-				Swal.fire({
-					icon: "error",
-					title: "EMAIL 형식 오류",
-					text: "ID@address 형식으로 입력",
-				});
-				return false;
-			}
-		});
-</script>
+	$("#frm").on("submit",function () {
+		//입력 형식 제한
+		var regexID = /^[a-z0-9_]{7,13}$/;
+		var regexPW = /^[A-Za-z0-9]{7,13}$/;
+		var regexName = /^[가-힣]+$/;
+		var regexEmail = /.+@.+\..+/;
+	
+	
+		var id = $("#id").val();
+		var pw1 = $("#pw1").val();
+		var name = $("#name").val();
+		var email = $("#email").val();
+	
+	
+	
+		if (id == "" || name == ""
+			|| email == "") { //필수항목 입력 여부 체크
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "필수 항목을 모두 입력해주세요."
+			});
+			return false;
+		}
+	
+	
+	
+		//형식 제한 준수 여부 체크
+		if (!regexID.test(id)) {
+			Swal.fire({
+				icon: "error",
+				title: "ID 형식 오류",
+				text: "7-13자의 알파벳 소문자, 숫자, _",
+			});
+			return false;
+		}
+	
+		if (!regexName.test(name)) {
+			Swal.fire({
+				icon: "error",
+				title: "NAME 형식 오류",
+				text: "한글만 입력 가능",
+			});
+			return false;
+		}
+		if (!regexEmail.test(email)) {
+			Swal.fire({
+				icon: "error",
+				title: "EMAIL 형식 오류",
+				text: "ID@address 형식으로 입력",
+			});
+			return false;
+		}
+	});
+	</script>
 
 </body>
 
