@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -20,6 +22,7 @@ import dao.CommentReviewDAO;
 import dao.PhotoDAO;
 import dto.CommentReviewDTO;
 import dto.PhotoDTO;
+import statics.Settings;
 
 @WebServlet("*.commentReview")
 public class CommentReviewController extends HttpServlet {
@@ -125,6 +128,37 @@ public class CommentReviewController extends HttpServlet {
 					PhotoDAO.getInstance().delete(imageID);
 				}
 				response.sendRedirect("/view.store?storeID="+storeID);
+				
+				// 마이 페이지에 사용할 내가 쓴 댓글 리스트 출력
+			}else if (cmd.equals("/selectBymypage.commentReview")) {
+				
+				int userno = (int) request.getSession().getAttribute("userno");
+				int currentpage = 1;
+				
+				if(request.getParameter("cpage")!=null) {
+					currentpage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				
+				System.out.println("현재 페이지 : "+currentpage);
+				
+				int end_Record_Row_Num = currentpage * Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
+				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE-1);
+				
+				System.out.println("시작 번호 : "+start_Record_Row_Num);
+				System.out.println("끝 번호 : "+end_Record_Row_Num);
+				
+				String writeMyCommentList = CommentReviewDAO.getInstance().selectwriteCommentListToJSP(userno, start_Record_Row_Num, end_Record_Row_Num);
+				String writeMyCommentNavi = CommentReviewDAO.getInstance().selectwriteCommentNaviToJSP(currentpage, userno);
+				
+				writeMyCommentList = g.toJson(writeMyCommentList);
+				writeMyCommentNavi = g.toJson(writeMyCommentNavi);
+				
+				JsonObject resp = new JsonObject();
+				resp.addProperty("writeMyCommentList", writeMyCommentList);
+				resp.addProperty("writeMyCommentNavi", writeMyCommentNavi);
+				
+				response.getWriter().append(resp.toString());
+				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

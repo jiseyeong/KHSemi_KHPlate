@@ -43,7 +43,7 @@
 /* 하단부터 메인부분 스타일 작성 요망 */
 .inputContent {
 	margin-top: 3%;
-	font-weight:bold;
+	font-weight:bolder;
 	font-size:25px;
 	color:#57b846;
 }
@@ -71,9 +71,9 @@
 	border-radius: 12px;
 	cursor: pointer;
 	color: white;
-	margin-top:30px;
+	margin-top: 50px;
 	font-size: 14px;
-	margin-left: auto; 
+  	margin-left: auto; 
 	margin-right:auto;
 	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
 }
