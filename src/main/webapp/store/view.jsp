@@ -125,14 +125,14 @@
 														<c:choose>
 															<c:when test="${i == 0}">
 																<div class="carousel-item active">
-																	<img src="/store/${imgList.get(i).oriName}"
+																	<img src="/store/${imgList.get(i).sysName}"
 																		class="d-block object-fit-contain" alt="..."
 																		style="height: 500px;">
 																</div>
 															</c:when>
 															<c:otherwise>
 																<div class="carousel-item">
-																	<img src="/store/${imgList.get(i).oriName}"
+																	<img src="/store/${imgList.get(i).sysName}"
 																		class="d-block object-fit-contain" alt="..."
 																		style="height: 500px;">
 																</div>
@@ -185,7 +185,7 @@
 																<input type="text" name="storeID" value="${dto.storeID}"
 																	style="display: none;" readonly>
 																<div class="col-8">
-																	<img src="/store/${i.oriName}"
+																	<img src="/store/${i.sysName}"
 																		class="w-100 object-fit-contain">
 																</div>
 																<div class="col-4">

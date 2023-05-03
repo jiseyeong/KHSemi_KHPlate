@@ -61,13 +61,13 @@ public class PhotoDAO {
 		}
 	}
 	
-	public int insertByStoreID(String sysName, String oriName, int storeID) throws Exception{
+	public int insertByStoreID(String oriName, String sysName, int storeID) throws Exception{
 		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, STOREID)"
 				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setString(1, sysName);
-			pstat.setString(2, oriName);
+			pstat.setString(1, oriName);
+			pstat.setString(2, sysName);
 			pstat.setInt(3, storeID);
 			int result = pstat.executeUpdate();
 			con.commit();
@@ -75,14 +75,14 @@ public class PhotoDAO {
 		}
 	}
 	
-	public int insertByCReviewID(String sysName, String oriName, int cReviewID) throws Exception{
-		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, cReviewID)"
+	public int insertByConsultID(String oriName, String sysName, int consultID) throws Exception{
+		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, CONSULTID)"
 				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setString(1, sysName);
-			pstat.setString(2, oriName);
-			pstat.setInt(3, cReviewID);
+			pstat.setString(1, oriName);
+			pstat.setString(2, sysName);
+			pstat.setInt(3, consultID);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;

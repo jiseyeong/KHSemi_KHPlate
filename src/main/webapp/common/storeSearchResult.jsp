@@ -774,7 +774,7 @@ hr {
 														if(resp.imageID == -1){
 															$("#img"+"${index}").attr("src", "/common/restaurant_img1.jpg" )
 														}else{
-															$("#img"+"${index}").attr("src", "/store/"+resp.oriName);
+															$("#img"+"${index}").attr("src", "/store/"+resp.sysName);
 														}
 													});
 													

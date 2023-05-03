@@ -53,12 +53,6 @@ public class CommentReviewController extends HttpServlet {
 				int reviewID = Integer.parseInt(request.getParameter("reviewID"));
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				
-				String realPath = request.getServletContext().getRealPath("CommentReview");
-				for(PhotoDTO i : PhotoDAO.getInstance().selectByCReviewID(reviewID)) {
-					File realPathFile = new File(realPath+"/"+i.getOriName());
-					realPathFile.delete();
-				}
-				
 				int result1 = PhotoDAO.getInstance().deleteByCReviewID(reviewID);
 				int result2 = CommentReviewDAO.getInstance().delete(reviewID);
 				
