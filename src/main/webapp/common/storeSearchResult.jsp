@@ -26,15 +26,15 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-	
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-
-
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
 
 * {
 	box-sizing: border-box;
-		font-family: 'Nanum Gothic', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 hr {
@@ -81,9 +81,9 @@ hr {
 }
 
 .search_category_title {
-	padding-left: 30px;
+	padding-left: 50px;
 	text-align: left;
-	font-size: 22px;
+	font-size: 25px;
 }
 
 .show_filterForm_layout {
@@ -130,6 +130,11 @@ hr {
 	float: left;
 	margin: 0px 0px 0px;
 }
+
+.inner_layout:hover{
+	cursor:pointer;
+}
+
 
 .inner_layout>div {
 	width: 100%;
@@ -497,16 +502,15 @@ hr {
 	border: 2px solid silver;
 }
 
-.istrue{
-	background-color:red;
-	border:2px solid silver;
+.istrue {
+	background-color: red;
+	border: 2px solid silver;
 }
 
-.isfalse{
-	background-color:white;
-	border:2px solid silver;
+.isfalse {
+	background-color: white;
+	border: 2px solid silver;
 }
-
 </style>
 </head>
 
@@ -517,11 +521,11 @@ hr {
 				<div class="search_category_layout">
 					<div class="search_category_title_layout">
 						<c:choose>
-							<c:when test="${food_category.length()==0}">
-								<p class="search_category_title">가게 검색 결과</p>
+							<c:when test='${approachBy!=null}'>
+								<p class="search_category_title">#${food_category}</p>
 							</c:when>
 							<c:otherwise>
-								<p class="search_category_title">${food_category}List</p>
+								<p class="search_category_title">가게 검색 결과</p>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -537,8 +541,8 @@ hr {
 				<div class="print_searchResult_layout">
 					<!-- 필터 영역 -->
 
-					<form action="/searchStoreBySearchFilter.store" id="searchFilterForm"
-						onsubmit="return false;">
+					<form action="/searchStoreBySearchFilter.store"
+						id="searchFilterForm" onsubmit="return false;">
 						<input type="text" name="searchedBy" value="mainSearch"
 							style="display: none;">
 						<div id="sort_layout" style="display: none;">
@@ -708,15 +712,17 @@ hr {
 																	style="display: none;"> <input type="text"
 																	name="addFavorite_userno" value="${userno}"
 																	style="display: none;">
-																	
-<!-- 																즐겨찾기 여부 체크 -->
-																<c:set var="favoriteCheck" value="false"/>
-																<c:forEach var="favorite" items="${Favorite_list}" varStatus="status">
-																	<c:if test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
+
+																<!-- 																즐겨찾기 여부 체크 -->
+																<c:set var="favoriteCheck" value="false" />
+																<c:forEach var="favorite" items="${Favorite_list}"
+																	varStatus="status">
+																	<c:if
+																		test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
 																		<button class="addFavorite_btn istrue">
 																			<i class="fa-regular fa-heart"></i>
 																		</button>
-																		<c:set var="favoriteCheck" value="true"/>
+																		<c:set var="favoriteCheck" value="true" />
 																	</c:if>
 																</c:forEach>
 																<c:if test="${favoriteCheck==false}">
@@ -724,7 +730,7 @@ hr {
 																		<i class="fa-regular fa-heart"></i>
 																	</button>
 																</c:if>
-																
+
 															</div>
 														</div>
 														<div class="info_layout">
@@ -774,7 +780,7 @@ hr {
 														if(resp.imageID == -1){
 															$("#img"+"${index}").attr("src", "/common/restaurant_img1.jpg" )
 														}else{
-															$("#img"+"${index}").attr("src", "/store/"+resp.oriName);
+															$("#img"+"${index}").attr("src", "/store/"+resp.sysName);
 														}
 													});
 													
@@ -797,14 +803,16 @@ hr {
 																	style="display: none;"> <input type="text"
 																	name="addFavorite_userno" value="${userno}"
 																	style="display: none;">
-																	
-																<c:set var="favoriteCheck" value="false"/>
-																<c:forEach var="favorite" items="${Favorite_list}" varStatus="status">
-																	<c:if test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
+
+																<c:set var="favoriteCheck" value="false" />
+																<c:forEach var="favorite" items="${Favorite_list}"
+																	varStatus="status">
+																	<c:if
+																		test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
 																		<button class="addFavorite_btn istrue">
 																			<i class="fa-regular fa-heart"></i>
 																		</button>
-																		<c:set var="favoriteCheck" value="true"/>
+																		<c:set var="favoriteCheck" value="true" />
 																	</c:if>
 																</c:forEach>
 																<c:if test="${favoriteCheck==false}">
@@ -812,7 +820,7 @@ hr {
 																		<i class="fa-regular fa-heart"></i>
 																	</button>
 																</c:if>
-																
+
 															</div>
 														</div>
 														<div class="info_layout">
@@ -860,9 +868,18 @@ hr {
 				<ul class="navigator_list">${search_store_list_navi}</ul>
 			</div>
 		</div>
-
-
 	</div>
+
+	<c:choose>
+		<c:when test="${userno!=null}">
+			<input type="checkbox" value="true" id="loginCheck"
+				style="display: none;">
+		</c:when>
+		<c:otherwise>
+			<input type="checkbox" value="false" id="loginCheck"
+				style="display: none;">
+		</c:otherwise>
+	</c:choose>
 
 	<input type="text" class="search_store_filter_toScript"
 		id="fillter_settings_sortMethod" value="${sortMethod}"
@@ -1063,6 +1080,7 @@ hr {
 			
 			// 즐겨찾기 등록,삭제 버튼
 			$(".addFavorite_btn").each(function (index, item) {
+				let loginCheck = $("#loginCheck").val();
 				
 				let addFavoriteStoreCheck;
 				
@@ -1073,42 +1091,48 @@ hr {
 				}
 
 				$(this).on("click",function(){
-				
-					let addFavorite_btn = $(this);
-				
-					if(addFavoriteStoreCheck==false){
-						$.ajax({
-							url:"/addFavoriteStore.store",
-							type:"post",
-							data:{
-								addFavorite_storeID:addFavorite_btn.prev().prev().val()
-							}
-						}).done(function(resp){
-							if(resp=="true"){
-								addFavoriteStoreCheck = true;
-								addFavorite_btn.removeClass("isfalse");
-								addFavorite_btn.addClass("istrue");
-								console.log(addFavorite_btn);
-							}
-						})
-					}else{
-						$.ajax({
-							url:"/deleteFavoriteStore.store",
-							type:"post",
-							data:{
-								addFavorite_storeID:addFavorite_btn.prev().prev().val()
-							}
-						}).done(function(resp){
-							if(resp=="true"){
-								addFavoriteStoreCheck = false;
-								addFavorite_btn.removeClass("istrue");
-								addFavorite_btn.addClass("isfalse");
-								console.log(addFavorite_btn);
-							}
-						})
+					event.stopPropagation();
+					if(loginCheck=="false"){
+						alert("로그인을 먼저 진행해주세요.");
+					}
+					else {
+						console.log(loginCheck);
+						let addFavorite_btn = $(this);
+						
+						if(addFavoriteStoreCheck==false){
+							$.ajax({
+								url:"/addFavoriteStore.store",
+								type:"post",
+								data:{
+									addFavorite_storeID:addFavorite_btn.prev().prev().val()
+								}
+							}).done(function(resp){
+								if(resp=="true"){
+									addFavoriteStoreCheck = true;
+									addFavorite_btn.removeClass("isfalse");
+									addFavorite_btn.addClass("istrue");
+									console.log(addFavorite_btn);
+								}
+							})
+						}else{
+							$.ajax({
+								url:"/deleteFavoriteStore.store",
+								type:"post",
+								data:{
+									addFavorite_storeID:addFavorite_btn.prev().prev().val()
+								}
+							}).done(function(resp){
+								if(resp=="true"){
+									addFavoriteStoreCheck = false;
+									addFavorite_btn.removeClass("istrue");
+									addFavorite_btn.addClass("isfalse");
+									console.log(addFavorite_btn);
+								}
+							})
+						}
 					}
 				})
-			});
+			})
 		})
 		
 		
@@ -1138,6 +1162,13 @@ hr {
 				range_result.html("20000원 이상");
 			}
 		}
+		// 맛집 리스트를 클릭했을 때, 가게 상세 페이지로 이동
+		$(".inner_layout").on("click",function(){
+			let storeID = $(this).find("[name=addFavorite_storeID]").val();
+			console.log(storeID);
+			location.href = "/view.store?storeID="+storeID;
+		})
+		
 		
 		// 검색 정렬 확인 버튼
 		$("#apply_btn").on("click",function(){

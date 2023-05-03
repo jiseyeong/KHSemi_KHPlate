@@ -205,7 +205,9 @@ button:hover {
 	font-size: 12px;
 	height: 30px;
 	display: inline-block;
-	width: 80px;
+	
+/* 	80 => 130px로 변경 */
+	width: 130px;
 	text-align: center;
 	background-color: rgb(240, 240, 240);
 	line-height: 30px;
@@ -218,10 +220,9 @@ button:hover {
 .body2Contents {
 	width: 100%;
 	height: 530px;
-	border: 1px solid black;
+ 	border: 1px solid black;
 	box-shadow: 1px 1px 5px 1px silver;
 	background-color: rgb(240, 240, 240);
-	border: 1px solid black;
 	padding: 30px;
 	/* 	하단 네비게이터를 붙이기 위한 position 부여 */
 	position: relative;
@@ -314,6 +315,19 @@ button:hover {
 	justify-content: center;
 	align-items: center;
 }
+
+/* 리스트 출력 관련 사항 */
+td{
+	/* 	텍스트를 한 줄로 처리 */
+	white-space: nowrap;
+	
+	/* 글 내용 넘어가면 숨김처리 */
+ 	overflow: hidden; 
+	
+	/* 	텍스트에 ...생략기호 부여 */
+	text-overflow: ellipsis;
+}
+
 </style>
 </head>
 <body>
@@ -374,9 +388,9 @@ button:hover {
 				<table border-bottom="1" class="table" id="writeList">
 					<!--내가 쓴 글 리스트 뽑아내기-->
 					<colgroup>
-						<col width="5%">
+						<col width="10%">
 						<col width="45%">
-						<col width="25%">
+						<col width="20%">
 						<col width="15%">
 						<col width="10%">
 					</colgroup>
@@ -385,8 +399,8 @@ button:hover {
 							<th>번호</th>
 							<th>제목</th>
 							<th>작성자</th>
-							<th>작성일</th>
 							<th></th>
+							<th>작성일</th>
 						</tr>
 					</thead>
 					<tbody id="writeListToPrint">
@@ -396,9 +410,9 @@ button:hover {
 				<table border-bottom="1" class="table" id="replyList">
 					<!--내가 쓴 댓글 리스트 뽑아내기-->
 					<colgroup>
-						<col width="5%">
+						<col width="10%">
 						<col width="45%">
-						<col width="25%">
+						<col width="20%">
 						<col width="15%">
 						<col width="10%">
 					</colgroup>
@@ -418,9 +432,9 @@ button:hover {
 				<table border-bottom="1" class="table" id="reviewMark">
 					<!--블로그형 리뷰 스크랩-->
 					<colgroup>
-						<col width="5%">
+						<col width="10%">
 						<col width="45%">
-						<col width="25%">
+						<col width="20%">
 						<col width="15%">
 						<col width="10%">
 					</colgroup>
@@ -442,9 +456,9 @@ button:hover {
 				<table border-bottom="1" class="table" id="favoriteStoreList">
 					<!-- 가게 즐겨찾기 리스트-->
 					<colgroup>
-						<col width="5%">
+						<col width="10%">
 						<col width="45%">
-						<col width="25%">
+						<col width="20%">
 						<col width="15%">
 						<col width="10%">
 					</colgroup>
@@ -465,9 +479,9 @@ button:hover {
 				<table border-bottom="1" class="table" id="consultList">
 					<!-- 1:1문의 리스트 -->
 					<colgroup>
-						<col width="5%">
+						<col width="10%">
 						<col width="45%">
-						<col width="25%">
+						<col width="20%">
 						<col width="15%">
 						<col width="10%">
 					</colgroup>
@@ -528,14 +542,31 @@ button:hover {
 
 			$(".myContents").on("click",function() { //내가 쓴글...등 버튼 이벤트
 				$(this).css("border-bottom", "none");
-				$(".myContents").not(this).css(
-					"border-bottom",
-					"1px solid black"
-				);
+				$(".myContents").not(this).css({
+					"z-index":"1",
+					"border-bottom":"1px solid black"
+				});
 			})
 
+			// 페이지 렌더링 후 바로 보여줄 내가 쓴 글의 리스트와 네비
+			$.ajax({
+				url : "/selectBymypage.fullreview",
+				type : "post",
+				dataType : "json"
+			}).done(function(resp){
+				$("#writeListToPrint").html("");
+				$(".navigator_list").html("");
+				let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
+				let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
+				$("#writeListToPrint").append(writeFullReviewList);
+				$(".navigator_list").append(writeFullReviewNavi);
+
+				$("#writeList").css("display","table");
+				$("table").not("table#writeList").css("display","none");
+
+				setnavi();
+			})
 			
-			// ajax로 list와 navi 값 return
 			//내가 쓴 글 버튼 누르면 관련 테이블 나오게 이벤트
 			$("#writeListBtn").on("click",function() { 
 				

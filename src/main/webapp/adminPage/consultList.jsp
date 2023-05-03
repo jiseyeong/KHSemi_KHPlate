@@ -79,10 +79,23 @@ table{
 										</c:otherwise>
 									</c:choose>
 								</td>
-								<td>${list.get(i).writeDate}</td>
+								<td>${list.get(i).writedate}</td>
 								<td>${list.get(i).category}</td>
 							</tr>
 						</c:forEach>
+						<tr>
+							<td colspan="6">
+								<c:if test="${navi.needNext}">
+									<a href="/list.consult?cpage=${navi.naviList.get(0) - 1}"><</a>
+								</c:if>
+								<c:forEach var="i" items="${navi.naviList}">
+									<a href="/list.consult?cpage=${i.intValue()}">${i.intValue()}</a>
+								</c:forEach>
+								<c:if test="${navi.needNext}">
+									<a href="/list.consult?cpage=${navi.naviList.get(navi.naviList.length)+1}">></a>
+								</c:if>
+							</td>
+						</tr>
 					</c:if>
 				</table>
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->

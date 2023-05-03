@@ -36,7 +36,12 @@
 			<input type="text" class="userId" name="userId" value="${sessionScope.userId}" readonly>
 			<input type="text" class="userNo" name="userNo" value="${sessionScope.userno}" style="display:none">
 			<div class="void"><br></div>
-			<input type="text" placeholder="음식점 선택란" class="storeId" name="storeId">
+			<select id = "storeId" class="storeId" name="storeId">
+				<option selected>음식점</option>
+					<c:forEach items="${store }" var="i" varStatus="status">
+						<option value="${i.storeID }">${i.name }</option>
+					</c:forEach>
+			</select>
 			<input type="text" placeholder="별점" class="score" name="score">
 			<div class="void"><br></div>
 			<div class="storeId" name="storeId"></div>
@@ -49,5 +54,6 @@
 			</div>
 		</form>
 	</div>
+	
 </body>
 </html>

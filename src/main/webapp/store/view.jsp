@@ -149,14 +149,14 @@
 														<c:choose>
 															<c:when test="${i == 0}">
 																<div class="carousel-item active">
-																	<img src="/store/${imgList.get(i).oriName}"
+																	<img src="/store/${imgList.get(i).sysName}"
 																		class="d-block object-fit-contain" alt="..."
 																		style="height: 500px;">
 																</div>
 															</c:when>
 															<c:otherwise>
 																<div class="carousel-item">
-																	<img src="/store/${imgList.get(i).oriName}"
+																	<img src="/store/${imgList.get(i).sysName}"
 																		class="d-block object-fit-contain" alt="..."
 																		style="height: 500px;">
 																</div>
@@ -226,7 +226,7 @@
 																<input type="text" name="storeID" value="${dto.storeID}"
 																	style="display: none;" readonly>
 																<div class="col-8">
-																	<img src="/store/${i.oriName}"
+																	<img src="/store/${i.sysName}"
 																		class="w-100 object-fit-contain">
 																</div>
 																<div class="col-4">
@@ -469,6 +469,7 @@
 								<c:if test="${fn:length(commentList) > 0}">
 									<div class="col-12">한줄 리뷰 목록</div>
 									<div class="row">
+										
 										<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
 											<div class="col-12">작성자 : ${userIDList.get(i)}</div>
 
@@ -605,6 +606,17 @@
 											</script>
 
 										</c:forEach>
+										<div class="col-12 text-center">
+											<c:if test="${navi.needNext}">
+												<a href="/view.store?storeID=${dto.storeID}&cpage=${navi.naviList.get(0) - 1}"><</a>
+											</c:if>
+											<c:forEach var="i" items="${navi.naviList}">
+												<a href="/view.store?storeID=${dto.storeID}&cpage=${i.intValue()}">${i.intValue()}</a>
+											</c:forEach>
+											<c:if test="${navi.needNext}">
+												<a href="/view.store?storeID=${dto.storeID}&cpage=${navi.naviList.get(navi.naviList.length)+1}">></a>
+											</c:if>
+										</div>
 									</div>
 								</c:if>
 							</div>

@@ -26,6 +26,7 @@ import dao.StoreDAO;
 import dao.StoreMenuDAO;
 import dto.CommentReviewDTO;
 import dto.FavoritePageDTO;
+import dto.NaviDTO;
 import dto.PhotoDTO;
 import dto.StoreDTO;
 import dto.StoreMenuDTO;
@@ -45,20 +46,28 @@ public class StoreController extends HttpServlet {
 
 			}else if(cmd.equals("/view.store")) {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
-						
-				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectByStoreID(storeID);
+				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeID);
 				
 				//풀리뷰 추가되면 풀리뷰도 포함해서
 				int sum = 0;
-				int cnt = commentList.size();
+				int cnt = commentListAll.size();
 				if(cnt != 0) {
-					for(CommentReviewDTO i : commentList) {
+					for(CommentReviewDTO i : commentListAll) {
 						sum += i.getScore();
 					}
 					StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
 					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
 				}
-				
+				int currentPage = 0;
+				if(request.getParameter("cpage") == null) {
+					currentPage= 1;
+				}else {
+					currentPage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				int start = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE - (Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE-1);
+				int end = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
+				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectBound(storeID, start, end);
+				NaviDTO pageNavi = CommentReviewDAO.getInstance().getNavi(currentPage);
 				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);	
 				ArrayList<String> userIDList = new ArrayList<>();
 				for(int i = 0; i < commentList.size(); i++) {
@@ -74,6 +83,7 @@ public class StoreController extends HttpServlet {
 
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
+				request.setAttribute("navi", pageNavi);
 				request.setAttribute("userIDList", userIDList);
 				request.setAttribute("menuList", menuList);
 				request.setAttribute("imgList", imgList);
@@ -291,7 +301,13 @@ public class StoreController extends HttpServlet {
 				request.setAttribute("search_store_list", search_store_list);
 				request.setAttribute("search_store_list_navi", search_store_list_navi);
 				request.setAttribute("Favorite_list", Favorite_list);
-
+				
+				// 사이드바로 접근 시 p태그 내용 변경
+				if(request.getParameter("approachBy")!=null) {
+					request.setAttribute("approachBy", request.getParameter("approachBy"));
+					request.setAttribute("food_category", request.getParameter("food_category"));
+				}
+				
 				if(searchedBy.equals("mainSearch")) {
 					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
 				}else if(searchedBy.equals("mapSearch")) {
