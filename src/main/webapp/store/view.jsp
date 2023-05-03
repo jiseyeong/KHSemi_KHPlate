@@ -107,6 +107,7 @@
 					}
 					.form-control{
 						margin-top:5px;
+						border:none;
 					}
 					.input-group-text{
 						margin-top:5px;
@@ -266,7 +267,7 @@
 
 								<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
 									<div class="input-group">	
-										<input type="text" class="form-control" name="name" value="${dto.name}"readonly><!--가게 이름-->
+										<input type="text" class="form-control" name="name" value="${dto.name}"readonly style="border:none;"><!--가게 이름-->
 									</div>
 									<div class="input-group">
 										<select name="category" class="form-select" disabled="disabled"><!--가게 카테고리-->
@@ -290,7 +291,7 @@
 										</select>
 									</div>
 									<div class="input-group">
-										<input type="text" class="form-control" name="address" value="${dto.address}" readonly><!--가게 주소-->
+										<input type="text" class="form-control" name="address" value="${dto.address}" readonly style="border:none;"><!--가게 주소-->
 									</div>
 									<div class="row" style="margin-top:30px;">
 										<div class="col-2" style="text-align:center; margin-left:auto; font-weight:bold;">평균 평점</div>
