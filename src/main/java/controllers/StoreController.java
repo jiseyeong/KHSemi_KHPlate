@@ -291,7 +291,13 @@ public class StoreController extends HttpServlet {
 				request.setAttribute("search_store_list", search_store_list);
 				request.setAttribute("search_store_list_navi", search_store_list_navi);
 				request.setAttribute("Favorite_list", Favorite_list);
-
+				
+				// 사이드바로 접근 시 p태그 내용 변경
+				if(request.getParameter("approachBy")!=null) {
+					request.setAttribute("approachBy", request.getParameter("approachBy"));
+					request.setAttribute("food_category", request.getParameter("food_category"));
+				}
+				
 				if(searchedBy.equals("mainSearch")) {
 					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
 				}else if(searchedBy.equals("mapSearch")) {
