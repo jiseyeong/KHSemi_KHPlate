@@ -29,7 +29,6 @@
 * {
 	box-sizing: border-box;
 	padding: 0px;
-	margin-bottom: 10px;
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -66,8 +65,8 @@ font-weight: bolder;
 	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
 
 }
-#readEditor{
-	height:300px;
+.ck-editor__editable_inline {
+    min-height: 450px;
 }
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
@@ -86,12 +85,12 @@ font-weight: bolder;
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
-				<fieldset style="margin-bottom:50px">
-					<div class="row">
+					<div class="row" style="margin-bottom:80px;">
+					<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
 						<p>고객의 소리</p>
 						<hr style="border-style:dotted; margin-bottom:25px;">
-
-					<div class="row">
+					</div>
+					<div class="row" style="margin-bottom:20px;">
 						<div class="col-12 col-lg-2" style="margin-left:auto;">
 							<div class="input-group">
 								<span class="input-group-text">카테고리</span>
@@ -120,28 +119,27 @@ font-weight: bolder;
 						</div>
 					</div>
 					</div>
-				</fieldset>
-
 				<form action="/replyRegister.consult" method="get">
-					<fieldset>
-						<legend class="legend">답변 등록</legend>
-
+						<div class="row">
+						<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
+						<p>답변 등록</p>
 						<hr style="border-style:dotted; margin-bottom:25px;">
             
 						<input type="text" name="writer" value="${sessionScope.loginNo}" style="display:none;">
 						<input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
+						</div>
+						</div>
 						<div class="row">
-							<div class="col-12">
-								<div class="input-group">
+							<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
+								<div class="input-group" style="margin-bottom:10px;">
 									<span class="input-group-text">제목</span>
 									<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요.">
 								</div>
 							</div>
-							<div class="col-12">
+							<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
 								<textarea name="body" id="editor"></textarea>
 							</div>
 						</div>
-					</fieldset>
 					<div class="row">
 						<div class="col-12 text-center">
 							<button type="submit" id="submitBtn">제출하기</button>
