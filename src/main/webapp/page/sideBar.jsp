@@ -35,7 +35,7 @@ ul {
 li {
    height: 50px;
    width: 100%;
-   font-size: 14px;
+   font-size: 15px;
    text-align: center;
    margin: 0px;
    padding: 0px;
@@ -59,8 +59,8 @@ li:not(.firstLi):hover {
 
 .firstLi {
    border-bottom: 1px solid silver;
-   font-weight: bold;
-   font-size:17px;
+   font-weight: bolder;
+   font-size:18px;
 }
 
 /* a태그의 밑줄 속성 제거 */

@@ -73,8 +73,7 @@
 #searchCheck {
    font-family: 'Nanum Gothic', sans-serif;
 font-weight: bold;
-font-size: 18px;
-color: #57b846;
+font-size: 17px;
   width: 150px;
   height: 35px;
   left: 25%;
@@ -117,8 +116,9 @@ font-family: 'Nanum Gothic', sans-serif;
             height: 30px;
             width: 30px;
             left: 30px;
-            background-color: #ffffff;
-            border: 1px solid #ffffff;
+            filter: invert(66%) sepia(35%) saturate(747%) hue-rotate(65deg) brightness(88%) contrast(90%);
+            background-color: transparent;
+            border: 1px solid transparent;
             cursor: pointer;
             z-index: 3;
         }

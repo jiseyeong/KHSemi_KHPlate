@@ -216,6 +216,7 @@ public class MembersController extends HttpServlet {
 					request.getSession().setAttribute("userId", userId);
 					int userno = dao.getUserno(userId);
 					request.getSession().setAttribute("userno", userno);
+					request.getSession().setAttribute("loginIsAdmin", dao.getIsAdminByNo(userno));
 					response.getWriter().append("4");
 					return;
 				}
@@ -224,6 +225,7 @@ public class MembersController extends HttpServlet {
 			else if(cmd.equals("/logout.members")) {
 				request.getSession().removeAttribute("userId");
 				request.getSession().removeAttribute("userno");
+				request.getSession().removeAttribute("loginIsAdmin");
 				response.sendRedirect("/page/main.jsp");
 			}
 			
@@ -252,19 +254,19 @@ public class MembersController extends HttpServlet {
 				String pwid = request.getParameter("pwid");
 				String userid = dao.pwsearch(pwname,pwemail,pwid);
 				if (userid==null) {
-					response.sendRedirect("/login/newpw.jsp");
-					} else {
-						request.setAttribute("userid",userid);
-						request.getRequestDispatcher("/memberSearch/newpassword.jsp").forward(request, response);
-								
+					response.sendRedirect("/login/wrongpw.jsp");
+				} else {
+					request.setAttribute("userid",userid);
+					request.getRequestDispatcher("/memberSearch/newpassword.jsp").forward(request, response);
 				}
+				
 			}else if(cmd.equals("/newpwset.members")) {
 				String pw2 = SecurityUtils.sha512(request.getParameter("pw2"));
              //	int pw2=Integer.parseInt(request.getParameter("pw2"));
 				String userid =request.getParameter("userid"); 
 				int result=dao.updatepw(pw2,userid);
 				request.setAttribute("result", result);
-				request.getRequestDispatcher("/memberSearch/idsearch.jsp").forward(request, response);
+				request.getRequestDispatcher("/memberSearch/idpwsearch.jsp").forward(request, response);
 				
 				
 			}

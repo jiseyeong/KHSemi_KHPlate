@@ -37,7 +37,6 @@
 					}
 
 					/* 하단부터 메인부분 스타일 작성 요망 */
-
 					.star-ratings {
 						color: #aaa9a9;
 						position: relative;
@@ -91,21 +90,87 @@
 					.carousel-inner img {
 						margin: auto;
 					}
+					.carousel-item {
+						height:520px;
+						width:500px;
+					}
+					.carousel-inner>.carousel-item>img {
+      					top: 0;
+      					left: 0;
+      					width: 100%;
+      					height:100%;
+    				} 
 
 					#map {
 						width: 100%;
-						height: 40vw;
+						height: 25vw;
 					}
-				</style>
+					.form-control{
+						margin-top:5px;
+						border:none;
+					}
+					#nameDiv {
+						font-size:40px;
+						font-weight:bold;
+					}
+					#categoryDiv{
+						font-size:17px;
+						color:green;
+						font-weight:600;
+					}
+					#priceRangeDiv{
+						font-size:15px;
+						font-weight:600;
+					}
+					#addressDiv{
+						font-size:15px;
+						font-weight:600;
+					}
+					
+					.input-group{
+						display:block;
+					}
+					.input-group>div {
+						text-align:center;
+						margin-bottom:10px;
+					}
+					.input-group-text{
+						margin-top:5px;
+					}
+					.form-select {
+						margin-top:5px;
+					}
+					.input-group>span{
+						font-size:14px;
+					}
+					.input-group>input{
+						font-size:14px;
+					}
+					input[name='updateMenuName'] {
+					 	border:none;
+					 	width:100%;
+					 	text-align:center;
+					}
+					input[name='updateMenuPrice'] {
+						border:none;
+						width:80%;
+					 	text-align:center;
+					}
+					.ck-editor__editable_inline {
+    					min-height: 150px;
+    					border:1px solid white;
+					}
+					.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+						border:none;
+					}
+					
+		</style>
 			</head>
 
 			<body>
 				<div class="container-fluid themed-container m-0 g-0">
 					<!-- 헤더부분 건들지 말것 -->
 					<jsp:include page="/page/header.jsp" flush="false"></jsp:include>
-
-
-
 					<!-- body 부분 row div 건들지 말것 -->
 					<div class="row g-0 justify-content-center body" style="margin-top:70px;">
 						<!-- sideBar부분 건들지 말것 -->
@@ -115,9 +180,8 @@
 							<!-- Main 내용 부분 하단부터 수정 요망 -->
 							<!-- 상점 헤더 이미지 -->
 							<div class="row">
-								<div class="col-12" id="imageBox">
-									<div id="carouselControls" class="carousel slide carousel-fade"
-										data-bs-ride="carousel">
+								<div class="col-12 col-lg-5" id="imageBox" style="margin-left:auto;"> <!--가게 사진 캐러쉘-->
+									<div id="carouselControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
 										<div class="carousel-inner">
 											<c:choose>
 												<c:when test="${fn:length(imgList) > 0}">
@@ -142,12 +206,12 @@
 												</c:when>
 												<c:otherwise>
 													<div class="carousel-item active">
-														<img src="/store/carouselimage1.jpg" class="d-block object-fit-contain"
-															alt="..." style="height: 500px;">
+														<img src="/store/롤링파스타.png" class="d-block w-100 h-100 object-fit-contain"
+															alt="..." style="min-height:400px; object-fit:cover;">
 													</div>
 													<div class="carousel-item">
-														<img src="/store/carouselimage2.jpg" class="d-block object-fit-contain"
-															alt="..." style="height: 500px;">
+														<img src="/store/오로지라멘.png" class="d-block w-100 h-100 object-fit-contain"
+															alt="..." style="min-height:400px; object-fit:cover;">
 													</div>
 												</c:otherwise>
 											</c:choose>
@@ -164,9 +228,26 @@
 										</button>
 									</div>
 								</div>
-								<div class="col-12 text-end">
-									<button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점
-										수정</button>
+								<div class="col-12 col-lg-3" style="margin-right:auto;"> <!--맵 부분-->
+									<div id="map"></div>
+									<div class="mapInfo">
+										<input type="text" name="mapLat" value="${dto.lat}" style="display:none;"
+											readonly>
+										<input type="text" name="mapLng" value="${dto.lng}" style="display:none;"
+											readonly>
+										<div class="row">
+											<div class="col-12">
+												<div class="input-group">
+													<span class="input-group-text">거리(M)</span>
+													<input type="text" name="mapDistance" class="form-control"
+														value="${dto.distance}" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-lg-8 text-end" style="margin-top:30px; margin-left:auto; margin-right:auto; margin-bottom:30px;">
+									<button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점 수정</button>
 									<button type="button" id="btn_store_update_delete" class="nonactive">상점 삭제</button>
 									<button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
 									<button type="submit" id="btn_store_update_cancel" class="nonactive">취소</button>
@@ -222,33 +303,15 @@
 							</div>
 							<!-- 상점 본문 -->
 							<div class="row">
-								<div class="col-12 col-lg-4">
-									<div id="map"></div>
-									<div class="mapInfo">
-										<input type="text" name="mapLat" value="${dto.lat}" style="display:none;"
-											readonly>
-										<input type="text" name="mapLng" value="${dto.lng}" style="display:none;"
-											readonly>
-										<div class="row">
-											<div class="col-12">
-												<div class="input-group">
-													<span class="input-group-text">거리(M)</span>
-													<input type="text" name="mapDistance" class="form-control"
-														value="${dto.distance}" readonly>
-												</div>
-											</div>
-										</div>
+
+								<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+									<div class="input-group" style="display:block;">	
+										<div id="nameDiv">${dto.name}</div>
+										<input type="text" class="form-control" name="name" value="${dto.name}"readonly style="border:none; display:none;"><!--가게 이름-->
 									</div>
-								</div>
-								<div class="col-12 col-lg-6">
-									<div class="input-group">
-										<span class="input-group-text">가게 이름</span>
-										<input type="text" class="form-control" name="name" value="${dto.name}"
-											readonly>
-									</div>
-									<div class="input-group">
-										<span class="input-group-text">가게 카테고리</span>
-										<select name="category" class="form-select" disabled="disabled">
+									<div class="input-group" style="display:block;">
+										<div id="categoryDiv">${dto.category}</div>
+										<select name="category" class="form-select" disabled="disabled" style="display:none;"><!--가게 카테고리-->
 											<option>한식</option>
 											<option>양식</option>
 											<option>중식</option>
@@ -259,9 +322,9 @@
 											<option>기타</option>
 										</select>
 									</div>
-									<div class="input-group">
-										<span class="input-group-text">1인당 가격범위</span>
-										<select name="priceRange" class="form-select" disabled="disabled">
+									<div class="input-group" style="display:block;">
+										<div id="priceRangeDiv">${dto.priceRange}</div>
+										<select name="priceRange" class="form-select" disabled="disabled" style="display:none;"><!--1인당 가격범위-->
 											<option>5000이하</option>
 											<option>5000~10000</option>
 											<option>10000~15000</option>
@@ -269,31 +332,29 @@
 											<option>20000이상</option>
 										</select>
 									</div>
-									<div class="input-group">
-										<span class="input-group-text">가게 주소</span>
-										<input type="text" class="form-control" name="address" value="${dto.address}"
-											readonly>
+									<div class="input-group" style="display:block;">
+										<div id="addressDiv">${dto.address}</div>
+										<input type="text" class="form-control" name="address" readonly style="border:none; display:none;"><!--가게 주소-->
 									</div>
-									<div class="row">
-										<div class="col-2">평균 평점</div>
-										<div class="col-10">
+									<div class="row" style="margin-top:30px;">
+										<div class="col-2" style="margin-left:auto; margin-right:auto;">
 											<div class="star-ratings" style="float:left;">
-												<div class="star-ratings-fill space-x-2 text-lg"
-													style="width: ${dto.ratingToPercent()}%;">
+												<div class="star-ratings-fill space-x-2 text-lg">
 													<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 												</div>
 												<div class="star-ratings-base space-x-2 text-lg">
 													<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 												</div>
 											</div>
-											<div style="float:left;">
+											<div style="float:left; font-size:17px; font-weight:600; margin-left:20px;">
 												${dto.avgScore}
 											</div>
 										</div>
 									</div>
 									<!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" style="display: none;"> -->
-									<div class="row">
-										<div class="col-12">가게 소개</div>
+									<div class="row" style="margin-top:50px;">
+										<div class="col-12" style="font-weight:bold; margin-bottom:10px;">가게 소개</div>
+										<hr>
 										<div class="col-12">
 											<textarea id="intro_editor"
 												name="introduction">${dto.introduction}</textarea>
@@ -301,20 +362,18 @@
 									</div>
 									</form>
 									<div class="row">
-										<div class="col-12">메뉴</div>
 										<div class="col-12">
-											<table class="table table-secondary table-striped">
-												<tr>
-													<th style="width:40%;">메뉴 이름</th>
-													<th style="width:30%;">메뉴 가격</th>
-													<th style="width:30%;"></th>
+											<table class="table" style="text-align:center; color:white; margin-top:20px;">
+												<tr style="background-color:#57b846;">
+													<th style="width:50%;">메뉴 이름</th>
+													<th style="width:50%;">메뉴 가격</th>
 												</tr>
 												<c:forEach var="i" items="${menuList}">
 													<tr>
-														<form id="menuUpdateForm${i.menuID}" action="/update.storeMenu"
+														<form id="menuUpdateForm${i.menuID}" acti.storeMenu"
 															method="get">
 															<input type="text" name="menuID" value="${i.menuID}"
-																style="display: none;" readonly>
+																style="display:none;" readonly>
 															<input type="text" name="storeID" value="${dto.storeID}"
 																style="display: none;" readonly>
 															<td><input type="text" id="updateMenuName${i.menuID}"
@@ -322,7 +381,9 @@
 																	readonly></td>
 															<td><input type="text" id="updateMenuPrice${i.menuID}"
 																	name="updateMenuPrice" value="${i.menuPrice}"
-																	readonly></td>
+																	readonly>
+																 <button id="menuDelBtn" style="display:none;">x</button>	
+															</td>
 														</form>
 														<td>
 															<button type="button" class="btn_menu_update nonactive"
@@ -411,13 +472,13 @@
 							<!-- 리뷰 -->
 							<div class="row">
 								<c:if test="${not empty sessionScope.userno}">
-									<div class="col-12">한줄 리뷰 추가</div>
+									<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">한줄 리뷰 추가</div>
 									<form id="createCommentForm" action="/create.commentReview" method="post">
 										<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
 										<input type="text" name="userNo" value="${sessionScope.userno}"
 											style="display: none;">
 										<div class="row">
-											<div class="col-12">
+											<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
 												<div class="row align-items-center">
 													<div class="col-12">
 														<div class="star">
@@ -430,10 +491,10 @@
 															<a href="#null" value="5">★</a>
 														</div>
 													</div>
-													<div class="col-9">
+													<div class="col-11">
 														<textarea id="review_editor" name="body"></textarea>
 													</div>
-													<div class="col-3">
+													<div class="col-1">
 														<button class="btn btn-outline-secondary">등록</button>
 													</div>
 												</div>
@@ -451,13 +512,15 @@
 									</script>
 								</c:if>
 								<c:if test="${fn:length(commentList) > 0}">
-									<div class="col-12">한줄 리뷰 목록</div>
+									<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;  font-weight:bold; margin-bottom:10px; margin-top:30px;">한줄 리뷰 목록
+									<hr>
+									</div>
 									<div class="row">
 										
 										<c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
-											<div class="col-12">작성자 : ${userIDList.get(i)}</div>
+											<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">${userIDList.get(i)}</div>
 
-											<div class="col-12">
+											<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
 												<div id="readStar${i}" class="star-ratings active" style="float:left;">
 													<div class="star-ratings-fill space-x-2 text-lg"
 														style="width: ${commentList.get(i).ratingToPercent()}%;">
@@ -467,7 +530,7 @@
 														<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 													</div>
 												</div>
-												<div style="float:left;">
+												<div style="float:left; margin-left:10px;">
 													${commentList.get(i).score}
 												</div>
 											</div>
@@ -479,7 +542,7 @@
 												<input type="text" name="reviewID"
 													value="${commentList.get(i).reviewID}" style="display: none;">
 
-												<div id="writeStar${i}" class="col-12 star nonactive">
+												<div id="writeStar${i}" class="col-12 col-lg-8 star nonactive" style="margin-left:auto; margin-right:auto;">
 													<input type="text" id="score${i}" name="modifyScore" value="0"
 														style="display:none;">
 													<a href="#null" value="1">★</a>
@@ -488,7 +551,7 @@
 													<a href="#null" value="4">★</a>
 													<a href="#null" value="5">★</a>
 												</div>
-												<div class="col-12">
+												<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
 													<textarea id="review_editor${i}" name="modifyBody">
 														${commentList.get(i).body}
 													</textarea>
@@ -644,6 +707,7 @@
 									$(".btn_menu_update").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
 									$("#btn_menu_modify_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
 									$(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
+									$("#menuDelBtn").css("display","inline");
 								});
 
 								$("#btn_menu_modify_cancel").click(function () {
@@ -662,6 +726,18 @@
 									$("select[name='category']").removeAttr("disabled");
 									$("select[name='priceRange']").removeAttr("disabled");
 									$("input[name='address']").removeAttr("readonly");
+									
+									$("input[name='name']").css("display","block");
+									$("select[name='category']").css("display","block");
+									$("select[name='priceRange']").css("display","block");
+									$("input[name='address']").css("display","block");
+									
+									$("#nameDiv").css("display","none");
+									$("#categoryDiv").css("display","none");
+									$("#priceRangeDiv").css("display","none");
+									$("#addressDiv").css("display","none");
+									
+									
 									myEditor.disableReadOnlyMode("");
 									$("#imageBox").addClass("nonactive");
 									$("#imageModify").removeClass("nonactive");

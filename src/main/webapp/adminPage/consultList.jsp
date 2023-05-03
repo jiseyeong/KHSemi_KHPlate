@@ -40,6 +40,11 @@ table{
 	border: 1px solid black;
 }
 
+p {
+font-weight:bolder; 
+font-size:25px; 
+color:#57b846;
+}
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
 </head>
@@ -53,15 +58,17 @@ table{
 			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
+				<p class="nanum-gothic">고객의 소리 목록</p>
+					<hr style="border-style:dotted;">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
-				<table align="center" class="table" style="background-color:#57b846; color:white;">
+				<table align="center" class="table">
 					<tr>
-						<td width="10%">글 번호</td>
-						<td width="40%">제목</td>
-						<td width="15%">질문자</td>
-						<td width="10%">답변 여부</td>
-						<td width="15%">업로드 일자</td>
-						<td width="10%">분류</td>
+						<td width="10%" style="color:#57b846; font-weight: 600; font-size: 20px;">글 번호</td>
+						<td width="40%" style="color:#57b846; font-weight: 600; font-size: 20px;">제목</td>
+						<td width="15%" style="color:#57b846; font-weight: 600; font-size: 20px;">질문자</td>
+						<td width="10%" style="color:#57b846; font-weight: 600; font-size: 20px;">답변 여부</td>
+						<td width="15%" style="color:#57b846; font-weight: 600; font-size: 20px;">업로드 일자</td>
+						<td width="10%" style="color:#57b846; font-weight: 600; font-size: 20px;">분류</td>
 					</tr>
 					<c:if test="${fn:length(list) > 0}">
 						<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
