@@ -109,7 +109,7 @@ crossorigin="anonymous"></script>
                         </div>
                         <div class="row">
                             <div class="col-12 col-lg-3" style="border:1px solid black; margin-left:auto;">
-                                <img src="/consult/${image.sysName}" alt="/consult/${image.oriName}" id="image" class="w-100 object-fit-contain">
+                                <img src="/consult/${image.sysName}" alt="/consult/${image.oriName}" id="image" class="w-100 object-fit-contain" style="max-height: 500px;">
                             </div>
                             <div class="col-12 col-lg-6" style="margin-right:auto;">
                                 <div id="readEditor">${dto.body}</div>
@@ -117,31 +117,37 @@ crossorigin="anonymous"></script>
                         </div>
                         <c:choose>
                             <c:when test="${not empty replyDTO}">
-                                <fieldset>
-                                    <legend class="legend">답글</legend>
-
-                                    <hr style="border-style:dotted; margin-bottom:25px;">
-
-                                    <div class="row">
-                                        <div class="col-12 col-lg-9">
-                                            <div class="input-group">
-                                                <span class="input-group-text">제목</span>
-                                                <input type="text" class="form-control" value="${replyDTO.title}"
-                                                    readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-3">
-                                            <div class="input-group">
-                                                <span class="input-group-text">작성자</span>
-                                                <input type="text" class="form-control" value="${replyWriter}" readonly>
-                                            </div>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
+                                        <p>답글</p>
+                                        <hr style="border-style:dotted; margin-bottom:25px;">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <div id="readEditor2">${replyDTO.body}</div>
-                                        </div>
+                                </div>
+                                <div class="row" style="margin-bottom:40px;">
+                                    <div class="col-12 col-lg-7" style="margin-left:auto; padding:0;">
+                                        <div class="input-group">
+                                        <span class="input-group-text">제목</span>
+                                        <input type="text" class="form-control"  value="${replyDTO.title}" readonly>
                                     </div>
+                                </div>
+                                <div class="col-12 col-lg-2"  style="margin-right:auto;">
+                                    <div class="input-group">
+                                        <span class="input-group-text">작성자</span>
+                                        <input type="text" class="form-control" value="${replyWriter}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-lg-9 text-center" style="margin-left:auto; margin-right: auto;">
+                                    <div id="readEditor2">${replyDTO.body}</div>
+                                </div>
+                            </div>
+
+    
+
+                                 
+                                
+                              
                                     <script>
                                         ClassicEditor
                                             .create(document.querySelector("#readEditor2"))
