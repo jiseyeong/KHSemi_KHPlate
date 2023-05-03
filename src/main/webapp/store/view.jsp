@@ -412,40 +412,30 @@
 							<div class="row">
 								<c:if test="${not empty sessionScope.userno}">
 									<div class="col-12">한줄 리뷰 추가</div>
-									<form id="createCommentForm" action="/create.commentReview" method="post"
-										enctype="multipart/form-data">
+									<form id="createCommentForm" action="/create.commentReview" method="post">
 										<input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
 										<input type="text" name="userNo" value="${sessionScope.userno}"
 											style="display: none;">
-										<div class="col-12">
-											이미지 등록
-											<button type="button" id="btn_review_image_add"
-												class="btn btn-outline-secondary">+</button>
-										</div>
-										<div class="col-12">
-											<fieldset>
-												<legend>image list</legend>
-												<div id="review_img_field"></div>
-											</fieldset>
-										</div>
-										<div class="col-12">
-											<div class="row align-items-center">
-												<div class="col-12">
-													<div class="star">
-														<input type="text" name="score" value="0" style="display:none;"
-															id="score">
-														<a href="#null" value="1">★</a>
-														<a href="#null" value="2">★</a>
-														<a href="#null" value="3">★</a>
-														<a href="#null" value="4">★</a>
-														<a href="#null" value="5">★</a>
+										<div class="row">
+											<div class="col-12">
+												<div class="row align-items-center">
+													<div class="col-12">
+														<div class="star">
+															<input type="text" name="score" value="0" style="display:none;"
+																id="score">
+															<a href="#null" value="1">★</a>
+															<a href="#null" value="2">★</a>
+															<a href="#null" value="3">★</a>
+															<a href="#null" value="4">★</a>
+															<a href="#null" value="5">★</a>
+														</div>
 													</div>
-												</div>
-												<div class="col-9">
-													<textarea id="review_editor" name="body"></textarea>
-												</div>
-												<div class="col-3">
-													<button class="btn btn-outline-secondary">등록</button>
+													<div class="col-9">
+														<textarea id="review_editor" name="body"></textarea>
+													</div>
+													<div class="col-3">
+														<button class="btn btn-outline-secondary">등록</button>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -481,110 +471,12 @@
 												</div>
 											</div>
 
-											<div id="commentImgs${i}" class="col-12 nonactive">
-												<div id="carouselControls${i}" class="carousel slide carousel-fade"
-													data-bs-ride="carousel">
-													<div id="commentCarousel${i}" class="carousel-inner">
-
-													</div>
-												</div>
-												<button class="carousel-control-prev" type="button"
-													data-bs-target="#carouselControls${i}" data-bs-slide="prev">
-													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-													<span class="visually-hidden">Previous</span>
-												</button>
-												<button class="carousel-control-next" type="button"
-													data-bs-target="#carouselControls" data-bs-slide="next">
-													<span class="carousel-control-next-icon${i}"
-														aria-hidden="true"></span>
-													<span class="visually-hidden">Next</span>
-												</button>
-											</div>
-
-											<div id="commentImgsRemoveList${i}" class="col-12 nonactive">
-												<table id="commentImgsRemoveTable${i}"
-													class="table table-secondary table-striped">
-													<tr>
-														<th width="70%">이미지</th>
-														<th width="30%">버튼</th>
-													</tr>
-												</table>
-												<form id="commentImgsRemoveForm${i}" action="/deletePhoto.commentReview"
-													method="get">
-													<input type="text" name="imageID" id="deleteImageID${i}"
-														style="display: none;">
-													<input type="text" name="storeID" value="${dto.storeID}"
-														style="display: none;">
-												</form>
-											</div>
-
-											<script>
-												var reviewID = "<c:out value='${commentList.get(i).reviewID}'></c:out>";
-												$.ajax({
-													url: "/getPhotoList.commentReview?reviewID=" + reviewID,
-													dataType: "json"
-												}).done(function (resp) {
-													let i = "<c:out value='${i}'></c:out>";
-													if (resp.length > 0) {
-														$("#commentImgs" + i).removeClass("nonactive");
-														let j = 0;
-														$(resp).each(function () {
-															//이미지 세팅
-															let div_carousel = $("<div>").addClass("carousel-item");
-															if (j++ == 0) {
-																div_carousel.addClass("active");
-															}
-															let imgSource = "/CommentReview/" + this.oriName;
-															let img = $("<img>").attr("src", imgSource).attr("alt", imgSource).addClass("d-block").addClass("object-fit-contain").addClass("w-100").css({ "height": "500px" });
-															let img2 = $("<img>").attr("src", imgSource).attr("alt", imgSource).addClass("d-block").addClass("object-fit-contain").addClass("w-100").css({ "height": "500px" });
-
-															div_carousel.append(img);
-															$("#commentCarousel" + i).append(div_carousel);
-
-															//삭제용 테이블 세팅
-															let tr = $("<tr>"),
-																td1 = $("<td>"),
-																td2 = $("<td>"),
-																btn_confirm = $("<button>").text("삭제"),
-																commentImgsRemoveForm = "#commentImgsRemoveForm" + i;
-
-															$("#deleteImageID" + i).attr("value", this.imageID);
-															btn_confirm.click(function () {
-																$(commentImgsRemoveForm).submit();
-															});
-															btn_confirm.addClass("btn").addClass("btn-outline-secondary");
-															td1.append(img2);
-															td2.append(btn_confirm);
-															tr.append(td1);
-															tr.append(td2);
-															$("#commentImgsRemoveTable" + i).append(tr);
-														});
-													}
-												});
-											</script>
-
 											<form id="updateCommentForm${i}" action="/update.commentReview"
-												method="post" enctype="multipart/form-data">
+												method="post">
 												<input type="text" name="storeID" value="${dto.storeID}"
 													style="display: none;">
 												<input type="text" name="reviewID"
 													value="${commentList.get(i).reviewID}" style="display: none;">
-
-												<div class="col-12 nonactive" id="modifyAddImage${i}">
-													<div class="row">
-														<div class="col-12">
-															이미지 추가 등록
-															<button type="button" id="btn_review_image_add${i}"
-																class="btn btn-outline-secondary">+</button>
-														</div>
-														<div class="col-12">
-															<fieldset>
-																<legend>add image list</legend>
-																<div id="review_img_field${i}"></div>
-															</fieldset>
-														</div>
-													</div>
-												</div>
 
 												<div id="writeStar${i}" class="col-12 star nonactive">
 													<input type="text" id="score${i}" name="modifyScore" value="0"
@@ -636,7 +528,6 @@
 														let btn_confirm_id = "btn_confirm" + i;
 														let btn_cancel = "#btn_cancel" + i;
 														let btn_cancel_id = "btn_cancel" + i;
-														let commentImgsRemoveList = "#commentImgsRemoveList" + i;
 
 														let writeStar = "#writeStar" + i;
 														let score = "#score" + i;
@@ -644,8 +535,6 @@
 														let replyControl = "#replyControl" + i;
 														let updateForm = "#updateCommentForm" + i;
 
-														let reviewImageModify = "#reviewImageModify" + i;
-														let modifyAddImage = "#modifyAddImage" + i;
 														//별점 버튼 이벤트 등록
 														$(writeStar + " a").click(function () {
 															$(this).parent().children("a").removeClass("on");
@@ -679,108 +568,23 @@
 																	$(btn_modify + "," + readStar).removeClass("nonactive");
 																	$(btn_modify).addClass("btn").addClass("btn-outline-secondary");
 																	$(btn_delete + "," + btn_confirm + "," + btn_cancel).removeClass("btn").removeClass("btn-outline-secondary");
-																	$(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete + "," + commentImgsRemoveList).addClass("nonactive");
+																	$(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete).addClass("nonactive");
 																	editor.enableReadOnlyMode("");
-																	$(reviewImageModify).addClass("nonactive");
-																	$(modifyAddImage).addClass("nonactive");
 																});
 
 																$(replyControl).prepend(btn_confirm_body);
 																$(replyControl).prepend(btn_cancel_body);
-
-																$.ajax({
-																	url: "/getPhotoList.commentReview?reviewID=" + reviewID,
-																	dataType: "json"
-																}).done(function (resp) {
-
-																	let row1 = $("<div>").addClass("row"),
-																		col1 = $("<div>").addClass("col-12"),
-																		fieldSet1 = $("<fieldset>"),
-																		legend1 = $("<legend>").text("이미지 삭제"),
-																		row2 = $("<div>").addClass("row");
-
-																	$("#reviewImageModify" + i).append(row1);
-																	row1.append(col1);
-																	col1.append(fieldSet1);
-																	fieldSet1.append(legend1);
-																	fieldSet1.append(row2);
-																	resp.each(function(){
-																		let form = $("<form>").attr("action", "/deletePhoto.commentReview");
-
-																		let input_imageID = $("<input>").attr("type", "text").attr("name", "imageID").attr("value", this.imageID).css({ "display": "none" });
-																		let input_storeID = $("<input>").attr("type", "text").attr("name", "storeID").attr("value", "${dto.storeID}").css({ "display": "none" });
-																		let sub_col1 = $("<div>").addClass("col-8"),
-																			sub_col2 = $("<div>").addClass("col-4"),
-																			imgSource = "/CommentReview/" + this.oriName;
-																		sub_col1_content = $("<img>").attr("src", imgSource).addClass("w-100").addClass("object-fit-contain"),
-																			sub_col2_content = $("<button>").text("삭제").attr("type", "button").addClass("btn").addClass("btn-outline-secondary");
-
-																		sub_col2_content.click(function () {
-																			form.submit();
-																		});
-
-																		form.append(input_imageID);
-																		form.append(input_storeID);
-																		sub_col1.append(sub_col1_content);
-																		sub_col2.append(sub_col2_content);
-																		form.append(sub_col1);
-																		form.append(sub_col2);
-
-																		row2.append(form);
-																	})
-																});
-
-																//밖에 꺼내면 변수명 문제가 생겨서, 클로저 개념 기대하며 제작.
-																let reviewImgs = [];
-																let review_maxlength = 3;
-																let imgForms2 = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-																$("#btn_review_image_add" + i).click(function () {
-																	if (reviewImgs.length < review_maxlength) {
-																		let div = $("<div>"),
-																			fileInput = $("<input type='file' accept='image/*'>"),
-																			btn_cancel = $("<button>");
-																		div.addClass("input-group");
-																		fileInput.addClass("form-control");
-																		btn_cancel.addClass("btn");
-																		btn_cancel.addClass("btn-outline-secondary")
-																		btn_cancel.append("x");
-																		div.append(fileInput, btn_cancel);
-																		$("#review_img_field" + i).append(div);
-																		reviewImgs.push(div);
-																		btn_cancel.click(function () {
-																			reviewImgs.splice(reviewImgs.indexOf(div), 1);
-																			div.remove();
-																		});
-																	}
-																});
-																$("#updateCommentForm" + i).submit(function (e) {
-																	// $("input[name=imgLength]").val(imgs.length);
-																	for (let i = 0; i < reviewImgs.length; i++) {
-																		// if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
-																		//     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
-																		//     return false;
-																		//} else
-																		if (!reviewImgs[i].children("input").val().match(imgForms2)) {
-																			alert("이미지 파일만 업로드 가능합니다.");
-																			return false;
-																		}
-																		reviewImgs[i].children("input").attr("name", "image" + i);
-																	}
-																});
 															}
 															if (editor.isReadOnly) {
 																editor.disableReadOnlyMode("");
 																$(btn_modify + "," + readStar).addClass("nonactive");
 																$(btn_modify).removeClass("btn").removeClass("btn-outline-secondary");
 																$(btn_delete + "," + btn_confirm + "," + btn_cancel).addClass("btn").addClass("btn-outline-secondary");
-																$(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete + "," + commentImgsRemoveList).removeClass("nonactive");
-																$(reviewImageModify).removeClass("nonactive");
-																$(modifyAddImage).removeClass("nonactive");
+																$(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete).removeClass("nonactive");
 															}
 														});
 													})
 													.catch(error => { console.error(error) });
-
 
 											</script>
 
@@ -904,43 +708,6 @@
 											return false;
 										}
 										imgs[i].children("input").attr("name", "image" + i);
-									}
-								});
-
-								let reviewImgs = [];
-								let review_maxlength = 3;
-								let imgForms2 = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-								$("#btn_review_image_add").click(function () {
-									if (reviewImgs.length < review_maxlength) {
-										let div = $("<div>"),
-											fileInput = $("<input type='file' accept='image/*'>"),
-											btn_cancel = $("<button>");
-										div.addClass("input-group");
-										fileInput.addClass("form-control");
-										btn_cancel.addClass("btn");
-										btn_cancel.addClass("btn-outline-secondary")
-										btn_cancel.append("x");
-										div.append(fileInput, btn_cancel);
-										$("#review_img_field").append(div);
-										reviewImgs.push(div);
-										btn_cancel.click(function () {
-											reviewImgs.splice(reviewImgs.indexOf(div), 1);
-											div.remove();
-										});
-									}
-								});
-								$("#createCommentForm").submit(function (e) {
-									// $("input[name=imgLength]").val(imgs.length);
-									for (let i = 0; i < reviewImgs.length; i++) {
-										// if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
-										//     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
-										//     return false;
-										//} else
-										if (!reviewImgs[i].children("input").val().match(imgForms2)) {
-											alert("이미지 파일만 업로드 가능합니다.");
-											return false;
-										}
-										reviewImgs[i].children("input").attr("name", "image" + i);
 									}
 								});
 
