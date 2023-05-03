@@ -19,14 +19,17 @@
 	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 * {
 	box-sizing: border-box;
 	 font-family: 'Nanum Gothic', sans-serif;
+}
+
+a{
+	text-decoration: none;
+	color: black;
 }
 
 body {
@@ -322,6 +325,21 @@ img {
 	justify-content: center;
 	align-items: center;
 }
+.navigator_list_item_btn_layout *{
+	width:100%;
+	height:100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.navigator_direction_btn{
+	background-color : white;
+	border:1px solid silver;
+	border-radius:10px;
+}
+.navigator_direction_btn>i{
+	font-size:16px;
+}
 
 .item {
 	text-decoration: none;
@@ -528,7 +546,7 @@ hr {
 	height: 100%;
 }
 
-.infoWindow_img {
+.infoWindow_img_layout>* {
 	width: 100%;
 	height: 100%;
 	border: 1px solid silver;
@@ -567,6 +585,11 @@ hr {
 
 .search_store_list_toScript {
 	display: none;
+}
+
+/* 가게 정보 추가 */
+.navigator_direction_btn{
+	
 }
 </style>
 </head>
@@ -610,6 +633,7 @@ hr {
 							<c:otherwise>
 								<c:forEach var='i' items='${search_store_list}'>
 									<li class="restaurant">
+										<input type="text" class="restaurant_storeID" value="${i.storeID}" style="display:none;">
 										<div class="img_layout">
 											<img src="/allstore_inquiry/restaurant_img1.jpg">
 										</div>
@@ -654,7 +678,7 @@ hr {
 				</div>
 
 			</div>
-	</form>
+	
 
 	<!--  맵 영역 -->
 	<div class="map_layout">
@@ -1100,7 +1124,7 @@ hr {
 		// 학원 중심 좌표 설정
 		var options = {
 			center: new kakao.maps.LatLng(37.567917, 126.983043),
-			level: 4
+			level: 3
 		};
 		
 		// 학원 영역 변수 설정
@@ -1124,7 +1148,7 @@ hr {
 		// 지도에 마커를 표시합니다
 		khacademy.setMap(khacademyMap);
 	
-		var InfoWindowContent = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="infoWindow_img" src="/retaurant2.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">KH 아카데미</div><div class="infoWindow_info_bottom"></div></div></div></body>'
+		var InfoWindowContent = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="infoWindow_img" src="/common/khplate1.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">KH 아카데미</div><div class="infoWindow_info_bottom"></div></div></div></body>'
 
 		
 		// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
@@ -1162,7 +1186,7 @@ hr {
 			let list_length = '${search_store_list.size()}';
 			
 	    	for(i=0 ; i<list_length ; i++){
-	    		
+	    		let storeID = $("#search_store_list_storeID"+i).val();
 		    	let name = $("#search_store_list_name"+i).val();
 		    	let category = $("#search_store_list_category"+i).val();
 				let lat = $("#search_store_list_lat"+i).val()
@@ -1181,7 +1205,7 @@ hr {
 			    // 배열 추가
 			    Store_markers.push(Store_marker);
 			    
-				let marker_content = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="infoWindow_img" src="/retaurant2.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">'+name+'</div><div class="infoWindow_info_bottom"># '+category+'</div></div></div></body>'
+				let marker_content = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><i class="fa-sharp fa-solid fa-fork-knife"></i></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">'+name+'</div><div class="infoWindow_info_bottom"># '+category+'</div></div></div></body>'
 				let infowindow = new kakao.maps.InfoWindow({
 				    position : marker_position, 
 				    content : marker_content
@@ -1202,9 +1226,14 @@ hr {
 				});
 			}
 		});
-
+		
+		// 가게 클릭 시 이동
+		$(".restaurant").on("click",function(){
+			let storeID = $(this).find(".restaurant_storeID").val();
+			console.log(storeID);
+			location.href = "/view.store?storeID="+storeID;
+		})
 	</script>
-
 
 </body>
 

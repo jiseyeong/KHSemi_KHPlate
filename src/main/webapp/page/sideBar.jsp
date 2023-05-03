@@ -76,14 +76,14 @@ a:link {text-decoration: none;}
          <li class="firstLi">Menu</li>
          
 <!--   카테고리 접근을 위한 a태그 추가 -->
-         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=한식"><li>한식</li></a>
-         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=양식"><li>양식</li></a>
-         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=중식"><li>중식</li></a>
-         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=일식"><li>일식</li></a>
-         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=아시안"><li>아시안</li></a>
-         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=패스트푸드"><li>패스트푸드</li></a>
-         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=음료/디저트"><li>음료/디저트</li></a>
-         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=기타"><li>기타</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=한식&approachBy=sidebar"><li>한식</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=양식&approachBy=sidebar"><li>양식</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=중식&approachBy=sidebar"><li>중식</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=일식&approachBy=sidebar"><li>일식</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=아시안&approachBy=sidebar"><li>아시안</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=패스트푸드&approachBy=sidebar"><li>패스트푸드</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=음료/디저트&approachBy=sidebar"><li>음료/디저트</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=기타&approachBy=sidebar"><li>기타</li></a>
       </ul>
       <ul class="nanum-gothic ulTag">
          <li class="firstLi">Community</li>
