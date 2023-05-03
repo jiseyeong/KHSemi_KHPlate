@@ -14,6 +14,7 @@ import com.google.gson.JsonObject;
 
 import dao.FullReviewDAO;
 import dao.FullReviewReplyDAO;
+import dao.MembersDAO;
 import dto.FullReviewDTO;
 import dto.FullReviewUserDTO;
 import dto.ReplyWithUserIdDTO;
@@ -26,6 +27,8 @@ public class FullReviewController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
+		response.setContentType("text/html; charset=utf8;");
+		
 		String cmd = request.getRequestURI();
 		System.out.println(cmd);
 		FullReviewDAO frdao = FullReviewDAO.getInstance();
@@ -165,6 +168,8 @@ public class FullReviewController extends HttpServlet {
 				
 				String name = frdao.StoreNameByReviewId(reviewid);
 				
+				int userno = Integer.parseInt(request.getParameter("userno"));
+				String userud = MembersDAO.getInstance().getIDByNo(userno);
 				
 				request.setAttribute("storeName", name);
 				request.setAttribute("store", list);
@@ -210,7 +215,7 @@ public class FullReviewController extends HttpServlet {
 
 		}catch(Exception e) {
 			e.printStackTrace();
-			//			response.sendRedirect("/error.jsp");
+			response.sendRedirect("/error.jsp");
 		}
 	}
 
