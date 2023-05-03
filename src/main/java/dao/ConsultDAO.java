@@ -11,9 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import dto.CommentReviewDTO;
 import dto.ConsultDTO;
-import dto.MyFullReviewScrapDTO;
 import dto.NaviDTO;
 import statics.Settings;
 
@@ -33,6 +31,17 @@ public class ConsultDAO {
 		DataSource ds = (DataSource)iContext.lookup("java:/comp/env/jdbc/ora");
 		return ds.getConnection();
 	}
+	
+	public int getCurrval() throws Exception{
+		String sql = "select CONSULT_CONSULTID_SEQ.currval from DUAL";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();){
+			rs.next();
+			return rs.getInt(1);
+		}
+	}
+	
 	public int insert(ConsultDTO dto) throws Exception{
 		String sql = "insert into CONSULT(CONSULTID, TITLE, BODY, USERNO, WRITEDATE, CATEGORY, REPLY)"
 				+ " values(CONSULT_CONSULTID_SEQ.nextval, ?, ?, ?, sysdate, ?, 'N')";

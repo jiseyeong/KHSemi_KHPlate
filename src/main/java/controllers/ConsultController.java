@@ -19,9 +19,11 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dao.ConsultDAO;
 import dao.ConsultReplyDAO;
 import dao.MembersDAO;
+import dao.PhotoDAO;
 import dto.ConsultDTO;
 import dto.ConsultReplyDTO;
 import dto.NaviDTO;
+import dto.PhotoDTO;
 import statics.Settings;
 
 @WebServlet("*.consult")
@@ -49,6 +51,7 @@ public class ConsultController extends HttpServlet {
 				String body = multi.getParameter("body");
 				
 				int result = ConsultDAO.getInstance().insert(new ConsultDTO(0, title, body, userNo, null, category, "N"));
+				int currval = ConsultDAO.getInstance().getCurrval();
 				
 				Enumeration<String> names = multi.getFileNames();
 				while(names.hasMoreElements()) {
@@ -56,7 +59,7 @@ public class ConsultController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						//imgsDAO ~ (new imgsDTO()) 추가해줘야 함.
+						PhotoDAO.getInstance().insertByConsultID(oriName, sysName, currval);
 					}
 				}
 				
@@ -95,6 +98,8 @@ public class ConsultController extends HttpServlet {
 				request.setAttribute("replyDTO", replyDTO);
 				request.setAttribute("replyWriter", replyWriter);
 				//이미지 추가해야 함.
+				PhotoDTO photo = PhotoDAO.getInstance().selectByConsultID(consultID);
+				request.setAttribute("image", photo);
 				request.getRequestDispatcher("/adminPage/consultView.jsp").forward(request, response);
 			}else if(cmd.equals("/replyForm.consult")) {
 				int consultID = Integer.parseInt(request.getParameter("consultID"));
@@ -104,6 +109,8 @@ public class ConsultController extends HttpServlet {
 				request.setAttribute("parentDTO", parentDTO);
 				request.setAttribute("parentWriter", parentWriter);
 				//이미지 추가해야 함
+				PhotoDTO photo = PhotoDAO.getInstance().selectByConsultID(consultID);
+				request.setAttribute("parentImage", photo);
 				request.getRequestDispatcher("/adminPage/consultReplyRegister.jsp").forward(request, response);
 			}else if(cmd.equals("/replyRegister.consult")) {
 				int userNo = Integer.parseInt(request.getParameter("writer"));
