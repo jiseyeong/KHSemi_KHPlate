@@ -216,6 +216,7 @@ public class MembersController extends HttpServlet {
 					request.getSession().setAttribute("userId", userId);
 					int userno = dao.getUserno(userId);
 					request.getSession().setAttribute("userno", userno);
+					request.getSession().setAttribute("loginIsAdmin", dao.getIsAdminByNo(userno));
 					response.getWriter().append("4");
 					return;
 				}
@@ -224,6 +225,7 @@ public class MembersController extends HttpServlet {
 			else if(cmd.equals("/logout.members")) {
 				request.getSession().removeAttribute("userId");
 				request.getSession().removeAttribute("userno");
+				request.getSession().removeAttribute("loginIsAdmin");
 				response.sendRedirect("/page/main.jsp");
 			}
 			
@@ -252,7 +254,7 @@ public class MembersController extends HttpServlet {
 				String pwid = request.getParameter("pwid");
 				String userid = dao.pwsearch(pwname,pwemail,pwid);
 				if (userid==null) {
-					response.sendRedirect("/login/newpw.jsp");
+					response.sendRedirect("/login/wrongpw.jsp");
 				} else {
 					request.setAttribute("userid",userid);
 					request.getRequestDispatcher("/memberSearch/newpassword.jsp").forward(request, response);
