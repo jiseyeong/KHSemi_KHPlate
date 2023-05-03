@@ -109,7 +109,7 @@ crossorigin="anonymous"></script>
                         </div>
                         <div class="row">
                             <div class="col-12 col-lg-3" style="border:1px solid black; margin-left:auto;">
-                                <img src="${image}" alt="${image}" id="image" class="w-100 object-fit-contain">
+                                <img src="/consult/${image.sysName}" alt="/consult/${image.oriName}" id="image" class="w-100 object-fit-contain">
                             </div>
                             <div class="col-12 col-lg-6" style="margin-right:auto;">
                                 <div id="readEditor">${dto.body}</div>

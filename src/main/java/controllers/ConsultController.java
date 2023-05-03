@@ -19,8 +19,11 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dao.ConsultDAO;
 import dao.ConsultReplyDAO;
 import dao.MembersDAO;
+import dao.PhotoDAO;
 import dto.ConsultDTO;
 import dto.ConsultReplyDTO;
+import dto.NaviDTO;
+import dto.PhotoDTO;
 import statics.Settings;
 
 @WebServlet("*.consult")
@@ -48,6 +51,7 @@ public class ConsultController extends HttpServlet {
 				String body = multi.getParameter("body");
 				
 				int result = ConsultDAO.getInstance().insert(new ConsultDTO(0, title, body, userNo, null, category, "N"));
+				int currval = ConsultDAO.getInstance().getCurrval();
 				
 				Enumeration<String> names = multi.getFileNames();
 				while(names.hasMoreElements()) {
@@ -55,32 +59,47 @@ public class ConsultController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						//imgsDAO ~ (new imgsDTO()) 추가해줘야 함.
+						PhotoDAO.getInstance().insertByConsultID(oriName, sysName, currval);
 					}
 				}
 				
 				response.sendRedirect("/list.consult");
 			}else if(cmd.equals("/list.consult")) {
-				ArrayList<ConsultDTO> list = ConsultDAO.getInstance().selectAll();
+				int currentPage = 0;
+				if(request.getParameter("cpage") == null) {
+					currentPage = 1;
+				}else {
+					currentPage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				int start = currentPage * Settings.CONSULT_RECORD_COUNT_PER_PAGE - (Settings.CONSULT_NAVI_COUNT_PER_PAGE-1);
+				int end = currentPage * Settings.CONSULT_RECORD_COUNT_PER_PAGE;
+				ArrayList<ConsultDTO> list = ConsultDAO.getInstance().selectBound(start, end);
+				NaviDTO navi = ConsultDAO.getInstance().getNavi(currentPage);
 				ArrayList<String> writerList = new ArrayList<>();
 				for(ConsultDTO i : list) {
 					writerList.add(MembersDAO.getInstance().getIDByNo(i.getUserNO()));
 				}
 				request.setAttribute("list", list);
 				request.setAttribute("writerList", writerList);
+				request.setAttribute("navi", navi);
 				request.getRequestDispatcher("/adminPage/consultList.jsp").forward(request, response);
 			}else if(cmd.equals("/view.consult")) {
 				int consultID = Integer.parseInt(request.getParameter("consultID"));
 				ConsultDTO dto = ConsultDAO.getInstance().selectOne(consultID);
 				String writer = MembersDAO.getInstance().getIDByNo(dto.getUserNO());				
 				ConsultReplyDTO replyDTO = ConsultReplyDAO.getInstance().selectOneByConsultID(consultID);
-				String replyWriter = MembersDAO.getInstance().getIDByNo(replyDTO.getUserNo());
+				String replyWriter = null;
+				if(replyDTO != null) {
+					replyWriter = MembersDAO.getInstance().getIDByNo(replyDTO.getUserNo());
+				}
 				
 				request.setAttribute("dto", dto);
 				request.setAttribute("writer", writer);
 				request.setAttribute("replyDTO", replyDTO);
 				request.setAttribute("replyWriter", replyWriter);
 				//이미지 추가해야 함.
+				PhotoDTO photo = PhotoDAO.getInstance().selectByConsultID(consultID);
+				request.setAttribute("image", photo);
 				request.getRequestDispatcher("/adminPage/consultView.jsp").forward(request, response);
 			}else if(cmd.equals("/replyForm.consult")) {
 				int consultID = Integer.parseInt(request.getParameter("consultID"));
@@ -90,6 +109,8 @@ public class ConsultController extends HttpServlet {
 				request.setAttribute("parentDTO", parentDTO);
 				request.setAttribute("parentWriter", parentWriter);
 				//이미지 추가해야 함
+				PhotoDTO photo = PhotoDAO.getInstance().selectByConsultID(consultID);
+				request.setAttribute("parentImage", photo);
 				request.getRequestDispatcher("/adminPage/consultReplyRegister.jsp").forward(request, response);
 			}else if(cmd.equals("/replyRegister.consult")) {
 				int userNo = Integer.parseInt(request.getParameter("writer"));
