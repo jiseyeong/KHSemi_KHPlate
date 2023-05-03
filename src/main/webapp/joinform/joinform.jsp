@@ -19,15 +19,10 @@
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 
 <!-- Icons font CSS-->
-<link href="vendor/mdi-font/css/material-design-iconic-font.min.css"
-	rel="stylesheet" media="all">
-<link href="vendor/font-awesome-4.7/css/font-awesome.min.css"
-	rel="stylesheet" media="all">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
 <!-- Vendor CSS-->
 <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-<link href="vendor/datepicker/daterangepicker.css" rel="stylesheet"
-	media="all">
 
 <!-- Main CSS-->
 <link href="css/main.css" rel="stylesheet" media="all">
@@ -153,7 +148,7 @@ button {
 body {
 	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 15px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -274,7 +269,7 @@ input {
 	-moz-box-shadow: none;
 	box-shadow: none;
 	width: 100%;
-	font-size: 14px;
+	font-size: 15px;
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -284,20 +279,6 @@ input {
 	position: relative;
 	margin-bottom: 30px;
 	border-bottom: 1px solid #e5e5e5;
-}
-
-.input-icon {
-	position: absolute;
-	font-size: 18px;
-	color: #ccc;
-	right: 8px;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-moz-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	-o-transform: translateY(-50%);
-	transform: translateY(-50%);
-	cursor: pointer;
 }
 
 .input--style-2 {
@@ -349,7 +330,7 @@ input {
 .rs-select2 .select2-container .select2-selection--single {
 	outline: none;
 	border: none;
-	height: 36px;
+	height: 35px;
 }
 
 .rs-select2 .select2-container .select2-selection--single .select2-selection__rendered
@@ -357,14 +338,14 @@ input {
 	line-height: 36px;
 	padding-left: 0;
 	color: #808080;
-	font-size: 16px;
-	font-family: inherit;
+	font-size: 15px;
+    font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 500;
 }
 
 .rs-select2 .select2-container .select2-selection--single .select2-selection__arrow
 	{
-	height: 34px;
+	height: 35px;
 	right: 4px;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -390,9 +371,9 @@ input {
 
 .rs-select2 .select2-container .select2-selection--single .select2-selection__arrow:after
 	{
-	font-family: "Material-Design-Iconic-Font";
+    font-family: 'Nanum Gothic', sans-serif;
 	content: '\f2f9';
-	font-size: 18px;
+	font-size: 15px;
 	color: #ccc;
 	-webkit-transition: all 0.4s ease;
 	-o-transition: all 0.4s ease;
@@ -422,6 +403,45 @@ input {
 	overflow: hidden;
 }
 
+/* ------------------------------------------------------- */
+/* IE */
+#class::-ms-expand { 
+  display: none;
+}
+
+#class {
+-o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+#class {
+   font-family: 'Nanum Gothic', sans-serif;
+font-size: 16px;
+  width: 150px;
+  height: 35px;
+  left: 25%;
+  top:5px;
+  color: #666;
+  background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
+  background-size: 20px;
+  padding: 5px 30px 0px 15px;
+  border-radius: 25px;
+  border: 0px solid #ffffff;
+  outline: 0 none;
+}
+
+#class option {
+ font-family: 'Nanum Gothic', sans-serif;
+  background: #57b846;
+  color: #fff;
+  padding: 3px 0;
+}
+
+#class option:hover {
+  background:#4dae3c;
+}
 /* ==========================================================================
    #TITLE
    ========================================================================== */
@@ -530,6 +550,7 @@ input {
   right: 0;
   background: #4dae3c;
 }
+
 </style>
 <body>
 <body>
@@ -548,16 +569,16 @@ input {
 								</div>
 							</div>
 							<div class="col-2">
-								<div>
+								<div class="input-group">
 									<div class="rs-select2 js-select-simple select--no-search">
-										<select id="class" name="classes">
-											<option disabled="disabled" selected="selected">Class</option>
-											<option value="A">A</option>
-											<option value="B">B</option>
-											<option value="C">C</option>
-											<option value="D">D</option>
-											<option value="E">E</option>
-											<option value="F">F</option>
+										<select id="class" name="classes" class="input--style-2">
+											<option disabled="disabled" selected="selected">반</option>
+											<option value="A">A 클래스</option>
+											<option value="B">B 클래스</option>
+											<option value="C">C 클래스</option>
+											<option value="D">D 클래스</option>
+											<option value="E">E 클래스</option>
+											<option value="F">F 클래스</option>
 										</select>
 										<div class="select-dropdown"></div>
 									</div>
@@ -578,7 +599,6 @@ input {
 									id="idCheck">중복체크</button>
 							</div>
 						</div>
-
 
 
 
@@ -634,9 +654,6 @@ input {
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<!-- Vendor JS-->
 	<script src="vendor/select2/select2.min.js"></script>
-	<script src="vendor/datepicker/moment.min.js"></script>
-	<script src="vendor/datepicker/daterangepicker.js"></script>
-
 	<!-- Main JS-->
 	<script src="js/global.js"></script>
 
@@ -661,9 +678,9 @@ input {
                 "keyup",
                 function () { //비밀번호 일치여부 표시
                     if ($("#pw2").val() == $("#pw1").val()) {
-                        $("#pwCheck").html("비밀번호가 일치합니다 :)").css({"color":"dodgerblue"})
+                        $("#pwCheck").html("비밀번호가 일치합니다 <i class='bi bi-emoji-smile'></i>").css({"color":"dodgerblue"})
                     } else {
-                        $("#pwCheck").html("비밀번호가 일치하지 않습니다 :(").css({"color":"red"})
+                        $("#pwCheck").html("비밀번호가 일치하지 않습니다 <i class='bi bi-emoji-frown'></i>").css({"color":"red"})
                     }
                 });
     
