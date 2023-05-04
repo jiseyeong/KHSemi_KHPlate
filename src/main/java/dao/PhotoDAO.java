@@ -111,11 +111,37 @@ public class PhotoDAO {
 		}
 	}
 	
+	public ArrayList<PhotoDTO> ListByReviewId(int reviewid) throws Exception{
+		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where reviewid = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, reviewid);
+			try(ResultSet rs = pstat.executeQuery();){
+				return this.transAllRsToList(rs);
+			}
+		}
+	}
+	
 	public PhotoDTO selectByConsultID(int consultID) throws Exception{
 		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where CONSULTID = ?";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, consultID);
+			try(ResultSet rs = pstat.executeQuery();){
+				ArrayList<PhotoDTO> temp = this.transAllRsToList(rs);
+				if(temp.size() > 0) {
+					return temp.get(0);
+				}
+				return null;
+			}
+		}
+	}
+	
+	public PhotoDTO selectByReviewId(int reviewid) throws Exception{
+		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where reviewid = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, reviewid);
 			try(ResultSet rs = pstat.executeQuery();){
 				ArrayList<PhotoDTO> temp = this.transAllRsToList(rs);
 				if(temp.size() > 0) {
@@ -136,4 +162,20 @@ public class PhotoDAO {
 		}
 		return result;
 	}
+	
+	
+	public int insertByFullReviewId(String oriName, String sysName, int reviewid) throws Exception{
+		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, REVIEWID)"
+				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, oriName);
+			pstat.setString(2, sysName);
+			pstat.setInt(3, reviewid);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
 }

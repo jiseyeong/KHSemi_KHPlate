@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <!DOCTYPE html>
@@ -21,7 +22,7 @@
 
 .text {
 	width: 100px;
-	margin-left:10px;
+	margin-left: 10px;
 }
 
 .title {
@@ -43,7 +44,8 @@
 	border-radius: 10px;
 }
 
-#storeId{
+#storeId {
+	
 }
 
 input {
@@ -103,15 +105,16 @@ textarea {
 	box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
 }
 
-#re_write_btn {
-width: 100px;
+.imagesBox {
+	margin: 20px; # re_write_btn { width : 100px;
 	height: 40px;
-filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg) brightness(106%) contrast(54%);
+	filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg)
+		brightness(106%) contrast(54%);
 	border: none;
 	cursor: pointer;
 	font-size: 14px;
 	margin-bottom: 5px;
-	
+}
 </style>
 
 </head>
@@ -119,7 +122,8 @@ filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg) brightness(106%
 	<div class="container">
 
 		<!-- 본문란 -->
-		<form action="/update.fullreview" class="frm" method="post">
+		<form action="/update.fullreview" class="frm" method="post"
+			id="addForm" enctype="multipart/form-data">
 			<input type="text" class="title" name="title"
 				value="${contents.title }" readonly>
 
@@ -129,10 +133,10 @@ filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg) brightness(106%
 
 			<hr style="border-style: dotted;">
 
-			<input type="text" class="text" value="가게 이름 : " readonly> 
-			<input type="text" class="storename" name="storename" value="${storeName }" readonly> 
-				
-				<select id="storeId" class="storeId" name="storeId" style="display: none">
+			<input type="text" class="text" value="가게 이름 : " readonly> <input
+				type="text" class="storename" name="storename" value="${storeName }"
+				readonly> <select id="storeId" class="storeId"
+				name="storeId" style="display: none">
 				<option selected>음식점</option>
 				<c:forEach items="${store }" var="i" varStatus="status">
 					<option value="${i.storeID }">${i.name }</option>
@@ -145,18 +149,39 @@ filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg) brightness(106%
 
 			<hr style="border-style: dotted;">
 
+			<div class="imagesBox">
+				<c:forEach var="i" items="${imgList }">
+					<img src="/FullReview/${i.sysName}" alt="/FullReview/${i.oriName}"
+						id="image" class="w-50 object-fit-contain"
+						style="max-height: 500px;">
+				</c:forEach>
+			</div>
+
 			<div class="bodyBox">
 				<textarea class="reviewbody" name="reviewbody" id="intro_editor"
 					readonly>${contents.reviewBody }</textarea>
 			</div>
+
+			<div class="col-12 col-lg-8"
+				style="margin-left: auto; margin-right: auto; margin-bottom: 40px;">
+				<!-- 여기에 name이 image0, image1 식의 name으로 file input 추가됨. 보내기 직전 name 태그 붙이기 시작. -->
+				<div id="img_field"></div>
+				<!-- <input type="text" name="imgLength" style="display: none;"> -->
+			</div>
+
+
 			<br>
 			<div class="contentsBtn">
 
 				<c:choose>
 					<c:when test="${sessionScope.userno eq contents.userNO}">
 						<button class="modiBtn" type="button">수정하기</button>
+						<button type="button" id="btn_image_add"
+							class="btn btn-outline-secondary"
+							style="display: none; width: 140px;">이미지 추가 등록</button>
 						<button class="submitBtn" type="submit" style="display: none;">수정완료</button>
-						<button class="delBtn" type="button" reviewId="${contents.reviewID}">삭제하기</button>
+						<button class="delBtn" type="button"
+							reviewId="${contents.reviewID}">삭제하기</button>
 						<button class="toListBtn" type="button">목록으로</button>
 					</c:when>
 
@@ -180,9 +205,12 @@ filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg) brightness(106%
 					type="text" class="reviewid" name="reviewid"
 					value="${contents.reviewID }" style="display: none;"> <br>
 				<input type="text" id="body" name="body" placeholder="작성할 댓글 입력"
-					style="height: 40px; width: 92%; margin-left: 5px;"> 
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" type="submit" id="re_write_btn" viewBox="0 0 16 16">
-  <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+					style="height: 40px; width: 92%; margin-left: 5px;">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+					fill="currentColor" type="submit" id="re_write_btn"
+					viewBox="0 0 16 16">
+  <path
+						d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
 </svg>
 			</div>
 		</form>
@@ -225,6 +253,13 @@ filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg) brightness(106%
 	</div>
 
 	<script>
+	
+	let category = "<c:out value='${contents.storeID}'></c:out>";
+    $("select[name='storeId']").val(category);
+	
+	
+	
+	
 	var myEditor = null;
 	//에디터 스크립트
 	ClassicEditor
@@ -256,6 +291,7 @@ filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg) brightness(106%
 			$(".delBtn").css("display", "none");
 			$(".toListBtn").css("display", "none");
 			$(".submitBtn").css("display", "block");
+			$(".btn-outline-secondary").css("display", "block");
 			$(".storename").css("display", "none");
 			$(".storeId").css("display", "inline-block");
 			$(".title").removeAttr("readonly");
@@ -294,6 +330,47 @@ filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg) brightness(106%
 						return false;
 					}
 				})
+				
+				//이미지 추가 등록 스크립트
+                        let imgs = [];
+                        let alreadyImgsLength = "<c:out value='${fn:length(imgList)}'></c:out>"
+                        let maxlength = 4 - alreadyImgsLength;
+                        let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+                        $("#btn_image_add").click(function () {
+                           if (imgs.length < maxlength) {
+                              let div = $("<div>"),
+                                 fileInput = $("<input type='file' accept='image/*'>"),
+                                 btn_cancel = $("<button>");
+                              div.addClass("input-group");
+                              fileInput.addClass("form-control");
+                              btn_cancel.addClass("btn");
+                              btn_cancel.addClass("btn-outline-secondary")
+                              btn_cancel.append("x");
+                              div.append(fileInput, btn_cancel);
+                              $("#img_field").append(div);
+                              imgs.push(div);
+
+                              btn_cancel.click(function () {
+                                 imgs.splice(imgs.indexOf(div), 1);
+                                 div.remove();
+                              });
+                           }
+                        });
+                        
+                        $("#addForm").submit(function (e) {
+                            // $("input[name=imgLength]").val(imgs.length);
+                            for (let i = 0; i < imgs.length; i++) {
+                                // if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
+                                //     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
+                                //     return false;
+                                //} else
+                                if (!imgs[i].children("input").val().match(imgForms)) {
+                                    alert("이미지 파일만 업로드 가능합니다.");
+                                    return false;
+                                }
+                                imgs[i].children("input").attr("name", "image" + i);
+                            }
+                        })
 	</script>
 </body>
 </html>
