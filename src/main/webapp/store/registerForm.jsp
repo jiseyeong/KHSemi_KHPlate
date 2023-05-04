@@ -250,7 +250,7 @@
 
                 //이미지 관리
                 let imgs = [];
-                let imgs_length = 5;
+                let imgs_length = 4;
                 let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
                 $("#btn_image_add").click(function () {
                     if (imgs.length < imgs_length) {
