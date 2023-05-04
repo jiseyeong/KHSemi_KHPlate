@@ -361,7 +361,7 @@
                            <div class="row" style="margin-top:30px;">
                               <div class="col-2" style="margin-left:auto; margin-right:auto;">
                                  <div class="star-ratings" style="float:left;">
-                                    <div class="star-ratings-fill space-x-2 text-lg">
+                                    <div class="star-ratings-fill space-x-2 text-lg" style="width:${dto.ratingToPercent()}%;">
                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                     </div>
                                     <div class="star-ratings-base space-x-2 text-lg">
@@ -393,7 +393,8 @@
                                     <form id="menuUpdateForm" action="/modify.storeMenu" method="post">
                                     <input type="text" name="menuLength" value="${menuList.size()}" style="display: none;">
                                     <input type="text" name="storeID" value="${dto.storeID}" style="display: none;">
-                                    <c:forEach var="i" begin="0" end="${fn:length(menuList)-1}" step="1">
+                                    <c:if test="${fn:length(menuList) > 0}">
+                                       <c:forEach var="i" begin="0" end="${fn:length(menuList)-1}" step="1">
                                        <tr>
                                             <input type="text" name="menuID${i}" value="${menuList.get(i).menuID}" style="display:none;" readonly>
                                              <td><input type="text" class="updateMenuName"
@@ -403,12 +404,17 @@
                                                    name="updateMenuPrice${menuList.get(i).menuID}" value="${menuList.get(i).menuPrice}"
                                                    readonly>
                                              <a href="/delete.storeMenu?menuID=${menuList.get(i).menuID}&storeID=${dto.storeID}">
+<<<<<<< HEAD
 	                                             <button type="button" id="btn_menu_delete${menuList.get(i).menuID}"
 	                                                class="btn_menu_delete nonactive" style="width:60px;">삭제</button>                                                
+=======
+	                                             <button type="button" class="btn_menu_delete nonactive">삭제</button>                                              
+>>>>>>> d4018521a5dc5d27999ae88288ad718f57e4de74
                                              </a>
                                              </td>
                                        </tr>
-                                    </c:forEach>
+                                       </c:forEach>
+                                    </c:if>
                                        <input type="text" name="storeID" value="${dto.storeID}"
                                           style="display: none;" readonly>
                                        <tr id="menu_add" class="nonactive">
