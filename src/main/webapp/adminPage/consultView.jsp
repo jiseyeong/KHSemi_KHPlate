@@ -158,7 +158,13 @@ crossorigin="anonymous"></script>
                                     <div id="readEditor2">${replyDTO.body}</div>
                                 </div>
                             </div>
-
+                            <c:if test="${sessionScope.loginIsAdmin || dto.userNo == sessionScope.userno}">
+			                	<div class="col-12 text-center">
+			                        <a href="/delete.consult?consultID=${dto.consultID}">
+			                        	<button type="button" id="btn_delete">삭제</button>
+			                        </a>
+			                    </div>
+			                </c:if>
     
 
                                  
@@ -174,23 +180,29 @@ crossorigin="anonymous"></script>
                                             })
                                             .catch(error => { console.error(error) });
                                     </script>
+
                             </c:when>
                             <c:otherwise>
-                                <c:if test="${sessionScope.loginIsAdmin}">
-                                    <div class="col-12 text-center">
-                                        <a href="/replyForm.consult?consultID=${dto.consultID}">
-                                            <button type="button" id="btn_reply">답글달기</button></a>
-                                    </div>
-                                </c:if>
+                            	<c:choose>
+	                                <c:when test="${sessionScope.loginIsAdmin}">
+	                                    <div class="col-12 text-center">
+	                                        <a href="/replyForm.consult?consultID=${dto.consultID}">
+	                                            <button type="button" id="btn_reply">답글달기</button></a>
+	                                        <a href="/delete.consult?consultID=${dto.consultID}">
+	                        					<button type="button" id="btn_delete">삭제</button>
+	                        				</a>		
+	                                    </div>
+	                                </c:when>
+                                	<c:otherwise>
+                                		<div class="col-12 text-center">
+	                                        <a href="/delete.consult?consultID=${dto.consultID}">
+	                        					<button type="button" id="btn_delete">삭제</button>
+	                        				</a>		
+	                                    </div>
+                                	</c:otherwise>
+                                </c:choose>
                             </c:otherwise>
                         </c:choose>
-                        <c:if test="${sessionScope.loginIsAdmin || dto.userNo == sessionScope.userno}">
-                        	<div class="col-12 text-center">
-                        		<a href="/delete.consult?consultID=${dto.consultID}">
-                        			<button type="button" id="btn_delete">삭제</button>
-                        		</a>
-                        	</div>
-                        </c:if>
 
                         <script>
                             ClassicEditor
