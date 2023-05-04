@@ -8,6 +8,13 @@
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.2/examples/album/">
 <link href="/FullReview/bootstrap.min.css" rel="stylesheet">
+
+<!-- FontAwesome 추가 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -67,6 +74,8 @@
 	margin-left:20px;
 	width: 30%;
 	margin-bottom: 30px;
+/* 	position 추가(즐겨찾기 버튼 고정용) */
+	position : relative;
 }
 .card:hover{
 	cursor:pointer;
@@ -150,7 +159,34 @@
 	align-items: center;
 }
 
+/* List 내 스크랩 버튼 추가 */
+.fullreview_addScrap {
+	position: absolute;
+	top: 10px;
+	right: 12px;
+	width: 40px;
+	height: 40px;
+	border-radius: 1.5rem;
+	z-index: 1px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
+.addScrap_btn {
+	border-radius: 1.5rem;
+	width: 100%;
+	height: 100%;
+	border: 2px solid rgb(178, 178, 178);
+	font-size: 20px;
+}
+
+.istrue{
+	background-color : #ED1C16;
+}
+.isfalse{
+	background-color : white;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -174,6 +210,29 @@
 								<input type="hidden" value="${reviewList.reviewID}" class="hiddencard">
 								<div class="reviewId" >${reviewList.reviewID}</div>
 								<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
+								
+								
+								
+								<!-- 즐겨찾기 여부 체크 -->
+								<div class="fullreview_addScrap">
+									<input type="text" name="addScrap_userno" value="${userno}" id="addScrap_userno" style="display: none;">
+									<c:set var="scrapCheck" value="false"/>
+									<c:forEach var="scrapList" items="${scrap_list}"
+										varStatus="status">
+										<c:if test="${scrapList.reviewID == reviewList.reviewID}">
+											<button class="addScrap_btn istrue">
+												<i class="fa-regular fa-heart"></i>
+											</button>
+											<c:set var="scrapCheck" value="true" />
+										</c:if>
+									</c:forEach>
+									<c:if test="${!scrapCheck}">
+										<button class="addScrap_btn isfalse">
+											<i class="fa-regular fa-heart"></i>
+										</button>
+									</c:if>
+								</div>
+								
 								<div class="card-body">
 									<div class="title">${reviewList.title}</div>
 									<div class="writer">${reviewList.userID}</div>
@@ -196,75 +255,9 @@
 				<!-- 						<div class="stars">여긴 평점란</div> -->
 				<!-- 					</div> -->
 				<!-- 				</div> -->
-				<!-- 				<div class="card"> -->
-				<!-- 					<div class="reviewId">리뷰 ID</div> -->
-				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
-				<!-- 					<div class="card-body"> -->
-				<!-- 						<div class="title">여긴 제목란</div> -->
-				<!-- 						<div class="writer">여긴 작성자</div> -->
-				<!-- 						<div class="stars">여긴 평점란</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-
-				<!-- 				<div class="card"> -->
-				<!-- 					<div class="reviewId">리뷰 ID</div> -->
-				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
-				<!-- 					<div class="card-body"> -->
-				<!-- 						<div class="title">여긴 제목란</div> -->
-				<!-- 						<div class="writer">여긴 작성자</div> -->
-				<!-- 						<div class="stars">여긴 평점란</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-				<!-- 				<div class="card"> -->
-				<!-- 					<div class="reviewId">리뷰 ID</div> -->
-				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
-				<!-- 					<div class="card-body"> -->
-				<!-- 						<div class="title">여긴 제목란</div> -->
-				<!-- 						<div class="writer">여긴 작성자</div> -->
-				<!-- 						<div class="stars">여긴 평점란</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-				<!-- 				<div class="card"> -->
-				<!-- 					<div class="reviewId">리뷰 ID</div> -->
-				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
-				<!-- 					<div class="card-body"> -->
-				<!-- 						<div class="title">여긴 제목란</div> -->
-				<!-- 						<div class="writer">여긴 작성자</div> -->
-				<!-- 						<div class="stars">여긴 평점란</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-
-				<!-- 				<div class="card"> -->
-				<!-- 					<div class="reviewId">리뷰 ID</div> -->
-				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
-				<!-- 					<div class="card-body"> -->
-				<!-- 						<div class="title">여긴 제목란</div> -->
-				<!-- 						<div class="writer">여긴 작성자</div> -->
-				<!-- 						<div class="stars">여긴 평점란</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-				<!-- 				<div class="card"> -->
-				<!-- 					<div class="reviewId">리뷰 ID</div> -->
-				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
-				<!-- 					<div class="card-body"> -->
-				<!-- 						<div class="title">여긴 제목란</div> -->
-				<!-- 						<div class="writer">여긴 작성자</div> -->
-				<!-- 						<div class="stars">여긴 평점란</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-				<!-- 				<div class="card"> -->
-				<!-- 					<div class="reviewId">리뷰 ID</div> -->
-				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
-				<!-- 					<div class="card-body"> -->
-				<!-- 						<div class="title">여긴 제목란</div> -->
-				<!-- 						<div class="writer">여긴 작성자</div> -->
-				<!-- 						<div class="stars">여긴 평점란</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
 			</div>
 
-			<div class="navigator"
-				style="position: relative; width: 100%; border: 0px;">
+			<div class="navigator" style="position: relative; width: 100%; border: 0px;">
 				<hr>
 				<ul class="navigator_list">${FullReviewNavi}</ul>
 			</div>
@@ -278,6 +271,66 @@
 		})
 		$(".card").on("click",function(){
 			location.href="/content.fullreview?reviewid="+$(this).find('.hiddencard').val();
+		})
+		
+		$(function(){
+			
+			// 즐겨찾기 등록,삭제 버튼
+			
+			$(".addScrap_btn").each(function (index, item) {
+				let loginCheck = $("#addScrap_userno").val();
+				
+				let addScrapFullReviewCheck;
+				
+				if($(item).attr("class")=="addScrap_btn istrue"){
+					addScrapFullReviewCheck = true;
+				}else{
+					addScrapFullReviewCheck = false;
+				}
+
+				$(this).on("click",function(){
+					console.log(loginCheck);
+					event.stopPropagation();
+					if(loginCheck==""){
+						alert("로그인을 먼저 진행해주세요.");
+					}
+					else {
+						let addScrap_btn = $(this);
+						
+						if(addScrapFullReviewCheck==false){
+							$.ajax({
+								url:"/addScrapFullReview.fullreview",
+								type:"post",
+								data:{
+									// input type=hidden
+									addScrap_reviewID:addScrap_btn.parent().prev().prev().prev().val()
+								}
+							}).done(function(resp){
+								if(resp=="true"){
+									addScrapFullReviewCheck = true;
+									addScrap_btn.removeClass("isfalse");
+									addScrap_btn.addClass("istrue");
+								}
+							})
+						}else{
+							$.ajax({
+								url:"/deleteScrapFullReview.fullreview",
+								type:"post",
+								data:{
+									// input type=hidden
+ 									addScrap_reviewID:addScrap_btn.parent().prev().prev().prev().val()
+								}
+							}).done(function(resp){
+								if(resp=="true"){
+									addScrapFullReviewCheck = false;
+									addScrap_btn.removeClass("istrue");
+									addScrap_btn.addClass("isfalse");
+								}
+							})
+						}
+					}
+				})
+			})
 		})
 		
 	</script>

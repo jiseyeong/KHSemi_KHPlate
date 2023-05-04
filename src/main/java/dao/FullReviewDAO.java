@@ -11,7 +11,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.FavoritePageDTO;
 import dto.FullReviewDTO;
+import dto.FullReviewScrapDTO;
 import dto.FullReviewUserDTO;
 import dto.MyFullReviewScrapDTO;
 import dto.StoreDTO;
@@ -526,4 +528,58 @@ public class FullReviewDAO {
 			}
 		}
 	}
+	
+	
+	
+	// FullReview 스크랩 기능 추가
+	public List<FullReviewScrapDTO> isScrapFullReview(List<FullReviewUserDTO> fullReviewList, int userno) throws Exception {
+		
+		List<FullReviewScrapDTO> result = new ArrayList<>();
+		
+		for(FullReviewUserDTO fullReview : fullReviewList) {
+			String sql = "select * from fullreviewscrap where reviewID = ? and userno = ?";
+			try(	Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setInt(1, fullReview.getReviewID());
+				pstat.setInt(2, userno);
+				try(ResultSet rs = pstat.executeQuery();){
+					if(rs.next()) {
+						int scrapID = rs.getInt(1);
+						result.add(new FullReviewScrapDTO(scrapID,fullReview.getReviewID(),userno));
+					}
+				}
+			}
+		}
+		return result;
+	}
+	
+
+	// 스크랩 등록 dao
+	public int addScrapFullReview(int reviewID, int userno) throws Exception {
+		String sql = "insert into fullreviewscrap values (fullreviewscrap_scrapid_seq.nextval, ?, ?)";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, reviewID);
+			pstat.setInt(2, userno);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+
+	// 스크랩 삭제 dao
+	public int deleteScrapFullReview(int reviewID, int userno) throws Exception {
+		String sql = "delete from fullreviewscrap where reviewID = ? and userno = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, reviewID);
+			pstat.setInt(2, userno);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}	
 }
