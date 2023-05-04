@@ -18,28 +18,29 @@ public class StoreMenuController extends HttpServlet {
 		String cmd = request.getRequestURI();
 		
 		try {
-			if(cmd.equals("/add.storeMenu")) {
-				int storeID = Integer.parseInt(request.getParameter("storeID"));
-				String menuName = request.getParameter("menuName");
-				int menuPrice = Integer.parseInt(request.getParameter("menuPrice"));
-				
-				int result = StoreMenuDAO.getInstance().insert(new StoreMenuDTO(0, menuName, menuPrice, storeID));
-				
-				response.sendRedirect("/view.store?storeID="+storeID);
-			}else if(cmd.equals("/delete.storeMenu")) {
+			if(cmd.equals("/delete.storeMenu")) {
 				int menuID = Integer.parseInt(request.getParameter("menuID"));
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				
 				int result = StoreMenuDAO.getInstance().deleteByID(menuID);
 				
 				response.sendRedirect("/view.store?storeID="+storeID);
-			}else if(cmd.equals("/update.storeMenu")) {
+			}else if(cmd.equals("/modify.storeMenu")) {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
-				int menuID = Integer.parseInt(request.getParameter("menuID"));
-				String menuName = request.getParameter("updateMenuName");
-				int menuPrice = Integer.parseInt(request.getParameter("updateMenuPrice"));
-				
-				int result = StoreMenuDAO.getInstance().update(new StoreMenuDTO(menuID, menuName, menuPrice, storeID));
+				int menuLength = Integer.parseInt(request.getParameter("menuLength"));
+				for(int i = 0; i < menuLength; i++) {
+					int menuID = Integer.parseInt(request.getParameter("menuID"+i));
+					String updateMenuName = request.getParameter("updateMenuName"+menuID);
+					int updateMenuPrice= Integer.parseInt(request.getParameter("updateMenuPrice"+menuID));
+					int result = StoreMenuDAO.getInstance().update(new StoreMenuDTO(menuID, updateMenuName, updateMenuPrice, storeID));
+				}
+				if((request.getParameter("addedMenuName") != null && !(request.getParameter("addedMenuName").equals("")))
+						|| (request.getParameter("addedMenuPrice") !=null && !(request.getParameter("addedMenuPrice").equals("")))
+						) {
+					String menuName = request.getParameter("addedMenuName");
+					int menuPrice = Integer.parseInt(request.getParameter("addedMenuPrice"));
+					int result = StoreMenuDAO.getInstance().insert(new StoreMenuDTO(0, menuName, menuPrice, storeID));
+				}
 				
 				response.sendRedirect("/view.store?storeID="+storeID);
 			}

@@ -367,86 +367,42 @@
                                        <th style="width:50%;">메뉴 이름</th>
                                        <th style="width:50%;">메뉴 가격</th>
                                     </tr>
-                                    <c:forEach var="i" items="${menuList}">
+                                    <form id="menuUpdateForm" action="/modify.storeMenu" method="post">
+                                    <input type="text" name="menuLength" value="${menuList.size()}" style="display: none;">
+                                    <input type="text" name="storeID" value="${dto.storeID}" style="display: none;">
+                                    <c:forEach var="i" begin="0" end="${fn:length(menuList)-1}" step="1">
                                        <tr>
-                                          <form id="menuUpdateForm${i.menuID}" acti.storeMenu"
-                                             method="get">
-                                             <input type="text" name="menuID" value="${i.menuID}"
+                                             <input type="text" name="menuID${i}" value="${menuList.get(i).menuID}"
                                                 style="display:none;" readonly>
-                                             <input type="text" name="storeID" value="${dto.storeID}"
-                                                style="display: none;" readonly>
-                                             <td><input type="text" id="updateMenuName${i.menuID}"
-                                                   name="updateMenuName" value="${i.menuName}"
+
+                                             <td><input type="text" class="updateMenuName"
+                                                   name="updateMenuName${menuList.get(i).menuID}" value="${menuList.get(i).menuName}"
                                                    readonly></td>
-                                             <td><input type="text" id="updateMenuPrice${i.menuID}"
-                                                   name="updateMenuPrice" value="${i.menuPrice}"
+                                             <td><input type="text" class="updateMenuPrice"
+                                                   name="updateMenuPrice${menuList.get(i).menuID}" value="${menuList.get(i).menuPrice}"
                                                    readonly>
-                                                 <button id="menuDelBtn" style="display:none;">x</button>   
+                                             <a href="/delete.storeMenu?menuID=${menuList.get(i).menuID}&storeID=${dto.storeID}">
+	                                             <button type="button" id="btn_menu_delete${menuList.get(i).menuID}"
+	                                                class="btn_menu_delete nonactive">삭제</button>                                                
+                                             </a>
                                              </td>
-                                          </form>
-                                          <td>
-                                             <button type="button" class="btn_menu_update nonactive"
-                                                id="btn_menu_update${i.menuID}">수정</button>
-                                             <button type="button"
-                                                id="btn_menu_update_confirm${i.menuID}"
-                                                class="btn_menu_update_confirm nonactive">확정</button>
-                                             <button type="button" id="btn_menu_delete${i.menuID}"
-                                                class="btn_menu_delete nonactive">삭제</button>
-                                             <form id="menuDeleteForm${i.menuID}"
-                                                action="/delete.storeMenu" method="get">
-                                                <input type="text" name="menuID" value="${i.menuID}"
-                                                   style="display: none;" readonly>
-                                                <input type="text" name="storeID" value="${dto.storeID}"
-                                                   style="display: none;" readonly>
-                                             </form>
-                                          </td>
                                        </tr>
-                                       <script>
-                                          var menuID = "<c:out value='${i.menuID}'></c:out>";
-                                          $("#btn_menu_delete" + menuID).click(function () {
-                                             $("#menuDeleteForm" + menuID).submit();
-                                          });
-                                          $("#btn_menu_update" + menuID).click(function () {
-                                             $("#btn_menu_update_confirm" + menuID).addClass("btn").addClass("btn-outline-secondary").removeClass("nonactive");
-                                             $("#updateMenuName" + menuID).attr("readonly", false);
-                                             $("#updateMenuPrice" + menuID).attr("readonly", false);
-                                             $(this).css({ "display": "none" });
-                                          });
-                                          $("#btn_menu_update_confirm" + menuID).click(function () {
-                                             $("#menuUpdateForm" + menuID).submit();
-                                          })
-                                          $("menuUpdateForm" + menuID).submit(function () {
-                                             let menuPrice = $("#updateMenuPrice" + menuID).val();
-                                             if (!menuPrice) {
-                                                alert("메뉴 가격은 빈 값일 수 없습니다.");
-                                                return false;
-                                             } else if (isNaN(menuPrice)) {
-                                                alert("메뉴 가격은 숫자 형식이어야 합니다.");
-                                                return false;
-                                             }
-                                          });
-                                       </script>
                                     </c:forEach>
-                                    <form id="menuAddForm" action="/add.storeMenu" method="get">
                                        <input type="text" name="storeID" value="${dto.storeID}"
                                           style="display: none;" readonly>
                                        <tr id="menu_add" class="nonactive">
                                           <td>
                                              <div class="input-group">
                                                 <span class="input-group-text">메뉴이름</span>
-                                                <input type="text" class="form-control" name="menuName">
+                                                <input type="text" class="form-control" name="addedMenuName">
                                              </div>
                                           </td>
                                           <td>
                                              <div class="input-group">
                                                 <span class="input-group-text">메뉴가격</span>
                                                 <input type="text" class="form-control"
-                                                   name="menuPrice">
+                                                   name="addedMenuPrice">
                                              </div>
-                                          </td>
-                                          <td>
-                                             <button type="button" id="btn_menu_cancel"
-                                                class="btn btn-outline-secondary">X</button>
                                           </td>
                                        </tr>
                                  </table>
@@ -454,8 +410,6 @@
                                     <div class="col-12 text-end">
                                       <button type="submit"
                                                 class="btn btn-outline-secondary" id="btn_menu_submit" style="display:none;">적용</button>
-                                       <button type="button" id="btn_menu_add"
-                                          class="btn btn-outline-secondary">메뉴 추가</button>
                                        <button type="button" id="btn_menu_modify"
                                           class="btn btn-outline-secondary">메뉴 수정</button>
                                        <button type="button" id="btn_menu_modify_cancel"
@@ -681,22 +635,28 @@
                            $("input[name='score']").attr("value", $(this).attr("value"));
                         });
 
-                        //메뉴 추가 버튼 이벤트 등록
-                        $("#btn_menu_add").click(function () {
-                           $("#menu_add").removeClass("nonactive");
-                        });
-
-                        $("#btn_menu_cancel").click(function () {
-                           $("#menu_add").addClass("nonactive");
-                        })
-
-                        $("#menuAddForm").submit(function () {
-                           let menuPrice = $("input[name='menuPrice']").val();
-                           if (!menuPrice) {
-                              alert("메뉴 가격은 빈 값일 수 없습니다.");
-                              return false;
-                           } else if (isNaN(menuPrice)) {
+                        $("#menuUpdateForm").submit(function () {
+                           let menuPrice = $("input[name='addedMenuPrice']").val();
+                           // if (!menuPrice) {
+                           //    alert("메뉴 가격은 빈 값일 수 없습니다.");
+                           //    return false;
+                           // } else
+                           if (isNaN(menuPrice)) {
                               alert("메뉴 가격은 숫자 형식이어야 합니다.");
+                              return false;
+                           }
+                           let isReturn = false;
+                           $(".updateMenuPrice").each(function(index, item){
+                              if(!item.val()){
+                                 alert("메뉴 가격은 빈 값일 수 없습니다.");
+                                 isReturn = true;
+                              }
+                              else if(isNaN(item.val())){
+                                 alert("메뉴 가격은 숫자 형식이어야 합니다.");
+                                 isReturn = true;
+                              }
+                           })
+                           if(isReturn){
                               return false;
                            }
                         });
@@ -706,8 +666,11 @@
                            $(".btn_menu_update").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
                            $("#btn_menu_modify_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
                            $(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
-                           $("#menuDelBtn").css("display","inline");
                            $("#btn_menu_submit").css("display","inline");
+
+                           $("#menu_add").removeClass("nonactive");
+                           $(".updateMenuName").attr("readonly",false);
+                           $(".updateMenuPrice").attr("readonly",false);
                         });
 
                         $("#btn_menu_modify_cancel").click(function () {

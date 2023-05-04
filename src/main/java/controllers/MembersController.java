@@ -151,27 +151,44 @@ public class MembersController extends HttpServlet {
 				String pw = request.getParameter("pw");
 				String pw2 = SecurityUtils.sha512(pw);
 				String nickname = request.getParameter("nickname");
-				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
 				String selfcomment = request.getParameter("selfcomment");
 				String favoriteFood = request.getParameter("favoriteFood");
 
 
-				int result = dao.update(new MembersDTO(pw2,nickname,phone,email,selfcomment,favoriteFood));
+				int result = dao.update(new MembersDTO(pw2,nickname,email,selfcomment,favoriteFood));
 
 				response.sendRedirect("/mypage.members");
 
 			}else if(cmd.equals("/memberout.members")) { 
 
-
 				String userId = request.getParameter("userId");
-				String userPw = SecurityUtils.sha512(request.getParameter("loginPw"));
+				String userPw = SecurityUtils.sha512(request.getParameter("userPw"));
 				
-				int result = dao.delete(userId, userPw);
+				// ID 체크
+				boolean idCheck = dao.isIdExist(userId);
 				
-				String resp = g.toJson(result);
-				response.getWriter().append(resp);
-
+				if(!idCheck) {
+					response.getWriter().append("1");
+					return;
+				}
+				
+				// 비밀번호 체크
+				boolean pwCheck = dao.isPwExist(userId, userPw);
+				
+				if(!pwCheck) {
+					response.getWriter().append("2");
+					return;
+					
+				}else {
+					int result = dao.delete(userId,userPw);
+					if(result>0) {
+						request.getSession().removeAttribute("userId");
+						request.getSession().removeAttribute("userno");
+						response.getWriter().append("3");
+						return;
+					}
+				}
 
 			}else if(cmd.equals("/mypage.members")) { 
 				String userId = (String)request.getSession().getAttribute("loginID");
@@ -267,10 +284,7 @@ public class MembersController extends HttpServlet {
 				int result=dao.updatepw(pw2,userid);
 				request.setAttribute("result", result);
 				request.getRequestDispatcher("/memberSearch/idpwsearch.jsp").forward(request, response);
-				
-				
 			}
-			
 			//
 			
 		}catch(Exception e) {

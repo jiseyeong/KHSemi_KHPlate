@@ -63,9 +63,9 @@ public class MembersDAO {
 	}
 
 
-	public int insert(MembersDTO dto) throws Exception { // 회占쏙옙占쏙옙占쏙옙
+	public int insert(MembersDTO dto) throws Exception { //회원가입
 
-		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,?,default,?,?,?);";
+		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,default,?,?);";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
 			pstat.setString(1, dto.getUserID());
@@ -73,13 +73,11 @@ public class MembersDAO {
 			pstat.setString(3, dto.getNickname());
 			pstat.setString(4, dto.getName());
 			pstat.setString(5, dto.getEmail());
-			pstat.setString(6, dto.getPhone());
-			pstat.setString(7, dto.getClasses());
-			pstat.setString(8, dto.getSelfcomment());
-			pstat.setString(9, dto.getFavoriteFood());
-			pstat.setString(10, dto.getKakao());
-			pstat.setString(11, dto.getNaver());
-			pstat.setString(12, dto.getGoogle());
+			pstat.setString(6, dto.getClasses());
+			pstat.setString(7, dto.getSelfcomment());
+			pstat.setString(8, dto.getFavoriteFood());
+			pstat.setString(9, dto.getKakao());
+			pstat.setString(10, dto.getNaver());
 
 			int result = pstat.executeUpdate();
 
@@ -89,7 +87,7 @@ public class MembersDAO {
 		}
 
 	}
-	public MembersDTO selectById(String userID) throws Exception { // 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占�
+	public MembersDTO selectById(String userID) throws Exception { //마이페이지 출력
 
 
 		String sql = "select * from members where userid=?";
@@ -105,30 +103,27 @@ public class MembersDAO {
 			String nickname = rs.getString("nickname");
 			String name = rs.getString("name");
 			String email = rs.getString("email");
-			String phone = rs.getString("phone");
 			String classes = rs.getString("classes");
 			String selfcomment = rs.getString("selfcomment");
 			String favoritefood = rs.getString("favoritefood");
 
-			MembersDTO result = new MembersDTO(userID2, pw, nickname, name, email, phone, classes, selfcomment,
-					favoritefood);
+			MembersDTO result = new MembersDTO(userID2, pw, nickname, name, email,classes, selfcomment,favoritefood);
 
 			return result;
 		}
 	}
-	public int update(MembersDTO dto) throws Exception { // 회占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
+	public int update(MembersDTO dto) throws Exception { //회원 수정
 
-		String sql = "update members set pw=?, nickname=?, email=?, phone=?, selfcomment=?, favoritefood=?, where userid=?";
+		String sql = "update members set pw=?, nickname=?, email=?, selfcomment=?, favoritefood=?, where userid=?";
 
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
 			pstat.setString(1, dto.getPw());
 			pstat.setString(2, dto.getNickname());
 			pstat.setString(3, dto.getEmail());
-			pstat.setString(4, dto.getPhone());
-			pstat.setString(5, dto.getSelfcomment());
-			pstat.setString(6, dto.getFavoriteFood());
-			pstat.setString(7, dto.getUserID());
+			pstat.setString(4, dto.getSelfcomment());
+			pstat.setString(5, dto.getFavoriteFood());
+			pstat.setString(6, dto.getUserID());
 
 			int result = pstat.executeUpdate();
 
@@ -138,7 +133,7 @@ public class MembersDAO {
 		}
 	}
 
-	public int delete(String userId, String pw) throws Exception { // 회占쏙옙 탈占쏙옙
+	public int delete(String userId, String pw) throws Exception { //회원 탈퇴
 
 		String sql = "delete from members where userid=? and pw=?";
 
@@ -155,7 +150,7 @@ public class MembersDAO {
 		}
 	}
 
-	public boolean idPwOk(String userId, String pw) throws Exception { // 占싸깍옙占쏙옙
+	public boolean idPwOk(String userId, String pw) throws Exception { //로그인 
 
 		String sql = "select * from members where userid=? and pw=?";
 
@@ -226,8 +221,6 @@ public class MembersDAO {
 	}
 
 
-
-
 	public int getUserno(String id) throws Exception {
 		String sql = "select userno from members where userid = ?";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
@@ -287,13 +280,11 @@ public class MembersDAO {
 					String nickname = rs.getString("nickname");
 					String name = rs.getString("name");
 					String email = rs.getString("email");
-					String phone = rs.getString("phone");
 					String classes = rs.getString("classes");
 					String selfcomment = rs.getString("selfcomment");
 					String favoritefood = rs.getString("favoritefood");
 
-					result.add(new MembersDTO(userID, pw, nickname, name, email, phone, classes, selfcomment,
-							favoritefood));
+					result.add(new MembersDTO(userID, pw, nickname, name, email,classes, selfcomment,favoritefood));
 				}
 			}
 		}
@@ -348,13 +339,7 @@ public class MembersDAO {
 				int result = pstat.executeUpdate();
 				con.commit();
 				return result;
-			
 		}
 
 	}
-	
-	
-	
-
-
 }
