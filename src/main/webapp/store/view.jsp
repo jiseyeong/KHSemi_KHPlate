@@ -261,12 +261,12 @@
                         <div class="col-12 col-lg-5 nonactive" id="imageModify" style="margin-left:auto;">
                            <c:if test="${fn:length(imgList) > 0}">
                            	  <form action="/deletePhoto.store" method="get">
-                              	<input type="text" name="imageID" value="${i.imageID}"
+                              <div class="row">
+                                 <c:forEach var="i" items="${imgList}">
+                                <input type="text" name="imageID" value="${i.imageID}"
                                   style="display: none;" readonly>
                               	<input type="text" name="storeID" value="${dto.storeID}"
                                   style="display: none;" readonly>
-                              <div class="row">
-                                 <c:forEach var="i" items="${imgList}">
                                  	<div class="col-12 col-lg-6"> 
                                       <img src="/store/${i.sysName}"
                                           class="w-100 object-fit-contain" style="margin-bottom:10px;">
@@ -279,8 +279,7 @@
                               </div>
                               </form>
                            </c:if>
-                           <form id="updateForm" action="/update.store" method="post"
-                              enctype="multipart/form-data">
+                           <form id="updateForm" action="/update.store" method="get">
                               <input type="text" name="storeID" value="${dto.storeID}" style="display:none;"
                                  readonly> 
                         </div>
@@ -729,7 +728,33 @@
                         });
 
                         $("#btn_store_update_confirm").click(function () {
-                           $("#updateForm").submit();
+                           //$("#updateForm").submit();
+
+                           for(let i = 0; i < imgs.length; i++){
+                              if (!imgs[i].children("input").val().match(imgForms)) {
+                                 alert("이미지 파일만 업로드 가능합니다.");
+                                 return;
+                              }
+                           }
+
+                           let formData = new FormData();
+                           formData.append("storeID", "<c:out value='${dto.storeID}'></c:out>");
+                           for(let i = 0; i < imgs.length; i++){
+                              let fileInput = imgs[i].children("input")[0];
+                              let file = fileInput.files[0];
+                              formData.append("images"+i, file);
+                           }
+
+
+                           $.ajax({
+                              url:"/updatePhoto.store",
+                              type:"post",
+                              data:formData,
+                              processData : false,
+                              contentType : false
+                           }).done(function(resp){
+                              $("#updateForm").submit();
+                           });
                         });
 
                         $("#btn_store_update_delete").click(function(){
