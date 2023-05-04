@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -61,14 +62,18 @@ public class FullReviewController extends HttpServlet {
 				int result = frdao.writeFullReview(title,reviewbody,score,storeId,userNo);
 				
 				int reviewId = frdao.newReviewId();
+				System.out.println("방금작성한 리뷰" + reviewId);
 				
 				Enumeration<String> names = multi.getFileNames();
+				
 				while(names.hasMoreElements()) {
 					String fileName = names.nextElement();
+					System.out.println(fileName);
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
 						PhotoDAO.getInstance().insertByFullReviewId(oriName,sysName,reviewId);
+						System.out.println("DB입력됨");
 					}
 				}
 
@@ -195,22 +200,20 @@ public class FullReviewController extends HttpServlet {
 
 				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
 				System.out.println("선택한 리뷰는 "+reviewid);
-
+				
 				String writer = frdao.userIdByReviewId(reviewid);
 				String name = frdao.StoreNameByReviewId(reviewid);
 				List<StoreDTO> list = frdao.selectListStore();
 				FullReviewDTO contents = frdao.contentByReviewId(reviewid);
 				List<ReplyWithUserIdDTO> replyList = FullReviewReplyDAO.getInstance().listReplyByreviewid(reviewid);
-				PhotoDTO photo = PhotoDAO.getInstance().selectByReviewId(reviewid);
-				
-				
+				ArrayList<PhotoDTO> imgList = PhotoDAO.getInstance().ListByReviewId(reviewid);
 				
 				request.setAttribute("writerName", writer);
 				request.setAttribute("storeName", name);
 				request.setAttribute("store", list);
 				request.setAttribute("contents", contents);
 				request.setAttribute("replyList", replyList);
-				request.setAttribute("images", photo);				
+				request.setAttribute("images", imgList);				
 
 				request.getRequestDispatcher("/FullReview/FullReviewContent.jsp").forward(request, response);
 

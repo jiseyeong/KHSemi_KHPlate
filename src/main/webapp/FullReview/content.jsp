@@ -102,6 +102,11 @@ textarea {
 	margin-right: 20px;
 	box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
 }
+
+.imagesBox{
+	margin:20px;
+}
+
 </style>
 
 </head>
@@ -109,7 +114,7 @@ textarea {
 	<div class="container">
 
 		<!-- 본문란 -->
-		<form action="/update.fullreview" class="frm" method="post">
+		<form action="/update.fullreview" class="frm" method="post" id="addForm">
 			<input type="text" class="title" name="title"
 				value="${contents.title }" readonly>
 
@@ -135,14 +140,20 @@ textarea {
 
 			<hr style="border-style: dotted;">
 			
-			<div>
-				<img src="/consult/${image.sysName}" alt="/consult/${image.oriName}" id="image" class="w-100 object-fit-contain" style="max-height: 500px;">
+			<div class="imagesBox">
+					<c:forEach var="i" items="${images }">
+						<img src="/FullReview/${i.sysName}" alt="/FullReview/${i.oriName}"
+							id="image" class="w-50 object-fit-contain"
+							style="max-height: 500px;">
+					</c:forEach>
 			</div>
 
 			<div class="bodyBox">
 				<textarea class="reviewbody" name="reviewbody" id="intro_editor"
 					readonly>${contents.reviewBody }</textarea>
 			</div>
+			
+			
 			<br>
 			<div class="contentsBtn">
 
