@@ -80,7 +80,7 @@ textarea {
 </head>
 <body>
 	<div class="container">
-		<form action="/write.fullreview" method="post" id="frm"
+		<form action="/write.fullreview" method="post" id="addForm"
 			enctype="multipart/form-data">
 			<input type="text" placeholder="제목란" class="title" name="title">
 
@@ -134,7 +134,7 @@ textarea {
 	})
 	.catch(error => { console.error(error) });
 	
-	$("#frm").on("submit",function(){
+	$("#addForm").on("submit",function(){
 		let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
 		if ($(".userId").val()==null){
 			alert("로그인 후 작성 가능합니다.")
@@ -184,6 +184,21 @@ textarea {
             });
         }
     });
+    
+    $("#addForm").submit(function (e) {
+        // $("input[name=imgLength]").val(imgs.length);
+        for (let i = 0; i < imgs.length; i++) {
+            // if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
+            //     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
+            //     return false;
+            //} else
+            if (!imgs[i].children("input").val().match(imgForms)) {
+                alert("이미지 파일만 업로드 가능합니다.");
+                return false;
+            }
+            imgs[i].children("input").attr("name", "image" + i);
+        }
+    })
 	
 	</script>
 

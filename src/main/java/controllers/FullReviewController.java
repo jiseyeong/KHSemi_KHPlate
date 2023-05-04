@@ -35,7 +35,7 @@ public class FullReviewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
 		response.setContentType("text/html; charset=utf8;");
-		
+
 		String cmd = request.getRequestURI();
 		System.out.println(cmd);
 		FullReviewDAO frdao = FullReviewDAO.getInstance();
@@ -58,14 +58,14 @@ public class FullReviewController extends HttpServlet {
 				int storeId = Integer.parseInt(multi.getParameter("storeId"));
 				int userNo= Integer.parseInt(multi.getParameter("userNo"));
 
-				
+
 				int result = frdao.writeFullReview(title,reviewbody,score,storeId,userNo);
-				
+
 				int reviewId = frdao.newReviewId();
 				System.out.println("방금작성한 리뷰" + reviewId);
-				
+
 				Enumeration<String> names = multi.getFileNames();
-				
+
 				while(names.hasMoreElements()) {
 					String fileName = names.nextElement();
 					System.out.println(fileName);
@@ -94,13 +94,35 @@ public class FullReviewController extends HttpServlet {
 
 			}else if (cmd.equals("/update.fullreview")){
 
-				String title = request.getParameter("title");
-				String reviewbody = request.getParameter("reviewbody");
-				int score = Integer.parseInt(request.getParameter("score"));
-				int storeId = Integer.parseInt(request.getParameter("storeId"));
-				int reviewid= Integer.parseInt(request.getParameter("reviewid"));
+				String realPath = request.getServletContext().getRealPath("FullReview");
+				int maxSize = 1024 * 1024 * 10;
+				System.out.println(realPath);
+				File realPathFile = new File(realPath);
+				if(!realPathFile.exists()) {
+					realPathFile.mkdir();
+				}
+				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
+
+				String title = multi.getParameter("title");
+				String reviewbody = multi.getParameter("reviewbody");
+				int score = Integer.parseInt(multi.getParameter("score"));
+				int storeId = Integer.parseInt(multi.getParameter("storeId"));
+				int reviewid= Integer.parseInt(multi.getParameter("reviewid"));
 
 				int result = frdao.update(title, reviewbody, score, storeId, reviewid);
+
+				Enumeration<String> names = multi.getFileNames();
+
+				while(names.hasMoreElements()) {
+					String fileName = names.nextElement();
+					System.out.println(fileName);
+					if(multi.getFile(fileName) != null){
+						String oriName = multi.getOriginalFileName(fileName);
+						String sysName = multi.getFilesystemName(fileName);
+						PhotoDAO.getInstance().insertByFullReviewId(oriName,sysName,reviewid);
+						System.out.println("DB입력됨");
+					}
+				}
 
 				if (result>0) {
 					System.out.println("진심리뷰 수정완료");
@@ -142,15 +164,15 @@ public class FullReviewController extends HttpServlet {
 				String fullReviewNavi = frdao.getFullReviewNavi(entpage, searchUserno, searchFullReviewTitle);
 
 				System.out.println("리스트 사이즈 : "+fullReviewList.size());
-				
-				
+
+
 				// 로그인된 사용자의 경우 스크랩된 리뷰에 스크랩 마크 표시 추가
 				int userno = 0;
 				if(request.getSession().getAttribute("userno")!=null) {
 					userno = (int) request.getSession().getAttribute("userno");
 				}
 				List<FullReviewScrapDTO> scrap_list = frdao.isScrapFullReview(fullReviewList,userno);
-				
+
 				request.setAttribute("FullReviewList", fullReviewList);
 				request.setAttribute("FullReviewNavi", fullReviewNavi);
 				request.setAttribute("scrap_list", scrap_list);
@@ -200,20 +222,20 @@ public class FullReviewController extends HttpServlet {
 
 				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
 				System.out.println("선택한 리뷰는 "+reviewid);
-				
+
 				String writer = frdao.userIdByReviewId(reviewid);
 				String name = frdao.StoreNameByReviewId(reviewid);
 				List<StoreDTO> list = frdao.selectListStore();
 				FullReviewDTO contents = frdao.contentByReviewId(reviewid);
 				List<ReplyWithUserIdDTO> replyList = FullReviewReplyDAO.getInstance().listReplyByreviewid(reviewid);
 				ArrayList<PhotoDTO> imgList = PhotoDAO.getInstance().ListByReviewId(reviewid);
-				
+
 				request.setAttribute("writerName", writer);
 				request.setAttribute("storeName", name);
 				request.setAttribute("store", list);
 				request.setAttribute("contents", contents);
 				request.setAttribute("replyList", replyList);
-				request.setAttribute("images", imgList);				
+				request.setAttribute("imgList", imgList);				
 
 				request.getRequestDispatcher("/FullReview/FullReviewContent.jsp").forward(request, response);
 
@@ -251,7 +273,7 @@ public class FullReviewController extends HttpServlet {
 				response.getWriter().append(resp.toString());
 
 			}
-			
+
 			// 스크랩 추가 controller
 			else if(cmd.equals("/addScrapFullReview.fullreview")) {
 				int reviewID = Integer.parseInt(request.getParameter("addScrap_reviewID"));
@@ -265,8 +287,8 @@ public class FullReviewController extends HttpServlet {
 					response.getWriter().append("false");
 				}
 			}
-			
-			
+
+
 			// 스크랩 삭제 controller
 			else if(cmd.equals("/deleteScrapFullReview.fullreview")) {
 				int reviewID = Integer.parseInt(request.getParameter("addScrap_reviewID"));
