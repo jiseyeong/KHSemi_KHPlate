@@ -151,13 +151,12 @@ public class MembersController extends HttpServlet {
 				String pw = request.getParameter("pw");
 				String pw2 = SecurityUtils.sha512(pw);
 				String nickname = request.getParameter("nickname");
-				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
 				String selfcomment = request.getParameter("selfcomment");
 				String favoriteFood = request.getParameter("favoriteFood");
 
 
-				int result = dao.update(new MembersDTO(pw2,nickname,phone,email,selfcomment,favoriteFood));
+				int result = dao.update(new MembersDTO(pw2,nickname,email,selfcomment,favoriteFood));
 
 				response.sendRedirect("/mypage.members");
 
@@ -267,10 +266,7 @@ public class MembersController extends HttpServlet {
 				int result=dao.updatepw(pw2,userid);
 				request.setAttribute("result", result);
 				request.getRequestDispatcher("/memberSearch/idpwsearch.jsp").forward(request, response);
-				
-				
 			}
-			
 			//
 			
 		}catch(Exception e) {
