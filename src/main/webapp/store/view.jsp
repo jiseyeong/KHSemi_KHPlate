@@ -159,6 +159,9 @@
                    width:100%;
                    height:100%;
                    text-align:center;
+                   margin:0 auto;
+                   display:block;
+                   padding-bottom:5px;
                }
                .updateMenuPrice{
                   border:none;
@@ -166,6 +169,9 @@
                   height:100%;
                   text-align:center;
                   margin-right:10px;
+                  margin-top:0;
+                  margin-bottom:0;
+                  padding-bottom:5px;  
                }
                .ck-editor__editable_inline {
                    min-height: 150px;
@@ -173,6 +179,20 @@
                }
                .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
                   border:1px dotted black;
+               }
+               .greenBtn{
+					font-size:13px;
+					width:110px;
+					height:35px;
+					border-radius:10px;
+					border:none;
+					background-color:#57b846;
+					color:white;
+					box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
+					margin-right:5px;
+               }
+               .greenBtn:hover{
+               	  opacity:80%
                }
       </style>
          </head>
@@ -249,13 +269,13 @@
                                                    style="display: none;" readonly>
                                                 <input type="text" name="storeID" value="${dto.storeID}"
                                                    style="display: none;" readonly>
-                                                <div class="col-12 col-lg-6">
+                                                <div class="col-12 col-lg-6"> 
                                                    <img src="/store/${i.sysName}"
                                                       class="w-100 object-fit-contain" style="margin-bottom:10px;">
                                                 </div>    
                                                 <div class="row">
                               					<div class="col-12 col-lg-6" style="text-align:center; margin-bottom:10px;">
-                               					 <button type="submit" class="btn btn-outline-secondary">삭제</button>
+                               					 <button type="submit" class="greenBtn" style="width:60px;">삭제</button>
                                 				 </div>
                               				</div> 
                                           </c:forEach>
@@ -288,8 +308,8 @@
                            </div>
                         </div>
                         <div class="col-12 col-lg-8 text-end" style="margin-top:30px; margin-left:auto; margin-right:auto; margin-bottom:50px;">
-                           <button type="button" id="btn_image_add" class="btn btn-outline-secondary" style="display:none;">이미지 추가 등록</button>
-                           <button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점 수정</button>
+                           <button type="button" id="btn_image_add" class="greenBtn" style="display:none;">이미지 추가 등록</button>
+                           <button type="button" id="btn_store_update" class="greenBtn">상점 수정</button>
                            <button type="button" id="btn_store_update_delete" class="nonactive">상점 삭제</button>
                            <button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
                            <button type="button" id="btn_store_update_cancel" class="nonactive">취소</button>
@@ -365,7 +385,7 @@
                            </form>
                            <div class="row">
                               <div class="col-12">
-                                 <table class="table" style="text-align:center; color:white; margin-top:20px;">
+                                 <table class="table" style="text-align:center; color:white; margin-top:20px; vertical-align:middle;">
                                     <tr style="background-color:#57b846;">
                                        <th style="width:50%;">메뉴 이름</th>
                                        <th style="width:50%;">메뉴 가격</th>
@@ -375,9 +395,7 @@
                                     <input type="text" name="storeID" value="${dto.storeID}" style="display: none;">
                                     <c:forEach var="i" begin="0" end="${fn:length(menuList)-1}" step="1">
                                        <tr>
-                                             <input type="text" name="menuID${i}" value="${menuList.get(i).menuID}"
-                                                style="display:none;" readonly>
-
+                                            <input type="text" name="menuID${i}" value="${menuList.get(i).menuID}" style="display:none;" readonly>
                                              <td><input type="text" class="updateMenuName"
                                                    name="updateMenuName${menuList.get(i).menuID}" value="${menuList.get(i).menuName}"
                                                    readonly></td>
@@ -386,7 +404,7 @@
                                                    readonly>
                                              <a href="/delete.storeMenu?menuID=${menuList.get(i).menuID}&storeID=${dto.storeID}">
 	                                             <button type="button" id="btn_menu_delete${menuList.get(i).menuID}"
-	                                                class="btn_menu_delete nonactive">삭제</button>                                                
+	                                                class="btn_menu_delete nonactive" style="width:60px;">삭제</button>                                                
                                              </a>
                                              </td>
                                        </tr>
@@ -412,9 +430,9 @@
                                  <div class="row">
                                     <div class="col-12 text-end">
                                       <button type="submit"
-                                                class="btn btn-outline-secondary" id="btn_menu_submit" style="display:none;">적용</button>
+                                                class="greenBtn" id="btn_menu_submit" style="display:none;">적용</button>
                                        <button type="button" id="btn_menu_modify"
-                                          class="btn btn-outline-secondary">메뉴 수정</button>
+                                          class="greenBtn">메뉴 수정</button>
                                        <button type="button" id="btn_menu_modify_cancel"
                                           class="nonactive">수정 모드 취소</button>
                                     </div>
@@ -426,9 +444,9 @@
                      </div>
 
                      <!-- 리뷰 -->
-                     <div class="row">
+                     <div class="row" style="margin-top:70px;">
                         <c:if test="${not empty sessionScope.userno}">
-                           <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto; font-weight:bold; margin-bottom:10px;">한줄 리뷰 추가</div>
+                           <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto; font-weight:bold; margin-bottom:5px;">한줄 리뷰 추가<hr></div>
                            <form id="createCommentForm" action="/create.commentReview" method="post">
                               <input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
                               <input type="text" name="userNo" value="${sessionScope.userno}"
@@ -451,7 +469,7 @@
                                           <textarea id="review_editor" name="body"></textarea>
                                        </div>
                                        <div class="col-1">
-                                          <button class="btn btn-outline-secondary">등록</button>
+                                          <button class="greenBtn" style="width:65px;">등록</button>
                                        </div>
                                     </div>
                                  </div>
@@ -516,7 +534,7 @@
                                  <c:if test="${commentList.get(i).userNo == sessionScope.userno}">
                                     <div id="replyControl${i}" class="col-12 text-end">
                                        <button type="button" id="btn_modify${i}"
-                                          class="btn btn-outline-secondary">수정</button>
+                                          class="greenBtn">수정</button>
                                        <button type="button" id="btn_delete${i}"
                                           class="nonactive">삭제</button>
                                        <form id="commentDeleteForm${i}" action="/delete.commentReview"
@@ -575,19 +593,19 @@
                                                 btn_confirm_body.text("수정완료");
                                                 btn_confirm_body.attr("id", btn_confirm_id);
                                                 btn_confirm_body.attr("type", "button");
-                                                btn_confirm_body.addClass("btn").addClass("btn-outline-secondary");
+                                                btn_confirm_body.addClass("greenBtn");
                                                 btn_confirm_body.click(function () {
                                                    $(updateForm).submit();
                                                 });
 
                                                 btn_cancel_body.attr("type", "button");
                                                 btn_cancel_body.attr("id", btn_cancel_id);
-                                                btn_cancel_body.addClass("btn").addClass("btn-outline-secondary");
+                                                btn_cancel_body.addClass("greenBtn");
                                                 btn_cancel_body.text("취소");
                                                 btn_cancel_body.click(function () {
                                                    $(btn_modify + "," + readStar).removeClass("nonactive");
-                                                   $(btn_modify).addClass("btn").addClass("btn-outline-secondary");
-                                                   $(btn_delete + "," + btn_confirm + "," + btn_cancel).removeClass("btn").removeClass("btn-outline-secondary");
+                                                   $(btn_modify).addClass("btn").addClass("greenBtn");
+                                                   $(btn_delete + "," + btn_confirm + "," + btn_cancel).removeClass("greenBtn");
                                                    $(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete).addClass("nonactive");
                                                    editor.enableReadOnlyMode("");
                                                 });
@@ -598,8 +616,8 @@
                                              if (editor.isReadOnly) {
                                                 editor.disableReadOnlyMode("");
                                                 $(btn_modify + "," + readStar).addClass("nonactive");
-                                                $(btn_modify).removeClass("btn").removeClass("btn-outline-secondary");
-                                                $(btn_delete + "," + btn_confirm + "," + btn_cancel).addClass("btn").addClass("btn-outline-secondary");
+                                                $(btn_modify).removeClass("greenBtn");
+                                                $(btn_delete + "," + btn_confirm + "," + btn_cancel).addClass("greenBtn");
                                                 $(btn_confirm + "," + btn_cancel + "," + writeStar + "," + btn_delete).removeClass("nonactive");
                                              }
                                           });
@@ -665,10 +683,10 @@
                         });
 
                         $("#btn_menu_modify").click(function () {
-                           $(".btn_menu_delete").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
-                           $(".btn_menu_update").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
-                           $("#btn_menu_modify_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
-                           $(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
+                           $(".btn_menu_delete").removeClass("nonactive").addClass("greenBtn");
+                           $(".btn_menu_update").removeClass("nonactive").addClass("greenBtn");
+                           $("#btn_menu_modify_cancel").removeClass("nonactive").addClass("greenBtn");
+                           $(this).addClass("nonactive").removeClass("greenBtn");
                            $("#btn_menu_submit").css("display","inline");
 
                            $("#menu_add").removeClass("nonactive");
@@ -685,10 +703,10 @@
                         });
 
                         $("#btn_store_update").click(function () {
-                           $("#btn_store_update_confirm").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
-                           $("#btn_store_update_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
-                           $("#btn_store_update_delete").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
-                           $(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
+                           $("#btn_store_update_confirm").removeClass("nonactive").addClass("greenBtn");
+                           $("#btn_store_update_cancel").removeClass("nonactive").addClass("greenBtn");
+                           $("#btn_store_update_delete").removeClass("nonactive").addClass("greenBtn");
+                           $(this).addClass("nonactive").removeClass("greenBtn");
 
                            updateOn = true;
                            $("input[name='name']").removeAttr("readonly");
@@ -741,8 +759,7 @@
                                  btn_cancel = $("<button>");
                               div.addClass("input-group");
                               fileInput.addClass("form-control");
-                              btn_cancel.addClass("btn");
-                              btn_cancel.addClass("btn-outline-secondary")
+                              btn_cancel.addClass("greenBtn")
                               btn_cancel.append("x");
                               div.append(fileInput, btn_cancel);
                               $("#img_field").append(div);
