@@ -204,7 +204,7 @@
                      <c:otherwise>
                         <a href="/logout.members" class="nanum-gothic">로그아웃 </a>
                         <a href="#null" class="nanum-gothic">｜</a>
-                        <a href="/mypage/myPageVer2.jsp" class="nanum-gothic">마이페이지</a>
+                        <a href="/mypage.members" class="nanum-gothic">마이페이지</a>
                      </c:otherwise>
                   </c:choose>
                </div>

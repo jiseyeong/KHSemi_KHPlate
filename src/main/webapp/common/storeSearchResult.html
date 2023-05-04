@@ -122,6 +122,7 @@ hr {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom:30px;
 }
 
 .inner_layout {
@@ -757,9 +758,9 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 						</div>
 					</form>
 
-
 					<c:choose>
 						<c:when test="${search_store_list!=null}">
+<<<<<<< HEAD:src/main/webapp/common/storeSearchResult.html
 							<!-- Outer_layout의 개수 -->
 							<!-- 검색 결과가 3으로 나누어 떨어지면 count=리스트 수 / 3 -->
 							<!-- 그렇지 않으면 count=리스트 수 / 3 + 1-->
@@ -949,6 +950,81 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 									</c:choose>
 								</div>
 							</c:forEach>
+=======
+							<div class="row outer_layout">
+								<c:forEach var="i" items="${search_store_list}" varStatus="status">
+									<div class="col-12 col-md-6 col-xl-4 inner_cover_layout">
+										<div class="inner_layout">
+											<div class="img_layout">
+												<img id="img${status.index}" src="/common/restaurant_img1.jpg" class="restaurant_img">
+												<div class="restaurant_addFavorite">
+													<input type="text" name="addFavorite_storeID"
+														value="${i.storeID}"
+														style="display: none;"> <input type="text"
+														name="addFavorite_userno" value="${sessionScope.userno}"
+														style="display: none;">
+			
+													<!-- 즐겨찾기 여부 체크 -->
+													<c:set var="favoriteCheck" value="false" />
+													<c:forEach var="favorite" items="${Favorite_list}"
+														varStatus="status">
+														<c:if
+															test="${favorite.getStoreID() == i.storeID}">
+															<button class="addFavorite_btn istrue">
+																<i class="fa-regular fa-heart"></i>
+															</button>
+															<c:set var="favoriteCheck" value="true" />
+														</c:if>
+													</c:forEach>
+													<c:if test="${favoriteCheck==false}">
+														<button class="addFavorite_btn isfalse">
+															<i class="fa-regular fa-heart"></i>
+														</button>
+													</c:if>
+												</div>
+											</div>
+											<div class="info_layout">
+												<div class="info_title_layout" style="padding-left: 10px">
+													<div class="info_title">${i.name}</div>
+													<div class="info_score">
+														<ul class="stars">
+															<c:forEach var="scoreCount" begin="0" end="4" step="1">
+																<c:choose>
+																	<c:when
+																		test="${i.avgScore>=(scoreCount+0.5)}">
+																		<i class="stars__icon fas fa-star js-clear js-fill"></i>
+																	</c:when>
+																	<c:otherwise>
+																		<i class="stars__icon fas fa-star js-clear"></i>
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach>
+														</ul>
+													</div>
+												</div>
+												<div class="info_address" style="padding-left: 10px">${i.address}</div>
+											</div>
+										</div>
+									</div>
+									<script>
+										$.ajax({
+											url:"/getMainPhoto.store",
+											type:"get",
+											data:{
+												storeID: "${i.storeID}"
+											},
+											dataType:"json"
+										}).done(function(resp){
+											if(resp.imageID == -1){
+												$("#img"+"${status.index}").attr("src", "/common/restaurant_img1.jpg" )
+											}else{
+												$("#img"+"${status.index}").attr("src", "/store/"+resp.sysName);
+											}
+										});
+									</script>
+								</c:forEach>
+							</div>
+>>>>>>> 617d4c4dc5d40ad3b4a7a6f59a90f6c0d996218e:src/main/webapp/common/storeSearchResult.jsp
 						</c:when>
 						<c:otherwise>
 							<div class="search_none_layout">표시할 내용이 없습니다.</div>
