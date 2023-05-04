@@ -42,7 +42,7 @@ button:hover {
 	cursor: pointer;
 }
 
-.container {
+.container_layout {
 	position: relative;
 	width: 1920px;
 	height: 929px;
@@ -137,6 +137,9 @@ button:hover {
 	background-color: white;
 	border: 2px solid silver;
 	border-radius: 10px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
 }
 
 .restaurant_list_layout {
@@ -599,7 +602,7 @@ hr {
 		onsubmit="return false;">
 		<input type="text" name="searchedBy" value="mapSearch"
 			style="display: none;">
-		<div class="container">
+		<div class="container_layout">
 			<div class="store_list">
 				<div class="search_layout">
 					<div class="toBack_layout">
@@ -1119,7 +1122,7 @@ hr {
 	<script>
 		
 		// 학원 지도 설정
-		var container = document.getElementById('map');
+		var map_layout = document.getElementById('map');
 		
 		// 학원 중심 좌표 설정
 		var options = {
@@ -1128,7 +1131,7 @@ hr {
 		};
 		
 		// 학원 영역 변수 설정
-		var khacademyMap = new kakao.maps.Map(container, options);
+		var khacademyMap = new kakao.maps.Map(map_layout, options);
 		
 		// 학원 마커 이미지 등록
 		var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
