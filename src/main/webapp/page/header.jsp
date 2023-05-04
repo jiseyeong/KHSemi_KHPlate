@@ -195,11 +195,6 @@
             </div>
             <div class="col-12 col-lg-3 themed-grid-col d-flex rightMenu">
                <div class="btnBox">
-                  <!--             <a href="#null" class="nanum-gothic" >로그인 </a> -->
-                  <!--              <a href="#null" class="nanum-gothic" >｜</a> -->
-                  <!--             <a href="#null" class="nanum-gothic" >회원가입</a> -->
-                  <!--             <a href="#null" class="nanum-gothic" >｜</a> -->
-                  <!--           <a href="#null" class="nanum-gothic" >마이페이지</a> -->
                   <c:choose>
                      <c:when test="${userno==null}">
                         <a href="/login/login.jsp" class="nanum-gothic">로그인 </a>
@@ -209,7 +204,7 @@
                      <c:otherwise>
                         <a href="/logout.members" class="nanum-gothic">로그아웃 </a>
                         <a href="#null" class="nanum-gothic">｜</a>
-                        <a href="/mypage/mypage.jsp" class="nanum-gothic">마이페이지</a>
+                        <a href="/mypage/myPageVer2.jsp" class="nanum-gothic">마이페이지</a>
                      </c:otherwise>
                   </c:choose>
                </div>

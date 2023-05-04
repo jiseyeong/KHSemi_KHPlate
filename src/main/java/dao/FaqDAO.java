@@ -39,7 +39,7 @@ public class FaqDAO {
 			pstat.setString(2, dto.getBody());
 			int result = pstat.executeUpdate();
 			con.commit();
-			return pstat.executeUpdate();
+			return result;
 		}
 	}
 	
@@ -49,6 +49,17 @@ public class FaqDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);
 				ResultSet rs = pstat.executeQuery();){
 			return this.transAllRsToList(rs);
+		}
+	}
+	
+	public int delete(int qaID) throws Exception{
+		String sql = "delete from FAQ where QAID=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, qaID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
 		}
 	}
 	

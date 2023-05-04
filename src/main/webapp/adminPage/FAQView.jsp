@@ -47,6 +47,22 @@ font-size:25px;
 color:#57b846;
 }
 
+.btn_delete
+{
+width: 100px;
+height: 40px;
+background-color: #57b846;
+border: #57b846;
+border-radius: 12px;
+cursor: pointer;
+color: white;
+font-size: 14px;
+margin-left: auto;
+margin-right: auto;
+box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
+}
+
+
 
 </style>
 </head>
@@ -79,29 +95,34 @@ color:#57b846;
 													aria-expanded="true" aria-controls="collapse${i}">
 													${list.get(i).title}</button>
 											</h2>
-											<div id="collapse${i}" class="accordion-collapse collapse show"
+											<div id="collapse${i}" class="accordion-collapse collapse"
 												aria-labelledby="heading${i}" data-bs-parent="#accordionFAQ">
 												<div class="accordion-body">
-													<div id="editor${i}">${list.get(i).body}</div>
-													<script>
-														let i = "<c:out value='${i}'></c:out>"
-														ClassicEditor
-															.create(document.querySelector("#editor" + i), {
-																toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
-															})
-															.then(function (editor) {
-																const toolbarElement = editor.ui.view.toolbar.element;
-																editor.on('change:isReadOnly', (evt, propertyName, isReadOnly) => {
-																	if (isReadOnly) {
+													<div class="row align-items-center">
+														<div class="col-10">
+															<div id="editor${i}">${list.get(i).body}</div>
+															<script>
+															 	var i = "<c:out value='${i}'></c:out>"
+																ClassicEditor
+																	.create(document.querySelector("#editor" + i), {
+																		toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
+																	})
+																	.then(function (editor) {
+																		const toolbarElement = editor.ui.view.toolbar.element;
 																		toolbarElement.style.display = 'none';
-																	} else {
-																		toolbarElement.style.display = 'flex';
-																	}
-																});
-																editor.enableReadOnlyMode('');
-															})
-															.catch(error => { console.error(error) });
-													</script>
+																		editor.enableReadOnlyMode('');
+																	})
+																	.catch(error => { console.error(error) });
+															</script>
+														</div>
+														<c:if test="${sessionScope.loginIsAdmin}">
+															<div class="col-2">
+																<a href="/delete.faq?id=${list.get(i).qaID}">
+																	<button type=button class="btn_delete">삭제</button>
+																</a>
+															</div>
+														</c:if>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -126,13 +147,7 @@ color:#57b846;
 														})
 														.then(function (editor) {
 															const toolbarElement = editor.ui.view.toolbar.element;
-															editor.on('change:isReadOnly', (evt, propertyName, isReadOnly) => {
-																if (isReadOnly) {
-																	toolbarElement.style.display = 'none';
-																} else {
-																	toolbarElement.style.display = 'flex';
-																}
-															});
+															toolbarElement.style.display = 'none';
 															editor.enableReadOnlyMode('');
 														})
 														.catch(error => { console.error(error) });
