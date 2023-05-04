@@ -82,7 +82,7 @@ textarea {
 	height: 40px;
 	background-color: #57b846;
 	border: none;
-	border-radius: 12px;
+	border-radius: 3px;
 	cursor: pointer;
 	color: white;
 	font-size: 14px;
@@ -95,7 +95,7 @@ textarea {
 	height: 40px;
 	background-color: #57b846;
 	border: none;
-	border-radius: 12px;
+	border-radius: 3px;
 	cursor: pointer;
 	color: white;
 	font-size: 14px;
@@ -105,8 +105,16 @@ textarea {
 
 .imagesBox{
 	margin:20px;
-}
 
+#re_write_btn {
+width: 100px;
+	height: 40px;
+filter: invert(72%) sepia(39%) saturate(4538%) hue-rotate(66deg) brightness(106%) contrast(54%);
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+	margin-bottom: 5px;
+	
 </style>
 
 </head>
@@ -185,8 +193,10 @@ textarea {
 					type="text" class="reviewid" name="reviewid"
 					value="${contents.reviewID }" style="display: none;"> <br>
 				<input type="text" id="body" name="body" placeholder="작성할 댓글 입력"
-					style="height: 40px; width: 92%; margin-left: 5px;"> <input
-					type="submit" value="작성완료" id="re_write_btn" name="re_write_btn">
+					style="height: 40px; width: 92%; margin-left: 5px;"> 
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" type="submit" id="re_write_btn" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+</svg>
 			</div>
 		</form>
 
