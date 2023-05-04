@@ -126,6 +126,21 @@ public class PhotoDAO {
 		}
 	}
 	
+	public PhotoDTO selectByReviewId(int reviewid) throws Exception{
+		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where reviewid = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, reviewid);
+			try(ResultSet rs = pstat.executeQuery();){
+				ArrayList<PhotoDTO> temp = this.transAllRsToList(rs);
+				if(temp.size() > 0) {
+					return temp.get(0);
+				}
+				return null;
+			}
+		}
+	}
+	
 	private ArrayList<PhotoDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<PhotoDTO> result = new ArrayList<>();
 		while(rs.next()) {

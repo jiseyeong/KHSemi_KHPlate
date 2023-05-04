@@ -22,6 +22,7 @@ import dao.PhotoDAO;
 import dto.FullReviewDTO;
 import dto.FullReviewScrapDTO;
 import dto.FullReviewUserDTO;
+import dto.PhotoDTO;
 import dto.ReplyWithUserIdDTO;
 import dto.StoreDTO;
 import statics.Settings;
@@ -200,6 +201,8 @@ public class FullReviewController extends HttpServlet {
 				List<StoreDTO> list = frdao.selectListStore();
 				FullReviewDTO contents = frdao.contentByReviewId(reviewid);
 				List<ReplyWithUserIdDTO> replyList = FullReviewReplyDAO.getInstance().listReplyByreviewid(reviewid);
+				PhotoDTO photo = PhotoDAO.getInstance().selectByReviewId(reviewid);
+				
 				
 				
 				request.setAttribute("writerName", writer);
@@ -207,6 +210,7 @@ public class FullReviewController extends HttpServlet {
 				request.setAttribute("store", list);
 				request.setAttribute("contents", contents);
 				request.setAttribute("replyList", replyList);
+				request.setAttribute("images", photo);				
 
 				request.getRequestDispatcher("/FullReview/FullReviewContent.jsp").forward(request, response);
 

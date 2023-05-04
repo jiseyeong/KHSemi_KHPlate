@@ -134,6 +134,10 @@ textarea {
 				name="reviewid" value="${contents.reviewID }" style="display: none">
 
 			<hr style="border-style: dotted;">
+			
+			<div>
+				<img src="/consult/${image.sysName}" alt="/consult/${image.oriName}" id="image" class="w-100 object-fit-contain" style="max-height: 500px;">
+			</div>
 
 			<div class="bodyBox">
 				<textarea class="reviewbody" name="reviewbody" id="intro_editor"
