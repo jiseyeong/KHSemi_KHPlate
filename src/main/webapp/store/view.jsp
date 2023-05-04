@@ -289,7 +289,7 @@
                            <button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점 수정</button>
                            <button type="button" id="btn_store_update_delete" class="nonactive">상점 삭제</button>
                            <button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
-                           <button type="submit" id="btn_store_update_cancel" class="nonactive">취소</button>
+                           <button type="button" id="btn_store_update_cancel" class="nonactive">취소</button>
                         </div>
                      </div>
                      <!-- 상점 본문 -->
@@ -333,7 +333,7 @@
                            <div id="addressDiv">${dto.address}</div>
                            <div class="input-group">
                               <span class="input-group-text" style="display:none;">가게 주소</span>
-                              <input type="text" class="form-control" name="address" style="display:none;" readonly><!--가게 주소-->
+                              <input type="text" class="form-control" name="address" value="${dto.address}" style="display:none;" readonly><!--가게 주소-->
                            </div>
                            <div class="row" style="margin-top:30px;">
                               <div class="col-2" style="margin-left:auto; margin-right:auto;">
