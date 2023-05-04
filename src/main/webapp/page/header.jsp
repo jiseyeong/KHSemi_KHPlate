@@ -114,7 +114,7 @@
             #searchBtn {
                width: 60%;
                height: 60%;
-               filter: invert(66%) sepia(35%) saturate(747%) hue-rotate(65deg) brightness(88%) contrast(90%);
+               filter: invert(31%) sepia(100%) saturate(6890%) hue-rotate(355deg) brightness(95%) contrast(95%);
                background-color: transparent;
                border: 1px solid transparent;
                cursor: pointer;
@@ -185,7 +185,7 @@
                      </div>
                      <div class="search_layout3" style="width:10%; height: 100%; display: flex; justify-content: center; align-items: center;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" id="searchBtn"
-                           fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                           fill="#ED1C16" class="bi bi-search" viewBox="0 0 16 16">
                            <path
                               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                         </svg>
