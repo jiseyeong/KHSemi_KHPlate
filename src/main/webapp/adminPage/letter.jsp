@@ -104,36 +104,11 @@ html {
 /**
  * A very simple reset that sits on top of Normalize.css.
  */
-body, h1, h2, h3, h4, h5, h6, blockquote, p, pre, dl, dd, ol, ul, figure,
-	hr, fieldset, legend {
+body, h2, blockquote, p, pre, dl, dd, figure, hr {
 	margin: 0;
 	padding: 0;
 }
 
-/**
- * Remove trailing margins from nested lists.
- */
-li>ol, li>ul {
-	margin-bottom: 0;
-}
-
-/**
- * Remove default table spacing.
- */
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-/**
- * 1. Reset Chrome and Firefox behaviour which sets a `min-width: min-content;`
- *    on fieldsets.
- */
-fieldset {
-	min-width: 0;
-	/* [1] */
-	border: 0;
-}
 
 button {
 	outline: none;
@@ -154,35 +129,13 @@ body {
 	font-size: 15px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-weight: 400;
-}
-
-h1 {
-	font-size: 36px;
-}
 
 h2 {
+	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 30px;
 	font-weight: bolder;
 }
 
-h3 {
-	font-size: 24px;
-}
-
-h4 {
-	font-size: 18px;
-}
-
-h5 {
-	font-size: 15px;
-}
-
-h6 {
-	font-size: 13px;
-}
 
 /* ==========================================================================
    #BACKGROUND
@@ -194,20 +147,8 @@ h6 {
 /* ==========================================================================
    #SPACING
    ========================================================================== */
-.p-t-100 {
-	padding-top: 100px;
-}
-
 .p-t-180 {
 	padding-top: 180px;
-}
-
-.p-t-20 {
-	padding-top: 20px;
-}
-
-.p-t-30 {
-	padding-top: 30px;
 }
 
 .p-b-100 {
@@ -225,9 +166,6 @@ h6 {
 	max-width: 960px;
 }
 
-.wrapper--w680 {
-	max-width: 680px;
-}
 
 /* ==========================================================================
    #BUTTON
@@ -320,93 +258,6 @@ input {
 	color: #808080;
 }
 
-/* ==========================================================================
-   #SELECT2
-   ========================================================================== */
-.select--no-search .select2-search {
-	display: none !important;
-}
-
-.rs-select2 .select2-container {
-	width: 100% !important;
-	outline: none;
-}
-
-.rs-select2 .select2-container .select2-selection--single {
-	outline: none;
-	border: none;
-	height: 35px;
-}
-
-.rs-select2 .select2-container .select2-selection--single .select2-selection__rendered
-	{
-	line-height: 36px;
-	padding-left: 0;
-	color: #808080;
-	font-size: 15px;
-	font-family: 'Nanum Gothic', sans-serif;
-	font-weight: 500;
-}
-
-.rs-select2 .select2-container .select2-selection--single .select2-selection__arrow
-	{
-	height: 35px;
-	right: 4px;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-webkit-justify-content: center;
-	-moz-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	-moz-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-}
-
-.rs-select2 .select2-container .select2-selection--single .select2-selection__arrow b
-	{
-	display: none;
-}
-
-.rs-select2 .select2-container .select2-selection--single .select2-selection__arrow:after
-	{
-	font-family: 'Nanum Gothic', sans-serif;
-	content: '\f2f9';
-	font-size: 15px;
-	color: #ccc;
-	-webkit-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-}
-
-.rs-select2 .select2-container.select2-container--open .select2-selection--single .select2-selection__arrow::after
-	{
-	-webkit-transform: rotate(-180deg);
-	-moz-transform: rotate(-180deg);
-	-ms-transform: rotate(-180deg);
-	-o-transform: rotate(-180deg);
-	transform: rotate(-180deg);
-}
-
-.select2-container--open .select2-dropdown--below {
-	border: none;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	-webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	border: 1px solid #e0e0e0;
-	margin-top: 5px;
-	overflow: hidden;
-}
 
 /* ==========================================================================
    #TITLE
