@@ -696,12 +696,12 @@ hr {
 
 							<!-- 리스트 크기/3 한 만큼 outer 출력 -->
 							<c:forEach var="i" begin="1" end="${count}" step="1">
-								<div class="outer_layout">
+								<div class="row" class="outer_layout">
 									<c:choose>
 										<c:when test="${i<count}">
 											<!-- 3번까지 inner 출력 -->
 											<c:forEach var="j" begin="1" end="3" step="1">
-												<div class="inner_cover_layout">
+												<div class="col-6 col-lg-12 inner_cover_layout">
 													<div class="inner_layout">
 														<div class="img_layout">
 															<img id="img${index}" src="/common/restaurant_img1.jpg"
@@ -713,7 +713,7 @@ hr {
 																	name="addFavorite_userno" value="${userno}"
 																	style="display: none;">
 
-																<!-- 																즐겨찾기 여부 체크 -->
+																<!-- 즐겨찾기 여부 체크 -->
 																<c:set var="favoriteCheck" value="false" />
 																<c:forEach var="favorite" items="${Favorite_list}"
 																	varStatus="status">
@@ -805,10 +805,8 @@ hr {
 																	style="display: none;">
 
 																<c:set var="favoriteCheck" value="false" />
-																<c:forEach var="favorite" items="${Favorite_list}"
-																	varStatus="status">
-																	<c:if
-																		test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
+																<c:forEach var="favorite" items="${Favorite_list}" varStatus="status">
+																	<c:if test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
 																		<button class="addFavorite_btn istrue">
 																			<i class="fa-regular fa-heart"></i>
 																		</button>
@@ -1096,7 +1094,6 @@ hr {
 						alert("로그인을 먼저 진행해주세요.");
 					}
 					else {
-						console.log(loginCheck);
 						let addFavorite_btn = $(this);
 						
 						if(addFavoriteStoreCheck==false){

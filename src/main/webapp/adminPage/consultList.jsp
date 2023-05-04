@@ -145,6 +145,7 @@ color:#57b846;
 		$("#toWriteBtn").on("click",function(){
 			location.href = "/adminPage/consultRegister.jsp";
 		})
+		
 	</script>
 </body>
 </html>
