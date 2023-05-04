@@ -13,7 +13,7 @@
 
 
 <!-- Title Page-->
-<title>Member Out</title>
+<title>ID Confirm</title>
 
 <link
 	rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -36,6 +36,7 @@
 	rel="stylesheet" media="all">
 <link href="vendor/font-awesome-4.7/css/font-awesome.min.css"
 	rel="stylesheet" media="all">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <!-- Vendor CSS-->
 <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
 <!-- Main CSS-->
@@ -67,12 +68,6 @@
 	flex-wrap: wrap;
 }
 
-<
-style
->
-@import
-	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
-	;
 
 html {
 	font-family: 'Nanum Gothic', sans-serif;
@@ -97,39 +92,30 @@ html {
 	height: 550px;
 }
 
-.btn {
-	font-family: 'Nanum Gothic', sans-serif;
-	background: #57b846;
-	color: #dfdeee;
-	border: 0;
-	border-radius: 100px;
-	width: 340px;
-	height: 49px;
-	font-size: 16px;
-	position: absolute;
-	left: 8%;
-	transition: 0.3s;
-	cursor: pointer;
-}
 
 h1 {
 	font-family: 'Nanum Gothic', sans-serif;
-	color: #57b846;
 	margin-top: 30px;
 }
 
 h2 {
 	font-family: 'Nanum Gothic', sans-serif;
-	color: #57b846;
 	margin-top: 30px;
 }
 
 #close {
-	position: absolute;
-	font-size: 28px;
+	width: 100px;
+	height: 40px;
+	background-color: #57b846;
+	border:  #57b846;
+	border-radius: 12px;
 	cursor: pointer;
-	margin-left: 175px;
-	margin-top: 80px;
+	color: white;
+	font-size: 14px;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
+	position: absolute;
+	margin-left: -42px;
+	margin-top: 42px;
 }
 
 #member {
@@ -137,11 +123,19 @@ h2 {
 	font-size: 25px;
 }
 
-#memberimg img {
+#memberimg {
 	width: 40%;
 	height: 40%;
 }
 
+#bi-person-fill-exclamation {
+	position: absolute;
+	margin-left: 120px;
+	margin-top: 60px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
 /* 배경 색상 추가 */
 body {
 	margin:0;
@@ -156,7 +150,10 @@ body {
 		<div class="container">
 
 			<div id="memberimg">
-				<img src="/login/member2.png">
+				<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" id="bi-person-fill-exclamation" viewBox="0 0 16 16">
+  <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+  <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5Zm0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Z"/>
+</svg>
 			</div>
 			<c:choose>
 				<c:when test="${userid!=null}">
@@ -170,7 +167,9 @@ body {
 					<h2>&nbsp</h2>
 				</c:otherwise>
 			</c:choose>
-			<div id=close>닫기</div>
+			<div>
+			<button type="button" id=close>닫기</button>
+			</div>
 		</div>
 	</div>
 
