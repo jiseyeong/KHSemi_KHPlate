@@ -1,6 +1,8 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,10 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.FullReviewDAO;
 import dao.FullReviewReplyDAO;
 import dao.MembersDAO;
+import dao.PhotoDAO;
 import dto.FullReviewDTO;
 import dto.FullReviewUserDTO;
 import dto.ReplyWithUserIdDTO;
@@ -36,13 +41,31 @@ public class FullReviewController extends HttpServlet {
 		try {
 
 			if(cmd.equals("/write.fullreview")) {
+				String realPath = request.getServletContext().getRealPath("FullReview");
+				int maxSize = 1024 * 1024 * 10; //10Mb
+				System.out.println(realPath);
+				File realPathFile = new File(realPath);
+				if(!realPathFile.exists()) {
+					realPathFile.mkdir();
+				}
+				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
 
-				String title = request.getParameter("title");
-				String reviewbody = request.getParameter("reviewBody");
-				int score = Integer.parseInt(request.getParameter("score"));
-				int storeId = Integer.parseInt(request.getParameter("storeId"));
-				int userNo= Integer.parseInt(request.getParameter("userNo"));
+				String title = multi.getParameter("title");
+				String reviewbody = multi.getParameter("reviewBody");
+				int score = Integer.parseInt(multi.getParameter("score"));
+				int storeId = Integer.parseInt(multi.getParameter("storeId"));
+				int userNo= Integer.parseInt(multi.getParameter("userNo"));
 
+				Enumeration<String> names = multi.getFileNames();
+				while(names.hasMoreElements()) {
+					String fileName = names.nextElement();
+					if(multi.getFile(fileName) != null){
+						String oriName = multi.getOriginalFileName(fileName);
+						String sysName = multi.getFilesystemName(fileName);
+						PhotoDAO.getInstance().insertByConsultID(oriName, sysName, currval);
+					}
+				}
+				
 				int result = frdao.writeFullReview(title,reviewbody,score,storeId,userNo);
 
 				if (result>0) {

@@ -136,4 +136,20 @@ public class PhotoDAO {
 		}
 		return result;
 	}
+	
+	
+	public int insertByFullReviewId(String oriName, String sysName, int storeid) throws Exception{
+		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, storeid)"
+				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, oriName);
+			pstat.setString(2, sysName);
+			pstat.setInt(3, storeid);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
 }

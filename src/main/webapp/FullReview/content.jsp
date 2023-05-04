@@ -21,7 +21,7 @@
 
 .text {
 	width: 100px;
-	margin-left:10px;
+	margin-left:10px; 
 }
 
 .title {

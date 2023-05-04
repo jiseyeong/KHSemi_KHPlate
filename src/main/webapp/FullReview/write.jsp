@@ -68,7 +68,7 @@ textarea {
 </head>
 <body>
 	<div class="container">
-		<form action="/write.fullreview" method="post">
+		<form action="/write.fullreview" method="post" id="frm" enctype="multipart/form-data">
 			<input type="text" placeholder="제목란" class="title" name="title">
 			
 			<hr style="border-style: dotted;">
@@ -92,6 +92,11 @@ textarea {
 			</div>
 			<br>
 			<div>
+				<img src="#none" alt="#none" id="image" class="object-fit-contain" style="display:none; margin-bottom:20px; margin-left:auto; margin-right:auto; width:500px; height:500px;">
+				<input id="input_image" name="img" type="file" accept="image/*" class="nanum-gothic form-control" style="font-size:13px;">			
+			</div>			
+			<br>
+			<div>
 				<button class="submitBtn" type="submit">작성완료</button>
 			</div>
 		</form>
@@ -103,6 +108,33 @@ textarea {
 		 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
 	})
 	.catch(error => { console.error(error) });
+	
+	$("#frm").on("submit",function(){
+		let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+		if ($(".userId").val()==null){
+			alert("로그인 후 작성 가능합니다.")
+			return false;
+		}else if ($(".title").val()==null){
+			alert("제목을 입력해 주세요.")
+			return false;
+		}else if ($(".storeId").val()==null){
+			alert("음식점을 입력해 주세요.")
+			return false;
+		}else if ($(".score").val()==null){
+			alert("별점을 입력해 주세요.")
+			return false;
+		}
+	})
+	
+	$("#input_image").change(function(){
+						let input = document.getElementById("input_image");
+						let fReader = new FileReader();
+						fReader.onload = function(e){
+							$("#image").attr("src", e.target.result);
+						}
+						fReader.readAsDataURL(input.files[0]);
+						$("#image").css("display","block");
+					});
 	
 	</script>
 	
