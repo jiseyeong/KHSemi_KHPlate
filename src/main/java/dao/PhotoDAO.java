@@ -122,6 +122,27 @@ public class PhotoDAO {
 		}
 	}
 	
+	public PhotoDTO DTOByReviewId(int reviewid) throws Exception{
+		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where reviewid = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, reviewid);
+			try(ResultSet rs = pstat.executeQuery();){
+				PhotoDTO dto = new PhotoDTO();
+				if(rs.next()) {
+				dto.setImageID(rs.getInt("imageid"));
+				dto.setOriName(rs.getString("oriname"));
+				dto.setSysName(rs.getString("sysname"));
+				return dto;
+				}else {
+					dto.setSysName("Logo.png");
+					return dto;
+				}
+				
+			}
+		}
+	}
+	
 	public PhotoDTO selectByConsultID(int consultID) throws Exception{
 		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where CONSULTID = ?";
 		try(	Connection con = this.getConnection();

@@ -4,6 +4,12 @@ public class PhotoDTO {
 	private int imageID;
 	private String oriName;
 	private String sysName;
+	
+	
+	
+	public PhotoDTO() {
+		super();
+	}
 	public PhotoDTO(int imageID, String oriName, String sysName) {
 		super();
 		this.imageID = imageID;
