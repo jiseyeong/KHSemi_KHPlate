@@ -89,7 +89,7 @@ color:#57b846;
 							<tr>
 								<td>${list.get(i).consultID}</td>
 								<c:choose>
-									<c:when test="${list.get(i).userNO == sessionScope.userno || sessionScope.loginIsAdmin==true}">
+									<c:when test="${list.get(i).userNO == sessionScope.userno || sessionScope.loginIsAdmin}">
 										<td><a href="/view.consult?consultID=${list.get(i).consultID}">${list.get(i).title}</a></td>
 									</c:when>
 									<c:otherwise>
@@ -128,7 +128,7 @@ color:#57b846;
 				</table>
 				
 <!-- 				일반 사용자일 경우 글쓰기 버튼 추가 -->
-				<c:if test="${loginIsAdmin!=T}">
+				<c:if test="${!loginIsAdmin}">
 					<div>
 						<button id="toWriteBtn" type="button">글쓰기</button>
 					</div>
