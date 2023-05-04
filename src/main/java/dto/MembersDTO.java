@@ -21,14 +21,13 @@ public class MembersDTO {
 		super();
 	}
 
-	public MembersDTO(String pw, String nickname,String email, String phone,
+	public MembersDTO(String pw, String nickname,String email,
 					  String selfcomment, String favoriteFood) {
-		//���������� ������ �� �� dto �����ε�
+		//마이페이지에서 회원정보 수정할때 받을 DTO
 
 		this.pw = pw;
 		this.nickname = nickname;
 		this.email = email;
-		this.phone = phone;
 		this.selfcomment = selfcomment;
 		this.favoriteFood = favoriteFood;
 	}

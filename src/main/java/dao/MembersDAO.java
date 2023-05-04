@@ -118,17 +118,16 @@ public class MembersDAO {
 	}
 	public int update(MembersDTO dto) throws Exception { // 회占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 
-		String sql = "update members set pw=?, nickname=?, email=?, phone=?, selfcomment=?, favoritefood=?, where userid=?";
+		String sql = "update members set pw=?, nickname=?, email=?, selfcomment=?, favoritefood=?, where userid=?";
 
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
 			pstat.setString(1, dto.getPw());
 			pstat.setString(2, dto.getNickname());
 			pstat.setString(3, dto.getEmail());
-			pstat.setString(4, dto.getPhone());
-			pstat.setString(5, dto.getSelfcomment());
-			pstat.setString(6, dto.getFavoriteFood());
-			pstat.setString(7, dto.getUserID());
+			pstat.setString(4, dto.getSelfcomment());
+			pstat.setString(5, dto.getFavoriteFood());
+			pstat.setString(6, dto.getUserID());
 
 			int result = pstat.executeUpdate();
 
