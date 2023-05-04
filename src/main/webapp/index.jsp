@@ -16,12 +16,11 @@
    	<a href="/page/main.jsp"><button style="width:200px; height:100px;">메인페이지 접속</button></a><br>
 	<hr>
 	<p>링크 미적용 사이트 입니다.</p>
-	내 근처 맛집(지도형 맛집 확인 페이지)-><a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry.jsp</a><br>
 	가게 정보 등록 -> <a href="/store/registerForm.jsp">registerForm.jsp</a><br>
 	<br>
-	문의 작성 -> <a href="/adminPage/consultRegister.jsp">consultRegister.jsp</a><br>
-	문의 내역 -> <a href="/adminPage/consultList.jsp">counsultList.jsp</a><br>	
-	문의 답변 작성 -> <a href="/adminPage/consultReplyRegister.jsp">consultReplyRegister.jsp</a><br>
+	1:1 문의 작성 -> <a href="/adminPage/consultRegister.jsp">1:1 문의하기</a>
+	(관리자)문의 내역 -> <a href="/adminPage/consultList.jsp">counsultList.jsp</a><br>	
+	(관리자)문의 답변 작성 -> <a href="/adminPage/consultReplyRegister.jsp">consultReplyRegister.jsp</a><br>
 	문의 글 보기 -> <a href="/adminPage/consultView.jsp">consultView.jsp</a><br>
 	<br>
 	FAQ 등록 -> <a href="/adminPage/FAQRegister.jsp">FAQRegister.jsp</a><br>
