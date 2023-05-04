@@ -61,7 +61,7 @@
         box-shadow: 1px 1px 5px 1px silver;
         text-align: center;
         position: relative;
-        left: 70px;
+        left: 100px;
         margin-bottom: 30px;
       }
 
@@ -110,7 +110,7 @@
       .inpocontents2 {
         width: 80%;
         padding-top: 45px;
-        padding-left: 200px;
+        padding-left: 150px;
         position: relative;
         margin-bottom: 30px;
       }
@@ -220,7 +220,7 @@
       .profileImage {
         height: 65%;
         margin-top: 50px;
-        margin-left: 50px;
+        margin-left: 100px;
       }
 
       .profileImage > button {
@@ -326,7 +326,7 @@
       /* 하단 네비게이터 추가 */
       /* 네비게이터 영역 */
       .body2listNavi {
-        border: 1px solid black;
+        border:none;
         height: 60px;
         width: 100%;
         text-align: center;
@@ -336,7 +336,6 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        border-top: 1px solid #fff;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -362,7 +361,7 @@
       }
 
       .navigator_list_item_btn_layout {
-        border: 1px solid rgb(178, 178, 178);
+        border:none;
         width: 30px;
         height: 30px;
         display: flex;
@@ -371,7 +370,10 @@
       }
 
       .item {
-        font-size: 15px;
+      	width:30px;
+      	border-radius:10px;
+        font-size: 10px;
+        line-height:30px;
         text-decoration: none;
       }
 
@@ -456,18 +458,18 @@
       }
       
       .btns_layout{
+      	margin-top:20px;
       	display:flex;
       	justify-content:space-evenly;
       	align-items:center;
       }
-      
     </style>
   </head>
 
   <body>
     <div class="mypage">
       <div class="myPageHeader">마이페이지</div>
-      <div class="row body1">
+      <div class="row body1" style="margin-bottom:70px;">
         <div class="col-12 col-lg-4 profile">
           <div class="profileImage">
             <div class="proImage"></div>
@@ -643,10 +645,11 @@
               <!-- 리스트 출력 구간 -->
             </tbody>
           </table>
-
+		
           <!-- 추가한 네비게이터 -->
           <div class="body2listNavi">
-            <ul class="navigator_list"></ul>
+            <ul class="navigator_list" style="text-align:center; align:center;">
+            </ul>
           </div>
         </div>
       </div>
