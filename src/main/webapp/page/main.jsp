@@ -138,17 +138,17 @@
                         <div class="carousel-inner">
                            <div class="carousel-item active">
                               <img
-                                 src="carouselimage1.jpg"
+                                 src="/page/carouselimage1.jpg"
                                  class="d-block w-100" alt="...">
                            </div>
                            <div class="carousel-item">
                               <img
-                                 src="carouselimage2.jpg"
+                                 src="/page/carouselimage2.jpg"
                                  class="d-block w-100" alt="...">
                            </div>
                            <div class="carousel-item">
                               <img
-                                 src="carouselimage3.jpg"
+                                 src="/page/carouselimage3.jpg"
                                  class="d-block w-100" alt="...">
                            </div>
                         </div>
@@ -185,15 +185,15 @@
                <div class="col-12 col-lg-12 themed-grid-col row contents2" style="margin-top:100px;">
                   <div class="row row-cols-1 row-cols-md-3 g-4">
                      <div class="col-12 col-lg-3 themed-grid-col">
-                     	<div class="imageDiv"><img src="롤링파스타.png"></div>
+                     	<div class="imageDiv"><img src="/page/롤링파스타.png"></div>
 						<div class="nanum-gothic textDiv">롤링파스타 종로점</div>
                      </div>
                      <div class="col-12 col-lg-3 themed-grid-col">
-						<div class="imageDiv"><img src="오로지라멘.png"></div>
+						<div class="imageDiv"><img src="/page/오로지라멘.png"></div>
 						<div class="nanum-gothic textDiv">오로지라멘</div>
                      </div>
                      <div class="col-12 col-lg-3 themed-grid-col">
-						<div class="imageDiv"><img src="자담치킨.png"></div>
+						<div class="imageDiv"><img src="/page/자담치킨.png"></div>
 						<div class="nanum-gothic textDiv">자담치킨</div>
                      </div>
                   </div>

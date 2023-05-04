@@ -50,6 +50,18 @@ public class FullReviewDAO {
 			return result;
 		}
 	}
+	
+	
+	public int newReviewId()throws Exception{
+		String sql = "select reviewid from fullreview order by 1 desc";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+			ResultSet rs = pstat.executeQuery()){
+			rs.next();
+			int reviewid = rs.getInt("reviewid");
+			return reviewid;
+		}
+	}
 
 	public String StoreNameByReviewId(int reviewid) throws Exception{
 		String sql = "select name from store where storeid =(select storeid from fullreview where reviewid=?)";
