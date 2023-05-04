@@ -45,6 +45,20 @@ font-weight:bolder;
 font-size:25px; 
 color:#57b846;
 }
+/* 추가 버튼 디자인 */
+#toWriteBtn {
+	float: right;
+	width: 100px;
+	height: 40px;
+	background-color: #57b846;
+	border-radius: 12px;
+	cursor: pointer;
+	border:none;
+	color: white;
+	font-size: 14px;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231)
+}
+
 /* 하단부터 메인부분 스타일 작성 요망 */
 </style>
 </head>
@@ -74,7 +88,14 @@ color:#57b846;
 						<c:forEach var="i" begin="0" end="${fn:length(list)-1}" step="1">
 							<tr>
 								<td>${list.get(i).consultID}</td>
-								<td><a href="/view.consult?consultID=${list.get(i).consultID}">${list.get(i).title}</a></td>
+								<c:choose>
+									<c:when test="${list.get(i).userNO == sessionScope.userno || sessionScope.loginIsAdmin}">
+										<td><a href="/view.consult?consultID=${list.get(i).consultID}">${list.get(i).title}</a></td>
+									</c:when>
+									<c:otherwise>
+										<td>${list.get(i).title}</td>
+									</c:otherwise>
+								</c:choose>
 								<td>${writerList.get(i)}</td>
 								<td>
 									<c:choose>
@@ -105,10 +126,25 @@ color:#57b846;
 						</tr>
 					</c:if>
 				</table>
+				
+<!-- 				일반 사용자일 경우 글쓰기 버튼 추가 -->
+				<c:if test="${!loginIsAdmin}">
+					<div>
+						<button id="toWriteBtn" type="button">글쓰기</button>
+					</div>
+				</c:if>
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>
+			
 		</div>
 		<jsp:include page="/page/footer.jsp" flush="false"></jsp:include>
 	</div>
+	<script>
+	
+// 		글쓰기 버튼 이벤트
+		$("#toWriteBtn").on("click",function(){
+			location.href = "/adminPage/consultRegister.jsp";
+		})
+	</script>
 </body>
 </html>
