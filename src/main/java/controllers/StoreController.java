@@ -129,7 +129,7 @@ public class StoreController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						PhotoDAO.getInstance().insertByStoreID(sysName, oriName, currval);
+						PhotoDAO.getInstance().insertByStoreID(oriName, sysName, currval);
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+currval);
@@ -175,7 +175,7 @@ public class StoreController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						PhotoDAO.getInstance().insertByStoreID(sysName, oriName, storeID);
+						PhotoDAO.getInstance().insertByStoreID(oriName, sysName, storeID);
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+storeID);
