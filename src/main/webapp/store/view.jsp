@@ -370,7 +370,8 @@
                                     <form id="menuUpdateForm" action="/modify.storeMenu" method="post">
                                     <input type="text" name="menuLength" value="${menuList.size()}" style="display: none;">
                                     <input type="text" name="storeID" value="${dto.storeID}" style="display: none;">
-                                    <c:forEach var="i" begin="0" end="${fn:length(menuList)-1}" step="1">
+                                    <c:if test="${fn:length(menuList) > 0}">
+                                       <c:forEach var="i" begin="0" end="${fn:length(menuList)-1}" step="1">
                                        <tr>
                                              <input type="text" name="menuID${i}" value="${menuList.get(i).menuID}"
                                                 style="display:none;" readonly>
@@ -387,7 +388,8 @@
                                              </a>
                                              </td>
                                        </tr>
-                                    </c:forEach>
+                                       </c:forEach>
+                                    </c:if>
                                        <input type="text" name="storeID" value="${dto.storeID}"
                                           style="display: none;" readonly>
                                        <tr id="menu_add" class="nonactive">
