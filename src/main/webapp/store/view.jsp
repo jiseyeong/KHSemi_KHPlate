@@ -383,8 +383,7 @@
                                                    name="updateMenuPrice${menuList.get(i).menuID}" value="${menuList.get(i).menuPrice}"
                                                    readonly>
                                              <a href="/delete.storeMenu?menuID=${menuList.get(i).menuID}&storeID=${dto.storeID}">
-	                                             <button type="button" id="btn_menu_delete${menuList.get(i).menuID}"
-	                                                class="btn_menu_delete nonactive">삭제</button>                                                
+	                                             <button type="button" class="btn_menu_delete nonactive">삭제</button>                                              
                                              </a>
                                              </td>
                                        </tr>
