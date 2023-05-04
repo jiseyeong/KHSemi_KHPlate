@@ -162,6 +162,7 @@ h1 {
 
 
 h4 {
+text-align: center;
 	font-size: 18px;
 	font-weight: 400;
 	font-family: 'Nanum Gothic', sans-serif;
