@@ -154,22 +154,25 @@
                .input-group>input{
                   font-size:14px;
                }
-               input[name='updateMenuName'] {
+               .updateMenuName{
                    border:none;
                    width:100%;
+                   height:100%;
                    text-align:center;
                }
-               input[name='updateMenuPrice'] {
+               .updateMenuPrice{
                   border:none;
                   width:80%;
-                   text-align:center;
+                  height:100%;
+                  text-align:center;
+                  margin-right:10px;
                }
                .ck-editor__editable_inline {
                    min-height: 150px;
                    border:1px solid white;
                }
                .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
-                  border:none;
+                  border:1px dotted black;
                }
       </style>
          </head>
@@ -425,7 +428,7 @@
                      <!-- 리뷰 -->
                      <div class="row">
                         <c:if test="${not empty sessionScope.userno}">
-                           <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">한줄 리뷰 추가</div>
+                           <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto; font-weight:bold; margin-bottom:10px;">한줄 리뷰 추가</div>
                            <form id="createCommentForm" action="/create.commentReview" method="post">
                               <input type="text" name="storeID" value="${dto.storeID}" style="display:none;">
                               <input type="text" name="userNo" value="${sessionScope.userno}"
@@ -434,7 +437,7 @@
                                  <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
                                     <div class="row align-items-center">
                                        <div class="col-12">
-                                          <div class="star">
+                                          <div class="star" style="margin-bottom:10px;">
                                              <input type="text" name="score" value="0" style="display:none;"
                                                 id="score">
                                              <a href="#null" value="1">★</a>
@@ -671,6 +674,9 @@
                            $("#menu_add").removeClass("nonactive");
                            $(".updateMenuName").attr("readonly",false);
                            $(".updateMenuPrice").attr("readonly",false);
+                           
+                           $(".updateMenuName").css("border-bottom","1px dotted black");
+                           $(".updateMenuPrice").css("border-bottom","1px dotted black");
                         });
 
                         $("#btn_menu_modify_cancel").click(function () {
