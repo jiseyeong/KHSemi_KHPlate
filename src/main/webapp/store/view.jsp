@@ -112,19 +112,27 @@
                #nameDiv {
                   font-size:40px;
                   font-weight:bold;
+                  text-align:center;
+                  margin-bottom:20px;
                }
                #categoryDiv{
                   font-size:17px;
                   color:green;
                   font-weight:600;
+                  text-align:center;
+                  margin-bottom:10px;
                }
                #priceRangeDiv{
                   font-size:15px;
                   font-weight:600;
+                  text-align:center;
+                  margin-bottom:10px;
                }
                #addressDiv{
                   font-size:15px;
                   font-weight:600;
+                  text-align:center;
+                  margin-bottom:10px;
                }
                
                .input-group{
@@ -163,7 +171,6 @@
                .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
                   border:none;
                }
-               
       </style>
          </head>
 
@@ -228,6 +235,37 @@
                               </button>
                            </div>
                         </div>
+                        <div class="col-12 col-lg-5 nonactive" id="imageModify" style="margin-left:auto;">
+                           <c:if test="${fn:length(imgList) > 0}">
+                              <div class="row">
+                                 <div class="col-12">
+                                       <div class="row">
+                                          <c:forEach var="i" items="${imgList}">
+                                             <form action="/deletePhoto.store" method="get">
+                                                <input type="text" name="imageID" value="${i.imageID}"
+                                                   style="display: none;" readonly>
+                                                <input type="text" name="storeID" value="${dto.storeID}"
+                                                   style="display: none;" readonly>
+                                                <div class="col-12 col-lg-6">
+                                                   <img src="/store/${i.sysName}"
+                                                      class="w-100 object-fit-contain" style="margin-bottom:10px;">
+                                                </div>    
+                                                <div class="row">
+                              					<div class="col-12 col-lg-6" style="text-align:center; margin-bottom:10px;">
+                               					 <button type="submit" class="btn btn-outline-secondary">삭제</button>
+                                				 </div>
+                              				</div> 
+                                          </c:forEach>
+                                       </div>
+                                 </div>
+                              </div>
+                              </form>
+                           </c:if>
+                           <form id="updateForm" action="/update.store" method="post"
+                              enctype="multipart/form-data">
+                              <input type="text" name="storeID" value="${dto.storeID}" style="display:none;"
+                                 readonly> 
+                        </div>
                         <div class="col-12 col-lg-3" style="margin-right:auto;"> <!--맵 부분-->
                            <div id="map"></div>
                            <div class="mapInfo">
@@ -246,72 +284,29 @@
                               </div>
                            </div>
                         </div>
-                        <div class="col-12 col-lg-8 text-end" style="margin-top:30px; margin-left:auto; margin-right:auto; margin-bottom:30px;">
+                        <div class="col-12 col-lg-8 text-end" style="margin-top:30px; margin-left:auto; margin-right:auto; margin-bottom:50px;">
+                           <button type="button" id="btn_image_add" class="btn btn-outline-secondary" style="display:none;">이미지 추가 등록</button>
                            <button type="button" id="btn_store_update" class="btn btn-outline-secondary">상점 수정</button>
                            <button type="button" id="btn_store_update_delete" class="nonactive">상점 삭제</button>
                            <button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
                            <button type="submit" id="btn_store_update_cancel" class="nonactive">취소</button>
                         </div>
-                        <div class="col-12 nonactive" id="imageModify">
-                           <c:if test="${fn:length(imgList) > 0}">
-                              <div class="row">
-                                 <div class="col-12">
-                                    <fieldset>
-                                       <legend>이미지 삭제</legend>
-                                       <div class="row">
-                                          <c:forEach var="i" items="${imgList}">
-                                             <form action="/deletePhoto.store" method="get">
-                                                <input type="text" name="imageID" value="${i.imageID}"
-                                                   style="display: none;" readonly>
-                                                <input type="text" name="storeID" value="${dto.storeID}"
-                                                   style="display: none;" readonly>
-                                                <div class="col-8">
-                                                   <img src="/store/${i.sysName}"
-                                                      class="w-100 object-fit-contain">
-                                                </div>
-                                                <div class="col-4">
-                                                   <button type="submit"
-                                                      class="btn btn-outline-secondary">삭제</button>
-                                                </div>
-                                             </form>
-                                          </c:forEach>
-                                       </div>
-                                    </fieldset>
-                                 </div>
-                              </div>
-                           </c:if>
-                           <form id="updateForm" action="/update.store" method="post"
-                              enctype="multipart/form-data">
-                              <input type="text" name="storeID" value="${dto.storeID}" style="display:none;"
-                                 readonly>
-                              <div class="row">
-                                 <div class="col-12">
-                                    이미지 추가 등록
-                                    <button type="button" id="btn_image_add"
-                                       class="btn btn-outline-secondary">+</button>
-                                 </div>
-                                 <div class="col-12">
-                                    <fieldset>
-                                       <legend>image list</legend>
-                                       <!-- 여기에 name이 image0, image1 식의 name으로 file input 추가됨. 보내기 직전 name 태그 붙이기 시작. -->
-                                       <div id="img_field"></div>
-                                       <!-- <input type="text" name="imgLength" style="display: none;"> -->
-                                    </fieldset>
-                                 </div>
-                              </div>
-                        </div>
                      </div>
                      <!-- 상점 본문 -->
                      <div class="row">
-
+						<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto; margin-bottom:40px;">
+                        <!-- 여기에 name이 image0, image1 식의 name으로 file input 추가됨. 보내기 직전 name 태그 붙이기 시작. -->
+                        <div id="img_field"></div>
+                        <!-- <input type="text" name="imgLength" style="display: none;"> -->
+                        </div>
                         <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
                           <div id="nameDiv">${dto.name}</div>
-                           <div class="input-group" style="display:block;">   
+                           <div class="input-group">   
                               <span class="input-group-text" style="display:none;">가게 이름</span>
                               <input type="text" class="form-control" name="name" value="${dto.name}"readonly style="display:none;"><!--가게 이름-->
                            </div>
-                           <div class="input-group" style="display:block;">
-                              <div id="categoryDiv">${dto.category}</div>
+                           <div id="categoryDiv">${dto.category}</div>
+                           <div class="input-group">
                               <span class="input-group-text" style="display:none;">가게 카테고리</span>
                               <select name="category" class="form-select" disabled="disabled" style="display:none;"><!--가게 카테고리-->
                                  <option>한식</option>
@@ -324,8 +319,8 @@
                                  <option>기타</option>
                               </select>
                            </div>
-                           <div class="input-group" style="display:block;">
-                              <div id="priceRangeDiv">${dto.priceRange}</div>
+                           <div id="priceRangeDiv">${dto.priceRange}</div>
+                           <div class="input-group">      
                               <span class="input-group-text" style="display:none;">1인당 가격 범위</span>
                               <select name="priceRange" class="form-select" disabled="disabled" style="display:none;"><!--1인당 가격범위-->
                                  <option>5000이하</option>
@@ -335,8 +330,8 @@
                                  <option>20000이상</option>
                               </select>
                            </div>
-                           <div class="input-group" style="display:block;">
-                              <div id="addressDiv">${dto.address}</div>
+                           <div id="addressDiv">${dto.address}</div>
+                           <div class="input-group">
                               <span class="input-group-text" style="display:none;">가게 주소</span>
                               <input type="text" class="form-control" name="address" style="display:none;" readonly><!--가게 주소-->
                            </div>
@@ -450,16 +445,15 @@
                                              </div>
                                           </td>
                                           <td>
-                                             <button type="submit"
-                                                class="btn btn-outline-secondary">적용</button>
                                              <button type="button" id="btn_menu_cancel"
-                                                class="btn btn-outline-secondary">취소</button>
+                                                class="btn btn-outline-secondary">X</button>
                                           </td>
                                        </tr>
-                                    </form>
                                  </table>
                                  <div class="row">
                                     <div class="col-12 text-end">
+                                      <button type="submit"
+                                                class="btn btn-outline-secondary" id="btn_menu_submit" style="display:none;">적용</button>
                                        <button type="button" id="btn_menu_add"
                                           class="btn btn-outline-secondary">메뉴 추가</button>
                                        <button type="button" id="btn_menu_modify"
@@ -468,6 +462,7 @@
                                           class="nonactive">수정 모드 취소</button>
                                     </div>
                                  </div>
+                                 </form>
                               </div>
                            </div>
                         </div>
@@ -495,7 +490,7 @@
                                              <a href="#null" value="5">★</a>
                                           </div>
                                        </div>
-                                       <div class="col-11">
+                                       <div class="col-11 review_editorDiv" >
                                           <textarea id="review_editor" name="body"></textarea>
                                        </div>
                                        <div class="col-1">
@@ -712,6 +707,7 @@
                            $("#btn_menu_modify_cancel").removeClass("nonactive").addClass("btn").addClass("btn-outline-secondary");
                            $(this).addClass("nonactive").removeClass("btn").removeClass("btn-outline-secondary");
                            $("#menuDelBtn").css("display","inline");
+                           $("#btn_menu_submit").css("display","inline");
                         });
 
                         $("#btn_menu_modify_cancel").click(function () {
@@ -742,7 +738,7 @@
                            $("#addressDiv").css("display","none");
                            
                            $(".input-group-text").css("display","inline");
-                           
+                           $("#btn_image_add").css("display","inline");
                            
                            myEditor.disableReadOnlyMode("");
                            $("#imageBox").addClass("nonactive");
