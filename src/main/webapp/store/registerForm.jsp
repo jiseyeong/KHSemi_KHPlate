@@ -69,7 +69,7 @@
 	font-size:12px;
 	width:85px;
 	height:30px;
-	border-radius:10px;
+	border-radius: 3px;
 	border:none;
 	background-color:#57b846;
 	color:white;
@@ -83,7 +83,7 @@
    font-size:17px;
    width:80px;
    height:35px;
-   border-radius:10px;
+   border-radius: 3px;
    border:none;
    background-color:#57b846;
    color:white;
