@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import dao.FavoriteStoreDAO;
 import dao.FullReviewDAO;
 import dao.FullReviewReplyDAO;
-import dao.MembersDAO;
 import dto.FullReviewDTO;
+import dto.FullReviewScrapDTO;
 import dto.FullReviewUserDTO;
 import dto.ReplyWithUserIdDTO;
 import dto.StoreDTO;
@@ -110,9 +111,18 @@ public class FullReviewController extends HttpServlet {
 				String fullReviewNavi = frdao.getFullReviewNavi(currentpage, searchUserno, searchFullReviewTitle);
 
 				System.out.println("리스트 사이즈 : "+fullReviewList.size());
-
+				
+				
+				// 로그인된 사용자의 경우 스크랩된 리뷰에 스크랩 마크 표시 추가
+				int userno = 0;
+				if(request.getSession().getAttribute("userno")!=null) {
+					userno = (int) request.getSession().getAttribute("userno");
+				}
+				List<FullReviewScrapDTO> scrap_list = frdao.isScrapFullReview(fullReviewList,userno);
+				
 				request.setAttribute("FullReviewList", fullReviewList);
 				request.setAttribute("FullReviewNavi", fullReviewNavi);
+				request.setAttribute("scrap_list", scrap_list);
 
 				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
 
@@ -208,6 +218,35 @@ public class FullReviewController extends HttpServlet {
 
 				response.getWriter().append(resp.toString());
 
+			}
+			
+			// 스크랩 추가 controller
+			else if(cmd.equals("/addScrapFullReview.fullreview")) {
+				int reviewID = Integer.parseInt(request.getParameter("addScrap_reviewID"));
+				int userno = (int) request.getSession().getAttribute("userno");
+
+				int result = frdao.addScrapFullReview(reviewID, userno);
+				if(result>0) {
+					System.out.println("스크랩 등록 성공");
+					response.getWriter().append("true");
+				}else {
+					response.getWriter().append("false");
+				}
+			}
+			
+			
+			// 스크랩 삭제 controller
+			else if(cmd.equals("/deleteScrapFullReview.fullreview")) {
+				int reviewID = Integer.parseInt(request.getParameter("addScrap_reviewID"));
+				int userno = (int) request.getSession().getAttribute("userno");
+
+				int result = frdao.deleteScrapFullReview(reviewID, userno);
+				if(result>0) {
+					System.out.println("스크랩 해제 성공");
+					response.getWriter().append("true");
+				}else {
+					response.getWriter().append("false");
+				}
 			}
 
 		}catch(Exception e) {

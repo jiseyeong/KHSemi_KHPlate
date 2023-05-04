@@ -69,6 +69,7 @@ button:hover {
 }
 
 .body1 {
+	width:100%;
 	height: 60%;
 }
 
@@ -78,11 +79,11 @@ button:hover {
 }
 
 .profile {
-	width: 35%;
+/* 	width: 35%; */
 }
 
 .inpomation {
-	width: 65%;
+/* 	width: 65%; */
 }
 
 .inpomation>.inpocontents1 {
@@ -447,15 +448,15 @@ td {
 <body>
 	<div class="mypage">
 		<div class="myPageHeader">마이페이지</div>
-		<div class="body1">
-			<div class="profile">
+		<div class="row body1">
+			<div class="col-12 col-lg-4 profile">
 				<div class="profileImage">
 					<div class="proImage"></div>
 
 					<button>변경하기</button>
 				</div>
 			</div>
-			<div class="inpomation">
+			<div class="col-12 col-lg-8 inpomation">
 				<div class="inpocontents1">
 					<div id="ul2">
 						<div id="myid">아이디</div>
@@ -496,7 +497,7 @@ td {
 				</form>
 			</div>
 		</div>
-		<div class="body2">
+		<div class="d-none d-md-block body2">
 			<div class="body2Navi">
 				<a href="#null" class="myContents" id="writeListBtn">내가 쓴 글</a> <a
 					href="#null" class="myContents" id="replyListBtn">내가 쓴 댓글</a> <a
