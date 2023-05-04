@@ -125,7 +125,7 @@ font-weight: bolder;
 						<p>답변 등록</p>
 						<hr style="border-style:dotted; margin-bottom:25px;">
             
-						<input type="text" name="writer" value="${sessionScope.loginNo}" style="display:none;">
+						<input type="text" name="writer" value="${sessionScope.userno}" style="display:none;">
 						<input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
 						</div>
 						</div>

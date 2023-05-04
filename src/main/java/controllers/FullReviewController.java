@@ -18,9 +18,9 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.FullReviewDAO;
 import dao.FullReviewReplyDAO;
-import dao.MembersDAO;
 import dao.PhotoDAO;
 import dto.FullReviewDTO;
+import dto.FullReviewScrapDTO;
 import dto.FullReviewUserDTO;
 import dto.ReplyWithUserIdDTO;
 import dto.StoreDTO;
@@ -42,7 +42,7 @@ public class FullReviewController extends HttpServlet {
 
 			if(cmd.equals("/write.fullreview")) {
 				String realPath = request.getServletContext().getRealPath("FullReview");
-				int maxSize = 1024 * 1024 * 10; //10Mb
+				int maxSize = 1024 * 1024 * 10;
 				System.out.println(realPath);
 				File realPathFile = new File(realPath);
 				if(!realPathFile.exists()) {
@@ -56,17 +56,20 @@ public class FullReviewController extends HttpServlet {
 				int storeId = Integer.parseInt(multi.getParameter("storeId"));
 				int userNo= Integer.parseInt(multi.getParameter("userNo"));
 
+				
+				int result = frdao.writeFullReview(title,reviewbody,score,storeId,userNo);
+				
+				int reviewId = frdao.newReviewId();
+				
 				Enumeration<String> names = multi.getFileNames();
 				while(names.hasMoreElements()) {
 					String fileName = names.nextElement();
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						PhotoDAO.getInstance().insertByConsultID(oriName, sysName, currval);
+						PhotoDAO.getInstance().insertByFullReviewId(oriName,sysName,reviewId);
 					}
 				}
-				
-				int result = frdao.writeFullReview(title,reviewbody,score,storeId,userNo);
 
 				if (result>0) {
 					System.out.println("진심리뷰 작성완료");
@@ -115,27 +118,36 @@ public class FullReviewController extends HttpServlet {
 				System.out.println("검색 유저 : "+searchUserno);
 				System.out.println("검색 제목 : "+searchFullReviewTitle);
 
-				int currentpage = 1;
+				int entpage = 1;
 
 				if(request.getParameter("cpage")!=null) {
-					currentpage = Integer.parseInt(request.getParameter("cpage"));
+					entpage = Integer.parseInt(request.getParameter("cpage"));
 				}
 
-				System.out.println("현재 페이지 : "+currentpage);
+				System.out.println("현재 페이지 : "+entpage);
 
-				int end_Record_Row_Num = currentpage * Settings.SEARCH_FULLREVIEW_RECORD_COUNT_PER_PAGE;
+				int end_Record_Row_Num = entpage * Settings.SEARCH_FULLREVIEW_RECORD_COUNT_PER_PAGE;
 				int start_Record_Row_Num = end_Record_Row_Num - (Settings.SEARCH_FULLREVIEW_RECORD_COUNT_PER_PAGE-1);
 
 				System.out.println("시작 번호 : "+start_Record_Row_Num);
 				System.out.println("끝 번호 : "+end_Record_Row_Num);
 
 				List<FullReviewUserDTO> fullReviewList = frdao.selectFullReview(searchUserno, searchFullReviewTitle,start_Record_Row_Num,end_Record_Row_Num);
-				String fullReviewNavi = frdao.getFullReviewNavi(currentpage, searchUserno, searchFullReviewTitle);
+				String fullReviewNavi = frdao.getFullReviewNavi(entpage, searchUserno, searchFullReviewTitle);
 
 				System.out.println("리스트 사이즈 : "+fullReviewList.size());
-
+				
+				
+				// 로그인된 사용자의 경우 스크랩된 리뷰에 스크랩 마크 표시 추가
+				int userno = 0;
+				if(request.getSession().getAttribute("userno")!=null) {
+					userno = (int) request.getSession().getAttribute("userno");
+				}
+				List<FullReviewScrapDTO> scrap_list = frdao.isScrapFullReview(fullReviewList,userno);
+				
 				request.setAttribute("FullReviewList", fullReviewList);
 				request.setAttribute("FullReviewNavi", fullReviewNavi);
+				request.setAttribute("scrap_list", scrap_list);
 
 				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
 
@@ -145,15 +157,15 @@ public class FullReviewController extends HttpServlet {
 			}else if (cmd.equals("/selectBymypage.fullreview")) {
 
 				int userno = (int) request.getSession().getAttribute("userno");
-				int currentpage = 1;
+				int entpage = 1;
 
 				if(request.getParameter("cpage")!=null) {
-					currentpage = Integer.parseInt(request.getParameter("cpage"));
+					entpage = Integer.parseInt(request.getParameter("cpage"));
 				}
 
-				System.out.println("현재 페이지 : "+currentpage);
+				System.out.println("현재 페이지 : "+entpage);
 
-				int end_Record_Row_Num = currentpage * Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
+				int end_Record_Row_Num = entpage * Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
 				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE-1);
 
 				System.out.println("시작 번호 : "+start_Record_Row_Num);
@@ -161,7 +173,7 @@ public class FullReviewController extends HttpServlet {
 
 				List<FullReviewUserDTO> fullReviewListBeforeChange = frdao.selectFullReview(userno, "", start_Record_Row_Num, end_Record_Row_Num);
 				String writeFullReviewList = frdao.selectFullReviewListToJSP(fullReviewListBeforeChange);
-				String writeFullReviewNavi = frdao.getFullReviewNaviToJSP(currentpage, userno, "");
+				String writeFullReviewNavi = frdao.getFullReviewNaviToJSP(entpage, userno, "");
 
 				System.out.println("리스트 사이즈 : "+fullReviewListBeforeChange.size());
 
@@ -203,22 +215,22 @@ public class FullReviewController extends HttpServlet {
 			} else if (cmd.equals("/selectScrapListBymypage.fullreview")) {
 
 				int userno = (int) request.getSession().getAttribute("userno");
-				int currentpage = 1;
+				int entpage = 1;
 
 				if(request.getParameter("cpage")!=null) {
-					currentpage = Integer.parseInt(request.getParameter("cpage"));
+					entpage = Integer.parseInt(request.getParameter("cpage"));
 				}
 
-				System.out.println("현재 페이지 : "+currentpage);
+				System.out.println("현재 페이지 : "+entpage);
 
-				int end_Record_Row_Num = currentpage * Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
+				int end_Record_Row_Num = entpage * Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
 				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE-1);
 
 				System.out.println("시작 번호 : "+start_Record_Row_Num);
 				System.out.println("끝 번호 : "+end_Record_Row_Num);
 
 				String myFullReviewScrapList = frdao.selectMyFullReviewScrapList(userno, start_Record_Row_Num, end_Record_Row_Num);
-				String myFullReviewScrapNavi = frdao.selectMyFullReviewScrapNaviToJSP(currentpage, userno);
+				String myFullReviewScrapNavi = frdao.selectMyFullReviewScrapNaviToJSP(entpage, userno);
 
 				Gson g = new Gson();
 
@@ -231,6 +243,35 @@ public class FullReviewController extends HttpServlet {
 
 				response.getWriter().append(resp.toString());
 
+			}
+			
+			// 스크랩 추가 controller
+			else if(cmd.equals("/addScrapFullReview.fullreview")) {
+				int reviewID = Integer.parseInt(request.getParameter("addScrap_reviewID"));
+				int userno = (int) request.getSession().getAttribute("userno");
+
+				int result = frdao.addScrapFullReview(reviewID, userno);
+				if(result>0) {
+					System.out.println("스크랩 등록 성공");
+					response.getWriter().append("true");
+				}else {
+					response.getWriter().append("false");
+				}
+			}
+			
+			
+			// 스크랩 삭제 controller
+			else if(cmd.equals("/deleteScrapFullReview.fullreview")) {
+				int reviewID = Integer.parseInt(request.getParameter("addScrap_reviewID"));
+				int userno = (int) request.getSession().getAttribute("userno");
+
+				int result = frdao.deleteScrapFullReview(reviewID, userno);
+				if(result>0) {
+					System.out.println("스크랩 해제 성공");
+					response.getWriter().append("true");
+				}else {
+					response.getWriter().append("false");
+				}
 			}
 
 		}catch(Exception e) {

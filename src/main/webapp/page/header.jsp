@@ -167,7 +167,7 @@
          <div class="row header m-0" style="margin-bottom:70px;">
             <div class="col-12 col-lg-3 themed-grid-col logo">
                <!--다른 페이지에서도 정상 표시되기 위한 이미지 절대 경로로 지정 -->
-               <img src="logowhite.png" class="logoimage">
+               <img src="/page/logowhite.png" class="logoimage">
             </div>
             <div class="col-12 col-lg-6 d-flex search">
                <form id=searchForm action="/searchStoreBySearchBox.store" method="get" class="form d-flex"
@@ -195,11 +195,6 @@
             </div>
             <div class="col-12 col-lg-3 themed-grid-col d-flex rightMenu">
                <div class="btnBox">
-                  <!--             <a href="#null" class="nanum-gothic" >로그인 </a> -->
-                  <!--              <a href="#null" class="nanum-gothic" >｜</a> -->
-                  <!--             <a href="#null" class="nanum-gothic" >회원가입</a> -->
-                  <!--             <a href="#null" class="nanum-gothic" >｜</a> -->
-                  <!--           <a href="#null" class="nanum-gothic" >마이페이지</a> -->
                   <c:choose>
                      <c:when test="${userno==null}">
                         <a href="/login/login.jsp" class="nanum-gothic">로그인 </a>
@@ -209,7 +204,7 @@
                      <c:otherwise>
                         <a href="/logout.members" class="nanum-gothic">로그아웃 </a>
                         <a href="#null" class="nanum-gothic">｜</a>
-                        <a href="/mypage/mypage.jsp" class="nanum-gothic">마이페이지</a>
+                        <a href="/mypage/myPageVer2.jsp" class="nanum-gothic">마이페이지</a>
                      </c:otherwise>
                   </c:choose>
                </div>

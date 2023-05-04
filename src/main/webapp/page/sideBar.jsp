@@ -73,9 +73,11 @@ a:link {text-decoration: none;}
 <body>
    <div class="col-12 col-lg-2 themed-grid-col sideBar">
       <ul class="nanum-gothic ulTag">
+      	 <a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>
          <li class="firstLi">Menu</li>
          
 <!--   카테고리 접근을 위한 a태그 추가 -->
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch"><li>전체</li></a>
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=한식&approachBy=sidebar"><li>한식</li></a>
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=양식&approachBy=sidebar"><li>양식</li></a>
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=중식&approachBy=sidebar"><li>중식</li></a>
@@ -92,7 +94,8 @@ a:link {text-decoration: none;}
       </ul>
       <ul class="nanum-gothic ulTag">
          <li class="firstLi">고객센터</li>
-         <li>1:1 문의</li>
+         <a href="/list.consult"><li>1:1 문의</li></a>
+         <a href="/view.faq"><li>FAQ 리스트</li></a>
       </ul>
    </div>
 </body>
