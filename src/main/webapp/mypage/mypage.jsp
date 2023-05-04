@@ -223,8 +223,8 @@ button:hover {
 
 .profileImage {
 	height: 65%;
-	margin-top: 50px;
-	margin-left: 50px;
+	margin-top: 35px;
+	margin-left: 120px;
 }
 
 .profileImage>button {
