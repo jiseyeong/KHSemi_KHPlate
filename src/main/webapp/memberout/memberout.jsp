@@ -150,35 +150,55 @@ body, html {
 <div class="animated bounceInDown">
 	<div class="container">
 		<span class="error animated tada" id="msg"></span>
-		<form name="form1" class="box" action="/memberout.member" method="get">
+		<div class="box">
 			<h4>정말 탈퇴하실 건가요?</h4>
-             <h5>내일은 뭐 먹게...</h5>
+	        <h5>내일은 뭐 먹게...</h5>
 			<div class="input password">
-                <input type="text" value="${sessionScope.loginID}" id="inputId" name="userId" placeholder="ID" autocomplete="off">
+              	<input type="text" value="${sessionScope.loginID}" id="inputId" name="userId" placeholder="ID" autocomplete="off">
 				<input type="password" name="userPw" id="inputPw" placeholder="PW" autocomplete="off" class="form-input">
-		</div>
+			</div>
 			<input type="button" value="탈퇴하기" class="btn" id="memberout">
 			<input type="button" value="취소하기" class="btn" id="cancel">
-            </form>
+		</div>
 	</div>
 </div>
 
-cancel" onclick="history.back()"
-
-
 <script>
-	$("#memberout").on("submit",function(){
+	$("#memberout").on("click",function(){
+		let inputID = $("#inputId").val();
+		let inputPw = $("#inputPw").val();
+		
+		if(inputID==""){
+			alert("ID를 입력해주세요.");
+			return;
+		}else if(inputPw==""){
+			alert("비밀번호를 입력해주세요.");
+			return;
+		}
+		
 		$.ajax({
-			url:"/memberout.members"
+			url:"/memberout.members",
+			type:"post",
+			data:{
+				userId:inputID,
+				userPw:inputPw
+			}
 		}).done(function(resp){
 			if(resp == "1") {
+				alert("아이디가 잘못 되었습니다.");
+				location.reload();
+			}else if(resp == "2"){
+				alert("비밀번호가 잘못 되었습니다.");
+				location.reload();
+			}else if(resp == "3"){
 				alert("회원탈퇴가 완료되었습니다.");
 				location.href = "/page/main.jsp";
-			}else if(resp == "0") {
-				alert("비밀번호가 틀립니다.");
-				location.reload();
 			}
+			return;
 		});
+	})
+	$("#cancel").on("click",function(){
+		
 	})
 	</script>
 </body>
