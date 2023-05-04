@@ -185,7 +185,7 @@ crossorigin="anonymous"></script>
                             </c:otherwise>
                         </c:choose>
                         <c:if test="${sessionScope.loginIsAdmin || dto.userNo == sessionScope.userno}">
-                        	<div class="col-12 textcenter">
+                        	<div class="col-12 text-center">
                         		<a href="/delete.consult?consultID=${dto.consultID}">
                         			<button type="button" id="btn_delete">삭제</button>
                         		</a>
