@@ -58,6 +58,22 @@ crossorigin="anonymous"></script>
                     margin-right: auto;
                     box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
                 }
+                
+                #btn_delete
+                {
+                	width: 100px;
+                    height: 40px;
+                    background-color: #57b846;
+                    border: #57b846;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    color: white;
+                    margin-top: 50px;
+                    font-size: 14px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
+                }
 
                 .ck-editor__editable_inline {
                     min-height: 500px;
@@ -168,6 +184,13 @@ crossorigin="anonymous"></script>
                                 </c:if>
                             </c:otherwise>
                         </c:choose>
+                        <c:if test="${sessionScope.loginIsAdmin || dto.userNo == sessionScope.userno}">
+                        	<div class="col-12 textcenter">
+                        		<a href="/delete.consult?consultID=${dto.consultID}">
+                        			<button type="button" id="btn_delete">삭제</button>
+                        		</a>
+                        	</div>
+                        </c:if>
 
                         <script>
                             ClassicEditor
