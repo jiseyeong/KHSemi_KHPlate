@@ -338,7 +338,7 @@
                            <div class="row" style="margin-top:30px;">
                               <div class="col-2" style="margin-left:auto; margin-right:auto;">
                                  <div class="star-ratings" style="float:left;">
-                                    <div class="star-ratings-fill space-x-2 text-lg">
+                                    <div class="star-ratings-fill space-x-2 text-lg" style="width:${dto.ratingToPercent()}%;">
                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                     </div>
                                     <div class="star-ratings-base space-x-2 text-lg">
