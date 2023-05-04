@@ -80,10 +80,7 @@ button:hover {
 #toBack_btn {
 	width: 100%;
 	height: 100%;
-	background-color: white;
-	border: 2px solid silver;
-	border-radius: 20px;
-	font-size: 22px;
+	filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg) brightness(92%) contrast(101%);
 }
 
 .show_filterForm_layout {
@@ -130,13 +127,11 @@ button:hover {
 
 #searchBtn {
 	width: 12%;
-	height: 80%;
+	height: 70%;
 	position: relative;
 	font-size: 10px;
 	padding: 0px;
-	background-color: white;
-	border: 2px solid silver;
-	border-radius: 10px;
+filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg) brightness(92%) contrast(101%);
 	display:flex;
 	justify-content:center;
 	align-items:center;
@@ -427,13 +422,93 @@ hr {
 	align-items: center;
 }
 
-.form-range {
-	width: 90%;
+
+
+
+
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 90%;
+  height: 7px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid silver;
+  border-radius: 5px;
+  background-image: linear-gradient(#ff4500, #ff4500);
+  background-size: 70% 100%;
+  background-repeat: no-repeat;
 }
 
-.form-range::-webkit-slider-thumb {
-	background: rgb(232, 127, 127);
+/* Input Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #ff4500;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
 }
+
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #ff4500;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
+}
+
+input[type="range"]::-ms-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #ff4500;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #ff0200;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: #ff0200;
+}
+
+input[type="range"]::-ms-thumb:hover {
+  background: #ff0200;
+}
+
+/* Input Track */
+input[type=range]::-webkit-slider-runnable-track  {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type=range]::-moz-range-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type="range"]::-ms-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+
+
 
 #range_result {
 	width: 50%;
@@ -606,14 +681,17 @@ hr {
 			<div class="store_list">
 				<div class="search_layout">
 					<div class="toBack_layout">
-						<button id="toBack_btn">
-							<i class="fa-solid fa-rotate-left"></i>
-						</button>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" id="toBack_btn" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+  <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+</svg>
 					</div>
 
 					<div class="searchBox">
 						<input type="text" id="search" name="search">
-						<button id="searchBtn">검색</button>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" id="searchBtn" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg>
 					</div>
 
 					<div class="show_filterForm_layout">
@@ -718,9 +796,10 @@ hr {
 					<p class="sort_title">가격/1인당</p>
 					<div class="filter_cost">
 						<input type="text" id="cost_set" name="cost_range"
-							style="display: none;"> <input type="range"
-							id="cost_range" class="form-range" min="0" max="4" step="1"
-							onchange=SetValue()>
+							style="display: none;"> 
+							<input type="range" id="range" class="form-range" 
+							min="0" max="4" step="1" onchange=SetValue()>
+
 						<div id="range_result">범위를 지정해주세요</div>
 					</div>
 				</div>
@@ -881,362 +960,391 @@ hr {
 		id="fillter_settings_food_category_etc" value="${food_category_etc}"
 		style="display: none;">
 
-	<!-- 별점 등록 Script -->
-	<script>
-		let stars = document.querySelectorAll('.stars__link');
-		let phrase = document.querySelector('.stars-phrase');
-
-		/* using a variation of Chris Ferdinandi's get-siblings.js script (https://gist.github.com/cferdinandi/6203237)  */
-		var getNextSiblings = function (elem) {
-			var siblings = [];
-			var sibling = elem;
-			for (; sibling; sibling = sibling.nextElementSibling)
-				siblings.push(sibling);
-			return siblings;
-		}
-
-		var getPrevSiblings = function (elem) {
-			var siblings = [];
-			var sibling = elem;
-			for (; sibling; sibling = sibling.previousElementSibling)
-				siblings.push(sibling);
-			console.log(siblings);
-			return siblings;
-		}
-
-		stars.forEach((el, idx) => {
-			el.addEventListener('click', (e) => {
-				let nextSibs = getNextSiblings(el);
-				nextSibs.forEach((sib) => {
-					sib.children[0].classList.add('js-clear');
-					sib.children[0].classList.remove('js-fill');
-				});
-				let prevSibs = getPrevSiblings(el);
-				prevSibs.forEach((sib) => {
-					sib.children[0].classList.add('js-fill');
-				});
-			});
-		});
-	</script>
-
-
-	<script>
-		// 필터 기능들
-		
-		$(function(){
-			
-			// 필터 Toggle 기능 부여
-			let sort_check = false;
-
-			$("#show_filterForm_btn").on("click", function () {
-				if(sort_check==false){
-					$('#sort_layout').css({"display":""});
-					sort_check=true;
-				}else{
-					$("#sort_layout").css({"display":"none"});
-					sort_check=false;
-				}
-			})
-		
-		
-			// 필터 정렬 지정
-			$(".filter_option_btn").on("click",function(){
-				$("#sortMethod").val($(this).attr("id"));
-				$(".filter_option_btn").css({
-					"border":"2px solid silver"
-				});
-				$(this).css({
-					"border":"2px solid red"
-				});
-			})
-			
-			// 각 음식 카테고리 div에 boolean변수 부여(closer)
-			$(".food_category_list").each(function (index, item) {
-				let food_category_list_check = true;
-				$(this).find(".food_category_menu").val(true);
-				$(item).on("click", function () {
-					if (food_category_list_check == false) {
-						$(this).css({
-							"border": "2px solid red"
-						});
-						$(this).find(".food_category_menu").val(true);
-						food_category_list_check = true;
-					} else {
-						$(this).css({
-							"border": "1px solid silver"
-						});
-						$(this).find(".food_category_menu").val(false);
-						food_category_list_check = false;
-					}
-				})
-			})
-				
-			// 필터 초기화 지정
-			let sortMethod = $("#fillter_settings_sortMethod").val();
-			let cost_range = $("#fillter_settings_cost_range").val();
-			let food_category_korean = $("#fillter_settings_food_category_korean").val();
-			let food_category_western = $("#fillter_settings_food_category_western").val();
-			let food_category_chinese = $("#fillter_settings_food_category_chinese").val();
-			let food_category_japanese = $("#fillter_settings_food_category_japanese").val();
-			let food_category_asian = $("#fillter_settings_food_category_asian").val();
-			let food_category_fastfood = $("#fillter_settings_food_category_fastfood").val();
-			let food_category_dessert_drink = $("#fillter_settings_food_category_dessert_drink").val();
-			let food_category_etc = $("#fillter_settings_food_category_etc").val();
-			
-			if(sortMethod=='order_by_distance'){
-				$("#order_by_distance").click();
-			}else if(sortMethod=='order_by_score'){
-				$("#order_by_score").click();
-			}
-			
-			let range_result = $("#range_result");
-			
-			if(cost_range=='5000이하'){
-				$("#cost_range").val(0);
-				$("#cost_set").val("5000이하");
-				range_result.html("5000원 이하");
-				
-			}else if(cost_range=='5000~10000'){
-				$("#cost_range").val(1);
-				$("#cost_set").val("5000~10000");
-				range_result.html("5000원 ~ 10000원");
-				
-			}else if(cost_range=='10000~15000'){
-				$("#cost_range").val(2);
-				$("#cost_set").val("10000~15000");
-				range_result.html("10000원 ~ 15000원");
-				
-			}else if(cost_range=='15000~20000'){
-				$("#cost_range").val(3);
-				$("#cost_set").val("15000~20000");
-				range_result.html("15000원 ~ 20000원");
-				
-			}else if(cost_range=='20000이상'){
-				$("#cost_range").val(4);
-				$("#cost_set").val("20000이상");
-				range_result.html("20000원 이상");
-			}
-			
-			
-			if(food_category_korean!='true'){
-				$("#food_category_korean").click();
-			}
-			if(food_category_western!='true'){
-				$("#food_category_western").click();
-			}
-			if(food_category_chinese!='true'){
-				$("#food_category_chinese").click();
-			}
-			if(food_category_japanese!='true'){
-				$("#food_category_japanese").click();
-			}
-			if(food_category_asian!='true'){
-				$("#food_category_asian").click();
-			}
-			if(food_category_fastfood!='true'){
-				$("#food_category_fastfood").click();
-			}
-			if(food_category_dessert_drink!='true'){
-				$("#food_category_dessert_drink").click();
-			}
-			if(food_category_etc!='true'){
-				$("#food_category_etc").click();
-			}
-		})
-		
-		
-		// 범위 바의 값을 변경하였을 때 적용
-		function SetValue() {
-			if($("#cost_range").prop("name")==false){
-				$("#cost_range").prop("name","cost_range");
-			}
-			
-			let range = $("#cost_range").val();
-			let range_result = $("#range_result");
-			
-			if (range == 0) {
-				$("#cost_set").val("5000이하");
-				range_result.html("5000원 이하");
-			} else if (range == 1) {
-				$("#cost_set").val("5000~10000");
-				range_result.html("5000원 ~ 10000원");
-			} else if (range == 2) {
-				$("#cost_set").val("10000~15000");
-				range_result.html("10000원 ~ 15000원");
-			} else if (range == 3) {
-				$("#cost_set").val("15000~20000");
-				range_result.html("15000원 ~ 20000원");
-			} else {
-				$("#cost_set").val("20000이상");
-				range_result.html("20000원 이상");
-			}
-		}
-		// 뒤로가기 버튼
-		$("#toBack_btn").on("click",function(){
-			location.href="/page/main.jsp";
-		})
-		
-		// 검색 버튼
-		$("#searchBtn").on("click",function(){
-			$("#searchForm").prop("onsubmit",true);
-			$("#searchForm").submit();
-		})
-		
-		// 엔터 입력 시 검색 적용
-		$("#search").on("keyup",function(input){
-			if (input.keyCode == 13) {
-				$("#searchForm").prop("onsubmit",true);
-				$("#searchForm").submit();
-		    }
-		})
-		
-		// 검색 정렬 확인 버튼
-		$("#apply_btn").on("click",function(){
-			$("#searchFilterForm").prop("onsubmit",true);
-			$("#searchFilterForm").submit();
-		});
-		
-		// 검색 정렬 취소 버튼
-		$("#cancel_btn").on("click",function(){
-// 			$("#sortMethod").val("");
-// 			$("#cost_set").val("");
-			
-// 			$(".food_category_menu").each(function(index, item){
-// 			    $(item).val("true");
-// 			});
-			
-			$("#searchForm").prop("onsubmit",true);
-			$("#searchForm").submit();
-		});
-	</script>
 
 
 
-	<!-- 지도 Script -->
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9">
-	</script>
+
+	   <!-- 별점 등록 Script -->
+   <script>
+      let stars = document.querySelectorAll('.stars__link');
+      let phrase = document.querySelector('.stars-phrase');
+
+      /* using a variation of Chris Ferdinandi's get-siblings.js script (https://gist.github.com/cferdinandi/6203237)  */
+      var getNextSiblings = function (elem) {
+         var siblings = [];
+         var sibling = elem;
+         for (; sibling; sibling = sibling.nextElementSibling)
+            siblings.push(sibling);
+         return siblings;
+      }
+
+      var getPrevSiblings = function (elem) {
+         var siblings = [];
+         var sibling = elem;
+         for (; sibling; sibling = sibling.previousElementSibling)
+            siblings.push(sibling);
+         console.log(siblings);
+         return siblings;
+      }
+
+      stars.forEach((el, idx) => {
+         el.addEventListener('click', (e) => {
+            let nextSibs = getNextSiblings(el);
+            nextSibs.forEach((sib) => {
+               sib.children[0].classList.add('js-clear');
+               sib.children[0].classList.remove('js-fill');
+            });
+            let prevSibs = getPrevSiblings(el);
+            prevSibs.forEach((sib) => {
+               sib.children[0].classList.add('js-fill');
+            });
+         });
+      });
+   </script>
+
+
+   <script>
+      // 필터 기능들
+      
+      $(function(){
+         
+         // 필터 Toggle 기능 부여
+         let sort_check = false;
+
+         $("#show_filterForm_btn").on("click", function () {
+            if(sort_check==false){
+               $('#sort_layout').css({"display":""});
+               sort_check=true;
+            }else{
+               $("#sort_layout").css({"display":"none"});
+               sort_check=false;
+            }
+         })
+      
+      
+         // 필터 정렬 지정
+         $(".filter_option_btn").on("click",function(){
+            $("#sortMethod").val($(this).attr("id"));
+            $(".filter_option_btn").css({
+               "border":"2px solid silver"
+            });
+            $(this).css({
+               "border":"2px solid red"
+            });
+         })
+         
+         // 각 음식 카테고리 div에 boolean변수 부여(closer)
+         $(".food_category_list").each(function (index, item) {
+            let food_category_list_check = true;
+            $(this).find(".food_category_menu").val(true);
+            $(item).on("click", function () {
+               if (food_category_list_check == false) {
+                  $(this).css({
+                     "border": "2px solid red"
+                  });
+                  $(this).find(".food_category_menu").val(true);
+                  food_category_list_check = true;
+               } else {
+                  $(this).css({
+                     "border": "1px solid silver"
+                  });
+                  $(this).find(".food_category_menu").val(false);
+                  food_category_list_check = false;
+               }
+            })
+         })
+            
+         // 필터 초기화 지정
+         let sortMethod = $("#fillter_settings_sortMethod").val();
+         let cost_range = $("#fillter_settings_cost_range").val();
+         let food_category_korean = $("#fillter_settings_food_category_korean").val();
+         let food_category_western = $("#fillter_settings_food_category_western").val();
+         let food_category_chinese = $("#fillter_settings_food_category_chinese").val();
+         let food_category_japanese = $("#fillter_settings_food_category_japanese").val();
+         let food_category_asian = $("#fillter_settings_food_category_asian").val();
+         let food_category_fastfood = $("#fillter_settings_food_category_fastfood").val();
+         let food_category_dessert_drink = $("#fillter_settings_food_category_dessert_drink").val();
+         let food_category_etc = $("#fillter_settings_food_category_etc").val();
+         
+         if(sortMethod=='order_by_distance'){
+            $("#order_by_distance").click();
+         }else if(sortMethod=='order_by_score'){
+            $("#order_by_score").click();
+         }
+         
+         let range_result = $("#range_result");
+         
+         if(cost_range=='5000이하'){
+            $("#range").val(0);
+            $("#cost_set").val("5000이하");
+            range_result.html("5000원 이하");
+            
+         }else if(cost_range=='5000~10000'){
+            $("#range").val(1);
+            $("#cost_set").val("5000~10000");
+            range_result.html("5000원 ~ 10000원");
+            
+         }else if(cost_range=='10000~15000'){
+            $("#range").val(2);
+            $("#cost_set").val("10000~15000");
+            range_result.html("10000원 ~ 15000원");
+            
+         }else if(cost_range=='15000~20000'){
+            $("#range").val(3);
+            $("#cost_set").val("15000~20000");
+            range_result.html("15000원 ~ 20000원");
+            
+         }else if(cost_range=='20000이상'){
+            $("#range").val(4);
+            $("#cost_set").val("20000이상");
+            range_result.html("20000원 이상");
+         }
+         
+         
+         if(food_category_korean!='true'){
+            $("#food_category_korean").click();
+         }
+         if(food_category_western!='true'){
+            $("#food_category_western").click();
+         }
+         if(food_category_chinese!='true'){
+            $("#food_category_chinese").click();
+         }
+         if(food_category_japanese!='true'){
+            $("#food_category_japanese").click();
+         }
+         if(food_category_asian!='true'){
+            $("#food_category_asian").click();
+         }
+         if(food_category_fastfood!='true'){
+            $("#food_category_fastfood").click();
+         }
+         if(food_category_dessert_drink!='true'){
+            $("#food_category_dessert_drink").click();
+         }
+         if(food_category_etc!='true'){
+            $("#food_category_etc").click();
+         }
+      })
+      
+      
+      // 범위 바의 값을 변경하였을 때 적용
+      function SetValue() {
+         if($("#range").prop("name")==false){
+            $("#range").prop("name","range");
+         }
+         
+         let range = $("#range").val();
+         let range_result = $("#range_result");
+         
+         if (range == 0) {
+            $("#cost_set").val("5000이하");
+            range_result.html("5000원 이하");
+         } else if (range == 1) {
+            $("#cost_set").val("5000~10000");
+            range_result.html("5000원 ~ 10000원");
+         } else if (range == 2) {
+            $("#cost_set").val("10000~15000");
+            range_result.html("10000원 ~ 15000원");
+         } else if (range == 3) {
+            $("#cost_set").val("15000~20000");
+            range_result.html("15000원 ~ 20000원");
+         } else {
+            $("#cost_set").val("20000이상");
+            range_result.html("20000원 이상");
+         }
+      }
+      
+      
+      
+      
+      const rangeInputs = document.querySelectorAll('input[type="range"]')
+      
+
+      function handleInputChange(e) {
+        let target = e.target
+        if (e.target.type !== 'range') {
+          target = document.getElementById('range')
+        } 
+        const min = target.min
+        const max = target.max
+        const val = target.value
+        
+        target.style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%'
+      }
+
+      rangeInputs.forEach(input => {
+        input.addEventListener('input', handleInputChange)
+      })
+
+      
+      
+      // 뒤로가기 버튼
+      $("#toBack_btn").on("click",function(){
+         location.href="/page/main.jsp";
+      })
+      
+      // 검색 버튼
+      $("#searchBtn").on("click",function(){
+         $("#searchForm").prop("onsubmit",true);
+         $("#searchForm").submit();
+      })
+      
+      // 엔터 입력 시 검색 적용
+      $("#search").on("keyup",function(input){
+         if (input.keyCode == 13) {
+            $("#searchForm").prop("onsubmit",true);
+            $("#searchForm").submit();
+          }
+      })
+      
+      // 검색 정렬 확인 버튼
+      $("#apply_btn").on("click",function(){
+         $("#searchFilterForm").prop("onsubmit",true);
+         $("#searchFilterForm").submit();
+      });
+      
+      // 검색 정렬 취소 버튼
+      $("#cancel_btn").on("click",function(){
+//          $("#sortMethod").val("");
+//          $("#cost_set").val("");
+         
+//          $(".food_category_menu").each(function(index, item){
+//              $(item).val("true");
+//          });
+         
+         $("#searchForm").prop("onsubmit",true);
+         $("#searchForm").submit();
+      });
+   </script>
 
 
 
-	<script>
-		
-		// 학원 지도 설정
-		var map_layout = document.getElementById('map');
-		
-		// 학원 중심 좌표 설정
-		var options = {
-			center: new kakao.maps.LatLng(37.567917, 126.983043),
-			level: 3
-		};
-		
-		// 학원 영역 변수 설정
-		var khacademyMap = new kakao.maps.Map(map_layout, options);
-		
-		// 학원 마커 이미지 등록
-		var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-	    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-	 	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
-	    
-		// 학원 마커 표시
-		// 지도를 클릭한 위치에 표출할 마커입니다
-		var khacademy = new kakao.maps.Marker({
-			// 지도 중심좌표에 마커를 생성합니다 
-			position: khacademyMap.getCenter(),
-			image: markerImage
-			 // 마커이미지 설정 
-		});
-		// 지도에 마커를 표시합니다
-		khacademy.setMap(khacademyMap);
-	
-		var InfoWindowContent = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="infoWindow_img" src="/common/khplate1.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">KH 아카데미</div><div class="infoWindow_info_bottom"></div></div></div></body>'
+   <!-- 지도 Script -->
+   <script type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9">
+   </script>
 
-		
-		// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-		var khacademy_Content = InfoWindowContent; 
-		// '<div style="padding:5px;">KH 아카데미<br><a href="https://map.kakao.com/link/map/KH 아카데미,37.567917,126.983043" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/KH 아카데미,37.567917,126.983043" style="color:blue" target="_blank">길찾기</a></div>',
-		khacademy_Position = new kakao.maps.LatLng(37.567917,126.983043); 
-		//인포윈도우 표시 위치입니다
 
-		// 인포윈도우를 생성합니다
-		var infowindow = new kakao.maps.InfoWindow({
-		    position : khacademy_Position, 
-		    content : khacademy_Content
-		});
-		  
-		// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-		let infowindow_switch = false;
-		kakao.maps.event.addListener(khacademy, 'click', function() {
-			if(infowindow_switch==false){
-				infowindow.open(khacademyMap, khacademy);
-				$(".restaurant_infoWindow").parent().parent().css({
-					"border":"0px",
-					"background-color":"transparent"
-				});
-				infowindow_switch = true;
-			}else{
-				infowindow.close();
-				infowindow_switch = false;
-			}
-		});
-    	
-    	let Store_markers = [];
-    	
-		$(function() {
-			
-			let list_length = '${search_store_list.size()}';
-			
-	    	for(i=0 ; i<list_length ; i++){
-	    		let storeID = $("#search_store_list_storeID"+i).val();
-		    	let name = $("#search_store_list_name"+i).val();
-		    	let category = $("#search_store_list_category"+i).val();
-				let lat = $("#search_store_list_lat"+i).val()
-				let lng = $("#search_store_list_lng"+i).val()
-				
-				let marker_position = new kakao.maps.LatLng(lat, lng);
-				
-				// 마커를 생성합니다
-			    let Store_marker = new kakao.maps.Marker({
-			        position: marker_position
-			    });
 
-			    // 마커가 지도 위에 표시되도록 설정합니다
-			    Store_marker.setMap(khacademyMap);
-			    
-			    // 배열 추가
-			    Store_markers.push(Store_marker);
-			    
-				let marker_content = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><i class="fa-sharp fa-solid fa-fork-knife"></i></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">'+name+'</div><div class="infoWindow_info_bottom"># '+category+'</div></div></div></body>'
-				let infowindow = new kakao.maps.InfoWindow({
-				    position : marker_position, 
-				    content : marker_content
-				});
-				let infowindow_switch = false;
-				kakao.maps.event.addListener(Store_marker, 'click', function() {
-					if(infowindow_switch==false){
-						infowindow.open(khacademyMap, Store_marker);
-						$(".restaurant_infoWindow").parent().parent().css({
-							"border":"0px",
-							"background-color":"transparent"
-						});
-						infowindow_switch = true;
-					}else{
-						infowindow.close();
-						infowindow_switch = false;
-					}
-				});
-			}
-		});
-		
-		// 가게 클릭 시 이동
-		$(".restaurant").on("click",function(){
-			let storeID = $(this).find(".restaurant_storeID").val();
-			console.log(storeID);
-			location.href = "/view.store?storeID="+storeID;
-		})
-	</script>
+   <script>
+      
+      // 학원 지도 설정
+      var map_layout = document.getElementById('map');
+      
+      // 학원 중심 좌표 설정
+      var options = {
+         center: new kakao.maps.LatLng(37.567917, 126.983043),
+         level: 3
+      };
+      
+      // 학원 영역 변수 설정
+      var khacademyMap = new kakao.maps.Map(map_layout, options);
+      
+      // 학원 마커 이미지 등록
+      var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+       imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+       imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+       // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+       
+      // 학원 마커 표시
+      // 지도를 클릭한 위치에 표출할 마커입니다
+      var khacademy = new kakao.maps.Marker({
+         // 지도 중심좌표에 마커를 생성합니다 
+         position: khacademyMap.getCenter(),
+         image: markerImage
+          // 마커이미지 설정 
+      });
+      // 지도에 마커를 표시합니다
+      khacademy.setMap(khacademyMap);
+   
+      var InfoWindowContent = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="infoWindow_img" src="/common/khplate1.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">KH 아카데미</div><div class="infoWindow_info_bottom"></div></div></div></body>'
+
+      
+      // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+      var khacademy_Content = InfoWindowContent; 
+      // '<div style="padding:5px;">KH 아카데미<br><a href="https://map.kakao.com/link/map/KH 아카데미,37.567917,126.983043" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/KH 아카데미,37.567917,126.983043" style="color:blue" target="_blank">길찾기</a></div>',
+      khacademy_Position = new kakao.maps.LatLng(37.567917,126.983043); 
+      //인포윈도우 표시 위치입니다
+
+      // 인포윈도우를 생성합니다
+      var infowindow = new kakao.maps.InfoWindow({
+          position : khacademy_Position, 
+          content : khacademy_Content
+      });
+        
+      // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+      let infowindow_switch = false;
+      kakao.maps.event.addListener(khacademy, 'click', function() {
+         if(infowindow_switch==false){
+            infowindow.open(khacademyMap, khacademy);
+            $(".restaurant_infoWindow").parent().parent().css({
+               "border":"0px",
+               "background-color":"transparent"
+            });
+            infowindow_switch = true;
+         }else{
+            infowindow.close();
+            infowindow_switch = false;
+         }
+      });
+       
+       let Store_markers = [];
+       
+      $(function() {
+         
+         let list_length = '${search_store_list.size()}';
+         
+          for(i=0 ; i<list_length ; i++){
+             let storeID = $("#search_store_list_storeID"+i).val();
+             let name = $("#search_store_list_name"+i).val();
+             let category = $("#search_store_list_category"+i).val();
+            let lat = $("#search_store_list_lat"+i).val()
+            let lng = $("#search_store_list_lng"+i).val()
+            
+            let marker_position = new kakao.maps.LatLng(lat, lng);
+            
+            // 마커를 생성합니다
+             let Store_marker = new kakao.maps.Marker({
+                 position: marker_position
+             });
+
+             // 마커가 지도 위에 표시되도록 설정합니다
+             Store_marker.setMap(khacademyMap);
+             
+             // 배열 추가
+             Store_markers.push(Store_marker);
+             
+            let marker_content = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><i class="fa-sharp fa-solid fa-fork-knife"></i></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">'+name+'</div><div class="infoWindow_info_bottom"># '+category+'</div></div></div></body>'
+            let infowindow = new kakao.maps.InfoWindow({
+                position : marker_position, 
+                content : marker_content
+            });
+            let infowindow_switch = false;
+            kakao.maps.event.addListener(Store_marker, 'click', function() {
+               if(infowindow_switch==false){
+                  infowindow.open(khacademyMap, Store_marker);
+                  $(".restaurant_infoWindow").parent().parent().css({
+                     "border":"0px",
+                     "background-color":"transparent"
+                  });
+                  infowindow_switch = true;
+               }else{
+                  infowindow.close();
+                  infowindow_switch = false;
+               }
+            });
+         }
+      });
+      
+      // 가게 클릭 시 이동
+      $(".restaurant").on("click",function(){
+         let storeID = $(this).find(".restaurant_storeID").val();
+         console.log(storeID);
+         location.href = "/view.store?storeID="+storeID;
+      })
+   </script>
 
 </body>
 

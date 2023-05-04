@@ -55,7 +55,7 @@ p{font-weight:bolder; font-size:25px; color:#57b846;}
 	height: 40px;
 	background-color: #57b846;
 	border:none;
-	border-radius: 12px;
+	border-radius: 3px;
 	cursor: pointer;
 	color: white;
 	font-size: 14px;
@@ -67,7 +67,7 @@ p{font-weight:bolder; font-size:25px; color:#57b846;}
 	width: 100px;
 	height: 40px;
 	background-color: #57b846;
-	border-radius: 12px;
+	border-radius: 3px;
 	cursor: pointer;
 	border:none;
 	color: white;
