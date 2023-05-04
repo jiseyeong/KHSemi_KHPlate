@@ -28,12 +28,17 @@ public class FaqController extends HttpServlet {
 				body = SecurityUtils.XSSCheck(body);
 				
 				int result = FaqDAO.getInstance().insert(new FaqDTO(0, title, body));
-				response.sendRedirect("/adminPage/FAQRegister.jsp");
+				response.sendRedirect("/view.faq");
 			}else if(cmd.equals("/view.faq")) {
 				ArrayList<FaqDTO> list = FaqDAO.getInstance().selectAll();
 				
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("/adminPage/FAQView.jsp").forward(request, response);
+			}else if(cmd.equals("/delete.faq")) {
+				int qaID = Integer.parseInt(request.getParameter("id"));
+				
+				int result = FaqDAO.getInstance().delete(qaID);
+				response.sendRedirect("/view.faq");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

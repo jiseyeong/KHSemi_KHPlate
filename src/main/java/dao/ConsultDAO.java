@@ -93,6 +93,24 @@ public class ConsultDAO {
 		}
 	}
 	
+	public ArrayList<ConsultDTO> selectBoundByUserNo(int start, int end, int userNo) throws Exception{
+		String sql = "select *"
+				+ " from"
+				+ " (select CONSULT.*, row_number() over(order by CONSULTID desc) rn"
+				+ " from CONSULT"
+				+ " where USERNO=?)"
+				+ " where rn between ? and ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, userNo);
+			pstat.setInt(2, start);
+			pstat.setInt(3, end);
+			try(ResultSet rs = pstat.executeQuery()){
+				return this.transAllRsToList(rs);
+			}
+		}
+	}
+	
 	private int getRecoredCount() throws Exception{
 		String sql = "select COUNT(*) from CONSULT";
 		try(	Connection con = this.getConnection();
@@ -103,8 +121,54 @@ public class ConsultDAO {
 		}
 	}
 	
+	private int getRecordCountByUserNo(int userNo) throws Exception{
+		String sql = "select COUNT(*) from CONSULT where USERNO=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, userNo);
+			try(ResultSet rs = pstat.executeQuery();){
+				rs.next();
+				return rs.getInt(1);
+			}
+		}
+	}
+	
 	public NaviDTO getNavi(int currentPage) throws Exception{
 		int recordTotalCount = this.getRecoredCount();
+		int recordCountPerPage = Settings.CONSULT_NAVI_COUNT_PER_PAGE;
+		int naviCountPerPage = Settings.CONSULT_RECORD_COUNT_PER_PAGE;
+		
+		int pageTotalCount = recordTotalCount % recordCountPerPage > 0 ?
+				recordTotalCount/recordCountPerPage + 1
+				:recordTotalCount/recordCountPerPage;
+		
+		if(currentPage < 1) {
+			currentPage = 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		
+		int startNavi = (currentPage-1)/naviCountPerPage*naviCountPerPage+1;
+		int endNavi = startNavi + (naviCountPerPage-1);
+		
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		
+		boolean needPrev = true;
+		boolean needNext = true;
+		ArrayList<Integer> list = new ArrayList<>();
+		
+		if(startNavi == 1) {needPrev = false;}
+		if(endNavi == pageTotalCount) {needNext = false;}
+		for(int i = startNavi; i <= endNavi; i++) {
+			list.add(i);
+		}
+		return new NaviDTO(list, needPrev, needNext);
+	}
+	
+	public NaviDTO getNaviByUserNo(int currentPage, int userNo) throws Exception{
+		int recordTotalCount = this.getRecordCountByUserNo(userNo);
 		int recordCountPerPage = Settings.CONSULT_NAVI_COUNT_PER_PAGE;
 		int naviCountPerPage = Settings.CONSULT_RECORD_COUNT_PER_PAGE;
 		
@@ -143,6 +207,17 @@ public class ConsultDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1, reply);
 			pstat.setInt(2, consultID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int delete(int consultID) throws Exception{
+		String sql = "delete from CONSULT where CONSULTID=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, consultID);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;

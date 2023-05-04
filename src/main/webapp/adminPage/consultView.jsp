@@ -58,6 +58,22 @@ crossorigin="anonymous"></script>
                     margin-right: auto;
                     box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
                 }
+                
+                #btn_delete
+                {
+                	width: 100px;
+                    height: 40px;
+                    background-color: #57b846;
+                    border: #57b846;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    color: white;
+                    margin-top: 50px;
+                    font-size: 14px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
+                }
 
                 .ck-editor__editable_inline {
                     min-height: 500px;
@@ -142,7 +158,13 @@ crossorigin="anonymous"></script>
                                     <div id="readEditor2">${replyDTO.body}</div>
                                 </div>
                             </div>
-
+                            <c:if test="${sessionScope.loginIsAdmin || dto.userNo == sessionScope.userno}">
+			                	<div class="col-12 text-center">
+			                        <a href="/delete.consult?consultID=${dto.consultID}">
+			                        	<button type="button" id="btn_delete">삭제</button>
+			                        </a>
+			                    </div>
+			                </c:if>
     
 
                                  
@@ -158,14 +180,27 @@ crossorigin="anonymous"></script>
                                             })
                                             .catch(error => { console.error(error) });
                                     </script>
+
                             </c:when>
                             <c:otherwise>
-                                <c:if test="${sessionScope.loginIsAdmin}">
-                                    <div class="col-12 text-center">
-                                        <a href="/replyForm.consult?consultID=${dto.consultID}">
-                                            <button type="button" id="btn_reply">답글달기</button></a>
-                                    </div>
-                                </c:if>
+                            	<c:choose>
+	                                <c:when test="${sessionScope.loginIsAdmin}">
+	                                    <div class="col-12 text-center">
+	                                        <a href="/replyForm.consult?consultID=${dto.consultID}">
+	                                            <button type="button" id="btn_reply">답글달기</button></a>
+	                                        <a href="/delete.consult?consultID=${dto.consultID}">
+	                        					<button type="button" id="btn_delete">삭제</button>
+	                        				</a>		
+	                                    </div>
+	                                </c:when>
+                                	<c:otherwise>
+                                		<div class="col-12 text-center">
+	                                        <a href="/delete.consult?consultID=${dto.consultID}">
+	                        					<button type="button" id="btn_delete">삭제</button>
+	                        				</a>		
+	                                    </div>
+                                	</c:otherwise>
+                                </c:choose>
                             </c:otherwise>
                         </c:choose>
 

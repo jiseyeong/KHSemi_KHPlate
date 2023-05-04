@@ -57,6 +57,17 @@ public class ConsultReplyDAO {
 		}
 	}
 	
+	public int deleteByConsultID(int consultID) throws Exception{
+		String sql = "delete from CONSULTREPLY where CONSULTID=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, consultID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
 	private ArrayList<ConsultReplyDTO> transAllRsToList(ResultSet rs) throws Exception{
 		ArrayList<ConsultReplyDTO> result = new ArrayList<>();
 		while(rs.next()) {

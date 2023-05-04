@@ -74,9 +74,19 @@ public class ConsultController extends HttpServlet {
 				}
 				int start = currentPage * Settings.CONSULT_RECORD_COUNT_PER_PAGE - (Settings.CONSULT_NAVI_COUNT_PER_PAGE-1);
 				int end = currentPage * Settings.CONSULT_RECORD_COUNT_PER_PAGE;
-				ArrayList<ConsultDTO> list = ConsultDAO.getInstance().selectBound(start, end);
-				NaviDTO navi = ConsultDAO.getInstance().getNavi(currentPage);
+				ArrayList<ConsultDTO> list = null;
+				NaviDTO navi = null;
 				ArrayList<String> writerList = new ArrayList<>();
+				if((boolean)request.getSession().getAttribute("loginIsAdmin")) {
+					list = ConsultDAO.getInstance().selectBound(start, end);
+					navi = ConsultDAO.getInstance().getNavi(currentPage);
+				}else {
+					int userNo = (int)request.getSession().getAttribute("userno");
+					list = ConsultDAO.getInstance().selectBoundByUserNo(start, end, userNo);
+					navi = ConsultDAO.getInstance().getNaviByUserNo(currentPage, userNo);
+				}
+				
+				
 				for(ConsultDTO i : list) {
 					writerList.add(MembersDAO.getInstance().getIDByNo(i.getUserNO()));
 				}
@@ -152,6 +162,13 @@ public class ConsultController extends HttpServlet {
 				resp.addProperty("myConsultNavi", myConsultNavi);
 
 				response.getWriter().append(resp.toString());
+			}else if(cmd.equals("/delete.consult")) {
+				int consultID = Integer.parseInt(request.getParameter("consultID"));
+				
+				int result = ConsultDAO.getInstance().delete(consultID);
+				int replyResult = ConsultReplyDAO.getInstance().deleteByConsultID(consultID);
+				
+				response.sendRedirect("/list.consult");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
