@@ -8,15 +8,13 @@ public class MembersDTO {
 	private String nickname;
 	private String name;
 	private String email;
-	private String phone;
 	private String classes;
 	private String selfcomment;
 	private String favoriteFood;
 	private String isAdmin;
 	private String kakao;
 	private String naver;
-	private String google;
-
+	
 	public MembersDTO() {
 		super();
 	}
@@ -32,23 +30,22 @@ public class MembersDTO {
 		this.favoriteFood = favoriteFood;
 	}
 	
-	public MembersDTO(String userID, String pw, String nickname,String name, String email, String phone,
-			String classes, String selfcomment, String favoriteFood) {//���������� ����� �� �� dto �����ε�
+	public MembersDTO(String userID, String pw, String nickname,String name, String email,
+			String classes, String selfcomment, String favoriteFood) {//회원가입할때 받을 DTO
 
 		this.userID = userID;
 		this.pw = pw;
 		this.nickname = nickname;
 		this.name = name;
 		this.email = email;
-		this.phone = phone;
 		this.classes = classes;
 		this.selfcomment = selfcomment;
 		this.favoriteFood = favoriteFood;
 
 
 	}
-	public MembersDTO(int userNO, String userID, String pw, String nickname, String name, String email, String phone,
-			String classes, String selfcomment, String favoriteFood, String isAdmin, String kakao, String naver, String google) {
+	public MembersDTO(int userNO, String userID, String pw, String nickname, String name, String email,
+			String classes, String selfcomment, String favoriteFood, String isAdmin, String kakao, String naver) {
 		super();
 		this.userNO = userNO;
 		this.userID = userID;
@@ -56,14 +53,12 @@ public class MembersDTO {
 		this.nickname = nickname;
 		this.name = name;
 		this.email = email;
-		this.phone = phone;
 		this.classes = classes;
 		this.selfcomment = selfcomment;
 		this.favoriteFood = favoriteFood;
 		this.isAdmin = isAdmin;
 		this.kakao = kakao;
 		this.naver = naver;
-		this.google = google;
 	}
 
 	public int getUserNO() {
@@ -114,14 +109,6 @@ public class MembersDTO {
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
 	public String getClasses() {
 		return classes;
 	}
@@ -170,17 +157,4 @@ public class MembersDTO {
 	public void setNaver(String naver) {
 		this.naver = naver;
 	}
-
-	public String getGoogle() {
-		return google;
-	}
-
-	public void setGoogle(String google) {
-		this.google = google;
-	}
-
-
-
-
-
 }

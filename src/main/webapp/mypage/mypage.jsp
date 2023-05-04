@@ -336,7 +336,7 @@ button:hover {
 	text-align: center;
 	margin: 20px auto 0 auto;
 	padding: 10px 0px 10px;
-	background-color: rgba(255, 255, 255, 0.9);
+	background-color: rgb(240, 240, 240);
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
@@ -464,7 +464,6 @@ td {
 						<div id="mypw2">비밀번호 확인</div>
 						<div id="myname">이름</div>
 						<div id="mynickname">닉네임</div>
-						<div id="myphone">핸드폰번호</div>
 						<div id="myemail">email</div>
 						<div id="myclass">클래스명</div>
 						<div id="myself">한줄소개</div>
@@ -480,9 +479,7 @@ td {
 							id="pwConfirm"><br> <input type="text"
 							value="${my.name}" class="inputcss" readonly><br> <input
 							type="text" value="${my.nickname}" class="inputcss" id="nickname"
-							name="nickname" readonly><br> <input type="text"
-							value="${my.phone}" class="inputcss" id="phone" name="phone"
-							readonly><br> <input type="text" value="${my.email}"
+							name="nickname" readonly><br><input type="text" value="${my.email}"
 							class="inputcss" id="email" name="email" readonly><br>
 						<input type="text" value="${my.classes}" class="inputcss" readonly><br>
 						<input type="text" value="${my.selfcomment}" class="inputcss"

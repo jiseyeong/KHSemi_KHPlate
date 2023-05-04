@@ -266,10 +266,7 @@ public class MembersController extends HttpServlet {
 				int result=dao.updatepw(pw2,userid);
 				request.setAttribute("result", result);
 				request.getRequestDispatcher("/memberSearch/idpwsearch.jsp").forward(request, response);
-				
-				
 			}
-			
 			//
 			
 		}catch(Exception e) {
