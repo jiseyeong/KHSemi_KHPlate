@@ -117,7 +117,7 @@ hr {
 }
 
 .inner_cover_layout {
-	width: 33%;
+/* 	width: 33%; */
 	height: 250px;
 	display: flex;
 	justify-content: center;
@@ -701,7 +701,7 @@ hr {
 										<c:when test="${i<count}">
 											<!-- 3번까지 inner 출력 -->
 											<c:forEach var="j" begin="1" end="3" step="1">
-												<div class="col-6 col-lg-12 inner_cover_layout">
+												<div class="col-6 col-lg-4 inner_cover_layout">
 													<div class="inner_layout">
 														<div class="img_layout">
 															<img id="img${index}" src="/common/restaurant_img1.jpg"
