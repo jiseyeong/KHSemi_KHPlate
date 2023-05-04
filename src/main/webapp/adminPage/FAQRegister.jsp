@@ -68,7 +68,7 @@
 	height: 40px;
 	background-color: #57b846;
 	border:  #57b846;
-	border-radius: 12px;
+	border-radius: 3px;
 	cursor: pointer;
 	color: white;
 	margin-top: 50px;

@@ -93,7 +93,7 @@ a:link {text-decoration: none;}
          <a href="/select.fullreview"><li>리뷰 게시판</li></a>
       </ul>
       <ul class="nanum-gothic ulTag">
-         <li class="firstLi">고객센터</li>
+         <li class="firstLi">Customer Service</li>
          <a href="/list.consult"><li>1:1 문의</li></a>
          <a href="/view.faq"><li>FAQ 리스트</li></a>
       </ul>
