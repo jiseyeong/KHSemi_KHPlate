@@ -34,27 +34,6 @@ public class MembersController extends HttpServlet {
 
 		try {
 			MembersDAO dao = MembersDAO.getInstance();
-//			if(cmd.equals("/join.members")) { //ȸ������
-//				System.out.println("회원가입 시도 확인");
-//				String id = request.getParameter("id");
-//				String pw = request.getParameter("pw");
-//				String sha512pw = SecurityUtils.sha512(pw);
-//				String name = request.getParameter("name");
-//				String email = request.getParameter("email");
-//				String classes = request.getParameter("classes");
-//
-//				System.out.println(pw);
-//
-//				int result = dao.join(id,pw,name,email,classes);
-//
-//				if(result>0) {
-//					System.out.println(id +" 회원가입 완료");
-//					response.sendRedirect("/index.jsp");
-//				}else {
-//					System.out.println(id +" 회원가입 실패");
-//				}
-//			}
-			
 			
 				// 가입 확인 후 이메일 인증 절차로 보내는 controller
 			if(cmd.equals("/join.members")) {
@@ -181,7 +160,7 @@ public class MembersController extends HttpServlet {
 					return;
 					
 				}else {
-					int result = dao.delete(userId,userPw);
+					int result = dao.memberout(userId,userPw);
 					if(result>0) {
 						request.getSession().removeAttribute("userId");
 						request.getSession().removeAttribute("userno");
@@ -191,12 +170,17 @@ public class MembersController extends HttpServlet {
 				}
 
 			}else if(cmd.equals("/mypage.members")) { 
-				String userId = (String)request.getSession().getAttribute("loginID");
-				MembersDTO my = MembersDAO.getInstance().selectById(userId);
-
+				int userno = 0;
+				// 다른 사람의 유저 정보로 접근 할 때,
+				if(request.getParameter("userno")!=null) {
+					userno = Integer.parseInt(request.getParameter("userno"));
+				// 마이 페이지로 접근 할 때,
+				}else {
+					userno = (int)request.getSession().getAttribute("userno");
+				}
+				MembersDTO my = MembersDAO.getInstance().selectById(userno);
 				request.setAttribute("my",my);
-				request.getRequestDispatcher("/mypage/mypage.jsp").forward(request, response);
-
+				request.getRequestDispatcher("/mypage/myPageVer2.jsp").forward(request, response);
 				
 				// 로그인 기능 AJAX
 			}else if(cmd.equals("/login.members")) {

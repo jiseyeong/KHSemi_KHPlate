@@ -37,7 +37,7 @@ public class MembersDAO {
 	}
 
 	public String getIDByNo(int userNo) throws Exception {
-		String sql = "select userID from MEMBERS where USERNO = ?";
+		String sql = "select userID from MEMBERS where USERNO = ? and ismemberout = 'f'";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setInt(1, userNo);
 			try (ResultSet rs = pstat.executeQuery();) {
@@ -48,7 +48,7 @@ public class MembersDAO {
 	}
 	
 	public boolean getIsAdminByNo(int userNo) throws Exception{
-		String sql = "select ISADMIN from MEMBERS where USERNO = ?";
+		String sql = "select ISADMIN from MEMBERS where USERNO = ? and ismemberout = 'f'";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, userNo);
@@ -62,59 +62,60 @@ public class MembersDAO {
 		}
 	}
 
+//	미사용 코드
+//	public int insert(MembersDTO dto) throws Exception { //회원가입
+//
+//		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,default,?,?);";
+//		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+//
+//			pstat.setString(1, dto.getUserID());
+//			pstat.setString(2, dto.getPw());
+//			pstat.setString(3, dto.getNickname());
+//			pstat.setString(4, dto.getName());
+//			pstat.setString(5, dto.getEmail());
+//			pstat.setString(6, dto.getClasses());
+//			pstat.setString(7, dto.getSelfcomment());
+//			pstat.setString(8, dto.getFavoriteFood());
+//			pstat.setString(9, dto.getKakao());
+//			pstat.setString(10, dto.getNaver());
+//
+//			int result = pstat.executeUpdate();
+//
+//			con.commit();
+//
+//			return result;
+//		}
+//
+//	}
+	
+	public MembersDTO selectById(int userno) throws Exception { //마이페이지 출력
 
-	public int insert(MembersDTO dto) throws Exception { //회원가입
+		String sql = "select * from members where userno=? and ismemberout = 'f'";
 
-		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,default,?,?);";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
-			pstat.setString(1, dto.getUserID());
-			pstat.setString(2, dto.getPw());
-			pstat.setString(3, dto.getNickname());
-			pstat.setString(4, dto.getName());
-			pstat.setString(5, dto.getEmail());
-			pstat.setString(6, dto.getClasses());
-			pstat.setString(7, dto.getSelfcomment());
-			pstat.setString(8, dto.getFavoriteFood());
-			pstat.setString(9, dto.getKakao());
-			pstat.setString(10, dto.getNaver());
+			pstat.setInt(1, userno);
 
-			int result = pstat.executeUpdate();
-
-			con.commit();
-
-			return result;
-		}
-
-	}
-	public MembersDTO selectById(String userID) throws Exception { //마이페이지 출력
-
-
-		String sql = "select * from members where userid=?";
-
-		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-
-			pstat.setString(1, userID);
-
-			ResultSet rs = pstat.executeQuery();
-			rs.next();
-			String userID2 = rs.getString("userid");
-			String pw = rs.getString("pw");
-			String nickname = rs.getString("nickname");
-			String name = rs.getString("name");
-			String email = rs.getString("email");
-			String classes = rs.getString("classes");
-			String selfcomment = rs.getString("selfcomment");
-			String favoritefood = rs.getString("favoritefood");
-
-			MembersDTO result = new MembersDTO(userID2, pw, nickname, name, email,classes, selfcomment,favoritefood);
-
-			return result;
+			try(ResultSet rs = pstat.executeQuery();){
+				rs.next();
+				String userID = rs.getString("userid");
+				String pw = rs.getString("pw");
+				String nickname = rs.getString("nickname");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				String classes = rs.getString("classes");
+				String selfcomment = rs.getString("selfcomment");
+				String favoritefood = rs.getString("favoritefood");
+				
+				MembersDTO result = new MembersDTO(userID, pw, nickname, name, email,classes, selfcomment,favoritefood);
+				
+				return result;
+			}
 		}
 	}
 	public int update(MembersDTO dto) throws Exception { //회원 수정
 
-		String sql = "update members set pw=?, nickname=?, email=?, selfcomment=?, favoritefood=?, where userid=?";
+		String sql = "update members set pw=?, nickname=?, email=?, selfcomment=?, favoritefood=?, where userid=? and ismemberout = 'f'";
 
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
@@ -133,9 +134,9 @@ public class MembersDAO {
 		}
 	}
 
-	public int delete(String userId, String pw) throws Exception { //회원 탈퇴
+	public int memberout(String userId, String pw) throws Exception { //회원 탈퇴
 
-		String sql = "delete from members where userid=? and pw=?";
+		String sql = "update members set ismemberout = 't' where userid=? and pw=?";
 
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
@@ -147,23 +148,6 @@ public class MembersDAO {
 			con.commit();
 
 			return result;
-		}
-	}
-
-	public boolean idPwOk(String userId, String pw) throws Exception { //로그인 
-
-		String sql = "select * from members where userid=? and pw=?";
-
-		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-
-			pstat.setString(1, userId);
-			pstat.setString(2, pw);
-
-			ResultSet rs = pstat.executeQuery();
-
-			con.commit();
-
-			return rs.next();
 		}
 	}
 
@@ -186,7 +170,7 @@ public class MembersDAO {
 	// 아이디 검사
 	// 일치하지 않을 경우 ID가 틀렸다고 사용자에게 표시
 	public boolean isIdExist(String id) throws Exception {
-		String sql = "select userid from members where userid = ?";
+		String sql = "select userid from members where userid = ? and ismemberout = 'f'";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
 			ppst.setString(1, id);
 			try (ResultSet rs = ppst.executeQuery()) {
@@ -199,7 +183,7 @@ public class MembersDAO {
 	// 비밀번호 검사 후 로그인 적용
 	// 일치하지 않을 경우 PW가 틀렸다고 사용자에게 표시
 	public boolean isPwExist(String id, String pw) throws Exception {
-		String sql = "select userid from members where userid = ? and pw = ?";
+		String sql = "select userid from members where userid = ? and pw = ? and ismemberout = 'f'";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
 			ppst.setString(1, id);
 			ppst.setString(2, pw);
@@ -211,7 +195,7 @@ public class MembersDAO {
 
 	// 이메일 인증 확인
 	public boolean emailVerify(String id) throws Exception {
-		String sql = "select * from members where userid = ? and userEmailChecked = 't'";
+		String sql = "select * from members where userid = ? and userEmailChecked = 't' and ismemberout = 'f'";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
 			ppst.setString(1, id);
 			try (ResultSet rs = ppst.executeQuery()) {
@@ -222,7 +206,7 @@ public class MembersDAO {
 
 
 	public int getUserno(String id) throws Exception {
-		String sql = "select userno from members where userid = ?";
+		String sql = "select userno from members where userid = ? and ismemberout = 'f'";
 		try (Connection con = this.getConnection(); PreparedStatement ppst = con.prepareStatement(sql);) {
 			ppst.setString(1, id);
 			try (ResultSet rs = ppst.executeQuery()) {
@@ -236,7 +220,7 @@ public class MembersDAO {
 	// 이메일 인증 부분입니다.
 	// 이메일 인증 시 해당 유저가 있는 지 검사
 	public String getUserEmailVerified(String code) throws Exception{
-		String sql = "select * from members";
+		String sql = "select * from members where ismemberout = 'f'";
 		try
 		(Connection con = this.getConnection();
 				PreparedStatement pstat= con.prepareStatement(sql);
