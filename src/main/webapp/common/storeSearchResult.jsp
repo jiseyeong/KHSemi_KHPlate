@@ -122,6 +122,7 @@ hr {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom:30px;
 }
 
 .inner_layout {
@@ -673,184 +674,81 @@ hr {
 						</div>
 					</form>
 
-
 					<c:choose>
 						<c:when test="${search_store_list!=null}">
-							<!-- Outer_layout의 개수 -->
-							<!-- 검색 결과가 3으로 나누어 떨어지면 count=리스트 수 / 3 -->
-							<!-- 그렇지 않으면 count=리스트 수 / 3 + 1-->
-							<c:set var="count" value="${search_store_list.size() / 3}" />
-
-							<!-- count 값이 0일 때 예외 처리 -->
-							<c:if test="${count == 0}">
-								<c:set var="count" value="1" />
-							</c:if>
-
-							<!-- 올림 처리 -->
-							<c:set var="count" value="${count + (1 - (count % 1)) % 1}" />
-
-							<!-- list의 index를 나타낼 index-->
-							<c:set var="index" value="0" />
-							<!-- 남은 inner_list의 갯수를 처리할 list_count -->
-							<c:set var="list_count" value="${search_store_list.size()}" />
-
-							<!-- 리스트 크기/3 한 만큼 outer 출력 -->
-							<c:forEach var="i" begin="1" end="${count}" step="1">
-								<div class="row" class="outer_layout">
-									<c:choose>
-										<c:when test="${i<count}">
-											<!-- 3번까지 inner 출력 -->
-											<c:forEach var="j" begin="1" end="3" step="1">
-												<div class="col-6 col-lg-4 inner_cover_layout">
-													<div class="inner_layout">
-														<div class="img_layout">
-															<img id="img${index}" src="/common/restaurant_img1.jpg"
-																class="restaurant_img">
-															<div class="restaurant_addFavorite">
-																<input type="text" name="addFavorite_storeID"
-																	value="${search_store_list.get(index).storeID}"
-																	style="display: none;"> <input type="text"
-																	name="addFavorite_userno" value="${userno}"
-																	style="display: none;">
-
-																<!-- 즐겨찾기 여부 체크 -->
-																<c:set var="favoriteCheck" value="false" />
-																<c:forEach var="favorite" items="${Favorite_list}"
-																	varStatus="status">
-																	<c:if
-																		test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
-																		<button class="addFavorite_btn istrue">
-																			<i class="fa-regular fa-heart"></i>
-																		</button>
-																		<c:set var="favoriteCheck" value="true" />
-																	</c:if>
-																</c:forEach>
-																<c:if test="${favoriteCheck==false}">
-																	<button class="addFavorite_btn isfalse">
-																		<i class="fa-regular fa-heart"></i>
-																	</button>
-																</c:if>
-
-															</div>
-														</div>
-														<div class="info_layout">
-															<div class="info_title_layout" style="padding-left: 10px">
-																<div class="info_title">${search_store_list.get(index).name}</div>
-																<div class="info_score">
-																	<ul class="stars">
-																		<c:forEach var="scoreCount" begin="0" end="4" step="1">
-																			<c:choose>
-																				<c:when
-																					test="${search_store_list.get(index).avgScore>=(scoreCount+0.5)}">
-																					<i class="stars__icon fas fa-star js-clear js-fill"></i>
-																				</c:when>
-																				<c:otherwise>
-																					<i class="stars__icon fas fa-star js-clear"></i>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																	</ul>
-																</div>
-															</div>
-															<div class="info_address" style="padding-left: 10px">
-																${search_store_list.get(index).address}</div>
-														</div>
+							<div class="row outer_layout">
+								<c:forEach var="i" items="${search_store_list}" varStatus="status">
+									<div class="col-12 col-md-6 col-xl-4 inner_cover_layout">
+										<div class="inner_layout">
+											<div class="img_layout">
+												<img id="img${status.index}" src="/common/restaurant_img1.jpg" class="restaurant_img">
+												<div class="restaurant_addFavorite">
+													<input type="text" name="addFavorite_storeID"
+														value="${i.storeID}"
+														style="display: none;"> <input type="text"
+														name="addFavorite_userno" value="${sessionScope.userno}"
+														style="display: none;">
+			
+													<!-- 즐겨찾기 여부 체크 -->
+													<c:set var="favoriteCheck" value="false" />
+													<c:forEach var="favorite" items="${Favorite_list}"
+														varStatus="status">
+														<c:if
+															test="${favorite.getStoreID() == i.storeID}">
+															<button class="addFavorite_btn istrue">
+																<i class="fa-regular fa-heart"></i>
+															</button>
+															<c:set var="favoriteCheck" value="true" />
+														</c:if>
+													</c:forEach>
+													<c:if test="${favoriteCheck==false}">
+														<button class="addFavorite_btn isfalse">
+															<i class="fa-regular fa-heart"></i>
+														</button>
+													</c:if>
+												</div>
+											</div>
+											<div class="info_layout">
+												<div class="info_title_layout" style="padding-left: 10px">
+													<div class="info_title">${i.name}</div>
+													<div class="info_score">
+														<ul class="stars">
+															<c:forEach var="scoreCount" begin="0" end="4" step="1">
+																<c:choose>
+																	<c:when
+																		test="${i.avgScore>=(scoreCount+0.5)}">
+																		<i class="stars__icon fas fa-star js-clear js-fill"></i>
+																	</c:when>
+																	<c:otherwise>
+																		<i class="stars__icon fas fa-star js-clear"></i>
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach>
+														</ul>
 													</div>
 												</div>
-												<script>
-													$.ajax({
-														url:"/getMainPhoto.store",
-														type:"get",
-														data:{
-															storeID: "${search_store_list.get(index).storeID}"
-														},
-														dataType:"json"
-													}).done(function(resp){
-														if(resp.imageID == -1){
-															$("#img"+"${index}").attr("src", "/common/restaurant_img1.jpg" )
-														}else{
-															$("#img"+"${index}").attr("src", "/store/"+resp.sysName);
-														}
-													});
-													
-												</script>
-												<c:set var="list_count" value="${list_count-1}" />
-												<c:set var="index" value="${index+1}" />
-											</c:forEach>
-										</c:when>
-										<c:otherwise>
-											<!-- i가 마지막 순번 일 때, 남은 list_count까지 출력 -->
-											<c:forEach var="k" begin="1" end="${list_count}" step="1">
-												<div class="inner_cover_layout">
-													<div class="inner_layout">
-														<div class="img_layout">
-															<img src="/common/restaurant_img1.jpg"
-																class="restaurant_img">
-															<div class="restaurant_addFavorite">
-																<input type="text" name="addFavorite_storeID"
-																	value="${search_store_list.get(index).storeID}"
-																	style="display: none;"> <input type="text"
-																	name="addFavorite_userno" value="${userno}"
-																	style="display: none;">
-
-																<c:set var="favoriteCheck" value="false" />
-																<c:forEach var="favorite" items="${Favorite_list}" varStatus="status">
-																	<c:if test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
-																		<button class="addFavorite_btn istrue">
-																			<i class="fa-regular fa-heart"></i>
-																		</button>
-																		<c:set var="favoriteCheck" value="true" />
-																	</c:if>
-																</c:forEach>
-																<c:if test="${favoriteCheck==false}">
-																	<button class="addFavorite_btn isfalse">
-																		<i class="fa-regular fa-heart"></i>
-																	</button>
-																</c:if>
-
-															</div>
-														</div>
-														<div class="info_layout">
-															<div class="info_title_layout" style="padding-left: 10px">
-																<div class="info_title">${search_store_list.get(index).name}</div>
-																<div class="info_score">
-																	<ul class="stars">
-																		<c:forEach var="scoreCount" begin="0" end="4" step="1">
-																			<c:choose>
-																				<c:when
-																					test="${search_store_list.get(index).avgScore>=(scoreCount+0.5)}">
-																					<i class="stars__icon fas fa-star js-clear js-fill"></i>
-																				</c:when>
-																				<c:otherwise>
-																					<i class="stars__icon fas fa-star js-clear"></i>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-																	</ul>
-																</div>
-															</div>
-															<div class="info_address" style="padding-left: 10px">
-																${search_store_list.get(index).address}</div>
-														</div>
-													</div>
-												</div>
-												<c:set var="index" value="${index+1}" />
-											</c:forEach>
-										</c:otherwise>
-									</c:choose>
-								</div>
-							</c:forEach>
+												<div class="info_address" style="padding-left: 10px">${i.address}</div>
+											</div>
+										</div>
+									</div>
+									<script>
+										$.ajax({
+											url:"/getMainPhoto.store",
+											type:"get",
+											data:{
+												storeID: "${i.storeID}"
+											},
+											dataType:"json"
+										}).done(function(resp){
+											if(resp.imageID == -1){
+												$("#img"+"${status.index}").attr("src", "/common/restaurant_img1.jpg" )
+											}else{
+												$("#img"+"${status.index}").attr("src", "/store/"+resp.sysName);
+											}
+										});
+									</script>
+								</c:forEach>
+							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="search_none_layout">표시할 내용이 없습니다.</div>
