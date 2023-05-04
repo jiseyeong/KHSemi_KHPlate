@@ -169,6 +169,15 @@ public class StoreController extends HttpServlet {
 
 				int result = StoreDAO.getInstance().update(new StoreDTO(storeID, mapDistance, name, mapLat, mapLng, address, 0, introduction, category, 0, priceRange));
 
+//				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
+//				for(int i = 0; i < imgLength; i++) {
+//					String oriName = multi.getOriginalFileName("image"+i);
+//					System.out.println(oriName);
+//					String sysName = multi.getFilesystemName("image"+i);
+//					System.out.println(sysName);
+//					PhotoDAO.getInstance().insertByStoreID(oriName, sysName, storeID);
+//				}
+				
 				Enumeration<String> names = multi.getFileNames();
 				while(names.hasMoreElements()) {
 					String fileName = names.nextElement();
