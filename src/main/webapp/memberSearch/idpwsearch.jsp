@@ -28,7 +28,8 @@
 
 <style>
 @import
-	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
 
 body {
 	font-family: 'Nanum Gothic', sans-serif;
@@ -71,7 +72,7 @@ h6 span {
 	color: #ffffff;
 	padding: 0 20px;
 	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: bolder;
 }
 
 .section {
@@ -203,7 +204,7 @@ h6 span {
 	line-height: 22px;
 	letter-spacing: 0.5px;
 	outline: none;
-	color: #c4c3ca;
+	color: #73717f;
 	background-color: #f2f2f2;
 	border: none;
 	-webkit-transition: all 200ms linear;
@@ -217,18 +218,6 @@ h6 span {
 	box-shadow: 0 4px 8px 0 rgba(21, 21, 21, .2);
 }
 
-.input-icon {
-	position: absolute;
-	top: 0;
-	left: 18px;
-	height: 48px;
-	font-size: 24px;
-	line-height: 48px;
-	text-align: left;
-	color: #ffeba7;
-	-webkit-transition: all 200ms linear;
-	transition: all 200ms linear;
-}
 
 .form-group input:-ms-input-placeholder {
 	color: #c4c3ca;
@@ -322,6 +311,40 @@ h6 span {
 	color: #ffffff;
 	box-shadow: 0 8px 24px 0 rgba(16, 39, 112, .2);
 }
+
+#bi-person {
+color: #73717f;
+		position: absolute;
+	margin-left: 20px;
+	margin-top: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#bi-envelope {
+color: #73717f;
+		position: absolute;
+	margin-left: 20px;
+	margin-top: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+#bi-at {
+color: #73717f;
+		position: absolute;
+	margin-left: 20px;
+	margin-top: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
 </style>
 
 
@@ -356,26 +379,21 @@ h6 span {
 
 												<!-- 아이디 찾기 -->
 												<div class="form-group">
+													<svg xmlns="http://www.w3.org/2000/svg" width="20"
+														height="20" fill="currentColor" id="bi-person"
+														viewBox="0 0 16 16">
+  <path
+															d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+</svg>
 													<input type="text" name="name" class="form-style" id="name"
 														placeholder="이름 입력" autocomplete="off">
 												</div>
 
-												<div class="form-group mt-2">
-													<div class="searchClass">
-														<select id="class" name="classes">
-															<option disabled="disabled" selected="selected">Class</option>
-															<option value="A" selected>A</option>
-															<option value="B">B</option>
-															<option value="C">C</option>
-															<option value="D">D</option>
-															<option value="E">E</option>
-															<option value="F">F</option>
-														</select>
-														<div class="select-dropdown"></div>
-													</div>
-												</div>
 
 												<div class="form-group mt-2">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" id="bi-envelope" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+</svg>
 													<input type="text" id="email" name="email"
 														class="form-style" placeholder="이메일 입력" autocomplete="off">
 												</div>
@@ -395,14 +413,30 @@ h6 span {
 											<div class="section text-center">
 												<h4 class="mb-4 pb-3">비밀번호 찾기</h4>
 												<div class="form-group">
+													<svg xmlns="http://www.w3.org/2000/svg" width="20"
+														height="20" fill="currentColor" id="bi-person"
+														viewBox="0 0 16 16">
+  <path
+															d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+</svg>
 													<input type="text" name="pwname" class="form-style"
 														id="pwname" placeholder="이름 입력" autocomplete="off">
 												</div>
 												<div class="form-group mt-2">
+													<svg xmlns="http://www.w3.org/2000/svg" width="20"
+														height="20" fill="currentColor" id="bi-at"
+														viewBox="0 0 16 16">
+  <path
+															d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z" />
+</svg>
 													<input type="text" id="pwid" name="pwid" class="form-style"
 														placeholder="아이디 입력" autocomplete="off">
 												</div>
 												<div class="form-group mt-2">
+														<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" id="bi-envelope" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+</svg>
+							
 													<input type="text" id="pwemail" name="pwemail"
 														class="form-style" placeholder="이메일 입력" autocomplete="off">
 												</div>
@@ -525,107 +559,107 @@ h6 span {
 	</script>
 </body>
 </html>
-	<!-- 		//         $("#frm").on( -->
-	<!-- 		//             "submit", -->
-	<!-- 		//             function () { -->
+<!-- 		//         $("#frm").on( -->
+<!-- 		//             "submit", -->
+<!-- 		//             function () { -->
 
-	<!-- 		//                 //입력 형식 제한 -->
-	<!-- 		//                 var regexName = /^[가-힣]+$/; -->
-	<!-- 		//                 var regexEmail = /.+@.+\..+/; -->
+<!-- 		//                 //입력 형식 제한 -->
+<!-- 		//                 var regexName = /^[가-힣]+$/; -->
+<!-- 		//                 var regexEmail = /.+@.+\..+/; -->
 
-	<!-- 		//                 var name = $("#name").val(); -->
-	<!-- 		//                 var email = $("#email").val(); -->
+<!-- 		//                 var name = $("#name").val(); -->
+<!-- 		//                 var email = $("#email").val(); -->
 
-	<!-- 		//                 if (name == "" || email == ""  ) { //필수항목 입력 여부 체크 -->
-	<!-- 		//                     Swal.fire({ -->
-	<!-- 		//                         icon: "error", -->
-	<!-- 		//                         title: "Oops...", -->
-	<!-- 		//                         text: "필수 항목을 모두 입력해주세요." -->
-	<!-- 		//                     }); -->
-	<!-- 		//                     return false; -->
-	<!-- 		//                 } -->
+<!-- 		//                 if (name == "" || email == ""  ) { //필수항목 입력 여부 체크 -->
+<!-- 		//                     Swal.fire({ -->
+<!-- 		//                         icon: "error", -->
+<!-- 		//                         title: "Oops...", -->
+<!-- 		//                         text: "필수 항목을 모두 입력해주세요." -->
+<!-- 		//                     }); -->
+<!-- 		//                     return false; -->
+<!-- 		//                 } -->
 
-	<!-- 		//                 //형식 제한 준수 여부 체크 -->
+<!-- 		//                 //형식 제한 준수 여부 체크 -->
 
-	<!-- 		//                 if (!regexName.test(name)) { -->
-	<!-- 		//                     Swal.fire({ -->
-	<!-- 		//                         icon: "error", -->
-	<!-- 		//                         title: "NAME 형식 오류", -->
-	<!-- 		//                         text: "한글만 입력 가능" -->
-	<!-- 		//                     }); -->
-	<!-- 		//                     return false; -->
-	<!-- 		//                 } -->
+<!-- 		//                 if (!regexName.test(name)) { -->
+<!-- 		//                     Swal.fire({ -->
+<!-- 		//                         icon: "error", -->
+<!-- 		//                         title: "NAME 형식 오류", -->
+<!-- 		//                         text: "한글만 입력 가능" -->
+<!-- 		//                     }); -->
+<!-- 		//                     return false; -->
+<!-- 		//                 } -->
 
-	<!-- 		//                 if (!regexEmail.test(email)) { -->
-	<!-- 		//                     Swal.fire({ -->
-	<!-- 		//                         icon: "error", -->
-	<!-- 		//                         title: "EMAIL 형식 오류", -->
-	<!-- 		//                         text: "ID@address 형식으로 입력" -->
-	<!-- 		//                     }); -->
-	<!-- 		//                     return false; -->
-	<!-- 		//                 } -->
-	<!-- 		//             }); -->
-
-
+<!-- 		//                 if (!regexEmail.test(email)) { -->
+<!-- 		//                     Swal.fire({ -->
+<!-- 		//                         icon: "error", -->
+<!-- 		//                         title: "EMAIL 형식 오류", -->
+<!-- 		//                         text: "ID@address 형식으로 입력" -->
+<!-- 		//                     }); -->
+<!-- 		//                     return false; -->
+<!-- 		//                 } -->
+<!-- 		//             }); -->
 
 
 
 
 
 
-	<!-- // <script>	$("#frm").on( -->
-	<!-- // 		"submit", -->
-	<!-- // 		function () { -->
-	<!-- // 			//입력 형식 제한 -->
-	<!-- // 			var regexID = /^[a-z0-9_]{7,13}$/; -->
-	<!-- // 			var regexPW = /^[A-Za-z0-9]{7,13}$/; -->
-	<!-- // 			var regexName = /^[가-힣]+$/; -->
-	<!-- // 			var regexEmail = /.+@.+\..+/; -->
 
 
-	<!-- // 			var id = $("#id").val(); -->
-	<!-- // 			var pw1 = $("#pw1").val(); -->
-	<!-- // 			var name = $("#name").val(); -->
-	<!-- // 			var email = $("#email").val(); -->
+<!-- // <script>	$("#frm").on( -->
+<!-- // 		"submit", -->
+<!-- // 		function () { -->
+<!-- // 			//입력 형식 제한 -->
+<!-- // 			var regexID = /^[a-z0-9_]{7,13}$/; -->
+<!-- // 			var regexPW = /^[A-Za-z0-9]{7,13}$/; -->
+<!-- // 			var regexName = /^[가-힣]+$/; -->
+<!-- // 			var regexEmail = /.+@.+\..+/; -->
 
 
-
-	<!-- // 			if (id == "" || name == "" -->
-	<!-- // 				|| email == "") { //필수항목 입력 여부 체크 -->
-	<!-- // 				Swal.fire({ -->
-	<!-- // 					icon: "error", -->
-	<!-- // 					title: "Oops...", -->
-	<!-- // 					text: "필수 항목을 모두 입력해주세요." -->
-	<!-- // 				}); -->
-	<!-- // 				return false; -->
-	<!-- // 			} -->
+<!-- // 			var id = $("#id").val(); -->
+<!-- // 			var pw1 = $("#pw1").val(); -->
+<!-- // 			var name = $("#name").val(); -->
+<!-- // 			var email = $("#email").val(); -->
 
 
 
-	<!-- // 			//형식 제한 준수 여부 체크 -->
-	<!-- // 			if (!regexID.test(id)) { -->
-	<!-- // 				Swal.fire({ -->
-	<!-- // 					icon: "error", -->
-	<!-- // 					title: "ID 형식 오류", -->
-	<!-- // 					text: "7-13자의 알파벳 소문자, 숫자, _", -->
-	<!-- // 				}); -->
-	<!-- // 				return false; -->
-	<!-- // 			} -->
+<!-- // 			if (id == "" || name == "" -->
+<!-- // 				|| email == "") { //필수항목 입력 여부 체크 -->
+<!-- // 				Swal.fire({ -->
+<!-- // 					icon: "error", -->
+<!-- // 					title: "Oops...", -->
+<!-- // 					text: "필수 항목을 모두 입력해주세요." -->
+<!-- // 				}); -->
+<!-- // 				return false; -->
+<!-- // 			} -->
 
-	<!-- // 			if (!regexName.test(name)) { -->
-	<!-- // 				Swal.fire({ -->
-	<!-- // 					icon: "error", -->
-	<!-- // 					title: "NAME 형식 오류", -->
-	<!-- // 					text: "한글만 입력 가능", -->
-	<!-- // 				}); -->
-	<!-- // 				return false; -->
-	<!-- // 			} -->
-	<!-- // 			if (!regexEmail.test(email)) { -->
-	<!-- // 				Swal.fire({ -->
-	<!-- // 					icon: "error", -->
-	<!-- // 					title: "EMAIL 형식 오류", -->
-	<!-- // 					text: "ID@address 형식으로 입력", -->
-	<!-- // 				}); -->
-	<!-- // 				return false; -->
-	<!-- // 			} -->
-	<!-- // 		}); -->
+
+
+<!-- // 			//형식 제한 준수 여부 체크 -->
+<!-- // 			if (!regexID.test(id)) { -->
+<!-- // 				Swal.fire({ -->
+<!-- // 					icon: "error", -->
+<!-- // 					title: "ID 형식 오류", -->
+<!-- // 					text: "7-13자의 알파벳 소문자, 숫자, _", -->
+<!-- // 				}); -->
+<!-- // 				return false; -->
+<!-- // 			} -->
+
+<!-- // 			if (!regexName.test(name)) { -->
+<!-- // 				Swal.fire({ -->
+<!-- // 					icon: "error", -->
+<!-- // 					title: "NAME 형식 오류", -->
+<!-- // 					text: "한글만 입력 가능", -->
+<!-- // 				}); -->
+<!-- // 				return false; -->
+<!-- // 			} -->
+<!-- // 			if (!regexEmail.test(email)) { -->
+<!-- // 				Swal.fire({ -->
+<!-- // 					icon: "error", -->
+<!-- // 					title: "EMAIL 형식 오류", -->
+<!-- // 					text: "ID@address 형식으로 입력", -->
+<!-- // 				}); -->
+<!-- // 				return false; -->
+<!-- // 			} -->
+<!-- // 		}); -->

@@ -185,7 +185,7 @@ h6 {
    #BACKGROUND
    ========================================================================== */
 .bg-red {
-	background: #ED1C16;
+	background: #ED1C16; 
 }
 
 /* ==========================================================================
@@ -195,8 +195,8 @@ h6 {
 	padding-top: 100px;
 }
 
-.p-t-180 {
-	padding-top: 180px;
+.p-t-150 {
+	padding-top: 150px;
 }
 
 .p-t-20 {
@@ -448,7 +448,7 @@ font-size: 16px;
 .title {
 	text-transform: uppercase;
 	font-weight: 700;
-	margin-bottom: 35px;
+	margin-bottom: 45px;
 }
 
 /* ==========================================================================
@@ -483,7 +483,7 @@ font-size: 16px;
 
 .card-2 .card-body {
 	display: table-cell;
-	padding: 70px 80px;
+	padding: 80px 90px;
 	padding-bottom: 88px;
 }
 
@@ -517,6 +517,7 @@ font-size: 16px;
   cursor: pointer;
   line-height: 40px;
   padding: 0 25px;
+  margin-left: 220px;
 }
 
 #enter span {
@@ -527,34 +528,58 @@ font-size: 16px;
 }
 
 #enter span:after {
-  content: '\00bb';
+  content: '\0028''\0020''\02d8''\0075''\02D8''\0020''\0029';           
   position: absolute;
   opacity: 0;
   top: 0;
-  right: -20px;
+  right: -40px;
   transition: 0.5s;
 }
 
 #enter:hover {
-  padding-right: 25px;
+  padding-right: 30px;
   background: #4dae3c;
 }
 
 #enter:hover span {
-  padding-right: 25px;
-  background: #4dae3c;
+  padding-right: 20px;
+  background: #ED1C16; 
 }
 
 #enter:hover span:after {
   opacity: 1;
   right: 0;
-  background: #4dae3c;
+  background: #ED1C16; 
 }
+
+
+#enter {
+  color: #FFF;
+  border: 2px solid #ED1C16; 
+  border-radius: 04px;
+  padding: 0px 25px;
+  display: inline-block;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #ED1C16; 
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+
+#enter:hover {
+  box-shadow: inset 400px 0 0 0 #ED1C16; 
+}
+
+
 
 </style>
 <body>
 <body>
-	<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+	<div class="page-wrapper bg-red p-t-150 p-b-100 font-robo">
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
 				<div class="card-heading"></div>
@@ -644,7 +669,7 @@ font-size: 16px;
 
 						<div class="p-t-10">
 							<button class="btn btn--radius btn--green" type="submit"
-								id="enter"><span>냠냠!</span></button>
+								id="enter"><span>냠냠</span></button>
 						</div>
 					</form>
 				</div>
