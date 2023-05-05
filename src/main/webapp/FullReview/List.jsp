@@ -189,6 +189,19 @@
 .isfalse{
 	background-color : white;
 }
+
+.imgBox{
+	width:100%;
+	height:350px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.imgBox>img{
+	height:100%;
+}
+
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -214,8 +227,11 @@
 							<div class="card">
 								<input type="hidden" value="${reviewList.reviewID}" class="hiddencard">
 								<div class="reviewId" >${reviewList.reviewID}</div>
-								<img src="/FullReview/Logo.png" class="card-img-top" alt="...">
 								
+								
+								<div class="imgBox">
+								<img src="/FullReview/${photoList.get(status.index).sysName}" class="card-img-top" alt="...">
+								</div>
 								
 								
 								<!-- 즐겨찾기 여부 체크 -->

@@ -161,6 +161,17 @@ public class FullReviewController extends HttpServlet {
 				System.out.println("끝 번호 : "+end_Record_Row_Num);
 
 				List<FullReviewUserDTO> fullReviewList = frdao.selectFullReview(searchUserno, searchFullReviewTitle,start_Record_Row_Num,end_Record_Row_Num);
+				
+				
+				
+				List<PhotoDTO> PDTO = new ArrayList<>();
+				for(FullReviewUserDTO list : fullReviewList ) {
+					int reviewID = list.getReviewID();
+					PDTO.add(PhotoDAO.getInstance().DTOByReviewId(reviewID));
+				}
+				
+				
+				
 				String fullReviewNavi = frdao.getFullReviewNavi(entpage, searchUserno, searchFullReviewTitle);
 
 				System.out.println("리스트 사이즈 : "+fullReviewList.size());
@@ -176,7 +187,7 @@ public class FullReviewController extends HttpServlet {
 				request.setAttribute("FullReviewList", fullReviewList);
 				request.setAttribute("FullReviewNavi", fullReviewNavi);
 				request.setAttribute("scrap_list", scrap_list);
-
+				request.setAttribute("photoList", PDTO);
 				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
 
 

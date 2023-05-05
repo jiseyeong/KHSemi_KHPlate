@@ -129,7 +129,7 @@ public class StoreController extends HttpServlet {
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						PhotoDAO.getInstance().insertByStoreID(sysName, oriName, currval);
+						PhotoDAO.getInstance().insertByStoreID(oriName, sysName, currval);
 					}
 				}
 				response.sendRedirect("/view.store?storeID="+currval);
@@ -145,6 +145,23 @@ public class StoreController extends HttpServlet {
 
 				response.sendRedirect("/view.store?storeID="+storeID);
 			}else if(cmd.equals("/update.store")) {
+				int storeID = Integer.parseInt(request.getParameter("storeID"));
+				double mapLat = Double.parseDouble(request.getParameter("mapLat"));
+				double mapLng = Double.parseDouble(request.getParameter("mapLng"));
+				int mapDistance = Integer.parseInt(request.getParameter("mapDistance"));
+				String name = request.getParameter("name");
+				name = SecurityUtils.XSSCheck(name);
+				String category = request.getParameter("category");
+				String priceRange = request.getParameter("priceRange");
+				String address = request.getParameter("address");
+				address = SecurityUtils.XSSCheck(address);
+				String introduction = request.getParameter("introduction");
+				introduction = SecurityUtils.XSSCheck(introduction);
+
+				int result = StoreDAO.getInstance().update(new StoreDTO(storeID, mapDistance, name, mapLat, mapLng, address, 0, introduction, category, 0, priceRange));
+
+				response.sendRedirect("/view.store?storeID="+storeID);
+			}else if(cmd.equals("/updatePhoto.store")){
 				String realPath = request.getServletContext().getRealPath("store");
 				int maxSize = 1024 * 1024 * 10; //10Mb
 				System.out.println(realPath);
@@ -153,33 +170,29 @@ public class StoreController extends HttpServlet {
 					realPathFile.mkdir();
 				}
 				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
-
+				
 				int storeID = Integer.parseInt(multi.getParameter("storeID"));
-				double mapLat = Double.parseDouble(multi.getParameter("mapLat"));
-				double mapLng = Double.parseDouble(multi.getParameter("mapLng"));
-				int mapDistance = Integer.parseInt(multi.getParameter("mapDistance"));
-				String name = multi.getParameter("name");
-				name = SecurityUtils.XSSCheck(name);
-				String category = multi.getParameter("category");
-				String priceRange = multi.getParameter("priceRange");
-				String address = multi.getParameter("address");
-				address = SecurityUtils.XSSCheck(address);
-				String introduction = multi.getParameter("introduction");
-				introduction = SecurityUtils.XSSCheck(introduction);
-
-				int result = StoreDAO.getInstance().update(new StoreDTO(storeID, mapDistance, name, mapLat, mapLng, address, 0, introduction, category, 0, priceRange));
-
+				
+//				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
+//				for(int i = 0; i < imgLength; i++) {
+//					String oriName = multi.getOriginalFileName("image"+i);
+//					System.out.println(oriName);
+//					String sysName = multi.getFilesystemName("image"+i);
+//					System.out.println(sysName);
+//					PhotoDAO.getInstance().insertByStoreID(oriName, sysName, storeID);
+//				}
+				
 				Enumeration<String> names = multi.getFileNames();
 				while(names.hasMoreElements()) {
 					String fileName = names.nextElement();
 					if(multi.getFile(fileName) != null){
 						String oriName = multi.getOriginalFileName(fileName);
 						String sysName = multi.getFilesystemName(fileName);
-						PhotoDAO.getInstance().insertByStoreID(sysName, oriName, storeID);
+						PhotoDAO.getInstance().insertByStoreID(oriName, sysName, storeID);
 					}
 				}
-				response.sendRedirect("/view.store?storeID="+storeID);
-			}else if(cmd.equals("/delete.store")) {
+			}
+			else if(cmd.equals("/delete.store")) {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				
 				String realPath = request.getServletContext().getRealPath("store");
