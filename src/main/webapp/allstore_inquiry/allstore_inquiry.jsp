@@ -6,6 +6,8 @@
 
 <head>
 <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>전체 가게 조회</title>
 
 <!-- JQuery -->
@@ -20,14 +22,16 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
+	;
 
 * {
 	box-sizing: border-box;
-	 font-family: 'Nanum Gothic', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
-a{
+a {
 	text-decoration: none;
 	color: black;
 }
@@ -48,11 +52,16 @@ button:hover {
 	height: 929px;
 	overflow: hidden;
 }
+#searchForm{
+	float: left;
+	width:27%;
+	height:100%;
+}
 
 /* 맛집 리스트 영역 */
 .store_list {
 	float: left;
-	width: 27%;
+	width: 100%;
 	height: 100%;
 	position: inherit;
 	border: 1px solid silver;
@@ -80,7 +89,8 @@ button:hover {
 #toBack_btn {
 	width: 85%;
 	height: 85%;
-	filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg) brightness(92%) contrast(101%);
+	filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg)
+		brightness(92%) contrast(101%);
 }
 
 .show_filterForm_layout {
@@ -131,10 +141,11 @@ button:hover {
 	position: relative;
 	font-size: 10px;
 	padding: 0px;
-filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg) brightness(92%) contrast(101%);
-	display:flex;
-	justify-content:center;
-	align-items:center;
+	filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg)
+		brightness(92%) contrast(101%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .restaurant_list_layout {
@@ -323,20 +334,23 @@ img {
 	justify-content: center;
 	align-items: center;
 }
-.navigator_list_item_btn_layout *{
-	width:100%;
-	height:100%;
+
+.navigator_list_item_btn_layout * {
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.navigator_direction_btn{
-	background-color : white;
-	border:1px solid silver;
-	border-radius:10px;
+
+.navigator_direction_btn {
+	background-color: white;
+	border: 1px solid silver;
+	border-radius: 10px;
 }
-.navigator_direction_btn>i{
-	font-size:16px;
+
+.navigator_direction_btn>i {
+	font-size: 16px;
 }
 
 .item {
@@ -421,93 +435,85 @@ hr {
 	align-items: center;
 }
 
-
-
-
-
-
 input[type="range"] {
-  -webkit-appearance: none;
-  width: 90%;
-  height: 7px;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid silver;
-  border-radius: 5px;
-  background-image: linear-gradient(#ff4500, #ff4500);
-  background-size: 70% 100%;
-  background-repeat: no-repeat;
+	-webkit-appearance: none;
+	width: 90%;
+	height: 7px;
+	background: rgba(255, 255, 255, 0.6);
+	border: 1px solid silver;
+	border-radius: 5px;
+	background-image: linear-gradient(#ff4500, #ff4500);
+	background-size: 70% 100%;
+	background-repeat: no-repeat;
 }
 
 /* Input Thumb */
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: #ff4500;
-  cursor: ew-resize;
-  box-shadow: 0 0 2px 0 #555;
-  transition: background .3s ease-in-out;
+	-webkit-appearance: none;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	background: #ff4500;
+	cursor: ew-resize;
+	box-shadow: 0 0 2px 0 #555;
+	transition: background .3s ease-in-out;
 }
 
 input[type="range"]::-moz-range-thumb {
-  -webkit-appearance: none;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: #ff4500;
-  cursor: ew-resize;
-  box-shadow: 0 0 2px 0 #555;
-  transition: background .3s ease-in-out;
+	-webkit-appearance: none;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	background: #ff4500;
+	cursor: ew-resize;
+	box-shadow: 0 0 2px 0 #555;
+	transition: background .3s ease-in-out;
 }
 
 input[type="range"]::-ms-thumb {
-  -webkit-appearance: none;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: #ff4500;
-  cursor: ew-resize;
-  box-shadow: 0 0 2px 0 #555;
-  transition: background .3s ease-in-out;
+	-webkit-appearance: none;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	background: #ff4500;
+	cursor: ew-resize;
+	box-shadow: 0 0 2px 0 #555;
+	transition: background .3s ease-in-out;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  background: #ff0200;
+	background: #ff0200;
 }
 
 input[type="range"]::-moz-range-thumb:hover {
-  background: #ff0200;
+	background: #ff0200;
 }
 
 input[type="range"]::-ms-thumb:hover {
-  background: #ff0200;
+	background: #ff0200;
 }
 
 /* Input Track */
-input[type=range]::-webkit-slider-runnable-track  {
-  -webkit-appearance: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
+input[type=range]::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
+	box-shadow: none;
+	border: none;
+	background: transparent;
 }
 
 input[type=range]::-moz-range-track {
-  -webkit-appearance: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
+	-webkit-appearance: none;
+	box-shadow: none;
+	border: none;
+	background: transparent;
 }
 
 input[type="range"]::-ms-track {
-  -webkit-appearance: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
+	-webkit-appearance: none;
+	box-shadow: none;
+	border: none;
+	background: transparent;
 }
-
-
-
 
 #range_result {
 	width: 50%;
@@ -605,6 +611,10 @@ input[type="range"]::-ms-track {
 	border: 2px solid silver;
 }
 
+.sort_apply_btn:hover {
+	cursor: pointer;
+}
+
 /* 맵에 표시될 InfoWindow */
 .restaurant_infoWindow {
 	width: auto;
@@ -664,32 +674,32 @@ input[type="range"]::-ms-track {
 	display: none;
 }
 
-/* 가게 정보 추가 */
-.navigator_direction_btn{
-	
-}
 </style>
 </head>
 
 <body>
-	<form id="searchForm" action="/searchStoreBySearchBox.store"
-		onsubmit="return false;">
-		<input type="text" name="searchedBy" value="mapSearch"
-			style="display: none;">
-		<div class="container_layout">
+	<input type="text" name="searchedBy" value="mapSearch"
+		style="display: none;">
+	<div class="container_layout">
+		<form id="searchForm" action="/searchStoreBySearchBox.store" onsubmit="return false;">
 			<div class="store_list">
 				<div class="search_layout">
 					<div class="toBack_layout">
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" id="toBack_btn" viewBox="0 0 16 16">
-  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
-  <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+							fill="currentColor" id="toBack_btn" viewBox="0 0 16 16">
+  <path
+								d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" />
+  <path
+								d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z" />
 </svg>
 					</div>
 
 					<div class="searchBox">
 						<input type="text" id="search" name="search">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" id="searchBtn" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" id="searchBtn" viewBox="0 0 16 16">
+  <path
+								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 </svg>
 					</div>
 
@@ -712,8 +722,9 @@ input[type="range"]::-ms-track {
 							</c:when>
 							<c:otherwise>
 								<c:forEach var='i' items='${search_store_list}'>
-									<li class="restaurant">
-										<input type="text" class="restaurant_storeID" value="${i.storeID}" style="display:none;">
+									<li class="restaurant"><input type="text"
+										class="restaurant_storeID" value="${i.storeID}"
+										style="display: none;">
 										<div class="img_layout">
 											<img src="/allstore_inquiry/restaurant_img1.jpg">
 										</div>
@@ -743,8 +754,7 @@ input[type="range"]::-ms-track {
 											<div class=info_layout_bottomside>
 												<p class="restaurant_info restaurant_address">${i.address}</p>
 											</div>
-										</div>
-									</li>
+										</div></li>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
@@ -756,156 +766,163 @@ input[type="range"]::-ms-track {
 					</div>
 
 				</div>
-
-			</div>
-	
-
-	<!--  맵 영역 -->
-	<div class="map_layout">
-		<div id="map"></div>
-
-
-
-		<!-- 정렬 팝업 창 (SlideToggle)-->
-		<form id="searchFilterForm" action="/searchStoreBySearchFilter.store"
-			onsubmit="return false;">
-			<input type="text" name="searchedBy" value="mapSearch"
-				style="display: none;">
-			<div id="sort_layout" style="display: none;">
-				<div class="search_filter">
-					<p class="sort_title">검색 필터</p>
-					<div class="filter_sort">
-						<input type="text" id="sortMethod" name="sortMethod"
-							style="display: none;">
-						<div class="filter_options">
-							<button class="filter_option_btn" id="order_by_distance">거리순</button>
-						</div>
-						<div class="filter_options">
-							<button class="filter_option_btn" id="order_by_score">평점순</button>
-						</div>
-						<div class="filter_options">
-							<button class="filter_option_btn" id="order_by_review">리뷰순</button>
-						</div>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="cost_average">
-					<p class="sort_title">가격/1인당</p>
-					<div class="filter_cost">
-						<input type="text" id="cost_set" name="cost_range"
-							style="display: none;"> 
-							<input type="range" id="range" class="form-range" 
-							min="0" max="4" step="1" onchange=SetValue()>
-
-						<div id="range_result">범위를 지정해주세요</div>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="food_category">
-					<p class="sort_title food_category_title">음식종류</p>
-					<div class="food_category_layout">
-						<div class="food_category_inner_layout">
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">한식</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_korean" name="food_category_korean"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">양식</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_western" name="food_category_western"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">중식</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_chinese" name="food_category_chinese"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">일식</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_japanese" name="food_category_japanese"
-									style="display: none;">
-							</div>
-						</div>
-						<div class="food_category_inner_layout">
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">아시안</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_asian" name="food_category_asian"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">패스트푸드</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_fastfood" name="food_category_fastfood"
-									style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">음료/디저트</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_dessert_drink"
-									name="food_category_dessert_drink" style="display: none;">
-							</div>
-							<div class="food_category_list">
-								<div class="food_icon_layout">
-									<img class="food_icon" src="/allstore_inquiry/salad.png">
-								</div>
-								<div class="food_name">기타</div>
-								<input type="text" class="food_category_menu"
-									id="food_category_etc" name="food_category_etc"
-									style="display: none;">
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<hr>
-
-				<div class="btn_layout">
-					<div class="btn_inner_layout">
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="sort_apply_btn" id="cancel_btn" viewBox="0 0 16 16">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-</svg>
-					</div>
-					<div class="btn_inner_layout"> 
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="sort_apply_btn" id="apply_btn" viewBox="0 0 16 16">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-</svg>
-					</div>
-				</div>
 			</div>
 		</form>
-	</div>
+
+			<!--  맵 영역 -->
+			<div class="map_layout">
+				<div id="map"></div>
+
+
+
+				<!-- 정렬 팝업 창 (SlideToggle)-->
+				<form id="searchFilterForm"
+					action="/searchStoreBySearchFilter.store" onsubmit="return false;">
+					<input type="text" name="searchedBy" value="mapSearch"
+						style="display: none;">
+					<div id="sort_layout" style="display: none;">
+						<div class="search_filter">
+							<p class="sort_title">검색 필터</p>
+							<div class="filter_sort">
+								<input type="text" id="sortMethod" name="sortMethod"
+									style="display: none;">
+								<div class="filter_options">
+									<button class="filter_option_btn" id="order_by_distance">거리순</button>
+								</div>
+								<div class="filter_options">
+									<button class="filter_option_btn" id="order_by_score">평점순</button>
+								</div>
+								<div class="filter_options">
+									<button class="filter_option_btn" id="order_by_review">리뷰순</button>
+								</div>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="cost_average">
+							<p class="sort_title">가격/1인당</p>
+							<div class="filter_cost">
+								<input type="text" id="cost_set" name="cost_range"
+									style="display: none;"> <input type="range" id="range"
+									class="form-range" min="0" max="4" step="1" onchange=SetValue()>
+
+								<div id="range_result">범위를 지정해주세요</div>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="food_category">
+							<p class="sort_title food_category_title">음식종류</p>
+							<div class="food_category_layout">
+								<div class="food_category_inner_layout">
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">한식</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_korean" name="food_category_korean"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">양식</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_western" name="food_category_western"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">중식</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_chinese" name="food_category_chinese"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">일식</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_japanese" name="food_category_japanese"
+											style="display: none;">
+									</div>
+								</div>
+								<div class="food_category_inner_layout">
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">아시안</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_asian" name="food_category_asian"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">패스트푸드</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_fastfood" name="food_category_fastfood"
+											style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">음료/디저트</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_dessert_drink"
+											name="food_category_dessert_drink" style="display: none;">
+									</div>
+									<div class="food_category_list">
+										<div class="food_icon_layout">
+											<img class="food_icon" src="/allstore_inquiry/salad.png">
+										</div>
+										<div class="food_name">기타</div>
+										<input type="text" class="food_category_menu"
+											id="food_category_etc" name="food_category_etc"
+											style="display: none;">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<hr>
+
+						<div class="btn_layout">
+							<div class="btn_inner_layout">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="sort_apply_btn" id="cancel_btn"
+									viewBox="0 0 16 16">
+							<path
+										d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+							<path
+										d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+						</svg>
+							</div>
+							<div class="btn_inner_layout">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="sort_apply_btn" id="apply_btn"
+									viewBox="0 0 16 16">
+							<path
+										d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+							<path
+										d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+						</svg>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 
 	<c:if test="${search_store_list!=null}">
 		<c:forEach var="dto" items="${search_store_list}" varStatus="status">
@@ -969,8 +986,8 @@ input[type="range"]::-ms-track {
 
 
 
-	   <!-- 별점 등록 Script -->
-   <script>
+	<!-- 별점 등록 Script -->
+	<script>
       let stars = document.querySelectorAll('.stars__link');
       let phrase = document.querySelector('.stars-phrase');
 
@@ -1008,7 +1025,7 @@ input[type="range"]::-ms-track {
    </script>
 
 
-   <script>
+	<script>
       // 필터 기능들
       
       $(function(){
@@ -1104,7 +1121,13 @@ input[type="range"]::-ms-track {
             $("#cost_set").val("20000이상");
             range_result.html("20000원 이상");
          }
+
+         let target = document.getElementById('range')
+         const min = target.min
+         const max = target.max
+         const val = target.value
          
+         target.style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%'
          
          if(food_category_korean!='true'){
             $("#food_category_korean").click();
@@ -1160,11 +1183,7 @@ input[type="range"]::-ms-track {
          }
       }
       
-      
-      
-      
       const rangeInputs = document.querySelectorAll('input[type="range"]')
-      
 
       function handleInputChange(e) {
         let target = e.target
@@ -1211,12 +1230,12 @@ input[type="range"]::-ms-track {
       
       // 검색 정렬 취소 버튼
       $("#cancel_btn").on("click",function(){
-//          $("#sortMethod").val("");
-//          $("#cost_set").val("");
+         $("#sortMethod").val("");
+         $("#cost_set").val("");
          
-//          $(".food_category_menu").each(function(index, item){
-//              $(item).val("true");
-//          });
+         $(".food_category_menu").each(function(index, item){
+             $(item).val("true");
+         });
          
          $("#searchForm").prop("onsubmit",true);
          $("#searchForm").submit();
@@ -1225,14 +1244,14 @@ input[type="range"]::-ms-track {
 
 
 
-   <!-- 지도 Script -->
-   <script type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9">
+	<!-- 지도 Script -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9">
    </script>
 
 
 
-   <script>
+	<script>
       
       // 학원 지도 설정
       var map_layout = document.getElementById('map');
