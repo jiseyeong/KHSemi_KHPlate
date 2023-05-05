@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -11,26 +10,20 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 <title>storeSearchResult</title>
 
 <!-- 부트 스트랩 -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	crossorigin="anonymous"></script>
 
 <!-- FontAwesome -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
-@import
-	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
-	;
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 * {
 	box-sizing: border-box;
@@ -45,7 +38,7 @@ hr {
 .container_searchResult {
 	position: relative;
 	width: 100%;
-	margin: 0px;
+	margin: 0;
 	padding-top: 30px;
 	border: 1px solid rgb(178, 178, 178);
 	flex-direction: column;
@@ -110,7 +103,7 @@ hr {
 
 .outer_layout {
 	width: 100%;
-	margin: 20px 0px 20px;
+	margin: 20px 0;
 	display: flex;
 	justify-content: left;
 	align-items: center;
@@ -122,14 +115,14 @@ hr {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom:30px;
+	margin-bottom: 30px;
 }
 
 .inner_layout {
 	width: 300px;
 	height: 100%;
 	float: left;
-	margin: 0px 0px 0px;
+	margin: 0;
 }
 
 .inner_layout:hover {
@@ -211,8 +204,8 @@ hr {
 
 /* 별점 영역 */
 .stars {
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -241,10 +234,11 @@ hr {
 	color: gold;
 }
 
-@media ( max-width : 27em) {
+@media (max-width : 27em) {
 	.stars__icon {
 		font-size: 2.5em;
 	}
+
 	.stars-phrase {
 		font-size: 1em;
 	}
@@ -270,8 +264,8 @@ hr {
 	height: 60px;
 	width: 100%;
 	text-align: center;
-	margin: 20px auto 0 auto;
-	padding: 10px 0px 10px;
+	margin: 20px auto 0;
+	padding: 10px 0;
 	background-color: rgba(255, 255, 255, 0.9);
 	position: fixed;
 	bottom: 0;
@@ -281,13 +275,13 @@ hr {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	justify-content: center
+	justify-content: center;
 }
 
 .navigator_list {
 	list-style-type: none;
 	padding-right: 50px;
-	margin: 0px;
+	margin: 0;
 	display: flex;
 	justify-content: right;
 	align-items: center;
@@ -319,10 +313,10 @@ hr {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	right: 0px;
+	right: 0;
 	font-size: 15px;
 	background-color: white;
-	border: 0px;
+	border: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -331,8 +325,8 @@ hr {
 /* 정렬 필터 영역 */
 #searchFilterForm {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 }
 
 #sort_layout {
@@ -349,7 +343,7 @@ hr {
 }
 
 .sort_title {
-	margin: 10px auto 10px;
+	margin: 10px auto;
 	padding-left: 10px;
 	font-size: 16px;
 }
@@ -417,7 +411,7 @@ input[type="range"]::-webkit-slider-thumb {
 	background: #ff4500;
 	cursor: ew-resize;
 	box-shadow: 0 0 2px 0 #555;
-	transition: background .3s ease-in-out;
+	transition: background 0.3s ease-in-out;
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -428,7 +422,7 @@ input[type="range"]::-moz-range-thumb {
 	background: #ff4500;
 	cursor: ew-resize;
 	box-shadow: 0 0 2px 0 #555;
-	transition: background .3s ease-in-out;
+	transition: background 0.3s ease-in-out;
 }
 
 input[type="range"]::-ms-thumb {
@@ -439,7 +433,7 @@ input[type="range"]::-ms-thumb {
 	background: #ff4500;
 	cursor: ew-resize;
 	box-shadow: 0 0 2px 0 #555;
-	transition: background .3s ease-in-out;
+	transition: background 0.3s ease-in-out;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
@@ -572,15 +566,16 @@ input[type="range"]::-ms-track {
 	border: 2px solid silver;
 }
 
-.istrue {
-	filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg)
-		brightness(92%) contrast(101%);
+.sort_apply_btn:hover{
+	cursor:pointer;
+}
 
+.istrue {
+	filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg) brightness(92%) contrast(101%);
 }
 
 .isfalse {
-filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) contrast(101%);
-
+	filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) contrast(101%);
 }
 </style>
 </head>
@@ -612,16 +607,14 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 				<div class="print_searchResult_layout">
 					<!-- 필터 영역 -->
 
-					<form action="/searchStoreBySearchFilter.store"
-						id="searchFilterForm" onsubmit="return false;">
-						<input type="text" name="searchedBy" value="mainSearch"
-							style="display: none;">
+					<form action="/searchStoreBySearchFilter.store" id="searchFilterForm"
+						onsubmit="return false;">
+						<input type="text" name="searchedBy" value="mainSearch" style="display: none;">
 						<div id="sort_layout" style="display: none;">
 							<div class="search_filter">
 								<p class="sort_title">검색 필터</p>
 								<div class="filter_sort">
-									<input type="text" id="sortMethod" name="sortMethod"
-										style="display: none;">
+									<input type="text" id="sortMethod" name="sortMethod" style="display: none;">
 									<div class="filter_options">
 										<button class="filter_option_btn" id="order_by_distance">거리순</button>
 									</div>
@@ -639,10 +632,9 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 							<div class="cost_average">
 								<p class="sort_title">가격/1인당</p>
 								<div class="filter_cost">
-									<input type="text" id="cost_set" name="cost_range"
-										style="display: none;"> <input type="range" id="range"
-										class="form-range" min="0" max="4" step="1"
-										onchange=SetValue()>
+									<input type="text" id="cost_set" name="cost_range" style="display: none;">
+									<input type="range" id="range" class="form-range" min="0" max="4" step="1"
+										onchange="SetValue()">
 
 									<div id="range_result">범위를 지정해주세요</div>
 								</div>
@@ -723,9 +715,8 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 												<img class="food_icon" src="/allstore_inquiry/salad.png">
 											</div>
 											<div class="food_name">기타</div>
-											<input type="text" class="food_category_menu"
-												id="food_category_etc" name="food_category_etc"
-												style="display: none;">
+											<input type="text" class="food_category_menu" id="food_category_etc"
+												name="food_category_etc" style="display: none;">
 										</div>
 									</div>
 								</div>
@@ -738,21 +729,21 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="sort_apply_btn" id="cancel_btn"
 										viewBox="0 0 16 16">
-  <path
+										<path
 											d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-  <path
+										<path
 											d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-</svg>
+									</svg>
 								</div>
 								<div class="btn_inner_layout">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="sort_apply_btn" id="apply_btn"
 										viewBox="0 0 16 16">
-  <path
+										<path
 											d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-  <path
+										<path
 											d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-</svg>
+									</svg>
 								</div>
 							</div>
 						</div>
@@ -760,216 +751,24 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 
 					<c:choose>
 						<c:when test="${search_store_list!=null}">
-<<<<<<< HEAD:src/main/webapp/common/storeSearchResult.html
-							<!-- Outer_layout의 개수 -->
-							<!-- 검색 결과가 3으로 나누어 떨어지면 count=리스트 수 / 3 -->
-							<!-- 그렇지 않으면 count=리스트 수 / 3 + 1-->
-							<c:set var="count" value="${search_store_list.size() / 3}" />
-
-							<!-- count 값이 0일 때 예외 처리 -->
-							<c:if test="${count == 0}">
-								<c:set var="count" value="1" />
-							</c:if>
-
-							<!-- 올림 처리 -->
-							<c:set var="count" value="${count + (1 - (count % 1)) % 1}" />
-
-							<!-- list의 index를 나타낼 index-->
-							<c:set var="index" value="0" />
-							<!-- 남은 inner_list의 갯수를 처리할 list_count -->
-							<c:set var="list_count" value="${search_store_list.size()}" />
-
-							<!-- 리스트 크기/3 한 만큼 outer 출력 -->
-							<c:forEach var="i" begin="1" end="${count}" step="1">
-								<div class="row" class="outer_layout">
-									<c:choose>
-										<c:when test="${i<count}">
-											<!-- 3번까지 inner 출력 -->
-											<c:forEach var="j" begin="1" end="3" step="1">
-												<div class="col-6 col-lg-4 inner_cover_layout">
-													<div class="inner_layout">
-														<div class="img_layout">
-															<img id="img${index}" src="/common/restaurant_img1.jpg"
-																class="restaurant_img">
-															<div class="restaurant_addFavorite">
-																<input type="text" name="addFavorite_storeID"
-																	value="${search_store_list.get(index).storeID}"
-																	style="display: none;"> <input type="text"
-																	name="addFavorite_userno" value="${userno}"
-																	style="display: none;">
-
-																<!-- 즐겨찾기 여부 체크 -->
-																<c:set var="favoriteCheck" value="false" />
-																<c:forEach var="favorite" items="${Favorite_list}"
-																	varStatus="status">
-																	<c:if
-																		test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
-																		<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																			height="16" fill="currentColor"
-																			class="addFavorite_btn istrue" viewBox="0 0 16 16">
-  <path fill-rule="evenodd"
-																				d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-</svg>
-																		<c:set var="favoriteCheck" value="true" />
-																	</c:if>
-																</c:forEach>
-																<c:if test="${favoriteCheck==false}">
-																	<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																		height="16" fill="currentColor"
-																		class="addFavorite_btn isfalse" viewBox="0 0 16 16">
-  <path fill-rule="evenodd"
-																			d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-</svg>
-																</c:if>
-
-															</div>
-														</div>
-														<div class="info_layout">
-															<div class="info_title_layout" style="padding-left: 10px">
-																<div class="info_title">${search_store_list.get(index).name}</div>
-																<div class="info_score">
-																	<ul class="stars">
-																		<c:forEach var="scoreCount" begin="0" end="4" step="1">
-																			<c:choose>
-																				<c:when
-																					test="${search_store_list.get(index).avgScore>=(scoreCount+0.5)}">
-																					<i class="stars__icon fas fa-star js-clear js-fill"></i>
-																				</c:when>
-																				<c:otherwise>
-																					<i class="stars__icon fas fa-star js-clear"></i>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																		<!--<a class="stars__link"><i -->
-																		<!-- 	class="stars__icon fas fa-star"></i></a> -->
-																	</ul>
-																</div>
-															</div>
-															<div class="info_address" style="padding-left: 10px">
-																${search_store_list.get(index).address}</div>
-														</div>
-													</div>
-												</div>
-												<script>
-													$.ajax({
-														url:"/getMainPhoto.store",
-														type:"get",
-														data:{
-															storeID: "${search_store_list.get(index).storeID}"
-														},
-														dataType:"json"
-													}).done(function(resp){
-														if(resp.imageID == -1){
-															$("#img"+"${index}").attr("src", "/common/restaurant_img1.jpg" )
-														}else{
-															$("#img"+"${index}").attr("src", "/store/"+resp.sysName);
-														}
-													});
-													
-												</script>
-												<c:set var="list_count" value="${list_count-1}" />
-												<c:set var="index" value="${index+1}" />
-											</c:forEach>
-										</c:when>
-										<c:otherwise>
-											<!-- i가 마지막 순번 일 때, 남은 list_count까지 출력 -->
-											<c:forEach var="k" begin="1" end="${list_count}" step="1">
-												<div class="inner_cover_layout">
-													<div class="inner_layout">
-														<div class="img_layout">
-															<img src="/common/restaurant_img1.jpg"
-																class="restaurant_img">
-															<div class="restaurant_addFavorite">
-																<input type="text" name="addFavorite_storeID"
-																	value="${search_store_list.get(index).storeID}"
-																	style="display: none;"> <input type="text"
-																	name="addFavorite_userno" value="${userno}"
-																	style="display: none;">
-
-																<c:set var="favoriteCheck" value="false" />
-																<c:forEach var="favorite" items="${Favorite_list}"
-																	varStatus="status">
-																	<c:if
-																		test="${favorite.getStoreID() == search_store_list.get(index).storeID}">
-																		<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																			height="16" fill="currentColor"
-																			class="addFavorite_btn istrue" viewBox="0 0 16 16">
-  <path fill-rule="evenodd"
-																				d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-</svg>
-																		<c:set var="favoriteCheck" value="true" />
-																	</c:if>
-																</c:forEach>
-																<c:if test="${favoriteCheck==false}">
-																	<svg xmlns="http://www.w3.org/2000/svg" width="16"
-																		height="16" fill="currentColor"
-																		class="addFavorite_btn isfalse" viewBox="0 0 16 16">
-  <path fill-rule="evenodd"
-																			d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-</svg>
-																</c:if>
-
-															</div>
-														</div>
-														<div class="info_layout">
-															<div class="info_title_layout" style="padding-left: 10px">
-																<div class="info_title">${search_store_list.get(index).name}</div>
-																<div class="info_score">
-																	<ul class="stars">
-																		<c:forEach var="scoreCount" begin="0" end="4" step="1">
-																			<c:choose>
-																				<c:when
-																					test="${search_store_list.get(index).avgScore>=(scoreCount+0.5)}">
-																					<i class="stars__icon fas fa-star js-clear js-fill"></i>
-																				</c:when>
-																				<c:otherwise>
-																					<i class="stars__icon fas fa-star js-clear"></i>
-																				</c:otherwise>
-																			</c:choose>
-																		</c:forEach>
-																	</ul>
-																</div>
-															</div>
-															<div class="info_address" style="padding-left: 10px">
-																${search_store_list.get(index).address}</div>
-														</div>
-													</div>
-												</div>
-												<c:set var="index" value="${index+1}" />
-											</c:forEach>
-										</c:otherwise>
-									</c:choose>
-								</div>
-							</c:forEach>
-=======
 							<div class="row outer_layout">
 								<c:forEach var="i" items="${search_store_list}" varStatus="status">
 									<div class="col-12 col-md-6 col-xl-4 inner_cover_layout">
 										<div class="inner_layout">
 											<div class="img_layout">
-												<img id="img${status.index}" src="/common/restaurant_img1.jpg" class="restaurant_img">
+												<img id="img${status.index}" src="/common/restaurant_img1.jpg"
+													class="restaurant_img">
 												<div class="restaurant_addFavorite">
 													<input type="text" name="addFavorite_storeID"
-														value="${i.storeID}"
-														style="display: none;"> <input type="text"
-														name="addFavorite_userno" value="${sessionScope.userno}"
-														style="display: none;">
-			
+														value="${i.storeID}" style="display: none;">
+													<input type="text" name="addFavorite_userno"
+														value="${sessionScope.userno}" style="display: none;">
+
 													<!-- 즐겨찾기 여부 체크 -->
 													<c:set var="favoriteCheck" value="false" />
 													<c:forEach var="favorite" items="${Favorite_list}"
-														varStatus="status">
-														<c:if
-															test="${favorite.getStoreID() == i.storeID}">
+																varStatus="status">
+														<c:if test="${favorite.getStoreID() == i.storeID}">
 															<button class="addFavorite_btn istrue">
 																<i class="fa-regular fa-heart"></i>
 															</button>
@@ -988,43 +787,48 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 													<div class="info_title">${i.name}</div>
 													<div class="info_score">
 														<ul class="stars">
-															<c:forEach var="scoreCount" begin="0" end="4" step="1">
+															<c:forEach var="scoreCount" begin="0" end="4"
+																		step="1">
 																<c:choose>
 																	<c:when
-																		test="${i.avgScore>=(scoreCount+0.5)}">
-																		<i class="stars__icon fas fa-star js-clear js-fill"></i>
+																				test="${i.avgScore>=(scoreCount+0.5)}">
+																		<i
+																			class="stars__icon fas fa-star js-clear js-fill"></i>
 																	</c:when>
 																	<c:otherwise>
-																		<i class="stars__icon fas fa-star js-clear"></i>
+																		<i
+																			class="stars__icon fas fa-star js-clear"></i>
 																	</c:otherwise>
 																</c:choose>
 															</c:forEach>
 														</ul>
 													</div>
 												</div>
-												<div class="info_address" style="padding-left: 10px">${i.address}</div>
+												<div class="info_address" style="padding-left: 10px">
+													${i.address}</div>
 											</div>
 										</div>
 									</div>
 									<script>
-										$.ajax({
-											url:"/getMainPhoto.store",
-											type:"get",
-											data:{
-												storeID: "${i.storeID}"
-											},
-											dataType:"json"
-										}).done(function(resp){
-											if(resp.imageID == -1){
-												$("#img"+"${status.index}").attr("src", "/common/restaurant_img1.jpg" )
-											}else{
-												$("#img"+"${status.index}").attr("src", "/store/"+resp.sysName);
-											}
-										});
+										$
+											.ajax({
+												url: "/getMainPhoto.store",
+												type: "get",
+												data: {
+													storeID: "${i.storeID}"
+												},
+												dataType: "json"
+											})
+											.done(function (resp) {
+												if (resp.imageID == -1) {
+													$("#img${status.index}").attr("src", "/common/restaurant_img1.jpg")
+												} else {
+													$("#img${status.index}").attr("src", "/store/" + resp.sysName);
+												}
+											});
 									</script>
 								</c:forEach>
 							</div>
->>>>>>> 617d4c4dc5d40ad3b4a7a6f59a90f6c0d996218e:src/main/webapp/common/storeSearchResult.jsp
 						</c:when>
 						<c:otherwise>
 							<div class="search_none_layout">표시할 내용이 없습니다.</div>
@@ -1034,8 +838,7 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 			</div>
 
 			<!-- 네비게이터 영역 -->
-			<div class="navigator"
-				style="position: relative; width: 100%; border: 0px;">
+			<div class="navigator" style="position: relative; width: 100%; border: 0px;">
 				<hr>
 				<ul class="navigator_list">${search_store_list_navi}
 				</ul>
@@ -1045,139 +848,130 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 
 	<c:choose>
 		<c:when test="${userno!=null}">
-			<input type="checkbox" value="true" id="loginCheck"
-				style="display: none;">
+			<input type="checkbox" value="true" id="loginCheck" style="display: none;">
 		</c:when>
 		<c:otherwise>
-			<input type="checkbox" value="false" id="loginCheck"
-				style="display: none;">
+			<input type="checkbox" value="false" id="loginCheck" style="display: none;">
 		</c:otherwise>
 	</c:choose>
 
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_sortMethod" value="${sortMethod}"
-		style="display: none;">
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_cost_range" value="${cost_range}"
-		style="display: none;">
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_food_category_korean"
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_sortMethod"
+		value="${sortMethod}" style="display: none;">
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_cost_range"
+		value="${cost_range}" style="display: none;">
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_korean"
 		value="${food_category_korean}" style="display: none;">
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_food_category_western"
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_western"
 		value="${food_category_western}" style="display: none;">
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_food_category_chinese"
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_chinese"
 		value="${food_category_chinese}" style="display: none;">
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_food_category_japanese"
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_japanese"
 		value="${food_category_japanese}" style="display: none;">
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_food_category_asian"
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_asian"
 		value="${food_category_asian}" style="display: none;">
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_food_category_fastfood"
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_fastfood"
 		value="${food_category_fastfood}" style="display: none;">
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_food_category_dessert_drink"
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_dessert_drink"
 		value="${food_category_dessert_drink}" style="display: none;">
-	<input type="text" class="search_store_filter_toScript"
-		id="fillter_settings_food_category_etc" value="${food_category_etc}"
-		style="display: none;">
+	<input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_etc"
+		value="${food_category_etc}" style="display: none;">
 
 	<!-- 별점 등록 Script -->
 	<script>
-		let stars = document.querySelectorAll('.stars__link');
-		let phrase = document.querySelector('.stars-phrase');
-		
-		/* using a variation of Chris Ferdinandi's get-siblings.js script (https://gist.github.com/cferdinandi/6203237)  */
-		var getNextSiblings = function (elem) {
-		    var siblings = [];
-		    var sibling = elem;
-		    for (; sibling; sibling = sibling.nextElementSibling)
-		        siblings.push(sibling);
-		    return siblings;
-		}
-		
-		var getPrevSiblings = function (elem) {
-		    var siblings = [];
-		    var sibling = elem;
-		    for (; sibling; sibling = sibling.previousElementSibling)
-		        siblings.push(sibling);
-		    return siblings;
-		}
-		
-		stars.forEach((el, idx) => {
-		    el.addEventListener('click', (e) => {
-		        let nextSibs = getNextSiblings(el);
-		        nextSibs.forEach((sib) => {
-		            sib.children[0].classList.add('js-clear');
-		            sib.children[0].classList.remove('js-fill');
-		            
-		        });
-		        let prevSibs = getPrevSiblings(el);
-		        prevSibs.forEach((sib) => {
-		            sib.children[0].classList.add('js-fill');
-		        });
-		    });
-		});
-	
-	</script>
+				let stars = document.querySelectorAll('.stars__link');
+				let phrase = document.querySelector('.stars-phrase');
 
+				/*  using a variation of Chris Ferdinandi's get-siblings.js script (https://gist
+* .github.com/cferdinandi/6203237)  
+*/
+				var getNextSiblings = function (elem) {
+					var siblings = [];
+					var sibling = elem;
+					for (; sibling; sibling = sibling.nextElementSibling)
+						siblings.push(sibling);
+					return siblings;
+				}
 
+				var getPrevSiblings = function (elem) {
+					var siblings = [];
+					var sibling = elem;
+					for (; sibling; sibling = sibling.previousElementSibling)
+						siblings.push(sibling);
+					return siblings;
+				}
+
+				stars.forEach((el, idx) => {
+					el.addEventListener('click', (e) => {
+						let nextSibs = getNextSiblings(el);
+						nextSibs.forEach((sib) => {
+							sib
+								.children[0]
+								.classList
+								.add('js-clear');
+							sib
+								.children[0]
+								.classList
+								.remove('js-fill');
+
+						});
+						let prevSibs = getPrevSiblings(el);
+						prevSibs.forEach((sib) => {
+							sib
+								.children[0]
+								.classList
+								.add('js-fill');
+						});
+					});
+				});
+			</script>
 
 	<script>
 		// 필터 기능들 모음
-		
-		$(function(){
+
+		$(function () {
 			// 필터 Toggle 기능 부여
 			let sort_check = false;
 
 			$("#show_filterForm_btn").on("click", function () {
-				if(sort_check==false){
-					$('#sort_layout').css({"display":""});
-					sort_check=true;
-				}else{
-					$("#sort_layout").css({"display":"none"});
-					sort_check=false;
+				if (sort_check == false) {
+					$('#sort_layout').css({ "display": "" });
+					sort_check = true;
+				} else {
+					$("#sort_layout").css({ "display": "none" });
+					sort_check = false;
 				}
 			});
-			
+
 			// 필터 정렬 지정
-			$(".filter_option_btn").on("click",function(){
+			$(".filter_option_btn").on("click", function () {
 				$("#sortMethod").val($(this).attr("id"));
-				$(".filter_option_btn").css({
-					"border":"2px solid silver"
-				});
-				$(this).css({
-					"border":"2px solid red"
-				});
+				$(".filter_option_btn").css({ "border": "2px solid silver" });
+				$(this).css({ "border": "2px solid red" });
 			})
-			
-			
+
 			// 각 음식 카테고리 div에 boolean변수 부여(closer)
 			$(".food_category_list").each(function (index, item) {
 				let food_category_list_check = true;
-				$(this).find(".food_category_menu").val(true);
+				$(this)
+					.find(".food_category_menu")
+					.val(true);
 				$(item).on("click", function () {
 					if (food_category_list_check == false) {
-						$(this).css({
-							"border": "2px solid red"
-						})
-						$(this).find(".food_category_menu").val(true);
+						$(this).css({ "border": "2px solid red" })
+						$(this)
+							.find(".food_category_menu")
+							.val(true);
 						food_category_list_check = true;
 					} else {
-						$(this).css({
-							"border": "1px solid silver"
-						})
-						$(this).find(".food_category_menu").val(false);
+						$(this).css({ "border": "1px solid silver" })
+						$(this)
+							.find(".food_category_menu")
+							.val(false);
 						food_category_list_check = false;
 					}
 				})
 			})
-			
-			
-		
+
 			// 필터 초기화 지정
 			let sortMethod = $("#fillter_settings_sortMethod").val();
 			let cost_range = $("#fillter_settings_cost_range").val();
@@ -1187,204 +981,213 @@ filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) 
 			let food_category_japanese = $("#fillter_settings_food_category_japanese").val();
 			let food_category_asian = $("#fillter_settings_food_category_asian").val();
 			let food_category_fastfood = $("#fillter_settings_food_category_fastfood").val();
-			let food_category_dessert_drink = $("#fillter_settings_food_category_dessert_drink").val();
+			let food_category_dessert_drink = $(
+				"#fillter_settings_food_category_dessert_drink"
+			).val();
 			let food_category_etc = $("#fillter_settings_food_category_etc").val();
-			
-			if(sortMethod=='order_by_distance'){
+
+			if (sortMethod == 'order_by_distance') {
 				$("#order_by_distance").click();
-			}else if(sortMethod=='order_by_score'){
+			} else if (sortMethod == 'order_by_score') {
 				$("#order_by_score").click();
 			}
+
+			let range_result = $("#range_result");
+
+			if (cost_range == '5000이하') {
+				$("#range").val(0);
+				$("#cost_set").val("5000이하");
+				range_result.html("5000원 이하");
+
+			} else if (cost_range == '5000~10000') {
+				$("#range").val(1);
+				$("#cost_set").val("5000~10000");
+				range_result.html("5000원 ~ 10000원");
+
+			} else if (cost_range == '10000~15000') {
+				$("#range").val(2);
+				$("#cost_set").val("10000~15000");
+				range_result.html("10000원 ~ 15000원");
+
+			} else if (cost_range == '15000~20000') {
+				$("#range").val(3);
+				$("#cost_set").val("15000~20000");
+				range_result.html("15000원 ~ 20000원");
+
+			} else if (cost_range == '20000이상') {
+				$("#range").val(4);
+				$("#cost_set").val("20000이상");
+				range_result.html("20000원 이상");
+			}
 			
-			 let range_result = $("#range_result");
-	         
-	         if(cost_range=='5000이하'){
-	            $("#range").val(0);
-	            $("#cost_set").val("5000이하");
-	            range_result.html("5000원 이하");
-	            
-	         }else if(cost_range=='5000~10000'){
-	            $("#range").val(1);
-	            $("#cost_set").val("5000~10000");
-	            range_result.html("5000원 ~ 10000원");
-	            
-	         }else if(cost_range=='10000~15000'){
-	            $("#range").val(2);
-	            $("#cost_set").val("10000~15000");
-	            range_result.html("10000원 ~ 15000원");
-	            
-	         }else if(cost_range=='15000~20000'){
-	            $("#range").val(3);
-	            $("#cost_set").val("15000~20000");
-	            range_result.html("15000원 ~ 20000원");
-	            
-	         }else if(cost_range=='20000이상'){
-	            $("#range").val(4);
-	            $("#cost_set").val("20000이상");
-	            range_result.html("20000원 이상");
-	         }
-			
-			
-			if(food_category_korean!='true'){
+			let target = document.getElementById('range');
+		      const min = target.min
+		      const max = target.max
+		      const val = target.value
+		      target.style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%'
+		      
+
+			if (food_category_korean != 'true') {
 				$("#food_category_korean").click();
 			}
-			if(food_category_western!='true'){
+			if (food_category_western != 'true') {
 				$("#food_category_western").click();
 			}
-			if(food_category_chinese!='true'){
+			if (food_category_chinese != 'true') {
 				$("#food_category_chinese").click();
 			}
-			if(food_category_japanese!='true'){
+			if (food_category_japanese != 'true') {
 				$("#food_category_japanese").click();
 			}
-			if(food_category_asian!='true'){
+			if (food_category_asian != 'true') {
 				$("#food_category_asian").click();
 			}
-			if(food_category_fastfood!='true'){
+			if (food_category_fastfood != 'true') {
 				$("#food_category_fastfood").click();
 			}
-			if(food_category_dessert_drink!='true'){
+			if (food_category_dessert_drink != 'true') {
 				$("#food_category_dessert_drink").click();
 			}
-			if(food_category_etc!='true'){
+			if (food_category_etc != 'true') {
 				$("#food_category_etc").click();
 			}
-			
-			
+
 			// 즐겨찾기 등록,삭제 버튼
 			$(".addFavorite_btn").each(function (index, item) {
 				let loginCheck = $("#loginCheck").val();
-				
+
 				let addFavoriteStoreCheck;
-				
-				if($(item).attr("class")=="addFavorite_btn istrue"){
+
+				if ($(item).attr("class") == "addFavorite_btn istrue") {
 					addFavoriteStoreCheck = true;
-				}else{
+				} else {
 					addFavoriteStoreCheck = false;
 				}
 
-				$(this).on("click",function(){
+				$(this).on("click", function () {
 					event.stopPropagation();
-					if(loginCheck=="false"){
+					if (loginCheck == "false") {
 						alert("로그인을 먼저 진행해주세요.");
-					}
-					else {
+					} else {
 						let addFavorite_btn = $(this);
-						
-						if(addFavoriteStoreCheck==false){
-							$.ajax({
-								url:"/addFavoriteStore.store",
-								type:"post",
-								data:{
-									addFavorite_storeID:addFavorite_btn.prev().prev().val()
-								}
-							}).done(function(resp){
-								if(resp=="true"){
-									addFavoriteStoreCheck = true;
-									addFavorite_btn.removeClass("isfalse");
-									addFavorite_btn.addClass("istrue");
-									console.log(addFavorite_btn);
-								}
-							})
-						}else{
-							$.ajax({
-								url:"/deleteFavoriteStore.store",
-								type:"post",
-								data:{
-									addFavorite_storeID:addFavorite_btn.prev().prev().val()
-								}
-							}).done(function(resp){
-								if(resp=="true"){
-									addFavoriteStoreCheck = false;
-									addFavorite_btn.removeClass("istrue");
-									addFavorite_btn.addClass("isfalse");
-									console.log(addFavorite_btn);
-								}
-							})
+
+						if (addFavoriteStoreCheck == false) {
+							$
+								.ajax({
+									url: "/addFavoriteStore.store",
+									type: "post",
+									data: {
+										addFavorite_storeID: addFavorite_btn
+											.prev()
+											.prev()
+											.val()
+									}
+								})
+								.done(function (resp) {
+									if (resp == "true") {
+										addFavoriteStoreCheck = true;
+										addFavorite_btn.removeClass("isfalse");
+										addFavorite_btn.addClass("istrue");
+									}
+								})
+						} else {
+							$
+								.ajax({
+									url: "/deleteFavoriteStore.store",
+									type: "post",
+									data: {
+										addFavorite_storeID: addFavorite_btn
+											.prev()
+											.prev()
+											.val()
+									}
+								})
+								.done(function (resp) {
+									if (resp == "true") {
+										addFavoriteStoreCheck = false;
+										addFavorite_btn.removeClass("istrue");
+										addFavorite_btn.addClass("isfalse");
+									}
+								})
 						}
 					}
 				})
 			})
 		})
-		
-		
-		  // 범위 바의 값을 변경하였을 때 적용
-	      function SetValue() {
-	         if($("#range").prop("name")==false){
-	            $("#range").prop("name","range");
-	         }
-	         
-	         let range = $("#range").val();
-	         let range_result = $("#range_result");
-	         
-	         if (range == 0) {
-	            $("#cost_set").val("5000이하");
-	            range_result.html("5000원 이하");
-	         } else if (range == 1) {
-	            $("#cost_set").val("5000~10000");
-	            range_result.html("5000원 ~ 10000원");
-	         } else if (range == 2) {
-	            $("#cost_set").val("10000~15000");
-	            range_result.html("10000원 ~ 15000원");
-	         } else if (range == 3) {
-	            $("#cost_set").val("15000~20000");
-	            range_result.html("15000원 ~ 20000원");
-	         } else {
-	            $("#cost_set").val("20000이상");
-	            range_result.html("20000원 이상");
-	         }
-	      }
-	      
-	      
-	      
-	      
-	      const rangeInputs = document.querySelectorAll('input[type="range"]')
-	      
 
-	      function handleInputChange(e) {
-	        let target = e.target
-	        if (e.target.type !== 'range') {
-	          target = document.getElementById('range')
-	        } 
-	        const min = target.min
-	        const max = target.max
-	        const val = target.value
-	        
-	        target.style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%'
-	      }
+		// 범위 바의 값을 변경하였을 때 적용
+		function SetValue() {
+			if ($("#range").prop("name") == false) {
+				$("#range").prop("name", "range");
+			}
+			
+			let range = $("#range").val();
+			let range_result = $("#range_result");
 
-	      rangeInputs.forEach(input => {
-	        input.addEventListener('input', handleInputChange)
-	      })
-	      
-	      
-		// 맛집 리스트를 클릭했을 때, 가게 상세 페이지로 이동
-		$(".inner_layout").on("click",function(){
-			let storeID = $(this).find("[name=addFavorite_storeID]").val();
-			console.log(storeID);
-			location.href = "/view.store?storeID="+storeID;
+			if (range == 0) {
+				$("#cost_set").val("5000이하");
+				range_result.html("5000원 이하");
+			} else if (range == 1) {
+				$("#cost_set").val("5000~10000");
+				range_result.html("5000원 ~ 10000원");
+			} else if (range == 2) {
+				$("#cost_set").val("10000~15000");
+				range_result.html("10000원 ~ 15000원");
+			} else if (range == 3) {
+				$("#cost_set").val("15000~20000");
+				range_result.html("15000원 ~ 20000원");
+			} else {
+				$("#cost_set").val("20000이상");
+				range_result.html("20000원 이상");
+			}
+		}
+		
+		// 범위 바 변경 시에 적용 내용 2
+		const rangeInputs = document.querySelectorAll('input[type="range"]')
+
+		function handleInputChange(e) {
+			let target = e.target
+			if (e.target.type !== 'range') {
+				target = document.getElementById('range')
+			}
+			const min = target.min
+			const max = target.max
+			const val = target.value
+
+			target.style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%'
+		}
+
+		rangeInputs.forEach(input => {
+			input.addEventListener('input', handleInputChange)
 		})
 		
-		
+
+		// 맛집 리스트를 클릭했을 때, 가게 상세 페이지로 이동
+		$(".inner_layout").on("click", function () {
+			let storeID = $(this)
+				.find("[name=addFavorite_storeID]")
+				.val();
+			location.href = "/view.store?storeID=" + storeID;
+		})
+
 		// 검색 정렬 확인 버튼
-		$("#apply_btn").on("click",function(){
-			$("#searchFilterForm").prop("onsubmit",true);
+		$("#apply_btn").on("click", function () {
+			$("#searchFilterForm").prop("onsubmit", true);
 			$("#searchFilterForm").submit();
 		});
-		
+
 		// 검색 정렬 취소 버튼
-		$("#cancel_btn").on("click",function(){
+		$("#cancel_btn").on("click", function () {
 			$("#sortMethod").val("");
 			$("#cost_set").val("");
-			
-			$(".food_category_menu").each(function(index, item){
-			    $(item).val("true");
+
+			$(".food_category_menu").each(function (index, item) {
+				$(item).val("true");
 			});
-			
-			$("#searchFilterForm").prop("onsubmit",true);
+
+			$("#searchFilterForm").prop("onsubmit", true);
 			$("#searchFilterForm").submit();
 		})
-		
 	</script>
 </body>
 

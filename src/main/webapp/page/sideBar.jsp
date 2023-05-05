@@ -84,7 +84,7 @@ a:link {text-decoration: none;}
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=일식&approachBy=sidebar"><li>일식</li></a>
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=아시안&approachBy=sidebar"><li>아시안</li></a>
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=패스트푸드&approachBy=sidebar"><li>패스트푸드</li></a>
-         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=음료/디저트&approachBy=sidebar"><li>음료/디저트</li></a>
+         <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=디저트/음료&approachBy=sidebar"><li>디저트/음료</li></a>
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=기타&approachBy=sidebar"><li>기타</li></a>
       </ul>
       <ul class="nanum-gothic ulTag">
