@@ -107,15 +107,15 @@ public class MembersDAO {
 				String selfcomment = rs.getString("selfcomment");
 				String favoritefood = rs.getString("favoritefood");
 				
-				MembersDTO result = new MembersDTO(userID, pw, nickname, name, email,classes, selfcomment,favoritefood);
+				MembersDTO result = new MembersDTO(userno, userID, pw, nickname, name, email,classes, selfcomment,favoritefood);
 				
 				return result;
 			}
 		}
 	}
-	public int update(int userno, MembersDTO dto) throws Exception { //회원 수정
+	public int update(MembersDTO dto) throws Exception { //회원 수정
 
-		String sql = "update members set nickname=?, email=?, selfcomment=?, favoritefood=?, where userno=? and ismemberout = 'f'";
+		String sql = "update members set nickname=?, email=?, selfcomment=?, favoritefood=? where userno=? and ismemberout = 'f'";
 
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
@@ -123,7 +123,7 @@ public class MembersDAO {
 			pstat.setString(2, dto.getEmail());
 			pstat.setString(3, dto.getSelfcomment());
 			pstat.setString(4, dto.getFavoriteFood());
-			pstat.setInt(5, userno);
+			pstat.setInt(5, dto.getUserNO());
 
 			int result = pstat.executeUpdate();
 
@@ -276,12 +276,11 @@ public class MembersDAO {
 
 	
 	
-	public String idsearch(String name, String email, String classes) throws Exception{
-		String sql = "select userid from members where name = ? and email = ? and classes=? ";
+	public String idsearch(String name, String email) throws Exception{
+		String sql = "select userid from members where name = ? and email = ? order by userno desc";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setString(1, name);
 			pstat.setString(2, email);
-			pstat.setString(3, classes);
 
 			ResultSet rs = pstat.executeQuery(); {
 
