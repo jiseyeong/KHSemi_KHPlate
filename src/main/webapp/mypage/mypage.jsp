@@ -685,6 +685,7 @@
 	    $("#modiBtn").on("click", function () { //수정하기
 	        $("#postSearch").css("display", "inline-block");
 	        $("#modiBtn").css("display", "none");
+	        $("#toModiPW").css("display", "none");
 	        $("#modiComBtn").css("display", "inline-block");
 	        $("#pw1,#pw2,#nickname,#phone,#email,#zipCode,#address1,#address2,#selfcomment,#f" +
 	            "avoriteFood").removeAttr("readonly");
@@ -693,6 +694,7 @@
 	    $("#modiComBtn").on("click", function () { //수정완료
 	        $("#modiComBtn").css("display", "none");
 	        $("#modiBtn").css("display", "inline-block");
+	        $("#toModiPW").css("display", "inline-block");
 	        $("#postSearch").css("display", "none");
 	        $("input").attr("readonly", true);
 	    })
@@ -952,55 +954,50 @@
          })
      }
 
-      $("#updateForm").on("submit", function () { //수정 regex
+    $("#updateForm").on("submit", function () { //수정 regex
+    	 
+		let regexEmail = /.+@.+\..+/;
+	  	let email = $("#email").val();
+		
+	    if (email != "") {
+		
+        	let result2 = regexEmail.test(email);
+	
+         	if (!result2) {
+	            alert("이메일 형식이 잘못됐습니다.");
+	            return false;
+	        }else{
+	        	let updateForm = $("#updateForm").serialize() ;
+	        	$.ajax({
+	        		url:"/update.members",
+	        		type:"post",
+	        		data:updateForm
+	        	}).done(function(resp){
+	        		if(resp==true){
+			      		alert("수정이 완료되었습니다.");
+						location.onload();        			
+	        		}else{
+	        			
+	        		}
+	        	})
+	        }
+    	}
+	})
 
-          let regexPw = /^[A-Za-z0-9]{7,13}$/;
-          let regexPhone = /^010[0-9]{8}$/;
-          let regexEmail = /.+@.+\..+/;
+//     $("#pw2").on("keyup", function () { //패스워드 일치여부
+//         let inputPw1 = $("#pw1");
+//         let inputPw2 = $("#pw2");
 
-//           let pw1 = $("#pw1").val();
-//           let pw2 = $("#pw2").val();
-          let phone = $("#phone").val();
-          let email = $("#email").val();
-
-          if (phone != "" && email != "") {
-
-//            let result1 = regexPw.test(pw2);
-              let result2 = regexEmail.test(email);
-
-//               if (pw1 != pw2) {
-//                   alert("패스워드를 다시 확인해주세요.");
-//                   return false;
-//               } else if (!result1) {
-//                   alert("패스워드 형식이 잘못됐습니다.");
-//                   return false;
-// 				 }
-
-               if (!result2) {
-            	  console.log($("#email").val());
-                  alert("이메일 형식이 잘못됐습니다.")
-                  return false;
-              } else {
-                  alert("정보를 다 입력해주세요.")
-                  return false;
-              }
-          }
-      })
-
-    $("#pw2").on("keyup", function () { //패스워드 일치여부
-        let inputPw1 = $("#pw1");
-        let inputPw2 = $("#pw2");
-
-        if (inputPw1.val() == inputPw2.val()) {
-            $("#pwConfirm")
-                .html("패스워드가 일치합니다")
-                .css({ "color": "blue", "font-size": "13px" });
-        } else {
-            $("#pwConfirm")
-                .html("패스워드가 일치하지 않습니다")
-                .css({ "color": "red", "font-size": "13px" });
-        }
-    })
+//         if (inputPw1.val() == inputPw2.val()) {
+//             $("#pwConfirm")
+//                 .html("패스워드가 일치합니다")
+//                 .css({ "color": "blue", "font-size": "13px" });
+//         } else {
+//             $("#pwConfirm")
+//                 .html("패스워드가 일치하지 않습니다")
+//                 .css({ "color": "red", "font-size": "13px" });
+//         }
+//     })
     </script>
   </body>
 </html>
