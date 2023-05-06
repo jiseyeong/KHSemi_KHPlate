@@ -606,7 +606,7 @@ input[type="range"]::-ms-track {
 
 				<div class="print_searchResult_layout">
 					<!-- 필터 영역 -->
-
+					
 					<form action="/searchStoreBySearchFilter.store" id="searchFilterForm"
 						onsubmit="return false;">
 						<input type="text" name="searchedBy" value="mainSearch" style="display: none;">
@@ -756,8 +756,15 @@ input[type="range"]::-ms-track {
 									<div class="col-12 col-md-6 col-xl-4 inner_cover_layout">
 										<div class="inner_layout">
 											<div class="img_layout">
-												<img id="img${status.index}" src="/common/restaurant_img1.jpg"
-													class="restaurant_img">
+												<!-- 사진 리스트 썸네일 구현(엑박일 시, 기본 이미지 지정(onerror) -->
+												<c:choose>
+													<c:when test="${search_store_imgList.get(status.index)!=null}">
+														<img id="img${status.index}" src="/store/${search_store_imgList.get(status.index).sysName}" onerror="this.src='/allstore_inquiry/khplate2.jpg'" class="restaurant_img">
+													</c:when>
+													<c:otherwise>
+														<img id="img${status.index}" src="/allstore_inquiry/khplate2.jpg" class="restaurant_img">
+													</c:otherwise>
+												</c:choose>
 												<div class="restaurant_addFavorite">
 													<input type="text" name="addFavorite_storeID"
 														value="${i.storeID}" style="display: none;">

@@ -23,6 +23,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 * {
     box-sizing: border-box;
+    border-collapse:collapse;
     font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -181,8 +182,9 @@ button:hover {
 .img_layout {
     float: left;
     width: 30%;
-    height: 100%;
+    height: 102%;
     border: 1px solid silver;
+    margin-top:-1px;
 }
 
 img {
@@ -678,6 +680,7 @@ input[type="range"]::-ms-track {
 .search_store_list_toScript {
     display: none;
 }
+
 </style>
 </head>
 
@@ -728,7 +731,15 @@ input[type="range"]::-ms-track {
                                     <li class="restaurant restaurant_number${status.index}">
                                     <input type="text" class="restaurant_storeID" value="${i.storeID}" style="display: none;">
                                         <div class="img_layout">
-                                            <img src="/allstore_inquiry/restaurant_img1.jpg">
+                                       <!-- 사진 리스트 썸네일 구현(엑박일 시, 기본 이미지 지정(onerror) -->
+	                                        <c:choose>
+	                                        	<c:when test="${search_store_imgList.get(status.index)!=null}">
+													<img id="img${status.index}" src="/store/${search_store_imgList.get(status.index).sysName}" onerror="this.src='/allstore_inquiry/khplate2.jpg'" class="restaurant_img">
+												</c:when>
+												<c:otherwise>
+													<img id="img${status.index}" src="/allstore_inquiry/khplate2.jpg" class="restaurant_img">
+												</c:otherwise>
+											</c:choose>
                                         </div>
                                         <div class="info_layout">
                                             <div class=info_layout_topside>

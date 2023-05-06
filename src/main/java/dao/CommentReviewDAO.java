@@ -46,6 +46,7 @@ public class CommentReviewDAO {
 			pstat.setInt(4, dto.getUserNo());
 			int result = pstat.executeUpdate();
 			con.commit();
+			
 			return result;
 		}
 	}
@@ -312,5 +313,4 @@ public class CommentReviewDAO {
 			}
 		}
 	}
-	
 }
