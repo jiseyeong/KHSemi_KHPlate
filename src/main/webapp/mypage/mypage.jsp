@@ -1,661 +1,685 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="EUC-KR" />
-    <title>Mypage</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"
-    ></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
 
-      * {
-        box-sizing: border-box;
-        font-family: "Nanum Gothic", sans-serif;
-      }
+<head>
+<meta charset="EUC-KR" />
+<title>Mypage</title>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+    crossorigin="anonymous" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
 
-      a {
-        text-decoration: none;
-      }
+* {
+    box-sizing: border-box;
+    font-family: "Nanum Gothic", sans-serif;
+}
 
-      button {
-        border-radius: 15px;
-        border: 1px solid #4dae3c;
-        background-color: white;
-        color: #4dae3c;
-        font-size: 12px;
-        height: 30px;
-      }
+a {
+    text-decoration: none;
+}
 
-      button:hover {
-        color: white;
-        background-color: #4dae3c;
-      }
+button {
+    border-radius: 15px;
+    border: 1px solid #4dae3c;
+    background-color: white;
+    color: #4dae3c;
+    font-size: 12px;
+    height: 30px;
+}
 
-      .mypage {
-        margin: 20px auto auto;
-      }
+button:hover {
+    color: white;
+    background-color: #4dae3c;
+}
 
-      .myPageHeader {
-        height: 4%;
-        width: 80%;
-        text-align: center;
-        line-height: 60px;
-        font-size: 14px;
-        background-color: #ed1c16;
-        color: white;
-        font-width: bold;
-        border-radius: 30px;
-        box-shadow: 1px 1px 5px 1px silver;
-        text-align: center;
-        position: relative;
-        left: 100px;
-        margin-bottom: 30px;
-      }
+.mypage {
+    margin: 20px auto auto;
+}
 
-      .body1 {
-        width: 100%;
-        height: 60%;
-      }
+.myPageHeader {
+    height: 4%;
+    width: 80%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 25px;
+    background-color: #ed1c16;
+    color: white;
+    font-width: bold;
+    border-radius: 30px;
+    box-shadow: 1px 1px 5px 1px silver;
+    text-align: center;
+    position: relative;
+    left: 100px;
+    margin-bottom: 30px;
+}
 
-      .body1 > div {
-        float: left;
-        height: 100%;
-      }
+.body1 {
+    width: 100%;
+    height: 60%;
+}
 
-      .profile {
-        /* 	width: 35%; */
-      }
+.body1>div {
+    float: left;
+    height: 100%;
+}
 
-      .inpomation {
-        /* 	width: 65%; */
-      }
+.profile {
+    /* 	width: 35%; */
+}
 
-      .inpomation > .inpocontents1 {
-        float: left;
-        height: 100%;
-      }
+.inpomation {
+    /* 	width: 65%; */
+}
 
-      .inpocontents1 {
-        width: 20%;
-        line-height: 25px;
-      }
+.inpomation>.inpocontents1 {
+    float: left;
+    height: 100%;
+}
 
-      .inpocontents1 > #ul2 {
-        list-style: none;
-        margin-top: 50px;
-        padding: 0 0 0 40px;
-      }
+.inpocontents1 {
+    width: 20%;
+    line-height: 25px;
+}
 
-      /* .inpocontents1>#ul>.li { */
+.inpocontents1>#ul2 {
+    list-style: none;
+    margin-top: 50px;
+    padding: 0 0 0 40px;
+}
 
-      /* 	font-size: 15px; */
-      /* 	line-height: 25px; */
-      /* 	width: 110px; */
-      /*     font-weight: 700; */
+/* .inpocontents1>#ul>.li { */
 
-      /* } */
-      .inpocontents2 {
-        width: 80%;
-        padding-top: 45px;
-        padding-left: 150px;
-        position: relative;
-        margin-bottom: 30px;
-      }
+/* 	font-size: 15px; */
+/* 	line-height: 25px; */
+/* 	width: 110px; */
+/*     font-weight: 700; */
 
-      .inpocontents2 > input {
-      	padding-left:10px;
-        margin-bottom: 22px;
-        width: 100%;
-      }
+/* } */
+.inpocontents2 {
+    width: 80%;
+    padding-top: 45px;
+    padding-left: 150px;
+    position: relative;
+    margin-bottom: 30px;
+}
 
-      #myid {
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 15px;
-      }
+.inpocontents2>input {
+    padding-left: 10px;
+    margin-bottom: 22px;
+    width: 100%;
+}
 
-      #mypw1 {
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 40px;
-      }
+#myid {
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 15px;
+}
 
-      #mypw2 {
-        width: 95px;
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 40px;
-      }
+#mypw1 {
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 40px;
+}
 
-      #myname {
-        width: 95px;
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 40px;
-      }
+#mypw2 {
+    width: 95px;
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 40px;
+}
 
-      #mynickname {
-        width: 95px;
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 36px;
-      }
+#myname {
+    width: 95px;
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 40px;
+}
 
-      #myphone {
-        width: 95px;
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 35px;
-      }
+#mynickname {
+    width: 95px;
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 36px;
+}
 
-      #myemail {
-        width: 95px;
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 35px;
-      }
+#myphone {
+    width: 95px;
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 35px;
+}
 
-      #myclass {
-        width: 95px;
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 37px;
-      }
+#myemail {
+    width: 95px;
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 35px;
+}
 
-      #myself {
-        width: 95px;
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 35px;
-      }
+#myclass {
+    width: 95px;
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 37px;
+}
 
-      #myfavorite {
-        width: 95px;
-        font-size: 16px;
-        position: relative;
-        font-weight: bold;
-        margin-top: 36px;
-      }
+#myself {
+    width: 95px;
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 35px;
+}
 
-      .inputPw2 {
-        margin-top: 5px;
-      }
+#myfavorite {
+    width: 95px;
+    font-size: 16px;
+    position: relative;
+    font-weight: bold;
+    margin-top: 36px;
+}
 
-      .inputPw2 > input {
-        width: 54%;
-      }
+.inputPw2 {
+    margin-top: 5px;
+}
 
-      #pwConfirm {
-        display: inline-block;
-      }
+.inputPw2>input {
+    width: 54%;
+}
 
-      .inpocontents2 > button {
-        width: 75px;
-        position: relative;
-        left: 90px;
-      }
+#pwConfirm {
+    display: inline-block;
+}
 
-      .profileImage {
-        height: 65%;
-        margin-top: 50px;
-        margin-left: 100px;
-      }
+.inpocontents2>button {
+    width: 75px;
+    position: relative;
+    left: 90px;
+}
 
-      .profileImage > button {
-        margin-top: 20px;
-        font-size: 12px;
-        width: 75px;
-        text-align: center;
-        margin-left: 90px;
-      }
+.profileImage {
+    height: 65%;
+    margin-top: 50px;
+    margin-left: 100px;
+}
 
-      .proImage {
-        width: 250px;
-        height: 250px;
-        border-radius: 200px;
-        border: 1px solid black;
-      }
+.profileImage>button {
+    margin-top: 20px;
+    font-size: 12px;
+    width: 75px;
+    text-align: center;
+    margin-left: 90px;
+}
 
-      .profileName {
-        height: 35%;
-        text-align: center;
-      }
+.proImage {
+    width: 250px;
+    height: 250px;
+    border-radius: 200px;
+    border: 1px solid black;
+}
 
-      .profileName > button {
-        margin-top: 50px;
-        font-size: 12px;
-        width: 75px;
-      }
+.profileName {
+    height: 35%;
+    text-align: center;
+}
 
-      #postSearch {
-        position: relative;
-        left: 15px;
-        top: 0;
-        display: none;
-      }
+.profileName>button {
+    margin-top: 50px;
+    font-size: 12px;
+    width: 75px;
+}
 
-      #modiComBtn {
-        display: none;
-      }
+#postSearch {
+    position: relative;
+    left: 15px;
+    top: 0;
+    display: none;
+}
 
-      .body2 {
-        height: 40%;
-      }
+#modiComBtn {
+    display: none;
+}
 
-      .body2Navi {
-        height: 7%;
-      }
+#modiCancelBtn {
+	display: none;
+}
 
-      .body2Navi > a {
-        height: 100%;
-        background-color: white;
-        border: 1px solid black;
-        color: black;
-        position: relative;
-        top: 1px;
-        font-size: 12px;
-        height: 30px;
-        display: inline-block;
-        /* 	80 => 120px·Î º¯°æ */
-        width: 120px;
-        text-align: center;
-        background-color: rgb(240, 240, 240);
-        line-height: 30px;
-      }
+.body2 {
+    height: 40%;
+}
 
-      .body2Navi > a:first-of-type {
-        border-bottom: none;
-      }
+.body2Navi {
+    height: 7%;
+}
 
-      .body2Contents {
-        width: 100%;
-        height: 530px;
-        border: 1px solid black;
-        box-shadow: 1px 1px 5px 1px silver;
-        background-color: rgb(240, 240, 240);
-        padding: 30px;
-        /* 	ÇÏ´Ü ³×ºñ°ÔÀÌÅÍ¸¦ ºÙÀÌ±â À§ÇÑ position ºÎ¿© */
-        position: relative;
-      }
+.body2Navi>a {
+    height: 100%;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    position: relative;
+    top: 1px;
+    font-size: 12px;
+    height: 30px;
+    display: inline-block;
+    /* 	80 => 120pxë¡œ ë³€ê²½ */
+    width: 120px;
+    text-align: center;
+    background-color: rgb(240, 240, 240);
+    line-height: 30px;
+}
 
-      .body2Contents > table {
-        width: 100%;
-        text-align: center;
-        font-size: 14px;
-        magin: 0 auto;
-      }
+.body2Navi>a:first-of-type {
+    border-bottom: none;
+}
 
-      #replyList {
-        display: none;
-      }
+.body2Contents {
+    width: 100%;
+    height: 530px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px 1px silver;
+    background-color: rgb(240, 240, 240);
+    padding: 30px;
+    /* 	í•˜ë‹¨ ë„¤ë¹„ê²Œì´í„°ë¥¼ ë¶™ì´ê¸° ìœ„í•œ position ë¶€ì—¬ */
+    position: relative;
+}
 
-      #reviewMark {
-        display: none;
-      }
+.body2Contents>table {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    magin: 0 auto;
+}
 
-      #consultList {
-        display: none;
-      }
+#replyList {
+    display: none;
+}
 
-      #favoriteStoreList {
-        display: none;
-      }
+#reviewMark {
+    display: none;
+}
 
-      /* ÇÏ´Ü ³×ºñ°ÔÀÌÅÍ Ãß°¡ */
-      /* ³×ºñ°ÔÀÌÅÍ ¿µ¿ª */
-      .body2listNavi {
-        border:none;
-        height: 60px;
-        width: 100%;
-        text-align: center;
-        margin: 20px auto 0;
-        padding: 10px 0;
-        background-color: rgb(240, 240, 240);
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        justify-content: center;
-      }
+#consultList {
+    display: none;
+}
 
-      .navigator_list {
-        list-style-type: none;
-        padding-right: 50px;
-        margin: 0;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-      }
+#favoriteStoreList {
+    display: none;
+}
 
-      .navigator_list_item {
-        width: 30px;
-        height: 30px;
-        float: left;
-        margin-left: 5px;
-        margin-right: 5px;
-      }
+/* í•˜ë‹¨ ë„¤ë¹„ê²Œì´í„° ì¶”ê°€ */
+/* ë„¤ë¹„ê²Œì´í„° ì˜ì—­ */
+.body2listNavi {
+    border: none;
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    margin: 20px auto 0;
+    padding: 10px 0;
+    background-color: rgb(240, 240, 240);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+}
 
-      .navigator_list_item_btn_layout {
-        border:none;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+.navigator_list {
+    list-style-type: none;
+    padding-right: 50px;
+    margin: 0;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
 
-      .item {
-      	width:30px;
-      	border-radius:10px;
-        font-size: 10px;
-        line-height:30px;
-        text-decoration: none;
-      }
+.navigator_list_item {
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
-      .navigator_direction_btn {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        right: 0;
-        font-size: 15px;
-        background-color: white;
-        border: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+.navigator_list_item_btn_layout {
+    border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-      /* ¸®½ºÆ® Ãâ·Â °ü·Ã »çÇ× */
-      td {
-        /* 	ÅØ½ºÆ®¸¦ ÇÑ ÁÙ·Î Ã³¸® */
-        white-space: nowrap;
-        /* ±Û ³»¿ë ³Ñ¾î°¡¸é ¼û±èÃ³¸® */
-        overflow: hidden;
-        /* 	ÅØ½ºÆ®¿¡ ...»ı·«±âÈ£ ºÎ¿© */
-        text-overflow: ellipsis;
-      }
+.item {
+    width: 30px;
+    border-radius: 10px;
+    font-size: 10px;
+    line-height: 30px;
+    text-decoration: none;
+}
 
-      .inputcss {
-        height: 40px;
-        width: 100%;
-        border-radius: 4px;
-        line-height: 22px;
-        color: #c4c3ca;
-        background-color: #f2f2f2;
-        border: none;
-        box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
-      }
-      
-/*       ¹öÆ°µé Å©±â Á¶Á¤ */
-      .btns{
-      	width:23%;
-      }
-/*       ºñ¹Ğ¹øÈ£ ¼öÁ¤ ¹öÆ° */
-      #toModiPW {
-      	width:30%;
-        font-family: "Nanum Gothic", sans-serif;
-        background-color: #57b846;
-        color: rgba(255, 255, 255, 0.9);
-      }
-      #toModiPW:hover {
-        opacity: 80%;
-      }
+.navigator_direction_btn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    font-size: 15px;
+    background-color: white;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-      #modiBtn {
-        font-family: "Nanum Gothic", sans-serif;
-        background-color: #57b846;
-        color: rgba(255, 255, 255, 0.9);
-      }
+/* ë¦¬ìŠ¤íŠ¸ ì¶œë ¥ ê´€ë ¨ ì‚¬í•­ */
+td {
+    /* 	í…ìŠ¤íŠ¸ë¥¼ í•œ ì¤„ë¡œ ì²˜ë¦¬ */
+    white-space: nowrap;
+    /* ê¸€ ë‚´ìš© ë„˜ì–´ê°€ë©´ ìˆ¨ê¹€ì²˜ë¦¬ */
+    overflow: hidden;
+    /* 	í…ìŠ¤íŠ¸ì— ...ìƒëµê¸°í˜¸ ë¶€ì—¬ */
+    text-overflow: ellipsis;
+}
 
-      #modiBtn:hover {
-        opacity: 80%;
-      }
+.inputcss {
+    height: 40px;
+    width: 100%;
+    border-radius: 4px;
+    line-height: 22px;
+    color: #c4c3ca;
+    background-color: #f2f2f2;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
+}
 
-      #modiComBtn:hover {
-        opacity: 80%;
-      }
+/*       ë²„íŠ¼ë“¤ í¬ê¸° ì¡°ì • */
+.btns {
+    width: 23%;
+    height:35px;
+    font-family: "Nanum Gothic", sans-serif;
+    background-color: #57b846;
+    color: rgba(255, 255, 255, 0.9);
+}
 
-      #memberoutBtn {
-        font-family: "Nanum Gothic", sans-serif;
-        background-color: #57b846;
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: normal;
-      }
+.btns:hover{
+	opacity: 80%;
+}
 
-      #memberoutBtn:hover {
-        opacity: 50%;
-      }
+#toModiPW {
+     width: 33%;
+     font-family: "Nanum Gothic", sans-serif;
+     background-color: #57b846;
+     color: rgba(255, 255, 255, 0.9);
+}
 
-      #modiComBtn {
-        font-family: "Nanum Gothic", sans-serif;
-        background: #57b846;
-        color: #dfdeee;
-      }
-      
-      .btns_layout{
-      	margin-top:20px;
-      	display:flex;
-      	justify-content:space-evenly;
-      	align-items:center;
-      }
-    </style>
-  </head>
+/* #toModiPW:hover { */
+/*     opacity: 80%; */
+/* } */
 
-  <body>
+/* #modiBtn { */
+/*     font-family: "Nanum Gothic", sans-serif; */
+/*     background-color: #57b846; */
+/*     color: rgba(255, 255, 255, 0.9); */
+/* } */
+
+/* #modiBtn:hover { */
+/*     opacity: 80%; */
+/* } */
+
+/* #modiComBtn:hover { */
+/*     opacity: 80%; */
+/* } */
+
+#memberoutBtn {
+    font-family: "Nanum Gothic", sans-serif;
+    background-color: #57b846;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: normal;
+}
+
+/* #memberoutBtn:hover { */
+/*     opacity: 50%; */
+/* } */
+
+#modiComBtn {
+    font-family: "Nanum Gothic", sans-serif;
+    background: #57b846;
+    color: #dfdeee;
+}
+
+.btns_layout {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+</style>
+</head>
+
+<body>
+	<c:if test="${param.modyInfo==true}">
+		<script>
+			alert("ìˆ˜ì •ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+			location.href="/mypage.members";
+		</script>
+	</c:if>
+
     <div class="mypage">
-      <div class="myPageHeader">¸¶ÀÌÆäÀÌÁö</div>
-      <div class="row body1" style="margin-bottom:70px;">
-        <div class="col-12 col-lg-4 profile">
-          <div class="profileImage">
-            <div class="proImage"></div>
+        <div class="myPageHeader">${my.userID} ë‹˜ì˜ ë§ˆì´í˜ì´ì§€</div>
+        <div class="row body1" style="margin-bottom:40px;">
+            <div class="col-12 col-lg-4 profile">
+                <div class="profileImage">
+                    <div class="proImage"></div>
 
-            <button>º¯°æÇÏ±â</button>
-          </div>
-        </div>
-        <div class="col-12 col-lg-8 inpomation">
-          <div class="inpocontents1">
-            <div id="ul2">
-              <div id="myid">¾ÆÀÌµğ</div>
-<!--               <div id="mypw1">ºñ¹Ğ¹øÈ£</div> -->
-<!--               <div id="mypw2">ºñ¹Ğ¹øÈ£ È®ÀÎ</div> -->
-              <div id="myname">ÀÌ¸§</div>
-              <div id="mynickname">´Ğ³×ÀÓ</div>
-              <div id="myemail">email</div>
-              <div id="myclass">Å¬·¡½º¸í</div>
-              <div id="myself">ÇÑÁÙ¼Ò°³</div>
-              <div id="myfavorite">ÃÖ¾ÖÀ½½Ä</div>
+                    <button>ë³€ê²½í•˜ê¸°</button>
+                </div>
             </div>
-          </div>
-          <form action="/update.members" method="post" id="updateForm">
-            <div class="inpocontents2">
-              <input type="hidden" value="${my.userNO}" id="userno" name="userno"/>
-              <input type="text" value="${my.userID}" id="id" class="inputcss" readonly="readonly"/>
-              <br />
-<%--               <input type="password" value="${my.pw}" id="pw1" name="pw" class="inputcss" readonly="readonly"/> --%>
-<!--               <br /> -->
-<!--               <input type="password" id="pwConfirm" class="inputcss" readonly="readonly" /> -->
-<!--               <br /> -->
-              <input type="text" value="${my.name}" class="inputcss" readonly="readonly" />
-              <br />
-              <input type="text" value="${my.nickname}" class="inputcss" id="nickname" name="nickname" readonly="readonly" />
-              <br />
-              <input type="text" value="${my.email}" class="inputcss" id="email" name="email" readonly="readonly"/>
-              <br />
-              <input type="text" value="${my.classes}" class="inputcss" readonly="readonly"/>
-              <br />
-              <input type="text" value="${my.selfcomment}" class="inputcss" id="selfcomment" name="selfcomment" readonly="readonly"/>
-              <br />
-              <input type="text" value="${my.favoriteFood}" class="inputcss" id="favoriteFood" name="favoriteFood" readonly="readonly"/>
-              <br />
-
-			  <div class="btns_layout">
-			   <button class="btns" id="toModiPW" type="button">ºñ¹Ğ¹øÈ£ ¼öÁ¤</button>
-               <button class="btns" id="modiBtn" type="button">¼öÁ¤ÇÏ±â</button>
-               <button class="btns" id="modiComBtn" type="submit">¼öÁ¤¿Ï·á</button>
-               <button class="btns" id="memberoutBtn" type="button">È¸¿øÅ»Åğ</button>
-			  </div>
+            <div class="col-12 col-lg-8 inpomation">
+                <div class="inpocontents1">
+                    <div id="ul2">
+                        <div id="myid">ì•„ì´ë””</div>
+                        <!--               <div id="mypw1">ë¹„ë°€ë²ˆí˜¸</div> -->
+                        <!--               <div id="mypw2">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</div> -->
+                        <div id="myname">ì´ë¦„</div>
+                        <div id="mynickname">ë‹‰ë„¤ì„</div>
+                        <div id="myemail">email</div>
+                        <div id="myclass">í´ë˜ìŠ¤ëª…</div>
+                        <div id="myself">í•œì¤„ì†Œê°œ</div>
+                        <div id="myfavorite">ìµœì• ìŒì‹</div>
+                    </div>
+                </div>
+                <form action="/update.members" method="post" id="updateForm">
+                    <div class="inpocontents2">
+                        <input type="hidden" value="${my.userNO}" id="userno" name="userno" />
+                        <input type="text" value="${my.userID}" id="id" class="inputcss" readonly="readonly" />
+                        <br />
+                        <%-- <input type="password" value="${my.pw}" id="pw1" name="pw" class="inputcss"
+                            readonly="readonly" /> --%>
+                        <!--               <br /> -->
+                        <!--               <input type="password" id="pwConfirm" class="inputcss" readonly="readonly" /> -->
+                        <!--               <br /> -->
+                        <input type="text" value="${my.name}" class="inputcss" id="name" readonly="readonly" />
+                        <br />
+                        <input type="text" value="${my.nickname}" class="inputcss" id="nickname" name="nickname"
+                            readonly="readonly" />
+                        <br />
+                        <input type="text" value="${my.email}" class="inputcss" id="email" name="email"
+                            readonly="readonly" />
+                        <br />
+                        <input type="text" value="${my.classes}" class="inputcss" id="classes" readonly="readonly"/>
+                        <br />
+                        <input type="text" value="${my.selfcomment}" class="inputcss" id="selfcomment"
+                            name="selfcomment" readonly="readonly" />
+                        <br />
+                        <input type="text" value="${my.favoriteFood}" class="inputcss" id="favoriteFood"
+                            name="favoriteFood" readonly="readonly" />
+                        <br />
+						
+                        <div class="btns_layout">
+							<c:if test="${sessionScope.userno==my.userNO}">
+	                            <button class="btns" id="toModiPW" type="button">ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ìˆ˜ì •</button>
+	                            <button class="btns" id="modiBtn" type="button">ìˆ˜ì •í•˜ê¸°</button>
+	                            <button class="btns" id="modiCancelBtn" type="button">ìˆ˜ì •ì·¨ì†Œ</button>
+	                            <button class="btns" id="modiComBtn" type="submit">ìˆ˜ì •ì™„ë£Œ</button>
+	                            <button class="btns" id="memberoutBtn" type="button">íšŒì›íƒˆí‡´</button>
+                            </c:if>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </form>
         </div>
-      </div>
-      <div class="d-none d-md-block body2">
-        <div class="body2Navi">
-          <a href="#null" class="myContents" id="writeListBtn">³»°¡ ¾´ ±Û</a>
-          <a href="#null" class="myContents" id="replyListBtn">³»°¡ ¾´ ´ñ±Û</a>
-          <a href="#null" class="myContents" id="reviewMarkBtn">³»°¡ ½ºÅ©·¦ÇÑ ¸®ºä</a>
-          <a href="#null" class="myContents" id="favoriteStoreListBtn">³»°¡ Áñ°ÜÃ£±âÇÑ °¡°Ô</a>
-          <a href="#null" class="myContents" id="consultListBtn">1:1 ¹®ÀÇ</a>
-        </div>
-        <div class="body2Contents">
-          <table border-bottom="1" class="table" id="writeList">
-            <!--³»°¡ ¾´ ±Û ¸®½ºÆ® »Ì¾Æ³»±â-->
-            <colgroup>
-              <col width="10%" />
-              <col width="45%" />
-              <col width="20%" />
-              <col width="15%" />
-              <col width="10%" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th>¹øÈ£</th>
-                <th>Á¦¸ñ</th>
-                <th>ÀÛ¼ºÀÚ</th>
-                <th></th>
-                <th>ÀÛ¼ºÀÏ</th>
-              </tr>
-            </thead>
-            <tbody id="writeListToPrint">
-              <!-- ¸®½ºÆ® Ãâ·Â ±¸°£ -->
-            </tbody>
-          </table>
-          <table border-bottom="1" class="table" id="replyList">
-            <!--³»°¡ ¾´ ´ñ±Û ¸®½ºÆ® »Ì¾Æ³»±â-->
-            <colgroup>
-              <col width="10%" />
-              <col width="45%" />
-              <col width="20%" />
-              <col width="15%" />
-              <col width="10%" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th>¹øÈ£</th>
-                <th>¸ÀÁı ÀÌ¸§</th>
-                <th>´ñ±Û ³»¿ë</th>
-                <th>ÆòÁ¡</th>
-                <th>ÀÛ¼ºÀÏ</th>
-              </tr>
-            </thead>
-            <tbody id="replyListToPrint">
-              <!-- ¸®½ºÆ® Ãâ·Â ±¸°£ -->
-            </tbody>
-          </table>
-          <table border-bottom="1" class="table" id="reviewMark">
-            <!--ºí·Î±×Çü ¸®ºä ½ºÅ©·¦-->
-            <colgroup>
-              <col width="10%" />
-              <col width="45%" />
-              <col width="20%" />
-              <col width="15%" />
-              <col width="10%" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th>¹øÈ£</th>
-                <th>Á¦¸ñ</th>
-                <th>ÀÛ¼ºÀÚ</th>
-                <th>¸ÀÁı ÀÌ¸§</th>
-                <th>¸®ºä ÀÛ¼ºÀÏ</th>
-              </tr>
-            </thead>
-            <tbody id="reviewMarkToPrint">
-              <!-- ¸®½ºÆ® Ãâ·Â ±¸°£ -->
-            </tbody>
-          </table>
+        <div class="d-none d-md-block body2">
+            <div class="body2Navi">
+                <a href="#null" class="myContents" id="writeListBtn">ë‚´ê°€ ì“´ ê¸€</a>
+                <a href="#null" class="myContents" id="replyListBtn">ë‚´ê°€ ì“´ ëŒ“ê¸€</a>
+                <a href="#null" class="myContents" id="reviewMarkBtn">ë‚´ê°€ ìŠ¤í¬ë©í•œ ë¦¬ë·°</a>
+                <a href="#null" class="myContents" id="favoriteStoreListBtn">ë‚´ê°€ ì¦ê²¨ì°¾ê¸°í•œ ê°€ê²Œ</a>
+                <a href="#null" class="myContents" id="consultListBtn">1:1 ë¬¸ì˜</a>
+            </div>
+            <div class="body2Contents">
+                <table border-bottom="1" class="table" id="writeList">
+                    <!--ë‚´ê°€ ì“´ ê¸€ ë¦¬ìŠ¤íŠ¸ ë½‘ì•„ë‚´ê¸°-->
+                    <colgroup>
+                        <col width="10%" />
+                        <col width="45%" />
+                        <col width="20%" />
+                        <col width="15%" />
+                        <col width="10%" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>ë²ˆí˜¸</th>
+                            <th>ì œëª©</th>
+                            <th>ì‘ì„±ì</th>
+                            <th></th>
+                            <th>ì‘ì„±ì¼</th>
+                        </tr>
+                    </thead>
+                    <tbody id="writeListToPrint">
+                        <!-- ë¦¬ìŠ¤íŠ¸ ì¶œë ¥ êµ¬ê°„ -->
+                    </tbody>
+                </table>
+                <table border-bottom="1" class="table" id="replyList">
+                    <!--ë‚´ê°€ ì“´ ëŒ“ê¸€ ë¦¬ìŠ¤íŠ¸ ë½‘ì•„ë‚´ê¸°-->
+                    <colgroup>
+                        <col width="10%" />
+                        <col width="45%" />
+                        <col width="20%" />
+                        <col width="15%" />
+                        <col width="10%" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>ë²ˆí˜¸</th>
+                            <th>ë§›ì§‘ ì´ë¦„</th>
+                            <th>ëŒ“ê¸€ ë‚´ìš©</th>
+                            <th>í‰ì </th>
+                            <th>ì‘ì„±ì¼</th>
+                        </tr>
+                    </thead>
+                    <tbody id="replyListToPrint">
+                        <!-- ë¦¬ìŠ¤íŠ¸ ì¶œë ¥ êµ¬ê°„ -->
+                    </tbody>
+                </table>
+                <table border-bottom="1" class="table" id="reviewMark">
+                    <!--ë¸”ë¡œê·¸í˜• ë¦¬ë·° ìŠ¤í¬ë©-->
+                    <colgroup>
+                        <col width="10%" />
+                        <col width="45%" />
+                        <col width="20%" />
+                        <col width="15%" />
+                        <col width="10%" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>ë²ˆí˜¸</th>
+                            <th>ì œëª©</th>
+                            <th>ì‘ì„±ì</th>
+                            <th>ë§›ì§‘ ì´ë¦„</th>
+                            <th>ë¦¬ë·° ì‘ì„±ì¼</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reviewMarkToPrint">
+                        <!-- ë¦¬ìŠ¤íŠ¸ ì¶œë ¥ êµ¬ê°„ -->
+                    </tbody>
+                </table>
 
-          <!-- »õ·Î Ãß°¡ÇÑ ³»°¡ Áñ°ÜÃ£±â ÇÑ °¡°Ô ¸®½ºÆ® -->
-          <table border-bottom="1" class="table" id="favoriteStoreList">
-            <!-- °¡°Ô Áñ°ÜÃ£±â ¸®½ºÆ®-->
-            <colgroup>
-              <col width="10%" />
-              <col width="45%" />
-              <col width="20%" />
-              <col width="15%" />
-              <col width="10%" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th>¸ÀÁı no.</th>
-                <th>¸ÀÁı ÀÌ¸§</th>
-                <th>¸ÀÁı ÁÖ¼Ò</th>
-                <th>¸ÀÁı Ä«Å×°í¸®</th>
-                <th>¸ÀÁı ÆòÁ¡</th>
-              </tr>
-            </thead>
-            <tbody id="favoriteStoreListToPrint">
-              <!-- ¸®½ºÆ® Ãâ·Â ±¸°£ -->
-            </tbody>
-          </table>
+                <!-- ìƒˆë¡œ ì¶”ê°€í•œ ë‚´ê°€ ì¦ê²¨ì°¾ê¸° í•œ ê°€ê²Œ ë¦¬ìŠ¤íŠ¸ -->
+                <table border-bottom="1" class="table" id="favoriteStoreList">
+                    <!-- ê°€ê²Œ ì¦ê²¨ì°¾ê¸° ë¦¬ìŠ¤íŠ¸-->
+                    <colgroup>
+                        <col width="10%" />
+                        <col width="45%" />
+                        <col width="20%" />
+                        <col width="15%" />
+                        <col width="10%" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>ë§›ì§‘ no.</th>
+                            <th>ë§›ì§‘ ì´ë¦„</th>
+                            <th>ë§›ì§‘ ì£¼ì†Œ</th>
+                            <th>ë§›ì§‘ ì¹´í…Œê³ ë¦¬</th>
+                            <th>ë§›ì§‘ í‰ì </th>
+                        </tr>
+                    </thead>
+                    <tbody id="favoriteStoreListToPrint">
+                        <!-- ë¦¬ìŠ¤íŠ¸ ì¶œë ¥ êµ¬ê°„ -->
+                    </tbody>
+                </table>
 
-          <table border-bottom="1" class="table" id="consultList">
-            <!-- 1:1¹®ÀÇ ¸®½ºÆ® -->
-            <colgroup>
-              <col width="10%" />
-              <col width="45%" />
-              <col width="20%" />
-              <col width="15%" />
-              <col width="10%" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th>¹øÈ£</th>
-                <th>Á¦¸ñ</th>
-                <th>ÀÛ¼ºÀÚ</th>
-                <th>Á¶È¸¼ö</th>
-                <th>ÀÛ¼ºÀÏ</th>
-              </tr>
-            </thead>
-            <tbody id="consultListToPrint">
-              <!-- ¸®½ºÆ® Ãâ·Â ±¸°£ -->
-            </tbody>
-          </table>
-		
-          <!-- Ãß°¡ÇÑ ³×ºñ°ÔÀÌÅÍ -->
-          <div class="body2listNavi">
-            <ul class="navigator_list" style="text-align:center; align:center;">
-            </ul>
-          </div>
+                <table border-bottom="1" class="table" id="consultList">
+                    <!-- 1:1ë¬¸ì˜ ë¦¬ìŠ¤íŠ¸ -->
+                    <colgroup>
+                        <col width="10%" />
+                        <col width="45%" />
+                        <col width="20%" />
+                        <col width="15%" />
+                        <col width="10%" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>ë²ˆí˜¸</th>
+                            <th>ì œëª©</th>
+                            <th>ì‘ì„±ì</th>
+                            <th>ì¡°íšŒìˆ˜</th>
+                            <th>ì‘ì„±ì¼</th>
+                        </tr>
+                    </thead>
+                    <tbody id="consultListToPrint">
+                        <!-- ë¦¬ìŠ¤íŠ¸ ì¶œë ¥ êµ¬ê°„ -->
+                    </tbody>
+                </table>
+
+                <!-- ì¶”ê°€í•œ ë„¤ë¹„ê²Œì´í„° -->
+                <div class="body2listNavi">
+                    <ul class="navigator_list" style="text-align:center; align:center;">
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     <script>
-    $("#postSearch").on("click", function () { // ÁÖ¼Ò API
+    $("#postSearch").on("click", function () { // ì£¼ì†Œ API
 
         new daum.Postcode({
             oncomplete: function (data) {
@@ -667,182 +691,196 @@
                     .getElementById("address1")
                     .value = roadAddr;
             }
-        })
-        .open();
+        }).open();
     })
- 
-    $("#toModiPW").on("click",function(){
-    	window.open("/memberSearch/idpwsearch.jsp","","width=480px,height=750px");
+
+    $("#toModiPW").on("click", function () {
+        window.open("/memberSearch/idpwsearch.jsp", "", "width=480px,height=750px");
     })
+    
     $("document").ready(function () {
-         
-	  	$("#writeList").css("display", "table");
-	    $("table").not("table#writeList").css("display", "none");
-	    $("#writeListBtn").css({"z-index": "2","border-bottom":"none"});
-	    $(".myContents").not("#writeListBtn").css({ "z-index": "1", "border-bottom": "1px solid black" });
-	    
-	    $("#memberoutBtn").on("click", function () { //Å»ÅğÇÏ±â ¹öÆ° ´©¸¦ ¶§ ÀÌµ¿
-	        location.href = "/memberout/memberout.jsp";
-	    })
-	
-	    $("#modiBtn").on("click", function () { //¼öÁ¤ÇÏ±â
-	        $("#postSearch").css("display", "inline-block");
-	        $("#modiBtn").css("display", "none");
-	        $("#toModiPW").css("display", "none");
-	        $("#modiComBtn").css("display", "inline-block");
-	        $("#pw1,#pw2,#nickname,#phone,#email,#zipCode,#address1,#address2,#selfcomment,#f" +
-	            "avoriteFood").removeAttr("readonly");
-	    })
-	
-	    $("#modiComBtn").on("click", function () { //¼öÁ¤¿Ï·á
-	        $("#modiComBtn").css("display", "none");
-	        $("#modiBtn").css("display", "inline-block");
-	        $("#toModiPW").css("display", "inline-block");
-	        $("#postSearch").css("display", "none");
-	        $("input").attr("readonly", true);
-	    })
-	
-	    $(".myContents").on("click", function () { //³»°¡ ¾´±Û...µî ¹öÆ° ÀÌº¥Æ®
-	        $(this).css("border-bottom", "none");
-	        $(".myContents").not(this).css({ "z-index": "1", "border-bottom": "1px solid black" });
-	    })
-	
-	    // ÆäÀÌÁö ·»´õ¸µ ÈÄ ¹Ù·Î º¸¿©ÁÙ ³»°¡ ¾´ ±ÛÀÇ ¸®½ºÆ®¿Í ³×ºñ
-    	$.ajax({ 
-			url: "/selectBymypage.fullreview", 
-			type: "post", 
-			dataType: "json" 
-	 	}).done(function (resp) {
-			$("#writeListToPrint").html("");
-			$(".navigator_list").html("");
-			let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
-			let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
-			$("#writeListToPrint").append(writeFullReviewList);
-			$(".navigator_list").append(writeFullReviewNavi);
-			
-			setnavi();
-	    })
+        $("#writeList").css("display", "table");
+        $("table").not("table#writeList").css("display", "none");
+        $("#writeListBtn").css({ "z-index": "2", "border-bottom": "none" });
+        $(".myContents").not("#writeListBtn").css({ "z-index": "1", "border-bottom": "1px solid black" });
+
+        $("#memberoutBtn").on("click", function () { //íƒˆí‡´í•˜ê¸° ë²„íŠ¼ ëˆ„ë¥¼ ë•Œ ì´ë™
+            location.href = "/memberout/memberout.jsp";
+        })
+
+        $("#modiBtn").on("click", function () { //ìˆ˜ì •í•˜ê¸°
+            $("#postSearch").css("display", "inline-block");
+            $("#modiBtn").css("display", "none");
+            $("#toModiPW").css("display", "none");
+            $("#memberoutBtn").css("display","none");
+            $("#modiCancelBtn").css("display", "inline-block");
+            $("#modiComBtn").css("display", "inline-block");
+            $(".inputcss").not("#id").removeAttr("readonly");
+        })
+
+//         $("#modiComBtn").on("click", function () { //ìˆ˜ì •ì™„ë£Œ
+//             $("#modiComBtn").css("display", "none");
+//             $("#modiBtn").css("display", "inline-block");
+//             $("#toModiPW").css("display", "inline-block");
+//             $("#modiCancelBtn").css("display", "inline-block");
+//             $("#postSearch").css("display", "none");
+//             $("input").attr("readonly", true);
+//         })
+        
+        // ìˆ˜ì • ì·¨ì†Œ ë²„íŠ¼
+        $("#modiCancelBtn").on("click",function(){
+        	$("#postSearch").css("display", "inline-block");
+            $("#modiCancelBtn").css("display", "none");
+            $("#modiComBtn").css("display", "none");
+            $("#modiBtn").css("display", "inline-block");
+            $("#toModiPW").css("display", "inline-block");
+            $("#memberoutBtn").css("display","inline-block");
+            $(".inputcss").not("#id").removeAttr("readonly");
+        })
+
+        $(".myContents").on("click", function () { //ë‚´ê°€ ì“´ê¸€...ë“± ë²„íŠ¼ ì´ë²¤íŠ¸
+            $(this).css("border-bottom", "none");
+            $(".myContents").not(this).css({ "z-index": "1", "border-bottom": "1px solid black" });
+        })
+
+        // í˜ì´ì§€ ë Œë”ë§ í›„ ë°”ë¡œ ë³´ì—¬ì¤„ ë‚´ê°€ ì“´ ê¸€ì˜ ë¦¬ìŠ¤íŠ¸ì™€ ë„¤ë¹„
+        $.ajax({
+            url: "/selectBymypage.fullreview",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#writeListToPrint").html("");
+            $(".navigator_list").html("");
+            let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
+            let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
+            $("#writeListToPrint").append(writeFullReviewList);
+            $(".navigator_list").append(writeFullReviewNavi);
+
+            setnavi();
+        })
     })
-          
-     //³»°¡ ¾´ ±Û ¹öÆ° ´©¸£¸é °ü·Ã Å×ÀÌºí ³ª¿À°Ô ÀÌº¥Æ®
-        $("#writeListBtn").on("click", function () {
-            $.ajax({ url: "/selectBymypage.fullreview",
-          	  type: "post",
-          	  dataType: "json"
-      	  }).done(function (resp) {
-                $("#writeListToPrint").html("");
-                $(".navigator_list").html("");
-                let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
-                let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
-                $("#writeListToPrint").append(writeFullReviewList);
-                $(".navigator_list").append(writeFullReviewNavi);
 
-                setnavi();
-            })
-            $("#writeList").css("display", "table");
-            $("table").not("table#writeList").css("display", "none");
+    //ë‚´ê°€ ì“´ ê¸€ ë²„íŠ¼ ëˆ„ë¥´ë©´ ê´€ë ¨ í…Œì´ë¸” ë‚˜ì˜¤ê²Œ ì´ë²¤íŠ¸
+    $("#writeListBtn").on("click", function () {
+        $.ajax({
+            url: "/selectBymypage.fullreview",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#writeListToPrint").html("");
+            $(".navigator_list").html("");
+            let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
+            let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
+            $("#writeListToPrint").append(writeFullReviewList);
+            $(".navigator_list").append(writeFullReviewNavi);
+
+            setnavi();
+        })
+        $("#writeList").css("display", "table");
+        $("table").not("table#writeList").css("display", "none");
+    })
+
+    //ë‚´ê°€ ì“´ ëŒ“ê¸€ ë²„íŠ¼ ëˆ„ë¥´ë©´ ê´€ë ¨ í…Œì´ë¸” ë‚˜ì˜¤ê²Œ ì´ë²¤íŠ¸
+    $("#replyListBtn").on("click", function () {
+
+        $.ajax({
+            url: "/selectBymypage.commentReview",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#replyListToPrint").html("");
+            $(".navigator_list").html("");
+            let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
+            let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
+            $("#replyListToPrint").append(writeMyCommentList);
+            $(".navigator_list").append(writeMyCommentNavi);
+
+            setnavi();
         })
 
-        //³»°¡ ¾´ ´ñ±Û ¹öÆ° ´©¸£¸é °ü·Ã Å×ÀÌºí ³ª¿À°Ô ÀÌº¥Æ®
-        $("#replyListBtn").on("click", function () {
+        $("#replyList").css("display", "table");
+        $("table").not("table#replyList").css("display", "none");
+    })
 
-            $.ajax({ 
-          	  url: "/selectBymypage.commentReview", 
-          	  type: "post", 
-          	  dataType: "json" 
-      	  }).done(function (resp) {
-                $("#replyListToPrint").html("");
-                $(".navigator_list").html("");
-                let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
-                let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
-                $("#replyListToPrint").append(writeMyCommentList);
-                $(".navigator_list").append(writeMyCommentNavi);
+    // ë‚´ê°€ ìŠ¤í¬ë©í•œ ë¸”ë¡œê·¸ ë²„íŠ¼ ëˆ„ë¥´ë©´ ê´€ë ¨ í…Œì´ë¸” ë‚˜ì˜¤ê²Œ ì´ë²¤íŠ¸\
+    $("#reviewMarkBtn").on("click", function () {
+        $.ajax({
+            url: "/selectScrapListBymypage.fullreview",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#reviewMarkToPrint").html("");
+            $(".navigator_list").html("");
+            let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
+            let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
 
-                setnavi();
-            })
-            $("#replyList").css("display", "table");
-            $("table").not("table#replyList").css("display", "none");
+            $("#reviewMarkToPrint").append(myFullReviewScrapList);
+            $(".navigator_list").append(myFullReviewScrapNavi);
+
+            setnavi();
         })
 
-        // ³»°¡ ½ºÅ©·¦ÇÑ ºí·Î±× ¹öÆ° ´©¸£¸é °ü·Ã Å×ÀÌºí ³ª¿À°Ô ÀÌº¥Æ®\
-        $("#reviewMarkBtn").on("click", function () {
-         $.ajax({ 
-       	  url: "/selectScrapListBymypage.fullreview",
-       	  type: "post",
-		  dataType: "json"
-  	  }).done(function (resp) {
-             $("#reviewMarkToPrint").html("");
-             $(".navigator_list").html("");
-             let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
-             let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
+        $("#reviewMark").css("display", "table");
+        $("table").not("table#reviewMark").css("display", "none");
+    })
 
-             $("#reviewMarkToPrint").append(myFullReviewScrapList);
-             $(".navigator_list").append(myFullReviewScrapNavi);
+    //ì¦ê²¨ì°¾ê¸° ë²„íŠ¼ ëˆ„ë¥´ë©´ ê´€ë ¨ í…Œì´ë¸” ë‚˜ì˜¤ê²Œ ì´ë²¤íŠ¸
+    $("#favoriteStoreListBtn").on("click", function () {
 
-             setnavi();
-         })
-         $("#reviewMark").css("display", "table");
-         $("table").not("table#reviewMark").css("display", "none");
-     })
+        $.ajax({
+            url: "/selectFavoriteStore.store",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#favoriteStoreListToPrint").html("");
+            $(".navigator_list").html("");
+            let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+            let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+            $("#favoriteStoreListToPrint").append(FavoriteStoreList);
+            $(".navigator_list").append(FavoriteStoreNavi);
 
-     //Áñ°ÜÃ£±â ¹öÆ° ´©¸£¸é °ü·Ã Å×ÀÌºí ³ª¿À°Ô ÀÌº¥Æ®
-     $("#favoriteStoreListBtn").on("click", function () {
+            setnavi();
+        })
 
-         $.ajax({
-       	  url: "/selectFavoriteStore.store",
-       	  type: "post", 
-       	  dataType: "json" 
-         }).done(function (resp) {
-             $("#favoriteStoreListToPrint").html("");
-             $(".navigator_list").html("");
-             let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
-             let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
-             $("#favoriteStoreListToPrint").append(FavoriteStoreList);
-             $(".navigator_list").append(FavoriteStoreNavi);
+        $("#favoriteStoreList").css("display", "table");
+        $("table").not("table#favoriteStoreList").css("display", "none");
+    })
 
-             setnavi();
-         })
-         
-         $("#favoriteStoreList").css("display", "table");
-         $("table").not("table#favoriteStoreList").css("display", "none");
-     })
+    //1:1 ë¬¸ì˜ ë‚´ì—­ ë²„íŠ¼ ëˆ„ë¥´ë©´ í…Œì´ë¸” ë‚˜ì˜¤ê²Œ ì´ë²¤íŠ¸
+    $("#consultListBtn").on("click", function () {
+        $.ajax({
+            url: "/selectConsultListBymypage.consult",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#consultListToPrint").html("");
+            $(".navigator_list").html("");
+            let myConsultList = JSON.parse(resp.myConsultList);
+            let myConsultNavi = JSON.parse(resp.myConsultNavi);
+            $("#consultListToPrint").append(myConsultList);
+            $(".navigator_list").append(myConsultNavi);
 
-     //1:1 ¹®ÀÇ ³»¿ª ¹öÆ° ´©¸£¸é Å×ÀÌºí ³ª¿À°Ô ÀÌº¥Æ®
-     $("#consultListBtn").on("click", function () {
-         $.ajax({
-       	  url: "/selectConsultListBymypage.consult",
-       	  type: "post",
-       	  dataType: "json"
-         }).done(function (resp) {
-             $("#consultListToPrint").html("");
-             $(".navigator_list").html("");
-             let myConsultList = JSON.parse(resp.myConsultList);
-             let myConsultNavi = JSON.parse(resp.myConsultNavi);
-             $("#consultListToPrint").append(myConsultList);
-             $(".navigator_list").append(myConsultNavi);
+            setnavi();
+        })
 
+        $("#consultList").css("display", "table");
+        $("table").not("table#consultList").css("display", "none");
+    })
 
-             setnavi();
-         })
-         
-         $("#consultList").css("display", "table");
-         $("table").not("table#consultList").css("display", "none");
-     })
+    //ë„¤ë¹„ê²Œì´í„°ì— AJAX ì „ì†¡ ë§í¬ ë¶€ì—¬
+    function setnavi() {
+        $(".navibtn").on("click", function () {
 
-     //³×ºñ°ÔÀÌÅÍ¿¡ AJAX Àü¼Û ¸µÅ© ºÎ¿©
-     function setnavi() {
-         $(".navibtn").on("click", function () {
-
-             if ($(this).attr("searchto") == "writeFullReviewList") {
-                 let location = $(this).attr("location");
-                 $.ajax({
-                     url: "/selectBymypage.fullreview",
-                     type: "post",
-                     data: {
-                         cpage: location
-                     },
-                     dataType: "json"
-                 }).done(function (resp) {
+            if ($(this).attr("searchto") == "writeFullReviewList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectBymypage.fullreview",
+                    type: "post",
+                    data: {
+                        cpage: location
+                    },
+                    dataType: "json"
+                }).done(function (resp) {
                     $("#writeListToPrint").html("");
                     $(".navigator_list").html("");
                     let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
@@ -858,87 +896,87 @@
                     setnavi();
                 })
 
-             } else if ($(this).attr("searchto") == "writeMyCommentList") {
-                 let location = $(this).attr("location");
-                 $.ajax({
-                     url: "/selectBymypage.commentReview",
-                     type: "post",
-                     data: {
-                         cpage: location
-                     },
-                     dataType: "json"
-                 }).done(function (resp) {
-                     $("#replyListToPrint").html("");
-                     $(".navigator_list").html("");
-                     let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
-                     let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
-                     $("#replyListToPrint").append(writeMyCommentList);
-                     $(".navigator_list").append(writeMyCommentNavi);
+            } else if ($(this).attr("searchto") == "writeMyCommentList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectBymypage.commentReview",
+                    type: "post",
+                    data: {
+                        cpage: location
+                    },
+                    dataType: "json"
+                }).done(function (resp) {
+                    $("#replyListToPrint").html("");
+                    $(".navigator_list").html("");
+                    let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
+                    let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
+                    $("#replyListToPrint").append(writeMyCommentList);
+                    $(".navigator_list").append(writeMyCommentNavi);
 
-                     $("#replyList").css("display", "table");
-                     $("table")
-                         .not("table#replyList")
-                         .css("display", "none");
+                    $("#replyList").css("display", "table");
+                    $("table")
+                        .not("table#replyList")
+                        .css("display", "none");
 
-                     setnavi();
-                 })
+                    setnavi();
+                })
 
-             } else if ($(this).attr("searchto") == "writeMyFullReviewScrapList") {
-                 let location = $(this).attr("location");
-                 $.ajax({
-                     url: "/selectScrapListBymypage.fullreview",
-                     type: "post",
-                     data: {
-                         cpage: location
-                     },
-                     dataType: "json"
-                 }).done(function (resp) {
-                     $("#reviewMarkToPrint").html("");
-                     $(".navigator_list").html("");
-                     let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
-                     let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
-                     $("#reviewMarkToPrint").append(myFullReviewScrapList);
-                     $(".navigator_list").append(myFullReviewScrapNavi);
+            } else if ($(this).attr("searchto") == "writeMyFullReviewScrapList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectScrapListBymypage.fullreview",
+                    type: "post",
+                    data: {
+                        cpage: location
+                    },
+                    dataType: "json"
+                }).done(function (resp) {
+                    $("#reviewMarkToPrint").html("");
+                    $(".navigator_list").html("");
+                    let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
+                    let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
+                    $("#reviewMarkToPrint").append(myFullReviewScrapList);
+                    $(".navigator_list").append(myFullReviewScrapNavi);
 
-                     $("#reviewMark").css("display", "table");
-                     $("table")
-                         .not("table#reviewMark")
-                         .css("display", "none");
+                    $("#reviewMark").css("display", "table");
+                    $("table")
+                        .not("table#reviewMark")
+                        .css("display", "none");
 
-                     setnavi();
-                 })
+                    setnavi();
+                })
 
-             } else if ($(this).attr("searchto") == "FavoriteStoreList") {
-                 let location = $(this).attr("location");
-                 $.ajax({
-                     url: "/selectFavoriteStore.store",
-                     type: "post",
-                     data: {
-                         cpage: location
-                     },
-                     dataType: "json"
-                 }).done(function (resp) {
-                     $("#favoriteStoreListToPrint").html("");
-                     $(".navigator_list").html("");
-                     let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
-                     let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
-                     $("#favoriteStoreListToPrint").append(FavoriteStoreList);
-                     $(".navigator_list").append(FavoriteStoreNavi);
-                     $("#favoriteStoreList").css("display", "table");
-                     $("table")
-                         .not("table#favoriteStoreList")
-                         .css("display", "none");
+            } else if ($(this).attr("searchto") == "FavoriteStoreList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectFavoriteStore.store",
+                    type: "post",
+                    data: {
+                        cpage: location
+                    },
+                    dataType: "json"
+                }).done(function (resp) {
+                    $("#favoriteStoreListToPrint").html("");
+                    $(".navigator_list").html("");
+                    let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+                    let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+                    $("#favoriteStoreListToPrint").append(FavoriteStoreList);
+                    $(".navigator_list").append(FavoriteStoreNavi);
+                    $("#favoriteStoreList").css("display", "table");
+                    $("table")
+                        .not("table#favoriteStoreList")
+                        .css("display", "none");
 
-                     setnavi();
-                 })
+                    setnavi();
+                })
 
-             } else if ($(this).attr("searchto") == "myConsultList") {
-                 let location = $(this).attr("location");
-                 $.ajax({
-               	  url: "/selectConsultListBymypage.consult",
-               	  type: "post",
-               	  dataType: "json"
-           	  }).done(function (resp) {
+            } else if ($(this).attr("searchto") == "myConsultList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectConsultListBymypage.consult",
+                    type: "post",
+                    dataType: "json"
+                }).done(function (resp) {
                     $("#consultListToPrint").html("");
                     $(".navigator_list").html("");
                     let myConsultList = JSON.parse(resp.myConsultList);
@@ -953,54 +991,57 @@
 
                     setnavi();
                 })
-             }
-         })
-     }
+            }
+        })
+    }
 
-    $("#updateForm").on("submit", function () { //¼öÁ¤ regex
-    	 
-		let regexEmail = /.+@.+\..+/;
-	  	let email = $("#email").val();
+    $("#updateForm").on("submit", function () { //ìˆ˜ì • regex
+    	
+    	let regexName = /^[ê°€-í£]+$/;
+        let regexEmail = /.+@.+\..+/;
+        let name = $("#name").val();
+        let email = $("#email").val();
+
+        if (name == "") {
+        	alert("ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+            return false;       	
+        }
+        
+        if (email == ""){
+        	alert("ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+            return false; 
+        }
+        
+        let result = regexName.test(name);
+        
+        if (!result) {
+			alert("ì´ë¦„ì€ í•œê¸€ë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.");      
+			return false;
+        }
+        
+        let result2 = regexEmail.test(email);
 		
-	    if (email != "") {
-		
-        	let result2 = regexEmail.test(email);
-	
-         	if (!result2) {
-	            alert("ÀÌ¸ŞÀÏ Çü½ÄÀÌ Àß¸øµÆ½À´Ï´Ù.");
-	            return false;
-	        }else{
-	        	let updateForm = $("#updateForm").serialize() ;
-	        	$.ajax({
-	        		url:"/update.members",
-	        		type:"post",
-	        		data:updateForm
-	        	}).done(function(resp){
-	        		if(resp==true){
-			      		alert("¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-						location.onload();        			
-	        		}else{
-	        			
-	        		}
-	        	})
-	        }
-    	}
-	})
+        if (!result2) {
+            alert("ì´ë©”ì¼ í˜•ì‹ì´ ì˜ëª»ëìŠµë‹ˆë‹¤.");
+            return false;
+        } 
+        
+        let updateForm = $("#updateForm").serialize();
+        $.ajax({
+            url: "/update.members",
+            type: "post",
+            data: updateForm
+        }).done(function (resp) {
+            if (resp == true) {
+                alert("ìˆ˜ì •ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+                location.onload();
+            } else {
 
-//     $("#pw2").on("keyup", function () { //ÆĞ½º¿öµå ÀÏÄ¡¿©ºÎ
-//         let inputPw1 = $("#pw1");
-//         let inputPw2 = $("#pw2");
+            }
+        })
+    })
 
-//         if (inputPw1.val() == inputPw2.val()) {
-//             $("#pwConfirm")
-//                 .html("ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÕ´Ï´Ù")
-//                 .css({ "color": "blue", "font-size": "13px" });
-//         } else {
-//             $("#pwConfirm")
-//                 .html("ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù")
-//                 .css({ "color": "red", "font-size": "13px" });
-//         }
-//     })
     </script>
-  </body>
+</body>
+
 </html>

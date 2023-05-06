@@ -283,8 +283,12 @@ public class StoreController extends HttpServlet {
 
 				List<StoreDTO> search_store_list = StoreDAO.getInstance().searchStore_BySearchBox(search, start_Record_Row_Num, end_Record_Row_Num,food_category);
 				String search_store_list_navi = StoreDAO.getInstance().getNavi_BySearchBox(currentpage,search,searchedBy,food_category);
-
+				// 리스트 썸네일 추가
+				ArrayList<PhotoDTO> search_store_imgList = PhotoDAO.getInstance().selectSearchStoreThumbnailByStoreID(search_store_list);
+				
 				System.out.println("리스트 사이즈 : "+search_store_list.size());
+				System.out.println("사진 사이즈 : "+search_store_imgList.size());
+				
 				for(StoreDTO s : search_store_list) {
 					System.out.println(s.getName());
 				}
@@ -313,6 +317,7 @@ public class StoreController extends HttpServlet {
 				
 				request.setAttribute("search_store_list", search_store_list);
 				request.setAttribute("search_store_list_navi", search_store_list_navi);
+				request.setAttribute("search_store_imgList", search_store_imgList);
 				request.setAttribute("Favorite_list", Favorite_list);
 				
 				// 사이드바로 접근 시 p태그 내용 변경
@@ -512,6 +517,9 @@ public class StoreController extends HttpServlet {
 						food_category_western, food_category_chinese, food_category_japanese, food_category_asian, food_category_fastfood, 
 						food_category_dessert_drink, food_category_etc);
 				
+				// 리스트 썸네일 추가
+				ArrayList<PhotoDTO> search_store_imgList = PhotoDAO.getInstance().selectSearchStoreThumbnailByStoreID(search_store_list);
+				
 				System.out.println("리스트 사이즈 : "+search_store_list.size());
 				
 				int userno = 0;
@@ -524,6 +532,7 @@ public class StoreController extends HttpServlet {
 
 				request.setAttribute("search_store_list", search_store_list);
 				request.setAttribute("search_store_list_navi", search_store_list_navi);
+				request.setAttribute("search_store_imgList", search_store_imgList);
 				request.setAttribute("Favorite_list", Favorite_list);
 
 				if(searchedBy.equals("mainSearch")) {

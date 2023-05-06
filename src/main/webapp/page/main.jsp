@@ -28,10 +28,6 @@
    box-sizing: border-box;
    padding: 0px;
 }
-.container-fluid{
-
-	height:1387px;
-}
 .body {
 
    margin:auto;

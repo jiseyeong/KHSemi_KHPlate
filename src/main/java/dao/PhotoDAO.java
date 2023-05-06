@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.PhotoDTO;
+import dto.StoreDTO;
 
 public class PhotoDAO {
 	private static PhotoDAO instance = null;
@@ -199,4 +201,26 @@ public class PhotoDAO {
 		}
 	}
 	
+	// 가거 리스트 출력 시 썸네일로 출력할 가게 사진들 출력
+	public ArrayList<PhotoDTO> selectSearchStoreThumbnailByStoreID(List<StoreDTO> search_store_list) throws Exception{
+		ArrayList<PhotoDTO> result = new ArrayList<>();
+		for(StoreDTO store : search_store_list) {
+			String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where STOREID = ?";
+			try(	Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setInt(1, store.getStoreID());
+				try(ResultSet rs = pstat.executeQuery();){
+					if(rs.next()) {
+						int imageID = rs.getInt("IMAGEID");
+						String oriName = rs.getString("ORINAME");
+						String sysName = rs.getString("SYSNAME");
+						result.add(new PhotoDTO(imageID, oriName, sysName));
+					}else {
+						result.add(null);
+					}
+				}
+			}
+		}
+		return result;
+	}
 }

@@ -261,9 +261,9 @@ public class FullReviewDAO {
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
-					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a class='item' href='/select.fullreview?cpage="+i+"&search="+searchFullReviewTitle+"'>"+i+"</a>"
-					+ "		</div>"
+					+ "		<a class='item' href='/select.fullreview?cpage="+i+"&search="+searchFullReviewTitle+"'>"
+					+ 			"<div class='navigator_list_item_btn_layout'>"+i+"</div>"
+					+ 		"</a>"
 					+ "</li>");
 		}
 		if(needNext) {

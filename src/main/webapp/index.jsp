@@ -16,20 +16,13 @@
    	<a href="/page/main.jsp"><button style="width:200px; height:100px;">메인페이지 접속</button></a><br>
 	<hr>
 	<p>링크 미적용 사이트 입니다.</p>
-	가게 정보 등록 -> <a href="/store/registerForm.jsp">registerForm.jsp</a><br>
-	<br>
-	1:1 문의 작성 -> <a href="/adminPage/consultRegister.jsp">1:1 문의하기</a>
-	(관리자)문의 내역 -> <a href="/adminPage/consultList.jsp">counsultList.jsp</a><br>	
+	(관리자)가게 정보 등록 -> <a href="/store/registerForm.jsp">registerForm.jsp</a><br>
 	(관리자)문의 답변 작성 -> <a href="/adminPage/consultReplyRegister.jsp">consultReplyRegister.jsp</a><br>
-	문의 글 보기 -> <a href="/adminPage/consultView.jsp">consultView.jsp</a><br>
-	<br>
-	FAQ 등록 -> <a href="/adminPage/FAQRegister.jsp">FAQRegister.jsp</a><br>
-	FAQ 리스트 -> <a href="/adminPage/FAQView.jsp">FAQView.jsp</a><br>
+	(관리자)FAQ 등록 -> <a href="/adminPage/FAQRegister.jsp">FAQRegister.jsp</a><br>
 	<hr>
 	<p>페이지 만드는 중</p>
 	<hr>
 	<p>컨트롤러 적용 중</p>
-	회원탈퇴 -> <a href="/memberout/memberout.jsp">memberout.jsp</a><br>
 	<hr>
 	<p>컨트롤러 적용 완료, 디자인 적용 중</p>
 	가게 정보 확인 -> <a href="/store/view.jsp">view.jsp</a><br>
@@ -59,6 +52,7 @@
 	카카오 로그인 -> <a href="/login/kakaologin.html">kakaologin.html</a><br>
 	네이버 로그인 -> <a href="/login/naverlogin.jsp">naverlogin</a><br>
 	네이버 callback -> <a href="/login/navercallback.jsp">navercallback</a><br>
+	회원탈퇴 -> <a href="/memberout/memberout.jsp">memberout.jsp</a><br>
 	<br>
 	내 근처 맛집(지도형 맛집 확인 페이지)-><a href="/allstore_inquiry/allstore_inquiry.jsp">allstore_inquiry.jsp</a><br>
 	맛집 검색 결과 -> <a href="/common/main_storeSearchResult.jsp">main_storeSearchResult.jsp</a><br>
