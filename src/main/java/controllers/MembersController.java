@@ -132,8 +132,9 @@ public class MembersController extends HttpServlet {
 				String email = request.getParameter("email");
 				String selfcomment = request.getParameter("selfcomment");
 				String favoriteFood = request.getParameter("favoriteFood");
-
-				int result = dao.update(userno,new MembersDTO("",nickname,email,selfcomment,favoriteFood));
+				
+				
+				int result = dao.update(new MembersDTO(userno,nickname,email,selfcomment,favoriteFood));
 				
 				if(result>0) {
 					request.setAttribute("modyInfo", true);
@@ -181,6 +182,9 @@ public class MembersController extends HttpServlet {
 				}
 				MembersDTO my = MembersDAO.getInstance().selectById(userno);
 				request.setAttribute("my",my);
+				if(request.getAttribute("modyInfo")!=null) {
+					request.getRequestDispatcher("/mypage/myPageVer2.jsp?modyInfo=true").forward(request, response);
+				}else
 				request.getRequestDispatcher("/mypage/myPageVer2.jsp").forward(request, response);
 				
 				// 로그인 기능 AJAX
@@ -246,8 +250,7 @@ public class MembersController extends HttpServlet {
 			else if (cmd.equals("/idsearch.members")) {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
-				String classes = request.getParameter("classes");
-				String userid = dao.idsearch(name,email,classes);
+				String userid = dao.idsearch(name,email);
 				request.setAttribute("userid", userid);
 				request.getRequestDispatcher("/login/idconfirm.jsp").forward(request, response);
 			} else if (cmd.equals("/pwsearch.members")) {

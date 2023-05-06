@@ -32,6 +32,11 @@
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
+/* Header부분의 영향을 주기에 따로 빼두었습니다 */
+.accordion *{
+ 	margin-bottom: 10px;
+}
+
 .body {
 	margin: auto;
 }
@@ -60,6 +65,9 @@ margin-right: auto;
 box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
 }
 
+.search_layout2{
+	margin-bottom: 0px;
+}
 
 
 </style>
