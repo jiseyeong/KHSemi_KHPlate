@@ -22,8 +22,34 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
-.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
+*{font-family: 'Nanum Gothic', sans-serif;}
 
+.sideBar {
+	text-align:center;
+}
+.searchBtn {
+	font-size:17px;
+	margin-bottom:10px;
+	font-weight:bold;
+	background-color: #ED1C16;
+	color:white;
+	border-radius:15px;
+	width:65%;
+	height:40px;
+	cursor:pointer;
+	padding:0;
+	
+}
+.searchBtn:hover{
+	opacity:80%;
+}
+.searchBtn>img{
+	width:11%;
+	height:55%;
+	position:relative;
+	left:15px;
+	top:-1px;
+}
 ul {
    list-style: none;
    margin: 0px;
@@ -62,7 +88,10 @@ li:not(.firstLi):hover {
    font-weight: bolder;
    font-size:18px;
 }
-
+.searchBtn{
+   border:none;
+   margin-left:
+}
 /* a태그의 밑줄 속성 제거 */
 a:link {text-decoration: none;}
 
@@ -72,8 +101,9 @@ a:link {text-decoration: none;}
 </head>
 <body>
    <div class="col-12 col-lg-2 themed-grid-col sideBar">
-      <ul class="nanum-gothic ulTag">
-      	 <a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>
+     <button class="searchBtn">내 근처 맛집 검색<img src="/page/searchBtn.png"></button>
+      <ul class="ulTag">
+      	 <!--<a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>-->
          <li class="firstLi">Menu</li>
          
 <!--   카테고리 접근을 위한 a태그 추가 -->
@@ -87,12 +117,12 @@ a:link {text-decoration: none;}
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=디저트/음료&approachBy=sidebar"><li>디저트/음료</li></a>
          <a href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=기타&approachBy=sidebar"><li>기타</li></a>
       </ul>
-      <ul class="nanum-gothic ulTag">
+      <ul class="ulTag">
          <li class="firstLi">Community</li>
-         <li>잡담 게시판</li>
+         <!--<li>잡담 게시판</li>-->
          <a href="/select.fullreview"><li>리뷰 게시판</li></a>
       </ul>
-      <ul class="nanum-gothic ulTag">
+      <ul class="ulTag">
          <li class="firstLi">Customer Service</li>
          <a href="/list.consult"><li>1:1 문의</li></a>
          <a href="/view.faq"><li>FAQ 리스트</li></a>
