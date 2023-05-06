@@ -48,7 +48,7 @@ color:#57b846;
 /* 추가 버튼 디자인 */
 #toWriteBtn {
 	float: right;
-	width: 100px;
+	width: 40px;
 	height: 40px;
 	cursor: pointer;
 	border:none;

@@ -207,11 +207,19 @@ button:hover {
     display: inline-block;
 }
 
+<<<<<<< HEAD
+      .profileImage {
+        height: 65%;
+        margin-top: 35px;
+        margin-left: 120px;
+      }
+=======
 .inpocontents2>button {
     width: 75px;
     position: relative;
     left: 90px;
 }
+>>>>>>> 02ee1f5b83d76422462e29c6e886d68ffaea0fd4
 
 .profileImage {
     height: 65%;

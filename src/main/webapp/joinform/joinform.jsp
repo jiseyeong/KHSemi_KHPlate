@@ -518,7 +518,14 @@ font-size: 16px;
   line-height: 40px;
   padding: 0 25px;
   margin-left: 220px;
+   letter-spacing: 1px;
+   box-shadow: inset 0 0 0 0 #ED1C16; 
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
 }
+
+
 
 #enter span {
   cursor: pointer;
@@ -539,6 +546,7 @@ font-size: 16px;
 #enter:hover {
   padding-right: 30px;
   background: #4dae3c;
+  box-shadow: inset 400px 0 0 0 #ED1C16; 
 }
 
 #enter:hover span {
@@ -552,27 +560,6 @@ font-size: 16px;
   background: #ED1C16; 
 }
 
-
-#enter {
-  color: #FFF;
-  border: 2px solid #ED1C16; 
-  border-radius: 04px;
-  padding: 0px 25px;
-  display: inline-block;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-size: 14px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  box-shadow: inset 0 0 0 0 #ED1C16; 
-  -webkit-transition: ease-out 0.4s;
-  -moz-transition: ease-out 0.4s;
-  transition: ease-out 0.4s;
-}
-
-
-#enter:hover {
-  box-shadow: inset 400px 0 0 0 #ED1C16; 
-}
 
 
 

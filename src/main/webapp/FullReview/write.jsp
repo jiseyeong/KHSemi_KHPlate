@@ -50,7 +50,7 @@ textarea {
 	width: 100px;
 	height: 40px;
 	background-color: #57b846;
-	border-radius: 12px;
+	border-radius: 3px;
 	cursor: pointer;
 	border: none;
 	color: white;

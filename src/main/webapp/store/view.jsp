@@ -184,7 +184,7 @@
 					font-size:13px;
 					width:110px;
 					height:35px;
-					border-radius:10px;
+					border-radius:3px;
 					border:none;
 					background-color:#57b846;
 					color:white;
@@ -192,7 +192,7 @@
 					margin-right:5px;
                }
                .greenBtn:hover{
-               	  opacity:80%
+               	 background-color: #4dae3c;
                }
       </style>
          </head>
@@ -371,8 +371,8 @@
                            </div>
                            <!-- <input type="text" class="inputs" name="avgScore" value="${dto.avgScore}" style="display: none;"> -->
                            <div class="row" style="margin-top:50px;">
-                              <div class="col-12" style="font-weight:bold; margin-bottom:10px;">가게 소개</div>
-                              <hr>
+                              <div class="col-12" style="font-weight:bolder; font-size:25px; margin-bottom:10px;">가게 소개</div>
+                              <hr style="border-style:dotted;">
                               <div class="col-12">
                                  <textarea id="intro_editor"
                                     name="introduction">${dto.introduction}</textarea>

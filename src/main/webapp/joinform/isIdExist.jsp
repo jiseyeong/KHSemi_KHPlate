@@ -161,7 +161,6 @@ h2 {
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 30px;
 	font-weight: bolder;
-	color: #57b846;
 	text-align: center;
 }
 
@@ -269,7 +268,7 @@ h2 {
 		padding-top: 300px;
 		background-position: left center;
 	}
-	g
+	
 	  .card-2 .card-body {
 		display: block;
 		padding: 60px 50px;
@@ -314,12 +313,14 @@ h2 {
 }
 
 .btn_layout1 {
+margin-top: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .btn_layout2 {
+margin-top: 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
