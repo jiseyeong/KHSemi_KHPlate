@@ -29,7 +29,6 @@
 	box-sizing: border-box;
 	padding: 0px;
 	font-family: 'Nanum Gothic', sans-serif;
-	margin-bottom: 10px;
 }
 
 .body {
@@ -90,7 +89,7 @@
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
-				<form action="/register.faq" method="get">
+				<form id="registerForm" action="/register.faq" method="get">
 					<div class="row">
 						<div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
 							<div class="inputContent">FAQ 등록</div>
@@ -117,6 +116,17 @@
 							 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
 						})
 						.catch(error => { console.error(error) });
+					
+					//방어코드
+					$("#registerForm").submit(function(){
+						if(!($("input[name='title']").val())){
+							alert("제목을 입력해주세요.");
+							return false;
+						}else if(!($("#editor").val())){
+							alert("본문을 입력해주세요.");
+							return false;
+						}
+					});
 				</script>
 
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->

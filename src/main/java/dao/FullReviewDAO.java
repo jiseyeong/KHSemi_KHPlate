@@ -89,6 +89,23 @@ public class FullReviewDAO {
 		}
 	}
 
+	public List<FullReviewDTO> mainList() throws Exception {
+		String sql = "select reviewid, title from fullreview order by reviewid desc";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			try(ResultSet rs = pstat.executeQuery()){
+				List<FullReviewDTO> ListTitle = new ArrayList<>();
+				for(int i=0; i<9; i++) {
+					FullReviewDTO dto = new FullReviewDTO();
+					rs.next();
+					dto.setReviewID(rs.getInt("reviewid"));
+					dto.setTitle(rs.getString("title"));
+					ListTitle.add(dto);
+				}
+				return  ListTitle;
+			}
+		}
+	}
 
 
 	public List<StoreDTO> selectListStore()throws Exception{
@@ -244,9 +261,9 @@ public class FullReviewDAO {
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
-					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a class='item' href='/select.fullreview?cpage="+i+"&search="+searchFullReviewTitle+"'>"+i+"</a>"
-					+ "		</div>"
+					+ "		<a class='item' href='/select.fullreview?cpage="+i+"&search="+searchFullReviewTitle+"'>"
+					+ 			"<div class='navigator_list_item_btn_layout'>"+i+"</div>"
+					+ 		"</a>"
 					+ "</li>");
 		}
 		if(needNext) {

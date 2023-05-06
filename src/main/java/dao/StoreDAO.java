@@ -229,9 +229,9 @@ public class StoreDAO {
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
-					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a class='item' href='/searchStoreBySearchBox.store?cpage="+i+"&search="+search+"&food_category="+food_category+"'>"+i+"</a>"
-					+ "		</div>"
+					+ "		<a class='item' href='/searchStoreBySearchBox.store?cpage="+i+"&search="+search+"&food_category="+food_category+"'>"
+					+ "			<div class='navigator_list_item_btn_layout'>"+i+"</div>"
+					+ "		</a>"
 					+ "</li>");
 		}
 		if(needNext) {
@@ -282,7 +282,19 @@ public class StoreDAO {
 			sql = "select * from "
 					+ "(select store.*, row_number() over(order by avgscore desc) row_num from store where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?)) "
 					+ "where row_num between ? and ?";
-		}else {
+		}else if(sortMethod.equals("order_by_review")) {
+			sql = "select * from "
+					+ "(select store.storeid, count(*), row_number() over(order by count(*) desc) row_num from store"
+					+ "inner join commentreview ON store.storeid = commentreview.storeid
+							  GROUP BY store.storeid
+							) top_stores
+							INNER JOIN store ON top_stores.storeid = store.storeid
+							WHERE top_stores.row_num BETWEEN 1 AND 10;
+		}
+		
+		
+		
+		else {
 			sql = "select * from "
 					+ "(select store.*, row_number() over(order by storeID desc) row_num from store where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?)) "
 					+ "where row_num between ? and ?";
@@ -413,7 +425,7 @@ public class StoreDAO {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
 					+ "			<a href='/searchStoreBySearchFilter.store?cpage="+(startNavi-1)+"&search="+search+"'>"
-					+ "				<button class='navigator_direction_btn'>"
+					+ "				<button type='button' class='navigator_direction_btn'>"
 					+ "					<i class='fa-solid fa-angle-left'></i>"
 					+ "				</button>"
 					+ "			</a>"
@@ -422,16 +434,16 @@ public class StoreDAO {
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
-					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a class='item' href='/searchStoreBySearchFilter.store?cpage="+i+"&search="+search+"'>"+i+"</a>"
-					+ "		</div>"
+					+ "		<a class='item' href='/searchStoreBySearchFilter.store?cpage="+i+"&search="+search+"'>"
+					+ "			<div class='navigator_list_item_btn_layout'>"+i+"</div>"
+					+ "		</a>"
 					+ "</li>");
 		}
 		if(needNext) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
 					+ "			<a href='/searchStoreBySearchFilter.store?cpage="+(endNavi+1)+"&search="+search+"'>"
-					+ "				<button class='navigator_direction_btn'>"
+					+ "				<button type='button' class='navigator_direction_btn'>"
 					+ "					<i class='fa-solid fa-angle-right'></i>"
 					+ "				</button>"
 					+ "			</a>"

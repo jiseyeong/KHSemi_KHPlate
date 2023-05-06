@@ -46,6 +46,7 @@ public class CommentReviewDAO {
 			pstat.setInt(4, dto.getUserNo());
 			int result = pstat.executeUpdate();
 			con.commit();
+			
 			return result;
 		}
 	}
@@ -240,12 +241,14 @@ public class CommentReviewDAO {
 	}
 
 	private int selectwriteCommentList_RecordCount(int searchUserno) throws Exception{
-		String sql = "select count(*) from commentreview";
+		String sql = "select count(*) from commentreview where userno = ?";
 		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				ResultSet rs = pstat.executeQuery();){
-			rs.next();
-			return rs.getInt(1);
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, searchUserno);
+			try(ResultSet rs = pstat.executeQuery();){
+				rs.next();
+				return rs.getInt(1);	
+			}
 		}
 	}
 	
@@ -310,5 +313,4 @@ public class CommentReviewDAO {
 			}
 		}
 	}
-	
 }

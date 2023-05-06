@@ -19,11 +19,11 @@ public class MembersDTO {
 		super();
 	}
 
-	public MembersDTO(String pw, String nickname,String email,
+	public MembersDTO(int userno, String nickname,String email,
 					  String selfcomment, String favoriteFood) {
 		//마이페이지에서 회원정보 수정할때 받을 DTO
 
-		this.pw = pw;
+		this.userNO = userno;
 		this.nickname = nickname;
 		this.email = email;
 		this.selfcomment = selfcomment;
@@ -44,6 +44,23 @@ public class MembersDTO {
 
 
 	}
+	
+	public MembersDTO(int userno, String userID, String pw, String nickname,String name, String email,
+			String classes, String selfcomment, String favoriteFood) {//회원가입할때 받을 DTO
+		
+		this.userNO = userno;
+		this.userID = userID;
+		this.pw = pw;
+		this.nickname = nickname;
+		this.name = name;
+		this.email = email;
+		this.classes = classes;
+		this.selfcomment = selfcomment;
+		this.favoriteFood = favoriteFood;
+
+
+	}
+	
 	public MembersDTO(int userNO, String userID, String pw, String nickname, String name, String email,
 			String classes, String selfcomment, String favoriteFood, String isAdmin, String kakao, String naver) {
 		super();

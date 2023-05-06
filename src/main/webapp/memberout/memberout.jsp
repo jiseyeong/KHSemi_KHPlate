@@ -198,7 +198,7 @@ body, html {
 		});
 	})
 	$("#cancel").on("click",function(){
-		
+		history.back();
 	})
 	</script>
 </body>

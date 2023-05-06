@@ -333,6 +333,7 @@
 									addScrap_btn.addClass("istrue");
 								}
 							})
+							
 						}else{
 							$.ajax({
 								url:"/deleteScrapFullReview.fullreview",
@@ -349,6 +350,8 @@
 								}
 							})
 						}
+						
+						
 					}
 				})
 			})

@@ -126,21 +126,23 @@ public class MembersController extends HttpServlet {
 				
 				
 			}else if(cmd.equals("/update.members")) {
-
-				String pw = request.getParameter("pw");
-				String pw2 = SecurityUtils.sha512(pw);
+				
+				int userno = (int)request.getSession().getAttribute("userno");
 				String nickname = request.getParameter("nickname");
 				String email = request.getParameter("email");
 				String selfcomment = request.getParameter("selfcomment");
 				String favoriteFood = request.getParameter("favoriteFood");
-
-
-				int result = dao.update(new MembersDTO(pw2,nickname,email,selfcomment,favoriteFood));
-
-				response.sendRedirect("/mypage.members");
+				
+				
+				int result = dao.update(new MembersDTO(userno,nickname,email,selfcomment,favoriteFood));
+				
+				if(result>0) {
+					request.setAttribute("modyInfo", true);
+				}
+				request.getRequestDispatcher("/mypage.members").forward(request, response);
 
 			}else if(cmd.equals("/memberout.members")) { 
-
+				
 				String userId = request.getParameter("userId");
 				String userPw = SecurityUtils.sha512(request.getParameter("userPw"));
 				
@@ -169,7 +171,7 @@ public class MembersController extends HttpServlet {
 					}
 				}
 
-			}else if(cmd.equals("/mypage.members")) { 
+			}else if(cmd.equals("/mypage.members")) {
 				int userno = 0;
 				// 다른 사람의 유저 정보로 접근 할 때,
 				if(request.getParameter("userno")!=null) {
@@ -180,6 +182,9 @@ public class MembersController extends HttpServlet {
 				}
 				MembersDTO my = MembersDAO.getInstance().selectById(userno);
 				request.setAttribute("my",my);
+				if(request.getAttribute("modyInfo")!=null) {
+					request.getRequestDispatcher("/mypage/myPageVer2.jsp?modyInfo=true").forward(request, response);
+				}else
 				request.getRequestDispatcher("/mypage/myPageVer2.jsp").forward(request, response);
 				
 				// 로그인 기능 AJAX
@@ -245,8 +250,7 @@ public class MembersController extends HttpServlet {
 			else if (cmd.equals("/idsearch.members")) {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
-				String classes = request.getParameter("classes");
-				String userid = dao.idsearch(name,email,classes);
+				String userid = dao.idsearch(name,email);
 				request.setAttribute("userid", userid);
 				request.getRequestDispatcher("/login/idconfirm.jsp").forward(request, response);
 			} else if (cmd.equals("/pwsearch.members")) {

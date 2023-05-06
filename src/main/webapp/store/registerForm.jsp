@@ -250,7 +250,7 @@
 
                 //이미지 관리
                 let imgs = [];
-                let imgs_length = 5;
+                let imgs_length = 4;
                 let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
                 $("#btn_image_add").click(function () {
                     if (imgs.length < imgs_length) {
@@ -291,7 +291,18 @@
                         alert("마커를 설정해주셔야 합니다.");
                         return false;
                     }
-                })
+                    
+                    if(!($("input[name='storeName']").val())){
+                    	alert("가게 이름을 입력해주셔야 합니다.");
+                    	return false;
+                    }else if(!($("input[name='storeAddress']").val())){
+                    	alert("가게 주소를 입력해주셔야 합니다.");
+                    	return false;
+                    }else if(!($("#editor").val())){
+                    	alert("가게 설명을 입력해주셔야 합니다.");
+                    	return false;
+                    }
+                });
             </script>
 
             <!-- body main 수정 여기까지, 하단 건들지 말것. -->
