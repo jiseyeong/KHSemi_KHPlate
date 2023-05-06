@@ -41,8 +41,10 @@ public class MembersDAO {
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setInt(1, userNo);
 			try (ResultSet rs = pstat.executeQuery();) {
-				rs.next();
-				return rs.getString(1);
+				if(rs.next()) {
+					return rs.getString(1);					
+				}
+				return null;
 			}
 		}
 	}
@@ -53,9 +55,10 @@ public class MembersDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, userNo);
 			try(ResultSet rs = pstat.executeQuery();){
-				rs.next();
-				if(rs.getString(1).equals("T")) {
-					return true;
+				if(rs.next()) {
+					if(rs.getString(1).equals("T")) {
+						return true;
+					}					
 				}
 				return false;
 			}

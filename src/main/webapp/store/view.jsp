@@ -301,13 +301,15 @@
                               </div>
                            </div>
                         </div>
-                        <div class="col-12 col-lg-8 text-end" style="margin-top:30px; margin-left:auto; margin-right:auto; margin-bottom:50px;">
-                           <button type="button" id="btn_image_add" class="greenBtn" style="display:none;">이미지 추가 등록</button>
-                           <button type="button" id="btn_store_update" class="greenBtn">상점 수정</button>
-                           <button type="button" id="btn_store_update_delete" class="nonactive">상점 삭제</button>
-                           <button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
-                           <button type="button" id="btn_store_update_cancel" class="nonactive">취소</button>
-                        </div>
+                        <c:if test="${sessionScope.loginIsAdmin}">
+	                        <div class="col-12 col-lg-8 text-end" style="margin-top:30px; margin-left:auto; margin-right:auto; margin-bottom:50px;">
+	                           <button type="button" id="btn_image_add" class="greenBtn" style="display:none;">이미지 추가 등록</button>
+	                           <button type="button" id="btn_store_update" class="greenBtn">상점 수정</button>
+	                           <button type="button" id="btn_store_update_delete" class="nonactive">상점 삭제</button>
+	                           <button type="button" id="btn_store_update_confirm" class="nonactive">수정 확정</button>
+	                           <button type="button" id="btn_store_update_cancel" class="nonactive">취소</button>
+	                        </div>
+                        </c:if>
                      </div>
                      <!-- 상점 본문 -->
                      <div class="row">
@@ -424,7 +426,7 @@
                                  </table>
                                  <div class="row">
                                     <div class="col-12 text-end">
-                                      <button type="submit"
+                                      <button type="button"
                                                 class="greenBtn" id="btn_menu_submit" style="display:none;">적용</button>
                                        <button type="button" id="btn_menu_modify"
                                           class="greenBtn">메뉴 수정</button>
@@ -451,7 +453,7 @@
                                     <div class="row align-items-center">
                                        <div class="col-12">
                                           <div class="star" style="margin-bottom:10px;">
-                                             <input type="text" name="score" value="0" style="display:none;"
+                                             <input type="text" name="score" style="display:none;"
                                                 id="score">
                                              <a href="#null" value="1">★</a>
                                              <a href="#null" value="2">★</a>
@@ -512,7 +514,7 @@
                                        value="${commentList.get(i).reviewID}" style="display: none;">
 
                                     <div id="writeStar${i}" class="col-12 col-lg-8 star nonactive" style="margin-left:auto; margin-right:auto;">
-                                       <input type="text" id="score${i}" name="modifyScore" value="0"
+                                       <input type="text" id="score${i}" name="modifyScore"
                                           style="display:none;">
                                        <a href="#null" value="1">★</a>
                                        <a href="#null" value="2">★</a>
@@ -567,6 +569,7 @@
 
                                           let replyControl = "#replyControl" + i;
                                           let updateForm = "#updateCommentForm" + i;
+                                          let target2 = "#review_editor" + i;
 
                                           //별점 버튼 이벤트 등록
                                           $(writeStar + " a").click(function () {
@@ -590,7 +593,14 @@
                                                 btn_confirm_body.attr("type", "button");
                                                 btn_confirm_body.addClass("greenBtn");
                                                 btn_confirm_body.click(function () {
-                                                   $(updateForm).submit();
+                                                  	if(!($(score).val())){
+                                            		  alert("수정할 평점을 입력해주세요.");
+                                            		  return false;
+                                            	  	}else if(!($(target2+"+div .ck-content").text())){
+                                            		  alert("수정할 리뷰 본문은 비어있을 수 없습니다.");
+                                            		  return false;
+                                            	  	}
+                                                	$(updateForm).submit();
                                                 });
 
                                                 btn_cancel_body.attr("type", "button");
@@ -650,32 +660,52 @@
                            $(this).addClass("on").prevAll("a").addClass("on");
                            $("input[name='score']").attr("value", $(this).attr("value"));
                         });
-
-                        $("#menuUpdateForm").submit(function () {
-                           let menuPrice = $("input[name='addedMenuPrice']").val();
-                           // if (!menuPrice) {
-                           //    alert("메뉴 가격은 빈 값일 수 없습니다.");
-                           //    return false;
-                           // } else
-                           if (isNaN(menuPrice)) {
-                              alert("메뉴 가격은 숫자 형식이어야 합니다.");
-                              return false;
-                           }
-                           let isReturn = false;
-                           $(".updateMenuPrice").each(function(index, item){
-                              if(!item.val()){
-                                 alert("메뉴 가격은 빈 값일 수 없습니다.");
-                                 isReturn = true;
-                              }
-                              else if(isNaN(item.val())){
-                                 alert("메뉴 가격은 숫자 형식이어야 합니다.");
-                                 isReturn = true;
-                              }
-                           })
-                           if(isReturn){
-                              return false;
-                           }
+                        
+                        //폼 섭밋 전 방어 코드들
+                        $("#btn_menu_submit").click(function(){
+                        	let menuPrice = $("input[name='addedMenuPrice']").val();
+                            if (isNaN(menuPrice)) {
+                               alert("메뉴 가격은 숫자 형식이어야 합니다.");
+                               return false;
+                            }
+                            let isReturn = false;
+                            $(".updateMenuPrice").each(function(index, item){
+                               if(!$(item).val()){
+                                  alert("메뉴 가격은 빈 값일 수 없습니다.");
+                                  isReturn = true;
+                                  return false; //break;
+                               }
+                               else if(isNaN($(item).val())){
+                                  alert("메뉴 가격은 숫자 형식이어야 합니다.");
+                                  isReturn = true;
+                                  return false; //break;
+                               }
+                            });
+                            if(!isReturn){
+ 	                           $(".updateMenuName").each(function(index, item){
+ 	                        	  if(!$(item).val()){
+ 	                        		  alert("메뉴 이름은 빈 값일 수 없습니다.");
+ 	                        		  isReturn = true;
+ 	                        		  return false; //break;
+ 	                        	  } 
+ 	                           });                        	   
+                            }
+                            if(isReturn){
+                               return false;
+                            }
+                        	$("#menuUpdateForm").submit();
                         });
+                        
+                        
+                        $("#createCommentForm").submit(function(){
+                        	if(!($("input[name='score']").val())){
+                        		alert("리뷰 평점을 선택해주세요.");
+                        		return false;
+                        	}else if(!($("#review_editor").val())){
+                        		alert("리뷰 본문을 입력해주세요.");
+                        		return false;
+                        	}
+                        })
 
                         $("#btn_menu_modify").click(function () {
                            $(".btn_menu_delete").removeClass("nonactive").addClass("greenBtn");
@@ -729,7 +759,18 @@
 
                         $("#btn_store_update_confirm").click(function () {
                            //$("#updateForm").submit();
-
+                           
+                            if(!($("input[name='name']").val())){
+                          	   alert("가게 이름 값을 빈 값으로 둘 수 없습니다.");
+                          	   return false;
+                             }else if(!($("input[name='address']").val())){
+                          	   alert("가게 주소 값을 빈 값으로 둘 수 없습니다.");
+                          	   return false;
+                             }else if(!($("#intro_editor").val())){
+                          	   alert("가게 설명 값을 빈 값으로 둘 수 없습니다.");
+                          	   return false;
+                             }
+                           
                            for(let i = 0; i < imgs.length; i++){
                               if (!imgs[i].children("input").val().match(imgForms)) {
                                  alert("이미지 파일만 업로드 가능합니다.");
@@ -793,21 +834,6 @@
                                  imgs.splice(imgs.indexOf(div), 1);
                                  div.remove();
                               });
-                           }
-                        });
-
-                        $("#updateForm").submit(function (e) {
-                           // $("input[name=imgLength]").val(imgs.length);
-                           for (let i = 0; i < imgs.length; i++) {
-                              // if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
-                              //     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
-                              //     return false;
-                              //} else
-                              if (!imgs[i].children("input").val().match(imgForms)) {
-                                 alert("이미지 파일만 업로드 가능합니다.");
-                                 return false;
-                              }
-                              imgs[i].children("input").attr("name", "image" + i);
                            }
                         });
 
