@@ -119,7 +119,7 @@ font-weight: bolder;
 						</div>
 					</div>
 					</div>
-				<form action="/replyRegister.consult" method="get">
+				<form id="replyRegisterForm" action="/replyRegister.consult" method="get">
 						<div class="row">
 						<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
 						<p>답변 등록</p>
@@ -163,6 +163,17 @@ font-weight: bolder;
 							 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
 						})
 						.catch(error => { console.error(error) });
+
+					//방어 코드
+					$("#replyRegisterForm").submit(function(){
+						if(!($("input[name='title']").val())){
+							alert("제목을 입력해주세요.");
+							return false;
+						}else if(!($("editor").val())){
+							alert("본문을 입력해주세요.");
+							return false;
+						}
+					});
 				</script>
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->
 			</div>

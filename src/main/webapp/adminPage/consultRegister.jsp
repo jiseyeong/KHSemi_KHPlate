@@ -123,7 +123,9 @@ p{font-weight:bolder; font-size:25px; color:#57b846;}
 					</div>
 					<div class="row" style="margin-top:80px;">
 						<div class="col-12 text-center" style="margin-left:auto; margin-right:auto;">
-							<input type="button" name="toList" id="toList" value="목록으로" class="nanum-gothic">
+							<a href="/list.consult">
+								<input type="button" name="toList" id="toList" value="목록으로" class="nanum-gothic">
+							</a>
 							<input type="submit" name="submitBtn" id="submitBtn" value="제출하기" class="nanum-gothic">
 						</div>
 					</div>
@@ -144,6 +146,14 @@ p{font-weight:bolder; font-size:25px; color:#57b846;}
 
 						}else if (!$("#input_image").val().match(imgForms)) {
 							alert("이미지 파일만 업로드 가능합니다.");
+							return false;
+						}
+
+						if(!($("input[name='title']").val())){
+							alert("제목을 입력해주세요.");
+							return false;
+						}else if(!($("#editor").val())){
+							alert("본문을 입력해주세요.");
 							return false;
 						}
 					});
