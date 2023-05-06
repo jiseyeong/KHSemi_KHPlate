@@ -426,7 +426,7 @@
                                  </table>
                                  <div class="row">
                                     <div class="col-12 text-end">
-                                      <button type="submit"
+                                      <button type="button"
                                                 class="greenBtn" id="btn_menu_submit" style="display:none;">적용</button>
                                        <button type="button" id="btn_menu_modify"
                                           class="greenBtn">메뉴 수정</button>
@@ -662,51 +662,40 @@
                         });
                         
                         //폼 섭밋 전 방어 코드들
-                        $("#menuUpdateForm").submit(function () {
-                           let menuPrice = $("input[name='addedMenuPrice']").val();
-                           if (isNaN(menuPrice)) {
-                              alert("메뉴 가격은 숫자 형식이어야 합니다.");
-                              return false;
-                           }
-                           let isReturn = false;
-                           $(".updateMenuPrice").each(function(index, item){
-                              if(!item.val()){
-                                 alert("메뉴 가격은 빈 값일 수 없습니다.");
-                                 isReturn = true;
-                                 return false; //break;
-                              }
-                              else if(isNaN(item.val())){
-                                 alert("메뉴 가격은 숫자 형식이어야 합니다.");
-                                 isReturn = true;
-                                 return false; //break;
-                              }
-                           });
-                           if(!isReturn){
-	                           $(".updateMenuName").each(function(index, item){
-	                        	  if(!item.val()){
-	                        		  alert("메뉴 이름은 빈 값일 수 없습니다.");
-	                        		  isReturn = true;
-	                        		  return false; //break;
-	                        	  } 
-	                           });                        	   
-                           }
-                           if(isReturn){
-                              return false;
-                           }
+                        $("#btn_menu_submit").click(function(){
+                        	let menuPrice = $("input[name='addedMenuPrice']").val();
+                            if (isNaN(menuPrice)) {
+                               alert("메뉴 가격은 숫자 형식이어야 합니다.");
+                               return false;
+                            }
+                            let isReturn = false;
+                            $(".updateMenuPrice").each(function(index, item){
+                               if(!$(item).val()){
+                                  alert("메뉴 가격은 빈 값일 수 없습니다.");
+                                  isReturn = true;
+                                  return false; //break;
+                               }
+                               else if(isNaN($(item).val())){
+                                  alert("메뉴 가격은 숫자 형식이어야 합니다.");
+                                  isReturn = true;
+                                  return false; //break;
+                               }
+                            });
+                            if(!isReturn){
+ 	                           $(".updateMenuName").each(function(index, item){
+ 	                        	  if(!$(item).val()){
+ 	                        		  alert("메뉴 이름은 빈 값일 수 없습니다.");
+ 	                        		  isReturn = true;
+ 	                        		  return false; //break;
+ 	                        	  } 
+ 	                           });                        	   
+                            }
+                            if(isReturn){
+                               return false;
+                            }
+                        	$("#menuUpdateForm").submit();
                         });
                         
-                        $("#updateForm").submit(function () {
-                            if(!($("input[name='name']").val())){
-                         	   alert("가게 이름 값을 빈 값으로 둘 수 없습니다.");
-                         	   return false;
-                            }else if(!($("input[name='address']").val())){
-                         	   alert("가게 주소 값을 빈 값으로 둘 수 없습니다.");
-                         	   return false;
-                            }else if(!($("#intro_editor").val())){
-                         	   alert("가게 설명 값을 빈 값으로 둘 수 없습니다.");
-                         	   return false;
-                            }
-                         });
                         
                         $("#createCommentForm").submit(function(){
                         	if(!($("input[name='score']").val())){
@@ -770,7 +759,18 @@
 
                         $("#btn_store_update_confirm").click(function () {
                            //$("#updateForm").submit();
-
+                           
+                            if(!($("input[name='name']").val())){
+                          	   alert("가게 이름 값을 빈 값으로 둘 수 없습니다.");
+                          	   return false;
+                             }else if(!($("input[name='address']").val())){
+                          	   alert("가게 주소 값을 빈 값으로 둘 수 없습니다.");
+                          	   return false;
+                             }else if(!($("#intro_editor").val())){
+                          	   alert("가게 설명 값을 빈 값으로 둘 수 없습니다.");
+                          	   return false;
+                             }
+                           
                            for(let i = 0; i < imgs.length; i++){
                               if (!imgs[i].children("input").val().match(imgForms)) {
                                  alert("이미지 파일만 업로드 가능합니다.");
