@@ -282,7 +282,19 @@ public class StoreDAO {
 			sql = "select * from "
 					+ "(select store.*, row_number() over(order by avgscore desc) row_num from store where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?)) "
 					+ "where row_num between ? and ?";
-		}else {
+		}else if(sortMethod.equals("order_by_review")) {
+			sql = "select * from "
+					+ "(select store.storeid, count(*), row_number() over(order by count(*) desc) row_num from store"
+					+ "inner join commentreview ON store.storeid = commentreview.storeid
+							  GROUP BY store.storeid
+							) top_stores
+							INNER JOIN store ON top_stores.storeid = store.storeid
+							WHERE top_stores.row_num BETWEEN 1 AND 10;
+		}
+		
+		
+		
+		else {
 			sql = "select * from "
 					+ "(select store.*, row_number() over(order by storeID desc) row_num from store where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?)) "
 					+ "where row_num between ? and ?";

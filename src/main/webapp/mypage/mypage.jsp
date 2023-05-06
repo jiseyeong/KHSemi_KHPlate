@@ -697,8 +697,8 @@ td {
     $("#toModiPW").on("click", function () {
         window.open("/memberSearch/idpwsearch.jsp", "", "width=480px,height=750px");
     })
+    
     $("document").ready(function () {
-    	
         $("#writeList").css("display", "table");
         $("table").not("table#writeList").css("display", "none");
         $("#writeListBtn").css({ "z-index": "2", "border-bottom": "none" });

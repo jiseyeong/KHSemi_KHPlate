@@ -218,7 +218,6 @@ h6 span {
 	box-shadow: 0 4px 8px 0 rgba(21, 21, 21, .2);
 }
 
-
 .form-group input:-ms-input-placeholder {
 	color: #c4c3ca;
 	opacity: 0.7;
@@ -313,8 +312,8 @@ h6 span {
 }
 
 #bi-person {
-color: #73717f;
-		position: absolute;
+	color: #73717f;
+	position: absolute;
 	margin-left: 20px;
 	margin-top: 15px;
 	display: flex;
@@ -323,28 +322,24 @@ color: #73717f;
 }
 
 #bi-envelope {
-color: #73717f;
-		position: absolute;
+	color: #73717f;
+	position: absolute;
 	margin-left: 20px;
 	margin-top: 15px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-
-
 
 #bi-at {
-color: #73717f;
-		position: absolute;
+	color: #73717f;
+	position: absolute;
 	margin-left: 20px;
 	margin-top: 15px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-
-
 </style>
 
 
@@ -356,7 +351,7 @@ color: #73717f;
 			window.close();
 		</script>
 	</c:if>
-
+	
 	<form id="frm" method="post" onsubmit="return false;">
 		<div class="section">
 			<div class="container">
@@ -391,8 +386,11 @@ color: #73717f;
 
 
 												<div class="form-group mt-2">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" id="bi-envelope" viewBox="0 0 16 16">
-  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+													<svg xmlns="http://www.w3.org/2000/svg" width="20"
+														height="20" fill="currentColor" id="bi-envelope"
+														viewBox="0 0 16 16">
+  <path
+															d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
 </svg>
 													<input type="text" id="email" name="email"
 														class="form-style" placeholder="이메일 입력" autocomplete="off">
@@ -433,10 +431,13 @@ color: #73717f;
 														placeholder="아이디 입력" autocomplete="off">
 												</div>
 												<div class="form-group mt-2">
-														<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" id="bi-envelope" viewBox="0 0 16 16">
-  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+													<svg xmlns="http://www.w3.org/2000/svg" width="20"
+														height="20" fill="currentColor" id="bi-envelope"
+														viewBox="0 0 16 16">
+  <path
+															d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
 </svg>
-							
+
 													<input type="text" id="pwemail" name="pwemail"
 														class="form-style" placeholder="이메일 입력" autocomplete="off">
 												</div>
