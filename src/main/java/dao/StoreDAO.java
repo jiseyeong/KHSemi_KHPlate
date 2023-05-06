@@ -229,9 +229,9 @@ public class StoreDAO {
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
-					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a class='item' href='/searchStoreBySearchBox.store?cpage="+i+"&search="+search+"&food_category="+food_category+"'>"+i+"</a>"
-					+ "		</div>"
+					+ "		<a class='item' href='/searchStoreBySearchBox.store?cpage="+i+"&search="+search+"&food_category="+food_category+"'>"
+					+ "			<div class='navigator_list_item_btn_layout'>"+i+"</div>"
+					+ "		</a>"
 					+ "</li>");
 		}
 		if(needNext) {
@@ -422,9 +422,9 @@ public class StoreDAO {
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
-					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<a class='item' href='/searchStoreBySearchFilter.store?cpage="+i+"&search="+search+"'>"+i+"</a>"
-					+ "		</div>"
+					+ "		<a class='item' href='/searchStoreBySearchFilter.store?cpage="+i+"&search="+search+"'>"
+					+ "			<div class='navigator_list_item_btn_layout'>"+i+"</div>"
+					+ "		</a>"
 					+ "</li>");
 		}
 		if(needNext) {
