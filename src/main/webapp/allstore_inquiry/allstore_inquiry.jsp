@@ -929,48 +929,28 @@ input[type="range"]::-ms-track {
 
     <c:if test="${search_store_list!=null}">
         <c:forEach var="dto" items="${search_store_list}" varStatus="status">
-            <input type="text" class="search_store_list_toScript" id="search_store_list_storeID${status.index}"
-                value="${dto.storeID}">
-            <input type="text" class="search_store_list_toScript" id="search_store_list_distance${status.index}"
-                value="${dto.distance}">
-            <input type="text" class="search_store_list_toScript" id="search_store_list_name${status.index}"
-                value="${dto.name}">
-            <input type="text" class="search_store_list_toScript" id="search_store_list_lat${status.index}"
-                value="${dto.lat}">
-            <input type="text" class="search_store_list_toScript" id="search_store_list_lng${status.index}"
-                value="${dto.lng}">
-            <input type="text" class="search_store_list_toScript" id="search_store_list_address${status.index}"
-                value="${dto.address}">
-            <input type="text" class="search_store_list_toScript" id="search_store_list_avgScore${status.index}"
-                value="${dto.avgScore}">
-            <input type="text" class="search_store_list_toScript"
-                id="search_store_list_introduction${status.index}" value="${dto.introduction}">
-            <input type="text" class="search_store_list_toScript" id="search_store_list_category${status.index}"
-                value="${dto.category}">
+            <input type="hidden" class="search_store_list_toScript" id="search_store_list_storeID${status.index}" value='${dto.storeID}'>
+            <input type="hidden" class="search_store_list_toScript" id="search_store_list_distance${status.index}" value='${dto.distance}'>
+            <input type="hidden" class="search_store_list_toScript" id="search_store_list_name${status.index}" value='${dto.name}'>
+            <input type="hidden" class="search_store_list_toScript" id="search_store_list_lat${status.index}" value='${dto.lat}'>
+            <input type="hidden" class="search_store_list_toScript" id="search_store_list_lng${status.index}" value='${dto.lng}'>
+            <input type="hidden" class="search_store_list_toScript" id="search_store_list_address${status.index}" value='${dto.address}'>
+            <input type="hidden" class="search_store_list_toScript" id="search_store_list_avgScore${status.index}" value='${dto.avgScore}'>
+            <input type="hidden" class="search_store_list_toScript" id="search_store_list_introduction${status.index}" value='${dto.introduction}'>
+            <input type="hidden" class="search_store_list_toScript" id="search_store_list_category${status.index}" value='${dto.category}'>
         </c:forEach>
     </c:if>
 
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_sortMethod"
-        value="${sortMethod}" style="display: none;">
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_cost_range"
-        value="${cost_range}" style="display: none;">
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_korean"
-        value="${food_category_korean}" style="display: none;">
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_western"
-        value="${food_category_western}" style="display: none;">
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_chinese"
-        value="${food_category_chinese}" style="display: none;">
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_japanese"
-        value="${food_category_japanese}" style="display: none;">
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_asian"
-        value="${food_category_asian}" style="display: none;">
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_fastfood"
-        value="${food_category_fastfood}" style="display: none;">
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_dessert_drink"
-        value="${food_category_dessert_drink}" style="display: none;">
-    <input type="text" class="search_store_filter_toScript" id="fillter_settings_food_category_etc"
-        value="${food_category_etc}" style="display: none;">
-
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_sortMethod" value="${sortMethod}">
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_cost_range" value="${cost_range}">
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_food_category_korean" value="${food_category_korean}">
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_food_category_western" value="${food_category_western}">
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_food_category_chinese" value="${food_category_chinese}">
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_food_category_japanese" value="${food_category_japanese}">
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_food_category_asian" value="${food_category_asian}">
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_food_category_fastfood" value="${food_category_fastfood}">
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_food_category_dessert_drink" value="${food_category_dessert_drink}">
+    <input type="hidden" class="search_store_filter_toScript" id="fillter_settings_food_category_etc" value="${food_category_etc}">
 
     <script>
         // 필터 기능들
