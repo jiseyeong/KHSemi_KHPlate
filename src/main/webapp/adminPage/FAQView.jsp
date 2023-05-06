@@ -29,7 +29,6 @@
 * {
 	box-sizing: border-box;
 	padding: 0px;
-
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
