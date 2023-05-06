@@ -219,8 +219,8 @@
 
       .profileImage {
         height: 65%;
-        margin-top: 50px;
-        margin-left: 100px;
+        margin-top: 35px;
+        margin-left: 120px;
       }
 
       .profileImage > button {

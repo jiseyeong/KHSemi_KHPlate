@@ -231,14 +231,8 @@ h4 {
 }
 
 #pwCheck{
-	margin-top:25px;
-
 	 height:35px;
 }
-
-
-
-
 </style>
 
 
