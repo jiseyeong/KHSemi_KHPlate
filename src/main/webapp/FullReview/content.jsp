@@ -324,7 +324,7 @@ textarea {
 				"click",
 				function() {
 					if (confirm("게시글을 정말로 삭제하시겠습니까?")) {
-						location.href = "/delete.FullReview?reviewid="
+						location.href = "/delete.fullreview?reviewid="
 								+ $(this).attr("reviewid");
 					} else {
 						return false;
