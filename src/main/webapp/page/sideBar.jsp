@@ -44,8 +44,8 @@
 	opacity:80%;
 }
 .searchBtn>img{
-	width:11%;
-	height:55%;
+	width:22px;
+	height:22px;
 	position:relative;
 	left:15px;
 	top:-1px;
@@ -101,7 +101,7 @@ a:link {text-decoration: none;}
 </head>
 <body>
    <div class="col-12 col-lg-2 themed-grid-col sideBar">
-     <button class="searchBtn">내 근처 맛집 검색<img src="/page/searchBtn.png"></button>
+     <button class="searchBtn" type="button" onclick="location.href='/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar'">내 근처 맛집 검색<img src="/page/searchBtn.png"></button>
       <ul class="ulTag">
       	 <!--<a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>-->
          <li class="firstLi">Menu</li>
@@ -128,5 +128,7 @@ a:link {text-decoration: none;}
          <a href="/view.faq"><li>FAQ 리스트</li></a>
       </ul>
    </div>
+   <script>
+   </script>
 </body>
 </html>
