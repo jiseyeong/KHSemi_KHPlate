@@ -39,7 +39,8 @@ public class FullReviewController extends HttpServlet {
 		String cmd = request.getRequestURI();
 		System.out.println(cmd);
 		FullReviewDAO frdao = FullReviewDAO.getInstance();
-
+		Gson gson = new Gson();
+		
 		try {
 
 			if(cmd.equals("/write.fullreview")) {
@@ -92,8 +93,19 @@ public class FullReviewController extends HttpServlet {
 				request.getRequestDispatcher("/FullReview/writeFullReview.jsp").forward(request, response);
 
 
+			}else if (cmd.equals("/delete.fullreview")) {
+				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
+				
+				int del =  frdao.deleteFullReview(reviewid);
+				
+				if (del>0) {
+					System.out.println("리뷰 "+reviewid+" 삭제완료");
+					response.sendRedirect("/select.fullreview");
+				}else {
+					response.sendRedirect("error.jsp");
+				}
 			}else if (cmd.equals("/update.fullreview")){
-
+   
 				String realPath = request.getServletContext().getRealPath("FullReview");
 				int maxSize = 1024 * 1024 * 10;
 				System.out.println(realPath);
@@ -162,15 +174,11 @@ public class FullReviewController extends HttpServlet {
 
 				List<FullReviewUserDTO> fullReviewList = frdao.selectFullReview(searchUserno, searchFullReviewTitle,start_Record_Row_Num,end_Record_Row_Num);
 				
-				
-				
 				List<PhotoDTO> PDTO = new ArrayList<>();
 				for(FullReviewUserDTO list : fullReviewList ) {
 					int reviewID = list.getReviewID();
 					PDTO.add(PhotoDAO.getInstance().DTOByReviewId(reviewID));
 				}
-				
-				
 				
 				String fullReviewNavi = frdao.getFullReviewNavi(entpage, searchUserno, searchFullReviewTitle);
 
@@ -189,8 +197,6 @@ public class FullReviewController extends HttpServlet {
 				request.setAttribute("scrap_list", scrap_list);
 				request.setAttribute("photoList", PDTO);
 				request.getRequestDispatcher("/FullReview/FullReviewList.jsp").forward(request, response);
-
-
 
 				// 마이페이지에 표시할 fullReviewList 출력
 			}else if (cmd.equals("/selectBymypage.fullreview")) {
@@ -227,8 +233,6 @@ public class FullReviewController extends HttpServlet {
 
 				response.getWriter().append(resp.toString());
 
-
-
 			}else if(cmd.equals("/content.fullreview")) {
 
 				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
@@ -249,7 +253,6 @@ public class FullReviewController extends HttpServlet {
 				request.setAttribute("imgList", imgList);				
 
 				request.getRequestDispatcher("/FullReview/FullReviewContent.jsp").forward(request, response);
-
 
 				// 마이페이지에 표시할 내가 스크랩한 리스트 출력
 			} else if (cmd.equals("/selectScrapListBymypage.fullreview")) {
@@ -313,6 +316,18 @@ public class FullReviewController extends HttpServlet {
 					response.getWriter().append("false");
 				}
 			}
+			
+			//main 9개 리스트 출력(ajax)
+			else if (cmd.equals("/mainList.fullreview")) {
+				
+				List<FullReviewDTO> mainList = frdao.mainList();
+				String mainListTitle = gson.toJson(mainList);
+				System.out.println(mainListTitle);
+				response.getWriter().append(mainListTitle);
+				
+				
+			}
+			
 
 		}catch(Exception e) {
 			e.printStackTrace();

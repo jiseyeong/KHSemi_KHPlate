@@ -89,6 +89,23 @@ public class FullReviewDAO {
 		}
 	}
 
+	public List<FullReviewDTO> mainList() throws Exception {
+		String sql = "select reviewid, title from fullreview order by reviewid desc";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			try(ResultSet rs = pstat.executeQuery()){
+				List<FullReviewDTO> ListTitle = new ArrayList<>();
+				for(int i=0; i<9; i++) {
+					FullReviewDTO dto = new FullReviewDTO();
+					rs.next();
+					dto.setReviewID(rs.getInt("reviewid"));
+					dto.setTitle(rs.getString("title"));
+					ListTitle.add(dto);
+				}
+				return  ListTitle;
+			}
+		}
+	}
 
 
 	public List<StoreDTO> selectListStore()throws Exception{

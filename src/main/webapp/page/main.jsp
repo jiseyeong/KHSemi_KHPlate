@@ -102,6 +102,9 @@
 	margin-top:20px;
 }
 </style>
+
+
+
 </head>
 <body>
    <div class="container-fluid themed-container m-0 g-0">
@@ -164,17 +167,11 @@
 
 
                   <div class="col-12 col-lg-4 themed-grid-col sideList">
-                  	<ul class="nanum-gothic sideListUl">
-                  		<li class="firstLi">Review<input type="button" value="+"></li>
-                  		<li>첫번째 게시글 입니다.</li>
-                  		<li>첫번째 게시글 입니다.</li>
-                  		<li>첫번째 게시글 입니다.</li>
-                  		<li>첫번째 게시글 입니다.</li>
-                  		<li>첫번째 게시글 입니다.</li>
-                  		<li>첫번째 게시글 입니다.</li>
-                  		<li>첫번째 게시글 입니다.</li>
-                  		<li>첫번째 게시글 입니다.</li>
-                  		<li>첫번째 게시글 입니다.</li>
+                  	<ul class="nanum-gothic sideListUl" id="mainList">
+                  		<li class="firstLi" id="mainList">최근 작성된 Review<input type="button" value="+"></li>
+                  		
+                  		
+                  		
                   	</ul>
                   </div>
                </div>
@@ -202,6 +199,31 @@
    
    <jsp:include page="footer.jsp" flush="false"></jsp:include>
    </div>
+
+<script>
+	
+		$.ajax({
+			url: "/mainList.fullreview",
+			type:"post",
+			dataType:"json",
+			error: function(abc){
+				console.log(abc);
+			}
+		}).done(function(resp){
+			console.log(resp);
+			
+			for(let i=0; i<resp.length; i++){
+				let li = $("<li>");
+				let aa = $("<a href='/content.fullreview?reviewid="+resp[i].reviewID+"'>");
+				$("#mainList").append(aa)
+				aa.append(li);
+				li.append(resp[i].title);
+			}
+			
+		})
+	
+</script>
+
 
 </body>
 </html>
