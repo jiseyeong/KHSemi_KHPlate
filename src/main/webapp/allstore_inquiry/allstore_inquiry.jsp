@@ -1019,7 +1019,9 @@ input[type="range"]::-ms-track {
             $("#order_by_distance").click();
         } else if (sortMethod == 'order_by_score') {
             $("#order_by_score").click();
-        }
+        } else if (sortMethod == 'order_by_review') {
+			$("#order_by_review").click();
+		}
 
         let range_result = $("#range_result");
 
