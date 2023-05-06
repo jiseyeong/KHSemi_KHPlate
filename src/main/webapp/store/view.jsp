@@ -826,9 +826,6 @@
                               div.append(fileInput, btn_cancel);
                               $("#img_field").append(div);
                               imgs.push(div);
-                              for(let i = 0; i < imgs.length; i++){
-                            	  imgs[i].children("input").attr("name", "image" + i);
-                              }
 
                               btn_cancel.click(function () {
                                  imgs.splice(imgs.indexOf(div), 1);
