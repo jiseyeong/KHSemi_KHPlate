@@ -138,9 +138,8 @@ p {
                 </div>
                 <div class="row" style="margin-bottom:40px;">
                     <div class="col-12 col-lg-3" style="border:1px solid black; margin-left:auto;">
-                        <img src="/consult/${image.sysName}" alt="/consult/${image.sysName}" id="image"
+                        <img src="/consult/${image.sysName}" alt="${image.sysName}" id="image"
                             class="w-100 object-fit-contain" style="max-height: 500px;">
-                        console.log(${image.sysName}, ${image.sysName})
                     </div>
                     <div class="col-12 col-lg-6" style="margin-right:auto;">
                         <div id="readEditor">${dto.body}</div>

@@ -240,14 +240,14 @@
                                              <c:when test="${i == 0}">
                                                 <div class="carousel-item active">
                                                    <img src="/store/${imgList.get(i).sysName}"
-                                                      class="d-block w-100 h-100 object-fit-cover" alt="..."
+                                                      class="d-block w-100 h-100 object-fit-cover" alt="${imgList.get(i).sysName}"
                                                       style="min-height: 400px;">
                                                 </div>
                                              </c:when>
                                              <c:otherwise>
                                                 <div class="carousel-item">
                                                    <img src="/store/${imgList.get(i).sysName}"
-                                                      class="d-block w-100 h-100 object-fit-cover" alt="..."
+                                                      class="d-block w-100 h-100 object-fit-cover" alt="${imgList.get(i).sysName}"
                                                       style="min-height: 400px;">
                                                 </div>
                                              </c:otherwise>
@@ -257,11 +257,11 @@
                                     <c:otherwise>
                                        <div class="carousel-item active">
                                           <img src="/store/롤링파스타.png" class="d-block w-100 h-100 object-fit-cover"
-                                             alt="..." style="min-height:400px;">
+                                             alt="롤링파스타.png" style="min-height:400px;">
                                        </div>
                                        <div class="carousel-item">
                                           <img src="/store/오로지라멘.png" class="d-block w-100 h-100 object-fit-cover"
-                                             alt="..." style="min-height:400px;">
+                                             alt="오로지라멘.png" style="min-height:400px;">
                                        </div>
                                     </c:otherwise>
                                  </c:choose>
@@ -289,7 +289,7 @@
                                   style="display: none;" readonly>
                                  	<div class="col-12 col-lg-6"> 
                                       <img src="/store/${i.sysName}"
-                                          class="w-100 h-75 object-fit-cover" style="margin-bottom:10px; min-height:200px;">
+                                          class="w-100 h-75 object-fit-cover" alt="${i.sysName}" style="margin-bottom:10px; min-height:200px;">
                             		  <div class="h-25" style="text-align:center; margin-bottom:10px;">
                                				<button type="submit" class="greenBtn" style="width:60px;">삭제</button>
                                 	  </div>
