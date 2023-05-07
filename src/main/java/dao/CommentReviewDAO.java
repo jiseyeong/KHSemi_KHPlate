@@ -264,12 +264,12 @@ public class CommentReviewDAO {
 	
 	public NaviDTO getNavi(int currentPage) throws Exception{
 		int recordTotalCount = this.getRecoredCount();
-		int recordCountPerPage = Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE;
-		int naviCountPerPage = Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
+		int recordCountPerPage = Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
+		int naviCountPerPage = Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE;
 		
 		int pageTotalCount = recordTotalCount % recordCountPerPage > 0 ?
-				recordTotalCount/recordCountPerPage + 1
-				:recordTotalCount/recordCountPerPage;
+				recordTotalCount/recordCountPerPage
+				:recordTotalCount/recordCountPerPage + 1;
 		
 		if(currentPage < 1) {
 			currentPage = 1;
@@ -277,7 +277,7 @@ public class CommentReviewDAO {
 			currentPage = pageTotalCount;
 		}
 		
-		int startNavi = (currentPage-1)/naviCountPerPage*naviCountPerPage+1;
+		int startNavi = ((currentPage-1)/naviCountPerPage*naviCountPerPage)+1;
 		int endNavi = startNavi + (naviCountPerPage-1);
 		
 		if(endNavi > pageTotalCount) {
