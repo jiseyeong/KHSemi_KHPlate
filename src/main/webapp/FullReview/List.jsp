@@ -224,14 +224,12 @@
 						<c:forEach var="reviewList" items="${FullReviewList}" varStatus="status">
 						<!--유저 정보를 같이 받고 index로 값을 전달 -->
 							<div class="card">
-								<input type="hidden" value="${reviewList.reviewID}" class="hiddencard">
+								<input type="hidden" value="${reviewList.reviewID}" class="hiddencard" style="display: none;">
 								<div class="reviewId" >${reviewList.reviewID}</div>
-								
 								
 								<div class="imgBox">
 								<img src="/FullReview/${photoList.get(status.index).sysName}" class="card-img-top" alt="...">
 								</div>
-								
 								
 								<!-- 즐겨찾기 여부 체크 -->
 								<div class="fullreview_addScrap">
