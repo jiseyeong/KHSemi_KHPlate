@@ -167,13 +167,13 @@ label input[type="checkbox"] {
 #naverIdLogin {
 	top: 82%;
 	background: #57b846;
-	/* background-image: url(naver13.png);
+/* 	background-image: url(naver13.png); */
 
-    background-size: 270px 70px;
-     */
-   background-image: url(naver17.png);
-   background-size: 300px 80px;
-   background-position: 30px;
+/*  background-size: 270px 70px; */
+    
+	background-image: url(naver17.png);
+	background-size: 300px 80px;
+	background-position: 33px;
 
    /* background-position: left;
     background-position: -20px; */

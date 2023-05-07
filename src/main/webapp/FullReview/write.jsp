@@ -209,7 +209,7 @@ textarea {
 	.create(document.querySelector("#editor"), {
 		 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
 	});
-	.catch(error => { console.error(error) });
+// 	.catch(error => { console.error(error) });
 	
 	$("#addForm").submit(function(){
 		let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
@@ -285,7 +285,6 @@ textarea {
 	
 	let stars = document.querySelectorAll('.stars__link');
 	
-	/* using a variation of Chris Ferdinandi's get-siblings.js script (https://gist.github.com/cferdinandi/6203237)  */        
 	var getNextSiblings = function (elem) {
 	    var siblings = [];
 	    var sibling = elem;

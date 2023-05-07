@@ -20,7 +20,9 @@ import com.google.gson.Gson;
 import commons.Gmail;
 import commons.SecurityUtils;
 import dao.MembersDAO;
+import dao.PhotoDAO;
 import dto.MembersDTO;
+import dto.PhotoDTO;
 
 
 
@@ -181,7 +183,9 @@ public class MembersController extends HttpServlet {
 					userno = (int)request.getSession().getAttribute("userno");
 				}
 				MembersDTO my = MembersDAO.getInstance().selectById(userno);
+				PhotoDTO profileImage = PhotoDAO.getInstance().selectByUserno(userno);
 				request.setAttribute("my",my);
+				request.setAttribute("profileImage", profileImage);
 				if(request.getAttribute("modyInfo")!=null) {
 					request.getRequestDispatcher("/mypage/myPageVer2.jsp?modyInfo=true").forward(request, response);
 				}else
