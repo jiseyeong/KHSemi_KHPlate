@@ -87,8 +87,8 @@
 }
 
 .writeBtn {
-	width: 70px;
-	height: 70px;
+	width: 60px;
+	height: 60px;
 	margin-top: 5px;
 	filter: invert(15%) sepia(100%) saturate(4963%) hue-rotate(18deg) brightness(102%) contrast(112%);
 }

@@ -50,7 +50,7 @@
             .searchLine {
                height: 45px;
                width: 100%;
-               border-radius: 15px 15px 15px 0px;
+               border-radius: 15px 15px 15px 15px;
                border: 1px solid #ffffff;
                background-color: #ffffff;
                top: 5px;
@@ -83,7 +83,7 @@
                height: 100%;
                background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
                background-size: 20px;
-               padding: 5px 30px 0px 15px; 
+               padding: 5px 10px 5px 10px; 
                border-radius: 25px;
                border: 0px solid #ffffff;
                outline: 0 none;
@@ -101,8 +101,6 @@
                background: #4dae3c;
             }
 
-
-
             #searchBox {
                width: 100%;
                height: 100%;
@@ -118,7 +116,6 @@
                background-color: transparent;
                border: 1px solid transparent;
                cursor: pointer;
-               z-index: 3;
             }
 
             .form {
@@ -184,7 +181,7 @@
                         <input type="search" id="searchBox" name="search">
                      </div>
                      <div class="search_layout3" style="width:10%; height: 100%; display: flex; justify-content: center; align-items: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" id="searchBtn"
+                        <svg xmlns="http://www.w3.org/2000/svg" id="searchBtn"
                            fill="#ED1C16" class="bi bi-search" viewBox="0 0 16 16">
                            <path
                               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
@@ -233,5 +230,4 @@
             })   
          </script>
       </body>
-
       </html>

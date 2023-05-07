@@ -958,9 +958,6 @@ input[type="range"]::-ms-track {
 			</script>
 
 	<script>
-		// 필터 기능들 모음
-
-		$(function () {
 			// 필터 Toggle 기능 부여
 			let sort_check = false;
 
@@ -1147,7 +1144,7 @@ input[type="range"]::-ms-track {
 					}
 				})
 			})
-		})
+		)
 
 		// 범위 바의 값을 변경하였을 때 적용
 		function SetValue() {

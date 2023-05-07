@@ -14,7 +14,6 @@
 <!-- Title Page-->
 <title>letter</title>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -23,11 +22,8 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
-<!-- Vendor CSS-->
-<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
 
 <!-- Main CSS-->
-<link href="css/main.css" rel="stylesheet" media="all">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 </head>
@@ -317,7 +313,7 @@ input {
 					<div class="input-group">
 
 						<textarea rows="" cols="" readonly
-							style="width: 800px; height: 233px; font-size: 15px; font-family: 'Nanum Gothic', sans-serif;">이 편지는 영국에서 최초로 시작되어 일년에 한바퀴를 돌면서 받는 사람에게 행운을 주었고 지금은 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다.
+							style="width: 800px; height: 233px; font-size: 15px; font-family:'Nanum Gothic', sans-serif;">이 편지는 영국에서 최초로 시작되어 일년에 한바퀴를 돌면서 받는 사람에게 행운을 주었고 지금은 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다.
 
 ​
 
@@ -332,6 +328,13 @@ input {
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
+ <script>
+	$("#close").on("click",function(){
+		location.href = "/adminPage/adminhome.jsp";
+	})
+	</script>
+=======
 
 	<!-- Jquery JS-->
 	<script src="vendor/jquery/jquery.min.js"></script>
@@ -347,6 +350,7 @@ input {
     </script>
 
 
+>>>>>>> 5d244330e7dafa322e5fbf3be0ed4e5039050ae4
 </body>
 </html>
 
