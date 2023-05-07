@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 게시판</title>
-
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <style>
 @import
 	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap')
@@ -21,12 +21,22 @@
 }
 
 .text {
-	width: 100px;
+	width: 80px;
 	margin-left: 10px;
+}
+
+.userid {
+	margin-left:10px;
+}
+
+.score{
+	width: 40px;
+	margin-left: 70px;
 }
 
 .title {
 	width: 100%;
+	margin-left:10px;
 }
 
 .reviewbody {
@@ -115,6 +125,7 @@ textarea {
 	font-size: 14px;
 	margin-bottom: 5px;
 }
+
 </style>
 
 </head>
@@ -133,19 +144,30 @@ textarea {
 
 			<hr style="border-style: dotted;">
 
-			<input type="text" class="text" value="가게 이름 : " readonly> <input
-				type="text" class="storename" name="storename" value="${storeName }"
-				readonly> <select id="storeId" class="storeId"
-				name="storeId" style="display: none">
-				<option selected>음식점</option>
-				<c:forEach items="${store }" var="i" varStatus="status">
-					<option value="${i.storeID }">${i.name }</option>
-				</c:forEach>
+			<input type="text" class="text" value="가게 이름 : " readonly> 
+			<input type="text" class="storename" name="storename" value="${storeName }"readonly> 
+			<select id="storeId" class="storeId"name="storeId" style="display: none">
+			<option selected>음식점</option>
+			<c:forEach items="${store }" var="i" varStatus="status">
+				<option value="${i.storeID }">${i.name }</option>
+			</c:forEach>
 
-			</select> <input type="text" class="text" value="평점 : " readonly> <input
-				type="text" class="score" name="score" value="${contents.score }"
-				readonly> <input type="text" class="reviewid"
-				name="reviewid" value="${contents.reviewID }" style="display: none">
+			</select> 
+				<input type="text" class="text score" value="평점 : " readonly> 
+				<div class="score_stars" style="display:inline-block;">
+					<c:forEach var='i' begin='1' end='5' step='1'>
+						<c:choose>
+							<c:when test="${contents.score<i}">
+								<i class="stars__icon fas fa-star js-clear" style="color: #b2b2b2;"></i>
+							</c:when>
+							<c:otherwise>
+								<i class="stars__icon fas fa-star js-fill" style="color: gold;"></i>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</div>
+<%-- 				<input type="text" class="score" name="score" value="${contents.score}"readonly>  --%>
+				<input type="text" class="reviewid" name="reviewid" value="${contents.reviewID }" style="display: none">
 
 			<hr style="border-style: dotted;">
 
@@ -320,57 +342,55 @@ textarea {
 					}
 				})
 
-		$(".delBtn").on(
-				"click",
-				function() {
-					if (confirm("게시글을 정말로 삭제하시겠습니까?")) {
-						location.href = "/delete.fullreview?reviewid="
-								+ $(this).attr("reviewid");
-					} else {
-						return false;
-					}
-				})
+		$(".delBtn").on("click",function() {
+			if (confirm("게시글을 정말로 삭제하시겠습니까?")) {
+				location.href = "/delete.fullreview?reviewid="
+						+ $(this).attr("reviewid");
+			} else {
+				return false;
+			}
+		})
 				
-				//이미지 추가 등록 스크립트
-                        let imgs = [];
-                        let alreadyImgsLength = "<c:out value='${fn:length(imgList)}'></c:out>"
-                        let maxlength = 4 - alreadyImgsLength;
-                        let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-                        $("#btn_image_add").click(function () {
-                           if (imgs.length < maxlength) {
-                              let div = $("<div>"),
-                                 fileInput = $("<input type='file' accept='image/*'>"),
-                                 btn_cancel = $("<button>");
-                              div.addClass("input-group");
-                              fileInput.addClass("form-control");
-                              btn_cancel.addClass("btn");
-                              btn_cancel.addClass("btn-outline-secondary")
-                              btn_cancel.append("x");
-                              div.append(fileInput, btn_cancel);
-                              $("#img_field").append(div);
-                              imgs.push(div);
+		//이미지 추가 등록 스크립트
+        let imgs = [];
+        let alreadyImgsLength = "<c:out value='${fn:length(imgList)}'></c:out>"
+        let maxlength = 4 - alreadyImgsLength;
+        let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+        $("#btn_image_add").click(function () {
+           if (imgs.length < maxlength) {
+              let div = $("<div>"),
+                 fileInput = $("<input type='file' accept='image/*'>"),
+                 btn_cancel = $("<button>");
+              div.addClass("input-group");
+              fileInput.addClass("form-control");
+              btn_cancel.addClass("btn");
+              btn_cancel.addClass("btn-outline-secondary")
+              btn_cancel.append("x");
+              div.append(fileInput, btn_cancel);
+              $("#img_field").append(div);
+              imgs.push(div);
 
-                              btn_cancel.click(function () {
-                                 imgs.splice(imgs.indexOf(div), 1);
-                                 div.remove();
-                              });
-                           }
-                        });
-                        
-                        $("#addForm").submit(function (e) {
-                            // $("input[name=imgLength]").val(imgs.length);
-                            for (let i = 0; i < imgs.length; i++) {
-                                // if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
-                                //     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
-                                //     return false;
-                                //} else
-                                if (!imgs[i].children("input").val().match(imgForms)) {
-                                    alert("이미지 파일만 업로드 가능합니다.");
-                                    return false;
-                                }
-                                imgs[i].children("input").attr("name", "image" + i);
-                            }
-                        })
+              btn_cancel.click(function () {
+                 imgs.splice(imgs.indexOf(div), 1);
+                 div.remove();
+              });
+           }
+        });
+        
+        $("#addForm").submit(function (e) {
+            // $("input[name=imgLength]").val(imgs.length);
+            for (let i = 0; i < imgs.length; i++) {
+                // if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
+                //     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
+                //     return false;
+                //} else
+                if (!imgs[i].children("input").val().match(imgForms)) {
+                    alert("이미지 파일만 업로드 가능합니다.");
+                    return false;
+                }
+                imgs[i].children("input").attr("name", "image" + i);
+            }
+        })
 	</script>
 </body>
 </html>

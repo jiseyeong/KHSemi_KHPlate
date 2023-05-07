@@ -4,7 +4,7 @@
 <html>
 
 <head>
-<meta charset="EUC-KR" />
+<meta charset="UTF-8" />
 <title>Mypage</title>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -25,19 +25,21 @@
 a {
     text-decoration: none;
 }
-
-button {
+/*       버튼들 크기 조정 */
+.btns {
+    width: 23%;
+    height:35px;
+    font-family: "Nanum Gothic", sans-serif;
+    background-color: #57b846;
+    color: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
     border: 1px solid #4dae3c;
-    background-color: white;
-    color: #4dae3c;
     font-size: 12px;
     height: 30px;
 }
 
-button:hover {
-    color: white;
-    background-color: #4dae3c;
+.btns:hover{
+	opacity: 80%;
 }
 
 .mypage {
@@ -207,19 +209,11 @@ button:hover {
     display: inline-block;
 }
 
-<<<<<<< HEAD
-      .profileImage {
-        height: 65%;
-        margin-top: 35px;
-        margin-left: 120px;
-      }
-=======
 .inpocontents2>button {
     width: 75px;
     position: relative;
     left: 90px;
 }
->>>>>>> 02ee1f5b83d76422462e29c6e886d68ffaea0fd4
 
 .profileImage {
     height: 65%;
@@ -277,8 +271,6 @@ button:hover {
 }
 
 .body2Navi>a {
-    height: 100%;
-    background-color: white;
     border: 1px solid black;
     color: black;
     position: relative;
@@ -289,7 +281,7 @@ button:hover {
     /* 	80 => 120px로 변경 */
     width: 120px;
     text-align: center;
-    background-color: rgb(240, 240, 240);
+    background-color: #f2f2f2;
     line-height: 30px;
 }
 
@@ -302,7 +294,7 @@ button:hover {
     height: 530px;
     border: 1px solid black;
     box-shadow: 1px 1px 5px 1px silver;
-    background-color: rgb(240, 240, 240);
+    background-color: #f2f2f2;
     padding: 30px;
     /* 	하단 네비게이터를 붙이기 위한 position 부여 */
     position: relative;
@@ -335,11 +327,9 @@ button:hover {
 /* 네비게이터 영역 */
 .body2listNavi {
     border: none;
-    height: 60px;
+    height: 80px;
     width: 100%;
     text-align: center;
-    margin: 20px auto 0;
-    padding: 10px 0;
     background-color: rgb(240, 240, 240);
     position: absolute;
     bottom: 0;
@@ -377,14 +367,19 @@ button:hover {
     align-items: center;
 }
 
-.item {
+.item { /*navi button*/
     width: 30px;
-    border-radius: 10px;
-    font-size: 10px;
+    font-size: 13px;
     line-height: 30px;
     text-decoration: none;
+    color:black;
+    background-color:#f2f2f2;
+    border:none;
 }
-
+.item:hover{
+	opacity:80%;
+	text-decoration: underline;
+}
 .navigator_direction_btn {
     position: relative;
     width: 100%;
@@ -397,7 +392,6 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
-
 /* 리스트 출력 관련 사항 */
 td {
     /* 	텍스트를 한 줄로 처리 */
@@ -419,24 +413,11 @@ td {
     box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
 }
 
-/*       버튼들 크기 조정 */
-.btns {
-    width: 23%;
-    height:35px;
-    font-family: "Nanum Gothic", sans-serif;
-    background-color: #57b846;
-    color: rgba(255, 255, 255, 0.9);
-}
 
-.btns:hover{
-	opacity: 80%;
-}
 
 #toModiPW {
      width: 33%;
-     font-family: "Nanum Gothic", sans-serif;
-     background-color: #57b846;
-     color: rgba(255, 255, 255, 0.9);
+
 }
 
 /* #toModiPW:hover { */
@@ -458,21 +439,12 @@ td {
 /* } */
 
 #memberoutBtn {
-    font-family: "Nanum Gothic", sans-serif;
-    background-color: #57b846;
-    color: rgba(255, 255, 255, 0.9);
     font-weight: normal;
 }
 
 /* #memberoutBtn:hover { */
 /*     opacity: 50%; */
 /* } */
-
-#modiComBtn {
-    font-family: "Nanum Gothic", sans-serif;
-    background: #57b846;
-    color: #dfdeee;
-}
 
 .btns_layout {
     margin-top: 20px;
@@ -498,7 +470,7 @@ td {
                 <div class="profileImage">
                     <div class="proImage"></div>
 
-                    <button>변경하기</button>
+                    <button class="btns">변경하기</button>
                 </div>
             </div>
             <div class="col-12 col-lg-8 inpomation">
@@ -568,17 +540,15 @@ td {
                     <!--내가 쓴 글 리스트 뽑아내기-->
                     <colgroup>
                         <col width="10%" />
-                        <col width="45%" />
+                        <col width="55%" />
                         <col width="20%" />
                         <col width="15%" />
-                        <col width="10%" />
                     </colgroup>
                     <thead>
                         <tr>
                             <th>번호</th>
                             <th>제목</th>
                             <th>작성자</th>
-                            <th></th>
                             <th>작성일</th>
                         </tr>
                     </thead>
@@ -590,10 +560,10 @@ td {
                     <!--내가 쓴 댓글 리스트 뽑아내기-->
                     <colgroup>
                         <col width="10%" />
-                        <col width="45%" />
+                        <col width="40%" />
                         <col width="20%" />
                         <col width="15%" />
-                        <col width="10%" />
+                        <col width="15%" />
                     </colgroup>
                     <thead>
                         <tr>
@@ -687,6 +657,9 @@ td {
         </div>
     </div>
     <script>
+    $(".item").on("click",function(){
+    	$(this).css("border","1px solid blue");
+    })
     $("#postSearch").on("click", function () { // 주소 API
 
         new daum.Postcode({
@@ -874,11 +847,10 @@ td {
         $("#consultList").css("display", "table");
         $("table").not("table#consultList").css("display", "none");
     })
-
     //네비게이터에 AJAX 전송 링크 부여
     function setnavi() {
         $(".navibtn").on("click", function () {
-
+        	
             if ($(this).attr("searchto") == "writeFullReviewList") {
                 let location = $(this).attr("location");
                 $.ajax({
@@ -1002,7 +974,7 @@ td {
             }
         })
     }
-
+	
     $("#updateForm").on("submit", function () { //수정 regex
     	
     	let regexName = /^[가-힣]+$/;

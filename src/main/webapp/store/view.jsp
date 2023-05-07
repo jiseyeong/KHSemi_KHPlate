@@ -220,15 +220,15 @@
                                              <c:when test="${i == 0}">
                                                 <div class="carousel-item active">
                                                    <img src="/store/${imgList.get(i).sysName}"
-                                                      class="d-block object-fit-contain" alt="..."
-                                                      style="height: 500px;">
+                                                      class="d-block w-100 h-100 object-fit-cover" alt="..."
+                                                      style="min-height: 400px;">
                                                 </div>
                                              </c:when>
                                              <c:otherwise>
                                                 <div class="carousel-item">
                                                    <img src="/store/${imgList.get(i).sysName}"
-                                                      class="d-block object-fit-contain" alt="..."
-                                                      style="height: 500px;">
+                                                      class="d-block w-100 h-100 object-fit-cover" alt="..."
+                                                      style="min-height: 400px;">
                                                 </div>
                                              </c:otherwise>
                                           </c:choose>
@@ -236,12 +236,12 @@
                                     </c:when>
                                     <c:otherwise>
                                        <div class="carousel-item active">
-                                          <img src="/store/롤링파스타.png" class="d-block w-100 h-100 object-fit-contain"
-                                             alt="..." style="min-height:400px; object-fit:cover;">
+                                          <img src="/store/롤링파스타.png" class="d-block w-100 h-100 object-fit-cover"
+                                             alt="..." style="min-height:400px;">
                                        </div>
                                        <div class="carousel-item">
-                                          <img src="/store/오로지라멘.png" class="d-block w-100 h-100 object-fit-contain"
-                                             alt="..." style="min-height:400px; object-fit:cover;">
+                                          <img src="/store/오로지라멘.png" class="d-block w-100 h-100 object-fit-cover"
+                                             alt="..." style="min-height:400px;">
                                        </div>
                                     </c:otherwise>
                                  </c:choose>
@@ -269,8 +269,8 @@
                                   style="display: none;" readonly>
                                  	<div class="col-12 col-lg-6"> 
                                       <img src="/store/${i.sysName}"
-                                          class="w-100 object-fit-contain" style="margin-bottom:10px;">
-                            		  <div style="text-align:center; margin-bottom:10px;">
+                                          class="w-100 h-75 object-fit-cover" style="margin-bottom:10px; min-height:200px;">
+                            		  <div class="h-25" style="text-align:center; margin-bottom:10px;">
                                				<button type="submit" class="greenBtn" style="width:60px;">삭제</button>
                                 	  </div>
                               	 
@@ -664,10 +664,24 @@
                         //폼 섭밋 전 방어 코드들
                         $("#btn_menu_submit").click(function(){
                         	let menuPrice = $("input[name='addedMenuPrice']").val();
-                            if (isNaN(menuPrice)) {
+                        	let menuName = $("input[name='addedMenuName']").val();
+                        	$("input[name='addedMenuName']").val(menuName.trim());
+                        	menuName = $("input[name='addedMenuName']").val();
+                        	if(!menuPrice && menuName){
+                        		alert("추가할 메뉴의 가격도 설정해주셔야 합니다.");
+                        		return false;
+                        	}else if (isNaN(menuPrice)) {
                                alert("메뉴 가격은 숫자 형식이어야 합니다.");
                                return false;
+                            }else if(menuPrice.split(' ').join('').length != menuPrice.length){
+                            	alert("메뉴 가격에는 공백이 포함될 수 없습니다.");
+                            	return false;
                             }
+                            if(!menuName && menuPrice){
+                            	alert("추가할 메뉴의 이름도 설정해주셔야 합니다. 또는 빈 문자열만의 이름은 설정하실 수 없습니다.");
+                            	return false;
+                            }
+                            
                             let isReturn = false;
                             $(".updateMenuPrice").each(function(index, item){
                                if(!$(item).val()){
@@ -679,15 +693,20 @@
                                   alert("메뉴 가격은 숫자 형식이어야 합니다.");
                                   isReturn = true;
                                   return false; //break;
+                               }else if($(item).val().split(' ').join('').length != $(item).val().length){
+                            	   alert("메뉴 가격에는 공백이 포함될 수 없습니다.");
+                            	   isReturn = true;
+                            	   return false; //break;
                                }
                             });
                             if(!isReturn){
  	                           $(".updateMenuName").each(function(index, item){
+ 	                        	   $(item).val($(item).val().trim());
  	                        	  if(!$(item).val()){
- 	                        		  alert("메뉴 이름은 빈 값일 수 없습니다.");
+ 	                        		  alert("메뉴 이름은 빈 값일 수 없습니다. 또는 공백만으로 구성될 수 없습니다.");
  	                        		  isReturn = true;
  	                        		  return false; //break;
- 	                        	  } 
+ 	                        	  }
  	                           });                        	   
                             }
                             if(isReturn){

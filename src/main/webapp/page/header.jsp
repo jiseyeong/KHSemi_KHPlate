@@ -205,6 +205,10 @@
                         <a href="/logout.members" class="nanum-gothic">로그아웃 </a>
                         <a href="#null" class="nanum-gothic">｜</a>
                         <a href="/mypage.members" class="nanum-gothic">마이페이지</a>
+                        <c:if test="${sessionScope.loginIsAdmin}">
+                        	<a href="#null" class="nanum-gothic">｜</a>
+                        	<a href="/adminPage/adminhomeWithMain.jsp" class="nanum-gothic">관리자 페이지</a>
+                        </c:if>
                      </c:otherwise>
                   </c:choose>
                </div>

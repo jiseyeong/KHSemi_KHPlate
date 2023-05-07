@@ -284,9 +284,9 @@ public class StoreDAO {
 					+ "where row_num between ? and ?";
 		}else if(sortMethod.equals("order_by_review")) {
 			sql = "select * from "
-					+ "(select store.storeid, count(*), row_number() over(order by count(*) desc) row_num from store"
-					+ "inner join commentreview ON store.storeid = commentreview.storeid where name like ?  and pricerange like ? and category in (?,?,?,?,?,?,?,?) group by store.storeid)"
-					+ " top_stores inner join store on top_stores.storeid = store.storeid"
+					+ "(select store.storeid, count(*), row_number() over(order by count(*) desc) row_num from store "
+					+ "left outer join commentreview on store.storeid = commentreview.storeid where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?) group by store.storeid) "
+					+ "top_stores inner join store on top_stores.storeid = store.storeid "
 					+ "where top_stores.row_num between ? and ?";
 		}else {
 			sql = "select * from "

@@ -53,6 +53,9 @@
     height: 100%;
 }
 .sideListUl>li{text-align:left; width:60%; margin:auto; font-weight:600;}
+
+/* 리스트 폰트 추가 */
+.sideListUl>a>li{text-align:center; width:60%; margin:auto; font-weight:600;}
 .firstLi>input {
 	height:30px;
 	width:30px;
@@ -206,12 +209,7 @@
 			url: "/mainList.fullreview",
 			type:"post",
 			dataType:"json",
-			error: function(abc){
-				console.log(abc);
-			}
 		}).done(function(resp){
-			console.log(resp);
-			
 			for(let i=0; i<resp.length; i++){
 				let li = $("<li>");
 				let aa = $("<a href='/content.fullreview?reviewid="+resp[i].reviewID+"'>");
@@ -219,7 +217,6 @@
 				aa.append(li);
 				li.append(resp[i].title);
 			}
-			
 		})
 	
 </script>
