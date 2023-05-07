@@ -70,6 +70,7 @@ body, html {
 	color: #ED1C16;
 	font-size: 25px;
 	margin-top: 55px;;
+	font-weight: bolder;
 }
 
 .box h5 {
@@ -79,6 +80,7 @@ body, html {
 	letter-spacing: 1.5px;
 	margin-top: -15px;
 	margin-bottom: 60px;
+		font-weight: bolder;
 }
 
 .box input[type="text"], .box input[type="password"] {
@@ -153,7 +155,7 @@ label input[type="checkbox"] {
 #signupBtn {
 	top: 62%;
 	background: #57b846;
-	color: #dfdeee;
+	color: #ffffff;
 }
 
 #kakaoBtn {
