@@ -77,13 +77,16 @@ public class ConsultController extends HttpServlet {
 				ArrayList<ConsultDTO> list = null;
 				NaviDTO navi = null;
 				ArrayList<String> writerList = new ArrayList<>();
-				if((boolean)request.getSession().getAttribute("loginIsAdmin")) {
+				if(request.getSession().getAttribute("loginIsAdmin") != null && (boolean)request.getSession().getAttribute("loginIsAdmin")) {
 					list = ConsultDAO.getInstance().selectBound(start, end);
 					navi = ConsultDAO.getInstance().getNavi(currentPage);
-				}else {
+				}else if(request.getSession().getAttribute("userno") != null) {
 					int userNo = (int)request.getSession().getAttribute("userno");
 					list = ConsultDAO.getInstance().selectBoundByUserNo(start, end, userNo);
 					navi = ConsultDAO.getInstance().getNaviByUserNo(currentPage, userNo);
+				}else {
+					response.sendRedirect("/login/login.jsp");
+					return;
 				}
 				
 				
