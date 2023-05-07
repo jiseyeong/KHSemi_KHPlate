@@ -19,4 +19,6 @@ public class Settings {
 	public static int CONSULT_RECORD_COUNT_PER_PAGE = 10;
 	public static int CONSULT_NAVI_COUNT_PER_PAGE = 10;
 	
+	public static int FAQ_RECORD_COUNT_PER_PAGE = 10;
+	public static int FAQ_NAVI_COUNT_PER_PAGE = 10;
 }

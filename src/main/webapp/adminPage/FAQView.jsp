@@ -172,6 +172,17 @@ box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
 							</c:choose>
 						</div>
 					</div>
+					<div class="col-12 text-center">
+						<c:if test="${navi.needNext}">
+							<a href="/view.faq?cpage=${navi.naviList.get(0) - 1}"><</a>
+						</c:if>
+						<c:forEach var="i" items="${navi.naviList}">
+							<a href="/view.faq?cpage=${i.intValue()}">${i.intValue()}</a>
+						</c:forEach>
+						<c:if test="${navi.needNext}">
+							<a href="/view.faq?cpage=${navi.naviList.get(navi.naviList.length)+1}">></a>
+						</c:if>
+					</div>
 				</div>
 
 				<c:if test="${loginIsAdmin}">
