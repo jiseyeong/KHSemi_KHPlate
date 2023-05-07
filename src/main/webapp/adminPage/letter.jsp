@@ -147,8 +147,8 @@ h2 {
 /* ==========================================================================
    #SPACING
    ========================================================================== */
-.p-t-180 {
-	padding-top: 180px;
+.p-t-130 {
+	padding-top: 130px;
 }
 
 .p-b-100 {
@@ -308,7 +308,7 @@ input {
 </style>
 <body>
 <body>
-	<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+	<div class="page-wrapper bg-red p-t-130 p-b-100 font-robo">
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
 				<div class="card-body">
@@ -341,9 +341,10 @@ input {
 	<script src="js/global.js"></script>
 
 	<script>
-
-
-        </script>
+	$("#close").on("click",function(){
+		window.close();
+	})
+    </script>
 
 
 </body>

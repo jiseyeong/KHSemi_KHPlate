@@ -74,7 +74,7 @@ h1 {
 	height: 40px;
 	background-color: #57b846;
 	border:  #57b846;
-	border-radius: 12px;
+	border-radius: 3px;
 	cursor: pointer;
 	color: white;
 	font-size: 14px;

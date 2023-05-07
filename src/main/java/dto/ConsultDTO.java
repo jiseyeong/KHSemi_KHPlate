@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class ConsultDTO {
 
@@ -86,6 +87,9 @@ public class ConsultDTO {
 	public void setReply(String reply) {
 		this.reply = reply;
 	}
-
-
+	
+	public String getWritedateToString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  hh:mm");
+		return sdf.format(writedate);
+	}
 }

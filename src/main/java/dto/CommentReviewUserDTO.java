@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class CommentReviewUserDTO {
 	
@@ -290,5 +291,10 @@ public class CommentReviewUserDTO {
 
 	public void setPriceRange(String priceRange) {
 		this.priceRange = priceRange;
+	}
+	
+	public String getWritedateToString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  hh:mm");
+		return sdf.format(writeDate);
 	}
 }

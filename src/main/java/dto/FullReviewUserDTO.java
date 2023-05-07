@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 // FullReviewDTO와 MembersDTO를 합친 DTO
 
@@ -201,5 +202,10 @@ public class FullReviewUserDTO {
 
 	public void setWritedate(Timestamp writedate) {
 		this.writedate = writedate;
+	}
+	
+	public String getWritedateToString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  hh:mm");
+		return sdf.format(writedate);
 	}
 }
