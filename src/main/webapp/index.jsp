@@ -17,7 +17,6 @@
 	<hr>
 	<p>링크 미적용 사이트 입니다.</p>
 	(관리자)가게 정보 등록 -> <a href="/store/registerForm.jsp">registerForm.jsp</a><br>
-	(관리자)문의 답변 작성 -> <a href="/adminPage/consultReplyRegister.jsp">consultReplyRegister.jsp</a><br>
 	(관리자)FAQ 등록 -> <a href="/adminPage/FAQRegister.jsp">FAQRegister.jsp</a><br>
 	<hr>
 	<p>페이지 만드는 중</p>
@@ -61,7 +60,7 @@
 	<br>
 	문의 작성 -> <a href="/adminPage/consultRegister.jsp">consultRegister.jsp</a><br>
 	문의 내역 -> <a href="/adminPage/consultList.jsp">counsultList.jsp</a><br>	
-	문의 답변 작성 -> <a href="/adminPage/consultReplyRegister.jsp">consultReplyRegister.jsp</a><br>
+	(관리자)문의 답변 작성 -> <a href="/adminPage/consultReplyRegister.jsp">consultReplyRegister.jsp</a><br>
 	문의 글 보기 -> <a href="/adminPage/consultView.jsp">consultView.jsp</a><br>
 	<br>
 	FAQ 등록 -> <a href="/adminPage/FAQRegister.jsp">FAQRegister.jsp</a><br>

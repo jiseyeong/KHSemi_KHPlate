@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class MyFullReviewScrapDTO {
 
@@ -260,5 +261,10 @@ public class MyFullReviewScrapDTO {
 	}
 	public void setGoogle(String google) {
 		this.google = google;
+	}
+	
+	public String getWritedateToString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  hh:mm");
+		return sdf.format(writedate);
 	}
 }
