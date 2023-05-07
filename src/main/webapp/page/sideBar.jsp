@@ -34,11 +34,12 @@
 	background-color: #ED1C16;
 	color:white;
 	border-radius:15px;
+	   border:none;
 	width:65%;
 	height:40px;
 	cursor:pointer;
 	padding:0;
-	
+
 }
 .searchBtn:hover{
 	opacity:80%;
@@ -88,10 +89,8 @@ li:not(.firstLi):hover {
    font-weight: bolder;
    font-size:18px;
 }
-.searchBtn{
-   border:none;
-   margin-left:
-}
+
+
 /* a태그의 밑줄 속성 제거 */
 a:link {text-decoration: none;}
 
@@ -101,7 +100,7 @@ a:link {text-decoration: none;}
 </head>
 <body>
    <div class="col-12 col-lg-2 themed-grid-col sideBar">
-     <button class="searchBtn" type="button" onclick="location.href='/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar'">내 근처 맛집 검색<img src="/page/searchBtn.png"></button>
+     <button class="searchBtn" type="button" onclick="location.href='/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar'">근처 맛집 검색<img src="/page/searchBtn.png"></button>
       <ul class="ulTag">
       	 <!--<a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>-->
          <li class="firstLi">Menu</li>

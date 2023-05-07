@@ -176,18 +176,17 @@
 }
 
 .addScrap_btn {
-	border-radius: 1.5rem;
-	width: 100%;
-	height: 100%;
-	border: 2px solid rgb(178, 178, 178);
+	width: 70%;
+	height: 70%;
 	font-size: 20px;
 }
 
-.istrue{
-	background-color : #ED1C16;
+.istrue {
+	filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg) brightness(92%) contrast(101%);
 }
-.isfalse{
-	background-color : white;
+
+.isfalse {
+	filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) contrast(101%);
 }
 
 .imgBox{
@@ -204,7 +203,7 @@
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>List</title>
 </head>
 <body>
 
@@ -240,17 +239,17 @@
 									<c:set var="scrapCheck" value="false"/>
 									<c:forEach var="scrapList" items="${scrap_list}"
 										varStatus="status">
-										<c:if test="${scrapList.reviewID == reviewList.reviewID}">
-											<button class="addScrap_btn istrue">
-												<i class="fa-regular fa-heart"></i>
-											</button>
+										<c:if test="${scrapList.reviewID == reviewList.reviewID}"> 
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addScrap_btn istrue" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+</svg>
 											<c:set var="scrapCheck" value="true" />
 										</c:if>
 									</c:forEach>
-									<c:if test="${!scrapCheck}">
-										<button class="addScrap_btn isfalse">
-											<i class="fa-regular fa-heart"></i>
-										</button>
+									<c:if test="${!scrapCheck}"> 
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addScrap_btn isfalse" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+</svg>
 									</c:if>
 								</div>
 								
