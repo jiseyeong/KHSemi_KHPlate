@@ -26,7 +26,7 @@
 
 * {
 	box-sizing: border-box;
-		font-family: 'Nanum Gothic', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	padding: 0px;
 }
 
