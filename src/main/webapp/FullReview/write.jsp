@@ -208,10 +208,10 @@ textarea {
 	ClassicEditor
 	.create(document.querySelector("#editor"), {
 		 toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'insertTable', 'blockQuote', 'undo', 'redo',]
-	})
+	});
 	.catch(error => { console.error(error) });
 	
-	$("#addForm").on("submit",function(){
+	$("#addForm").submit(function(){
 		let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
 		
 		if ($(".userId").val()==null){
@@ -244,7 +244,7 @@ textarea {
             }
             imgs[i].children("input").attr("name", "image" + i);
         }
-	})
+	});
 	
 	$("#input_image").change(function(){
 		let input = document.getElementById("input_image");

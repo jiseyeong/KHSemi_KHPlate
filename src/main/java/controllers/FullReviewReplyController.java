@@ -59,10 +59,11 @@ public class FullReviewReplyController extends HttpServlet {
 
 			} else if (cmd.equals("/update.fullreviewreply")) {
 				String body = request.getParameter("re_list_body");
-				int reviewid = Integer.parseInt(request.getParameter("commentid"));
-				System.out.println(body+"/"+reviewid);
+				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
+				int commentid = Integer.parseInt(request.getParameter("commentid")); 
+				System.out.println(body+"/"+commentid);
 
-				int result = frrdao.updateReply(body, reviewid);
+				int result = frrdao.updateReply(body, commentid);
 				
 				if (result == 0) {
 					System.out.println(reviewid + "댓글 수정 실패");

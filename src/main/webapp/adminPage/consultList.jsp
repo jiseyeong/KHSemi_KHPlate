@@ -53,7 +53,6 @@ color:#57b846;
 	cursor: pointer;
 	border:none;
 	filter: invert(65%) sepia(12%) saturate(2086%) hue-rotate(65deg) brightness(93%) contrast(89%);
-
 }
 
 /* 하단부터 메인부분 스타일 작성 요망 */

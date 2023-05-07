@@ -24,9 +24,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.1.2/typicons.min.css">
-
-<!-- Main CSS-->
-<link href="css/main.css" rel="stylesheet" media="all">
 </head>
 
 
@@ -69,7 +66,8 @@ body, html {
 	font-family: 'Nanum Gothic', sans-serif;
 	color: #ED1C16;
 	font-size: 25px;
-	margin-top: 55px;;
+	margin-top: 90px;;
+	font-weight: bolder;
 }
 
 .box h5 {
@@ -79,6 +77,7 @@ body, html {
 	letter-spacing: 1.5px;
 	margin-top: -15px;
 	margin-bottom: 60px;
+		font-weight: bolder;
 }
 
 .box input[type="text"], .box input[type="password"] {
@@ -126,6 +125,7 @@ body, html {
 
 #memberout{
   top: 62%;
+    margin-top: 10px;
   margin-bottom: 10px;
   animation-name: noexit;
   animation-duration: 4s;
@@ -183,6 +183,7 @@ body, html {
 				userId:inputID,
 				userPw:inputPw
 			}
+		
 		}).done(function(resp){
 			if(resp == "1") {
 				alert("아이디가 잘못 되었습니다.");
@@ -197,6 +198,7 @@ body, html {
 			return;
 		});
 	})
+	
 	$("#cancel").on("click",function(){
 		history.back();
 	})

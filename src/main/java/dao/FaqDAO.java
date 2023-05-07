@@ -94,8 +94,8 @@ public class FaqDAO {
 	
 	public NaviDTO getNavi(int currentPage) throws Exception{
 		int recordTotalCount = this.getRecoredCount();
-		int recordCountPerPage = Settings.FAQ_NAVI_COUNT_PER_PAGE;
-		int naviCountPerPage = Settings.FAQ_RECORD_COUNT_PER_PAGE;
+		int recordCountPerPage = Settings.FAQ_RECORD_COUNT_PER_PAGE;
+		int naviCountPerPage = Settings.FAQ_NAVI_COUNT_PER_PAGE;
 		
 		int pageTotalCount = recordTotalCount % recordCountPerPage > 0 ?
 				recordTotalCount/recordCountPerPage + 1

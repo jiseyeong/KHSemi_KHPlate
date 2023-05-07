@@ -217,9 +217,20 @@ a {
     </div>
     
     <script>
+
+	$("#consultBtn").on("click",function(){
+		location.href = "/adminPage/consultList.jsp";
+	})
+	
+		$("#faqBtn").on("click",function(){
+			location.href = "/adminPage/FAQView.jsp";
+	})
+	
+
     $("#letterBtn").on("click",function(){
     	window.open("/adminPage/letter.jsp","letter","width=1000px,height=800px");
     })
+
     </script>
     
 </body>

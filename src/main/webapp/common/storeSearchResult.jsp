@@ -348,8 +348,8 @@ navigator_list_item_btn_layout>a{
 #sort_layout {
 	position: absolute;
 	z-index: 1;
-	left: 3px;
-	width: 400px;
+	top: -18px;
+	width: 1000px;
 	height: 700px;
 	background-color: white;
 	border: 1px solid silver;
@@ -958,9 +958,6 @@ input[type="range"]::-ms-track {
 			</script>
 
 	<script>
-		// 필터 기능들 모음
-
-		$(function () {
 			// 필터 Toggle 기능 부여
 			let sort_check = false;
 
@@ -1147,7 +1144,7 @@ input[type="range"]::-ms-track {
 					}
 				})
 			})
-		})
+		
 
 		// 범위 바의 값을 변경하였을 때 적용
 		function SetValue() {
