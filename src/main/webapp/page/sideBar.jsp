@@ -27,30 +27,18 @@
 .sideBar {
 	text-align:center;
 }
-.searchBtn {
-	font-size:17px;
+
+
+#mapBtn {
 	margin-bottom:10px;
-	font-weight:bold;
-	background-color: #ED1C16;
-	color:white;
-	border-radius:15px;
-	   border:none;
+	filter: invert(31%) sepia(100%) saturate(6890%) hue-rotate(355deg) brightness(95%) contrast(95%);
+	border:none;
 	width:65%;
 	height:40px;
 	cursor:pointer;
 	padding:0;
+}
 
-}
-.searchBtn:hover{
-	opacity:80%;
-}
-.searchBtn>img{
-	width:22px;
-	height:22px;
-	position:relative;
-	left:15px;
-	top:-1px;
-}
 ul {
    list-style: none;
    margin: 0px;
@@ -99,8 +87,11 @@ a:link {text-decoration: none;}
 
 </head>
 <body>
-   <div class="col-12 col-lg-2 themed-grid-col sideBar">
-     <button class="searchBtn" type="button" onclick="location.href='/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar'">근처 맛집 검색<img src="/page/searchBtn.png"></button>
+   <div class="col-12 col-lg-2 themed-grid-col sideBar"> 
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  id="mapBtn" viewBox="0 0 16 16">
+  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+</svg>
+
       <ul class="ulTag">
       	 <!--<a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>-->
          <li class="firstLi">Menu</li>
@@ -128,6 +119,10 @@ a:link {text-decoration: none;}
       </ul>
    </div>
    <script>
+   $("#mapBtn").on("click",function(){
+		location.href = "/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar";
+	})
+
    </script>
 </body>
 </html>

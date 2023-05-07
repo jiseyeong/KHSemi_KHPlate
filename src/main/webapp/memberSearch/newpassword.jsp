@@ -68,7 +68,6 @@ h4 {
   min-height: 100vh;
 }
 
-
 .card-3d-wrap {
   position: relative;
   width: 440px;
@@ -117,8 +116,8 @@ h4 {
 .form-group{ 
   position: relative;
   display: block;
-    margin: 0;
-    padding: 0;
+   margin: 5px;
+    padding: 2px;
 }
 .form-style {
   padding: 13px 20px;
@@ -233,6 +232,26 @@ h4 {
 #pwCheck{
 	 height:35px;
 }
+
+.bi-lock {
+	color: #73717f;
+	position: absolute;
+	margin-left: 20px;
+	margin-top: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.bi-key {
+	color: #73717f;
+	position: absolute;
+	margin-left: 20px;
+	margin-top: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 </style>
 
 
@@ -249,16 +268,23 @@ h4 {
 					  <div class="center-wrap">
 						<div class="section text-center">
 						  <h4 class="mb-4 pb-3">비밀번호 재발급</h4>
-						  <div class="form-group">
+						  <div class="form-group"> 
+						  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi-lock" viewBox="0 0 16 16">
+  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+</svg>
 						  	<input type="text" name="userid" style="display:none" value=${userid} >
 							<input type="password" name="pw1" class="form-style" id="pw1" placeholder="새로운 비밀번호 입력" autocomplete="off"> 
 						  </div>  
 						  <div class="form-group mt-2">
+						  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi-key" viewBox="0 0 16 16">
+  <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+</svg>
 							<input type="password" id="pw2" name="pw2" class="form-style" placeholder="비밀번호 재입력" autocomplete="off">
 							<div id=pwCheck></div>
 						  </div>
 						  
-						  <input type="submit" value = 제출하기 class="btn mt-4 value=제출하기 id="passwordcheck">
+						  <input type="submit" value = 제출하기 class="btn" value="제출하기" id="passwordcheck">
 
 							</div>
 						  </div>

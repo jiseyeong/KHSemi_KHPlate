@@ -203,7 +203,15 @@ a {
     </div>
     <script>
 	$("#consultBtn").on("click",function(){
-		
+		location.href = "/adminPage/consultList.jsp";
+	})
+	
+		$("#faqBtn").on("click",function(){
+			location.href = "/adminPage/FAQView.jsp";
+	})
+	
+		$("#letterBtn").on("click",function(){
+			location.href = "/adminPage/letter.jsp";
 	})
     </script>
 </body>

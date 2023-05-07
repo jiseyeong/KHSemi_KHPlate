@@ -6,7 +6,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>네이버로그인</title>
+    <title>네이버 로그인</title>
   </head>
   <body>
   <%
@@ -25,6 +25,7 @@
     String access_token = "";
     String refresh_token = "";
     System.out.println("apiURL="+apiURL);
+    
     try {
       URL url = new URL(apiURL);
       HttpURLConnection con = (HttpURLConnection)url.openConnection();
