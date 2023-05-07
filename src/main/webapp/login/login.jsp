@@ -18,19 +18,16 @@
 <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.1.2/typicons.min.css">
 
-<!-- Main CSS-->
-<link href="css/main.css" rel="stylesheet" media="all">
+<!-- 네이버 로그인 -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+
 </head>
-
-
-
 <style>
 	
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
@@ -167,7 +164,7 @@ label input[type="checkbox"] {
 	background-position: 10px;
 }
 
-#naverBtn {
+#naverIdLogin {
 	top: 82%;
 	background: #57b846;
 	/* background-image: url(naver13.png);
@@ -179,6 +176,16 @@ label input[type="checkbox"] {
 
 	/* background-position: left;
     background-position: -20px; */
+    font-family: 'Nanum Gothic', sans-serif;
+	border: 0;
+	border-radius: 100px;
+	width: 340px;
+	height: 49px;
+	font-size: 16px;
+	position: absolute;
+	left: 8%;
+	transition: 0.3s;
+	cursor: pointer;
 }
 
 .rmb {
@@ -243,13 +250,6 @@ label input[type="checkbox"] {
 	display: none;
 }
 
-#naverIdLogin {
-	width: 215px;
-	height: 55px;
-	background-color: rgb(3, 199, 90);
-	font-size: 18px;
-}
-
 .eyes {
 	cursor: pointer;
 	margin-left: 330px;
@@ -272,23 +272,6 @@ label input[type="checkbox"] {
 	opacity: 0;
 }
 
-#naverIdLogin {
-	background-color: #ED1C1600;
-}
-
-#naverIdLogin {
-	width: 330px;
-	height: 47px;	
-	position: relative;
-	top: 18px;
-	cursor: pointer;
-	margin-left: 42px;
-	margin-top: 10px;
-	font-size: 18px;
-}
-
-
-
 #kakaobtn2 {
 	width: 333px;
 	height: 47px;
@@ -304,61 +287,58 @@ label input[type="checkbox"] {
 </style>
 
 <body id="particles-js">
-<div class="animated bounceInDown">
-	<div class="container">
-		<span class="error animated tada" id="msg"></span>
-		<form name="form1" class="box" onsubmit="return false;">
-			<h4>KHPLATE</h4>
-			<h5>오늘은 뭐 먹지?</h5>
-			<div class="input password">
-				<input type="text" name="id" id="id" placeholder="ID"
-					autocomplete="off"> <i class="typcn typcn-eye" id="eye"></i>
-
-				<input type="password" name="password" id="password"
-					placeholder="PW" autocomplete="off" class="form-input">
-				<div class="box">
-
-					<span class="input-wrap"> <input type="checkbox"
-						id="checkId" name="checkId"> <label for="checkId"><span></span></label>
-						아이디 저장 
-					</span>
-					<!-- <div id="idsave">아이디 저장</div> -->
+	<div class="animated bounceInDown">
+		<div class="container">
+			<span class="error animated tada" id="msg"></span>
+			<form name="form1" class="box" onsubmit="return false;">
+				<h4>KHPLATE</h4>
+				<h5>오늘은 뭐 먹지?</h5>
+				<div class="input password">
+					<input type="text" name="id" id="id" placeholder="ID"
+						autocomplete="off"> <i class="typcn typcn-eye" id="eye"></i>
+	
+					<input type="password" name="password" id="password"
+						placeholder="PW" autocomplete="off" class="form-input">
+					<div class="box">
+	
+						<span class="input-wrap"> <input type="checkbox"
+							id="checkId" name="checkId"> <label for="checkId"><span></span></label>
+							아이디 저장 
+						</span>
+						<!-- <div id="idsave">아이디 저장</div> -->
+					</div>
+					<div class="eyes">
+						<i class="fa fa-eye fa-lg"></i>
+					</div>
 				</div>
-				<div class="eyes">
-					<i class="fa fa-eye fa-lg"></i>
-				</div>
-			</div>
-			<!-- <label> <input type="checkbox"> <span></span> <small
-				class="rmb">ID 기억하기</small></label> -->
-			<input type="button" value="제출하기" class="btn" id="signupBtn">
-			<input type="button" value="" class="btn" id="kakaoBtn"> 
-			  <div id="kakaobtn2" onclick="kakaoLogin();">
-                    <a href="javascript:void(0)"></a>
-                </div>
-			<input type="button" value="" class="btn" id="naverBtn">
-			<div id="naverIdLogin"></div>
-		</form>
-		<a href="#null" class="forgetidpw"> 아이디/비밀번호 찾기</a>
-		<a href="/joinform/joinform.jsp" class="dnthave">회원가입하기</a>
+				<!-- <label> <input type="checkbox"> <span></span> <small
+					class="rmb">ID 기억하기</small></label> -->
+				<input type="button" value="제출하기" class="btn" id="signupBtn">
+				<input type="button" value="" class="btn" id="kakaoBtn"> 
+			  	<div id="kakaobtn2" onclick="kakaoLogin();">
+	                <a href="javascript:void(0)"></a>
+	            </div>
+	            <div id="naverIdLogin"></div>
+			</form>
+			<a href="#null" class="forgetidpw"> 아이디/비밀번호 찾기</a>
+			<a href="/joinform/joinform.jsp" class="dnthave">회원가입하기</a>
+		</div>
+	<!-- 		<button onclick="kakaoLogout()">카카오 로그아웃</button> -->
+	<!--         <button onclick="naverLogout()">네이버 로그아웃</button> -->
 	</div>
-</div>
 
 
 <script>
 
 // 아이디/비밀번호 찾기 링크
-$(".forgetidpw").on("click", function() {
-	window.open("/memberSearch/idpwsearch.jsp","","width=480px,height=750px");
+	$(".forgetidpw").on("click", function() {
+		window.open("/memberSearch/idpwsearch.jsp","","width=480px,height=750px");
+		
+	})
 	
-})
-
-
 	$("#signup").on("click", function() {
-	
-	location.href = "/joinform/joinform.jsp";
-})
-
-
+		location.href = "/joinform/joinform.jsp";
+	})
 
 	var pw = document.getElementById('password');
 	var eye = document.getElementById('eye');
@@ -374,22 +354,20 @@ $(".forgetidpw").on("click", function() {
 
 	$(function() {
 		// 눈표시 클릭 시 패스워드 보이기
-		$('.eyes').on(
-				'click',
-				function() {
-					$('.input.password').toggleClass('active');
+		$('.eyes').on('click',function() {
+			$('.input.password').toggleClass('active');
 
-					if ($('.input.password').hasClass('active') == true) {
-						$(this).find('.fa-eye').attr('class',
-								"fa fa-eye-slash fa-lg").parents('.input')
-								.find('#password').attr('type', "text");
-						// i 클래스                // 텍스트 보이기 i 클래스
-					} else {
-						$(this).find('.fa-eye-slash').attr('class',
-								"fa fa-eye fa-lg").parents('.input').find(
-								'#password').attr('type', 'password');
-					}
-				});
+			if ($('.input.password').hasClass('active') == true) {
+				$(this).find('.fa-eye').attr('class',
+						"fa fa-eye-slash fa-lg").parents('.input')
+						.find('#password').attr('type', "text");
+				// i 클래스                // 텍스트 보이기 i 클래스
+			} else {
+				$(this).find('.fa-eye-slash').attr('class',
+						"fa fa-eye fa-lg").parents('.input').find(
+						'#password').attr('type', 'password');
+			}
+		});
 	});
 	//
 	$(document).ready(function() {
@@ -446,55 +424,45 @@ $(".forgetidpw").on("click", function() {
 			var end = cookieData.indexOf(';', start);
 			if (end == -1) // 쿠키 값의 마지막 위치 인덱스 번호 설정 
 				end = cookieData.length;
-			console.log("end위치  : " + end);
 			cookieValue = cookieData.substring(start, end);
 		}
 		return unescape(cookieValue);
 	}
 
-	//naver
-	const naverLogin = new naver.LoginWithNaverId({
-		clientId : "Mm9YQgxstdSEuf5xt0jg",
-		callbackUrl : "http://127.0.0.1:8090/naver-login",
-		loginButton : {
-			color : "green",
-			type : 2,
-			height : 40
-		}
-	});
-	naverLogin.init(); // 로그인 설정
-
-	naverLogin.getLoginStatus(function(status) {
-		if (status) {
-			const nickName = naverLogin.user.getNickName();
-			const age = naverLogin.user.getAge();
-			const birthday = naverLogin.user.getBirthday();
-
-			//닉네임을 선택하지 않으면 선택창으로 돌아갑니다.
-			if (nickName === null || nickName === undefined) {
-				alert("별명이 필요합니다. 정보제공을 동의해주세요.");
-				naverLogin.reprompt();
-				return;
-			} else {
-				setLoginStatus(); //모든 필수 정보 제공 동의하면 실행하는 함수
-			}
-		}
-	});
-	naverLogin.init(); // 로그인 설정
-
 	//kakao
 
-	Kakao.init('25e12e36964674d52a9931b02d3b7cc1'); //발급받은 키 중 javascript키를 사용해준다.
-	console.log(Kakao.isInitialized()); // sdk초기화여부판단
-
-	//카카오로그인
+	//카카오 로그인
 	function kakaoLogin() {
+		Kakao.init('25e12e36964674d52a9931b02d3b7cc1'); //발급받은 키 중 javascript키를 사용해준다.
+		console.log(Kakao.isInitialized()); // sdk초기화여부판단
+		
 		Kakao.Auth.login({
 			success : function(response) {
 				Kakao.API.request({
 					url : '/v2/user/me',
-					success : function(response) {
-						console.log(response)
+					success : function(responseKakao) {
+		            	$.ajax({
+		        			url : "/loginByKakao.members",
+		        			type : "post",
+		        			data : {
+		        				kakaoid : responseKakao.id
+		        			}
+		        		}).done(function(resp) {
+		        			if (resp == "1") {
+		        				alert("첫 회원은 회원가입 절차가 필요합니다.");
+		        				let id = responseKakao.id;
+// 		        				kakaoLogout();
+		        				location.href="/joinform/joinformWithLoginAPI.jsp?kakaoid="+id;
+		        			} else if(resp == "2"){
+		        				alert("이메일 인증이 되지 않았습니다.");
+// 		        				kakaoLogout();
+		        				location.reload();
+		        			} else {
+		        				console.log(responseKakao.id);
+		        				alert("로그인 되었습니다.");
+		        				location.href = "/page/main.jsp";
+		        			}
+		        		})
 					},
 					fail : function(error) {
 						console.log(error)
@@ -506,7 +474,83 @@ $(".forgetidpw").on("click", function() {
 			},
 		})
 	}
+	
+	// 카카오 로그아웃
+	function kakaoLogout() {
+	    Kakao.Auth.logout()
+	      .then(function() {
+	        alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+	        deleteCookie();
+	      })
+	      .catch(function() {
+	        alert('Not logged in');
+	      });
+    }
+	// 카카오 언링크
+// 	function kakaoLogout(){
+// 		Kakao.API.request({
+// 		  url: '/v1/user/unlink',
+// 		})
+// 	  .then(function(response) {
+// 	    console.log(response);
+// 	  })
+// 	  .catch(function(error) {
+// 	    console.log(error);
+// 	  });
+// 	}
 
+	
+	
+	// 네이버 로그인
+	const naverLogin = new naver.LoginWithNaverId(
+        {
+            clientId: "Mm9YQgxstdSEuf5xt0jg",
+            callbackUrl: "/login/login.jsp",
+            loginButton: {color: "green", type: 2, height: 40},
+            isPopup: false,
+    	    callbackHandle: true
+        }
+    );
+    naverLogin.init();
+
+    $(function(){
+    	naverLogin.getLoginStatus(function (status) {
+            if (status) {
+            	$.ajax({
+        			url : "/loginByNaver.members",
+        			type : "post",
+        			data : {
+        				naverid : naverLogin.user.id
+        			}
+        		}).done(function(resp) {
+        			if (resp == "1") {
+        				alert("첫 회원은 회원가입 절차가 필요합니다.");
+        				let id = naverLogin.user.id;
+        				naverLogout();
+        				location.href="/joinform/joinformWithLoginAPI.jsp?naverid="+id;
+        			} else if(resp == "2"){
+        				alert("이메일 인증이 되지 않았습니다.");
+        				naverLogout();
+        				location.reload();
+        			} else {
+        				alert("로그인 되었습니다.");
+        				location.href = "/page/main.jsp";
+        			}
+        		})
+                console.log(naverLogin.user.id);
+            } else {
+                console.log("callback 처리에 실패하였습니다.");
+            }
+        });
+    }) 
+    
+    function naverLogout() {
+        naverLogin.logout();
+      	location.replace("/login/login.jsp");
+    }
+	
+    
+    
 	// Form Validation
 
 	$("#signupBtn").on("click",function(){
@@ -565,142 +609,6 @@ $(".forgetidpw").on("click", function() {
 			}
 		})
 	});
-
-	// ParticlesJS
-
-	// ParticlesJS Config.
-	particlesJS("particles-js", {
-		"particles" : {
-			"number" : {
-				"value" : 60,
-				"density" : {
-					"enable" : true,
-					"value_area" : 800
-				}
-			},
-			"color" : {
-				"value" : "#ffffff"
-			},
-			"shape" : {
-				"type" : "circle",
-				"stroke" : {
-					"width" : 0,
-					"color" : "#000000"
-				},
-				"polygon" : {
-					"nb_sides" : 5
-				},
-				"image" : {
-					"src" : "img/github.svg",
-					"width" : 100,
-					"height" : 100
-				}
-			},
-			"opacity" : {
-				"value" : 0.1,
-				"random" : false,
-				"anim" : {
-					"enable" : false,
-					"speed" : 1,
-					"opacity_min" : 0.1,
-					"sync" : false
-				}
-			},
-			"size" : {
-				"value" : 6,
-				"random" : false,
-				"anim" : {
-					"enable" : false,
-					"speed" : 40,
-					"size_min" : 0.1,
-					"sync" : false
-				}
-			},
-			"line_linked" : {
-				"enable" : true,
-				"distance" : 150,
-				"color" : "#ffffff",
-				"opacity" : 0.1,
-				"width" : 2
-			},
-			"move" : {
-				"enable" : true,
-				"speed" : 1.5,
-				"direction" : "top",
-				"random" : false,
-				"straight" : false,
-				"out_mode" : "out",
-				"bounce" : false,
-				"attract" : {
-					"enable" : false,
-					"rotateX" : 600,
-					"rotateY" : 1200
-				}
-			}
-		},
-		"interactivity" : {
-			"detect_on" : "canvas",
-			"events" : {
-				"onhover" : {
-					"enable" : false,
-					"mode" : "repulse"
-				},
-				"onclick" : {
-					"enable" : false,
-					"mode" : "push"
-				},
-				"resize" : true
-			},
-			"modes" : {
-				"grab" : {
-					"distance" : 400,
-					"line_linked" : {
-						"opacity" : 1
-					}
-				},
-				"bubble" : {
-					"distance" : 400,
-					"size" : 40,
-					"duration" : 2,
-					"opacity" : 8,
-					"speed" : 3
-				},
-				"repulse" : {
-					"distance" : 200,
-					"duration" : 0.4
-				},
-				"push" : {
-					"particles_nb" : 4
-				},
-				"remove" : {
-					"particles_nb" : 2
-				}
-			}
-		},
-		"retina_detect" : true
-	});
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

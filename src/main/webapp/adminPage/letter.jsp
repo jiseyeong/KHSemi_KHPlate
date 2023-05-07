@@ -325,9 +325,8 @@ input {
 					</div>
 					
 					<div class="p-t-10">
-							<button class="btn btn--radius btn--green" type="button"
-								id="close">닫기</button>
-						</div>
+						<button class="btn btn--radius btn--green" type="button" id="closebtn">닫기</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -341,7 +340,7 @@ input {
 	<script src="js/global.js"></script>
 
 	<script>
-	$("#close").on("click",function(){
+	$("#closebtn").on("click",function(){
 		window.close();
 	})
     </script>

@@ -122,7 +122,40 @@
 
          <div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
             <!-- Main 내용 부분 하단부터 수정 요망 -->
-
+			
+			<c:if test="${naverLogout}">
+	      		<script>
+		      		const naverLogin = new naver.LoginWithNaverId(
+		   		        {
+		   		            clientId: "Mm9YQgxstdSEuf5xt0jg",
+		   		            callbackUrl: "http://localhost/login/login.jsp",
+		   		            loginButton: {color: "green", type: 2, height: 40},
+		   		            isPopup: false,
+		   		    	    callbackHandle: true
+		   		        }
+		   		    );
+		   		    naverLogin.init();
+		   			naverLogin.logout();
+		      		console.log("네이버 로그아웃 완료");
+	      		</script>
+      		</c:if>
+      		
+      		<c:if test="${kakaoLogout}">
+	      		<script>
+		      		function kakaoLogout() {
+		      		    Kakao.Auth.logout()
+		      		      .then(function() {
+		      		        alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+		      		        deleteCookie();
+		      		      })
+		      		      .catch(function() {
+		      		        alert('Not logged in');
+		      		      });
+		      	    }
+		      		console.log("카카오 로그아웃 완료");
+	      		</script>
+      		</c:if>
+      	
             <div class="col-12 themed-grid-col contents">
                <div class="col-12 col-lg-12 themed-grid-col row contents1">
                   <div class="col-12 col-lg-8 themed-grid-col carousel">

@@ -228,12 +228,15 @@ textarea {
 					value="${contents.reviewID }" style="display: none;"> <br>
 				<input type="text" id="body" name="body" placeholder="작성할 댓글 입력"
 					style="height: 40px; width: 92%; margin-left: 5px;">
+				<input type="submit" id="re_write_btn" style="display:none;" />
+				<label for="re_write_btn">
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-					fill="currentColor" type="submit" id="re_write_btn"
+					fill="currentColor" type="submit"
 					viewBox="0 0 16 16">
   <path
 						d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
 </svg>
+</label>
 			</div>
 		</form>
 

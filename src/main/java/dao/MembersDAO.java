@@ -166,7 +166,6 @@ public class MembersDAO {
 			con.commit();
 			return result;
 		}
-
 	}
 
 	// 아이디 검사
@@ -325,6 +324,68 @@ public class MembersDAO {
 				con.commit();
 				return result;
 		}
+	}
+	
+	public String searchNaverID(String naverid) throws Exception{
+		String sql = "select * from members where naver = ?";
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat= con.prepareStatement(sql);){
+			pstat.setString(1, naverid);
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					return rs.getString("userid");
+				}else {
+					return null;
+				}
+			}
+		}
+	}
+	
+	public String searchKakaoID(String kakaoid) throws Exception{
+		String sql = "select * from members where kakao = ?";
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat= con.prepareStatement(sql);){
+			pstat.setString(1, kakaoid);
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					return rs.getString("userid");
+				}else {
+					return null;
+				}
+			}
+		}
+	}
+	
+	// 네이버 로그인으로 회원가입 시,
+	public int joinWithNaver(String name, String email, String classes, String naverid) throws Exception {
+		String sql = "insert into members (userno,userid,pw,name,email,classes,naver) values (members_userno_seq.nextval,?,?,?,?,?,?)";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, naverid);
+			pstat.setString(2, SecurityUtils.sha512(naverid));
+			pstat.setString(3, name);
+			pstat.setString(4, email);
+			pstat.setString(5, classes);
+			pstat.setString(6, naverid);
 
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int joinWithKakao(String name, String email, String classes, String kakaoid) throws Exception {
+		String sql = "insert into members (userno,userid,pw,name,email,classes,kakao) values (members_userno_seq.nextval,?,?,?,?,?,?)";
+		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
+			pstat.setString(1, kakaoid);
+			pstat.setString(2, SecurityUtils.sha512(kakaoid));
+			pstat.setString(3, name);
+			pstat.setString(4, email);
+			pstat.setString(5, classes);
+			pstat.setString(6, kakaoid);
+
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
 	}
 }
