@@ -60,7 +60,7 @@ a {
     text-align: center;
     position: relative;
     left: 100px;
-    margin-bottom: 30px;
+/*     margin-bottom: 30px; */
 }
 
 .body1 {
@@ -74,7 +74,10 @@ a {
 }
 
 .profile {
-    /* 	width: 35%; */
+	display:flex;
+	justify-content:right;
+	align-items:center;
+	margin-top:47px;
 }
 
 .inpomation {
@@ -87,13 +90,16 @@ a {
 }
 
 .inpocontents1 {
-    width: 20%;
+    width: 19%;
     line-height: 25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .inpocontents1>#ul2 {
     list-style: none;
-    margin-top: 50px;
+    margin-top: 42px;
     padding: 0 0 0 40px;
 }
 
@@ -209,24 +215,28 @@ a {
     display: inline-block;
 }
 
+.profileImage {
+	width:80%;
+  	height: 65%;
+  	display:flex;
+  	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+
 .inpocontents2>button {
     width: 75px;
     position: relative;
     left: 90px;
 }
 
-.profileImage {
-    height: 65%;
-    margin-top: 50px;
-    margin-left: 100px;
-}
 
 .profileImage>button {
     margin-top: 20px;
     font-size: 12px;
-    width: 75px;
+    width: 90px;
     text-align: center;
-    margin-left: 90px;
+/*     margin-left: 90px; */
 }
 
 .proImage {
@@ -264,10 +274,15 @@ a {
 
 .body2 {
     height: 40%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .body2Navi {
+	width:90%;
     height: 7%;
+    margin:auto;
 }
 
 .body2Navi>a {
@@ -290,7 +305,7 @@ a {
 }
 
 .body2Contents {
-    width: 100%;
+    width: 90%;
     height: 530px;
     border: 1px solid black;
     box-shadow: 1px 1px 5px 1px silver;
@@ -298,6 +313,7 @@ a {
     padding: 30px;
     /* 	하단 네비게이터를 붙이기 위한 position 부여 */
     position: relative;
+    margin:auto;
 }
 
 .body2Contents>table {
@@ -369,6 +385,7 @@ a {
 
 .item { /*navi button*/
     width: 30px;
+    border-radius: 10px;
     font-size: 13px;
     line-height: 30px;
     text-decoration: none;
@@ -451,6 +468,10 @@ td {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.body2Contents p{
+	margin:0;
 }
 </style>
 </head>
@@ -542,7 +563,7 @@ td {
                         <col width="10%" />
                         <col width="55%" />
                         <col width="20%" />
-                        <col width="15%" />
+                        <col width="25%" />
                     </colgroup>
                     <thead>
                         <tr>
@@ -560,8 +581,8 @@ td {
                     <!--내가 쓴 댓글 리스트 뽑아내기-->
                     <colgroup>
                         <col width="10%" />
-                        <col width="40%" />
-                        <col width="20%" />
+                        <col width="35%" />
+                        <col width="30%" />
                         <col width="15%" />
                         <col width="15%" />
                     </colgroup>

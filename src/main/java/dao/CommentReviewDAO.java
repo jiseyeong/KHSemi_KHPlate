@@ -139,7 +139,7 @@ public class CommentReviewDAO {
 			sb.append("<td>"+user.getStoreName()+"</td>");
 			sb.append("<td>"+user.getBody()+"</td>");
 			sb.append("<td>"+user.getScore()+"</td>");
-			sb.append("<td>"+user.getWriteDate()+"</td>");
+			sb.append("<td>"+user.getWritedateToString()+"</td>");
 			sb.append("</tr>");
 		}
 		return sb.toString();
