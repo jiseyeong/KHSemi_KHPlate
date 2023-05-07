@@ -80,13 +80,19 @@ public class StoreController extends HttpServlet {
 				//					imgPathList.add("/store/" + i.getSysName());
 				//				}
 				//				request.setAttribute("imgPathList", imgPathList);
-
+				FavoritePageDTO favorite = null;
+				if(request.getSession().getAttribute("userno") != null) {
+					favorite = FavoriteStoreDAO.getInstance().isFavoriteStore(storeID, (int)request.getSession().getAttribute("userno"));
+				}
+				
+				
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("navi", pageNavi);
 				request.setAttribute("userIDList", userIDList);
 				request.setAttribute("menuList", menuList);
 				request.setAttribute("imgList", imgList);
+				request.setAttribute("favorite", favorite);
 				request.getRequestDispatcher("/store/view.jsp").forward(request, response);
 
 			}else if(cmd.equals("/register.store")) {

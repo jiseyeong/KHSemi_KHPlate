@@ -55,6 +55,22 @@ public class FavoriteStoreDAO {
 		return result;
 	}
 	
+	public FavoritePageDTO isFavoriteStore(int storeID, int userNo) throws Exception{
+		String sql = "select * from FAVORITEPAGE where STOREID=? and USERNO=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, storeID);
+			pstat.setInt(2, userNo);
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					int favoriteID = rs.getInt(1);
+					return new FavoritePageDTO(favoriteID, storeID, userNo);
+				}
+				return null;
+			}
+		}
+	}
+	
 
 	// 즐겨찾기 등록 dao
 	public int addFavoriteStore(int storeID, int userno) throws Exception {

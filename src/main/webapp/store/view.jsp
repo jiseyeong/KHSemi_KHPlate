@@ -202,6 +202,18 @@
                	  color:red;
                	  text-decoration: underline;
                }
+               .addFavorite_btn {
+					width: 70%;
+					height: 70%;
+					font-size: 20px;
+				}
+				.istrue {
+					filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg) brightness(92%) contrast(101%);
+				}
+
+				.isfalse {
+					filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) contrast(101%);
+				}
       </style>
          </head>
 
@@ -306,6 +318,23 @@
                                           value="${dto.distance}" readonly>
                                     </div>
                                  </div>
+                                 <div class="col-12 text-center">
+                                 	<input type="text" id="favoriteUserNo" value="${sessionScope.userno}" style="display:none;">
+                                 	<input type="text" id="favoriteStoreID" value="${dto.storeID}" style="display:none;">
+                                 	<c:choose>
+	                                 	<c:when test="${not empty favorite}">
+	                                 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addFavorite_btn istrue" viewBox="0 0 16 16">
+  											<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+											</svg>
+	                                 	</c:when>
+	                                 	<c:otherwise>
+	                                 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addFavorite_btn isfalse" viewBox="0 0 16 16">
+  											<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+											</svg>
+	                                 	</c:otherwise>
+                                 	</c:choose>
+	                             </div>
+
                               </div>
                            </div>
                         </div>
@@ -833,6 +862,50 @@
                         $("#btn_store_update_cancel").click(function () {
                            let storeID = "<c:out value='${dto.storeID}'></c:out>";
                            location.href = "/view.store?storeID=" + storeID;
+                        });
+                        
+                        let addFavoriteStoreCheck = false;
+                        //즐겨찾기 스크립트
+                        $(".addFavorite_btn").click(function(){
+                        	let storeID= $("#favoriteStoreID").val();
+                        	let userNo = $("#favoriteUserNo").val();
+                        	addFavoriteStoreCheck = $(this).hasClass("istrue");
+                        	if(!userNo){
+                        		alert("로그인을 먼저 진행해주세요.");
+                        	}else{
+                        		let btn = $(this);
+                        		if(addFavoriteStoreCheck == false){
+                        			$.ajax({
+                        				url:"/addFavoriteStore.store",
+                        				type:"post",
+                        				data:{
+                        					addFavorite_storeID : storeID,
+                        				},
+                        			})
+                        			.done(function (resp){
+                        				if(resp=="true"){
+                        					addFavoriteStoreCheck = true;
+                        					btn.removeClass("isfalse");
+                        					btn.addClass("istrue");
+                        				}
+                        			});
+                        		}else{
+                        			$.ajax({
+                        				url:"/deleteFavoriteStore.store",
+                        				type:"post",
+                        				data:{
+                        					addFavorite_storeID : storeID,
+                        				},
+                        			})
+                        			.done(function (resp){
+                        				if(resp == "true"){
+                        					addFavoriteStoreCheck = false;
+                        					btn.removeClass("istrue");
+                        					btn.addClass("isfalse");
+                        				}
+                        			})
+                        		}
+                        	}
                         });
 
 
