@@ -217,8 +217,6 @@ a {
 
 .profileImage {
     height: 65%;
-    margin-top: 50px;
-    margin-left: 100px;
 }
 
 .profileImage>button {
@@ -466,14 +464,14 @@ td {
     <div class="mypage">
         <div class="myPageHeader">${my.userID} 님의 마이페이지</div>
         <div class="row body1" style="margin-bottom:40px;">
-            <div class="col-12 col-lg-4 profile">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-4 profile">
                 <div class="profileImage">
                     <div class="proImage"></div>
 
                     <button class="btns">변경하기</button>
                 </div>
             </div>
-            <div class="col-12 col-lg-8 inpomation">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-8 inpomation">
                 <div class="inpocontents1">
                     <div id="ul2">
                         <div id="myid">아이디</div>
