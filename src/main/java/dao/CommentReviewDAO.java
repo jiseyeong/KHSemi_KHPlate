@@ -252,24 +252,28 @@ public class CommentReviewDAO {
 		}
 	}
 	
-	private int getRecoredCount() throws Exception{
-		String sql = "select COUNT(*) from COMMENTREVIEW";
+	private int getRecoredCount(int storeID) throws Exception{
+		String sql = "select COUNT(*) from COMMENTREVIEW where storeID = ?";
 		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				ResultSet rs = pstat.executeQuery();){
-			rs.next();
-			return rs.getInt(1);
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, storeID);
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					return rs.getInt(1);									
+				}
+				return 0;
+			}
 		}
 	}
 	
-	public NaviDTO getNavi(int currentPage) throws Exception{
-		int recordTotalCount = this.getRecoredCount();
+	public NaviDTO getNavi(int currentPage, int storeID) throws Exception{
+		int recordTotalCount = this.getRecoredCount(storeID);
 		int recordCountPerPage = Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
 		int naviCountPerPage = Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE;
 		
 		int pageTotalCount = recordTotalCount % recordCountPerPage > 0 ?
-				recordTotalCount/recordCountPerPage
-				:recordTotalCount/recordCountPerPage + 1;
+				recordTotalCount/recordCountPerPage + 1
+				:recordTotalCount/recordCountPerPage;
 		
 		if(currentPage < 1) {
 			currentPage = 1;
