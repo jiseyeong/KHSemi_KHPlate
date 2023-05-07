@@ -67,7 +67,7 @@ public class StoreController extends HttpServlet {
 				int start = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE - (Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE-1);
 				int end = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
 				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectBound(storeID, start, end);
-				NaviDTO pageNavi = CommentReviewDAO.getInstance().getNavi(currentPage);
+				NaviDTO pageNavi = CommentReviewDAO.getInstance().getNavi(currentPage, storeID);
 				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);	
 				ArrayList<String> userIDList = new ArrayList<>();
 				for(int i = 0; i < commentList.size(); i++) {
