@@ -203,7 +203,7 @@ a {
     </div>
     
     <script>
-<<<<<<< HEAD
+
 	$("#consultBtn").on("click",function(){
 		location.href = "/adminPage/consultList.jsp";
 	})
@@ -212,14 +212,11 @@ a {
 			location.href = "/adminPage/FAQView.jsp";
 	})
 	
-		$("#letterBtn").on("click",function(){
-			location.href = "/adminPage/letter.jsp";
-	})
-=======
+
     $("#letterBtn").on("click",function(){
     	window.open("/adminPage/letter.jsp","letter","width=1000px,height=800px");
     })
->>>>>>> 5d244330e7dafa322e5fbf3be0ed4e5039050ae4
+
     </script>
     
 </body>

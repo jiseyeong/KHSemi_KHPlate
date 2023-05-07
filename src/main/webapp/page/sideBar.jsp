@@ -87,16 +87,11 @@ a:link {text-decoration: none;}
 
 </head>
 <body>
-<<<<<<< HEAD
    <div class="col-12 col-lg-2 themed-grid-col sideBar"> 
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  id="mapBtn" viewBox="0 0 16 16">
   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
 </svg>
 
-=======
-   <div class="col-12 col-md-12 col-lg-12 col-xl-2 themed-grid-col sideBar">
-     <button class="searchBtn" type="button" onclick="location.href='/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar'">근처 맛집 검색<img src="/page/searchBtn.png"></button>
->>>>>>> 5d244330e7dafa322e5fbf3be0ed4e5039050ae4
       <ul class="ulTag">
       	 <!--<a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>-->
          <li class="firstLi">Menu</li>

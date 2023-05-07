@@ -211,7 +211,7 @@ textarea {
 	});
 	.catch(error => { console.error(error) });
 	
-	$("#addForm").submit(function){
+	$("#addForm").submit(function(){
 		let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
 		
 		if ($(".userId").val()==null){
