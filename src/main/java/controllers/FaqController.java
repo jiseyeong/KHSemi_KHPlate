@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import commons.SecurityUtils;
 import dao.FaqDAO;
+import dto.ConsultDTO;
 import dto.FaqDTO;
+import dto.NaviDTO;
+import statics.Settings;
 
 @WebServlet("*.faq")
 public class FaqController extends HttpServlet {
@@ -30,9 +33,23 @@ public class FaqController extends HttpServlet {
 				int result = FaqDAO.getInstance().insert(new FaqDTO(0, title, body));
 				response.sendRedirect("/view.faq");
 			}else if(cmd.equals("/view.faq")) {
-				ArrayList<FaqDTO> list = FaqDAO.getInstance().selectAll();
+				int currentPage = 0;
+				if(request.getParameter("cpage") == null) {
+					currentPage = 1;
+				}else {
+					currentPage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				
+				int start = currentPage * Settings.FAQ_RECORD_COUNT_PER_PAGE - (Settings.FAQ_NAVI_COUNT_PER_PAGE-1);
+				int end = currentPage * Settings.FAQ_RECORD_COUNT_PER_PAGE;
+				ArrayList<FaqDTO> list = null;
+				NaviDTO navi = null;
+				
+				list = FaqDAO.getInstance().selectBound(start, end);
+				navi = FaqDAO.getInstance().getNavi(currentPage);
 				
 				request.setAttribute("list", list);
+				request.setAttribute("navi", navi);
 				request.getRequestDispatcher("/adminPage/FAQView.jsp").forward(request, response);
 			}else if(cmd.equals("/delete.faq")) {
 				int qaID = Integer.parseInt(request.getParameter("id"));
