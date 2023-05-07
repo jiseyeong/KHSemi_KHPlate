@@ -304,6 +304,11 @@ hr {
 	align-items: center;
 }
 
+navigator_list_item_btn_layout>a{
+	width:100%;
+	height:100%;
+}
+
 .item {
 	font-size: 15px;
 	text-decoration: none;
@@ -577,6 +582,7 @@ input[type="range"]::-ms-track {
 .isfalse {
 	filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) contrast(101%);
 }
+
 </style>
 </head>
 
@@ -997,6 +1003,8 @@ input[type="range"]::-ms-track {
 				$("#order_by_distance").click();
 			} else if (sortMethod == 'order_by_score') {
 				$("#order_by_score").click();
+			} else if (sortMethod == 'order_by_review') {
+				$("#order_by_review").click();
 			}
 
 			let range_result = $("#range_result");

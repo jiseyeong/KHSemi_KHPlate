@@ -255,9 +255,24 @@
 								</div>
 								
 								<div class="card-body">
-									<div class="title">${reviewList.title}</div>
-									<div class="writer">${reviewList.userID}</div>
-									<div class="stars">${reviewList.score}</div>
+									<div style="width:65%; height:100%; float:left;">
+										<div class="title" style="font-size:22px;">${reviewList.title}</div>
+										<div class="writer">${reviewList.userID}</div>
+<%-- 										<div class="stars">${reviewList.score}</div> --%>
+									</div>
+<!-- 									별점 아이콘으로 새로 추가 -->
+									<div style="width:35%; height:100%; float:left; display:flex; justify-content:center; align-items:center;">
+										<c:forEach var='i' begin='1' end='5' step='1'>
+											<c:choose>
+												<c:when test="${reviewList.score<i}">
+													<i class="stars__icon fas fa-star js-clear" style="color: #b2b2b2;"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="stars__icon fas fa-star js-fill" style="color: gold;"></i>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
 								</div>
 							</div>
 						</c:forEach>
@@ -266,16 +281,6 @@
 						<div>표시할 내용 없음</div>
 					</c:otherwise>
 				</c:choose>
-
-				<!-- 				<div class="card"> -->
-				<!-- 					<div class="reviewId">리뷰 ID</div> -->
-				<!-- 					<img src="/FullReview/Logo.png" class="card-img-top" alt="..."> -->
-				<!-- 					<div class="card-body"> -->
-				<!-- 						<div class="title">여긴 제목란</div> -->
-				<!-- 						<div class="writer">여긴 작성자</div> -->
-				<!-- 						<div class="stars">여긴 평점란</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
 			</div>
 
 			<div class="navigator" style="position: relative; width: 100%; border: 0px;">

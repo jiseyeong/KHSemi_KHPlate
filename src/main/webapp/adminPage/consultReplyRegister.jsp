@@ -85,61 +85,61 @@ font-weight: bolder;
 
 			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->
-					<div class="row" style="margin-bottom:80px;">
+				<div class="row" style="margin-bottom:80px;">
 					<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
 						<p>고객의 소리</p>
 						<hr style="border-style:dotted; margin-bottom:25px;">
 					</div>
-					<div class="row" style="margin-bottom:20px;">
-						<div class="col-12 col-lg-2" style="margin-left:auto;">
-							<div class="input-group">
-								<span class="input-group-text">카테고리</span>
-								<input type="text" value="${parentDTO.category}" class="form-control" readonly>
-							</div>
-						</div>	
-						<div class="col-12 col-lg-5">
-							<div class="input-group">
-								<span class="input-group-text">제목</span>
-								<input type="text" class="form-control" value="${parentDTO.title}" readonly> 
-							</div>
+				</div>
+				<div class="row" style="margin-bottom:20px;">
+					<div class="col-12 col-lg-2" style="margin-left:auto;">
+						<div class="input-group">
+							<span class="input-group-text">카테고리</span>
+							<input type="text" value="${parentDTO.category}" class="form-control" readonly>
 						</div>
-						<div class="col-12 col-lg-2" style="margin-right:auto;">
-							<div class="input-group">
-								<span class="input-group-text">작성자</span>
-								<input type="text" class="form-control" value="${parentWriter}" readonly>
-							</div>
+					</div>	
+					<div class="col-12 col-lg-5">
+						<div class="input-group">
+							<span class="input-group-text">제목</span>
+							<input type="text" class="form-control" value="${parentDTO.title}" readonly> 
+						</div>
+					</div>
+					<div class="col-12 col-lg-2" style="margin-right:auto;">
+						<div class="input-group">
+							<span class="input-group-text">작성자</span>
+							<input type="text" class="form-control" value="${parentWriter}" readonly>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 col-lg-3" style="margin-left:auto;">
+						<img src="/consult/${parentImage.sysName}" alt="/consult/${parentImage.sysName}" id="image" class="w-100 object-fit-contain">
+					</div>
+					<div class="col-12 col-lg-6" style="margin-right:auto;">
+						<div id="readEditor">${parentDTO.body}</div>
+					</div>
+				</div>
+				<form id="replyRegisterForm" action="/replyRegister.consult" method="get">
+					<div class="row">
+						<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
+							<p>답변 등록</p>
+							<hr style="border-style:dotted; margin-bottom:25px;">
+	            
+							<input type="text" name="writer" value="${sessionScope.userno}" style="display:none;">
+							<input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 col-lg-3" style="margin-left:auto;">
-							<img src="/consult/${parentImage.sysName}" alt="/consult/${parentImage.sysName}" id="image" class="w-100 object-fit-contain">
-						</div>
-						<div class="col-12 col-lg-6" style="margin-right:auto;">
-							<div id="readEditor">${parentDTO.body}</div>
-						</div>
-					</div>
-					</div>
-				<form id="replyRegisterForm" action="/replyRegister.consult" method="get">
-						<div class="row">
 						<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
-						<p>답변 등록</p>
-						<hr style="border-style:dotted; margin-bottom:25px;">
-            
-						<input type="text" name="writer" value="${sessionScope.userno}" style="display:none;">
-						<input type="text" name="consultID" value="${parentDTO.consultID}" style="display:none;">
-						</div>
-						</div>
-						<div class="row">
-							<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
-								<div class="input-group" style="margin-bottom:10px;">
-									<span class="input-group-text">제목</span>
-									<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요.">
-								</div>
-							</div>
-							<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
-								<textarea name="body" id="editor"></textarea>
+							<div class="input-group" style="margin-bottom:10px;">
+								<span class="input-group-text">제목</span>
+								<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요.">
 							</div>
 						</div>
+						<div class="col-12 col-lg-9" style="margin-left:auto; margin-right:auto;">
+							<textarea name="body" id="editor"></textarea>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-12 text-center">
 							<button type="submit" id="submitBtn">제출하기</button>
@@ -169,7 +169,7 @@ font-weight: bolder;
 						if(!($("input[name='title']").val())){
 							alert("제목을 입력해주세요.");
 							return false;
-						}else if(!($("editor").val())){
+						}else if(!($("#editor").val())){
 							alert("본문을 입력해주세요.");
 							return false;
 						}

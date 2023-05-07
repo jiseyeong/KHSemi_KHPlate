@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <style>
 .ck-editor__editable_inline {
 	min-height: 400px;
@@ -71,12 +71,76 @@ textarea {
 	box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
 }
 
-.score {
-	margin-left: 25px;
-	margin-right: 25px;
-}
-</style>
+/* 별점 시스템 추가 */
 
+::before,
+::after {
+    box-sizing: inherit;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.input_layout1{
+	margin-top:18px;
+	height:50px;
+	display:flex;
+	align-items:center;
+}
+
+.storeId{
+	float:left;
+	min-width:15%;
+	height:50%;
+	margin-right : 40px;
+}
+
+.stars {
+	float:left;
+	width:140px;
+	height:70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+}
+
+.stars__icon {
+    font-size: 5em;
+    color: #b2b2b2; 
+    display: inline-block;
+    cursor: pointer;
+    width:100%;
+    height:100%;
+}
+
+.js-clear {
+    color: #b2b2b2;
+}
+
+.js-fill {
+    color: gold;
+}
+
+@media (max-width: 27em) {
+  .stars__icon {
+    font-size: 2.5em;
+  }
+}
+
+.stars__link{
+	width:12%;
+	height:60%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.stars__link>*{
+	width:100%;
+	height:100%;
+}
+
+</style>
 </head>
 <body>
 	<div class="container">
@@ -93,12 +157,25 @@ textarea {
 
 			<hr style="border-style: dotted;">
 
-			<select id="storeId" class="storeId" name="storeId">
-				<option selected>음식점</option>
-				<c:forEach items="${store }" var="i" varStatus="status">
-					<option value="${i.storeID }">${i.name }</option>
-				</c:forEach>
-			</select> <input type="text" placeholder="별점" class="score" name="score">
+			<div class="input_layout1">
+				<select id="storeId" class="storeId" name="storeId">
+					<option selected>음식점</option>
+					<c:forEach items="${store }" var="i" varStatus="status">
+						<option value="${i.storeID }">${i.name }</option>
+					</c:forEach>
+				</select> 
+<!-- 				별점 기능 추가 -->
+				<input type="hidden" class="score" name="score">
+				<div style="font-size:17px">평점&nbsp&nbsp:&nbsp</div>
+				<ul class="stars">
+			        <a class="stars__link"><i class="stars__icon fas fa-star"></i></a>
+			        <a class="stars__link"><i class="stars__icon fas fa-star"></i></a>
+			        <a class="stars__link"><i class="stars__icon fas fa-star"></i></a>
+			        <a class="stars__link"><i class="stars__icon fas fa-star"></i></a>
+			        <a class="stars__link"><i class="stars__icon fas fa-star"></i></a>
+			    </ul>
+		    </div>
+<!-- 			<input type="text" placeholder="별점" class="score" name="score"> -->
 			<div class="void">
 				<br>
 			</div>
@@ -136,30 +213,48 @@ textarea {
 	
 	$("#addForm").on("submit",function(){
 		let imgForms = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+		
 		if ($(".userId").val()==null){
-			alert("로그인 후 작성 가능합니다.")
+			alert("로그인 후 작성 가능합니다.");
 			return false;
-		}else if ($(".title").val()==null){
-			alert("제목을 입력해 주세요.")
+		}else if ($(".title").val()==""){
+			console.log($(".title").val());
+			alert("제목을 입력해 주세요.");
 			return false;
-		}else if ($(".storeId").val()==null){
-			alert("음식점을 입력해 주세요.")
+		}else if ($(".storeId option:selected").val()=="음식점"){
+			alert("음식점을 지정해주세요.");
 			return false;
-		}else if ($(".score").val()==null){
-			alert("별점을 입력해 주세요.")
+		}else if ($(".score").val()==""){
+			alert("별점을 입력해 주세요.");
+			return false;
+		}else if ($("#editor").val()==""){
+			alert("내용을 입력해 주세요.");
 			return false;
 		}
+		
+		// $("input[name=imgLength]").val(imgs.length);
+        for (let i = 0; i < imgs.length; i++) {
+            // if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
+            //     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
+            //     return false;
+            //} else
+            if (!imgs[i].children("input").val().match(imgForms)) {
+                alert("이미지 파일만 업로드 가능합니다.");
+                return false;
+            }
+            imgs[i].children("input").attr("name", "image" + i);
+        }
 	})
 	
 	$("#input_image").change(function(){
-						let input = document.getElementById("input_image");
-						let fReader = new FileReader();
-						fReader.onload = function(e){
-							$("#image").attr("src", e.target.result);
-						}
-						fReader.readAsDataURL(input.files[0]);
-						$("#image").css("display","block");
-					});
+		let input = document.getElementById("input_image");
+		let fReader = new FileReader();
+		fReader.onload = function(e){
+			$("#image").attr("src", e.target.result);
+		}
+		fReader.readAsDataURL(input.files[0]);
+		$("#image").css("display","block");
+	});
 	
 	let imgs = [];
     let imgs_length = 4;
@@ -185,21 +280,44 @@ textarea {
         }
     });
     
-    $("#addForm").submit(function (e) {
-        // $("input[name=imgLength]").val(imgs.length);
-        for (let i = 0; i < imgs.length; i++) {
-            // if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
-            //     alert("이미지 첨부 파일을 빈 상태로 두실 수 없습니다.")
-            //     return false;
-            //} else
-            if (!imgs[i].children("input").val().match(imgForms)) {
-                alert("이미지 파일만 업로드 가능합니다.");
-                return false;
-            }
-            imgs[i].children("input").attr("name", "image" + i);
-        }
-    })
+    
+    // 별점 시스템 추가
 	
+	let stars = document.querySelectorAll('.stars__link');
+	
+	/* using a variation of Chris Ferdinandi's get-siblings.js script (https://gist.github.com/cferdinandi/6203237)  */        
+	var getNextSiblings = function (elem) {
+	    var siblings = [];
+	    var sibling = elem;
+	    for ( ; sibling; sibling = sibling.nextElementSibling ) 
+	          siblings.push( sibling );
+	    return siblings;
+	}
+	
+	var getPrevSiblings = function (elem) {
+	    var siblings = [];
+	    var sibling = elem;
+	    for ( ; sibling; sibling = sibling.previousElementSibling ) 
+	          siblings.push( sibling );
+	    return siblings;
+	}
+	
+	stars.forEach((el, idx) => {
+	    el.addEventListener('click', (e) => { 
+	        let nextSibs = getNextSiblings(el);
+	        nextSibs.forEach((sib) => {
+	            sib.children[0].classList.add('js-clear');
+	            sib.children[0].classList.remove('js-fill');
+	        });
+	        let prevSibs = getPrevSiblings(el);
+	        prevSibs.forEach((sib) => {
+	            sib.children[0].classList.add('js-fill');
+	        });
+	        console.log(prevSibs.length);
+	        $(".score").val(prevSibs.length);
+	    });
+	});
+
 	</script>
 
 
