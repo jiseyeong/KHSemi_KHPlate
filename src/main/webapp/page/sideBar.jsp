@@ -99,7 +99,7 @@ a:link {text-decoration: none;}
 
 </head>
 <body>
-   <div class="col-12 col-lg-2 themed-grid-col sideBar">
+   <div class="col-12 col-md-12 col-lg-12 col-xl-2 themed-grid-col sideBar">
      <button class="searchBtn" type="button" onclick="location.href='/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar'">근처 맛집 검색<img src="/page/searchBtn.png"></button>
       <ul class="ulTag">
       	 <!--<a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>-->

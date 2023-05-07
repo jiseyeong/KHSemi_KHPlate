@@ -179,6 +179,7 @@
                }
                .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
                   border:1px dotted black;
+                  margin-bottom:30px;
                }
                .greenBtn{
 					font-size:13px;
@@ -193,6 +194,13 @@
                }
                .greenBtn:hover{
                	 background-color: #4dae3c;
+               }
+               .navi>a{
+               	  color:black;
+               }
+               .navi>a:hover{
+               	  color:red;
+               	  text-decoration: underline;
                }
       </style>
          </head>
@@ -489,9 +497,9 @@
                            <div class="row">
                               
                               <c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
-                                 <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">${userIDList.get(i)}</div>
+                                 <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto; font-weight:600;">${userIDList.get(i)}</div>
 
-                                 <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+                                 <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto; margin-bottom:10px;">
                                     <div id="readStar${i}" class="star-ratings active" style="float:left;">
                                        <div class="star-ratings-fill space-x-2 text-lg"
                                           style="width: ${commentList.get(i).ratingToPercent()}%;">
@@ -501,7 +509,7 @@
                                           <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                        </div>
                                     </div>
-                                    <div style="float:left; margin-left:10px;">
+                                    <div style="float:left; margin-left:10px; font-weight:600;">
                                        ${commentList.get(i).score}
                                     </div>
                                  </div>
@@ -529,7 +537,7 @@
                                     </div>
                                  </form>
                                  <c:if test="${commentList.get(i).userNo == sessionScope.userno}">
-                                    <div id="replyControl${i}" class="col-12 text-end">
+                                    <div id="replyControl${i}" class="col-12 col-lg-8 text-end" style="margin-left:auto; margin-right:auto; margin-top:10px;">
                                        <button type="button" id="btn_modify${i}"
                                           class="greenBtn">수정</button>
                                        <button type="button" id="btn_delete${i}"
@@ -632,7 +640,7 @@
                                  </script>
 
                               </c:forEach>
-                              <div class="col-12 text-center">
+                              <div class="col-12 text-center navi" style="margin-top:10px;">
                                  <c:if test="${navi.needNext}">
                                     <a href="/view.store?storeID=${dto.storeID}&cpage=${navi.naviList.get(0) - 1}"><</a>
                                  </c:if>

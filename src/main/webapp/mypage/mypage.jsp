@@ -230,7 +230,6 @@ a {
     left: 90px;
 }
 
-
 .profileImage>button {
     margin-top: 20px;
     font-size: 12px;
@@ -385,7 +384,6 @@ a {
 
 .item { /*navi button*/
     width: 30px;
-    border-radius: 10px;
     font-size: 13px;
     line-height: 30px;
     text-decoration: none;
@@ -396,6 +394,8 @@ a {
 .item:hover{
 	opacity:80%;
 	text-decoration: underline;
+	color:#ed1c16;
+	
 }
 .navigator_direction_btn {
     position: relative;
@@ -487,14 +487,14 @@ td {
     <div class="mypage">
         <div class="myPageHeader">${my.userID} 님의 마이페이지</div>
         <div class="row body1" style="margin-bottom:40px;">
-            <div class="col-12 col-lg-4 profile">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-4 profile">
                 <div class="profileImage">
                     <div class="proImage"></div>
 
                     <button class="btns">변경하기</button>
                 </div>
             </div>
-            <div class="col-12 col-lg-8 inpomation">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-8 inpomation">
                 <div class="inpocontents1">
                     <div id="ul2">
                         <div id="myid">아이디</div>
