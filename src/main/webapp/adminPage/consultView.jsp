@@ -75,6 +75,19 @@ p {
     box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
 }
 
+.toList {
+	width: 100px;
+	height: 40px;
+	background-color: #57b846;
+	border:none;
+	border-radius: 12px;
+	cursor: pointer;
+	color: white;
+	font-size: 14px;
+	margin-right:20px;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
+}
+
 .ck-editor__editable_inline {
     min-height: 500px;
 }
@@ -166,6 +179,9 @@ p {
                                 <a href="/delete.consult?consultID=${dto.consultID}">
                                     <button type="button" id="btn_delete">삭제</button>
                                 </a>
+                                <a href="/list.consult">
+									<input type="button" class="toList" value="목록으로" class="nanum-gothic">
+								</a>
                             </div>
                         </c:if>
 
@@ -194,6 +210,9 @@ p {
                                     <a href="/delete.consult?consultID=${dto.consultID}">
                                         <button type="button" id="btn_delete">삭제</button>
                                     </a>
+                                    <a href="/list.consult">
+										<input type="button" class="toList" value="목록으로" class="nanum-gothic">
+									</a>
                                 </div>
                             </c:when>
                             <c:otherwise>
@@ -201,6 +220,9 @@ p {
                                     <a href="/delete.consult?consultID=${dto.consultID}">
                                         <button type="button" id="btn_delete">삭제</button>
                                     </a>
+                                    <a href="/list.consult">
+										<input type="button" class="toList" value="목록으로" class="nanum-gothic">
+									</a>
                                 </div>
                             </c:otherwise>
                         </c:choose>

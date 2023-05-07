@@ -65,6 +65,20 @@ font-weight: bolder;
 	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
 
 }
+
+#toList {
+	width: 100px;
+	height: 40px;
+	background-color: #57b846;
+	border:none;
+	border-radius: 12px;
+	cursor: pointer;
+	color: white;
+	font-size: 14px;
+	margin-right:20px;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
+}
+
 .ck-editor__editable_inline {
     min-height: 450px;
 }
@@ -144,6 +158,9 @@ font-weight: bolder;
 						<div class="col-12 text-center">
 							<button type="submit" id="submitBtn">제출하기</button>
 						</div>
+						<a href="/list.consult">
+							<input type="button" name="toList" id="toList" value="목록으로" class="nanum-gothic">
+						</a>
 					</div>
 				</form>
 
