@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -600,6 +603,53 @@ public class StoreController extends HttpServlet {
 				resp.addProperty("FavoriteStoreNavi", FavoriteStoreNavi);
 				
 				response.getWriter().append(resp.toString());
+				
+				// 메인 페이지 랜덤 맛집 카드 3장 출력
+			}else if(cmd.equals("/mainSet.store")) {
+				
+				Set<Integer> set = new HashSet<>();
+				int lastIndex = StoreDAO.getInstance().getLastStoreID();
+				int count = 3;
+//				List<StoreDTO> storeList = new ArrayList<>();
+//				List<PhotoDTO> photoList = new ArrayList<>();
+				while(count>0) {
+					int storeid = (int)((Math.random()*lastIndex)+1);
+					if(StoreDAO.getInstance().isValidStoreID(storeid)){
+						if(set.add(storeid)) {
+							count--;
+						}
+					}
+				}
+				System.out.println(set.size());
+				Iterator<Integer> it = set.iterator();
+				StringBuilder sb = new StringBuilder();
+				while(it.hasNext()) {
+					StoreDTO dto = StoreDAO.getInstance().selectOne(it.next());
+					List<PhotoDTO> photoTemp = PhotoDAO.getInstance().selectByStoreID(dto.getStoreID());
+					if(photoTemp!=null && photoTemp.size()!=0) {
+						sb.append("<div class='col-12 col-lg-3 themed-grid-col'>"
+								+ "<div class='imageDiv'>"
+								+ "<a href='/view.store?storeID="+dto.getStoreID()+"'>"
+								+ "<img src='/store/"+photoTemp.get(0).getSysName()+"' onerror='this.src=/common/khplate2.jpg'>"
+								+ "</a>"
+								+ "</div>"
+								+ "<div class='nanum-gothic textDiv'>"+dto.getName()+"</div>"
+								+ "</div>");
+					}else {
+						sb.append("<div class='col-12 col-lg-3 themed-grid-col'>"
+								+ "<div class='imageDiv'>"
+								+ "<a href='/view.store?storeID="+dto.getStoreID()+"'>"
+								+ "<img src='/common/khplate2.jpg'>"
+								+ "</a>"
+								+ "</div>"
+								+ "<div class='nanum-gothic textDiv'>"+dto.getName()+"</div>"
+								+ "</div>");
+					}
+				}
+				
+//				
+				System.out.println(sb.toString());
+				response.getWriter().append(sb.toString());
 			}
 
 		}catch(Exception e) {

@@ -132,6 +132,67 @@ textarea {
 	font-size: 14px;
 	margin-bottom: 5px;
 }
+/* 추가 */
+.info_layout{
+	display:flex;
+	justify-content:left;
+	align-items:center;
+}
+
+.info_layout>*{
+	
+}
+/* 별점 시스템 */
+::before,
+::after {
+    box-sizing: inherit;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.js-clear {
+    color: #b2b2b2;
+}
+
+.js-fill {
+    color: gold;
+}
+
+@media (max-width: 27em) {
+  .stars__icon {
+    font-size: 2.5em;
+  }
+}
+
+.score_stars{
+	float:right;
+	margin-left:14px;
+	width:14%;
+	height:50%;
+	display:flex;
+	justify-content:left;
+	align-items:center;
+}
+.stars__link{
+	width:15%;
+	height:100%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.stars__link *{
+	width:100%;
+	height:100%;
+}
+
+.stars__icon {
+    font-size: 5em;
+    cursor: pointer;
+    width:100%;
+    height:100%;
+}
 
 </style>
 
@@ -151,31 +212,31 @@ textarea {
 
 			<hr style="border-style: dotted;">
 
-			<input type="text" class="text" value="가게 이름 : " readonly> 
-			<input type="text" class="storename" name="storename" value="${storeName }"readonly> 
-			<select id="storeId" class="storeId"name="storeId" style="display: none">
-			<option selected>음식점</option>
-			<c:forEach items="${store }" var="i" varStatus="status">
-				<option value="${i.storeID }">${i.name }</option>
-			</c:forEach>
-
-			</select> 
+			<div class="info_layout">
+				<input type="text" class="text" value="가게 이름 : " readonly> 
+				<input type="text" class="storename" name="storename" value="${storeName }"readonly> 
+				<select id="storeId" class="storeId"name="storeId" style="display: none">
+					<option selected>음식점</option>
+					<c:forEach items="${store }" var="i" varStatus="status">
+						<option value="${i.storeID }">${i.name }</option>
+					</c:forEach>
+				</select> 
 				<input type="text" class="text score" value="평점 : " readonly> 
-				<div class="score_stars" style="display:inline-block;">
+				<div class="score_stars">
 					<c:forEach var='i' begin='1' end='5' step='1'>
 						<c:choose>
 							<c:when test="${contents.score<i}">
-								<i class="stars__icon fas fa-star js-clear" style="color: #b2b2b2;"></i>
+								<a class="stars__link"><i class="stars__icon fas fa-star js-clear" style="width:90%; height:90%;"></i></a>
 							</c:when>
 							<c:otherwise>
-								<i class="stars__icon fas fa-star js-fill" style="color: gold;"></i>
+								<a class="stars__link"><i class="stars__icon fas fa-star js-fill" style="width:90%; height:90%;"></i></a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 				</div>
-<%-- 				<input type="text" class="score" name="score" value="${contents.score}"readonly>  --%>
+				<input type="hidden" id="score" name="score" value="${contents.score}" readonly> 
 				<input type="text" class="reviewid" name="reviewid" value="${contents.reviewID }" style="display: none">
-
+			</div>
 			<hr style="border-style: dotted;">
 
 			<div class="imagesBox">
@@ -201,7 +262,6 @@ textarea {
 
 			<br>
 			<div class="contentsBtn">
-
 				<c:choose>
 					<c:when test="${sessionScope.userno eq contents.userNO}">
 						<button class="modiBtn" type="button">수정하기</button>
@@ -318,12 +378,17 @@ textarea {
 			location.href = "/select.fullreview";
 		})
 
+		
+// 		별점 수정
+		let starmodify = false;
+		
+		
 		$(".modiBtn").on("click", function() {
 			$(".modiBtn").css("display", "none");
 			$(".delBtn").css("display", "none");
 			$(".toListBtn").css("display", "none");
-			$(".submitBtn").css("display", "block");
-			$(".btn-outline-secondary").css("display", "block");
+			$(".submitBtn").css("display", "inline-block");
+			$(".btn-outline-secondary").css("display", "inline-block");
 			$(".storename").css("display", "none");
 			$(".storeId").css("display", "inline-block");
 			$(".title").removeAttr("readonly");
@@ -331,6 +396,7 @@ textarea {
 			$(".score").removeAttr("readonly");
 			$(".reviewbody").removeAttr("readonly");
 			myEditor.disableReadOnlyMode("");
+			starModify();
 		})
 
 		$(".re_list_updbtn").on("click", function() {
@@ -388,6 +454,22 @@ textarea {
         });
         
         $("#addForm").submit(function (e) {
+        	
+    		if ($(".title").val()==""){
+    			console.log($(".title").val());
+    			alert("제목을 입력해 주세요.");
+    			return false;
+    		}else if ($(".storeId option:selected").val()=="음식점"){
+    			alert("음식점을 지정해주세요.");
+    			return false;
+    		}else if ($("#score").val()==""){
+    			alert("별점을 입력해 주세요.");
+    			return false;
+    		}else if ($("#intro_editor").val()==""){
+    			alert("내용을 입력해 주세요.");
+    			return false;
+    		}
+        	
             // $("input[name=imgLength]").val(imgs.length);
             for (let i = 0; i < imgs.length; i++) {
                 // if (imgs[i].children("input").val() == "" || imgs[i].children("input").val() == null) {
@@ -401,6 +483,42 @@ textarea {
                 imgs[i].children("input").attr("name", "image" + i);
             }
         })
+        
+        function starModify() {
+        	let stars = document.querySelectorAll('.stars__link');
+        	
+    		var getNextSiblings = function (elem) {
+    		    var siblings = [];
+    		    var sibling = elem;
+    		    for ( ; sibling; sibling = sibling.nextElementSibling ) 
+    		          siblings.push( sibling );
+    		    return siblings;
+    		}
+    		
+    		var getPrevSiblings = function (elem) {
+    		    var siblings = [];
+    		    var sibling = elem;
+    		    for ( ; sibling; sibling = sibling.previousElementSibling ) 
+    		          siblings.push( sibling );
+    		    return siblings;
+    		}
+    		
+    		stars.forEach((el, idx) => {
+    		    el.addEventListener('click', (e) => { 
+    		        let nextSibs = getNextSiblings(el);
+    		        nextSibs.forEach((sib) => {
+    		            sib.children[0].classList.add('js-clear');
+    		            sib.children[0].classList.remove('js-fill');
+    		        });
+    		        let prevSibs = getPrevSiblings(el);
+    		        prevSibs.forEach((sib) => {
+    		            sib.children[0].classList.add('js-fill');
+    		        });
+    		        console.log(prevSibs.length);
+    		        $("#score").val(prevSibs.length);
+    		    });
+    		});
+        }
 	</script>
 </body>
 </html>

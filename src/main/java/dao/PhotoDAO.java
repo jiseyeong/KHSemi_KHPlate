@@ -108,7 +108,11 @@ public class PhotoDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, storeID);
 			try(ResultSet rs = pstat.executeQuery();){
-				return this.transAllRsToList(rs);
+				if(rs.next()) {
+					return this.transAllRsToList(rs);
+				}else {
+					return null;
+				}
 			}
 		}
 	}
@@ -222,5 +226,19 @@ public class PhotoDAO {
 			}
 		}
 		return result;
+	}
+	public PhotoDTO selectByUserno(int userno) throws Exception{
+		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where userno = ? and STOREID is null and REVIEWID is null";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, userno);
+			try(ResultSet rs = pstat.executeQuery();){
+				ArrayList<PhotoDTO> temp = this.transAllRsToList(rs);
+				if(temp.size() > 0) {
+					return temp.get(0);
+				}
+				return null;
+			}
+		}
 	}
 }

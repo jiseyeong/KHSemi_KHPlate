@@ -348,7 +348,6 @@ margin-top: 10px;
 								<div class="btn_layout1">
 									<button class="btn btn--radius btn--green" id="close"
 										style="text-align: center">닫기</button>
-									</td>
 								</div>
 								<script>
 									$("#close").on("click",function(){
