@@ -281,7 +281,7 @@ public class ConsultDAO {
 			}else {
 				sb.append("<td>답변 미완료</td>");
 			}
-			sb.append("<td>"+user.getWritedate()+"</td>");
+			sb.append("<td>"+user.getWritedateToString()+"</td>");
 			sb.append("</tr>");
 		}
 		return sb.toString();
