@@ -65,6 +65,20 @@ font-weight: bolder;
 	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
 
 }
+
+#toList {
+	width: 100px;
+	height: 40px;
+	background-color: #57b846;
+	border:none;
+	border-radius: 12px;
+	cursor: pointer;
+	color: white;
+	font-size: 14px;
+	margin-right:20px;
+	box-shadow:1px 1px 5px 1px rgb(231, 231, 231);
+}
+
 .ck-editor__editable_inline {
     min-height: 450px;
 }
@@ -113,7 +127,7 @@ font-weight: bolder;
 				</div>
 				<div class="row">
 					<div class="col-12 col-lg-3" style="margin-left:auto;">
-						<img src="/consult/${parentImage.sysName}" alt="/consult/${parentImage.sysName}" id="image" class="w-100 object-fit-contain">
+						<img src="/consult/${parentImage.sysName}" alt="${parentImage.sysName}" id="image" class="w-100 object-fit-contain">
 					</div>
 					<div class="col-12 col-lg-6" style="margin-right:auto;">
 						<div id="readEditor">${parentDTO.body}</div>
@@ -144,6 +158,9 @@ font-weight: bolder;
 						<div class="col-12 text-center">
 							<button type="submit" id="submitBtn">제출하기</button>
 						</div>
+						<a href="/list.consult">
+							<input type="button" name="toList" id="toList" value="목록으로" class="nanum-gothic">
+						</a>
 					</div>
 				</form>
 

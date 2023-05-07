@@ -139,7 +139,7 @@ public class CommentReviewDAO {
 			sb.append("<td>"+user.getStoreName()+"</td>");
 			sb.append("<td>"+user.getBody()+"</td>");
 			sb.append("<td>"+user.getScore()+"</td>");
-			sb.append("<td>"+user.getWriteDate()+"</td>");
+			sb.append("<td>"+user.getWritedateToString()+"</td>");
 			sb.append("</tr>");
 		}
 		return sb.toString();
@@ -252,20 +252,24 @@ public class CommentReviewDAO {
 		}
 	}
 	
-	private int getRecoredCount() throws Exception{
-		String sql = "select COUNT(*) from COMMENTREVIEW";
+	private int getRecoredCount(int storeID) throws Exception{
+		String sql = "select COUNT(*) from COMMENTREVIEW where storeID = ?";
 		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				ResultSet rs = pstat.executeQuery();){
-			rs.next();
-			return rs.getInt(1);
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, storeID);
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					return rs.getInt(1);									
+				}
+				return 0;
+			}
 		}
 	}
 	
-	public NaviDTO getNavi(int currentPage) throws Exception{
-		int recordTotalCount = this.getRecoredCount();
-		int recordCountPerPage = Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE;
-		int naviCountPerPage = Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
+	public NaviDTO getNavi(int currentPage, int storeID) throws Exception{
+		int recordTotalCount = this.getRecoredCount(storeID);
+		int recordCountPerPage = Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
+		int naviCountPerPage = Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE;
 		
 		int pageTotalCount = recordTotalCount % recordCountPerPage > 0 ?
 				recordTotalCount/recordCountPerPage + 1
@@ -277,7 +281,7 @@ public class CommentReviewDAO {
 			currentPage = pageTotalCount;
 		}
 		
-		int startNavi = (currentPage-1)/naviCountPerPage*naviCountPerPage+1;
+		int startNavi = ((currentPage-1)/naviCountPerPage*naviCountPerPage)+1;
 		int endNavi = startNavi + (naviCountPerPage-1);
 		
 		if(endNavi > pageTotalCount) {

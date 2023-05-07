@@ -179,6 +179,7 @@
                }
                .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
                   border:1px dotted black;
+                  margin-bottom:30px;
                }
                .greenBtn{
 					font-size:13px;
@@ -194,6 +195,25 @@
                .greenBtn:hover{
                	 background-color: #4dae3c;
                }
+               .navi>a{
+               	  color:black;
+               }
+               .navi>a:hover{
+               	  color:red;
+               	  text-decoration: underline;
+               }
+               .addFavorite_btn {
+					width: 70%;
+					height: 70%;
+					font-size: 20px;
+				}
+				.istrue {
+					filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg) brightness(92%) contrast(101%);
+				}
+
+				.isfalse {
+					filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) contrast(101%);
+				}
       </style>
          </head>
 
@@ -220,14 +240,14 @@
                                              <c:when test="${i == 0}">
                                                 <div class="carousel-item active">
                                                    <img src="/store/${imgList.get(i).sysName}"
-                                                      class="d-block w-100 h-100 object-fit-cover" alt="..."
+                                                      class="d-block w-100 h-100 object-fit-cover" alt="${imgList.get(i).sysName}"
                                                       style="min-height: 400px;">
                                                 </div>
                                              </c:when>
                                              <c:otherwise>
                                                 <div class="carousel-item">
                                                    <img src="/store/${imgList.get(i).sysName}"
-                                                      class="d-block w-100 h-100 object-fit-cover" alt="..."
+                                                      class="d-block w-100 h-100 object-fit-cover" alt="${imgList.get(i).sysName}"
                                                       style="min-height: 400px;">
                                                 </div>
                                              </c:otherwise>
@@ -237,11 +257,11 @@
                                     <c:otherwise>
                                        <div class="carousel-item active">
                                           <img src="/store/롤링파스타.png" class="d-block w-100 h-100 object-fit-cover"
-                                             alt="..." style="min-height:400px;">
+                                             alt="롤링파스타.png" style="min-height:400px;">
                                        </div>
                                        <div class="carousel-item">
                                           <img src="/store/오로지라멘.png" class="d-block w-100 h-100 object-fit-cover"
-                                             alt="..." style="min-height:400px;">
+                                             alt="오로지라멘.png" style="min-height:400px;">
                                        </div>
                                     </c:otherwise>
                                  </c:choose>
@@ -269,7 +289,7 @@
                                   style="display: none;" readonly>
                                  	<div class="col-12 col-lg-6"> 
                                       <img src="/store/${i.sysName}"
-                                          class="w-100 h-75 object-fit-cover" style="margin-bottom:10px; min-height:200px;">
+                                          class="w-100 h-75 object-fit-cover" alt="${i.sysName}" style="margin-bottom:10px; min-height:200px;">
                             		  <div class="h-25" style="text-align:center; margin-bottom:10px;">
                                				<button type="submit" class="greenBtn" style="width:60px;">삭제</button>
                                 	  </div>
@@ -298,6 +318,23 @@
                                           value="${dto.distance}" readonly>
                                     </div>
                                  </div>
+                                 <div class="col-12 text-center">
+                                 	<input type="text" id="favoriteUserNo" value="${sessionScope.userno}" style="display:none;">
+                                 	<input type="text" id="favoriteStoreID" value="${dto.storeID}" style="display:none;">
+                                 	<c:choose>
+	                                 	<c:when test="${not empty favorite}">
+	                                 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addFavorite_btn istrue" viewBox="0 0 16 16">
+  											<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+											</svg>
+	                                 	</c:when>
+	                                 	<c:otherwise>
+	                                 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addFavorite_btn isfalse" viewBox="0 0 16 16">
+  											<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+											</svg>
+	                                 	</c:otherwise>
+                                 	</c:choose>
+	                             </div>
+
                               </div>
                            </div>
                         </div>
@@ -489,9 +526,9 @@
                            <div class="row">
                               
                               <c:forEach var="i" begin="0" end="${fn:length(commentList)-1}" step="1">
-                                 <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">${userIDList.get(i)}</div>
+                                 <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto; font-weight:600;">${userIDList.get(i)}</div>
 
-                                 <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto;">
+                                 <div class="col-12 col-lg-8" style="margin-left:auto; margin-right:auto; margin-bottom:10px;">
                                     <div id="readStar${i}" class="star-ratings active" style="float:left;">
                                        <div class="star-ratings-fill space-x-2 text-lg"
                                           style="width: ${commentList.get(i).ratingToPercent()}%;">
@@ -501,7 +538,7 @@
                                           <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                                        </div>
                                     </div>
-                                    <div style="float:left; margin-left:10px;">
+                                    <div style="float:left; margin-left:10px; font-weight:600;">
                                        ${commentList.get(i).score}
                                     </div>
                                  </div>
@@ -529,7 +566,7 @@
                                     </div>
                                  </form>
                                  <c:if test="${commentList.get(i).userNo == sessionScope.userno}">
-                                    <div id="replyControl${i}" class="col-12 text-end">
+                                    <div id="replyControl${i}" class="col-12 col-lg-8 text-end" style="margin-left:auto; margin-right:auto; margin-top:10px;">
                                        <button type="button" id="btn_modify${i}"
                                           class="greenBtn">수정</button>
                                        <button type="button" id="btn_delete${i}"
@@ -632,7 +669,7 @@
                                  </script>
 
                               </c:forEach>
-                              <div class="col-12 text-center">
+                              <div class="col-12 text-center navi" style="margin-top:10px;">
                                  <c:if test="${navi.needNext}">
                                     <a href="/view.store?storeID=${dto.storeID}&cpage=${navi.naviList.get(0) - 1}"><</a>
                                  </c:if>
@@ -825,6 +862,50 @@
                         $("#btn_store_update_cancel").click(function () {
                            let storeID = "<c:out value='${dto.storeID}'></c:out>";
                            location.href = "/view.store?storeID=" + storeID;
+                        });
+                        
+                        let addFavoriteStoreCheck = false;
+                        //즐겨찾기 스크립트
+                        $(".addFavorite_btn").click(function(){
+                        	let storeID= $("#favoriteStoreID").val();
+                        	let userNo = $("#favoriteUserNo").val();
+                        	addFavoriteStoreCheck = $(this).hasClass("istrue");
+                        	if(!userNo){
+                        		alert("로그인을 먼저 진행해주세요.");
+                        	}else{
+                        		let btn = $(this);
+                        		if(addFavoriteStoreCheck == false){
+                        			$.ajax({
+                        				url:"/addFavoriteStore.store",
+                        				type:"post",
+                        				data:{
+                        					addFavorite_storeID : storeID,
+                        				},
+                        			})
+                        			.done(function (resp){
+                        				if(resp=="true"){
+                        					addFavoriteStoreCheck = true;
+                        					btn.removeClass("isfalse");
+                        					btn.addClass("istrue");
+                        				}
+                        			});
+                        		}else{
+                        			$.ajax({
+                        				url:"/deleteFavoriteStore.store",
+                        				type:"post",
+                        				data:{
+                        					addFavorite_storeID : storeID,
+                        				},
+                        			})
+                        			.done(function (resp){
+                        				if(resp == "true"){
+                        					addFavoriteStoreCheck = false;
+                        					btn.removeClass("istrue");
+                        					btn.addClass("isfalse");
+                        				}
+                        			})
+                        		}
+                        	}
                         });
 
 

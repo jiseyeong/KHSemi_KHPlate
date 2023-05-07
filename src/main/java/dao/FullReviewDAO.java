@@ -358,7 +358,7 @@ public class FullReviewDAO {
 			sb.append("<td>"+user.getReviewID()+"</td>");
 			sb.append("<td>"+user.getTitle()+"</td>");
 			sb.append("<td>"+user.getUserID()+"</td>");
-			sb.append("<td>"+user.getWritedate()+"</td>");
+			sb.append("<td>"+user.getWritedateToString()+"</td>");
 			sb.append("</tr>");
 		}
 		return sb.toString();
@@ -471,7 +471,7 @@ public class FullReviewDAO {
 			sb.append("<td>"+user.getTitle()+"</td>");
 			sb.append("<td>"+user.getUserID()+"</td>");
 			sb.append("<td>"+user.getStoreName()+"</td>");
-			sb.append("<td>"+user.getWritedate()+"</td>");
+			sb.append("<td>"+user.getWritedateToString()+"</td>");
 			sb.append("</tr>");
 		}
 		return sb.toString();

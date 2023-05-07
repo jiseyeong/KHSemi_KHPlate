@@ -111,7 +111,7 @@ a {
     margin-bottom: 30px;
 }
 
-.inpocontents2>input {
+.inputcss {
     margin-bottom: 28px;
     width: 80%;
     height: 35px;
@@ -194,14 +194,16 @@ a {
                 </div>
 
                 <div class="inpocontents2">
-                    <input type="button" value="1:1 문의" id="consultBtn" class="inputcss"><br> 
-                    <input type="button" value="FAQ" id="faqBtn" class="inputcss"><br> 
+                    <a href="/list.consult"><input type="button" value="1:1 문의" id="consultBtn" class="inputcss"></a><br> 
+                    <a href="/view.faq"><input type="button" value="FAQ" id="faqBtn" class="inputcss"></a><br> 
                     <input type="button" value="이용약관" id="letterBtn" class="inputcss"><br>
                 </div>
             </div>
         </div>
     </div>
+    
     <script>
+<<<<<<< HEAD
 	$("#consultBtn").on("click",function(){
 		location.href = "/adminPage/consultList.jsp";
 	})
@@ -213,7 +215,13 @@ a {
 		$("#letterBtn").on("click",function(){
 			location.href = "/adminPage/letter.jsp";
 	})
+=======
+    $("#letterBtn").on("click",function(){
+    	window.open("/adminPage/letter.jsp","letter","width=1000px,height=800px");
+    })
+>>>>>>> 5d244330e7dafa322e5fbf3be0ed4e5039050ae4
     </script>
+    
 </body>
 
 </html>

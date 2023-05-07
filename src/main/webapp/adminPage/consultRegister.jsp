@@ -161,10 +161,18 @@ p{font-weight:bolder; font-size:25px; color:#57b846;}
 						let input = document.getElementById("input_image");
 						let fReader = new FileReader();
 						fReader.onload = function(e){
+							$("#image").css({
+								"display":"block",
+							})
 							$("#image").attr("src", e.target.result);
 						}
-						fReader.readAsDataURL(input.files[0]);
-						$("#image").css("display","block");
+						if(input.files[0]){
+							fReader.readAsDataURL(input.files[0]);
+						}else{
+							$("#image").css({
+								"display":"none",
+							})
+						}
 					});
 				</script>
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->

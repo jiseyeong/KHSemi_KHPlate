@@ -67,7 +67,7 @@ public class StoreController extends HttpServlet {
 				int start = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE - (Settings.COMMENTREVIEW_NAVI_COUNT_PER_PAGE-1);
 				int end = currentPage * Settings.COMMENTREVIEW_RECORD_COUNT_PER_PAGE;
 				ArrayList<CommentReviewDTO> commentList = CommentReviewDAO.getInstance().selectBound(storeID, start, end);
-				NaviDTO pageNavi = CommentReviewDAO.getInstance().getNavi(currentPage);
+				NaviDTO pageNavi = CommentReviewDAO.getInstance().getNavi(currentPage, storeID);
 				StoreDTO dto = StoreDAO.getInstance().selectOne(storeID);	
 				ArrayList<String> userIDList = new ArrayList<>();
 				for(int i = 0; i < commentList.size(); i++) {
@@ -80,13 +80,19 @@ public class StoreController extends HttpServlet {
 				//					imgPathList.add("/store/" + i.getSysName());
 				//				}
 				//				request.setAttribute("imgPathList", imgPathList);
-
+				FavoritePageDTO favorite = null;
+				if(request.getSession().getAttribute("userno") != null) {
+					favorite = FavoriteStoreDAO.getInstance().isFavoriteStore(storeID, (int)request.getSession().getAttribute("userno"));
+				}
+				
+				
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("navi", pageNavi);
 				request.setAttribute("userIDList", userIDList);
 				request.setAttribute("menuList", menuList);
 				request.setAttribute("imgList", imgList);
+				request.setAttribute("favorite", favorite);
 				request.getRequestDispatcher("/store/view.jsp").forward(request, response);
 
 			}else if(cmd.equals("/register.store")) {

@@ -143,8 +143,8 @@ h2 {
 /* ==========================================================================
    #SPACING
    ========================================================================== */
-.p-t-180 {
-	padding-top: 180px;
+.p-t-130 {
+	padding-top: 130px;
 }
 
 .p-b-100 {
@@ -304,7 +304,7 @@ input {
 </style>
 <body>
 <body>
-	<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+	<div class="page-wrapper bg-red p-t-130 p-b-100 font-robo">
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
 				<div class="card-body">
@@ -328,11 +328,29 @@ input {
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
  <script>
 	$("#close").on("click",function(){
 		location.href = "/adminPage/adminhome.jsp";
 	})
 	</script>
+=======
+
+	<!-- Jquery JS-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<!-- Vendor JS-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<!-- Main JS-->
+	<script src="js/global.js"></script>
+
+	<script>
+	$("#close").on("click",function(){
+		window.close();
+	})
+    </script>
+
+
+>>>>>>> 5d244330e7dafa322e5fbf3be0ed4e5039050ae4
 </body>
 </html>
 
