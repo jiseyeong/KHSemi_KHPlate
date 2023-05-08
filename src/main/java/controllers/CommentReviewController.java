@@ -3,6 +3,7 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +16,11 @@ import com.google.gson.JsonObject;
 
 import commons.SecurityUtils;
 import dao.CommentReviewDAO;
+import dao.FullReviewDAO;
 import dao.PhotoDAO;
+import dao.StoreDAO;
 import dto.CommentReviewDTO;
+import dto.FullReviewDTO;
 import dto.NaviDTO;
 import dto.PhotoDTO;
 import statics.Settings;
@@ -37,7 +41,22 @@ public class CommentReviewController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				int userNo = Integer.parseInt(request.getParameter("userNo"));	
 				int result = CommentReviewDAO.getInstance().insert(new CommentReviewDTO(0, body, score, storeID, userNo, null, 0));
-				int currval = CommentReviewDAO.getInstance().getCurrval();
+				
+				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeID);
+				List<FullReviewDTO> fullListAll = FullReviewDAO.getInstance().selectByStoreID(storeID);
+				
+				int sum = 0;
+				int cnt = commentListAll.size() + fullListAll.size();
+				if(cnt != 0) {
+					for(CommentReviewDTO i : commentListAll) {
+						sum += i.getScore();
+					}
+					for(FullReviewDTO i : fullListAll) {
+						sum += i.getScore();
+					}
+					StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
+					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
+				}
 				
 				response.sendRedirect("/view.store?storeID="+storeID);
 			}else if(cmd.equals("/update.commentReview")) {		
@@ -47,6 +66,22 @@ public class CommentReviewController extends HttpServlet {
 				int reviewID = Integer.parseInt(request.getParameter("reviewID"));	
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				int result = CommentReviewDAO.getInstance().update(reviewID, body, score);
+				
+				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeID);
+				List<FullReviewDTO> fullListAll = FullReviewDAO.getInstance().selectByStoreID(storeID);
+				
+				int sum = 0;
+				int cnt = commentListAll.size() + fullListAll.size();
+				if(cnt != 0) {
+					for(CommentReviewDTO i : commentListAll) {
+						sum += i.getScore();
+					}
+					for(FullReviewDTO i : fullListAll) {
+						sum += i.getScore();
+					}
+					StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
+					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
+				}
 				
 				response.sendRedirect("/view.store?storeID="+storeID);
 			}else if(cmd.equals("/delete.commentReview")) {
