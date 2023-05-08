@@ -21,7 +21,7 @@
    font-size: 13px;
 }
 
-a {
+.footer>a{
 font-family: 'Nanum Gothic', sans-serif;
  color: white;
  font-size: 13px;

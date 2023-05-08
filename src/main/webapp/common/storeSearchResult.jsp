@@ -297,14 +297,10 @@ hr {
 }
 
 a {
-	font-family: 'Nanum Gothic', sans-serif;
-	color: black;
 	text-decoration: none;
 }
 
-a:hover {
-	color: #ED1C16;
-}
+
 
 .navigator_list_item_btn_layout {
 	border: 1px solid rgb(178, 178, 178);
@@ -323,6 +319,11 @@ navigator_list_item_btn_layout>a{
 .item {
 	font-size: 15px;
 	text-decoration: none;
+	color:black;
+}
+
+.item:hover {
+	color: #ED1C16;
 }
 
 .navigator_direction_btn {
