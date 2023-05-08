@@ -647,8 +647,6 @@ public class StoreController extends HttpServlet {
 					}
 				}
 				
-//				
-				System.out.println(sb.toString());
 				response.getWriter().append(sb.toString());
 			}
 
