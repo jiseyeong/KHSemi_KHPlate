@@ -731,7 +731,7 @@ input[type="range"]::-ms-track {
                             <c:otherwise>
                                 <c:forEach var='i' items='${search_store_list}' varStatus='status'>
                                     <li class="restaurant restaurant_number${status.index}">
-                                    <input type="text" class="restaurant_storeID" value="${i.storeID}" style="display: none;">
+                                    <input type="hidden" class="restaurant_storeID" value="${i.storeID}">
                                         <div class="img_layout">
                                        <!-- 사진 리스트 썸네일 구현(엑박일 시, 기본 이미지 지정(onerror) -->
 	                                        <c:choose>
@@ -943,8 +943,8 @@ input[type="range"]::-ms-track {
         </div>
     </div>
 
-    <c:if test="${search_store_list!=null}">
-        <c:forEach var="dto" items="${search_store_list}" varStatus="status">
+    <c:if test="${search_store_infoWindowList!=null}">
+        <c:forEach var="dto" items="${search_store_infoWindowList}" varStatus="status">
             <input type="hidden" class="search_store_list_toScript" id="search_store_list_storeID${status.index}" value='${dto.storeID}'>
             <input type="hidden" class="search_store_list_toScript" id="search_store_list_distance${status.index}" value='${dto.distance}'>
             <input type="hidden" class="search_store_list_toScript" id="search_store_list_name${status.index}" value='${dto.name}'>
@@ -1249,7 +1249,7 @@ input[type="range"]::-ms-track {
 	
     $(function () {
 
-        let list_length = '${search_store_list.size()}';
+        let list_length = '${search_store_infoWindowList.size()}';
         
         for (i = 0; i < list_length; i++) {
             let storeID = $("#search_store_list_storeID" + i).val();
@@ -1298,32 +1298,39 @@ input[type="range"]::-ms-track {
             
             // i 인덱스는 이벤트 내에 마지막 값으로 고정되어 남아있기에
             // count 변수를 따로 주어 이벤트 마다 해당 인덱스 값을 저장, 클로저 방식으로 사용(count);
-            let count = i;
+            let count = 0;
+            let open_index = i;
+            let checkStore = $(".restaurant_number"+count).next().val();
+            console.log($(".restaurant_number"+count).next().attr("class"));
             
-            $(".restaurant_number"+i).on("click",function(){
-            	if(!open_checks[count]){
-            		for(j = 0 ; j<open_checks.length ; j++){
-            			open_checks[j]=false;
-            		}
-            		
-            		open_checks[count]=true;
-            		
-            		khacademyMap.setLevel(2);
-            		
-            		infowindows.map(infowindow=>{
-            			infowindow.close();
-            		})
-                	
-                	infowindow.open(khacademyMap, Store_marker);
-                    $(".restaurant_infoWindow").parent().parent().css({
-                        "border": "0px",
-                        "background-color": "transparent"
-                    });
-                    khacademyMap.panTo(marker_position);
-            	}else{
-            		location.href = "/view.store?storeID=" + storeID;
-            	}
-            })
+            if(storeID==$(".restaurant_number"+count).next().val()){
+	            $(".restaurant_number"+count).on("click",function(){
+	            	
+	            	if(!open_checks[open_index]){
+	            		for(j = 0 ; j<open_checks.length ; j++){
+	            			open_checks[j]=false;
+	            		}
+	            		
+	            		open_checks[open_index]=true;
+	            		
+	            		khacademyMap.setLevel(2);
+	            		
+	            		infowindows.map(infowindow=>{
+	            			infowindow.close();
+	            		})
+	                	
+	                	infowindow.open(khacademyMap, Store_marker);
+	                    $(".restaurant_infoWindow").parent().parent().css({
+	                        "border": "0px",
+	                        "background-color": "transparent"
+	                    });
+	                    khacademyMap.panTo(marker_position);
+	            	}else{
+	            		location.href = "/view.store?storeID=" + storeID;
+	            	}
+	            	count++;
+	            })
+            }
         }
     });
 
