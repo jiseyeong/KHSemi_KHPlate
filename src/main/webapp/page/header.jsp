@@ -142,7 +142,7 @@
                text-decoration: none;
                font-size: 13px;
                margin-right: 10px;
-               color: white;
+			   color:white;
                font-weight: 600;
             }
 
