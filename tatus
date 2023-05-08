@@ -1,0 +1,4110 @@
+[33mcommit e735346c836927f0a5d669676f69ac290734cf66[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sun May 7 21:03:58 2023 +0900
+
+    updated
+
+[33mcommit c5357f4910d763198bd7faa9cf14b4887fd7c37d[m[33m ([m[1;31mmaster/master[m[33m)[m
+Merge: 4a265ab 6ae7dc7
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 20:25:10 2023 +0900
+
+    Merge pull request #132 from HSungJun/master
+    
+    fullreview update
+
+[33mcommit 4a265ab242d3857a1ff431cd74386d09cc9e4fb8[m
+Merge: 5d24433 56ab013
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 20:24:38 2023 +0900
+
+    Merge pull request #131 from sungha00/master
+    
+    updated
+
+[33mcommit 56ab0135ec51f7d4f022ec4521a5f26277cec8af[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sun May 7 20:22:05 2023 +0900
+
+    updated
+
+[33mcommit 6ae7dc709c623e8a9fce9ef178b902a92d62ecf1[m
+Merge: 8b00928 5d24433
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Sun May 7 20:21:48 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 8b009289e4c5aba40ffb093f2375fe85b594c835[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Sun May 7 20:20:43 2023 +0900
+
+    re_list_btn&etc
+
+[33mcommit 077369b1bec3ba9e8c73efc1066aed6ed21e78c4[m
+Merge: 11eebe8 5d24433
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sun May 7 20:11:41 2023 +0900
+
+    updated
+
+[33mcommit 11eebe802690c239402af3b7912fe09533945650[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sun May 7 20:10:57 2023 +0900
+
+    updated
+
+[33mcommit 5d244330e7dafa322e5fbf3be0ed4e5039050ae4[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 19:49:17 2023 +0900
+
+    alt imgs change
+
+[33mcommit f1fbd2dcc931e671528f83110163e6e37b095885[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 19:34:34 2023 +0900
+
+    1:1 consult to list button all added
+
+[33mcommit 8ace2668b730de850c67cab61ec8a4613d0b9999[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 19:24:03 2023 +0900
+
+    store comment review error catch
+
+[33mcommit 5f38c88b807012db80a77b8a6f4c1ae88fcc963d[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 19:14:11 2023 +0900
+
+    commentReview navi update
+
+[33mcommit 3ad2c506c01264f9def560cfff75311e3996ef34[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 18:54:19 2023 +0900
+
+    /store/view favorite btn & func added
+
+[33mcommit a37f964f2d9bbf8e16061825108e155412dc648b[m
+Merge: cb865e5 e304640
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 17:44:27 2023 +0900
+
+    Merge pull request #129 from jiseyeong/master
+    
+    mypage,view 페이지 조금 수정했습니다~
+
+[33mcommit cb865e5f562afe63a012deefd8de6d31b41ab422[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 17:42:33 2023 +0900
+
+    1:1 consult preview img conditional display none
+
+[33mcommit e3046408c637aac83eedb6eae1f0949a43bf0ccc[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun May 7 17:41:56 2023 +0900
+
+    view.jsp modi
+
+[33mcommit 85080e8992cdd9f83021c4784ea8dd9d5ae0d1cc[m
+Merge: 29e55cf 4e7ccaf
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun May 7 17:18:23 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 29e55cfeb0571047c51aea19d7b48967f0ff6571[m
+Merge: 8cebc04 3c0710e
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun May 7 17:18:16 2023 +0900
+
+    conflict , mypage.jsp modi
+
+[33mcommit 4e7ccafbc437d961337d10d1ac04d79f8aba3a38[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 17:10:12 2023 +0900
+
+    Update FAQView.jsp
+
+[33mcommit 5d5658fe9bcde0fa095760f20088fdc9d5b14928[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 17:07:57 2023 +0900
+
+    FAQ navi added
+
+[33mcommit 3c0710e522d9a6e0c7789d81fea3c6ca885520bd[m
+Merge: 80cae88 d131bf5
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 16:53:51 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 80cae884c687ace34cb69dac20762ede108e70b9[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 16:49:52 2023 +0900
+
+    FAQView.jsp, to FAQRegister btn added
+
+[33mcommit c6373aed8af525f11fac09ac27df1aadcba4545d[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 16:39:16 2023 +0900
+
+    Files folder delete
+
+[33mcommit d131bf5d9067413c5f20a7d7ec52bd04322b02ad[m
+Merge: c3a2357 e47770c
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 15:53:06 2023 +0900
+
+    Merge pull request #128 from Heeeesam/master
+    
+    add mypage function
+
+[33mcommit 8cebc04964806be34022ea38a4d21595db03fc2a[m
+Merge: 388e2ca c3a2357
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun May 7 15:52:20 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 388e2cacc79cb8f936d45de0d0cffa71e30a43d6[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun May 7 15:52:12 2023 +0900
+
+    mypage.jsp
+
+[33mcommit e47770c494ac4d940caaf1b588e47891021b622a[m
+Merge: 9cfe2e0 c3a2357
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun May 7 15:47:39 2023 +0900
+
+    resolve conflict
+
+[33mcommit 9cfe2e0aa1ef310842cfd9769dbbc7ae875c7108[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun May 7 15:45:38 2023 +0900
+
+    add mypage function
+
+[33mcommit c3a23577846890d135e01cda9b8a5633eab96a33[m
+Merge: ade06ee 1c41214
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 14:49:42 2023 +0900
+
+    Merge pull request #127 from sungha00/master
+    
+    design updated
+
+[33mcommit 1c41214b38c939f64eb98a820b88fc8c743553d8[m
+Merge: 2aa0f44 ade06ee
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sun May 7 13:26:21 2023 +0900
+
+    Merge branch 'master' of https://github.com/sungha00/KHSemi_KHPlate
+
+[33mcommit 2aa0f44cdb4a709149f0710846ff24d577b667fb[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sun May 7 13:25:49 2023 +0900
+
+    design updated
+
+[33mcommit ade06eee5e95ded18ed0773b82ce8810252a9d8b[m
+Merge: 4eee124 bd78764
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 12:47:30 2023 +0900
+
+    Merge pull request #126 from jiseyeong/master
+    
+    mypage.jsp 조금 수정했습니다
+
+[33mcommit bd7876439fe6cd8f1520f7a68fd66f19c6d319c5[m
+Merge: 31e3f93 4eee124
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun May 7 12:42:21 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 31e3f9322fb756c7ec5fe17bb1f2f1beffda7e34[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun May 7 12:42:14 2023 +0900
+
+    mypage.jsp modi
+
+[33mcommit 4eee124c785f5ff92d1e24e1bb7ff61797adcdc7[m
+Merge: 86d14ad 61b07c5
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 12:35:59 2023 +0900
+
+    Merge pull request #125 from Heeeesam/master
+    
+    add fullreview star rate
+
+[33mcommit 86d14ad4c85bed896d388632b9a9c46d09eb6a1a[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 12:32:36 2023 +0900
+
+    menu protect code update
+
+[33mcommit e88064611d235cc4957aac0a745c3bb27c4d2f78[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun May 7 12:02:36 2023 +0900
+
+    store_view img contain to cover
+
+[33mcommit 61b07c548adb4da72b0090542c435e0e41d61e7d[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun May 7 04:30:13 2023 +0900
+
+    save
+
+[33mcommit 03486c8f90b742e671fd70e088590fbbfd857d39[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun May 7 03:34:10 2023 +0900
+
+    add fullreview star rate
+
+[33mcommit db65f9b33b2924e4f675493c1925972136afd440[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 21:31:34 2023 +0900
+
+    1:1 consult list error catch
+
+[33mcommit 865fa68051c4d9aca90318749519649a1c57cd10[m
+Merge: c4fe745 160feee
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 20:32:45 2023 +0900
+
+    Merge pull request #124 from Heeeesam/master
+    
+    middlesave
+
+[33mcommit 160feeebe53b439d3995ad3570d5f722b92cbef9[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat May 6 20:31:51 2023 +0900
+
+    middlesave
+
+[33mcommit c4fe745b0b21d7ae07218ec1ec4af8eb7aabdc43[m
+Merge: 02ee1f5 b68f025
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 20:13:28 2023 +0900
+
+    Merge pull request #123 from sungha00/master
+    
+    updated
+
+[33mcommit b68f02555a8e141d6fce58d3a6871464bea8b80c[m
+Merge: 226d2c6 02ee1f5
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sat May 6 20:11:47 2023 +0900
+
+    updated
+
+[33mcommit 226d2c643d7f05b86d17ecaf0cfbe5d837797a3b[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sat May 6 20:10:23 2023 +0900
+
+    updated
+
+[33mcommit 02ee1f5b83d76422462e29c6e886d68ffaea0fd4[m
+Merge: 92bcbf9 28b828a
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 19:54:02 2023 +0900
+
+    Merge pull request #122 from HSungJun/master
+    
+    update main List
+
+[33mcommit 28b828ab95bd9f172fe500e9b5f838b6cefc1981[m
+Merge: d195932 92bcbf9
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Sat May 6 19:51:35 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit d1959325be71c46f4bac9183938775d59e298574[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Sat May 6 19:51:29 2023 +0900
+
+    mainList
+
+[33mcommit 92bcbf9d8dfc15505dd4ba0c2cae954aa7dc7a0d[m
+Merge: 367cb2e 991ae5e
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 19:50:06 2023 +0900
+
+    Merge pull request #121 from Heeeesam/master
+    
+    add photo_thumbnail
+
+[33mcommit 991ae5e03d649cfe83bb0cf3c797f4d0497ccbbd[m
+Merge: 2b2b9a8 367cb2e
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat May 6 19:43:25 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 2b2b9a8bec8c0d81ebc13f78949af8f5f679629e[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat May 6 19:43:20 2023 +0900
+
+    add photo
+
+[33mcommit 367cb2e8a4eca55a2089d285238c318032406205[m
+Merge: 689f51f a4f48d1
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 18:25:27 2023 +0900
+
+    Merge pull request #120 from jiseyeong/master
+    
+    사이드바랑 footer 수정했습니다~
+
+[33mcommit a4f48d159eace4b6465d33cb71bec9d8174fc7a9[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sat May 6 17:43:24 2023 +0900
+
+    git sideBar.jsp modi
+
+[33mcommit cdc9d096b657b7deb8c7944d2318fae69eb666fb[m
+Merge: 9bd4e17 689f51f
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sat May 6 17:26:37 2023 +0900
+
+    conflict modi
+
+[33mcommit 9bd4e17c313ec7012e9216180695f3a4b338a446[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sat May 6 17:24:12 2023 +0900
+
+    FAQRegister.jsp, FAQView.jsp, footer.jsp,main.jsp,sideBar.jsp modi
+
+[33mcommit 689f51f2a63e4d1ff04a99a3dc5c3b3d3a95676d[m
+Merge: 2861ddc 91654c7
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 17:16:09 2023 +0900
+
+    Merge pull request #119 from Heeeesam/master
+    
+    지도검색 수정완료, faq Header수정, 필터 수정
+
+[33mcommit 78e062b27bbf0ca4156002833f5cc91b90beea17[m
+Merge: 91654c7 2861ddc
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat May 6 14:21:54 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 2861ddccf213a01c7b969c75de9b768149521500[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 13:02:44 2023 +0900
+
+    Admin registers protect code added
+
+[33mcommit 2e525df5c463dbe96b108125c26e3e4b9cc2823b[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 12:33:43 2023 +0900
+
+    protect code error update
+
+[33mcommit 792afbaee853d0e3b65941d7bbe120735b9b3d3c[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat May 6 12:14:54 2023 +0900
+
+    view.jsp protect func added
+    
+    1. 상점 상세 페이지에서 관리자에게만 상점 수정 버튼 활성화 되도록 변경
+    
+    2.각 폼들에서, 넘겨줄 값들 중 비어있으면 안되는 값들이 비어있을 경우 경고창 띄우고 동작 안하도록 하는 방어 코드들 추가
+
+[33mcommit 91654c76fabc2dae05c50959e27bdb94279c8a96[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat May 6 08:45:47 2023 +0900
+
+    modify index
+
+[33mcommit 93ce29eb87dbb84c7627f7b8507f5f833d552774[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat May 6 08:15:27 2023 +0900
+
+    fix mypage
+
+[33mcommit bd2f423932ad58a08432efe55c5f01b2b2bc7154[m
+Merge: de28edb 507e133
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat May 6 06:26:03 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit de28edb10d4c6ece9dcdfe8d684f6a98aae0f470[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat May 6 06:25:57 2023 +0900
+
+    modify searchResult
+
+[33mcommit 507e13371f8fa8fa47cd67916ff08d4f92b0ef1b[m
+Merge: 8b907d7 804e946
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri May 5 18:28:40 2023 +0900
+
+    Merge pull request #118 from Heeeesam/master
+    
+    store html=>jsp 수정
+
+[33mcommit 804e9469981d707bccf1800ace3c4b88386d28ff[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri May 5 18:25:31 2023 +0900
+
+    fix searchstore
+
+[33mcommit fee027d02e6e6b90dacc2d330b5e1cf4c1148c23[m
+Merge: 3962a49 8b907d7
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri May 5 16:50:01 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 3962a4909de96eeec42c6073083f0f7e9323f54e[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri May 5 16:49:57 2023 +0900
+
+    save
+
+[33mcommit 8b907d72db6fcc1886b4c4b4516768aeeaf29b0f[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 22:14:09 2023 +0900
+
+    store view Image update func modify to Ajax
+    
+    & 상점 이미지 삭제 수정
+
+[33mcommit 49920fbe5390d858b619fb9cbcb8af9b260e5f1a[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 21:41:58 2023 +0900
+
+    Update StoreController.java
+
+[33mcommit 0a19855c49dd3777235895645903eb91ed622c49[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 20:02:38 2023 +0900
+
+    storeController ori<->sys rechange
+    
+    옛날 버전으로 돌아가있어서 복구
+
+[33mcommit 8186fd478a0854287eafad6fd4ce455ddcb0f8a5[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 19:43:45 2023 +0900
+
+    view.jsp photo delete align modify
+
+[33mcommit ab4a2e03943780634e841f7c702045ad6f686e90[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 17:46:23 2023 +0900
+
+    Update registerForm.jsp
+
+[33mcommit f9d8025a83a8ebc8a7902ae701db8302c540d982[m
+Merge: 5444ee8 ebc0079
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 17:32:24 2023 +0900
+
+    Merge pull request #117 from sungha00/master
+    
+    design updated
+
+[33mcommit 5444ee890f30fef77d4a0a9e68118af65f67bedf[m
+Merge: 502ffb2 54a13ac
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 17:32:11 2023 +0900
+
+    Merge pull request #116 from jiseyeong/master
+    
+    mypage.jsp 수정했습니다~
+
+[33mcommit 502ffb2197a9db204152e8159feac7e4d2107faf[m
+Merge: 617d4c4 db88955
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 17:31:48 2023 +0900
+
+    Merge pull request #115 from HSungJun/master
+    
+    card img
+
+[33mcommit ebc007920cf925e2dc59c9e6f1898b214c689739[m
+Merge: d6a1bbc 617d4c4
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Thu May 4 17:30:29 2023 +0900
+
+    design updated
+
+[33mcommit 54a13ac7f8b538e9510f922b10f78f5db42a08ee[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 17:28:33 2023 +0900
+
+    mypage.jsp modi
+
+[33mcommit d6a1bbc16b35674ee55baa3fad60b5aa8690dd0c[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Thu May 4 17:27:36 2023 +0900
+
+    design updated
+
+[33mcommit db88955f4a4d732594dd4aea4202f41930b826d6[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 17:26:15 2023 +0900
+
+    card img
+
+[33mcommit 52aa9390919aa96123a28d98ef4eb8ce1c6d81ce[m
+Merge: 43831ca 617d4c4
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 16:41:07 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 617d4c4dc5d40ad3b4a7a6f59a90f6c0d996218e[m
+Merge: 2e3a8b1 05fd282
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 16:33:20 2023 +0900
+
+    Merge pull request #114 from Heeeesam/master
+    
+    header삭제
+
+[33mcommit 05fd282a2285e2e479916f3dceb774ae9d43b563[m
+Merge: d938685 2e3a8b1
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu May 4 16:32:27 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit d938685aca005c9efcea1a7ccb224164e15ca130[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu May 4 16:32:20 2023 +0900
+
+    123
+
+[33mcommit 2e3a8b1a746b5ffa578651d55bfb9cddd36d77e5[m
+Merge: 09e8e29 58a29a4
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 16:31:40 2023 +0900
+
+    Merge pull request #113 from HSungJun/master
+    
+    fullReview Done
+
+[33mcommit 09e8e29362d769a54c7745e283d2200f7738f422[m
+Merge: 17db423 9f62074
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 16:31:32 2023 +0900
+
+    Merge pull request #112 from Heeeesam/master
+    
+    fix mypage, confilct
+
+[33mcommit 43831ca4fedf5b1a4dd468134544f42e155e930a[m
+Merge: 19a6a05 17db423
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 16:30:30 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 19a6a05f17b1f4807ad9e594c2625cf174af11f8[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 16:30:23 2023 +0900
+
+    view.jsp
+
+[33mcommit 9f6207436c65fe3a384ac2441731a55aa7738e99[m
+Merge: 036ed63 17db423
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu May 4 16:28:51 2023 +0900
+
+    fix conflict
+
+[33mcommit 58a29a4512d8d9d3d6d2b4a39bf31ca74eeae819[m
+Merge: 3be5869 17db423
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 16:28:24 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 3be586973a8acadc1d560ff0c4903c0c24ac574c[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 16:28:18 2023 +0900
+
+    fullreview done
+
+[33mcommit 036ed636113221ca6ddecef0403fda96bac0df07[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu May 4 16:25:25 2023 +0900
+
+    modify mypage
+
+[33mcommit 17db4231946c3b1965118b5a4c2acb26216aacb5[m
+Merge: 0490f2a 6f63419
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 16:14:31 2023 +0900
+
+    Merge pull request #110 from sungha00/master
+    
+    design updated
+
+[33mcommit 0490f2ac9dfc8a1d766913627c983c69ab0cb18d[m
+Merge: d401852 867d127
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 16:14:22 2023 +0900
+
+    Merge pull request #111 from jiseyeong/master
+    
+    view.jsp 수정했습니다~~
+
+[33mcommit 867d1277b3af84f4d0de7999609991e337b65d33[m
+Merge: 9608be5 d401852
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 16:08:26 2023 +0900
+
+    conflict modi
+
+[33mcommit 6f63419180f8ac25ffab97b2346c22316e673b11[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Thu May 4 16:02:53 2023 +0900
+
+    design updated
+
+[33mcommit 9aef449f73aeb1c767ce7903687b7d42c636e286[m
+Merge: 79f1adb d401852
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 15:31:16 2023 +0900
+
+    images
+
+[33mcommit 79f1adb12643eaa89d8c60ad0fb3b685d5ca0732[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 15:29:10 2023 +0900
+
+    images
+
+[33mcommit 9608be545db0f065da858ba399338eea13700565[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 15:23:12 2023 +0900
+
+    view.jsp modi
+
+[33mcommit d4018521a5dc5d27999ae88288ad718f57e4de74[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 14:57:30 2023 +0900
+
+    Update view.jsp
+
+[33mcommit d865e5a798f8d910cf10e2a6145c55605703500f[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 14:52:51 2023 +0900
+
+    view.jsp menu error config
+
+[33mcommit 7d11d5877ceaa22b8d2a508299adb22183b4c4de[m
+Merge: 21f4fcd 9869ef2
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 14:46:01 2023 +0900
+
+    Merge pull request #109 from sungha00/master
+    
+     design updated
+
+[33mcommit 9869ef2f75bbd3b5320ddc2f6d937caa47e196e6[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Thu May 4 14:44:04 2023 +0900
+
+     design updated
+
+[33mcommit 21f4fcd2bee2732167c3db4f79a4ce487b62ba5b[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 14:36:33 2023 +0900
+
+    별점 기능 복구
+
+[33mcommit f07da2532e670695bfe04c65539708f8312cdb11[m
+Merge: 1af6246 e5b3eca
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 14:16:28 2023 +0900
+
+    Merge pull request #108 from sungha00/master
+    
+    letter, joinform, idpwsearch updated
+
+[33mcommit 01b91c5f3c53d9615085f987ff947907cccc8ec0[m
+Merge: 8e9f9da 1af6246
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 14:14:40 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 8e9f9daca3452eb8312c8d9b0897683cfb42f0f9[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 14:14:33 2023 +0900
+
+    view.jsp
+
+[33mcommit fbb757b7710c5856cd69f3f94e64bfc7920e07fe[m
+Merge: 3e4ac1e 1af6246
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 14:14:29 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 3e4ac1e82a50193ce6e4cbcc72d7248ca9f41c04[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 14:14:24 2023 +0900
+
+    image
+
+[33mcommit 1af6246d5d2e2c5571fe580879a92b237e1b3a70[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 14:11:14 2023 +0900
+
+    view.jsp error config
+
+[33mcommit e5b3ecae49c9ac55e4914c6cd9e16c991760fc5c[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Thu May 4 13:57:39 2023 +0900
+
+    updated
+
+[33mcommit 9dd520dcd9ed4f03c2a048a9e5353f83bc605bea[m
+Merge: 936d6c8 5ad43e2
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 12:41:31 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 936d6c8513fcccaf1fa79dd89bd71e0132a939ea[m
+Merge: 46a7896 a9e4c31
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 12:41:24 2023 +0900
+
+    photo import complete
+
+[33mcommit 5ad43e26b9dc77a7dfe7903333370e4866978c9d[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 12:38:35 2023 +0900
+
+    menu update method 변경
+
+[33mcommit c1ffe028eea811a0325adf2afa7921d714af0c65[m
+Merge: fe50a4a 24e2a41
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 12:22:40 2023 +0900
+
+    Merge pull request #107 from Heeeesam/master
+    
+    회원탈퇴 수정 완료
+
+[33mcommit fe50a4abba4b32388ba7bd80b2b9cf495d10ca72[m
+Merge: 0d304e3 42582db
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 12:21:54 2023 +0900
+
+    Merge pull request #106 from jiseyeong/master
+    
+    MembersController, MembersDAO, MembersDTO, mypage 수정했습니다
+
+[33mcommit 24e2a417c8c212fc2c77d1a3d07d7aeb6f97b12a[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu May 4 12:21:43 2023 +0900
+
+    fix memberout
+
+[33mcommit 42582db2a78f32e5034584e0cbf33504df4f1a05[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 12:20:10 2023 +0900
+
+    MembersController, MembersDAO, MembersDTO, mypage modi
+
+[33mcommit 35e3e21a77439bcf1258b0e2d506493c4e88e064[m
+Merge: 0010dec 0d304e3
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 12:03:43 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 0010dec9d876e471e1c0de3852070d74b32f61f5[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 12:02:05 2023 +0900
+
+    MembersController,MembersDAO, MembersDTO modi
+
+[33mcommit 0d304e3bf8b4149f8ca31a02a259807f93a4c1a9[m
+Merge: a9e4c31 04e204b
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 11:15:39 2023 +0900
+
+    Merge pull request #105 from sungha00/master
+    
+    admin home created, login updated
+
+[33mcommit 04e204b10f0f3342242bb98ec7e119f09a5fcfff[m
+Merge: bf239cf a9e4c31
+Author: KSH <129382707+sungha00@users.noreply.github.com>
+Date:   Thu May 4 11:15:23 2023 +0900
+
+    Merge branch 'LJHHKF:master' into master
+
+[33mcommit 46a7896d5778bbcea80cad3631599f9246cb00e4[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Thu May 4 11:14:45 2023 +0900
+
+    1
+
+[33mcommit bf239cfeafb1e25e33990e8cb51529598558a646[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Thu May 4 11:14:44 2023 +0900
+
+    admin home created, login updated
+
+[33mcommit a9e4c318ee24d80edd73c4a1989bba2cdccabee6[m
+Merge: f77fa39 00f501e
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 11:14:22 2023 +0900
+
+    Merge pull request #104 from Heeeesam/master
+    
+    scrap버튼 추가, 부분 반응형 적용
+
+[33mcommit 00f501e670ac32475b7f24fe98baa52f46c5dd1e[m
+Merge: 9a66d51 f77fa39
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu May 4 11:12:17 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 9a66d51814e70a1a4992a5d545f7736b3f9b5c95[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu May 4 11:12:12 2023 +0900
+
+    add scrapbtn add bootstrap
+
+[33mcommit f77fa39fee66b1cf242ccc5651b54993dc749882[m
+Merge: a619153 486a257
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 10:35:15 2023 +0900
+
+    Merge pull request #103 from jiseyeong/master
+    
+    view.jsp 수정했습니다
+
+[33mcommit 486a257e3897655dc6dce7863f67bb283cf7afd7[m
+Merge: 2d03b83 a619153
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 10:32:20 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 2d03b83eee867900471e63c93472ebc1cb371d2f[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 10:32:14 2023 +0900
+
+    view.jsp modi
+
+[33mcommit a61915328e9d0649ec34e520f26e359c2c649d71[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 10:26:42 2023 +0900
+
+    FAQ Delete func added & error config
+
+[33mcommit 7857e36bdd8a8a0116f1f1eec3c0e84f25d06eff[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 09:46:00 2023 +0900
+
+    consultPage delete button center align
+
+[33mcommit 64a826b30be5061aa94bbf1a82a690c5050839e5[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 09:43:20 2023 +0900
+
+    답글 등록 오류 수정
+
+[33mcommit c93ca55ad1bc6453b6b890ee08bbb349cd499801[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 09:35:54 2023 +0900
+
+    1:1 consult delete func added & consult list updat
+    
+    관리자면 모두 읽기(기존)
+    사용자면, 자신이 쓴 글만 리스트에 읽어들임.
+
+[33mcommit ab4c598504f028da50776b569afd21a707fbc8e8[m
+Merge: 0445e3c df2f880
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 09:16:53 2023 +0900
+
+    Merge pull request #102 from Heeeesam/master
+    
+    consultlist 수정했습니다
+
+[33mcommit df2f8807c4ca89f962337aee83b8dd2a24dae69e[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu May 4 09:15:00 2023 +0900
+
+    fix consultlist
+
+[33mcommit 4da753a9fb623e5540467d1e2cbded5dd6f6b186[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu May 4 09:11:29 2023 +0900
+
+    add consultList writebtn
+
+[33mcommit f43c12fdf5db27009dcfa86200c96fa53f4fa484[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 09:03:48 2023 +0900
+
+    header modi
+
+[33mcommit 455e1e6f4b4767fa18b84207fe489ba978b93a82[m
+Merge: df8d257 0445e3c
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 09:01:05 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 0445e3c0783e956575bcf764d28bec7349fce9f0[m
+Merge: 7e55ad4 93e8732
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu May 4 09:00:53 2023 +0900
+
+    Merge pull request #100 from sungha00/master
+    
+    header updated
+
+[33mcommit df8d2572f0c768ed6f7f7dcad66da70a31cacb94[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu May 4 08:58:26 2023 +0900
+
+    view.jsp modi
+
+[33mcommit 93e8732154219fa74f00c2a13900a8a115258cb9[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed May 3 19:42:16 2023 +0900
+
+    header updated
+
+[33mcommit 70b4d38f5d541c05fb1cfc9ad058b90142cc3b21[m
+Merge: a5de56d 7e55ad4
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 19:04:13 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 7e55ad467cdbb380f794b728ca78a135d4a38450[m
+Merge: 1b13fff 07c51d1
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 18:10:54 2023 +0900
+
+    Merge pull request #99 from HSungJun/master
+    
+    fullreview editor update
+
+[33mcommit 1b13fff29caca0eb94ec6acbb59408e0fa06f5a0[m
+Merge: 486d9f8 b478510
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 18:10:27 2023 +0900
+
+    Merge pull request #98 from gunheelee22/master
+    
+    mypage update
+
+[33mcommit 07c51d1545cd919a11d5a09f5ea15e990a2ad705[m
+Merge: a95ba4e 486d9f8
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed May 3 18:09:25 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit a95ba4eb9dcbd7e6f808aa252062aedcb024e9fe[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed May 3 18:09:19 2023 +0900
+
+    fullreview
+
+[33mcommit b478510997dab91efa1578164898c645efa7dd46[m
+Merge: c0df37a 486d9f8
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Wed May 3 17:44:02 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit c0df37aeeb7237000d4e684de06e5d68a1a82018[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Wed May 3 17:43:45 2023 +0900
+
+    mypage update
+
+[33mcommit 486d9f8bd181990b65eeb46b35bfa91d84376918[m
+Merge: 415ea8e 5312cce
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 17:43:29 2023 +0900
+
+    Merge pull request #97 from sungha00/master
+    
+    updated
+
+[33mcommit 5312cce88d75d6347940f4a8a4aa976b7dbd20f4[m
+Merge: 3cfade0 415ea8e
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed May 3 17:42:28 2023 +0900
+
+    Merge branch 'master' of https://github.com/sungha00/KHSemi_KHPlate
+
+[33mcommit 3cfade0c965f3489e3990ab4efbaf5e122181956[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed May 3 17:42:06 2023 +0900
+
+    updated
+
+[33mcommit 415ea8efc84a55e01f9ec56fcdb159d441cba8a8[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 17:36:45 2023 +0900
+
+    admin reply complete
+
+[33mcommit 5f904d7e866455a96af51f69b145a0a0036de260[m
+Merge: 1c26e30 a44dd82
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 17:14:08 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 1c26e301d3f1a330fc1d982d9dd7ed6d5d1d97b8[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 17:14:03 2023 +0900
+
+    05_03_middleSave
+
+[33mcommit a44dd824ca42e39462313be81ee2b23aea680813[m
+Merge: 28e84f4 4d18782
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 17:13:35 2023 +0900
+
+    Merge pull request #96 from Heeeesam/master
+    
+    update index
+
+[33mcommit 4d18782d42e4e2e30b4e9f5bae31d028e0479daa[m
+Merge: 7eafbfb 28e84f4
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed May 3 17:11:37 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 7eafbfbcb663b5c16219296897ee1dae6a3346b4[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed May 3 17:11:28 2023 +0900
+
+    rename newpw, update index
+
+[33mcommit 202d25a5a90ac40e0020f216e5848329c740a8af[m
+Merge: 32f60f2 28e84f4
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed May 3 17:10:06 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 32f60f20fa76c9b8d9d1dd19a54e51d054af1bcb[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed May 3 17:10:01 2023 +0900
+
+    ckeditor apply
+
+[33mcommit 28e84f4301f5eca0a20a284e52d1edffeb375892[m
+Merge: 86727ba 34f36a4
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 16:55:24 2023 +0900
+
+    Merge pull request #95 from jiseyeong/master
+    
+    view.jsp 수정
+
+[33mcommit 6b02df61a8b8fda85e1465dd5a3b35325572bb89[m
+Merge: 9369971 86727ba
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed May 3 16:39:14 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit a5de56daf5ca7fa076fbf24fa545bb2b87af86b1[m
+Merge: 34f36a4 86727ba
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 16:39:13 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 86727ba85b177a4c7ab9aad7ce7722fc111b23c4[m
+Merge: 85a4c08 6809735
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 16:38:57 2023 +0900
+
+    Merge pull request #94 from Heeeesam/master
+    
+    fix joinform, login
+
+[33mcommit 34f36a485b2b4f18d9db562e1e2880f48d5f2702[m
+Merge: b19280e 85a4c08
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 16:38:09 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit b19280e1096d07a6384491e52638d4395743e5b8[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 16:37:59 2023 +0900
+
+    view.jsp modi
+
+[33mcommit 93699711f35c11622f02d2ece55467fc43c733fc[m
+Merge: 87565b9 85a4c08
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed May 3 16:37:34 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 87565b9818d9b728a712fb0b18d1e1fc56100480[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed May 3 16:37:28 2023 +0900
+
+    Fullreview attach ckeditor
+
+[33mcommit 6809735137588f127755ea18ce3951cf8a86276c[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed May 3 16:33:22 2023 +0900
+
+    fix joinform, login
+
+[33mcommit 85a4c08a0d8738447b59d10ad3e64ebe84931a87[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 16:21:15 2023 +0900
+
+    consultView's image maxHeight:500px added
+
+[33mcommit 439c60dd14096df43fecc1901383d9be61a7528e[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 16:04:51 2023 +0900
+
+    consultRegister image size modify
+
+[33mcommit 01453997b675690ec914585c0bf37b3855ee3e61[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 15:55:46 2023 +0900
+
+    consultRegister error config
+    
+    로그인 안 한 채 로그인 시도 시 오류나던 점을 발견하여 수정.
+
+[33mcommit e60360e787094fb0249b573ce2c239de3c139f77[m
+Merge: 1de6b0e 25113f9
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 15:11:42 2023 +0900
+
+    Merge pull request #93 from sungha00/master
+    
+    design updated
+
+[33mcommit 25113f91f05a83b88eee87d027ab8d8305386ad3[m
+Merge: 447dedf 1de6b0e
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed May 3 15:09:45 2023 +0900
+
+    Merge branch 'master' of https://github.com/sungha00/KHSemi_KHPlate
+
+[33mcommit 447dedf2e791578262af53475eaa5397eac7da2a[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed May 3 15:09:19 2023 +0900
+
+    design updated
+
+[33mcommit 1de6b0e974d83a5265a1532d1fd428b8baa87ca3[m
+Merge: 1b837b0 e12b9b5
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 14:33:52 2023 +0900
+
+    Merge pull request #92 from jiseyeong/master
+    
+    view.jsp, header.jsp 수정했습니다~
+
+[33mcommit e12b9b5592604feb8dda3cf85d6354b073055b02[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 14:29:26 2023 +0900
+
+    view.jsp modi
+
+[33mcommit e2b7634d3a6f30fc275dee8e2d9c7a53bed54c51[m
+Merge: a7f9951 1b837b0
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 14:22:51 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit a7f995104b6e3428c129cd9a770feaf815092cc1[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 14:19:38 2023 +0900
+
+    footer,header,view modi
+
+[33mcommit 1b837b099ecb1f8908d79e90f237437707514aef[m
+Merge: efd6a50 e46e4cc
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 12:32:47 2023 +0900
+
+    Merge pull request #91 from HSungJun/master
+    
+    fullreview design
+
+[33mcommit e46e4ccaa5cd191f5fcc87e39166714f5fb059d6[m
+Merge: e109382 efd6a50
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed May 3 12:31:08 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit e1093828ef3a7532945136116e13d620bf0b9af5[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed May 3 12:31:03 2023 +0900
+
+    fullreview design
+
+[33mcommit efd6a50919966d3a122f869b36cbe0337d21cd42[m
+Merge: 6a2b146 74819ad
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 12:30:44 2023 +0900
+
+    Merge pull request #90 from Heeeesam/master
+    
+    add linktoView, fix navigator
+
+[33mcommit 74819ad4d58e9c58bce118d11567f9e1fa4feaa2[m
+Merge: 0b37d37 6a2b146
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed May 3 12:22:46 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 0b37d37d8ba01d71f9f944b59e24f4cbaf83c099[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed May 3 12:22:41 2023 +0900
+
+    fix allstorenavigator
+
+[33mcommit 6a2b146d726be262df9e1a6d443b2ac21ed05df5[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 12:04:35 2023 +0900
+
+    consult photo func added & error config
+    
+    oriName과 sysName을 위치를 스왑해서 잘못 쓰고는 다른 곳에서도 잘못 읽어들이고 있었음. 수정.
+
+[33mcommit 8f4d530e780460203427dc5cedf52f80116cf544[m
+Merge: 24f6a34 58df3b8
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed May 3 11:55:56 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 24f6a3435470cedf8ff20dc986a76fb58330d8c8[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed May 3 11:55:51 2023 +0900
+
+    add link fromSearchStore to view
+
+[33mcommit 58df3b82a5891afc39a39266178909e156add899[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 11:45:33 2023 +0900
+
+    consult Navi & image read func added
+
+[33mcommit e616bc94e76b277ef2e8f9b16f5954ae31b97636[m
+Merge: 7a7abd1 35111f5
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 10:53:42 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 7a7abd1f2a2e9808fb243dc1a95523026ca11a78[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 10:53:40 2023 +0900
+
+    commentReview Navi added
+
+[33mcommit 35111f54d8448d306975e5777322b5048b90704b[m
+Merge: f395957 49d00d8
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 09:29:48 2023 +0900
+
+    Merge pull request #89 from jiseyeong/master
+    
+    consultList.jsp / consultReplyRegister.jsp / consultView.jsp / index.jsp 수정했습니다~
+
+[33mcommit 0f8e94adefb80f75ae7554db929d8a5375f38dca[m
+Merge: 49d00d8 f395957
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 09:23:09 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 49d00d809955dfa5df9abb0a79a97eaeb561a308[m
+Merge: 892d084 c090e3f
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 09:22:43 2023 +0900
+
+    pull merged
+
+[33mcommit f395957bd12ce57cdcc439a941972c766200f374[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed May 3 09:22:18 2023 +0900
+
+    Comment Review photo func delete
+
+[33mcommit 892d084ad6104696a4d7a1a138388af420b9399b[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed May 3 09:06:10 2023 +0900
+
+    consultList.jsp, consultView.jsp, index.jsp modi
+
+[33mcommit c090e3f506e92b9066c57545c80182a4b455f892[m
+Merge: 34c9315 23a3aa7
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 23:05:12 2023 +0900
+
+    Merge pull request #88 from Heeeesam/master
+    
+    complete mypage_lists
+
+[33mcommit 34c93153f827e3a9364d0e858ac4f67224a5fdff[m
+Merge: 05ac863 490cc4b
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 23:03:39 2023 +0900
+
+    Merge pull request #87 from gunheelee22/master
+    
+    idconfirm newpw update
+
+[33mcommit 23a3aa722172461ed964f67792d9a1c26897418d[m
+Merge: d843109 05ac863
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 22:59:47 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit d843109e0e998b55c9b6637571ed3e1bdb4506f5[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 22:59:42 2023 +0900
+
+    complete mypage_lists
+
+[33mcommit 490cc4b5592f5ad70977cc7c1a1086aa60624776[m
+Merge: 7f72c52 05ac863
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 22:07:39 2023 +0900
+
+    Merge branch 'master' into master
+
+[33mcommit 05ac8631bf5902aed3693f77b0960ed365286d5f[m
+Merge: 145a569 ef9c150
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 22:03:56 2023 +0900
+
+    Merge pull request #86 from sungha00/master
+    
+    header updated
+
+[33mcommit ef9c150fcb244cf45ad217e4aebba8cdc97141b4[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Tue May 2 21:18:55 2023 +0900
+
+    font updated, header updated
+
+[33mcommit 45473509076120f41051386c11895befee4774a1[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 20:19:31 2023 +0900
+
+    fixing
+
+[33mcommit a20d657b64c3313b5d04f8ad4b1124bcb3611463[m
+Merge: 9514509 145a569
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 19:00:54 2023 +0900
+
+    fix conflict
+
+[33mcommit 951450922d5783b3e45578fae7d0f692cfa44837[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 18:57:29 2023 +0900
+
+    lsw middle save
+
+[33mcommit 7f72c52860924cce4788ca91fd219b03b4be39c4[m
+Merge: 33a431c 145a569
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue May 2 18:47:21 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 33a431c8dab6eb7e6816913f84615535992400c9[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue May 2 18:47:05 2023 +0900
+
+    idconfirm update and newpw update
+
+[33mcommit 40cab3ddfd1f2e2a9da25e7f52872a35037efde8[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Tue May 2 18:18:04 2023 +0900
+
+    header updated
+
+[33mcommit b8073dde4aaa716d50f0b90e83c269672d16bb03[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Tue May 2 18:16:39 2023 +0900
+
+    header updated
+
+[33mcommit 4271110acf36c9a383132eba4bfca18e00990dd1[m
+Merge: a364cac 145a569
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 18:15:08 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit a364cac92769ba7e55a9f3a385539ef82aeb3296[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 18:14:49 2023 +0900
+
+    consultList, consultReplyRegister.jsp, consultView.jsp,index.jsp modi
+
+[33mcommit 145a5693662e2c46d9a99b9cea01f7efecfc1040[m
+Merge: 3a68600 d738d86
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 17:41:55 2023 +0900
+
+    Merge pull request #85 from HSungJun/master
+    
+    fullreview crud
+
+[33mcommit d738d866467cce5be139afb3ebcb8da41aa995ca[m
+Merge: 2a87863 3a68600
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue May 2 17:39:18 2023 +0900
+
+    full review crud
+
+[33mcommit cb70c2d7406b7477f5fc2c2f9470dbc9057e02e2[m
+Merge: 61f17cb 3a68600
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 17:35:42 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 2a8786372edb29cfd8ecbf0e85ba72d86e6958b2[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue May 2 17:35:11 2023 +0900
+
+    fullreview crud
+
+[33mcommit 3a68600776b8d084e7e29b65d6e56a0f1d7bf53f[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 16:21:33 2023 +0900
+
+    Photo SysName to OreName modify
+
+[33mcommit ec1b203d34bf1f0c75d924c2e2149c759f856528[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 16:08:59 2023 +0900
+
+    Update StoreController.java
+
+[33mcommit da24a1d1f7e1ce5e195d2f44f196e40875bd24c5[m
+Merge: 1b2dfec 8aa3d48
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 15:58:35 2023 +0900
+
+    Merge pull request #84 from gunheelee22/master
+    
+    login backend update
+
+[33mcommit 8aa3d4846a2575ab0ecee3ac784dfd4a4286cd3f[m
+Merge: 6fb100a 1b2dfec
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue May 2 15:53:47 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 6fb100abdf52488d523ba9e28510b8d6c6a28bc8[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue May 2 15:53:39 2023 +0900
+
+    loginback add
+
+[33mcommit 1b2dfec19acecf8e2b98bb277ad7a685e42ab4f5[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 15:51:31 2023 +0900
+
+    store view, delete func added
+
+[33mcommit de5f896382f4c5c03ceea72cd14f7e438dc1246c[m
+Merge: ed6dec6 d9b68c1
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 15:38:33 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit d9b68c106112adffb0d2c1dd1d2b4d817f0695e6[m
+Merge: 8c880fc 8808da1
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 15:38:26 2023 +0900
+
+    Merge pull request #83 from sungha00/master
+    
+    login, memberout updated
+
+[33mcommit 8c880fc2c1997a99dc39793aaeb9565c744b3d82[m
+Merge: 43cc963 b2a2840
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 15:37:55 2023 +0900
+
+    Merge pull request #82 from jiseyeong/master
+    
+    consultReguster.jsp, view.jsp, index.jsp, consultRegister.jsp 수정했습니다.
+
+[33mcommit 8808da17b4c8079d56f35790ad0a2aa134b993c7[m
+Merge: eaa5918 43cc963
+Author: KSH <129382707+sungha00@users.noreply.github.com>
+Date:   Tue May 2 15:37:33 2023 +0900
+
+    Merge branch 'LJHHKF:master' into master
+
+[33mcommit eaa5918c3d45697cde22941e5f56ea4b0bed60ca[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Tue May 2 15:36:52 2023 +0900
+
+    login, memberout updated
+
+[33mcommit 43cc963b7f8f454fd08144376941b45dbcdf6a03[m
+Merge: b0d7118 ff98e75
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 15:36:43 2023 +0900
+
+    Merge pull request #81 from gunheelee22/master
+    
+    login update
+
+[33mcommit ed6dec6fbb1753117073ca8ba3903879e6f0f9aa[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 15:33:44 2023 +0900
+
+    error resolved view.jsp
+
+[33mcommit 344a74911500d4d293106e4af8d38892a96bd6d6[m
+Merge: b2a2840 b0d7118
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 15:33:25 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit b2a2840b53534d5d01698c762ac3d43bd49772f7[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 15:33:05 2023 +0900
+
+    consultReguster.jsp ,view.jsp modi
+
+[33mcommit e45971d5b2744f9488d917d861ba9fa976fc4ca4[m
+Merge: ff98e75 b0d7118
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue May 2 15:14:57 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit b0d7118da163847796d27077ef2e0951ab9fcac2[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 15:04:02 2023 +0900
+
+    store search typo resolved
+    
+    .show_filterForm_layout, 'diplay'->'display'
+
+[33mcommit 82be464a80f3b479b19fd611630b6d3b1dc96f29[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 15:01:34 2023 +0900
+
+    rename func
+
+[33mcommit 6828c77375890c41969e271c85b69422e19f0523[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 14:54:26 2023 +0900
+
+    search photo func added
+
+[33mcommit ff98e7578a288d15f6d2a89af7e821c472738058[m
+Merge: d5f8793 c170035
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue May 2 14:53:53 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit d5f8793577c8b7db5cf5df5a4392afde243e4a46[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue May 2 14:53:41 2023 +0900
+
+    login updated
+
+[33mcommit 61f17cbe5a767622938e20b722b0edc297c50aba[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 14:31:18 2023 +0900
+
+    complete mypage_writeList
+
+[33mcommit c170035542d7aff55719a2f612236c428d5491c1[m
+Merge: 6dbc10e 2a6dd11
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 14:19:28 2023 +0900
+
+    Merge pull request #80 from sungha00/master
+    
+    joinform updated
+
+[33mcommit 2a6dd117e22df05ebe01fa707165512fb5ffe07b[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Tue May 2 14:18:42 2023 +0900
+
+    joinform updated
+
+[33mcommit d991ad33d0d03b975ce5efa70bcb94b94524ced3[m
+Merge: d0021e5 6dbc10e
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 14:16:35 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 6dbc10e53be4c6a3ffe339d4f401c20233b011d1[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 12:39:20 2023 +0900
+
+    Store Delete back func added
+
+[33mcommit 9a551042f3d5cbcf8fea64d51e745b26ef70ec51[m
+Merge: 5c40849 9efae91
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 12:33:47 2023 +0900
+
+    Merge pull request #79 from sungha00/master
+    
+    joinform updated
+
+[33mcommit 9efae916661bfa3262a06da12b39b4b4dba28081[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Tue May 2 12:32:28 2023 +0900
+
+    joinform updated
+
+[33mcommit 5c408492b00da34a1d6549adac37e047997a5f8b[m
+Merge: fe788c1 bfa8be3
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 12:19:42 2023 +0900
+
+    Merge pull request #78 from Heeeesam/master
+    
+    fix
+
+[33mcommit bfa8be3858388c21f5b375058469beddc70a69af[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 12:18:47 2023 +0900
+
+    fix
+
+[33mcommit d0021e5a81144892b58966f3118e1a6538eb3f59[m
+Merge: 090c9a0 fe788c1
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 12:15:11 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 980234b2244c850f45bfc6d6b2271268c96e0846[m
+Merge: 5117228 fe788c1
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 12:14:12 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 5117228e24911cea74255965203e16c1d0995cd6[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 12:14:07 2023 +0900
+
+    sdfsdf
+
+[33mcommit fe788c15270e0098fe4e856bc35a19ca95ee3ea3[m
+Merge: 20ab2ce bd68674
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 12:11:40 2023 +0900
+
+    Merge pull request #77 from HSungJun/master
+    
+    fullreview ver6
+
+[33mcommit 20ab2ce2cfee44ddbfba9ac7575019bc926bf4b1[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 12:10:52 2023 +0900
+
+    view.jsp photo func update end
+
+[33mcommit bd68674586f08242877fc06a79f0c35f16354600[m
+Merge: 9699b32 23c473e
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue May 2 12:09:32 2023 +0900
+
+    ver6
+
+[33mcommit 090c9a0a20b83e8cb27dedf69f8deb3072c6010f[m
+Merge: 8c8da39 23c473e
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 12:07:41 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 8c8da395a71efc98f5ce043e1b92990e4ea73cea[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 12:07:21 2023 +0900
+
+    modi
+
+[33mcommit 23c473e413ca1e84ebd7cce92cea0d29b2e6b1b8[m
+Merge: 93cdbfb 99c16db
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 12:06:26 2023 +0900
+
+    Merge pull request #76 from Heeeesam/master
+    
+    fix reviewlist
+
+[33mcommit 99c16db00a256caaaa10af1bbdd4c27e9aacd038[m
+Merge: 72975f3 93cdbfb
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 12:05:35 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 9699b32b5aac38515791f7a08721f266419cdf71[m
+Merge: 6dd82b4 93cdbfb
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue May 2 12:05:30 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 72975f339f99e1b0dbd0fd76d57a4acfdc61de1f[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 12:05:30 2023 +0900
+
+    fix reviewLIst
+
+[33mcommit 93cdbfbb241d245cf3e2cb2d0bf918a5865c4019[m
+Merge: 2a453d7 34e51c8
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 12:04:49 2023 +0900
+
+    Merge pull request #75 from Heeeesam/master
+    
+    fix searchFilter
+
+[33mcommit 2a453d750d13360533e63b921ffcae109f1c12f1[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 12:04:11 2023 +0900
+
+    05_02_review Photo Test end
+
+[33mcommit 6dd82b4d14c402f198358c986209e60371b1ccdd[m
+Merge: d1421c2 aa4b327
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue May 2 12:03:28 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit d1421c2b6e4adb7fd1301b7539183dd867fd8ce6[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue May 2 12:03:18 2023 +0900
+
+    ver6
+
+[33mcommit 34e51c8ab830e665187773c887339e491d241363[m
+Merge: 541fef6 aa4b327
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 11:56:07 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 541fef61dc0290b6e10cf20f62759f3bf1e188b4[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 11:56:01 2023 +0900
+
+    fix searchfilter
+
+[33mcommit 620f1655e4548b0d1243cf13496e03801e803264[m
+Merge: f618306 aa4b327
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 11:30:28 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit aa4b32750e71b5a5ff6077b738e25264211fd2ca[m
+Merge: f4e6f7b 9abfdb6
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 11:24:37 2023 +0900
+
+    Merge pull request #74 from jiseyeong/master
+    
+    FAQRegister.jsp consultRegister.jsp registerForm.jsp 수정했습니다~~
+
+[33mcommit f618306fc8d9696b8443664d1c3eab89da879795[m
+Merge: 9abfdb6 f4e6f7b
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 11:20:41 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 9abfdb616c9388dff3afb2d7d4588964d03e07b7[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 11:19:17 2023 +0900
+
+    FAQRegister.jsp consultRegister.jsp registerForm.jsp modi
+
+[33mcommit f4e6f7b9b447809e75b1354e5adae1d2d0f1727b[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 11:00:04 2023 +0900
+
+    Comment Review delete func added
+
+[33mcommit 56f75670e113d5d9642655099ab1a49c7abd1ac0[m
+Merge: 9d6a49a 4160236
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue May 2 10:44:20 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 9d6a49a89df8ede8c6b8516ae52f338db5e674c1[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue May 2 10:44:11 2023 +0900
+
+    fullreview ver 5
+
+[33mcommit 8af2a891553d12bc18026f5c53a6986e176a2f18[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 10:40:12 2023 +0900
+
+    complete mypage favoritelist
+
+[33mcommit 585e14188a852b53cf33218b217dcd6902cdb057[m
+Merge: d4ecd16 4160236
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 09:18:07 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 41602360c83c628d0597b8ea0ae16b412ae679e3[m
+Merge: 99219ba beeef89
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 09:17:54 2023 +0900
+
+    Merge pull request #72 from Heeeesam/master
+    
+    add mypage favorite list
+
+[33mcommit d4ecd16b638ec39226ce45e7dbbcd4c2bbfbbba1[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue May 2 09:17:31 2023 +0900
+
+    05_02_Store View update middlesave
+
+[33mcommit beeef891a54fca01571d40b3be1adeaa1dfcb755[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue May 2 09:15:52 2023 +0900
+
+    add mypage list
+
+[33mcommit 9cfb460da55d0c4a972b3c6d58b3ad4f6b3f9cba[m
+Merge: 3d3201f 99219ba
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 08:57:54 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 3d3201fbd0ed84a49adc17066a27a2a7d8f09202[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue May 2 08:57:33 2023 +0900
+
+    cponsultRegister.jsp modi
+
+[33mcommit 51f7207f57daa5ec1d78d74f38401e99a381f27a[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 22:48:22 2023 +0900
+
+    editing mypage
+
+[33mcommit 99219bad5e5d805edcc4314f92a95db62dfd3e3d[m
+Merge: bf9db42 b4b3d3e
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 20:28:14 2023 +0900
+
+    Merge pull request #71 from sungha00/master
+    
+    admin page updated, html->jsp changed
+
+[33mcommit b4b3d3e8b5439b780c24b1136346d2cfa8c2b6c7[m
+Merge: c036a46 bf9db42
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 20:28:03 2023 +0900
+
+    Merge branch 'master' into master
+
+[33mcommit bf9db422e94a2cbebb30ec982cdfda02bcadb0e0[m
+Merge: cb8f41e 7d4e94e
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 20:02:27 2023 +0900
+
+    Merge pull request #70 from jiseyeong/master
+    
+    문의 작성, FAQ등록, 문의 내역 ui 적용 / 헤더 수정 / index 수정 했습니다
+
+[33mcommit cb8f41ef5a1d4222fb547e648cae7c543fb92b55[m
+Merge: 7bbf3ec 43ec27e
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 20:01:59 2023 +0900
+
+    Merge pull request #69 from Heeeesam/master
+    
+    fix login
+
+[33mcommit c036a46dc14cc499ebb5866b25ac441fa1d71638[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Mon May 1 19:21:35 2023 +0900
+
+     login, memberSearch updated
+
+[33mcommit c9322bc52abb2d0ff66144e603b19eb28a898542[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Mon May 1 18:24:18 2023 +0900
+
+    admin page updated
+
+[33mcommit baf8a008c2ea1e8101dfeaf92599ec1b891fa0de[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Mon May 1 18:23:28 2023 +0900
+
+    admin page updated
+
+[33mcommit 7d4e94ee06b26cb016db796fc98d4d987ac5e547[m
+Merge: a6a94bf 7bbf3ec
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 18:20:40 2023 +0900
+
+    modi
+
+[33mcommit 43ec27e46643e0988ee7634081152dfa2a740d9f[m
+Merge: deec4a0 7bbf3ec
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 18:09:08 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit deec4a030c0b964b35d5090f50052aa30bc82675[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 18:09:01 2023 +0900
+
+    fix login
+
+[33mcommit a6a94bf938e5236e774be01e699405e656a07dac[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 18:00:05 2023 +0900
+
+    FAQRegister.jsp,consultList.jsp,consultRegister.jsp index.jsp modi
+
+[33mcommit 7bbf3ec06b48f45a40328e47c6bb2c3b2c73ba4f[m
+Merge: a5c5b26 6fc910b
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 17:57:04 2023 +0900
+
+    Merge pull request #68 from HSungJun/master
+    
+    fullreview ver4
+
+[33mcommit a5c5b26b8e831c4785135879865ee7955309e454[m
+Merge: 5f4f68e 4b577ab
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 17:56:44 2023 +0900
+
+    Merge pull request #67 from sungha00/master
+    
+    admin page updated
+
+[33mcommit 5f4f68e2e512725937f1b0ba49c1ae783c44b351[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 17:55:13 2023 +0900
+
+    23.05.01complete store/view.jsp
+
+[33mcommit 6fc910bbf2aac674d68c6f2a9d6599b5782e992f[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon May 1 17:52:40 2023 +0900
+
+    ver5
+
+[33mcommit 4b577aba62191c151aa48f64ead7d03c95f47020[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Mon May 1 17:47:05 2023 +0900
+
+    admin page updated
+
+[33mcommit 0bbbca2441ad6e24a2abc04e51866163855f0be0[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon May 1 17:33:14 2023 +0900
+
+    ver4
+
+[33mcommit 289e400bfdb9de906a31f385323d7b3642ccc05b[m
+Merge: 77d7507 9d43b1b
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon May 1 17:31:37 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 77d75071dfb467ff2fef1199ee407afe4aba2338[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon May 1 17:31:31 2023 +0900
+
+    ver4
+
+[33mcommit fdcb57b90db2f9c88fe488d4fa86187064a01665[m
+Merge: 8dc3d31 9d43b1b
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 17:25:13 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 9d43b1bee1b80791376088aa2b112810fff3fa62[m
+Merge: 74060fe 8c4bc2c
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 17:25:02 2023 +0900
+
+    Merge pull request #66 from Heeeesam/master
+    
+    lsw 5.1 #2
+
+[33mcommit 8dc3d31ee1c3c819766494174f5061efc63bfc31[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 17:24:46 2023 +0900
+
+    05_01_middlesave
+
+[33mcommit 8c4bc2ca49906e47da40e999b568fc67c337f037[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 17:22:02 2023 +0900
+
+    lsw add fullreview cpage
+
+[33mcommit 600242026778518e42bc8809e0995263698787d8[m
+Merge: 7f21ccb 74060fe
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 16:43:31 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 7f21ccbebb2458da2c290ac5bb18d2d034062a56[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 16:43:26 2023 +0900
+
+    conflict
+
+[33mcommit 74060fe982a04cbea61daccc3e23e6cf62ed3c43[m
+Merge: a2136e2 ad439d6
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 16:38:39 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit a2136e213e76cbc20e143cc3e7297eddd8e30993[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 16:38:33 2023 +0900
+
+    store score & review count added
+
+[33mcommit ad439d6834ee0122344c714a09ca2d4aaef02da9[m
+Merge: 46f230b 9a40c09
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 16:38:06 2023 +0900
+
+    Merge pull request #65 from HSungJun/master
+    
+    fullreview ver3.1
+
+[33mcommit 9a40c09f6d9d95d3e75fbc8f322b067a568be5c2[m
+Merge: f49ed82 46f230b
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon May 1 16:30:33 2023 +0900
+
+    fullreview ver3.1
+
+[33mcommit f49ed82fa3e4ebb7cab27c61e1f2f7713a1cccda[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon May 1 16:28:23 2023 +0900
+
+    fullreview ver3
+
+[33mcommit 50c439a96d615e2a1fb4494f8bfcc24ce3b9accd[m
+Merge: 194b0d1 46f230b
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 16:18:35 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 194b0d1ad68b8f471a6ed676f309f11a629c8725[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 16:18:16 2023 +0900
+
+    consultList, header modi
+
+[33mcommit 46f230bacb2cbe916b9e71bcd2ba780f053020ab[m
+Merge: e86c5c5 c110c85
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 16:17:11 2023 +0900
+
+    Merge pull request #64 from Heeeesam/master
+    
+    add select fullreview
+
+[33mcommit e86c5c51aff9266f36974a2041df0ce063cbf8d0[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 16:16:40 2023 +0900
+
+    Update view.jsp
+
+[33mcommit c110c85872181c6a2293d0a0d85fcfe9c98fd27e[m
+Merge: e8084b9 b8f7d87
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 16:13:06 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit e8084b97ab11aedff49e041c3d5ec0138b1c8d40[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 16:13:01 2023 +0900
+
+    add select fullreview
+
+[33mcommit b8f7d873bd4df58779646b47177dfd334540d245[m
+Merge: d5cd893 11edea7
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 15:36:43 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit d5cd89331b8658870551a0a95aa36167e6747feb[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 15:36:41 2023 +0900
+
+    login error resolved
+
+[33mcommit 11edea7df25c8632983d0d944bdf547900bf79ae[m
+Merge: bed7584 a64aaad
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 15:17:28 2023 +0900
+
+    Merge pull request #63 from jiseyeong/master
+    
+    문의 작성페이지 디자인 했습니다
+
+[33mcommit a64aaad56a4bbb8ca2d248fcac2fdd5354185f59[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 14:55:20 2023 +0900
+
+    consultRegister modi
+
+[33mcommit cb3c3689eb3cd23ee5a255f0b6b2246d19201b69[m
+Merge: fd66fff bed7584
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 14:47:31 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit bed7584f97c1ef26a0871c196003e478a08a57a6[m
+Merge: 3f5927d 36d601a
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 14:44:45 2023 +0900
+
+    Merge pull request #62 from Heeeesam/master
+    
+    rename fullReviewController
+
+[33mcommit 36d601a9b837d0a94e4d7ed18bc5ed996cb1c470[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 14:43:27 2023 +0900
+
+    rename fullReviewController
+
+[33mcommit fd66fffd0dc048e6bf2b54003d355394054bb381[m
+Merge: 8f2c989 3f5927d
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 14:43:01 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 8f2c989474ac5f8af2199616ed17e33b6ee4a177[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 14:42:42 2023 +0900
+
+    consultRegister.jsp modi
+
+[33mcommit 3f5927d7e42e83123ba2aeb6cb406f9368c3c39b[m
+Merge: 5a8d32b bac6c33
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 14:40:39 2023 +0900
+
+    Merge pull request #61 from Heeeesam/master
+    
+    request
+
+[33mcommit bac6c33f873d7dadbd2e89901aeaac2600bd5fab[m
+Merge: 89d7645 5a8d32b
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 14:38:43 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 89d764521a7c59e390abba350538dec1759a0ec5[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 14:38:36 2023 +0900
+
+    sujung
+
+[33mcommit 5a8d32bab0fc7f8366cd6375526809adffb9e459[m
+Merge: 77d3e81 8e973c4
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 14:09:25 2023 +0900
+
+    Merge pull request #60 from Heeeesam/master
+    
+    풀리퀘
+
+[33mcommit 8e973c4f6488299a9256e653741fec75ed044777[m
+Merge: 8bd614e 77d3e81
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 14:07:12 2023 +0900
+
+    complete login
+
+[33mcommit 8bd614edb9a93de61fa251504c7d4bc9a6137488[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon May 1 14:05:43 2023 +0900
+
+    lsw login complete
+
+[33mcommit 433850175cfebbafb179cde7219164eb784f7635[m
+Merge: f5a0318 77d3e81
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 12:33:38 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit f5a03189b5b672fa6d3a895ba24b66275706358e[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 12:33:21 2023 +0900
+
+    consultRegister.jsp modi
+
+[33mcommit 77d3e8126d74c1a029cce9f848ee99b61f3abaf7[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 12:29:54 2023 +0900
+
+    Update view.jsp
+
+[33mcommit 1d0f58c75eb55ad7d1ac5f1bdabd36cad12e2ccc[m
+Merge: c415435 24ed1b2
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 12:24:51 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 24ed1b2109ffac21274e922ccadb804b078c0225[m
+Merge: 20b0bab 0d61c9c
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 12:24:27 2023 +0900
+
+    Merge pull request #59 from HSungJun/master
+    
+    FullReview ver2
+
+[33mcommit 20b0babd67e0a61d0c5fb563ab16d9209809e7d1[m
+Merge: 2910aa7 13a7637
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 12:23:57 2023 +0900
+
+    Merge pull request #58 from gunheelee22/master
+    
+    login updated
+
+[33mcommit 2910aa7eec9889cba38f7ee1f3fdc71f8ba55d70[m
+Merge: 7c4a790 b4a5315
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 12:23:34 2023 +0900
+
+    Merge pull request #57 from jiseyeong/master
+    
+    인덱스 수정, 마이페이지 수정, 페이지마다 스타일 수정 했습니다!
+
+[33mcommit c415435b57ed56d0b8944d15a00d5d241fb06c68[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 12:23:14 2023 +0900
+
+    Comment Review image func and update func added
+
+[33mcommit 0d61c9c5b3922bb18b8a67af284b2caa545c9622[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon May 1 12:21:31 2023 +0900
+
+    FullReview ver2
+
+[33mcommit 13a76371d3e89503666aaea11847f34e34257d58[m
+Merge: 6cc4f61 7c4a790
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Mon May 1 11:50:53 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 6cc4f617d462d6f65f45ca4549e2b51cf2e4819d[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Mon May 1 11:50:44 2023 +0900
+
+    login updated
+
+[33mcommit b4a53157951df4f3f13a88fd6af599d5c8f36626[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 11:39:35 2023 +0900
+
+    page modi,index modi
+
+[33mcommit 203aee2740da3006563d298f1d1fc15d2291a80c[m
+Merge: d3dae78 7c4a790
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 10:52:36 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit d3dae7827f55e5f8c7c96286384480668969e221[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 10:52:16 2023 +0900
+
+    mypage.jsp modi
+
+[33mcommit 7c4a7901a789ab845ee2283b834a998a835dad71[m
+Merge: ea19609 de4b36a
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 10:08:37 2023 +0900
+
+    Merge pull request #56 from HSungJun/master
+    
+    FullReview 관련ver1
+
+[33mcommit de4b36a9ee138ecc203193554db8cf361bc2d590[m
+Merge: f67d8c9 ea19609
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon May 1 10:05:21 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit f67d8c95b4922019749cc62cc474377b1e6ed0c4[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon May 1 10:05:12 2023 +0900
+
+    FullReview
+
+[33mcommit ea1960980bd8cc67a44d42b1d8f00b3b4b816a0b[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 09:20:02 2023 +0900
+
+    Consult Reply column added
+
+[33mcommit ffa6a0b32f9e5920a3605f1377df333952bad323[m
+Merge: 3a5ddcc 94e7ce5
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 09:13:03 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 3a5ddcc38c7dfbe7658e38f84abda6ffe138746b[m
+Merge: 37e043e c840c0d
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon May 1 09:11:51 2023 +0900
+
+    merged
+
+[33mcommit 94e7ce58ee45faf81a90936f151488e1e1378324[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 08:25:59 2023 +0900
+
+    Delete git
+
+[33mcommit 91d88b29c616f1764ec6b4567ba9298b196ea13c[m
+Merge: 5603e3f 8737675
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 08:21:39 2023 +0900
+
+    Merge pull request #55 from Heeeesam/master
+    
+    add login, logout, else
+
+[33mcommit 5603e3f2041ea5490ea923c1a57f6e8460639adc[m
+Merge: c840c0d 6dd4625
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon May 1 08:19:06 2023 +0900
+
+    Merge pull request #54 from HSungJun/master
+    
+    FullReview 관련
+
+[33mcommit 8737675315fc07b8c57b58ef0fc502d75b477721[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun Apr 30 22:50:10 2023 +0900
+
+    add login, logout, else
+
+[33mcommit 6dd46257090cefe5d3c73e848eeae3f78ae508e8[m
+Merge: 132f0a5 c840c0d
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Sun Apr 30 22:37:54 2023 +0900
+
+    match
+
+[33mcommit 132f0a56bd98781ecfa153a4363e8f5676a6e453[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Sun Apr 30 22:35:10 2023 +0900
+
+    FullReview
+
+[33mcommit 37e043ee0fda7697aac11933e2189e4ee1d7d625[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun Apr 30 17:16:54 2023 +0900
+
+    mypage modi
+
+[33mcommit c840c0d04b15c82d76d2d45d5e1a06272496c9a7[m
+Merge: e9fac2a ef4a5d4
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 30 17:16:32 2023 +0900
+
+    Merge pull request #53 from Heeeesam/master
+    
+    rollback
+
+[33mcommit ef4a5d49f2950c0dfe6ccf603d1a96c7eceed137[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun Apr 30 17:14:27 2023 +0900
+
+    modified membercontroller
+
+[33mcommit 534b3d53039426fa9a803c389e6272da61d268cf[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun Apr 30 17:11:42 2023 +0900
+
+    rollback modified
+
+[33mcommit e9fac2acd86b1a9e9b733ec01869c77ab35836e4[m
+Merge: 399249e 71806e2
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 30 16:24:42 2023 +0900
+
+    Merge pull request #52 from Heeeesam/master
+    
+    lsw 4.30
+
+[33mcommit 399249eaa46ce5e9a0141cd7c79212da4104bb09[m
+Merge: c4fa535 9c6df10
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 30 16:23:21 2023 +0900
+
+    Merge pull request #51 from jiseyeong/master
+    
+    회원탈퇴 구현,헤더에 select태그 추가
+
+[33mcommit 71806e242f6e0136f6fbf5676c9372331a233701[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun Apr 30 16:20:51 2023 +0900
+
+    lsw 4.30
+
+[33mcommit 9c6df10e834ea1c023c55d3b7ca01a6c231cc155[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun Apr 30 16:18:03 2023 +0900
+
+    test modi
+
+[33mcommit 43442b339059203012f077f3f528d21a6d40fa14[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun Apr 30 16:15:37 2023 +0900
+
+    main modi
+
+[33mcommit 0058820f3c692b514545ec4e30fc92179778096f[m
+Merge: f9e0a75 c4fa535
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun Apr 30 15:59:41 2023 +0900
+
+    mypage modi
+
+[33mcommit f9e0a756afd99f4e1b8fc34f41b108990f861740[m
+Merge: 8299c64 956b286
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun Apr 30 13:54:51 2023 +0900
+
+    mypage modi
+
+[33mcommit c4fa5354a88bd6bc574ab073ad950009c854b9fa[m
+Merge: 3806e20 3e77e4d
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 30 12:12:31 2023 +0900
+
+    Merge pull request #50 from Heeeesam/master
+    
+    lsw modify id duplication check add emailVerified
+
+[33mcommit 3e77e4d5efe192c574458165ef2e22da7cdec0aa[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun Apr 30 03:51:57 2023 +0900
+
+    lsw modify id duplication check add emailVerified
+
+[33mcommit 3806e20e65bff9810391fa9726564a19f498a937[m
+Merge: 8009e07 4dfd388
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat Apr 29 13:23:33 2023 +0900
+
+    Merge pull request #49 from Heeeesam/master
+    
+    lsw searchStore, allstoreinquiry almost complete
+
+[33mcommit 4dfd3887a626736081296303bbea8a2290d77c1b[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat Apr 29 06:41:32 2023 +0900
+
+    complete searchStore
+
+[33mcommit 93d077468fd909f208fc512ab4fe8a7a70207bbc[m
+Merge: 9f6d4b4 8009e07
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri Apr 28 21:27:17 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 9f6d4b4e613786428ebb203fe7f82f739aa7234d[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri Apr 28 21:27:11 2023 +0900
+
+    lsw 4.28 commit
+
+[33mcommit 8009e07a7bad6c546cabeeb1efb36ec639c23aa8[m
+Merge: 17bb94c 495642d
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 18:48:47 2023 +0900
+
+    Merge pull request #48 from sungha00/master
+    
+    memberSearch updated
+
+[33mcommit 17bb94c7fea928b13cbd301bdfcecca65afa9446[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 18:47:19 2023 +0900
+
+    Update view.jsp
+
+[33mcommit 495642d3e1b96543cfd3f4b3720162433b743c66[m
+Author: Sungha Kim <sungha0067@gmail.com>
+Date:   Fri Apr 28 17:34:42 2023 +0900
+
+    memberSearch updated
+
+[33mcommit 49cbc7325f6cf449e8b7081812758a5355f90085[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 15:11:18 2023 +0900
+
+    store update XSS check update
+
+[33mcommit 721cf997a709c2426f70230c905de649cdb21d8e[m
+Merge: 65219e5 cc74c6f
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri Apr 28 15:03:32 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit cc74c6f6212fc1b1dca770bb9fc22c083089f839[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 14:49:34 2023 +0900
+
+    Update FAQView.jsp
+
+[33mcommit 2a6b6ed70489efa53284dea9d1852b26d2b510c6[m
+Merge: a510bfa 3bc2b75
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 14:36:03 2023 +0900
+
+    Merge pull request #46 from sungha00/master
+    
+    updated
+
+[33mcommit a510bfaaec6a5b4d446d5e5c8515e1deab732b1a[m
+Merge: 1be2334 956b286
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 14:33:22 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 1be2334fb1442222bcbb1a4603d4b16e9e386a27[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 14:33:19 2023 +0900
+
+    Store update func add and photoDAO for delete add
+
+[33mcommit 8299c643d50168d98afee259b360932d88f79d9c[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Fri Apr 28 14:27:28 2023 +0900
+
+    memberout.jsp added
+
+[33mcommit 3bc2b75e9d6b5dbab69e618cf5c166b063956e13[m
+Author: Sungha Kim <sungha0067@gmail.com>
+Date:   Fri Apr 28 12:07:52 2023 +0900
+
+    updated
+
+[33mcommit 65219e5810ee89bc88b67eb03bdb06f3bb65ba5d[m
+Merge: 92d3da9 956b286
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri Apr 28 11:55:35 2023 +0900
+
+    resolved conflict(blog)
+
+[33mcommit 956b286050d55b2e0c7c60a7f930d553347bce39[m
+Merge: a703fb4 e5d5cc7
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 11:52:05 2023 +0900
+
+    Merge pull request #45 from HSungJun/master
+    
+    update mypage
+
+[33mcommit e5d5cc74ab625798c31ea59d8f3c2a19c2d70017[m
+Merge: b243b23 a703fb4
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Fri Apr 28 11:50:07 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit b243b23169b96055d1d9bba7887bfc1f98c15788[m
+Merge: 5679a00 808f143
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Fri Apr 28 11:49:51 2023 +0900
+
+    update
+
+[33mcommit 92d3da9922b263f5bbdc9c5c80d77638ee8b7472[m
+Merge: 8cea5ab a703fb4
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri Apr 28 11:47:03 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 8cea5ab8ce1183d097e73c0e37997a65d6ea68c3[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri Apr 28 11:46:59 2023 +0900
+
+    separate blog and storeSearchResult
+
+[33mcommit 6778e23618f151bf1bd4a93a0e5599ad909f8a1e[m
+Merge: bb0ea51 a703fb4
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Fri Apr 28 11:36:41 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit bb0ea51e3b15845a427f6c7b0f2053fdc8d3d472[m
+Merge: 014255c cd3a4d1
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Fri Apr 28 11:36:18 2023 +0900
+
+    header modi
+
+[33mcommit a703fb4309da83d0fa409edb1e6e9aafafb25347[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 11:30:16 2023 +0900
+
+    Store PriceRange register update
+
+[33mcommit 5679a008976bff12e7d8c95df299f78709a46889[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Fri Apr 28 11:21:06 2023 +0900
+
+    mypage update
+
+[33mcommit 808f143cab52575eda87a8483ef3645c8fda58d1[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 11:05:43 2023 +0900
+
+    Update registerForm.jsp
+
+[33mcommit 014255c1c91e15dd7634ba667ae3cc075d6c2f56[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Fri Apr 28 10:42:27 2023 +0900
+
+    header.jsp modi
+
+[33mcommit cd3a4d11d313cad3ed58028f8eec26bfb10aea59[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 10:37:09 2023 +0900
+
+    test.jsp recover
+
+[33mcommit 25531aa45a4900b70bab0423d9b3e3137e6b2da6[m
+Merge: 3a53ba9 3aa0bb5
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 10:35:40 2023 +0900
+
+    Merge pull request #42 from Heeeesam/master
+    
+    4.28 Main_searchResult => Store  검색 구현 완료
+
+[33mcommit 3a53ba96bd5c5e423f25a03ec99c87177806f5a2[m
+Merge: 03cd41b 7c325b7
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 10:33:56 2023 +0900
+
+    Merge pull request #43 from HSungJun/master
+    
+    joinform update
+
+[33mcommit 03cd41b00fc64bb79036e824d37cd6f299680234[m
+Merge: d9eac76 7a2d2e0
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 10:27:06 2023 +0900
+
+    Merge pull request #41 from sungha00/master
+    
+    loginbox updated
+
+[33mcommit d9eac7658588717a61e35e0386d30cea78efe964[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 28 10:19:59 2023 +0900
+
+    storeMenuUpdate End
+
+[33mcommit 7c325b721d5d4034cec7f9f29f247775265b6fd2[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Fri Apr 28 09:23:59 2023 +0900
+
+    update
+
+[33mcommit 40ed20fc570b80c436aaca5270b10be28600949d[m
+Merge: 1e58826 6c673b1
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Fri Apr 28 09:21:02 2023 +0900
+
+    match
+
+[33mcommit 1e58826bceb99be11ee10abce740af1c1cd29deb[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Fri Apr 28 09:20:05 2023 +0900
+
+    joinform
+
+[33mcommit 3aa0bb5e3ee37062ba345c08af2f774471fe8b0f[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri Apr 28 01:08:59 2023 +0900
+
+    remove test
+
+[33mcommit d3bf484b3e6519d3609d21c05329fbe3de7dc294[m
+Merge: 6ba59b8 6c673b1
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri Apr 28 01:02:40 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 6ba59b86cac878b83c0d3ba4e2d450b97ab472f3[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Fri Apr 28 01:02:33 2023 +0900
+
+    lsw add searchFunction to main_searchStore
+
+[33mcommit 7a2d2e0f9634f542fb36a49dca7c9ab722c853d3[m
+Merge: 3f2a719 6c673b1
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Thu Apr 27 18:04:16 2023 +0900
+
+    Merge branch 'master' of https://github.com/sungha00/KHSemi_KHPlate
+
+[33mcommit 3f2a719d4a5e20606d55dba57a7fca1ea927a9fc[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Thu Apr 27 18:03:35 2023 +0900
+
+    loginbox updated
+
+[33mcommit 6c673b1b938b734ad1235effcea2153e923573a2[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 17:52:40 2023 +0900
+
+    Update StoreController.java
+
+[33mcommit 4fd272ccb14ab33b85276044e6979b20531660c1[m
+Merge: 87ca877 081bfc5
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 17:51:33 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 87ca8772e5623e155f37b95f3b3f38b6da4bbc05[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 17:51:31 2023 +0900
+
+    Store menu update middle save
+
+[33mcommit 1dd286be0f4760fa9c0daefb0541140f43638b35[m
+Merge: 7076b1f 081bfc5
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu Apr 27 17:42:01 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 081bfc5769a227ae52efd72cc67a7a519457b585[m
+Merge: 95303ea 81aab9f
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 17:17:37 2023 +0900
+
+    Merge pull request #40 from jiseyeong/master
+    
+    메인페이지,헤더,사이드바 수정했습니다~
+
+[33mcommit 81aab9fa615113f01709d54962cf5f7ee5b68433[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu Apr 27 17:15:23 2023 +0900
+
+    searchlogo del
+
+[33mcommit 451e3281af752c05b579b9c770533e0c5a1be311[m
+Merge: f039837 95303ea
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu Apr 27 17:13:32 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit f039837bc2f8b852b243b5684b5fdc33635be0db[m
+Merge: 9126cbb 4f55eff
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Thu Apr 27 17:12:58 2023 +0900
+
+    main,header,sideBar modi
+
+[33mcommit 95303eab17ea8e9eddb2c8d9a860a0b5b680ce0c[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 16:52:38 2023 +0900
+
+    Delete StoreListDTO.java
+
+[33mcommit 465f1377e7e227267c5a44c6c4159a2c1e275dd4[m
+Merge: d9813ba dda45f5
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 16:51:56 2023 +0900
+
+    Merge pull request #39 from Heeeesam/master
+    
+    LSW 4.27 #2
+
+[33mcommit 7076b1fb10fd1d94b15464afa45b82142006b65d[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu Apr 27 16:48:58 2023 +0900
+
+    delete StoreListDTO
+
+[33mcommit dda45f55b16f2441625116f3c547f4a721457afa[m
+Merge: 894d163 d9813ba
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu Apr 27 16:39:09 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 894d163606e76102f81619fd9930ee4f28a78901[m
+Merge: 1d49308 dbb7fae
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu Apr 27 16:39:04 2023 +0900
+
+    conflict fixed
+
+[33mcommit d9813baacc8a59848de9da616dc37b0c3bc94bb4[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 16:36:45 2023 +0900
+
+    store view img read func added
+
+[33mcommit 1d4930833fc392196ad58eb8c1e61ed12001ceb3[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu Apr 27 16:35:42 2023 +0900
+
+    modify filteredSearchStore
+
+[33mcommit dbb7fae2e7cc5f8e7e042b3d4b2b0158574ca901[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 16:19:30 2023 +0900
+
+    PhotoDTO added and Store Photo register added
+
+[33mcommit b54d8ebf2d82c4c232965c69776cb4d9591c2177[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 16:02:20 2023 +0900
+
+    Store Menu Add and Read and delete func added
+
+[33mcommit 5576d167b4fb2ed46155961e7a6615a4af7af8e0[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 12:33:00 2023 +0900
+
+    consultView & replyRegister update to bootstrap
+
+[33mcommit 11b3ff6148e04ddd494abfa418b0874a5dac0760[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 11:46:20 2023 +0900
+
+    Update consultRegister.jsp
+
+[33mcommit d6d03af82ef85794cdc7f016005ae50d69b7a363[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 11:43:20 2023 +0900
+
+    consultList & RegisterForm update to bootstrap
+
+[33mcommit fdcdc5308e8df7b2f41ad9653109631a13844bed[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 11:18:03 2023 +0900
+
+    FAQ jsp update to bootstrap
+
+[33mcommit 6c34dad36276322ca3a3f331b93e9e59ce95b98d[m
+Merge: 8963f3e 834ece7
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu Apr 27 10:51:23 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 8963f3e193fa147b874883fee16d53795f847e0f[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu Apr 27 10:51:17 2023 +0900
+
+    add map function add Settings.class
+
+[33mcommit 834ece73b6915816cfc062a98dd80cc06d245047[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 10:47:26 2023 +0900
+
+    store/view.jsp update to bootstrap
+
+[33mcommit 9355069443ecb1bee10ab96dc69924ee92243b89[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 27 10:09:41 2023 +0900
+
+    registerForm update to bootstrap
+
+[33mcommit 2a239c49c3c096bb47cb74bc4def50a487522be8[m
+Merge: f07d212 4f55eff
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu Apr 27 01:36:21 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit f07d2121c7e565a57939321a83a5969808a16c39[m
+Merge: 880467f de2e28e
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Thu Apr 27 01:36:12 2023 +0900
+
+    lsw save
+
+[33mcommit 4f55eff61287018f776aaa1bcfb25a036d22f47f[m
+Merge: 61bc5f5 2a8f5d6
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 22:16:33 2023 +0900
+
+    Merge pull request #37 from HSungJun/master
+    
+    update main and ETC
+
+[33mcommit 2a8f5d6939f79ad91822b477101526e8c8d9f1d9[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed Apr 26 22:00:38 2023 +0900
+
+    update main and ETC
+
+[33mcommit 61bc5f5214ae3942aa640325fd35f281fbbb67a5[m
+Merge: dde0c82 7709d98
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 21:17:12 2023 +0900
+
+    Merge pull request #36 from sungha00/master
+    
+    joinform updated
+
+[33mcommit 7709d98dc15c718cec0a767ccc385ef7d625d82f[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed Apr 26 20:59:27 2023 +0900
+
+    joinform, loginform updated
+
+[33mcommit b468536825827744a7af609ba9e2c8fff21ee695[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed Apr 26 18:09:21 2023 +0900
+
+    joinform updated_check plz
+
+[33mcommit dde0c82bba7a35ec6935d3b447f068cc3c90dff1[m
+Merge: de2e28e 7519d08
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 17:48:58 2023 +0900
+
+    Merge pull request #35 from gunheelee22/master
+    
+    login,sigin in updated & idsearch , newpassword,pwsearch added
+
+[33mcommit 9126cbb07fe5f1eb0d02223aa6251123d31870c2[m
+Merge: d7cd1b9 de2e28e
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed Apr 26 17:46:16 2023 +0900
+
+    dd
+
+[33mcommit d7cd1b94ab2f6a25f6d54074b36147e0cd6b8742[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed Apr 26 17:31:26 2023 +0900
+
+    mypage modi
+
+[33mcommit 880467f2e9ec559628074f50bff3a5585ab4d585[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed Apr 26 16:55:24 2023 +0900
+
+    commit my change
+
+[33mcommit de2e28e3235c5a4858765450a1caf1ba22370822[m
+Merge: cb1cc06 d89cb83
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 16:50:24 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit cb1cc064a6b505d6edbcb8ce24e88fbcbb12f67c[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 16:50:17 2023 +0900
+
+    Update consultView.jsp
+
+[33mcommit d89cb83f401453784c0a5a4820755557bb0d050d[m
+Merge: 6493a5e 727ce70
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 16:48:25 2023 +0900
+
+    Merge pull request #34 from sungha00/master
+    
+    main page updated
+
+[33mcommit 727ce70332f6a74137fad196b09240c5a53aaa28[m
+Merge: 0afbf16 6493a5e
+Author: KSH <129382707+sungha00@users.noreply.github.com>
+Date:   Wed Apr 26 16:47:02 2023 +0900
+
+    Merge branch 'LJHHKF:master' into master
+
+[33mcommit 0afbf16d77e617bbe09a97fd77f07bb6dd74c47b[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed Apr 26 16:46:30 2023 +0900
+
+    main page updated
+
+[33mcommit 6493a5ee0b018d137827a624247c9e4955853521[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 16:23:13 2023 +0900
+
+    consultList rename(오타수정)
+
+[33mcommit 1e699af3c526d2cd09e464c213d99120ec6ece74[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 16:20:25 2023 +0900
+
+    Update consultReplyRegister.jsp
+
+[33mcommit 548639b1c819d329ae9b3a58cc771694330a1a02[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 16:16:32 2023 +0900
+
+    consultReplyDAO added and consultController,etc modify
+
+[33mcommit 7519d08aa93c222812bf214f8e4a36d2295d8747[m
+Merge: da69096 f30f24c
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Wed Apr 26 15:59:21 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit da690969c8c6bf58492ae4d937d9c6e11458afc6[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Wed Apr 26 15:59:03 2023 +0900
+
+    login,sigin in updated & idsearch , newpassword,pwsearch added
+
+[33mcommit f30f24cd5f1424fff2a6a08c80aafed849da0c01[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 15:29:24 2023 +0900
+
+    SecurityUtils modify and consultView added and consult controller modify
+
+[33mcommit ff503b2731fab3d0523a383df618861dc500c5c7[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 15:03:07 2023 +0900
+
+    SecurityUtilsAdded
+
+[33mcommit de25f4c6f33651df1398d34e20b4be8411ac34dc[m
+Merge: a28c6d0 7b2bb1e
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 14:51:03 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 7b2bb1e303a06d8b1b82e89054522b53d291a587[m
+Merge: 07f498b b0aee85
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 14:50:49 2023 +0900
+
+    Merge pull request #33 from sungha00/master
+    
+    AdminPage Updated
+
+[33mcommit b0aee8547af89bf6c17d336ced41413e9da7e78e[m
+Merge: 1a2d056 4b78659
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed Apr 26 14:44:51 2023 +0900
+
+    Merge branch 'master' of https://github.com/sungha00/KHSemi_KHPlate
+
+[33mcommit 4b78659221e21b6c81c7ca40b0d78298bdc526f3[m
+Merge: 42a7b71 07f498b
+Author: KSH <129382707+sungha00@users.noreply.github.com>
+Date:   Wed Apr 26 14:44:35 2023 +0900
+
+    Merge branch 'LJHHKF:master' into master
+
+[33mcommit 1a2d05625e46762ac30e4eedeb1e786053bd21f3[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed Apr 26 14:43:39 2023 +0900
+
+    admin page updated
+
+[33mcommit a28c6d02a6c6a9d790eaea17f217ad477156b684[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 12:48:06 2023 +0900
+
+    ConsultController and DAO added and 04_26_middle save
+
+[33mcommit 7eb2413812c99e5b3dd63be83c497ab5629ce88d[m
+Merge: c8d9e51 07f498b
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 12:02:14 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit c8d9e51eaae2b947b2e421c5a2e32284d229909a[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 12:02:08 2023 +0900
+
+    consultReplyRegister.jsp added
+
+[33mcommit 07f498bcfdd98c1c7b1bb01a304dd8d86a474be9[m
+Merge: 09d012f 0cb2197
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 11:13:29 2023 +0900
+
+    Merge pull request #32 from jiseyeong/master
+    
+    마이페이지 수정, 출력 만들었습니다.
+
+[33mcommit 575c42ecd2afcc350365a81744948f3dc44332df[m
+Merge: 0cb2197 09d012f
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed Apr 26 11:08:11 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 0cb21976630295e0dd46446545c112a3e8aafa8a[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed Apr 26 11:04:50 2023 +0900
+
+    membercontroller,memberdto,mypage modi
+
+[33mcommit 42a7b71175593efe8f7cb9c751b4ef1736c75e3c[m
+Merge: 0a96c5d 09d012f
+Author: KSH <129382707+sungha00@users.noreply.github.com>
+Date:   Wed Apr 26 10:54:40 2023 +0900
+
+    Merge branch 'LJHHKF:master' into master
+
+[33mcommit 09d012fa3d787df9671eac6386723b613aff9a3a[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 26 10:48:32 2023 +0900
+
+    consultRegister.jsp imgPreview added
+
+[33mcommit 0a96c5d134fc895a950d409c2aeaeb8c6e990df0[m
+Merge: 67ab597 8b81105
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Wed Apr 26 09:11:57 2023 +0900
+
+    mainpage updated
+
+[33mcommit 32281dea9ffdf65f5ecceec0b70c16779b23ceda[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed Apr 26 09:09:34 2023 +0900
+
+    mypage,membersdao,membercontroller modi
+
+[33mcommit 20b92a64d2b67ae2b83b1c8abf9b873aba4b6130[m
+Merge: 92b9be6 8b81105
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue Apr 25 21:23:26 2023 +0900
+
+    add
+
+[33mcommit 92b9be6fa40b9d71605f10e37b17eaaa5b108cac[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Tue Apr 25 21:20:25 2023 +0900
+
+    memberdao modi
+
+[33mcommit 67ab59724dc125dc5c9926d1c880e1e2f56ee913[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Tue Apr 25 19:52:35 2023 +0900
+
+    mainpage updated
+
+[33mcommit 8b811052a743086068cfe994fdf95ff7439b731c[m
+Merge: 2cfe552 0a8b30a
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 18:18:57 2023 +0900
+
+    Merge pull request #29 from gunheelee22/master
+    
+    sign login update
+
+[33mcommit 0a8b30a507d57e13e68edf357179049c5c8482ae[m
+Merge: 0ed3d55 2cfe552
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue Apr 25 18:10:45 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 0ed3d554c2b6a7c522a27122c8c6169bbd901302[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue Apr 25 18:10:07 2023 +0900
+
+    signin ,login updated
+
+[33mcommit 2cfe552dd10daf57ed705af77ed2b67896a41689[m
+Merge: ad91bb0 8211338
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:57:16 2023 +0900
+
+    Merge pull request #28 from Heeeesam/master
+    
+    add sort_filter.html / modify index
+
+[33mcommit 82113389c8d2ba608caf2dedfdf6338d23222513[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue Apr 25 17:51:35 2023 +0900
+
+    modify index
+
+[33mcommit 6d7cd08705ff04117ebdc00b551a6785222b32c7[m
+Merge: de04337 ad91bb0
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue Apr 25 17:39:35 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit de04337e77860d5bf1b2c7c4e65631e9105c0205[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue Apr 25 17:39:30 2023 +0900
+
+    add sort_filter
+
+[33mcommit ad91bb0bd7ee75484e2447dedbce4dca0473131d[m
+Merge: 97ed8df 2c52591
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:38:39 2023 +0900
+
+    Merge pull request #26 from gunheelee22/master
+    
+    sign in updated
+
+[33mcommit 2c5259125be54f6dc3bab6abb18038b0971c5ed9[m
+Merge: 12a5f23 97ed8df
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:38:28 2023 +0900
+
+    Merge branch 'master' into master
+
+[33mcommit 97ed8df2ce9c795ec4d440885b9c5d4bedb2bb76[m
+Merge: 81ecf03 a53c5c6
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:34:18 2023 +0900
+
+    Merge pull request #25 from HSungJun/master
+    
+    main index update
+
+[33mcommit 81ecf03c386b6a3bdac8184e6103f712eb68c0c2[m
+Merge: af37ddc 8155ab5
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:33:01 2023 +0900
+
+    Merge pull request #24 from Heeeesam/master
+    
+    add search_filter 4.25
+
+[33mcommit 12a5f237ba905384a7df4faa3bdd3b867ce480f1[m
+Merge: b8443d4 af37ddc
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue Apr 25 17:31:01 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit b8443d405f2223f709cdda1950a245d37f105d09[m
+Merge: 507b9c7 6786814
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue Apr 25 17:30:17 2023 +0900
+
+    sign in updated
+
+[33mcommit a53c5c67ee723db2b966fcda6b780ab98cf327f3[m
+Merge: bd96d56 af37ddc
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue Apr 25 17:29:40 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit bd96d56fb5ad34a830e9a804e879f24bd14d52db[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Tue Apr 25 17:29:27 2023 +0900
+
+    main and index update
+
+[33mcommit 8155ab537c99bbd350a608409a99d6d3a7570007[m
+Merge: 0cf9c76 af37ddc
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue Apr 25 17:28:40 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit af37ddc176e00345579977074ffcb03504cf12b4[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:28:01 2023 +0900
+
+    adminPage conflict resolved
+
+[33mcommit 0cf9c76b76a6dc83e0be078f5e64845c9d9299d3[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue Apr 25 17:27:03 2023 +0900
+
+    lsw modify #seach
+
+[33mcommit 357e31ca42ffd00e55f1afabe2bb9147baf953f1[m
+Merge: fdbb18b 6786814
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue Apr 25 17:26:23 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 507b9c7ae49bda888826916781e451d6f08f2013[m
+Merge: b163026 d476a25
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue Apr 25 17:25:04 2023 +0900
+
+    signin updated
+
+[33mcommit 6786814d8c54caa135dca5e674865d35ea15a515[m
+Merge: 8ba58e4 0e9ce9a
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:23:27 2023 +0900
+
+    Merge pull request #23 from sungha00/master
+    
+    AdminPage Updated
+
+[33mcommit 0e9ce9a8bd354026c57b254ffe9f66bd76704263[m
+Merge: 109f8d3 8ba58e4
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Tue Apr 25 17:15:29 2023 +0900
+
+    new
+
+[33mcommit fdbb18bf2fac42c9fc19b51b2fd05a0778d70a01[m
+Merge: 745e7a5 8ba58e4
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue Apr 25 17:14:51 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 745e7a5e4acbd2b96d80c05f381167c0a6b47aed[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Tue Apr 25 17:14:45 2023 +0900
+
+    add search_filter
+
+[33mcommit 109f8d327c04ecc2f3151234718bca156878dae9[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Tue Apr 25 17:03:32 2023 +0900
+
+    AdminPage Updated
+
+[33mcommit 8ba58e4173cce3bde1cd182362e75902880376cc[m
+Merge: 8ddcb11 4201631
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:03:01 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 8ddcb11d848288c4fd72085a502ef5b385f48cac[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:02:54 2023 +0900
+
+    counsultList.jsp Added
+
+[33mcommit 42016312be734ded1fab81a3b5d68ff06b8cd169[m
+Merge: d476a25 036c0ab
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:02:32 2023 +0900
+
+    Merge pull request #22 from gunheelee22/master
+    
+    signin updated
+
+[33mcommit 036c0abccb53cd840577bd096ee23aeb98a0ca13[m
+Merge: b163026 d476a25
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 17:01:37 2023 +0900
+
+    Merge branch 'master' into master
+
+[33mcommit b163026d046c9fa646edfac14df14fe3d07b156c[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Tue Apr 25 16:55:11 2023 +0900
+
+    signin updated
+
+[33mcommit d476a259a84f6a213bfdc04509446680779af26f[m
+Merge: 3d28e26 c978631
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 16:25:53 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 3d28e26a7d03b9f8faa65b8415828939513d9c31[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 25 16:24:50 2023 +0900
+
+    counsultRegister Added
+
+[33mcommit c978631f62e62b939929ce891da8c9a46164184c[m
+Merge: 95a6056 a1cda94
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 21:20:09 2023 +0900
+
+    Merge pull request #21 from Heeeesam/master
+    
+    LSW add searchFunction remove css
+
+[33mcommit a1cda94f1a1cf6b171767b8c07f07c9d6638f7a9[m
+Merge: abe72e2 95a6056
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon Apr 24 21:08:46 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit abe72e255597e84be22e92e9ac54b73085ab3760[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon Apr 24 21:08:40 2023 +0900
+
+    lsw add search function remove css
+
+[33mcommit 95a605693e7698087c3c9f002ccc1b619e151110[m
+Merge: 7bae62b f369513
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 21:05:32 2023 +0900
+
+    Merge pull request #20 from HSungJun/master
+    
+    update  / jsp:include 적용
+
+[33mcommit f3695137ef1b8d3b13fb0c9ac49f7d53dcc244e2[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon Apr 24 21:01:02 2023 +0900
+
+    update
+
+[33mcommit 8baafad8d108f26dbd489888296443bba25f8d25[m
+Merge: eb826e2 7bae62b
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon Apr 24 18:30:06 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit eb826e24d5932cf836bb41aa9aca1252b405fc68[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Mon Apr 24 18:29:52 2023 +0900
+
+    lsw 4.24#1
+
+[33mcommit b18fe9b041cdf0cc9d93e9a0e8b6f5a100293fc9[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Mon Apr 24 18:06:38 2023 +0900
+
+    jsp include 적용
+
+[33mcommit 7bae62b6675a5d3e5ac468eab014c54c75f8fdda[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 17:45:26 2023 +0900
+
+    FAQView update to c:choose
+
+[33mcommit bfe919bfb3019b57615f26733461893c94d39cb3[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 17:26:07 2023 +0900
+
+    Update FAQView.jsp
+
+[33mcommit 20f9756af236f7887df54da13004ba34043012d7[m
+Merge: e0e3f31 0398365
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 17:15:43 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit e0e3f3145a641e91008e529ef317e6786192e7ba[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 17:15:34 2023 +0900
+
+    FAQ Register and view added
+
+[33mcommit 039836503e6893f78489054f18384fbb0f7aa231[m
+Merge: edddcb3 3884e6c
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 17:03:11 2023 +0900
+
+    Merge pull request #18 from jiseyeong/master
+    
+    MembersDTO , MembersDAO, 암호화 클래스, MemberController 추가..
+
+[33mcommit edddcb36d5320a63e8117e037c17dbec23797af5[m
+Merge: e2decb0 62fc5d0
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 17:02:08 2023 +0900
+
+    Merge pull request #17 from gunheelee22/master
+    
+    join form upadated
+
+[33mcommit 3884e6c75024f1439882d3f924c9220e87d1d7c7[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon Apr 24 16:55:32 2023 +0900
+
+    memberscontroller modi
+
+[33mcommit c6e65043e39dd7d4a3171bc4ad0283ad750102f0[m
+Merge: 1cc053c e2decb0
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon Apr 24 16:53:31 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 1cc053c7b89cd45469f59c00470513111093fb75[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon Apr 24 16:51:31 2023 +0900
+
+    membersdao, dto modi, sha added, memberscontroller added
+
+[33mcommit e2decb00fb492bc4733f4126e5feb5446287c8fd[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 15:55:57 2023 +0900
+
+    commentReview Update Form added
+    
+    and view.jsp update
+
+[33mcommit 62fc5d0e48fcf874bac80200871acbb1253b796b[m
+Merge: b6d93f1 23f24d2
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Mon Apr 24 14:35:18 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit b6d93f1c735b2955fd91b7cc6ffcf905ca6da4d4[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Mon Apr 24 14:35:13 2023 +0900
+
+    join form updated
+
+[33mcommit 23f24d2159b768d8d786e4eea547d1c47cc21fed[m
+Merge: 51ba782 7734ce4
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 14:10:45 2023 +0900
+
+    Merge pull request #16 from gunheelee22/master
+    
+    join form updated
+
+[33mcommit 51ba78272816db51c42e0306a3354dd68a7f3cdd[m
+Merge: b684d30 4d3c423
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 14:08:32 2023 +0900
+
+    Merge pull request #15 from sungha00/master
+    
+    loginbox updated
+
+[33mcommit 7734ce477bbb75e110e44b7baa92ee3ca5e0447f[m
+Merge: 0e50e75 b684d30
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Mon Apr 24 14:07:43 2023 +0900
+
+    join form updated
+
+[33mcommit 4d3c423b85e1c0d168770e0e307842b353744f7f[m
+Merge: e16f1c3 b684d30
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Mon Apr 24 13:59:27 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit e16f1c39a0aba636928cf2c8126e4488a8967c83[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Mon Apr 24 13:59:11 2023 +0900
+
+    loginbox updated
+
+[33mcommit 0e50e753c199dac0a654a4ae3d57218efbcdec0a[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Mon Apr 24 13:40:50 2023 +0900
+
+    joinform updated
+
+[33mcommit b684d3036560656772ec2790a43f234509966651[m
+Merge: af87aba 6e08a8c
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 12:35:31 2023 +0900
+
+    Merge pull request #12 from sungha00/master
+    
+    login,signup updated
+
+[33mcommit af87abab967788009285a04f5dbcb2a95863614f[m
+Merge: 5dfa303 9a609d0
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Mon Apr 24 12:35:13 2023 +0900
+
+    Merge pull request #13 from jiseyeong/master
+    
+    mypage.jsp 어느정도 만들었습니다
+
+[33mcommit 9a609d0dfb0c29b5685f90ab1bf705e6d7133268[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon Apr 24 12:25:00 2023 +0900
+
+    mypage.jsp added
+
+[33mcommit 6e08a8c80ec83da11ca0c0306b59c0b2e90db19a[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Mon Apr 24 11:15:58 2023 +0900
+
+    login, signup updated
+
+[33mcommit e7614ce5f0ec54cc8f359b48f3e1adec9e486706[m
+Merge: 1348975 5dfa303
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Mon Apr 24 08:56:09 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 0ef30cb56331f4bc941f7c25a6b1aa72615626e4[m
+Merge: f959d9b 5dfa303
+Author: KSH <129382707+sungha00@users.noreply.github.com>
+Date:   Sun Apr 23 23:25:54 2023 +0900
+
+    Merge branch 'LJHHKF:master' into master
+
+[33mcommit f959d9b47220607d313b33727ef6d96afe978127[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sun Apr 23 23:20:42 2023 +0900
+
+    signup, login updated
+
+[33mcommit 5dfa303bc3397410e89eec543b94cc438953812a[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 23 20:15:57 2023 +0900
+
+    Delete settings.json
+
+[33mcommit 44ddf3bf7fdd7978e3cc4d19afc6345df969e1a5[m
+Merge: 65177af d53b3b2
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 23 20:14:23 2023 +0900
+
+    Merge pull request #11 from Heeeesam/master
+    
+    gitignore vscode 추가
+
+[33mcommit d53b3b277a53b13a040b46313d801d6cb6f4fb24[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun Apr 23 20:11:20 2023 +0900
+
+    add gitignore
+
+[33mcommit f406623a0dc17153c2c50842e7d4f0951ff96312[m
+Merge: f0bf723 65177af
+Author: KSH <129382707+sungha00@users.noreply.github.com>
+Date:   Sun Apr 23 20:03:36 2023 +0900
+
+    Merge branch 'LJHHKF:master' into master
+
+[33mcommit b9dceb33cc0d75c2102acbe6d234e4a76369d393[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sun Apr 23 19:57:33 2023 +0900
+
+    modify searchresult add allstore_inquire
+
+[33mcommit 65177af6b6cd1bba0b922bde7edb7e99dc78de19[m
+Merge: 26c3571 fe725e0
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 23 18:44:57 2023 +0900
+
+    Merge pull request #9 from HSungJun/master
+    
+    acc DTO ver2
+
+[33mcommit fe725e0b67e6a4932a76720e8eda028c295f1bcd[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Sun Apr 23 18:42:54 2023 +0900
+
+    DTO ver2
+
+[33mcommit ec16e45111d536d5688a362ac296c12ecdf9bcd4[m
+Merge: ea1b3c4 26c3571
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Sun Apr 23 18:33:53 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit ea1b3c4aa6d6b0e63cf2d3af3ee9798f72e4667a[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Sun Apr 23 18:33:42 2023 +0900
+
+    add DTOs
+
+[33mcommit 26c3571ed7039b14ffaad08ccf163b51cc129018[m
+Merge: 8640a58 3128b39
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 23 18:30:33 2023 +0900
+
+    Merge pull request #7 from gunheelee22/master
+    
+    inform added
+
+[33mcommit 3128b393a2b8803109b6f3a7c9479fc453b8546b[m
+Merge: 9b214ca 8640a58
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Sun Apr 23 18:20:02 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 9b214ca6ac6a5942052f95842ad9de2054a61715[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Sun Apr 23 18:19:40 2023 +0900
+
+    loginform added
+
+[33mcommit 134897557698b6f894e0801428d34fa93a2fcf70[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Sun Apr 23 18:14:37 2023 +0900
+
+    delete mypage
+
+[33mcommit 8640a58e5c61c322c4c1746677dfeb647ffc5c97[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 23 16:02:11 2023 +0900
+
+    MembersDAO added & Review read JSTL added
+
+[33mcommit f512e7d8a2f9d4387a897a01364c82f300516f61[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 23 15:35:44 2023 +0900
+
+    CommentReview DAO,DTO,Controller added
+
+[33mcommit 6f58cf0551d3d0105ab4c0c567a484afd4f7f415[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 23 14:20:26 2023 +0900
+
+    view.jsp map center set school
+
+[33mcommit 07c9ae074420c45aae710c0dfa1731a9ecbc7184[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 23 13:29:45 2023 +0900
+
+    StorePage Review Rating Added
+
+[33mcommit 928fa9c45a945d6578c8fe447782ad494da247f1[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sun Apr 23 12:16:41 2023 +0900
+
+    23_04_23_storeUpdateEnd
+    
+    완료
+    1. 상점 작성 폼
+    2. 상점 읽어들이기
+    
+    상점 페이지 남은 일
+    1. 한줄 리뷰 코멘트 관련 컨트롤러, DAO, DTO 작성
+    2. 상점 페이지 수정 및 업데이트
+    3. 사진 서버 등록 및 DB 연결 & 읽어들이기 규칙 정해지면 사진 관련 작업 시작
+
+[33mcommit 38d38c4db5bd0ef98fdc2b6edba7e9929f718109[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat Apr 22 20:05:33 2023 +0900
+
+    23_04_22_end_storeUpdate
+
+[33mcommit bac30b97185012fb61785be40f8b04faddbf83a3[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat Apr 22 19:00:13 2023 +0900
+
+    23_04_22_stores_middelsave
+
+[33mcommit f0bf72397f7ecb5b6b9a8520a60d371ff4c803f7[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Sat Apr 22 18:56:45 2023 +0900
+
+    mainpage updated
+
+[33mcommit bf35a1e864b8fdfc2ad52dc5fb3c51ec0ae09024[m
+Merge: 4ab6d88 cc30975
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Sat Apr 22 12:46:11 2023 +0900
+
+    Merge pull request #6 from Heeeesam/master
+    
+    lsw modify searchresult, add redirect index 4.22#1
+
+[33mcommit cc309758defb6bf42937fd9d1e4467d049aed443[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Sat Apr 22 12:36:03 2023 +0900
+
+    lsw modify searchresult, add redirect index 4.22#1
+
+[33mcommit 4ab6d884682452c3e6adf39397e2214da0de07e4[m
+Merge: ce94bec f1aab60
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 21 17:55:52 2023 +0900
+
+    Merge pull request #5 from gunheelee22/master
+    
+    add signin
+
+[33mcommit f1aab60c3ff97e181b5a168642d8fad6f3e3abf7[m
+Author: gunheelee22 <sapple90@nate.com>
+Date:   Fri Apr 21 17:53:10 2023 +0900
+
+    add signin
+
+[33mcommit ce94bec6d5e0ee56b0011e7d8396a0a48c5b2847[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 21 17:10:46 2023 +0900
+
+    storeController, DAO, DTO added & modify register Form
+
+[33mcommit 837094cd6b7d70af7be5a5ff5f16093b3fc30f83[m
+Merge: 906dcf3 5d1977c
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Fri Apr 21 14:56:50 2023 +0900
+
+    Merge pull request #4 from sungha00/master
+    
+    login,joinform added
+
+[33mcommit 5d1977c92ba33ae462007992c29dc25f088a8d4a[m
+Author: Sungha Kim <sungha67@naver.com>
+Date:   Fri Apr 21 13:39:10 2023 +0900
+
+    login,joinform added
+
+[33mcommit 906dcf34b4e7dbb10f5e7396da2794493353f51f[m
+Merge: 8d14b89 262aad4
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 20 16:59:10 2023 +0900
+
+    Merge pull request #3 from HSungJun/master
+    
+    add mypage
+
+[33mcommit 8d14b894d2099cea25f11b71a9ad18debb0571cd[m
+Merge: 018008e eb79e3d
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 20 16:59:01 2023 +0900
+
+    Merge pull request #2 from jiseyeong/master
+    
+    mainpage 대략적으로 틀을 잡았습니다
+
+[33mcommit 018008e58b606de94961c5309f7ac7e5782db419[m
+Merge: 9587b9f 1339868
+Author: JuHwa Lee <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 20 16:58:50 2023 +0900
+
+    Merge pull request #1 from Heeeesam/master
+    
+    LSW 검색결과페이지 구성 #1
+
+[33mcommit 9587b9fbc67a9683f967b2219b8c8c0d702344c8[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 20 16:57:08 2023 +0900
+
+    registerForm.jsp 04-20-end
+
+[33mcommit 9d0438904ac0cf23689ca7f69f8b140830686acf[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 20 15:51:05 2023 +0900
+
+    update registerForm.jsp
+    
+    1. 이미지 파일 첨부 필드셋
+    2. 지도 마커 찍고, 마커 찍은 곳의 위도 경도 얻어서 저장해두기
+
+[33mcommit 3dd314c882c5361915508d88dde243872510e938[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 20 14:29:21 2023 +0900
+
+    File rename_오타수정
+
+[33mcommit f03b951863748149b569cd90767ae1359b528642[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Thu Apr 20 14:27:08 2023 +0900
+
+    FileRename & stort registor form added
+
+[33mcommit 262aad47ed4032fad72399597daf0f59c79b9a01[m
+Author: HSungJun <sungjun960@gmail.com>
+Date:   Wed Apr 19 21:24:16 2023 +0900
+
+    add mypage
+
+[33mcommit eb79e3dd7a2b5f0b06946997e5075e2901dfeb76[m
+Merge: f498ab3 a8036a3
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed Apr 19 18:05:47 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit f498ab330ce7e1a47fab78ca70f17a7810b944e0[m
+Author: jiseyeong <hanyu3677@naver.com>
+Date:   Wed Apr 19 18:04:56 2023 +0900
+
+    mainpage.html add
+
+[33mcommit a8036a3db34a3731444454f48c9534f5414e7509[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 19 18:03:00 2023 +0900
+
+    folder add and path update
+
+[33mcommit 133986852d8f5db06221e3f5fdba7175f891bd9a[m
+Merge: 4099991 5a4b0e2
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed Apr 19 18:01:51 2023 +0900
+
+    Merge branch 'master' of https://github.com/LJHHKF/KHSemi_KHPlate
+
+[33mcommit 409999161ad76249fcd3bf7e0a9584208f7d171f[m
+Author: Heeeesam <dltkdn97@gmail.com>
+Date:   Wed Apr 19 18:01:10 2023 +0900
+
+    LSW 검색 결과 페이지 html 작성#1
+
+[33mcommit 5a4b0e24a655cc488ba8d0266e8d97eb6320d697[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 19 17:35:12 2023 +0900
+
+    store.jsp data frame version2
+
+[33mcommit b6ab5175a147b2475c0693d6639a3dd340bf408f[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 19 16:55:01 2023 +0900
+
+    map size up
+
+[33mcommit 14c52ac026541fa9fa41c8ad290a1a6448197d53[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 19 16:52:57 2023 +0900
+
+    store.jsp data frame version1
+
+[33mcommit 915c2a707d323faa301e4fab2d3a557035530113[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 19 15:52:35 2023 +0900
+
+    3page jquery & jstl setting
+
+[33mcommit c414f64ec00018132a3b26928e6556c4045def33[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 19 15:23:24 2023 +0900
+
+    Update search.jsp
+
+[33mcommit 471293a1b9b066e781a287afb5ab6fc7cebd50e1[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Wed Apr 19 07:06:10 2023 +0900
+
+    이클립스 폴더 -> 프로젝트 폴더로 범위 하향
+
+[33mcommit cefd549f932dd976e2a98ac1937fe73ac114fe2e[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 18 17:38:30 2023 +0900
+
+    ECU-KR to UTF-8 real end
+
+[33mcommit a72e8951a0ac5487b8f55df2d5b7fcfc4b515c10[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 18 17:36:02 2023 +0900
+
+    search.jsp update & EUC-KR to UTF-8 setting
+
+[33mcommit 10aacd2d779f3136b0cf378868605aef79e808d4[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 18 17:16:20 2023 +0900
+
+    index.jsp added
+
+[33mcommit e1516a512b870fbc31419f6eab89b5b434f07293[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 18 17:15:28 2023 +0900
+
+    search.jsp added
+
+[33mcommit 361fead8877e49de514d3c0cb67b12ea10683518[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 18 17:13:05 2023 +0900
+
+    tomcat server create and path=""
+
+[33mcommit 6e31d9204a265e5f95819a39b4432cf49bec8ada[m
+Author: LJHHKF <43880473+LJHHKF@users.noreply.github.com>
+Date:   Tue Apr 18 17:00:58 2023 +0900
+
+    Project Initiallize
