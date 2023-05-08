@@ -208,6 +208,7 @@ public class StoreController extends HttpServlet {
 				}
 			}
 			else if(cmd.equals("/delete.store")) {
+				
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				
 				String realPath = request.getServletContext().getRealPath("store");

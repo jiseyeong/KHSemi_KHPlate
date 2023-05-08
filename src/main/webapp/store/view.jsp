@@ -464,6 +464,7 @@
                                           </td>
                                        </tr>
                                  </table>
+                                 <c:if test="${sessionScope.loginIsAdmin}">
                                  <div class="row">
                                     <div class="col-12 text-end">
                                       <button type="button"
@@ -474,6 +475,7 @@
                                           class="nonactive">수정 모드 취소</button>
                                     </div>
                                  </div>
+                                 </c:if>
                                  </form>
                               </div>
                            </div>
@@ -859,7 +861,7 @@
 
                         $("#btn_store_update_delete").click(function(){
                            let storeID = "<c:out value='${dto.storeID}'></c:out>";
-                           location.href = "/delete.store?storeID="+storeID;
+                           location.href = "/delete.store?storeID="+storeID";
                         })
 
                         $("#btn_store_update_cancel").click(function () {
