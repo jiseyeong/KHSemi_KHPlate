@@ -217,6 +217,10 @@
 
 				.isfalse {
 					filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) contrast(101%);
+					position:relative;
+					left:445px;
+					width:50px;
+					height:50px;
 				}
       </style>
          </head>
