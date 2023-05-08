@@ -1,8 +1,3 @@
-<%@ page import="java.net.URLEncoder" %>
-<%@ page import="java.net.URL" %>
-<%@ page import="java.net.HttpURLConnection" %>
-<%@ page import="java.io.BufferedReader" %>
-<%@ page import="java.io.InputStreamReader" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
@@ -12,48 +7,7 @@
   </head>
   
   <body>
-  <!-- <%
-    String clientId = "YOUR_CLIENT_ID";//애플리케이션 클라이언트 아이디값";
-    String clientSecret = "YOUR_CLIENT_SECRET";//애플리케이션 클라이언트 시크릿값";
-    String code = request.getParameter("code");
-    String state = request.getParameter("state");
-    String redirectURI = URLEncoder.encode("YOUR_CALLBACK_URL", "UTF-8");
-    String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code"
-        + "&client_id=" + clientId
-        + "&client_secret=" + clientSecret
-        + "&redirect_uri=" + redirectURI
-        + "&code=" + code
-        + "&state=" + state;
-    String accessToken = "";
-    String refresh_token = "";
-    System.out.println("apiURL="+apiURL);
-    
-    try {
-      URL url = new URL(apiURL);
-      HttpURLConnection con = (HttpURLConnection)url.openConnection();
-      con.setRequestMethod("GET");
-      int responseCode = con.getResponseCode();
-      BufferedReader br;
-      if (responseCode == 200) { // 정상 호출
-        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-      } else {  // 에러 발생
-        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-      }
-      String inputLine;
-      StringBuilder res = new StringBuilder();
-      while ((inputLine = br.readLine()) != null) {
-        res.append(inputLine);
-      }
-      br.close();
-      if (responseCode == 200) {
-        out.println(res.toString());
-      }
-    } catch (Exception e) {
-      // Exception 로깅
-    }
-  %> -->
-  
-  	           <div id="naverIdLogin">
+  	           <div id="naverIdLogin" style="display:none;">
 	           		<a id="naverIdLogin_loginButton" href="#null">
 	           			<img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320>
 	           		</a>
@@ -70,13 +24,12 @@
 	    );
 	    naverLogin.init();
 	 
-	    $(function(event){
+	    $(function(){
 	    	naverLogin.getLoginStatus(function (status) {
 	            if (status) {
 	            	$.ajax({
 	        			url : "/loginByNaver.members",
 	        			type : "post",
-	        			async : true,
 	        			data : {
 	        				naverid : naverLogin.user.id
 	        			}
@@ -101,7 +54,7 @@
 	        		console.log(naverLogin.user.id);
 	            } else {
 	                console.log("callback 처리에 실패하였습니다.");
-	                $("#naverIdLogin_loginButton").click();
+	                document.getElementById("naverIdLogin_loginButton").click();
 	            }
 	        });
 	    });
