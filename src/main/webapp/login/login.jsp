@@ -535,7 +535,7 @@ label input[type="checkbox"] {
             clientId: "Mm9YQgxstdSEuf5xt0jg",
             callbackUrl: "http://localhost/login/login.jsp",
             loginButton: {color: "green", type: 2, height: 40},
-            isPopup: true,
+            isPopup: false,
     	    callbackHandle: true
         }
     );
