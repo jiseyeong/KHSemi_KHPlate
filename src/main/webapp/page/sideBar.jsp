@@ -28,6 +28,12 @@
 	text-align:center;
 }
 
+.wrap {
+	perspective: 500px;	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 #mapBtn {
 	margin-bottom:10px;
@@ -37,6 +43,13 @@
 	height:40px;
 	cursor:pointer;
 	padding:0;
+	transform: rotateY(45deg);
+	animation: rotateAnimation 2s linear infinite;
+}
+
+@keyframes rotateAnimation {
+	from {transform: rotateY(45deg);}
+	to {transform: rotateY(225deg);}
 }
 
 ul {
@@ -88,10 +101,11 @@ a:link {text-decoration: none;}
 </head>
 <body>
    <div class="col-12 col-lg-2 themed-grid-col sideBar"> 
+   <div class= "wrap">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  id="mapBtn" viewBox="0 0 16 16">
   <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
 </svg>
-
+</div>
       <ul class="ulTag">
       	 <!--<a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>-->
          <li class="firstLi">Menu</li>
