@@ -238,7 +238,7 @@ public class MembersDAO {
 
 	// 이메일 인증 후 해당 유저의 userEmailChecked 를 t값으로 변경
 	public int updateuserEmailChecked(String userid) throws Exception{
-		String sql = "update members set userEmailChecked = 't' where userid = ?";
+		String sql = "update members set userEmailChecked = 't' where userid = ? and ismemberout = 'f'";
 		try
 		(Connection con = this.getConnection();
 				PreparedStatement pstat= con.prepareStatement(sql);){
@@ -254,7 +254,7 @@ public class MembersDAO {
 	public List<MembersDTO> selectfullReviewUserList(List<FullReviewDTO> fullReviewList) throws Exception {
 		List<MembersDTO> result = new ArrayList<>();
 		for(FullReviewDTO users : fullReviewList) {
-			String sql = "select * from members where userno = ?";
+			String sql = "select * from members where userno = ?  and ismemberout = 'f'";
 			try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 
 				pstat.setInt(1, users.getUserNO());
@@ -279,7 +279,7 @@ public class MembersDAO {
 	
 	
 	public String idsearch(String name, String email) throws Exception{
-		String sql = "select userid from members where name = ? and email = ? order by userno desc";
+		String sql = "select userid from members where name = ? and email = ?  and ismemberout = 'f' order by userno desc";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setString(1, name);
 			pstat.setString(2, email);
@@ -297,13 +297,12 @@ public class MembersDAO {
 	}
 	
 	public String pwsearch(String pwname, String pwemail,String pwid)throws Exception{
-		String sql = "select userid from members where userid = ? and name = ? and email=?";
+		String sql = "select userid from members where userid = ? and name = ? and email=? and ismemberout = 'f'";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
 			pstat.setString(1, pwid);
 			pstat.setString(2, pwname);
 			pstat.setString(3, pwemail);
 
-			
 			try (ResultSet rs = pstat.executeQuery()) {
 				if(rs.next()) {
 					String result = rs.getString("userid");
@@ -314,20 +313,19 @@ public class MembersDAO {
 	}
 
 	public int updatepw(String pw1 ,String userid) throws Exception{
-			String sql = "update members set pw=? where userid=?";
-			try
-			(Connection con = this.getConnection();
-					PreparedStatement pstat= con.prepareStatement(sql);){
-				pstat.setString(1, pw1);
-				pstat.setString(2,userid );
-				int result = pstat.executeUpdate();
-				con.commit();
-				return result;
+		String sql = "update members set pw=? where userid=? and ismemberout = 'f'";
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat= con.prepareStatement(sql);){
+			pstat.setString(1,pw1);
+			pstat.setString(2,userid);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
 		}
 	}
 	
 	public String searchNaverID(String naverid) throws Exception{
-		String sql = "select * from members where naver = ?";
+		String sql = "select * from members where naver = ? and ismemberout = 'f'";
 		try(Connection con = this.getConnection();
 			PreparedStatement pstat= con.prepareStatement(sql);){
 			pstat.setString(1, naverid);
@@ -342,7 +340,7 @@ public class MembersDAO {
 	}
 	
 	public String searchKakaoID(String kakaoid) throws Exception{
-		String sql = "select * from members where kakao = ?";
+		String sql = "select * from members where kakao = ? and ismemberout = 'f'";
 		try(Connection con = this.getConnection();
 			PreparedStatement pstat= con.prepareStatement(sql);){
 			pstat.setString(1, kakaoid);
