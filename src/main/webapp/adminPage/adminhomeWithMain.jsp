@@ -23,11 +23,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
-.nanum-gothic{ font-family: 'Nanum Gothic', sans-serif;}
 /* 헤더 및 sideBar 부분 스타일 - 건들지 말것 */
 * {
 	box-sizing: border-box;
 	padding: 0px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .body {
