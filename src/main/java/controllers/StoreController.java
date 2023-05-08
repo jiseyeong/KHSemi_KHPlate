@@ -340,7 +340,6 @@ public class StoreController extends HttpServlet {
 				request.setAttribute("search_store_list", search_store_list);
 				request.setAttribute("search_store_list_navi", search_store_list_navi);
 				request.setAttribute("search_store_imgList", search_store_imgList);
-				request.setAttribute("Favorite_list", Favorite_list);
 
 				// 사이드바로 접근 시 p태그 내용 변경
 				if(request.getParameter("approachBy")!=null) {
@@ -349,6 +348,7 @@ public class StoreController extends HttpServlet {
 				}
 
 				if(searchedBy.equals("mainSearch")) {
+					request.setAttribute("Favorite_list", Favorite_list);
 					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
 				}else if(searchedBy.equals("mapSearch")) {
 					List<StoreDTO> search_store_infoWindowList =  StoreDAO.getInstance().selectAll(search);

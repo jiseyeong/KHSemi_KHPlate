@@ -707,7 +707,7 @@ public class StoreDAO {
 	public List<StoreDTO> selectAll(String search, String cost_range, String food_category_korean, String food_category_western, 
 			String food_category_chinese, String food_category_japanese, String food_category_asian, String food_category_fastfood, 
 			String food_category_dessert_drink, String food_category_etc) throws Exception {
-		String sql = "select * from STORE where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?)";
+		String sql = "select * from STORE where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?) order by storeid asc";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1,"%"+search+"%");
