@@ -168,6 +168,15 @@ public class MembersController extends HttpServlet {
 					if(result>0) {
 						request.getSession().removeAttribute("userId");
 						request.getSession().removeAttribute("userno");
+						request.getSession().removeAttribute("loginIsAdmin");
+						if(request.getSession().getAttribute("naverid")!=null) {
+							request.getSession().removeAttribute("naverid");
+							request.setAttribute("naverLogin", true);
+						}
+						if(request.getSession().getAttribute("kakaoid")!=null) {
+							request.getSession().removeAttribute("kakaoid");
+							request.setAttribute("kakaoLogin", true);
+						}
 						response.getWriter().append("3");
 						return;
 					}
@@ -281,8 +290,8 @@ public class MembersController extends HttpServlet {
 				}
 				
 			}else if(cmd.equals("/newpwset.members")) {
-				String pw2 = SecurityUtils.sha512(request.getParameter("pw2"));
-             //	int pw2=Integer.parseInt(request.getParameter("pw2"));
+				String pw = request.getParameter("pw2");
+				String pw2 = SecurityUtils.sha512(pw);
 				String userid =request.getParameter("userid"); 
 				int result=dao.updatepw(pw2,userid);
 				request.setAttribute("result", result);

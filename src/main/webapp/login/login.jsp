@@ -529,12 +529,11 @@ label input[type="checkbox"] {
 // 	}
 
 	
-	
 	//네이버 로그인
 	const naverLogin = new naver.LoginWithNaverId(
         {
             clientId: "Mm9YQgxstdSEuf5xt0jg",
-            callbackUrl: "/login/login.jsp",
+            callbackUrl: "http://localhost/login/login.jsp",
             loginButton: {color: "green", type: 2, height: 40},
             isPopup: true,
     	    callbackHandle: true
@@ -578,7 +577,6 @@ label input[type="checkbox"] {
       	location.replace("/login/login.jsp");
     }
 	
-    
     
 	// Form Validation
 
