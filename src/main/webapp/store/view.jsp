@@ -861,7 +861,7 @@
 
                         $("#btn_store_update_delete").click(function(){
                            let storeID = "<c:out value='${dto.storeID}'></c:out>";
-                           location.href = "/delete.store?storeID="+storeID";
+                           location.href = "/delete.store?storeID="+storeID;
                         })
 
                         $("#btn_store_update_cancel").click(function () {
