@@ -208,6 +208,7 @@ public class StoreController extends HttpServlet {
 				}
 			}
 			else if(cmd.equals("/delete.store")) {
+
 				if(request.getSession().getAttribute("loginIsAdmin") != null && (boolean)request.getSession().getAttribute("loginIsAdmin")) {
 					int storeID = Integer.parseInt(request.getParameter("storeID"));
 
