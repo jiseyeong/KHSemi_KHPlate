@@ -171,12 +171,16 @@ public class ConsultController extends HttpServlet {
 
 				response.getWriter().append(resp.toString());
 			}else if(cmd.equals("/delete.consult")) {
-				int consultID = Integer.parseInt(request.getParameter("consultID"));
 				
-				int result = ConsultDAO.getInstance().delete(consultID);
-				int replyResult = ConsultReplyDAO.getInstance().deleteByConsultID(consultID);
-				
-				response.sendRedirect("/list.consult");
+				if((request.getSession().getAttribute("loginIsAdmin") != null && (boolean)request.getSession().getAttribute("loginIsAdmin"))
+						|| request.getSession().getAttribute("userno")!=null && request.getParameter("userno") != null && request.getSession().getAttribute("userno") == request.getParameter("userno")) {
+					int consultID = Integer.parseInt(request.getParameter("consultID"));
+					
+					int result = ConsultDAO.getInstance().delete(consultID);
+					int replyResult = ConsultReplyDAO.getInstance().deleteByConsultID(consultID);
+					
+					response.sendRedirect("/list.consult");
+				}
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

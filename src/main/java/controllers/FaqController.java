@@ -52,10 +52,12 @@ public class FaqController extends HttpServlet {
 				request.setAttribute("navi", navi);
 				request.getRequestDispatcher("/adminPage/FAQView.jsp").forward(request, response);
 			}else if(cmd.equals("/delete.faq")) {
-				int qaID = Integer.parseInt(request.getParameter("id"));
-				
-				int result = FaqDAO.getInstance().delete(qaID);
-				response.sendRedirect("/view.faq");
+				if(request.getSession().getAttribute("loginIsAdmin") != null && (boolean)request.getSession().getAttribute("loginIsAdmin")) {
+					int qaID = Integer.parseInt(request.getParameter("id"));
+					
+					int result = FaqDAO.getInstance().delete(qaID);
+					response.sendRedirect("/view.faq");					
+				}
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
