@@ -11,6 +11,12 @@
 <title>Insert title here</title>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+* {font-family: 'Nanum Gothic', sans-serif;}
+
+
+
 .ck-editor__editable_inline {
 	min-height: 400px;
 }
