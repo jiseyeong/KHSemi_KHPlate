@@ -21,11 +21,6 @@
 <!-- Icons font CSS-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
-<!-- Vendor CSS-->
-<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-
-<!-- Main CSS-->
-<link href="css/main.css" rel="stylesheet" media="all">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 </head>
@@ -677,13 +672,6 @@ font-size: 16px;
 			</div>
 		</div>
 	</div>
-
-	<!-- Jquery JS-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<!-- Vendor JS-->
-	<script src="vendor/select2/select2.min.js"></script>
-	<!-- Main JS-->
-	<script src="js/global.js"></script>
 
 	<script>
             var idValidFlag = false;
