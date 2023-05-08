@@ -547,12 +547,13 @@ label input[type="checkbox"] {
             callbackUrl: "http://localhost/login/login.jsp",
             loginButton: {color: "green", type: 2, height: 40},
             isPopup: false,
-    	    callbackHandle: true
+    	    callbackHandle: false
         }
     );
     naverLogin.init();
 
-    $("#naverIdLogin_loginButton").click(function(){
+    //$("#naverIdLogin_loginButton").click(function(event){
+    function NaverLogin(){
     	naverLogin.getLoginStatus(function (status) {
             if (status) {
             	$.ajax({
@@ -581,7 +582,7 @@ label input[type="checkbox"] {
                 console.log("callback 처리에 실패하였습니다.");
             }
         });
-    }) 
+    }
     
     function naverLogout() {
         naverLogin.logout();
