@@ -1246,92 +1246,90 @@ input[type="range"]::-ms-track {
     // 인포윈도우가 열린 상태에서 클릭 시, 해당 상세 페이지로 이동
     
 	let infowindows = []; // 마커의 인포윈도우 배열
+	let count;
 	
     $(function () {
-
+		
         let list_length = '${search_store_infoWindowList.size()}';
-        
-        for (i = 0; i < list_length; i++) {
-            let storeID = $("#search_store_list_storeID" + i).val();
-            let name = $("#search_store_list_name" + i).val();
-            let category = $("#search_store_list_category" + i).val();
-            let lat = $("#search_store_list_lat" + i).val()
-            let lng = $("#search_store_list_lng" + i).val()
-			
-            let marker_position = new kakao.maps.LatLng(lat, lng);
-
-            // 마커를 생성합니다
-            let Store_marker = new kakao.maps.Marker({
-                position: marker_position
-            });
-
-            // 마커가 지도 위에 표시되도록 설정합니다
-            Store_marker.setMap(khacademyMap);
-
-            // 배열 추가
-            Store_markers.push(Store_marker);
-
-            let marker_content = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="store_icons" src="/allstore_inquiry/infowindow_restaurant_icon.png"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">' + name + '</div><div class="infoWindow_info_bottom"># ' + category + '</div></div></div></body>'
-            let infowindow = new kakao.maps.InfoWindow({
-                position: marker_position,
-                content: marker_content
-            });
-            let infowindow_switch = false;
-            infowindows.push(infowindow);
-            
-            // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-            var zoomControl = new kakao.maps.ZoomControl();
-            khacademyMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-            // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-            // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-            kakao.maps.event.addListener(Store_marker, 'mouseover', makeOverListener(khacademyMap, Store_marker, infowindow));
-            kakao.maps.event.addListener(Store_marker, 'mouseout', makeOutListener(infowindow));
-
-            // 마커를 클릭했을 시, 해당 맛집 상세 페이지로 이동
-            kakao.maps.event.addListener(Store_marker, 'click', function () {
-                location.href = "/view.store?storeID=" + storeID;
-            });
-            
-            // 기본 리스트 클릭 여부는 false
-            open_checks[i] = false;
-            
-            // i 인덱스는 이벤트 내에 마지막 값으로 고정되어 남아있기에
-            // count 변수를 따로 주어 이벤트 마다 해당 인덱스 값을 저장, 클로저 방식으로 사용(count);
-            let count = 0;
-            let open_index = i;
-            let checkStore = $(".restaurant_number"+count).next().val();
-            console.log($(".restaurant_number"+count).next().attr("class"));
-            
-            if(storeID==$(".restaurant_number"+count).next().val()){
-	            $(".restaurant_number"+count).on("click",function(){
-	            	
-	            	if(!open_checks[open_index]){
-	            		for(j = 0 ; j<open_checks.length ; j++){
-	            			open_checks[j]=false;
-	            		}
-	            		
-	            		open_checks[open_index]=true;
-	            		
-	            		khacademyMap.setLevel(2);
-	            		
-	            		infowindows.map(infowindow=>{
-	            			infowindow.close();
-	            		})
-	                	
-	                	infowindow.open(khacademyMap, Store_marker);
-	                    $(".restaurant_infoWindow").parent().parent().css({
-	                        "border": "0px",
-	                        "background-color": "transparent"
-	                    });
-	                    khacademyMap.panTo(marker_position);
-	            	}else{
-	            		location.href = "/view.store?storeID=" + storeID;
-	            	}
+        count = 0;
+		while(count<5){
+	        for (i = 0; i < list_length; i++) {
+	            let storeID = $("#search_store_list_storeID" + i).val();
+	            let name = $("#search_store_list_name" + i).val();
+	            let category = $("#search_store_list_category" + i).val();
+	            let lat = $("#search_store_list_lat" + i).val()
+	            let lng = $("#search_store_list_lng" + i).val()
+				
+	            let marker_position = new kakao.maps.LatLng(lat, lng);
+	
+	            // 마커를 생성합니다
+	            let Store_marker = new kakao.maps.Marker({
+	                position: marker_position
+	            });
+	
+	            // 마커가 지도 위에 표시되도록 설정합니다
+	            Store_marker.setMap(khacademyMap);
+	
+	            // 배열 추가
+	            Store_markers.push(Store_marker);
+	
+	            let marker_content = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="store_icons" src="/allstore_inquiry/infowindow_restaurant_icon.png"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">' + name + '</div><div class="infoWindow_info_bottom"># ' + category + '</div></div></div></body>'
+	            let infowindow = new kakao.maps.InfoWindow({
+	                position: marker_position,
+	                content: marker_content
+	            });
+	            let infowindow_switch = false;
+	            infowindows.push(infowindow);
+	            
+	            // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+	            // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+	            kakao.maps.event.addListener(Store_marker, 'mouseover', makeOverListener(khacademyMap, Store_marker, infowindow));
+	            kakao.maps.event.addListener(Store_marker, 'mouseout', makeOutListener(infowindow));
+	
+	            // 마커를 클릭했을 시, 해당 맛집 상세 페이지로 이동
+	            kakao.maps.event.addListener(Store_marker, 'click', function () {
+	                location.href = "/view.store?storeID=" + storeID;
+	            });
+	            
+	            // 기본 리스트 클릭 여부는 false
+	            open_checks[i] = false;
+	            
+	            // i 인덱스는 이벤트 내에 마지막 값으로 고정되어 남아있기에
+	            // count 변수를 따로 주어 이벤트 마다 해당 인덱스 값을 저장, 클로저 방식으로 사용(count);
+	            let open_index = i;
+	            let checkStore = $(".restaurant_number"+count).find(".restaurant_storeID").val();
+	            console.log(count);
+	            
+	            if(storeID==checkStore){
+		            $(".restaurant_number"+count).on("click",function(){
+		            	console.log("true");
+		            	if(!open_checks[open_index]){
+		            		for(j = 0 ; j<open_checks.length ; j++){
+		            			open_checks[j]=false;
+		            		}
+		            		
+		            		open_checks[open_index]=true;
+		            		
+		            		khacademyMap.setLevel(2);
+		            		
+		            		infowindows.map(infowindow=>{
+		            			infowindow.close();
+		            		})
+		                	
+		                	infowindow.open(khacademyMap, Store_marker);
+		                    $(".restaurant_infoWindow").parent().parent().css({
+		                        "border": "0px",
+		                        "background-color": "transparent"
+		                    });
+		                    khacademyMap.panTo(marker_position);
+		            	}else{
+		            		location.href = "/view.store?storeID=" + storeID;
+		            	}
+		            })
 	            	count++;
-	            })
-            }
-        }
+	            }
+	        }
+		}
     });
 
     // 인포윈도우를 여는 클로저를 만드는 함수입니다
