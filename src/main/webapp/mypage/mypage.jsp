@@ -345,7 +345,7 @@ a {
     height: 80px;
     width: 100%;
     text-align: center;
-    background-color: rgb(240, 240, 240);
+    background-color: #f2f2f2;
     position: absolute;
     bottom: 0;
     left: 0;
