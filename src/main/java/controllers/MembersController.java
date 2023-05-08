@@ -302,7 +302,7 @@ public class MembersController extends HttpServlet {
 				String naverid = request.getParameter("naverid");
 				String userId = dao.searchNaverID(naverid);
 				// 네이버 로그인이 처음인지 확인
-				if(userId.equals("")) {
+				if(userId==null||userId.isBlank()) {
 					System.out.println("(네이버)미 회원가입 사용자");
 					response.getWriter().append("1");
 					return;
@@ -328,7 +328,7 @@ public class MembersController extends HttpServlet {
 				String kakaoid = request.getParameter("kakaoid");
 				String userId = dao.searchKakaoID(kakaoid);
 				// 네이버 로그인이 처음인지 확인
-				if(userId==null) {
+				if(userId==null||userId.isBlank()) {
 					System.out.println("(카카오)미 회원가입 사용자");
 					response.getWriter().append("1");
 					return;
