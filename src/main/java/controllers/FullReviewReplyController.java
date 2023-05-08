@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import commons.SecurityUtils;
 import dao.FullReviewReplyDAO;
 import statics.Settings;
 
@@ -32,6 +33,7 @@ public class FullReviewReplyController extends HttpServlet {
 			if (cmd.equals("/write.fullreviewreply")) {
 
 				String body = request.getParameter("body");
+				SecurityUtils.XSSCheck(body);
 				int userno = Integer.parseInt(request.getParameter("userno"));
 				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
 
@@ -59,6 +61,7 @@ public class FullReviewReplyController extends HttpServlet {
 
 			} else if (cmd.equals("/update.fullreviewreply")) {
 				String body = request.getParameter("re_list_body");
+				body = SecurityUtils.XSSCheck(body);
 				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
 				int commentid = Integer.parseInt(request.getParameter("commentid")); 
 				System.out.println(body+"/"+commentid);
