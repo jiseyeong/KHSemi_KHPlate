@@ -42,7 +42,7 @@ public class StoreController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf8");
 		response.setContentType("text/html; charset=utf8;");
-		
+
 		String cmd = request.getRequestURI();
 		Gson g = new Gson();
 
@@ -53,7 +53,7 @@ public class StoreController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeID);
 				List<FullReviewDTO> fullListAll = FullReviewDAO.getInstance().selectByStoreID(storeID);
-				
+
 				//풀리뷰 추가되면 풀리뷰도 포함해서
 				int sum = 0;
 				int cnt = commentListAll.size() + fullListAll.size();
@@ -93,8 +93,8 @@ public class StoreController extends HttpServlet {
 				if(request.getSession().getAttribute("userno") != null) {
 					favorite = FavoriteStoreDAO.getInstance().isFavoriteStore(storeID, (int)request.getSession().getAttribute("userno"));
 				}
-				
-				
+
+
 				request.setAttribute("dto", dto);
 				request.setAttribute("commentList", commentList);
 				request.setAttribute("navi", pageNavi);
@@ -151,7 +151,7 @@ public class StoreController extends HttpServlet {
 			}else if(cmd.equals("/deletePhoto.store")) {
 				int imageID = Integer.parseInt(request.getParameter("imageID"));
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
-				
+
 				String realPath = request.getServletContext().getRealPath("store");
 				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getOriName());
 				if(realPathFile.delete()) {
@@ -185,18 +185,18 @@ public class StoreController extends HttpServlet {
 					realPathFile.mkdir();
 				}
 				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
-				
+
 				int storeID = Integer.parseInt(multi.getParameter("storeID"));
-				
-//				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
-//				for(int i = 0; i < imgLength; i++) {
-//					String oriName = multi.getOriginalFileName("image"+i);
-//					System.out.println(oriName);
-//					String sysName = multi.getFilesystemName("image"+i);
-//					System.out.println(sysName);
-//					PhotoDAO.getInstance().insertByStoreID(oriName, sysName, storeID);
-//				}
-				
+
+				//				int imgLength = Integer.parseInt(multi.getParameter("imgLength"));
+				//				for(int i = 0; i < imgLength; i++) {
+				//					String oriName = multi.getOriginalFileName("image"+i);
+				//					System.out.println(oriName);
+				//					String sysName = multi.getFilesystemName("image"+i);
+				//					System.out.println(sysName);
+				//					PhotoDAO.getInstance().insertByStoreID(oriName, sysName, storeID);
+				//				}
+
 				Enumeration<String> names = multi.getFileNames();
 				while(names.hasMoreElements()) {
 					String fileName = names.nextElement();
@@ -208,21 +208,23 @@ public class StoreController extends HttpServlet {
 				}
 			}
 			else if(cmd.equals("/delete.store")) {
-				int storeID = Integer.parseInt(request.getParameter("storeID"));
-				
-				String realPath = request.getServletContext().getRealPath("store");
-				ArrayList<PhotoDTO> pdao = PhotoDAO.getInstance().selectByStoreID(storeID);
-				if(pdao != null) {
-				for(PhotoDTO i : pdao) {
-					File realPathFile = new File(realPath +"/"+ i.getOriName());
-					realPathFile.delete();
+				if(request.getSession().getAttribute("loginIsAdmin") != null && (boolean)request.getSession().getAttribute("loginIsAdmin")) {
+					int storeID = Integer.parseInt(request.getParameter("storeID"));
+
+					String realPath = request.getServletContext().getRealPath("store");
+					ArrayList<PhotoDTO> pdao = PhotoDAO.getInstance().selectByStoreID(storeID);
+					if(pdao != null) {
+						for(PhotoDTO i : pdao) {
+							File realPathFile = new File(realPath +"/"+ i.getOriName());
+							realPathFile.delete();
+						}
+					}
+					PhotoDAO.getInstance().deleteByStoreID(storeID);
+
+					int result = StoreDAO.getInstance().delete(storeID);
+
+					response.sendRedirect("/searchStoreBySearchBox.store");
 				}
-				}
-				PhotoDAO.getInstance().deleteByStoreID(storeID);
-				
-				int result = StoreDAO.getInstance().delete(storeID);
-				
-				response.sendRedirect("/searchStoreBySearchBox.store");
 			}else if(cmd.equals("/getMainPhoto.store")) {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				ArrayList<PhotoDTO> list = PhotoDAO.getInstance().selectByStoreID(storeID);
@@ -239,7 +241,7 @@ public class StoreController extends HttpServlet {
 
 			// 검색 Controller (main_searchResult.jsp / allstore_inquiry.jsp에 같이 사용)
 			// 사진 출력 미구현
-			
+
 			// 일반 검색 controller
 			else if(cmd.equals("/searchStoreBySearchBox.store")) {
 				System.out.println("일반 검색");
@@ -277,9 +279,9 @@ public class StoreController extends HttpServlet {
 				}else {
 					food_category = "";
 				}
-				
+
 				System.out.println("카테고리 접근 : "+food_category);
-				
+
 				if(request.getParameter("cpage")!=null) {
 					currentpage = Integer.parseInt(request.getParameter("cpage"));
 				}else {
@@ -304,24 +306,24 @@ public class StoreController extends HttpServlet {
 				String search_store_list_navi = StoreDAO.getInstance().getNavi_BySearchBox(currentpage,search,searchedBy,food_category);
 				// 리스트 썸네일 추가
 				ArrayList<PhotoDTO> search_store_imgList = PhotoDAO.getInstance().selectSearchStoreThumbnailByStoreID(search_store_list);
-				
+
 				System.out.println("리스트 사이즈 : "+search_store_list.size());
 				System.out.println("사진 사이즈 : "+search_store_imgList.size());
-				
+
 				for(StoreDTO s : search_store_list) {
 					System.out.println(s.getName());
 				}
 				System.out.println("===================");
-				
+
 				// 즐겨찾기 여부 확인
 				int userno = 0;
 				if(request.getSession().getAttribute("userno")!=null) {
 					userno = (int) request.getSession().getAttribute("userno");
 				}
 				System.out.println("유저넘버 : "+userno);
-				
+
 				List<FavoritePageDTO> Favorite_list = FavoriteStoreDAO.getInstance().isFavoriteStore(search_store_list,userno);
-				
+
 				// 필터 기본값 적용 
 				request.getSession().setAttribute("sortMethod", "");
 				request.getSession().setAttribute("cost_range", "");
@@ -333,18 +335,18 @@ public class StoreController extends HttpServlet {
 				request.getSession().setAttribute("food_category_fastfood", true);
 				request.getSession().setAttribute("food_category_dessert_drink", true);
 				request.getSession().setAttribute("food_category_etc", true);
-				
+
 				request.setAttribute("search_store_list", search_store_list);
 				request.setAttribute("search_store_list_navi", search_store_list_navi);
 				request.setAttribute("search_store_imgList", search_store_imgList);
 				request.setAttribute("Favorite_list", Favorite_list);
-				
+
 				// 사이드바로 접근 시 p태그 내용 변경
 				if(request.getParameter("approachBy")!=null) {
 					request.setAttribute("approachBy", request.getParameter("approachBy"));
 					request.setAttribute("food_category", request.getParameter("food_category"));
 				}
-				
+
 				if(searchedBy.equals("mainSearch")) {
 					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
 				}else if(searchedBy.equals("mapSearch")) {
@@ -353,7 +355,7 @@ public class StoreController extends HttpServlet {
 					request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
 				}
 			}
-			
+
 			// 필터 적용 검색 controller
 			else if(cmd.equals("/searchStoreBySearchFilter.store")) {
 				System.out.println("필터 검색");
@@ -526,7 +528,7 @@ public class StoreController extends HttpServlet {
 					end_Record_Row_Num = currentpage * Settings.SEARCH_STORE_TO_MAP_RECORD_COUNT_PER_PAGE;
 					start_Record_Row_Num = end_Record_Row_Num - (Settings.SEARCH_STORE_TO_MAP_RECORD_COUNT_PER_PAGE-1);
 				}
-				
+
 				System.out.println("시작넘버 : "+start_Record_Row_Num);
 				System.out.println("끝넘버 : "+end_Record_Row_Num);
 
@@ -537,18 +539,18 @@ public class StoreController extends HttpServlet {
 				String search_store_list_navi = StoreDAO.getInstance().getNavi_BySearchFilter(currentpage,search,searchedBy,sortMethod, cost_range, food_category_korean, 
 						food_category_western, food_category_chinese, food_category_japanese, food_category_asian, food_category_fastfood, 
 						food_category_dessert_drink, food_category_etc);
-				
+
 				// 리스트 썸네일 추가
 				ArrayList<PhotoDTO> search_store_imgList = PhotoDAO.getInstance().selectSearchStoreThumbnailByStoreID(search_store_list);
-				
+
 				System.out.println("리스트 사이즈 : "+search_store_list.size());
-				
+
 				int userno = 0;
 				if(request.getSession().getAttribute("userno")!=null) {
 					userno = (int) request.getSession().getAttribute("userno");
 				}
 				List<FavoritePageDTO> Favorite_list = FavoriteStoreDAO.getInstance().isFavoriteStore(search_store_list,userno);
-				
+
 				System.out.println("===================");
 
 				request.setAttribute("search_store_list", search_store_list);
@@ -579,8 +581,8 @@ public class StoreController extends HttpServlet {
 					response.getWriter().append("true");
 				}
 			}
-			
-			
+
+
 			// 즐겨찾기 삭제 controller
 			else if(cmd.equals("/deleteFavoriteStore.store")) {
 				int storeID = Integer.parseInt(request.getParameter("addFavorite_storeID"));
@@ -592,10 +594,10 @@ public class StoreController extends HttpServlet {
 					response.getWriter().append("true");
 				}
 			}
-			
+
 			// 마이페이지 즐겨찾기 조회 controller
 			else if(cmd.equals("/selectFavoriteStore.store")) {
-				
+
 				int userno = (int) request.getSession().getAttribute("userno");
 				int currentpage = 1;
 				if(request.getParameter("cpage")!=null) {
@@ -607,27 +609,27 @@ public class StoreController extends HttpServlet {
 				// 검색방식에 따라 네비 갯수 변경
 				int end_Record_Row_Num = currentpage * Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
 				int start_Record_Row_Num = end_Record_Row_Num - (Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE-1);
-				
+
 				String FavoriteStoreList = StoreDAO.getInstance().selectFavoriteStoreToJSP(userno,start_Record_Row_Num,end_Record_Row_Num);
 				String FavoriteStoreNavi = StoreDAO.getInstance().selectFavoriteStoreNaviToJSP(userno,currentpage);
-				
+
 				FavoriteStoreList = g.toJson(FavoriteStoreList);
 				FavoriteStoreNavi = g.toJson(FavoriteStoreNavi);
-				
+
 				JsonObject resp = new JsonObject();
 				resp.addProperty("FavoriteStoreList", FavoriteStoreList);
 				resp.addProperty("FavoriteStoreNavi", FavoriteStoreNavi);
-				
+
 				response.getWriter().append(resp.toString());
-				
+
 				// 메인 페이지 랜덤 맛집 카드 3장 출력
 			}else if(cmd.equals("/mainSet.store")) {
-				
+
 				Set<Integer> set = new HashSet<>();
 				int lastIndex = StoreDAO.getInstance().getLastStoreID();
 				int count = 3;
-//				List<StoreDTO> storeList = new ArrayList<>();
-//				List<PhotoDTO> photoList = new ArrayList<>();
+				//				List<StoreDTO> storeList = new ArrayList<>();
+				//				List<PhotoDTO> photoList = new ArrayList<>();
 				while(count>0) {
 					int storeid = (int)((Math.random()*lastIndex)+1);
 					if(StoreDAO.getInstance().isValidStoreID(storeid)){
@@ -662,7 +664,7 @@ public class StoreController extends HttpServlet {
 								+ "</div>");
 					}
 				}
-				
+
 				response.getWriter().append(sb.toString());
 			}
 
