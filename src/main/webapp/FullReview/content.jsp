@@ -27,8 +27,14 @@
 
 .userid {
 	margin-left:10px;
+	font-weight:bold;
+	font-size:14px;
+	color:blue;
 }
-
+#userid{
+	font-size:14px;
+	color:blue;
+}
 .score{
 	width: 40px;
 	margin-left: 70px;
@@ -37,15 +43,21 @@
 .title {
 	width: 100%;
 	margin-left:10px;
+	font-weight:bold;
+	font-size:25px;
+	
 }
-
+.reviewPtag{
+	color:#57b846;
+	font-weight:bold;
+	font-size:30px;
+}
 .reviewbody {
 	width: 100%;
 }
 
 
 .replyguide {
-	background-color: #d0d0d0;
 	border-radius: 10px;
 }
 
@@ -65,6 +77,11 @@ input:focus {
 	outline: none !important;
 }
 
+#body{
+	border:1px solid silver;
+	font-size:13px;	
+	padding-left:5px;
+}
 textarea {
 	border: none;
 }
@@ -108,8 +125,8 @@ textarea {
 	box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
 }
 
-.re_List_Container>button {
-	width: 100px;
+.re_List_Container>div>button {
+	width: 70px;
 	height: 40px;
 	background-color: #57b846;
 	border: none;
@@ -139,8 +156,8 @@ textarea {
 	align-items:center;
 }
 
-.info_layout>*{
-	
+.info_layout>input{
+	font-weight:bold;
 }
 /* 별점 시스템 */
 ::before,
@@ -193,7 +210,11 @@ textarea {
     width:100%;
     height:100%;
 }
-
+.re_list_writer{
+   font-weight:bold;
+   font-size:14px;
+   color:blue;
+}
 </style>
 
 </head>
@@ -203,15 +224,11 @@ textarea {
 		<!-- 본문란 -->
 		<form action="/update.fullreview" class="frm" method="post"
 			id="addForm" enctype="multipart/form-data">
-			<input type="text" class="title" name="title"
-				value="${contents.title }" readonly>
-
-			<hr style="border-style: dotted;">
-
+			<p class="reviewPtag">리뷰 게시판</p>
+			<hr style="border-style:dotted; margin-bottom:50px;">
+			<input type="text" class="title" name="title" value="${contents.title }" style="margin-bottom:10px;" readonly>
 			<input type="text" class="userid" value="${writerName }" readonly>
-
 			<hr style="border-style: dotted;">
-
 			<div class="info_layout">
 				<input type="text" class="text" value="가게 이름 : " readonly> 
 				<input type="text" class="storename" name="storename" value="${storeName }"readonly> 
@@ -261,7 +278,7 @@ textarea {
 
 
 			<br>
-			<div class="contentsBtn">
+			<div class="contentsBtn text-end">
 				<c:choose>
 					<c:when test="${sessionScope.userno eq contents.userNO}">
 						<button class="modiBtn" type="button">수정하기</button>
@@ -281,8 +298,6 @@ textarea {
 			</div>
 		</form>
 
-		<hr 1px>
-
 		<!-- 댓글 작성란 -->
 		<form action="write.fullreviewreply" method="post">
 			<div class="replyguide">
@@ -294,7 +309,7 @@ textarea {
 					type="text" class="reviewid" name="reviewid"
 					value="${contents.reviewID }" style="display: none;"> <br>
 				<input type="text" id="body" name="body" placeholder="작성할 댓글 입력"
-					style="height: 40px; width: 94%; margin-left: 5px;">
+					style="height: 40px; width: 95%; margin-left: 5px; margin-right:5px;">
 				<input type="submit" id="re_write_btn" style="display:none;" />
                 <label for="re_write_btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -313,15 +328,18 @@ textarea {
 		<c:if test="${replyList!=null}">
 			<c:forEach var="i" items="${replyList}">
 				<form action="/update.fullreviewreply" method="post">
-					<div class="re_List_Container">
+					<div class="re_List_Container" style="margin-left:10px;">
 						<input type="text" class="re_list_writer" value="${i.userid }"
 							style="height: 50%;" readonly>
-
-						<c:choose>
+						<input type="text" value="${i.body }" class="re_list_body"
+							name="re_list_body" style="width: 100%; height: 50%; margin-bottom:20px;" readonly>
+							<c:choose>
 							<c:when test="${sessionScope.userId eq i.userid}">
+								<hr>
+								<div class="text-end">
 								<button class="re_list_updbtn" type="button">수정</button>
-								<button class="re_list_delbtn" type="button"
-									commentid="${i.commentid }" reviewid="${contents.reviewID }">삭제</button>
+								<button class="re_list_delbtn" type="button" commentid="${i.commentid }" reviewid="${contents.reviewID }">삭제</button>
+								</div>
 								<input type="submit" value="수정완료" class="re_list_updCompBtn"
 									style="display: none">
 
@@ -333,9 +351,6 @@ textarea {
 
 							</c:when>
 						</c:choose>
-
-						<input type="text" value="${i.body }" class="re_list_body"
-							name="re_list_body" style="width: 100%; height: 50%;" readonly>
 					</div>
 				</form>
 				<br>
