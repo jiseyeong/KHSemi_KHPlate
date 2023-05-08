@@ -327,29 +327,15 @@ input {
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
- <script>
-	$("#close").on("click",function(){
-		location.href = "/adminPage/adminhome.jsp";
-	})
-	</script>
-=======
 
-	<!-- Jquery JS-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<!-- Vendor JS-->
-	<script src="vendor/select2/select2.min.js"></script>
-	<!-- Main JS-->
-	<script src="js/global.js"></script>
 
 	<script>
 	$("#closebtn").on("click",function(){
 		window.close();
-	})
+	});
     </script>
 
 
->>>>>>> 5d244330e7dafa322e5fbf3be0ed4e5039050ae4
 </body>
 </html>
 

@@ -203,8 +203,8 @@
                	  text-decoration: underline;
                }
                .addFavorite_btn {
-					width: 70%;
-					height: 70%;
+					width: 20%;
+					height: 20%;
 					font-size: 20px;
 				}
 				.istrue {
