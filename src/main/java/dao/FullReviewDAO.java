@@ -610,5 +610,17 @@ public class FullReviewDAO {
 			con.commit();
 			return result;
 		}
-	}	
+	}
+	
+	//리뷰 평점 계산용
+	public List<FullReviewDTO> selectByStoreID(int storeID) throws Exception{
+		String sql = "select * from FULLREVIEW where STOREID = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, storeID);
+			try(ResultSet rs = pstat.executeQuery();){
+				return this.transToList(rs);
+			}
+		}
+	}
 }

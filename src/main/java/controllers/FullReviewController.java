@@ -17,9 +17,12 @@ import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import dao.CommentReviewDAO;
 import dao.FullReviewDAO;
 import dao.FullReviewReplyDAO;
 import dao.PhotoDAO;
+import dao.StoreDAO;
+import dto.CommentReviewDTO;
 import dto.FullReviewDTO;
 import dto.FullReviewScrapDTO;
 import dto.FullReviewUserDTO;
@@ -61,7 +64,23 @@ public class FullReviewController extends HttpServlet {
 
 
 				int result = frdao.writeFullReview(title,reviewbody,score,storeId,userNo);
-
+				
+				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeId);
+				List<FullReviewDTO> fullListAll = FullReviewDAO.getInstance().selectByStoreID(storeId);
+				
+				int sum = 0;
+				int cnt = commentListAll.size() + fullListAll.size();
+				if(cnt != 0) {
+					for(CommentReviewDTO i : commentListAll) {
+						sum += i.getScore();
+					}
+					for(FullReviewDTO i : fullListAll) {
+						sum += i.getScore();
+					}
+					StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeId);
+					StoreDAO.getInstance().updateReviewCount(cnt, storeId);					
+				}
+				
 				int reviewId = frdao.newReviewId();
 				System.out.println("방금작성한 리뷰" + reviewId);
 
@@ -123,6 +142,22 @@ public class FullReviewController extends HttpServlet {
 
 				int result = frdao.update(title, reviewbody, score, storeId, reviewid);
 
+				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeId);
+				List<FullReviewDTO> fullListAll = FullReviewDAO.getInstance().selectByStoreID(storeId);
+				
+				int sum = 0;
+				int cnt = commentListAll.size() + fullListAll.size();
+				if(cnt != 0) {
+					for(CommentReviewDTO i : commentListAll) {
+						sum += i.getScore();
+					}
+					for(FullReviewDTO i : fullListAll) {
+						sum += i.getScore();
+					}
+					StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeId);
+					StoreDAO.getInstance().updateReviewCount(cnt, storeId);					
+				}
+				
 				Enumeration<String> names = multi.getFileNames();
 
 				while(names.hasMoreElements()) {

@@ -209,10 +209,18 @@
 				}
 				.istrue {
 					filter: invert(28%) sepia(63%) saturate(6367%) hue-rotate(351deg) brightness(92%) contrast(101%);
+					position:relative;
+					left:445px;
+					width:50px;
+					height:50px;
 				}
 
 				.isfalse {
 					filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) contrast(101%);
+					position:relative;
+					left:445px;
+					width:50px;
+					height:50px;
 				}
       </style>
          </head>
@@ -277,6 +285,24 @@
                                  <span class="visually-hidden">Next</span>
                               </button>
                            </div>
+                           <div class="row" style="margin-top:60px;">
+                           		    <div class="col-12">
+                                 	<input type="text" id="favoriteUserNo" value="${sessionScope.userno}" style="display:none;">
+                                 	<input type="text" id="favoriteStoreID" value="${dto.storeID}" style="display:none;">
+                                 	<c:choose>
+	                                 	<c:when test="${not empty favorite}">
+	                                 		<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="addFavorite_btn istrue" viewBox="0 0 16 16">
+  											<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+											</svg>
+	                                 	</c:when>
+	                                 	<c:otherwise>
+	                                 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addFavorite_btn isfalse" viewBox="0 0 16 16">
+  											<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+											</svg>
+	                                 	</c:otherwise>
+                                 	</c:choose>
+	                             </div>
+                           </div>
                         </div>
                         <div class="col-12 col-lg-5 nonactive" id="imageModify" style="margin-left:auto;">
                            <c:if test="${fn:length(imgList) > 0}">
@@ -318,23 +344,6 @@
                                           value="${dto.distance}" readonly>
                                     </div>
                                  </div>
-                                 <div class="col-12 text-center">
-                                 	<input type="text" id="favoriteUserNo" value="${sessionScope.userno}" style="display:none;">
-                                 	<input type="text" id="favoriteStoreID" value="${dto.storeID}" style="display:none;">
-                                 	<c:choose>
-	                                 	<c:when test="${not empty favorite}">
-	                                 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addFavorite_btn istrue" viewBox="0 0 16 16">
-  											<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-											</svg>
-	                                 	</c:when>
-	                                 	<c:otherwise>
-	                                 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="addFavorite_btn isfalse" viewBox="0 0 16 16">
-  											<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-											</svg>
-	                                 	</c:otherwise>
-                                 	</c:choose>
-	                             </div>
-
                               </div>
                            </div>
                         </div>
