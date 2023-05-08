@@ -527,52 +527,52 @@ label input[type="checkbox"] {
 	
 	
 	// 네이버 로그인
-	const naverLogin = new naver.LoginWithNaverId(
-        {
-            clientId: "Mm9YQgxstdSEuf5xt0jg",
-            callbackUrl: "/login/login.jsp",
-            loginButton: {color: "green", type: 2, height: 40},
-            isPopup: false,
-    	    callbackHandle: true
-        }
-    );
-    naverLogin.init();
+	// const naverLogin = new naver.LoginWithNaverId(
+   //      {
+   //          clientId: "Mm9YQgxstdSEuf5xt0jg",
+   //          callbackUrl: "/login/login.jsp",
+   //          loginButton: {color: "green", type: 2, height: 40},
+   //          isPopup: false,
+   //  	    callbackHandle: true
+   //      }
+   //  );
+   //  naverLogin.init();
 
-    $(function(){
-    	naverLogin.getLoginStatus(function (status) {
-            if (status) {
-            	$.ajax({
-        			url : "/loginByNaver.members",
-        			type : "post",
-        			data : {
-        				naverid : naverLogin.user.id
-        			}
-        		}).done(function(resp) {
-        			if (resp == "1") {
-        				alert("첫 회원은 회원가입 절차가 필요합니다.");
-        				let id = naverLogin.user.id;
-        				naverLogout();
-        				location.href="/joinform/joinformWithLoginAPI.jsp?naverid="+id;
-        			} else if(resp == "2"){
-        				alert("이메일 인증이 되지 않았습니다.");
-        				naverLogout();
-        				location.reload();
-        			} else {
-        				alert("로그인 되었습니다.");
-        				location.href = "/page/main.jsp";
-        			}
-        		})
-                console.log(naverLogin.user.id);
-            } else {
-                console.log("callback 처리에 실패하였습니다.");
-            }
-        });
-    }) 
+   //  $(function(){
+   //  	naverLogin.getLoginStatus(function (status) {
+   //          if (status) {
+   //          	$.ajax({
+   //      			url : "/loginByNaver.members",
+   //      			type : "post",
+   //      			data : {
+   //      				naverid : naverLogin.user.id
+   //      			}
+   //      		}).done(function(resp) {
+   //      			if (resp == "1") {
+   //      				alert("첫 회원은 회원가입 절차가 필요합니다.");
+   //      				let id = naverLogin.user.id;
+   //      				naverLogout();
+   //      				location.href="/joinform/joinformWithLoginAPI.jsp?naverid="+id;
+   //      			} else if(resp == "2"){
+   //      				alert("이메일 인증이 되지 않았습니다.");
+   //      				naverLogout();
+   //      				location.reload();
+   //      			} else {
+   //      				alert("로그인 되었습니다.");
+   //      				location.href = "/page/main.jsp";
+   //      			}
+   //      		})
+   //              console.log(naverLogin.user.id);
+   //          } else {
+   //              console.log("callback 처리에 실패하였습니다.");
+   //          }
+   //      });
+   //  }) 
     
-    function naverLogout() {
-        naverLogin.logout();
-      	location.replace("/login/login.jsp");
-    }
+   //  function naverLogout() {
+   //      naverLogin.logout();
+   //    	location.replace("/login/login.jsp");
+   //  }
 	
     
     
