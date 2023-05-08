@@ -568,7 +568,7 @@ td {
         <div class="d-none d-md-block body2">
             <div class="body2Navi">
                 <a href="#null" class="myContents" id="writeListBtn">내가 쓴 글</a>
-                <a href="#null" class="myContents" id="replyListBtn">내가 쓴 댓글</a>
+                <a href="#null" class="myContents" id="replyListBtn">내가 쓴 한 줄 리뷰</a>
                 <a href="#null" class="myContents" id="reviewMarkBtn">내가 스크랩한 리뷰</a>
                 <a href="#null" class="myContents" id="favoriteStoreListBtn">내가 즐겨찾기한 가게</a>
                 <a href="#null" class="myContents" id="consultListBtn">1:1 문의</a>
