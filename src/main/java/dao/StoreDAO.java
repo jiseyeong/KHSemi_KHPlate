@@ -105,7 +105,7 @@ public class StoreDAO {
 			return result;
 		}
 	}
-	
+
 	public int delete(int storeID) throws Exception{
 		String sql = "delete from STORE where STOREID=?";
 		try(	Connection con = this.getConnection();
@@ -580,9 +580,9 @@ public class StoreDAO {
 		int record_total_count = getFavoriteStoreRecordCount(userno);
 		int record_count_per_page = Settings.MYPAGE_LIST_RECORD_COUNT_PER_PAGE;
 		int navi_count_per_page = Settings.MYPAGE_LIST_NAVI_COUNT_PER_PAGE;
-		
+
 		System.out.println(record_total_count);
-		
+
 		int page_total_count = 0;
 
 		if(record_total_count%record_count_per_page==0) {
@@ -655,7 +655,7 @@ public class StoreDAO {
 		}
 	}
 
-	
+
 	// 마지막 storeid 가져오기
 	public int getLastStoreID() throws Exception{
 		String sql = "select * from store order by storeid desc";
@@ -666,7 +666,7 @@ public class StoreDAO {
 			return rs.getInt("storeid");
 		}
 	}
-	
+
 	public boolean isValidStoreID(int storeID) throws Exception {
 		String sql = "select * from STORE where STOREID = ?";
 		try(	Connection con = this.getConnection();
@@ -677,7 +677,7 @@ public class StoreDAO {
 			}
 		}
 	}
-	
+
 	public StoreDTO selectValidOne(int storeID) throws Exception {
 		String sql = "select * from STORE where STOREID = ?";
 		try(	Connection con = this.getConnection();
@@ -689,6 +689,84 @@ public class StoreDAO {
 				}else {
 					return null;
 				}
+			}
+		}
+	}
+
+	public List<StoreDTO> selectAll(String search) throws Exception {
+		String sql = "select * from STORE where name like ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, "%"+search+"%");
+			try(ResultSet rs = pstat.executeQuery();){
+				return transAllRsToList(rs);
+			}
+		}
+	}
+
+	public List<StoreDTO> selectAll(String search, String cost_range, String food_category_korean, String food_category_western, 
+			String food_category_chinese, String food_category_japanese, String food_category_asian, String food_category_fastfood, 
+			String food_category_dessert_drink, String food_category_etc) throws Exception {
+		String sql = "select * from STORE where name like ? and pricerange like ? and category in (?,?,?,?,?,?,?,?)";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1,"%"+search+"%");
+
+			if(cost_range.equals("")) {
+				pstat.setString(2, "%%");
+			}else {
+				pstat.setString(2, cost_range);
+			}
+
+			if(food_category_korean.equals("true")) {
+				pstat.setString(3, "한식");
+			}else {
+				pstat.setString(3, "");
+			}
+
+			if(food_category_western.equals("true")) {
+				pstat.setString(4, "양식");
+			}else {
+				pstat.setString(4, "");
+			}
+
+			if(food_category_chinese.equals("true")) {
+				pstat.setString(5, "중식");
+			}else {
+				pstat.setString(5, "");
+			}
+
+			if(food_category_japanese.equals("true")) {
+				pstat.setString(6, "일식");
+			}else {
+				pstat.setString(6, "");
+			}
+
+			if(food_category_asian.equals("true")) {
+				pstat.setString(7, "아시안");
+			}else {
+				pstat.setString(7, "");
+			}
+
+			if(food_category_fastfood.equals("true")) {
+				pstat.setString(8, "패스트푸드");
+			}else {
+				pstat.setString(8, "");
+			}
+
+			if(food_category_dessert_drink.equals("true")) {
+				pstat.setString(9, "디저트/음료");
+			}else {
+				pstat.setString(9, "");
+			}
+
+			if(food_category_etc.equals("true")) {
+				pstat.setString(10, "기타");
+			}else {
+				pstat.setString(10, "");
+			}
+			try(ResultSet rs = pstat.executeQuery();){
+				return transAllRsToList(rs);
 			}
 		}
 	}
