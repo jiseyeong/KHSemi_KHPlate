@@ -14,7 +14,14 @@
 .ck-editor__editable_inline {
 	min-height: 400px;
 }
-
+.reviewPtag{
+	color:#57b846;
+	font-weight:bold;
+	font-size:30px;
+}
+.userId{
+	font-weight:bold;
+}
 input {
 	border: none;
 	border-radius: 10px;
@@ -59,7 +66,6 @@ textarea {
 }
 
 .submitBtn {
-	float: right;
 	width: 100px;
 	height: 40px;
 	background-color: #57b846;
@@ -146,16 +152,16 @@ textarea {
 	<div class="container">
 		<form action="/write.fullreview" method="post" id="addForm"
 			enctype="multipart/form-data">
+			<p class="reviewPtag">리뷰 쓰기</p>
+			<hr style="border-style:dotted; margin-bottom:30px;">
+			ID : <input type="text" class="userId" name="userId" value="${sessionScope.userId}" readonly>
 			<input type="text" placeholder="제목란" class="title" name="title">
-
 			<hr style="border-style: dotted;">
 
-			<input type="text" class="userId" name="userId"
-				value="${sessionScope.userId}" readonly> <input type="text"
+			 <input type="text"
 				class="userNo" name="userNo" value="${sessionScope.userno}"
 				style="display: none">
 
-			<hr style="border-style: dotted;">
 
 			<div class="input_layout1">
 				<select id="storeId" class="storeId" name="storeId">
@@ -186,24 +192,17 @@ textarea {
 			<br>
 			
 
-			<div class="col-12">
-				<button type="button" id="btn_image_add"
-					class="btn-outline-secondary">이미지 등록</button>
+			<div class="col-12 text-center" style="margin-top:30px; margin-bottom:15px;">
+				<button type="button" id="btn_image_add" class="btn-outline-secondary" style="margin-right:10px;">이미지 등록</button>
+				<button class="submitBtn" type="submit">작성완료</button>
 			</div>
-			<div class="col-12">
+			<div class="col-5" style="margin-left:auto; margin-right:auto;">
 				<!-- 여기에 name이 image0, image1 식의 name으로 file input 추가됨. 보내기 직전 name 태그 붙이기 시작. -->
 				<div id="img_field"></div>
 				<!-- <input type="text" name="imgLength" style="display: none;"> -->
 			</div>
-
-
-			<br>
-			<div>
-				<button class="submitBtn" type="submit">작성완료</button>
-			</div>
 		</form>
 	</div>
-
 	<script>
 	ClassicEditor
 	.create(document.querySelector("#editor"), {
@@ -318,7 +317,5 @@ textarea {
 	});
 
 	</script>
-
-
 </body>
 </html>
