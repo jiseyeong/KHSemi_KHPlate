@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import commons.SecurityUtils;
 import dao.CommentReviewDAO;
 import dao.FullReviewDAO;
 import dao.FullReviewReplyDAO;
@@ -57,7 +58,9 @@ public class FullReviewController extends HttpServlet {
 				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
 
 				String title = multi.getParameter("title");
+				title = SecurityUtils.XSSCheck(title);
 				String reviewbody = multi.getParameter("reviewBody");
+				reviewbody = SecurityUtils.XSSCheck(reviewbody);
 				int score = Integer.parseInt(multi.getParameter("score"));
 				int storeId = Integer.parseInt(multi.getParameter("storeId"));
 				int userNo= Integer.parseInt(multi.getParameter("userNo"));
@@ -135,7 +138,9 @@ public class FullReviewController extends HttpServlet {
 				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
 
 				String title = multi.getParameter("title");
+				title = SecurityUtils.XSSCheck(title);
 				String reviewbody = multi.getParameter("reviewbody");
+				reviewbody = SecurityUtils.XSSCheck(reviewbody);
 				int score = Integer.parseInt(multi.getParameter("score"));
 				int storeId = Integer.parseInt(multi.getParameter("storeId"));
 				int reviewid= Integer.parseInt(multi.getParameter("reviewid"));

@@ -244,6 +244,7 @@ public class StoreController extends HttpServlet {
 			else if(cmd.equals("/searchStoreBySearchBox.store")) {
 				System.out.println("일반 검색");
 				String search = "";
+				search = SecurityUtils.XSSCheck(search);
 				String searchedBy = "";
 				String food_category="";
 
