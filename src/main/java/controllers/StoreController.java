@@ -351,6 +351,8 @@ public class StoreController extends HttpServlet {
 				if(searchedBy.equals("mainSearch")) {
 					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
 				}else if(searchedBy.equals("mapSearch")) {
+					List<StoreDTO> search_store_infoWindowList =  StoreDAO.getInstance().selectAll(search);
+					request.setAttribute("search_store_infoWindowList", search_store_infoWindowList);
 					request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
 				}
 			}
@@ -560,6 +562,10 @@ public class StoreController extends HttpServlet {
 				if(searchedBy.equals("mainSearch")) {
 					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
 				}else if(searchedBy.equals("mapSearch")) {
+					List<StoreDTO> search_store_infoWindowList =  StoreDAO.getInstance().selectAll(search, cost_range, food_category_korean, 
+							food_category_western, food_category_chinese, food_category_japanese, food_category_asian,
+							food_category_fastfood, food_category_dessert_drink, food_category_etc);
+					request.setAttribute("search_store_infoWindowList", search_store_infoWindowList);
 					request.getRequestDispatcher("/allstore_inquiry/allstore_inquiry.jsp").forward(request, response);
 				}
 			}
