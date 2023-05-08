@@ -211,15 +211,18 @@ public class StoreController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				
 				String realPath = request.getServletContext().getRealPath("store");
-				for(PhotoDTO i : PhotoDAO.getInstance().selectByStoreID(storeID)) {
+				ArrayList<PhotoDTO> pdao = PhotoDAO.getInstance().selectByStoreID(storeID);
+				if(pdao != null) {
+				for(PhotoDTO i : pdao) {
 					File realPathFile = new File(realPath +"/"+ i.getOriName());
 					realPathFile.delete();
 				}
+				}
 				PhotoDAO.getInstance().deleteByStoreID(storeID);
+				
 				int result = StoreDAO.getInstance().delete(storeID);
 				
-				//검색 결과 리스트창 등으로 넘길 것.
-				response.sendRedirect("/common/main_storeSearchResult.jsp");
+				response.sendRedirect("/searchStoreBySearchBox.store");
 			}else if(cmd.equals("/getMainPhoto.store")) {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				ArrayList<PhotoDTO> list = PhotoDAO.getInstance().selectByStoreID(storeID);
