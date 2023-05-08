@@ -171,7 +171,7 @@
 
                   <div class="col-12 col-lg-4 themed-grid-col sideList">
                   	<ul class="nanum-gothic sideListUl" id="mainList">
-                  		<li class="firstLi" id="mainList">최근 작성된 Review<input type="button" value="+"></li>
+                  		<li class="firstLi" id="mainList">최근 작성된 Review<input type="button" value="+" id="reviewBtn"></li>
                   		
                   		
                   		
@@ -219,6 +219,10 @@
 			}
 		})
 	
+		$("#reviewBtn").on("click",function(){
+			location.href = "/select.fullreview";
+			
+		})
 </script>
 
 
