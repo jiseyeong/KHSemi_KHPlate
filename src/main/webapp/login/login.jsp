@@ -480,7 +480,7 @@ label input[type="checkbox"] {
 		        			if (resp == "1") {
 		        				alert("첫 회원은 회원가입 절차가 필요합니다.");
 		        				let id = responseKakao.id;
-// 		        				kakaoLogout();
+		        				kakaoLogout();
 		        				location.href="/joinform/joinformWithLoginAPI.jsp?kakaoid="+id;
 		        			} else if(resp == "2"){
 		        				alert("이메일 인증이 되지 않았습니다.");
@@ -566,18 +566,18 @@ label input[type="checkbox"] {
         			if (resp == "1") {
         				alert("첫 회원은 회원가입 절차가 필요합니다.");
         				let id = naverLogin.user.id;
-        				naverLogout();
         				location.href="/joinform/joinformWithLoginAPI.jsp?naverid="+id;
+//         				naverLogout();
         			} else if(resp == "2"){
         				alert("이메일 인증이 되지 않았습니다.");
-        				naverLogout();
+//         				naverLogout();
         				location.reload();
         			} else {
         				alert("로그인 되었습니다.");
         				location.href = "/page/main.jsp";
         			}
         		})
-                console.log(naverLogin.user.id);
+//                 console.log(naverLogin.user.id);
             } else {
                 console.log("callback 처리에 실패하였습니다.");
             }

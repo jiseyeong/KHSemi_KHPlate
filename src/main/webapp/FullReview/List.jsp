@@ -290,7 +290,11 @@
 
 	<script>
 		$(".writeBtn").on("click",function(){
-			location.href="/towrite.fullreview";
+			if(${sessionScope.userno!=null}){
+				location.href="/towrite.fullreview";
+			}else{
+				alert("로그인 후 이용가능 합니다.");
+			}
 		})
 		$(".card").on("click",function(){
 			location.href="/content.fullreview?reviewid="+$(this).find('.hiddencard').val();
