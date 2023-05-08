@@ -661,11 +661,9 @@ public class StoreDAO {
 		String sql = "select * from store order by storeid desc";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
-				){
-			try(ResultSet rs = pstat.executeQuery();){
-				rs.next();
-				return rs.getInt("storeid");
-			}
+				ResultSet rs = pstat.executeQuery();){
+			rs.next();
+			return rs.getInt("storeid");
 		}
 	}
 	

@@ -524,8 +524,6 @@ label input[type="checkbox"] {
 // 	  });
 // 	}
 
-	
-	
 	// 네이버 로그인
 	// const naverLogin = new naver.LoginWithNaverId(
    //      {
@@ -574,9 +572,6 @@ label input[type="checkbox"] {
    //    	location.replace("/login/login.jsp");
    //  }
 	
-    
->>>>>>> f36a470b62411efa158bff9b10016234ea95019f
-    
 	// Form Validation
 
    $("#signupBtn").on("click",function(){

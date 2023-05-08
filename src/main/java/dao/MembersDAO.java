@@ -65,32 +65,6 @@ public class MembersDAO {
 		}
 	}
 
-//	미사용 코드
-//	public int insert(MembersDTO dto) throws Exception { //회원가입
-//
-//		String sql = "insert into members values(members_userno_seq.nextval,?,?,?,?,?,?,?,?,default,?,?);";
-//		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-//
-//			pstat.setString(1, dto.getUserID());
-//			pstat.setString(2, dto.getPw());
-//			pstat.setString(3, dto.getNickname());
-//			pstat.setString(4, dto.getName());
-//			pstat.setString(5, dto.getEmail());
-//			pstat.setString(6, dto.getClasses());
-//			pstat.setString(7, dto.getSelfcomment());
-//			pstat.setString(8, dto.getFavoriteFood());
-//			pstat.setString(9, dto.getKakao());
-//			pstat.setString(10, dto.getNaver());
-//
-//			int result = pstat.executeUpdate();
-//
-//			con.commit();
-//
-//			return result;
-//		}
-//
-//	}
-	
 	public MembersDTO selectById(int userno) throws Exception { //마이페이지 출력
 
 		String sql = "select * from members where userno=? and ismemberout = 'f'";
