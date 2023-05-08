@@ -552,7 +552,7 @@ label input[type="checkbox"] {
     );
     naverLogin.init();
 
-    $(function(){
+    $("#naverIdLogin_loginButton").click(function(){
     	naverLogin.getLoginStatus(function (status) {
             if (status) {
             	$.ajax({
