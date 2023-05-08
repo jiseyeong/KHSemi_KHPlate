@@ -10,19 +10,18 @@
   </head>
   <body>
   <%
-    String clientId = "Mm9YQgxstdSEuf5xt0jg";//애플리케이션 클라이언트 아이디값";
-    String clientSecret = "w7QnJ8Z35J";//애플리케이션 클라이언트 시크릿값";
+    String clientId = "YOUR_CLIENT_ID";//애플리케이션 클라이언트 아이디값";
+    String clientSecret = "YOUR_CLIENT_SECRET";//애플리케이션 클라이언트 시크릿값";
     String code = request.getParameter("code");
     String state = request.getParameter("state");
-    String redirectURI = URLEncoder.encode("http://127.0.0.1:8090/naver-login", "UTF-8");
-    String apiURL;
-    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
-    apiURL += "client_id=" + clientId;
-    apiURL += "&client_secret=" + clientSecret;
-    apiURL += "&redirect_uri=" + redirectURI;
-    apiURL += "&code=" + code;
-    apiURL += "&state=" + state;
-    String access_token = "";
+    String redirectURI = URLEncoder.encode("YOUR_CALLBACK_URL", "UTF-8");
+    String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code"
+        + "&client_id=" + clientId
+        + "&client_secret=" + clientSecret
+        + "&redirect_uri=" + redirectURI
+        + "&code=" + code
+        + "&state=" + state;
+    String accessToken = "";
     String refresh_token = "";
     System.out.println("apiURL="+apiURL);
     
@@ -32,23 +31,22 @@
       con.setRequestMethod("GET");
       int responseCode = con.getResponseCode();
       BufferedReader br;
-      System.out.print("responseCode="+responseCode);
-      if(responseCode==200) { // 정상 호출
+      if (responseCode == 200) { // 정상 호출
         br = new BufferedReader(new InputStreamReader(con.getInputStream()));
       } else {  // 에러 발생
         br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
       }
       String inputLine;
-      StringBuffer res = new StringBuffer();
+      StringBuilder res = new StringBuilder();
       while ((inputLine = br.readLine()) != null) {
         res.append(inputLine);
       }
       br.close();
-      if(responseCode==200) {
+      if (responseCode == 200) {
         out.println(res.toString());
       }
     } catch (Exception e) {
-      System.out.println(e);
+      // Exception 로깅
     }
   %>
   </body>

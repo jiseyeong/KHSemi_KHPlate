@@ -20,7 +20,9 @@ import com.google.gson.Gson;
 import commons.Gmail;
 import commons.SecurityUtils;
 import dao.MembersDAO;
+import dao.PhotoDAO;
 import dto.MembersDTO;
+import dto.PhotoDTO;
 
 
 
@@ -44,9 +46,9 @@ public class MembersController extends HttpServlet {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
 				String classes = request.getParameter("classes");
-
+				
 				int result = dao.join(userid,sha512pw,name,email,classes);
-
+				
 				if(result>0) {
 					System.out.println(userid +" 회원가입 완료");
 					request.setAttribute("userid", userid);
@@ -103,7 +105,6 @@ public class MembersController extends HttpServlet {
 				request.setAttribute("email", email);
 				request.getRequestDispatcher("/joinform/needEmailVerify.jsp").forward(request, response);
 				
-				
 				// 인증 이메일 링크 접속 시 controller 수행
 			}else if(cmd.equals("/emailVerified.members")) {
 				String code = request.getParameter("code");
@@ -134,7 +135,6 @@ public class MembersController extends HttpServlet {
 				String selfcomment = request.getParameter("selfcomment");
 				String favoriteFood = request.getParameter("favoriteFood");
 				
-				
 				int result = dao.update(new MembersDTO(userno,nickname,email,selfcomment,favoriteFood));
 				
 				if(result>0) {
@@ -163,6 +163,7 @@ public class MembersController extends HttpServlet {
 					return;
 					
 				}else {
+//					회원탈퇴한 유저 인지 체크
 					int result = dao.memberout(userId,userPw);
 					if(result>0) {
 						request.getSession().removeAttribute("userId");
@@ -182,7 +183,9 @@ public class MembersController extends HttpServlet {
 					userno = (int)request.getSession().getAttribute("userno");
 				}
 				MembersDTO my = MembersDAO.getInstance().selectById(userno);
+				PhotoDTO profileImage = PhotoDAO.getInstance().selectByUserno(userno);
 				request.setAttribute("my",my);
+				request.setAttribute("profileImage", profileImage);
 				if(request.getAttribute("modyInfo")!=null) {
 					request.getRequestDispatcher("/mypage/myPageVer2.jsp?modyInfo=true").forward(request, response);
 				}else
@@ -233,15 +236,26 @@ public class MembersController extends HttpServlet {
 				request.getSession().removeAttribute("userId");
 				request.getSession().removeAttribute("userno");
 				request.getSession().removeAttribute("loginIsAdmin");
-				response.sendRedirect("/page/main.jsp");
+				if(request.getSession().getAttribute("naverid")!=null) {
+					request.getSession().removeAttribute("naverid");
+					request.setAttribute("naverLogin", true);
+				}
+				if(request.getSession().getAttribute("kakaoid")!=null) {
+					request.getSession().removeAttribute("kakaoid");
+					request.setAttribute("kakaoLogin", true);
+				}
+				request.getRequestDispatcher("/page/main.jsp").forward(request, response);
 			}
 			
 			else if(cmd.equals("/IdCheck.members")) {
 				String id = request.getParameter("id");
 				System.out.println("입력 id = " + id);
-				
-				boolean result = dao.isIdExist(id);
-				
+				boolean result;
+				if(id.isBlank()) {
+					result = true;
+				}else {
+					result = dao.isIdExist(id);
+				}
 				request.setAttribute("result", result);
 				request.getRequestDispatcher("/joinform/isIdExist.jsp").forward(request, response);
 			}
@@ -273,8 +287,85 @@ public class MembersController extends HttpServlet {
 				int result=dao.updatepw(pw2,userid);
 				request.setAttribute("result", result);
 				request.getRequestDispatcher("/memberSearch/idpwsearch.jsp").forward(request, response);
+				
+				// 네이버로 로그인
+			}else if(cmd.equals("/loginByNaver.members")) {
+				String naverid = request.getParameter("naverid");
+				String userId = dao.searchNaverID(naverid);
+				// 네이버 로그인이 처음인지 확인
+				if(userId.equals("")) {
+					System.out.println("(네이버)미 회원가입 사용자");
+					response.getWriter().append("1");
+					return;
+				}else {
+					// 이메일 체크
+					boolean emailVerify = dao.emailVerify(userId);
+					if(!emailVerify) {	
+						System.out.println("(네이버)이메일 미인증");
+						response.getWriter().append("2");
+						return;
+					}else {
+						System.out.println("(네이버)로그인 성공");
+						request.getSession().setAttribute("userId", userId);
+						int userno = dao.getUserno(userId);
+						request.getSession().setAttribute("userno", userno);
+						request.getSession().setAttribute("loginIsAdmin", dao.getIsAdminByNo(userno));
+						request.getSession().setAttribute("naverid", naverid);
+						response.getWriter().append("3");
+						return;
+					}
+				}
+			}else if(cmd.equals("/loginByKakao.members")) {
+				String kakaoid = request.getParameter("kakaoid");
+				String userId = dao.searchKakaoID(kakaoid);
+				// 네이버 로그인이 처음인지 확인
+				if(userId==null) {
+					System.out.println("(카카오)미 회원가입 사용자");
+					response.getWriter().append("1");
+					return;
+				}else {
+					// 이메일 체크
+					boolean emailVerify = dao.emailVerify(userId);
+					if(!emailVerify) {	
+						System.out.println("(카카오)이메일 미인증");
+						response.getWriter().append("2");
+						return;
+					}else {
+						System.out.println("(카카오)로그인 성공");
+						request.getSession().setAttribute("userId", userId);
+						int userno = dao.getUserno(userId);
+						request.getSession().setAttribute("userno", userno);
+						request.getSession().setAttribute("loginIsAdmin", dao.getIsAdminByNo(userno));
+						request.getSession().setAttribute("kakaoid", kakaoid);
+						response.getWriter().append("3");
+						return;
+					}
+				}
+			}else if(cmd.equals("/joinWithLoginAPI.members")) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String classes = request.getParameter("classes");
+				String userid = "";
+				
+				// 카카오, 네이버 간편로그인으로 접근 시 추가 등록
+				int result = 0;
+				if(request.getParameter("naverid")!=null) {
+					userid = request.getParameter("naverid");
+					result = dao.joinWithNaver(name,email,classes,userid);
+				}else if(request.getParameter("kakaoid")!=null) {
+					userid = request.getParameter("kakaoid");
+					result = dao.joinWithKakao(name,email,classes,userid);
+				}
+				
+				if(result>0) {
+					System.out.println(userid +" 회원가입 완료");
+					request.setAttribute("userid", userid);
+					request.setAttribute("email", email);
+					request.getRequestDispatcher("/emailSend.members").forward(request, response);
+				}else {
+					System.out.println(userid +" 회원가입 실패");
+				}
 			}
-			//
 			
 		}catch(Exception e) {
 			e.printStackTrace();

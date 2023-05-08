@@ -322,9 +322,7 @@ public class FullReviewController extends HttpServlet {
 				
 				List<FullReviewDTO> mainList = frdao.mainList();
 				String mainListTitle = gson.toJson(mainList);
-				System.out.println(mainListTitle);
 				response.getWriter().append(mainListTitle);
-				
 				
 			}
 			

@@ -104,6 +104,16 @@
 	margin:auto;
 	margin-top:20px;
 }
+
+/* 추가 */
+.imageDiv *{
+	width:100%;
+	height:100%;
+	cursor:pointer;
+}
+.imageDiv img:hover{
+	opacity:80%;
+}
 </style>
 
 
@@ -122,7 +132,40 @@
 
          <div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents">
             <!-- Main 내용 부분 하단부터 수정 요망 -->
-
+			
+			<c:if test="${naverLogout}">
+	      		<script>
+		      		const naverLogin = new naver.LoginWithNaverId(
+		   		        {
+		   		            clientId: "Mm9YQgxstdSEuf5xt0jg",
+		   		            callbackUrl: "http://localhost/login/login.jsp",
+		   		            loginButton: {color: "green", type: 2, height: 40},
+		   		            isPopup: false,
+		   		    	    callbackHandle: true
+		   		        }
+		   		    );
+		   		    naverLogin.init();
+		   			naverLogin.logout();
+		      		console.log("네이버 로그아웃 완료");
+	      		</script>
+      		</c:if>
+      		
+      		<c:if test="${kakaoLogout}">
+	      		<script>
+		      		function kakaoLogout() {
+		      		    Kakao.Auth.logout()
+		      		      .then(function() {
+		      		        alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+		      		        deleteCookie();
+		      		      })
+		      		      .catch(function() {
+		      		        alert('Not logged in');
+		      		      });
+		      	    }
+		      		console.log("카카오 로그아웃 완료");
+	      		</script>
+      		</c:if>
+      	
             <div class="col-12 themed-grid-col contents">
                <div class="col-12 col-lg-12 themed-grid-col row contents1">
                   <div class="col-12 col-lg-8 themed-grid-col carousel">
@@ -179,19 +222,19 @@
                   </div>
                </div>
                <div class="col-12 col-lg-12 themed-grid-col row contents2" style="margin-top:100px;">
-                  <div class="row row-cols-1 row-cols-md-3 g-4">
-                     <div class="col-12 col-lg-3 themed-grid-col">
-                     	<div class="imageDiv"><img src="/page/롤링파스타.png"></div>
-						<div class="nanum-gothic textDiv">롤링파스타 종로점</div>
-                     </div>
-                     <div class="col-12 col-lg-3 themed-grid-col">
-						<div class="imageDiv"><img src="/page/오로지라멘.png"></div>
-						<div class="nanum-gothic textDiv">오로지라멘</div>
-                     </div>
-                     <div class="col-12 col-lg-3 themed-grid-col">
-						<div class="imageDiv"><img src="/page/자담치킨.png"></div>
-						<div class="nanum-gothic textDiv">자담치킨</div>
-                     </div>
+                  <div class="row row-cols-1 row-cols-md-3 g-4" id="printToStoreList">
+<!--                      <div class="col-12 col-lg-3 themed-grid-col"> -->
+<!--                      	<div class="imageDiv"><img src="/page/롤링파스타.png"></div> -->
+<!-- 						<div class="nanum-gothic textDiv">롤링파스타 종로점</div> -->
+<!--                      </div> -->
+<!--                      <div class="col-12 col-lg-3 themed-grid-col"> -->
+<!-- 						<div class="imageDiv"><img src="/page/오로지라멘.png"></div> -->
+<!-- 						<div class="nanum-gothic textDiv">오로지라멘</div> -->
+<!--                      </div> -->
+<!--                      <div class="col-12 col-lg-3 themed-grid-col"> -->
+<!-- 						<div class="imageDiv"><img src="/page/자담치킨.png"></div> -->
+<!-- 						<div class="nanum-gothic textDiv">자담치킨</div> -->
+<!--                      </div> -->
                   </div>
                </div>
             </div>
@@ -204,11 +247,11 @@
    </div>
 
 <script>
-	
+	$(function(){
 		$.ajax({
 			url: "/mainList.fullreview",
 			type:"post",
-			dataType:"json",
+			dataType:"json"
 		}).done(function(resp){
 			for(let i=0; i<resp.length; i++){
 				let li = $("<li>");
@@ -218,6 +261,16 @@
 				li.append(resp[i].title);
 			}
 		})
+		
+		$.ajax({
+			url: "/mainSet.store",
+			type:"post"
+		}).done(function(resp){
+			console.log(resp);
+			let print = $("#printToStoreList");
+			print.append(resp);
+		})
+	})
 	
 		$("#reviewBtn").on("click",function(){
 			location.href = "/select.fullreview";

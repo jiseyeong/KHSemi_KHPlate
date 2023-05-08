@@ -473,6 +473,12 @@ td {
 .body2Contents p{
 	margin:0;
 }
+
+.image{
+	width:100%;
+	height:100%;
+	border-radius:200px;
+}
 </style>
 </head>
 
@@ -489,7 +495,18 @@ td {
         <div class="row body1" style="margin-bottom:40px;">
             <div class="col-12 col-md-12 col-lg-12 col-xl-4 profile">
                 <div class="profileImage">
-                    <div class="proImage"></div>
+                    <div class="proImage">
+                    	<c:choose>
+                    		<c:when test="${profileImage!=null}">
+<!--                     			추후 경로 수정 요구 -->
+                    			<img class="image" src="/profileImage/${profileImage}" onerror="/common/khplate2.jpg">
+                    		</c:when>
+                    		<c:otherwise>
+                    			<img class="image" src="/common/khplate2.jpg">
+                    		</c:otherwise>
+                    	</c:choose>
+                    
+                    </div>
 
                     <button class="btns">변경하기</button>
                 </div>
@@ -697,7 +714,7 @@ td {
     })
 
     $("#toModiPW").on("click", function () {
-        window.open("/memberSearch/idpwsearch.jsp", "", "width=480px,height=750px");
+        window.open("/memberSearch/newpassword.jsp", "", "width=480px,height=750px");
     })
     
     $("document").ready(function () {
