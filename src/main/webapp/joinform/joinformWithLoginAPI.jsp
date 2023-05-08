@@ -21,6 +21,11 @@
 <!-- Icons font CSS-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
+<!-- Vendor CSS-->
+<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+
+<!-- Main CSS-->
+<link href="css/main.css" rel="stylesheet" media="all">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 </head>
@@ -560,14 +565,14 @@ font-size: 16px;
 
 </style>
 <body>
-<body>
 	<div class="page-wrapper bg-red p-t-150 p-b-100 font-robo">
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
 				<div class="card-heading"></div>
 				<div class="card-body">
 					<h2 class="title">KH PLATE에 오신 것을 환영합니다!</h2>
-					<form class="frm" action="/join.members" method="POST">
+					<h2 class="title">(간편로그인용)</h2>
+					<form class="frm" action="/joinWithLoginAPI.members" method="POST">
 <!-- 						네이버 로그인으로 접근한 경우 -->
 						<c:if test="${param.naverid!=null}">
 							<input type="hidden" name="naverid" id="naverid" value="${param.naverid}">
@@ -607,60 +612,10 @@ font-size: 16px;
 							</div>
 						</div>
 
-
-						<div class="row row-space">
-							<div class="col-2">
-								<div class="input-group">
-									<input class="input--style-2" type="text" placeholder="아이디"
-										id="id" name="id">
-								</div>
-							</div>
-							<div class="col-2">
-								<button class="btn btn--radius btn--green" type="button"
-									id="idCheck">중복체크</button>
-							</div>
-						</div>
-
-
-
-
-						<div class="row row-space">
-							<div class="col-2">
-								<div class="input-group">
-									<input class="input--style-2" type="password"
-										placeholder="비밀번호" id="pw1" name="pw">
-								</div>
-								<div class="input-group">
-									<input class="input--style-2" type="password"
-										placeholder="비밀번호 확인" id="pw2">
-								</div>
-							</div>
-							<div class="p-t-30 col-2" style="margin-top:55px" >
-								<div id="pwCheck"></div>
-							</div>
-						</div>
-
-
 						<div class="input-group">
 							<input class="input--style-2" type="text" placeholder="이메일"
 								id="email" name="email">
 						</div>
-
-						
-<!-- 						인증코드 발송 부분 주석처리 -->
-
-<!-- 						<div class="row row-space"> -->
-<!-- 							<div class="col-2"> -->
-<!-- 								<div class="input-group"> -->
-<!-- 									<input class="input--style-2" type="text" placeholder="인증코드" -->
-<!-- 										id="reg_code" name="reg_code"> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 							<div class="col-2"> -->
-<!-- 								<button class="btn btn--radius btn--green" type="button" -->
-<!-- 									id="reg_send">코드발송</button> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
 
 
 						<div class="p-t-10">
@@ -673,120 +628,55 @@ font-size: 16px;
 		</div>
 	</div>
 
+	<!-- Jquery JS-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<!-- Vendor JS-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<!-- Main JS-->
+	<script src="js/global.js"></script>
+
 	<script>
-            var idValidFlag = false;
-    
-            $("#idCheck").on(
-                "click",
-                function () {
-                    window.open("/IdCheck.members?id="+$("#id").val(),"","width=450px, height=630px");
-                });
-            
-            $("#id").on("change", function () {
-                idValidFlag = false;
-            })
-    
-            $("#pw2,#pw1").on(
-                "keyup",
-                function () { //비밀번호 일치여부 표시
-                    if ($("#pw2").val() == $("#pw1").val()) {
-                        $("#pwCheck").html("비밀번호가 일치합니다 <i class='bi bi-emoji-smile'></i>").css({"color":"dodgerblue"})
-                    } else {
-                        $("#pwCheck").html("비밀번호가 일치하지 않습니다 <i class='bi bi-emoji-frown'></i>").css({"color":"red"})
-                    }
-                });
-    
-          
-    
-            $(".frm").on(
-                "submit",
-                function () {
-                    //입력 형식 제한
-                    var regexID = /^[a-z0-9_]{7,13}$/;
-                    var regexPW = /^[A-Za-z0-9]{7,13}$/;
-                    var regexName = /^[가-힣]+$/;
-                    var regexPhone = /^010[0-9]{8}$/;
-                    var regexEmail = /.+@.+\..+/;
-    
-                    var name = $("#name").val();
-                    var id = $("#id").val();
-                    var pw1 = $("#pw1").val();
-                    var pw2 = $("#pw2").val();
-                    var email = $("#email").val();
-    
-                    if (id == "" || pw1 == "" || pw2 == "" || name == ""|| email == "") { //필수항목 입력 여부 체크
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "필수 항목을 모두 입력해주세요."
-                        });
-                        return false;
-                    }
-                    
-                    //형식 제한 준수 여부 체크
-                    if (!regexID.test(id)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "ID 형식 오류",
-                            text: "7-13자의 알파벳 소문자, 숫자 형태로 입력해주세요",
-                        });
-                        return false;
-                    }
-                    
-                    // ID 중복체크 확인 코드
-                    if (idValidFlag==false){
-                    	Swal.fire({
-                            icon: "error",
-                            title: "ID 중복 검사 미실시",
-                            text: "ID 중복 검사를 실시해주세요."
-                        });
-                        return false;
-                    }
-                    
-                    if (!regexPW.test(pw1)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Password 형식 오류",
-                            text: "7-13자의 알파벳 대소문자,숫자 형태로 입력해주세요",
-                        });
-                        return false;
-                    }
-                    
-                    // 패스워드 형식 확인 여부
-                    if (pw1 != pw2) {
-                    	 Swal.fire({
-                             icon: "error",
-                             title: "Password 불일치",
-                             text: "패스워드를 다시 확인해주세요.",
-                         });
-						return false;
-					}
-                    
-                    // 이름 형식 확인 여부
-                    if (!regexName.test(name)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "NAME 형식 오류",
-                            text: "한글만 입력 가능합니다.",
-                        });
-                        return false;
-                    }
-                    
-                	 // 이메일 형식 확인 여부
-                    if (!regexEmail.test(email)) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "EMAIL 형식 오류",
-                            text: "ID@address 형식으로 입력해주세요.",
-                        });
-                        return false;
-                    }else{
-                    	return true;
-                    }
-                });
-        </script>
-
-
+	     $(".frm").on("submit",function () {
+	       //입력 형식 제한
+	       var regexName = /^[가-힣]+$/;
+	       var regexEmail = /.+@.+\..+/;
+	
+	       var name = $("#name").val();
+	       var email = $("#email").val();
+	
+	       if (name == ""|| email == "") { //필수항목 입력 여부 체크
+	           Swal.fire({
+	               icon: "error",
+	               title: "Oops...",
+	               text: "필수 항목을 모두 입력해주세요."
+	           });
+	           return false;
+	       }
+	       
+	       //형식 제한 준수 여부 체크
+	       // 이름 형식 확인 여부
+	       if (!regexName.test(name)) {
+	           Swal.fire({
+	               icon: "error",
+	               title: "NAME 형식 오류",
+	               text: "한글만 입력 가능합니다.",
+	           });
+	           return false;
+	       }
+	       
+	   	 // 이메일 형식 확인 여부
+	       if (!regexEmail.test(email)) {
+	           Swal.fire({
+	               icon: "error",
+	               title: "EMAIL 형식 오류",
+	               text: "ID@address 형식으로 입력해주세요.",
+	           });
+	           return false;
+	       }else{
+	       		return true;
+	       }
+	   });
+	 </script>
 </body>
 </html>
 
