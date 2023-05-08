@@ -16,6 +16,7 @@ import com.google.gson.JsonObject;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import commons.SecurityUtils;
 import dao.ConsultDAO;
 import dao.ConsultReplyDAO;
 import dao.MembersDAO;
@@ -48,8 +49,10 @@ public class ConsultController extends HttpServlet {
 				
 				String category = multi.getParameter("category");
 				String title = multi.getParameter("title");
+				title = SecurityUtils.XSSCheck(title);
 				Integer userNo = Integer.parseInt(multi.getParameter("writer"));
 				String body = multi.getParameter("body");
+				body = SecurityUtils.XSSCheck(body);
 				
 				int result = ConsultDAO.getInstance().insert(new ConsultDTO(0, title, body, userNo, null, category, "N"));
 				int currval = ConsultDAO.getInstance().getCurrval();
@@ -130,7 +133,9 @@ public class ConsultController extends HttpServlet {
 				int userNo = Integer.parseInt(request.getParameter("writer"));
 				int consultID = Integer.parseInt(request.getParameter("consultID"));
 				String title = request.getParameter("title");
+				title = SecurityUtils.XSSCheck(title);
 				String body = request.getParameter("body");
+				body = SecurityUtils.XSSCheck(body);
 				
 				int result = ConsultReplyDAO.getInstance().insert(new ConsultReplyDTO(0, title, body, consultID, userNo, null));
 				int replyResult = ConsultDAO.getInstance().updateReply(consultID, "Y");

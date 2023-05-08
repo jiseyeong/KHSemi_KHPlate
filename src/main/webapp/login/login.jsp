@@ -547,18 +547,19 @@ label input[type="checkbox"] {
             callbackUrl: "http://localhost/login/login.jsp",
             loginButton: {color: "green", type: 2, height: 40},
             isPopup: false,
-    	    callbackHandle: false
+    	    callbackHandle: true
         }
     );
     naverLogin.init();
-
+    
     //$("#naverIdLogin_loginButton").click(function(event){
-    function NaverLogin(){
+    $("#naverIdLogin_loginButton")[0].addEventListener("click", function(event){
     	naverLogin.getLoginStatus(function (status) {
             if (status) {
             	$.ajax({
         			url : "/loginByNaver.members",
         			type : "post",
+        			async : true,
         			data : {
         				naverid : naverLogin.user.id
         			}
@@ -566,23 +567,23 @@ label input[type="checkbox"] {
         			if (resp == "1") {
         				alert("첫 회원은 회원가입 절차가 필요합니다.");
         				let id = naverLogin.user.id;
+        				naverLogout();
         				location.href="/joinform/joinformWithLoginAPI.jsp?naverid="+id;
-//         				naverLogout();
         			} else if(resp == "2"){
         				alert("이메일 인증이 되지 않았습니다.");
-//         				naverLogout();
+         				naverLogout();
         				location.reload();
         			} else {
         				alert("로그인 되었습니다.");
         				location.href = "/page/main.jsp";
         			}
         		})
-//                 console.log(naverLogin.user.id);
+        		console.log(naverLogin.user.id);
             } else {
                 console.log("callback 처리에 실패하였습니다.");
             }
         });
-    }
+    });
     
     function naverLogout() {
         naverLogin.logout();

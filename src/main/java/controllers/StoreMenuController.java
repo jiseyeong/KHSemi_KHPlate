@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import commons.SecurityUtils;
 import dao.StoreMenuDAO;
 import dto.StoreMenuDTO;
 
@@ -31,6 +32,7 @@ public class StoreMenuController extends HttpServlet {
 				for(int i = 0; i < menuLength; i++) {
 					int menuID = Integer.parseInt(request.getParameter("menuID"+i));
 					String updateMenuName = request.getParameter("updateMenuName"+menuID);
+					updateMenuName = SecurityUtils.XSSCheck(updateMenuName);
 					int updateMenuPrice= Integer.parseInt(request.getParameter("updateMenuPrice"+menuID));
 					int result = StoreMenuDAO.getInstance().update(new StoreMenuDTO(menuID, updateMenuName, updateMenuPrice, storeID));
 				}
@@ -38,6 +40,7 @@ public class StoreMenuController extends HttpServlet {
 						|| (request.getParameter("addedMenuPrice") !=null && !(request.getParameter("addedMenuPrice").equals("")))
 						) {
 					String menuName = request.getParameter("addedMenuName");
+					menuName = SecurityUtils.XSSCheck(menuName);
 					int menuPrice = Integer.parseInt(request.getParameter("addedMenuPrice"));
 					int result = StoreMenuDAO.getInstance().insert(new StoreMenuDTO(0, menuName, menuPrice, storeID));
 				}
