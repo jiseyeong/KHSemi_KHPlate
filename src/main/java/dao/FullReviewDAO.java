@@ -50,13 +50,13 @@ public class FullReviewDAO {
 			return result;
 		}
 	}
-	
-	
+
+
 	public int newReviewId()throws Exception{
 		String sql = "select reviewid from fullreview order by 1 desc";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
-			ResultSet rs = pstat.executeQuery()){
+				ResultSet rs = pstat.executeQuery()){
 			rs.next();
 			int reviewid = rs.getInt("reviewid");
 			return reviewid;
@@ -95,13 +95,18 @@ public class FullReviewDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			try(ResultSet rs = pstat.executeQuery()){
 				List<FullReviewDTO> ListTitle = new ArrayList<>();
-				for(int i=0; i<9; i++) {
+				
+				while(rs.next()) {
+					if(ListTitle.size()<10) {
 					FullReviewDTO dto = new FullReviewDTO();
-					rs.next();
 					dto.setReviewID(rs.getInt("reviewid"));
 					dto.setTitle(rs.getString("title"));
 					ListTitle.add(dto);
+					}
+					else {
+					break;}
 				}
+				
 				return  ListTitle;
 			}
 		}
@@ -557,14 +562,14 @@ public class FullReviewDAO {
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	// FullReview 스크랩 기능 추가
 	public List<FullReviewScrapDTO> isScrapFullReview(List<FullReviewUserDTO> fullReviewList, int userno) throws Exception {
-		
+
 		List<FullReviewScrapDTO> result = new ArrayList<>();
-		
+
 		for(FullReviewUserDTO fullReview : fullReviewList) {
 			String sql = "select * from fullreviewscrap where reviewID = ? and userno = ?";
 			try(	Connection con = this.getConnection();
@@ -582,7 +587,7 @@ public class FullReviewDAO {
 		}
 		return result;
 	}
-	
+
 
 	// 스크랩 등록 dao
 	public int addScrapFullReview(int reviewID, int userno) throws Exception {
@@ -611,7 +616,7 @@ public class FullReviewDAO {
 			return result;
 		}
 	}
-	
+
 	//리뷰 평점 계산용
 	public List<FullReviewDTO> selectByStoreID(int storeID) throws Exception{
 		String sql = "select * from FULLREVIEW where STOREID = ?";
