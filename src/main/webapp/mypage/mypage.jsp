@@ -713,6 +713,25 @@ td {
 		</div>
 	</div>
 	 <script>
+	 
+	   $("#profileImageChangebtn").on("click", function() {
+	         let formData = new FormData();
+	          formData.append("userNo", "<c:out value='${my.userNO}'></c:out>");
+	             let fileInput = document.getElementById("btn_image_add");
+	             let file = fileInput.files[0];
+	             formData.append("images", file);
+	         $.ajax({
+	            url : "/profilePicUpdate.members",
+	            type : "post",
+	            data: formData,
+	            dataType: "json",
+	            processData : false,
+	                contentType : false,
+	         }).done(function(resp) {
+	            $(".image").attr("src","/mypagepic/"+resp.sysName)
+	         })
+	      })
+	      
     $(".item").on("click",function(){
     	$(this).css("border","1px solid blue");
     })
@@ -750,6 +769,7 @@ td {
             $("#modiComBtn").css("display", "inline-block");
             $(".inputcss").not("#id,#name").removeAttr("readonly");
             $("#profileImageChangebtn").css("display","inline-block");
+            $("#btn_image_add").css("display","inline-block");
         })
 //         $("#modiComBtn").on("click", function () { //수정완료
 //             $("#modiComBtn").css("display", "none");
