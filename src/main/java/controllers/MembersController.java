@@ -1,5 +1,7 @@
 package controllers;
+import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import commons.Gmail;
 import commons.SecurityUtils;
@@ -181,7 +185,42 @@ public class MembersController extends HttpServlet {
 						return;
 					}
 				}
+				
+				//프로필사진 ajax
+			}else if (cmd.equals("/profilePicUpdate.members")) {
 
+				String realPath = request.getServletContext().getRealPath("mypagepic");
+				int maxSize = 1024 * 1024 * 10;
+				System.out.println(realPath);
+				File realPathFile = new File(realPath);
+				if(!realPathFile.exists()) {
+					realPathFile.mkdir();
+				}
+				MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf8", new DefaultFileRenamePolicy());
+
+				int userNo= Integer.parseInt(multi.getParameter("userNo"));
+				System.out.println("유저넘버"+userNo);
+				Enumeration<String> names = multi.getFileNames();
+				
+				PhotoDAO.getInstance().deleteByuserno(userNo);
+				
+				while(names.hasMoreElements()) {
+					String fileName = names.nextElement();
+					System.out.println(fileName);
+					if(multi.getFile(fileName) != null){
+						String oriName = multi.getOriginalFileName(fileName);
+						String sysName = multi.getFilesystemName(fileName);
+						PhotoDAO.getInstance().insertByuserNo(oriName,sysName,userNo);
+						System.out.println("DB입력됨");
+					}
+				}
+				
+				PhotoDTO pdto = PhotoDAO.getInstance().selectByuserNo(userNo);
+				String photodto = g.toJson(pdto);
+				response.getWriter().append(photodto);
+				
+				
+				
 			}else if(cmd.equals("/mypage.members")) {
 				int userno = 0;
 				// 다른 사람의 유저 정보로 접근 할 때,
