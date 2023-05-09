@@ -309,16 +309,16 @@ label input[type="checkbox"] {
 /* } */
 
 
-#kakaobtn2 {
-   width: 333px;
-   height: 47px;
-   position: relative;
-   top: 18px;
-   cursor: pointer;
-   margin-left: 37px;
-   margin-top: 57px;
-   font-size: 18px;
-   opacity: 0;
+/*#kakaobtn2 { */
+/*   width: 333px; */
+/*   height: 47px; */
+/*   position: relative; */
+/*   top: 18px; */
+/*   cursor: pointer; */
+/*   margin-left: 37px; */
+/*   margin-top: 57px; */
+/*   font-size: 18px; */
+/*   opacity: 0; */
 }
 </style>
 
@@ -350,11 +350,10 @@ label input[type="checkbox"] {
 				<!-- <label> <input type="checkbox"> <span></span> <small
 					class="rmb">ID 기억하기</small></label> -->
 				<input type="button" value="제출하기" class="btn" id="signupBtn">
-				<button type="button" class="btn" id="kakaoBtn"><img src="/login/카카오로고.png" class="kakaoImage" style="width:15%; height:100%;"><div>카카오 로그인</div></button>
+				<button type="button" class="btn" id="kakaoBtn" onclick="kakaoLogin();"><a href="javascript:void(0)"></a><img src="/login/카카오로고.png" class="kakaoImage" style="width:15%; height:100%;"><div>카카오 로그인</div></button>
 				<button type="button" class="btn" id="naverIdLogin_loginButton"><img src="/login/네이버로고.png" class="naverImage" style="width:15%; height:100%;"><div>네이버 로그인</div></button>
-				
-				<!--  <input type="button" value="카카오 로그인" class="btn" id="kakaoBtn"></div>
-				<input type="button" value="네이버 로그인" class="btn" id="naverIdLogin_loginButton"></div>-->
+			
+
 			  	<!--  <div id="kakaobtn2" onclick="kakaoLogin();">
 	                <a href="javascript:void(0)"></a>
 	            </div>
@@ -474,8 +473,9 @@ label input[type="checkbox"] {
 	}
 
 	//kakao
-
+ 
 	//카카오 로그인
+	
 	function kakaoLogin() {
 		Kakao.init('25e12e36964674d52a9931b02d3b7cc1'); //발급받은 키 중 javascript키를 사용해준다.
 		console.log(Kakao.isInitialized()); // sdk초기화여부판단
