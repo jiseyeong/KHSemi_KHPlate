@@ -590,6 +590,18 @@ font-size: 16px;
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
+									<input class="input--style-2" type="text" placeholder="아이디"
+										id="id" name="id">
+								</div>
+							</div>
+							<div class="col-2">
+								<button class="btn btn--radius btn--green" type="button"
+									id="idCheck">중복체크</button>
+							</div>
+						</div>
+						<div class="row row-space">
+							<div class="col-2">
+								<div class="input-group">
 									<input class="input--style-2" type="text" placeholder="이름"
 										id="name" name="name">
 								</div>
@@ -636,15 +648,25 @@ font-size: 16px;
 	<script src="js/global.js"></script>
 
 	<script>
+    	var idValidFlag = false;
+    
+    	$("#idCheck").on(
+        "click",
+        function () {
+            window.open("/IdCheck.members?id="+$("#id").val(),"","width=450px, height=630px");
+        });
+		
 	     $(".frm").on("submit",function () {
 	       //입력 형식 제한
+	       var regexID = /^[a-z0-9_]{7,13}$/;
 	       var regexName = /^[가-힣]+$/;
 	       var regexEmail = /.+@.+\..+/;
 	
 	       var name = $("#name").val();
 	       var email = $("#email").val();
+	       var id = $("#id").val();
 	
-	       if (name == ""|| email == "") { //필수항목 입력 여부 체크
+	       if (!id || !name || !email) { //필수항목 입력 여부 체크
 	           Swal.fire({
 	               icon: "error",
 	               title: "Oops...",
@@ -655,7 +677,23 @@ font-size: 16px;
 	       
 	       //형식 제한 준수 여부 체크
 	       // 이름 형식 확인 여부
-	       if (!regexName.test(name)) {
+	       if (idValidFlag==false){
+	           	Swal.fire({
+	                icon: "error",
+	                title: "ID 중복 검사 미실시",
+	                text: "ID 중복 검사를 실시해주세요."
+	            });
+	            return false;
+		   }
+	       else if(!regexID.test(id)){
+	           Swal.fire({
+                   icon: "error",
+                   title: "ID 형식 오류",
+                   text: "7-13자의 알파벳 소문자, 숫자 형태로 입력해주세요",
+	           });
+	           return false;
+	       }
+	       else if (!regexName.test(name)) {
 	           Swal.fire({
 	               icon: "error",
 	               title: "NAME 형식 오류",
@@ -665,7 +703,7 @@ font-size: 16px;
 	       }
 	       
 	   	 // 이메일 형식 확인 여부
-	       if (!regexEmail.test(email)) {
+	   	 	else if (!regexEmail.test(email)) {
 	           Swal.fire({
 	               icon: "error",
 	               title: "EMAIL 형식 오류",
