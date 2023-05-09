@@ -288,7 +288,7 @@ public class StoreController extends HttpServlet {
 				}else {
 					currentpage = 1;
 				}
-
+				
 				System.out.println("현재 페이지 : "+currentpage);
 
 				// 검색방식에 따라 네비 갯수 변경
@@ -340,7 +340,6 @@ public class StoreController extends HttpServlet {
 				request.setAttribute("search_store_list", search_store_list);
 				request.setAttribute("search_store_list_navi", search_store_list_navi);
 				request.setAttribute("search_store_imgList", search_store_imgList);
-				request.setAttribute("Favorite_list", Favorite_list);
 
 				// 사이드바로 접근 시 p태그 내용 변경
 				if(request.getParameter("approachBy")!=null) {
@@ -349,6 +348,7 @@ public class StoreController extends HttpServlet {
 				}
 
 				if(searchedBy.equals("mainSearch")) {
+					request.setAttribute("Favorite_list", Favorite_list);
 					request.getRequestDispatcher("/common/main_storeSearchResult.jsp").forward(request, response);
 				}else if(searchedBy.equals("mapSearch")) {
 					List<StoreDTO> search_store_infoWindowList =  StoreDAO.getInstance().selectAll(search);
@@ -645,7 +645,7 @@ public class StoreController extends HttpServlet {
 				while(it.hasNext()) {
 					StoreDTO dto = StoreDAO.getInstance().selectOne(it.next());
 					List<PhotoDTO> photoTemp = PhotoDAO.getInstance().selectByStoreID(dto.getStoreID());
-					if(photoTemp!=null && photoTemp.size()!=0) {
+					if(photoTemp.size()>0) {
 						sb.append("<div class='col-12 col-lg-3 themed-grid-col'>"
 								+ "<div class='imageDiv'>"
 								+ "<a href='/view.store?storeID="+dto.getStoreID()+"'>"
