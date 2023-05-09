@@ -1364,16 +1364,14 @@ input[type="range"]::-ms-track {
     //검색 함수
  
   	function search2(){
-    $("#searchBtn").on("click", function () {
             $("#searchForm").prop("onsubmit", true);
             $("#searchForm").submit();
-  	})
  		 }
  	$("#searchBtn").on("click", function () {
     	search2();
 		})   
     
-    
+
     $("#search").keydown(function (key) {
         if (key.keyCode == 13) {
         	search2();
