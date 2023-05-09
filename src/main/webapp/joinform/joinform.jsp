@@ -1,40 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Required meta tags-->
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
-<!-- Title Page-->
 <title>Register Form</title>
-
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 
-<!-- Icons font CSS-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 </head>
 <style>
-
-/* ==========================================================================
-   #FONT
-   ========================================================================== */
-   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-
-
-/* ==========================================================================
-   #GRID
-   ========================================================================== */
+@import
+	url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+	
 .row {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -66,13 +62,6 @@
 	}
 }
 
-/* ==========================================================================
-   #BOX-SIZING
-   ========================================================================== */
-/**
- * More sensible default box-sizing:
- * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
- */
 html {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -90,37 +79,17 @@ html {
 	box-sizing: inherit;
 }
 
-/* ==========================================================================
-   #RESET
-   ========================================================================== */
-/**
- * A very simple reset that sits on top of Normalize.css.
- */
-body, h1, h2, h3, h4, h5, h6, blockquote, p, pre, dl, dd, ol, ul, figure,
-	hr, fieldset, legend {
+
+body, h2, blockquote, p, pre, dl, dd, figure, hr, fieldset, legend {
 	margin: 0;
 	padding: 0;
 }
 
-/**
- * Remove trailing margins from nested lists.
- */
-li>ol, li>ul {
-	margin-bottom: 0;
-}
-
-/**
- * Remove default table spacing.
- */
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
 
-/**
- * 1. Reset Chrome and Firefox behaviour which sets a `min-width: min-content;`
- *    on fieldsets.
- */
 fieldset {
 	min-width: 0;
 	/* [1] */
@@ -146,66 +115,32 @@ body {
 	font-size: 15px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Nanum Gothic', sans-serif;
-	font-weight: 400;
-}
-
-h1 {
-	font-size: 36px;
-}
 
 h2 {
+font-family: 'Nanum Gothic', sans-serif;
 	font-size: 30px;
 	font-weight: bolder;
 }
-
-h3 {
-	font-size: 24px;
-}
-
-h4 {
-	font-size: 18px;
-}
-
-h5 {
-	font-size: 15px;
-}
-
-h6 {
-	font-size: 13px;
-}
-
 /* ==========================================================================
    #BACKGROUND
    ========================================================================== */
 .bg-red {
-	background: #ED1C16; 
+	background: #ED1C16;
 }
-
 /* ==========================================================================
    #SPACING
    ========================================================================== */
-.p-t-100 {
-	padding-top: 100px;
+.p-t-10 {
+	padding-top: 10px;
 }
 
 .p-t-150 {
 	padding-top: 150px;
 }
 
-.p-t-20 {
-	padding-top: 20px;
-}
-
-.p-t-30 {
-	padding-top: 30px;
-}
-
 .p-b-100 {
 	padding-bottom: 100px;
 }
-
 /* ==========================================================================
    #WRAPPER
    ========================================================================== */
@@ -252,7 +187,6 @@ h6 {
 .btn--green:hover {
 	background: #4dae3c;
 }
-
 /* ==========================================================================
    #FORM
    ========================================================================== */
@@ -269,10 +203,14 @@ input {
 }
 
 /* input group 1 */
-/* end input group 1 */
 .input-group {
 	position: relative;
 	margin-bottom: 30px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.inner-group {
+margin-bottom: 30px;
 	border-bottom: 1px solid #e5e5e5;
 }
 
@@ -309,7 +247,6 @@ input {
 	/* Microsoft Edge */
 	color: #808080;
 }
-
 /* ==========================================================================
    #SELECT2
    ========================================================================== */
@@ -334,7 +271,7 @@ input {
 	padding-left: 0;
 	color: #808080;
 	font-size: 15px;
-    font-family: 'Nanum Gothic', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 500;
 }
 
@@ -366,7 +303,7 @@ input {
 
 .rs-select2 .select2-container .select2-selection--single .select2-selection__arrow:after
 	{
-    font-family: 'Nanum Gothic', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	content: '\f2f9';
 	font-size: 15px;
 	color: #ccc;
@@ -397,45 +334,46 @@ input {
 	margin-top: 5px;
 	overflow: hidden;
 }
-
 /* ------------------------------------------------------- */
 /* IE */
-#class::-ms-expand { 
-  display: none;
+#class::-ms-expand {
+	display: none;
 }
 
 #class {
--o-appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+	-o-appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
 
 #class {
-   font-family: 'Nanum Gothic', sans-serif;
-font-size: 16px;
-  width: 150px;
-  height: 35px;
-  left: 25%;
-  top:5px;
-  color: #666;
-  background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
-  background-size: 20px;
-  padding: 5px 30px 0px 15px;
-  border-radius: 25px;
-  border: 0px solid #ffffff;
-  outline: 0 none;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 16px;
+	width: 150px;
+	height: 35px;
+	left: 25%;
+	top: 5px;
+	color: #666;
+	background:
+		url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png')
+		calc(100% - 5px) center no-repeat;
+	background-size: 20px;
+	padding: 5px 30px 0px 15px;
+	border-radius: 25px;
+	border: 0px solid #ffffff;
+	outline: 0 none;
 }
 
 #class option {
- font-family: 'Nanum Gothic', sans-serif;
-  background: #57b846;
-  color: #fff;
-  padding: 3px 0;
+	font-family: 'Nanum Gothic', sans-serif;
+	background: #57b846;
+	color: #fff;
+	padding: 3px 0;
 }
 
 #class option:hover {
-  background:#4dae3c;
+	background: #4dae3c;
 }
 /* ==========================================================================
    #TITLE
@@ -445,7 +383,6 @@ font-size: 16px;
 	font-weight: 700;
 	margin-bottom: 45px;
 }
-
 /* ==========================================================================
    #CARD
    ========================================================================== */
@@ -478,8 +415,8 @@ font-size: 16px;
 
 .card-2 .card-body {
 	display: table-cell;
-	padding: 80px 90px;
-	padding-bottom: 88px;
+	padding: 80px 70px;
+	
 }
 
 @media ( max-width : 767px) {
@@ -492,96 +429,77 @@ font-size: 16px;
 		padding-top: 300px;
 		background-position: left center;
 	}
-	
-  .card-2 .card-body {
+	.card-2 .card-body {
 		display: block;
 		padding: 60px 50px;
 	}
 }
 
 #enter {
-  font-family: 'Nanum Gothic', sans-serif;
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #57b846;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 14px;
-  transition: all 0.5s;
-  cursor: pointer;
-  line-height: 40px;
-  padding: 0 25px;
-  margin-left: 220px;
-   letter-spacing: 1px;
-   box-shadow: inset 0 0 0 0 #ED1C16; 
-  -webkit-transition: ease-out 0.4s;
-  -moz-transition: ease-out 0.4s;
-  transition: ease-out 0.4s;
+	font-family: 'Nanum Gothic', sans-serif;
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #57b846;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 14px;
+	transition: all 0.5s;
+	cursor: pointer;
+	line-height: 40px;
+	padding: 0 25px;
+	margin-left: 220px;
+	letter-spacing: 1px;
+	box-shadow: inset 0 0 0 0 #ED1C16;
+	-webkit-transition: ease-out 0.4s;
+	-moz-transition: ease-out 0.4s;
+	transition: ease-out 0.4s;
 }
 
-
-
 #enter span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
 }
 
 #enter span:after {
-  content: '\0028''\0020''\02d8''\0075''\02D8''\0020''\0029';           
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -40px;
-  transition: 0.5s;
+	content: '\0028' '\0020' '\02d8' '\0075' '\02D8' '\0020' '\0029';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -40px;
+	transition: 0.5s;
 }
 
 #enter:hover {
-  padding-right: 30px;
-  background: #4dae3c;
-  box-shadow: inset 400px 0 0 0 #ED1C16; 
+	padding-right: 30px;
+	background: #4dae3c;
+	box-shadow: inset 400px 0 0 0 #ED1C16;
 }
 
 #enter:hover span {
-  padding-right: 20px;
-  background: #ED1C16; 
+	padding-right: 20px;
+	background: #ED1C16;
 }
 
 #enter:hover span:after {
-  opacity: 1;
-  right: 0;
-  background: #ED1C16; 
+	opacity: 1;
+	right: 0;
+	background: #ED1C16;
 }
-
-
-
-
 </style>
 <body>
 <body>
-	<div class="page-wrapper bg-red p-t-150 p-b-100 font-robo">
+	<div class="page-wrapper bg-red p-t-150 p-b-100">
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
 				<div class="card-heading"></div>
 				<div class="card-body">
 					<h2 class="title">KH PLATE에 오신 것을 환영합니다!</h2>
 					<form class="frm" action="/join.members" method="POST">
-<!-- 						네이버 로그인으로 접근한 경우 -->
-						<c:if test="${param.naverid!=null}">
-							<input type="hidden" name="naverid" id="naverid" value="${param.naverid}">
-							<script>
-								console.log($("#naverid").val());
-							</script>
-						</c:if>
-<!-- 						카카오 로그인으로 접근한 경우 -->
-						<c:if test="${param.kakaoid!=null}">
-							<input type="hidden" name="kakaoid" id="kakaoid" value="${param.kakaoid}">
-							<script>
-								console.log($("#kakaoid").val());
-							</script>
-						</c:if>
+						
+						
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
@@ -635,37 +553,53 @@ font-size: 16px;
 										placeholder="비밀번호 확인" id="pw2">
 								</div>
 							</div>
-							<div class="p-t-30 col-2" style="margin-top:55px" >
-								<div id="pwCheck"></div>
+
+
+							<div class="col-2">
+								<div class="inner-groups">
+									<div class="alert alert-danger">
+              
+                <p>ID:7-13자 알파벳 소문자, 숫자
+                <br>PW: 7-13자 알파벳 대소문자, 숫자</p> 
+            </div>
+								
+								
+									<div class="inner-groups">
+										<div id="pwCheck"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 
 
-						<div class="input-group">
+						<div class="inner-group">
 							<input class="input--style-2" type="text" placeholder="이메일"
 								id="email" name="email">
 						</div>
 
-						
-<!-- 						인증코드 발송 부분 주석처리 -->
 
-<!-- 						<div class="row row-space"> -->
-<!-- 							<div class="col-2"> -->
-<!-- 								<div class="input-group"> -->
-<!-- 									<input class="input--style-2" type="text" placeholder="인증코드" -->
-<!-- 										id="reg_code" name="reg_code"> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 							<div class="col-2"> -->
-<!-- 								<button class="btn btn--radius btn--green" type="button" -->
-<!-- 									id="reg_send">코드발송</button> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+						<!-- 						인증코드 발송 부분 주석처리 -->
+
+						<!-- 						<div class="row row-space"> -->
+						<!-- 							<div class="col-2"> -->
+						<!-- 								<div class="input-group"> -->
+						<!-- 									<input class="input--style-2" type="text" placeholder="인증코드" -->
+						<!-- 										id="reg_code" name="reg_code"> -->
+						<!-- 								</div> -->
+						<!-- 							</div> -->
+						<!-- 							<div class="col-2"> -->
+						<!-- 								<button class="btn btn--radius btn--green" type="button" -->
+						<!-- 									id="reg_send">코드발송</button> -->
+						<!-- 							</div> -->
+						<!-- 						</div> -->
+
 
 
 						<div class="p-t-10">
 							<button class="btn btn--radius btn--green" type="submit"
-								id="enter"><span>냠냠</span></button>
+								id="enter">
+								<span>냠냠</span>
+							</button>
 						</div>
 					</form>
 				</div>
@@ -787,6 +721,3 @@ font-size: 16px;
         </script>
 </body>
 </html>
-
-
-
