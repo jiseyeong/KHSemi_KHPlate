@@ -284,6 +284,30 @@
 				<hr>
 				<ul class="navigator_list">${FullReviewNavi}</ul>
 			</div>
+			
+			<!-- 현제 페이지 네비게이터 링크 미부여 -->
+			<c:choose>
+				<c:when test="${param.cpage>1}">
+					<script>
+						$(".item").each(function(index,item){
+							if($(item).children().html()==${param.cpage}){
+								$(item).prop("href","#null");
+								$(item).children().css("color","#ED1C16");
+							}
+						})
+					</script>
+				</c:when>
+				<c:otherwise>
+					<script>
+						$(".item").each(function(index,item){
+							if($(item).children().html()==1){
+								$(item).prop("href","#null");
+								$(item).children().css("color","#ED1C16");
+							}
+						})
+					</script>
+				</c:otherwise>
+			</c:choose>
 
 		</div>
 	</div>

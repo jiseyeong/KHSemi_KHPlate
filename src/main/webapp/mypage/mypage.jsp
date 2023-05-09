@@ -508,7 +508,7 @@ td {
                     
                     </div>
 
-                    <button class="btns">변경하기</button>
+                    <button class="btns" id="profileImageChangebtn" style="display:none;">변경하기</button>
                 </div>
             </div>
             <div class="col-12 col-md-12 col-lg-12 col-xl-8 inpomation">
@@ -735,6 +735,7 @@ td {
             $("#modiCancelBtn").css("display", "inline-block");
             $("#modiComBtn").css("display", "inline-block");
             $(".inputcss").not("#id").removeAttr("readonly");
+            $("#profileImageChangebtn").css("display","inline-block");
         })
 
 //         $("#modiComBtn").on("click", function () { //수정완료
@@ -755,6 +756,7 @@ td {
             $("#toModiPW").css("display", "inline-block");
             $("#memberoutBtn").css("display","inline-block");
             $(".inputcss").not("#id").removeAttr("readonly");
+            $("#profileImageChangebtn").css("display","none");
         })
 
         $(".myContents").on("click", function () { //내가 쓴글...등 버튼 이벤트

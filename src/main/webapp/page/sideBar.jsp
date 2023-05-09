@@ -89,6 +89,7 @@ li:not(.firstLi):hover {
    border-bottom: 1px solid silver;
    font-weight: bolder;
    font-size:18px;
+   overflow:hidden;
 }
 
 
