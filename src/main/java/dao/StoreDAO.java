@@ -229,7 +229,7 @@ public class StoreDAO {
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
-					+ "		<a class='item' href='/searchStoreBySearchBox.store?cpage="+i+"&search="+search+"&food_category="+food_category+"'>"
+					+ "		<a class='naviItem' href='/searchStoreBySearchBox.store?cpage="+i+"&search="+search+"&food_category="+food_category+"'>"
 					+ "			<div class='navigator_list_item_btn_layout'>"+i+"</div>"
 					+ "		</a>"
 					+ "</li>");
@@ -428,7 +428,7 @@ public class StoreDAO {
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
-					+ "		<a class='item' href='/searchStoreBySearchFilter.store?cpage="+i+"&search="+search+"'>"
+					+ "		<a class='naviItem' href='/searchStoreBySearchFilter.store?cpage="+i+"&search="+search+"'>"
 					+ "			<div class='navigator_list_item_btn_layout'>"+i+"</div>"
 					+ "		</a>"
 					+ "</li>");
@@ -626,7 +626,7 @@ public class StoreDAO {
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<button class='navibtn item' searchto='FavoriteStoreList' location='"+i+"'>"+i+"</button>"
+					+ "			<button class='navibtn naviItem' searchto='FavoriteStoreList' location='"+i+"'>"+i+"</button>"
 					+ "		</div>"
 					+ "</li>");
 		}
@@ -694,7 +694,7 @@ public class StoreDAO {
 	}
 
 	public List<StoreDTO> selectAll(String search) throws Exception {
-		String sql = "select * from STORE where name like ?";
+		String sql = "select * from STORE where name like ? order by storeid asc";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setString(1, "%"+search+"%");

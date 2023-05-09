@@ -113,13 +113,36 @@ color:#57b846;
 									<a href="/list.consult?cpage=${navi.naviList.get(0) - 1}"><</a>
 								</c:if>
 								<c:forEach var="i" items="${navi.naviList}">
-									<a href="/list.consult?cpage=${i.intValue()}">${i.intValue()}</a>
+									<a class='item' href="/list.consult?cpage=${i.intValue()}">${i.intValue()}</a>
 								</c:forEach>
 								<c:if test="${navi.needNext}">
 									<a href="/list.consult?cpage=${navi.naviList.get(navi.naviList.length)+1}">></a>
 								</c:if>
 							</td>
 						</tr>
+						<!-- 현제 페이지 네비게이터 링크 미부여 -->
+						<c:choose>
+							<c:when test="${param.cpage>1}">
+								<script>
+									$(".item").each(function(index,item){
+										if($(item).html()==${param.cpage}){
+											$(item).prop("href","#null");
+											$(item).css("color","black");
+										}
+									})
+								</script>
+							</c:when>
+							<c:otherwise>
+								<script>
+									$(".item").each(function(index,item){
+										if($(item).html()==1){
+											$(item).prop("href","#null");
+											$(item).css("color","black");
+										}
+									})
+								</script>
+							</c:otherwise>
+						</c:choose>
 					</c:if>
 				</table>
 				

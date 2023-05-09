@@ -795,6 +795,31 @@ input[type="range"]::-ms-track {
 							<ul class="navigator_list">${search_store_list_navi}</ul>
 						</div>
 					</c:if>
+					
+					<!-- 현제 페이지 네비게이터 링크 미부여 -->
+					<c:choose>
+						<c:when test="${param.cpage>1}">
+							<script>
+								$(".naviItem").each(function(index,item){
+									if($(item).children().html()==${param.cpage}){
+										$(item).prop("href","#null");
+										$(item).children().css("color","#ED1C16");
+									}
+								})
+							</script>
+						</c:when>
+						<c:otherwise>
+							<script>
+								$(".naviItem").each(function(index,item){
+									if($(item).children().html()==1){
+										$(item).prop("href","#null");
+										$(item).children().css("color","#ED1C16");
+									}
+								})
+							</script>
+						</c:otherwise>
+					</c:choose>
+					
 				</div>
 			</div>
 		</form>
@@ -1320,6 +1345,9 @@ input[type="range"]::-ms-track {
 	let infowindows = []; // 마커의 인포윈도우 배열
 	let count;
 	let searchStoreid = [];
+	let searchStoreTemp = [];
+	let valueTemp = [];
+	
 	
     $(function () {
 		
@@ -1328,14 +1356,23 @@ input[type="range"]::-ms-track {
         
         if(${search_store_list!=null || search_store_list.size()>0}){
 	        for(i = 0 ; i < 5 ; i++){
-	        	searchStoreid[i] = $(".restaurant_number"+i);
+	        	searchStoreTemp[i] = $(".restaurant_number"+i);
+	        	valueTemp[i] = searchStoreTemp[i].find(".restaurant_storeID").val();
 	        }
-			for(i = 0 ; i<searchStoreid.length-1 ; i++){
-				for(j = 0 ; j<searchStoreid.length ; j++){
-					if(searchStoreid[i].find(".restaurant_storeID").val()>searchStoreid[j].find(".restaurant_storeID").val()){
-						let temp = searchStoreid[i];
-						searchStoreid[i] = searchStoreid[j];
-						searchStoreid[j] = temp;
+			for(i = 0 ; i<valueTemp.length-1 ; i++){
+				for(j = i+1 ; j<valueTemp.length ; j++){
+					if(valueTemp[i]>valueTemp[j]){
+						let temp = valueTemp[i]
+						valueTemp[i] = valueTemp[j];
+						valueTemp[j] = temp;
+					}
+				}
+			}
+			for(i = 0 ; i<searchStoreTemp.length ; i++){
+				console.log(i+"번째 : "+searchStoreTemp[i].find(".restaurant_storeID").val());
+				for(j = 0 ; j<valueTemp.length ; j++){
+					if(searchStoreTemp[i].find(".restaurant_storeID").val() == valueTemp[j]){
+						searchStoreid[i] = searchStoreTemp[j];
 					}
 				}
 			}
@@ -1378,21 +1415,21 @@ input[type="range"]::-ms-track {
             kakao.maps.event.addListener(Store_marker, 'click', function () {
                 location.href = "/view.store?storeID=" + storeID;
             });
-	        // 기본 리스트 클릭 여부는 false
-	        open_checks[i] = false;
-	        open_index = i;
 	        // i 인덱스는 이벤트 내에 마지막 값으로 고정되어 남아있기에
-	        // count 변수를 따로 주어 이벤트 마다 해당 인덱스 값을 저장, 클로저 방식으로 사용(count);
+	        // open_index 변수를 따로 주어 이벤트 마다 해당 인덱스 값을 저장, 클로저 방식으로 사용(open_index);
+	        open_index = i;
 	        
-	        if(storeID==searchStoreid[count].find(".restaurant_storeID").val()){
-	        	$(".restaurant_number"+count).on("click",function(){
-		        	console.log("true");
-		        	if(!open_checks[open_index]){
+	        if(storeID == searchStoreid[count].find(".restaurant_storeID").val()){
+	        	// 기본 리스트 클릭 여부는 false
+		        open_checks[count] = false;
+	        	let tempCount = count;
+	        	searchStoreid[count].on("click",function(){
+		        	if(!open_checks[tempCount]){
 		        		for(j = 0 ; j<open_checks.length ; j++){
 		        			open_checks[j]=false;
 		        		}
 		        		
-		        		open_checks[open_index]=true;
+		        		open_checks[tempCount]=true;
 		        		
 		        		khacademyMap.setLevel(2);
 		        		
@@ -1413,6 +1450,7 @@ input[type="range"]::-ms-track {
 	        	count++;
 	        }
         }
+    });
         
     // 인포윈도우를 여는 클로저를 만드는 함수입니다
     function makeOverListener(map, marker, infowindow) {
