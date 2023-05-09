@@ -143,6 +143,8 @@ label input[type="checkbox"] {
    left: 8%;
    transition: 0.3s;
    cursor: pointer;
+   line-height:49px;
+   text-align:center;
 }
 
 #signupBtn:hover {
@@ -161,19 +163,16 @@ label input[type="checkbox"] {
    background-size: 320px 50px;
    background-position: top;
    background-position: 10px;
+   display:flex;
+   align-items:center;
+   justify-content:center;
 }
 
 #naverIdLogin_loginButton {
 	top: 82%;
 	background: #57b846;
-/* 	background-image: url(naver13.png); */
-
-/*  background-size: 270px 70px; */
 	background-size: 300px 80px;
 	background-position: 33px;
-
-   /* background-position: left;
-    background-position: -20px; */
     font-family: 'Nanum Gothic', sans-serif;
 	border: 0;
 	border-radius: 100px;
@@ -185,8 +184,30 @@ label input[type="checkbox"] {
 	left: 8%;
 	transition: 0.3s;
 	cursor: pointer;
+	display:flex;
+	align-items:center;
+	justify-content:center;
 }
-
+#kakaoBtn>div{
+	position:relative;
+	right:20px;
+}
+#naverIdLogin_loginButton>div{
+	position:relative;
+	right:20px;
+}
+.kakaoImage{
+	display:flex;
+	justify-content:start;
+	position:relative;
+	right:80px;
+}
+.naverImage{
+	display:flex;
+	justify-content:start;
+	position:relative;
+	right:80px;
+}
 .rmb {
    position: absolute;
    margin-left: -24%;
@@ -288,18 +309,17 @@ label input[type="checkbox"] {
 /* } */
 
 
-#kakaobtn2 {
-   width: 333px;
-   height: 47px;
-   position: relative;
-   top: 18px;
-   cursor: pointer;
-   margin-left: 37px;
-   margin-top: 57px;
-   font-size: 18px;
-   opacity: 0;
+/*#kakaobtn2 { */
+/*   width: 333px; */
+/*   height: 47px; */
+/*   position: relative; */
+/*   top: 18px; */
+/*   cursor: pointer; */
+/*   margin-left: 37px; */
+/*   margin-top: 57px; */
+/*   font-size: 18px; */
+/*   opacity: 0; */
 }
-
 </style>
 
 <body id="particles-js">
@@ -330,8 +350,10 @@ label input[type="checkbox"] {
 				<!-- <label> <input type="checkbox"> <span></span> <small
 					class="rmb">ID 기억하기</small></label> -->
 				<input type="button" value="제출하기" class="btn" id="signupBtn">
-				<input type="button" value="카카오 로그인" class="btn" id="kakaoBtn"> 
-				<input type="button" value="네이버 로그인" class="btn" id="naverIdLogin_loginButton"> 
+				<button type="button" class="btn" id="kakaoBtn" onclick="kakaoLogin();"><a href="javascript:void(0)"></a><img src="/login/카카오로고.png" class="kakaoImage" style="width:15%; height:100%;"><div>카카오 로그인</div></button>
+				<button type="button" class="btn" id="naverIdLogin_loginButton"><img src="/login/네이버로고.png" class="naverImage" style="width:15%; height:100%;"><div>네이버 로그인</div></button>
+			
+
 			  	<!--  <div id="kakaobtn2" onclick="kakaoLogin();">
 	                <a href="javascript:void(0)"></a>
 	            </div>
@@ -451,8 +473,9 @@ label input[type="checkbox"] {
 	}
 
 	//kakao
-
+ 
 	//카카오 로그인
+	
 	function kakaoLogin() {
 		Kakao.init('25e12e36964674d52a9931b02d3b7cc1'); //발급받은 키 중 javascript키를 사용해준다.
 		console.log(Kakao.isInitialized()); // sdk초기화여부판단

@@ -567,7 +567,8 @@ td {
 
 						<div class="btns_layout">
 							<c:if test="${sessionScope.userno==my.userNO}">
-								<button class="btns" id="toModiPW" type="button">아이디/비밀번호
+
+								<button class="btns" id="toModiPW" type="button">비밀번호
 									수정</button>
 								<button class="btns" id="modiBtn" type="button">수정하기</button>
 								<button class="btns" id="modiCancelBtn" type="button">수정취소</button>
@@ -701,6 +702,7 @@ td {
 					</tbody>
 				</table>
 
+
 				<!-- 추가한 네비게이터 -->
 				<div class="body2listNavi">
 					<ul class="navigator_list"
@@ -711,6 +713,325 @@ td {
 		</div>
 	</div>
 	<script>
+    $(".item").on("click",function(){
+    	$(this).css("border","1px solid blue");
+    })
+    $("#postSearch").on("click", function () { // 주소 API
+
+        new daum.Postcode({
+            oncomplete: function (data) {
+                let roadAddr = data.roadAddress;
+                document
+                    .getElementById('zipCode')
+                    .value = data.zonecode;
+                document
+                    .getElementById("address1")
+                    .value = roadAddr;
+            }
+        }).open();
+    })
+
+    $("#toModiPW").on("click", function () {
+        window.open("/memberSearch/newpassword.jsp", "", "width=480px,height=750px");
+    })
+    
+    $("document").ready(function () {
+        $("#writeList").css("display", "table");
+        $("table").not("table#writeList").css("display", "none");
+        $("#writeListBtn").css({ "z-index": "2", "border-bottom": "none" });
+        $(".myContents").not("#writeListBtn").css({ "z-index": "1", "border-bottom": "1px solid black" });
+
+        $("#memberoutBtn").on("click", function () { //탈퇴하기 버튼 누를 때 이동
+            location.href = "/memberout/memberout.jsp";
+        })
+
+        $("#modiBtn").on("click", function () { //수정하기
+            $("#postSearch").css("display", "inline-block");
+            $("#modiBtn").css("display", "none");
+            $("#toModiPW").css("display", "none");
+            $("#memberoutBtn").css("display","none");
+            $("#modiCancelBtn").css("display", "inline-block");
+            $("#modiComBtn").css("display", "inline-block");
+            $(".inputcss").not("#id,#name").removeAttr("readonly");
+            $("#profileImageChangebtn").css("display","inline-block");
+        })
+
+//         $("#modiComBtn").on("click", function () { //수정완료
+//             $("#modiComBtn").css("display", "none");
+//             $("#modiBtn").css("display", "inline-block");
+//             $("#toModiPW").css("display", "inline-block");
+//             $("#modiCancelBtn").css("display", "inline-block");
+//             $("#postSearch").css("display", "none");
+//             $("input").attr("readonly", true);
+//         })
+        
+        // 수정 취소 버튼
+        $("#modiCancelBtn").on("click",function(){
+        	$("#postSearch").css("display", "inline-block");
+            $("#modiCancelBtn").css("display", "none");
+            $("#modiComBtn").css("display", "none");
+            $("#modiBtn").css("display", "inline-block");
+            $("#toModiPW").css("display", "inline-block");
+            $("#memberoutBtn").css("display","inline-block");
+            $(".inputcss").not("#id").removeAttr("readonly");
+            $("#profileImageChangebtn").css("display","none");
+        })
+
+        $(".myContents").on("click", function () { //내가 쓴글...등 버튼 이벤트
+            $(this).css("border-bottom", "none");
+            $(".myContents").not(this).css({ "z-index": "1", "border-bottom": "1px solid black" });
+        })
+
+        // 페이지 렌더링 후 바로 보여줄 내가 쓴 글의 리스트와 네비
+        $.ajax({
+            url: "/selectBymypage.fullreview",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#writeListToPrint").html("");
+            $(".navigator_list").html("");
+            let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
+            let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
+            $("#writeListToPrint").append(writeFullReviewList);
+            $(".navigator_list").append(writeFullReviewNavi);
+
+            setnavi();
+        })
+    })
+
+    //내가 쓴 글 버튼 누르면 관련 테이블 나오게 이벤트
+    $("#writeListBtn").on("click", function () {
+        $.ajax({
+            url: "/selectBymypage.fullreview",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#writeListToPrint").html("");
+            $(".navigator_list").html("");
+            let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
+            let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
+            $("#writeListToPrint").append(writeFullReviewList);
+            $(".navigator_list").append(writeFullReviewNavi);
+
+            setnavi();
+        })
+        $("#writeList").css("display", "table");
+        $("table").not("table#writeList").css("display", "none");
+    })
+
+    //내가 쓴 댓글 버튼 누르면 관련 테이블 나오게 이벤트
+    $("#replyListBtn").on("click", function () {
+
+        $.ajax({
+            url: "/selectBymypage.commentReview",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#replyListToPrint").html("");
+            $(".navigator_list").html("");
+            let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
+            let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
+            $("#replyListToPrint").append(writeMyCommentList);
+            $(".navigator_list").append(writeMyCommentNavi);
+
+            setnavi();
+        })
+
+        $("#replyList").css("display", "table");
+        $("table").not("table#replyList").css("display", "none");
+    })
+
+    // 내가 스크랩한 블로그 버튼 누르면 관련 테이블 나오게 이벤트\
+    $("#reviewMarkBtn").on("click", function () {
+        $.ajax({
+            url: "/selectScrapListBymypage.fullreview",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#reviewMarkToPrint").html("");
+            $(".navigator_list").html("");
+            let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
+            let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
+
+            $("#reviewMarkToPrint").append(myFullReviewScrapList);
+            $(".navigator_list").append(myFullReviewScrapNavi);
+
+            setnavi();
+        })
+
+        $("#reviewMark").css("display", "table");
+        $("table").not("table#reviewMark").css("display", "none");
+    })
+
+    //즐겨찾기 버튼 누르면 관련 테이블 나오게 이벤트
+    $("#favoriteStoreListBtn").on("click", function () {
+
+        $.ajax({
+            url: "/selectFavoriteStore.store",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#favoriteStoreListToPrint").html("");
+            $(".navigator_list").html("");
+            let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+            let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+            $("#favoriteStoreListToPrint").append(FavoriteStoreList);
+            $(".navigator_list").append(FavoriteStoreNavi);
+
+            setnavi();
+        })
+
+        $("#favoriteStoreList").css("display", "table");
+        $("table").not("table#favoriteStoreList").css("display", "none");
+    })
+
+    //1:1 문의 내역 버튼 누르면 테이블 나오게 이벤트
+    $("#consultListBtn").on("click", function () {
+        $.ajax({
+            url: "/selectConsultListBymypage.consult",
+            type: "post",
+            dataType: "json"
+        }).done(function (resp) {
+            $("#consultListToPrint").html("");
+            $(".navigator_list").html("");
+            let myConsultList = JSON.parse(resp.myConsultList);
+            let myConsultNavi = JSON.parse(resp.myConsultNavi);
+            $("#consultListToPrint").append(myConsultList);
+            $(".navigator_list").append(myConsultNavi);
+
+            setnavi();
+        })
+
+        $("#consultList").css("display", "table");
+        $("table").not("table#consultList").css("display", "none");
+    })
+    //네비게이터에 AJAX 전송 링크 부여
+    function setnavi() {
+        $(".navibtn").on("click", function () {
+        	
+            if ($(this).attr("searchto") == "writeFullReviewList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectBymypage.fullreview",
+                    type: "post",
+                    data: {
+                        cpage: location
+                    },
+                    dataType: "json"
+                }).done(function (resp) {
+                    $("#writeListToPrint").html("");
+                    $(".navigator_list").html("");
+                    let writeFullReviewList = JSON.parse(resp.writeFullReviewList);
+                    let writeFullReviewNavi = JSON.parse(resp.writeFullReviewNavi);
+                    $("#writeListToPrint").append(writeFullReviewList);
+                    $(".navigator_list").append(writeFullReviewNavi);
+
+                    $("#writeList").css("display", "table");
+                    $("table")
+                        .not("table#writeList")
+                        .css("display", "none");
+
+                    setnavi();
+                })
+
+            } else if ($(this).attr("searchto") == "writeMyCommentList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectBymypage.commentReview",
+                    type: "post",
+                    data: {
+                        cpage: location
+                    },
+                    dataType: "json"
+                }).done(function (resp) {
+                    $("#replyListToPrint").html("");
+                    $(".navigator_list").html("");
+                    let writeMyCommentList = JSON.parse(resp.writeMyCommentList);
+                    let writeMyCommentNavi = JSON.parse(resp.writeMyCommentNavi);
+                    $("#replyListToPrint").append(writeMyCommentList);
+                    $(".navigator_list").append(writeMyCommentNavi);
+
+                    $("#replyList").css("display", "table");
+                    $("table")
+                        .not("table#replyList")
+                        .css("display", "none");
+
+                    setnavi();
+                })
+
+            } else if ($(this).attr("searchto") == "writeMyFullReviewScrapList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectScrapListBymypage.fullreview",
+                    type: "post",
+                    data: {
+                        cpage: location
+                    },
+                    dataType: "json"
+                }).done(function (resp) {
+                    $("#reviewMarkToPrint").html("");
+                    $(".navigator_list").html("");
+                    let myFullReviewScrapList = JSON.parse(resp.myFullReviewScrapList);
+                    let myFullReviewScrapNavi = JSON.parse(resp.myFullReviewScrapNavi);
+                    $("#reviewMarkToPrint").append(myFullReviewScrapList);
+                    $(".navigator_list").append(myFullReviewScrapNavi);
+
+                    $("#reviewMark").css("display", "table");
+                    $("table")
+                        .not("table#reviewMark")
+                        .css("display", "none");
+
+                    setnavi();
+                })
+
+            } else if ($(this).attr("searchto") == "FavoriteStoreList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectFavoriteStore.store",
+                    type: "post",
+                    data: {
+                        cpage: location
+                    },
+                    dataType: "json"
+                }).done(function (resp) {
+                    $("#favoriteStoreListToPrint").html("");
+                    $(".navigator_list").html("");
+                    let FavoriteStoreList = JSON.parse(resp.FavoriteStoreList);
+                    let FavoriteStoreNavi = JSON.parse(resp.FavoriteStoreNavi);
+                    $("#favoriteStoreListToPrint").append(FavoriteStoreList);
+                    $(".navigator_list").append(FavoriteStoreNavi);
+                    $("#favoriteStoreList").css("display", "table");
+                    $("table")
+                        .not("table#favoriteStoreList")
+                        .css("display", "none");
+
+                    setnavi();
+                })
+
+            } else if ($(this).attr("searchto") == "myConsultList") {
+                let location = $(this).attr("location");
+                $.ajax({
+                    url: "/selectConsultListBymypage.consult",
+                    type: "post",
+                    dataType: "json"
+                }).done(function (resp) {
+                    $("#consultListToPrint").html("");
+                    $(".navigator_list").html("");
+                    let myConsultList = JSON.parse(resp.myConsultList);
+                    let myConsultNavi = JSON.parse(resp.myConsultNavi);
+                    $("#consultListToPrint").append(myConsultList);
+                    $(".navigator_list").append(myConsultNavi);
+
+                    $("#consultList").css("display", "table");
+                    $("table")
+                        .not("table#consultList")
+                        .css("display", "none");
+
+                    setnavi();
+                })
+            }
+        })
+    }
 	
 	
 	

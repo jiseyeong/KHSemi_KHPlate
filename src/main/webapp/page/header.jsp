@@ -8,12 +8,12 @@
          <title>Header</title>
          <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+         <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
             rel="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
             integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script> -->
          <style>
             @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
@@ -63,11 +63,12 @@
             }
 
             #searchBox {
-               width: 80%;
+               width: 100%;
                height: 100%;
                font-size: 15px;
                z-index: 1;
                margin-left: 10px;
+               padding-left: 10px;
                border: 1px solid #ffffff;
             }
 
@@ -172,6 +173,28 @@
             $(".logo").on("click", function () {
                location.href = "/page/main.jsp";
             })
+            
+                        // 실제 검색 함수
+            // 맛집 검색과 블로그 검색 구분
+            function search(){
+            	if ($("#searchCheck option:selected").val() == 1) {
+                    $("#searchForm").prop("action", "/searchStoreBySearchBox.store");
+                 } else if ($("#searchCheck option:selected").val() == 2) {
+                    $("#searchForm").prop("action", "/select.fullreview");
+                 }
+                 $("#searchForm").prop("onsubmit", true);
+                 $("#searchForm").submit();
+            }
+            
+            $("#searchBtn").on("click", function () {
+            	search()
+            })   
+      
+		    $("#searchBox").keydown(function (key) {
+		        if (key.keyCode == 13) {
+		        	search();
+		        }
+		    });
          </script>
       </body>
       </html>
