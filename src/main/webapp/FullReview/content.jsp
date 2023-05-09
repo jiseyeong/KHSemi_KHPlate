@@ -119,7 +119,7 @@ textarea {
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
-	color: white;a
+	color: white;
 	font-size: 14px;
 	margin-right: 20px;
 	box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
