@@ -17,7 +17,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+<!-- 지도 Script -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
@@ -1228,7 +1229,7 @@ input[type="range"]::-ms-track {
     })
 
     
- // 엔터 입력 시 검색 적용
+ 	// 엔터 입력 시 검색 적용
     $("#search").on("keyup", function (input) {
         if (input.keyCode == 13) {
             $("#searchForm").prop("onsubmit", true);
@@ -1261,11 +1262,6 @@ input[type="range"]::-ms-track {
         $("#searchForm").submit();
     });
     </script>
-
-    <!-- 지도 Script -->
-    <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9">
-        </script>
 
     <script>
 
@@ -1320,48 +1316,45 @@ input[type="range"]::-ms-track {
     // 인포윈도우가 열린 상태에서 클릭 시, 해당 상세 페이지로 이동
 
     let infowindows = []; // 마커의 인포윈도우 배열
-    let count;
     let searchStoreid = [];
     let searchStoreTemp = [];
     let valueTemp = [];
 
-    $(function () {
+    let list_length = '${search_store_infoWindowList.size()}';
+    let count = 0;
 
-        let list_length = '${search_store_infoWindowList.size()}';
-        count = 0;
-
-        if (${ search_store_list != null || search_store_list.size() > 0 }){
-           for (i = 0; i < 5; i++) {
-               searchStoreTemp[i] = $(".restaurant_number" + i);
-               valueTemp[i] = parseInt(searchStoreTemp[i].find(".restaurant_storeID").val());
-               console.log("기존 :"+valueTemp[i]);
-           }
-           for (i = 0; i < valueTemp.length - 1; i++) {
-               for (j = i + 1; j < valueTemp.length; j++) {
-                   if (valueTemp[i] > valueTemp[j]) {
-                       let temp = valueTemp[i]
-                       valueTemp[i] = valueTemp[j];
-                       valueTemp[j] = temp;
-                   }
+    if (${ search_store_list != null || search_store_list.size() > 0 }){
+       for (i = 0; i < 5; i++) {
+           searchStoreTemp[i] = $(".restaurant_number" + i);
+           valueTemp[i] = parseInt(searchStoreTemp[i].find(".restaurant_storeID").val());
+           console.log("기존 :"+valueTemp[i]);
+       }
+       for (i = 0; i < valueTemp.length - 1; i++) {
+           for (j = i + 1; j < valueTemp.length; j++) {
+               if (valueTemp[i] > valueTemp[j]) {
+                   let temp = valueTemp[i]
+                   valueTemp[i] = valueTemp[j];
+                   valueTemp[j] = temp;
                }
            }
-           for(i = 0 ; i< valueTemp.length ; i++){
-        	   console.log("변경 후 : "+valueTemp[i]);
-           }
-           for (i = 0; i < searchStoreTemp.length-1; i++) {
-               console.log(i + "번째 : " + searchStoreTemp[i].find(".restaurant_storeID").val());
-               for (j = i+1; j < searchStoreTemp.length; j++) {
-                   if (parseInt(searchStoreTemp[i].find(".restaurant_storeID").val()) == valueTemp[j]) {
-                       searchStoreid[i] = searchStoreTemp[j];
-                       console.log()
-                   }
+       }
+       for(i = 0 ; i< valueTemp.length ; i++){
+    	   console.log("변경 후 : "+valueTemp[i]);
+       }
+       for (i = 0; i < searchStoreTemp.length; i++) {
+           console.log(i + "번째 : " + searchStoreTemp[i].find(".restaurant_storeID").val());
+           for (j = 0; j < searchStoreTemp.length; j++) {
+               if (parseInt(searchStoreTemp[j].find(".restaurant_storeID").val()) == valueTemp[i]) {
+                   searchStoreid[i] = searchStoreTemp[j];
                }
            }
-           for(i = 0 ; i< searchStoreid.length ; i++){
-        	   console.log(searchStoreid[i].find(".restaurant_storeID").val());
-           }
-        }
-
+       }
+       for(i = 0 ; i< searchStoreid.length ; i++){
+    	   console.log(searchStoreid[i].find(".restaurant_storeID").val());
+       }
+    }
+    
+   	$(function () {
         for (i = 0; i < list_length; i++) {
             let storeID = $("#search_store_list_storeID" + i).val();
             let name = $("#search_store_list_name" + i).val();
@@ -1404,8 +1397,7 @@ input[type="range"]::-ms-track {
             // i 인덱스는 이벤트 내에 마지막 값으로 고정되어 남아있기에
             // open_index 변수를 따로 주어 이벤트 마다 해당 인덱스 값을 저장, 클로저 방식으로 사용(open_index);
             open_index = i;
-
-            if (storeID == searchStoreid[count].find(".restaurant_storeID").val()) {
+            if (parseInt(searchStoreid[count].find(".restaurant_storeID").val()) == storeID) {
                 // 기본 리스트 클릭 여부는 false
                 open_checks[count] = false;
                 let tempCount = count;
