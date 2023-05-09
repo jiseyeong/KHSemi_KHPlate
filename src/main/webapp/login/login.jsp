@@ -158,7 +158,6 @@ label input[type="checkbox"] {
 #kakaoBtn {
    top: 72%;
    background: #ffe812;
-   background-image: url(kakao3.png);
    background-size: 320px 50px;
    background-position: top;
    background-position: 10px;
@@ -170,8 +169,6 @@ label input[type="checkbox"] {
 /* 	background-image: url(naver13.png); */
 
 /*  background-size: 270px 70px; */
-    
-	background-image: url(naver17.png);
 	background-size: 300px 80px;
 	background-position: 33px;
 
@@ -183,6 +180,7 @@ label input[type="checkbox"] {
 	width: 340px;
 	height: 49px;
 	font-size: 16px;
+	color: white;
 	position: absolute;
 	left: 8%;
 	transition: 0.3s;
@@ -274,12 +272,6 @@ label input[type="checkbox"] {
 }
 
 
-#naverIdLogin_loginButton img {
-   width: 100%;
-   height: 100%;
-   opacity: 0;
-}
-
 /* #naverIdLogin { */
 /*    background-color: #ED1C1600; */
 /* } */
@@ -338,15 +330,15 @@ label input[type="checkbox"] {
 				<!-- <label> <input type="checkbox"> <span></span> <small
 					class="rmb">ID 기억하기</small></label> -->
 				<input type="button" value="제출하기" class="btn" id="signupBtn">
-				<input type="button" value="" class="btn" id="kakaoBtn"> 
-			  	<div id="kakaobtn2" onclick="kakaoLogin();">
+				<input type="button" value="카카오 로그인" class="btn" id="kakaoBtn"> 
+				<input type="button" value="네이버 로그인" class="btn" id="naverIdLogin_loginButton"> 
+			  	<!--  <div id="kakaobtn2" onclick="kakaoLogin();">
 	                <a href="javascript:void(0)"></a>
 	            </div>
+	           
 	           <div id="naverIdLogin">
-	           		<a id="naverIdLogin_loginButton" href="#null">
-	           			<img src="https://static.nid.naver.com/oauth/small_g_in.PNG?version=js-2.0.1" height="40">
-	           		</a>
-	           </div>
+	           		<a id="naverIdLogin_loginButton" href="#null"></a>
+	           </div>-->
 			</form>
 			<a href="#null" class="forgetidpw"> 아이디/비밀번호 찾기</a>
 			<a href="/joinform/joinform.jsp" class="dnthave">회원가입하기</a>

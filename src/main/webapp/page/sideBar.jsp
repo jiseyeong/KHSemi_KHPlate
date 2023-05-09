@@ -96,16 +96,10 @@ li:not(.firstLi):hover {
 }
 
 .firstLi {
-<<<<<<< HEAD
-	border-bottom: 1px solid silver;
-	font-weight: bolder;
-	font-size: 18px;
-=======
    border-bottom: 1px solid silver;
    font-weight: bolder;
    font-size:18px;
    overflow:hidden;
->>>>>>> 6a293a8fc12d0055ffb98ba45ef72b911602b01f
 }
 
 /* a태그의 밑줄 속성 제거 */
