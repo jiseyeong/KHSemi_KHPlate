@@ -33,6 +33,11 @@
                 hr {
                     border: 1px solid silver;
                     width: 95%;
+                    margin : 10px;
+                }
+                
+                a {
+                    text-decoration: none;
                 }
 
                 .container_searchResult {
@@ -59,7 +64,7 @@
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    margin-bottom: 60px;
+                    margin-bottom: 30px;
                 }
 
                 .search_category_layout {
@@ -291,10 +296,6 @@
                     margin-right: 5px;
                 }
 
-                a {
-                    text-decoration: none;
-                }
-
                 .navigator_list_item_btn_layout {
                     border: 1px solid rgb(178, 178, 178);
                     width: 30px;
@@ -333,11 +334,25 @@
                 }
 
                 /* 정렬 필터 영역 */
-
+				
                 #offcanvasNavbar {
                     width: 500px;
+                	display:flex;
+                	align-items:center;
                 }
-
+                
+                .offcanvas-header{
+                	width:100%;
+                }
+                .offcanvas-body{
+                	width:100%;
+                	overflow:hidden;
+                }
+                #searchFilterForm>li{
+                	width: 100%;
+                	line-height:0px;
+                }
+                
 				.print_searchResult_layout {
                     position: relative;
                     width: 100%;
@@ -347,7 +362,20 @@
                 	width: 100%;
                     height:100%;
                 }
-
+                
+                .filterNav1{
+                	height:13%;
+                }
+                .filterNav2{
+                	height:25%;
+                }
+                .filterNav3{
+                	height:42%;
+                }
+                .filterNav4{
+                	height:20%;
+                }
+                
 				#searchFilterForm{
 					width:100%;
 					height:100%;
@@ -366,19 +394,23 @@
                 }
 
                 .sort_title {
-                    margin: 10px auto;
+                    margin: 10px auto 20px;
                     padding-left: 10px;
-                    font-size: 16px;
+                    font-size: 18px;
                 }
 
                 .search_filter {
                     width: 100%;
-                    height: 20%;
+                    height: 100%;
+                    display:flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    align-items: center;
                 }
 
                 .filter_sort {
                     width: 100%;
-                    height: 80px;
+                    height: 55%;
                     display: flex;
                     justify-content: space-evenly;
                     align-items: center;
@@ -392,16 +424,19 @@
 
                 .filter_option_btn {
                     width: 100%;
-                    height: 45px;
+                    height:100%;
                     border-radius: 30px;
-                    font-size: 13px;
+                    font-size: 14px;
                     background-color: white;
                     border: 2px solid silver;
                 }
 
                 .cost_average {
                     width: 100%;
-                    height: 20%;
+                    height: 100%;
+                    display : flex;
+                    flex-direction : column;
+                    justify-content:center;
                 }
 
                 .filter_cost {
@@ -432,7 +467,6 @@
                     width: 20px;
                     border-radius: 50%;
                     background: #ff4500;
-                    cursor: ew-resize;
                     box-shadow: 0 0 2px 0 #555;
                     transition: background 0.3s ease-in-out;
                 }
@@ -443,7 +477,6 @@
                     width: 20px;
                     border-radius: 50%;
                     background: #ff4500;
-                    cursor: ew-resize;
                     box-shadow: 0 0 2px 0 #555;
                     transition: background 0.3s ease-in-out;
                 }
@@ -454,7 +487,6 @@
                     width: 20px;
                     border-radius: 50%;
                     background: #ff4500;
-                    cursor: ew-resize;
                     box-shadow: 0 0 2px 0 #555;
                     transition: background 0.3s ease-in-out;
                 }
@@ -507,17 +539,16 @@
 
                 .food_category {
                     width: 100%;
-                    height: 347px;
-                }
-
-                .food_category_title {
-                    margin-bottom: 10px;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
                 }
 
                 .food_category_layout {
-                    margin: auto;
-                    width: 90%;
-                    height: 90%;
+                    margin:0px auto 0px;
+                    width: 95%;
+                    height: 87%;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-evenly;
@@ -545,7 +576,7 @@
 
                 .food_icon_layout {
                     width: 100%;
-                    height: 120px;
+                    height:78%;
                     border: 1px solid silver;
                     display: flex;
                     justify-content: center;
@@ -560,8 +591,8 @@
 
                 .food_name {
                     width: 100%;
-                    height: 25%;
-                    font-size: 12px;
+                    height: 22%;
+                    font-size: 14px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -571,7 +602,7 @@
 
                 .btn_layout {
                     width: 100%;
-                    height: 12%;
+                    height: 100%;
                     display: flex;
                     justify-content: space-evenly;
                     align-items: center;
@@ -606,7 +637,6 @@
                     filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(209deg) brightness(110%) contrast(101%);
                 }
 
-                /* 필터 추가 custom */
             </style>
         </head>
 
@@ -785,10 +815,10 @@
                         $(".naviItem").each(function (index, item) {
                             console.log($(item).children().html());
                             if ($(item).children().html() == ${ param.cpage }){
-                            $(item).prop("href", "#null");
-                            $(item).children().css("color", "#ED1C16");
-                        }
-				})
+	                            $(item).prop("href", "#null");
+	                            $(item).children().css("color", "#ED1C16");
+                        	}
+						})
                     </script>
                 </c:when>
                 <c:otherwise>
@@ -812,7 +842,8 @@
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel">필터</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-
+					
+				<hr>
 
                 <div class="offcanvas-body">
                     <div class="print_searchResult_layout">
@@ -820,10 +851,8 @@
                             <form action="/searchStoreBySearchFilter.store" id="searchFilterForm"
                                 onsubmit="return false;">
                                 <input type="text" name="searchedBy" value="mainSearch" style="display: none;">
-
-
-
-                                <li class="nav-item">
+                                
+                                <li class="nav-item filterNav1">
                                     <div class="search_filter">
                                         <p class="sort_title">검색 필터</p>
                                         <div class="filter_sort">
@@ -845,7 +874,7 @@
                                 <hr>
 
 
-                                <li class="nav-item">
+                                <li class="nav-item filterNav2">
                                     <div class="cost_average">
                                         <p class="sort_title">가격/1인당</p>
                                         <div class="filter_cost">
@@ -860,9 +889,9 @@
 
                                 <hr>
 
-                                <li class="nav-item">
+                                <li class="nav-item filterNav3">
                                     <div class="food_category">
-                                        <p class="sort_title food_category_title">음식종류</p>
+                                        <p class="sort_title">음식종류</p>
                                         <div class="food_category_layout">
 
                                             <div class="food_category_inner_layout">
@@ -985,7 +1014,7 @@
 
                                 <hr>
 
-                                <li class="nav-item">
+                                <li class="nav-item filterNav4">
                                     <div class="btn_layout">
                                         <div class="btn_inner_layout">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -1106,11 +1135,11 @@
                 });
 
                 // 필터 정렬 지정
-                //     $(".filter_option_btn").on("click", function () {
-                //         $("#sortMethod").val($(this).attr("id"));
-                //         $(".filter_option_btn").css({ "border": "2px solid silver" });
-                //         $(this).css({ "border": "2px solid red" });
-                //     })
+                $(".filter_option_btn").on("click", function () {
+                    $("#sortMethod").val($(this).attr("id"));
+                    $(".filter_option_btn").css({ "border": "2px solid silver" });
+                    $(this).css({ "border": "2px solid red" });
+                })
 
                 // 각 음식 카테고리 div에 boolean변수 부여(closer)
                 $(".food_category_list").each(function (index, item) {
