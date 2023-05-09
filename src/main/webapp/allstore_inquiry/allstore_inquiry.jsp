@@ -1227,22 +1227,20 @@ input[type="range"]::-ms-track {
         input.addEventListener('input', handleInputChange)
     })
 
-
-
-    // 뒤로가기 버튼
-    $("#toBack_btn").on("click", function () {
-        location.href = "/page/main.jsp";
-    })
-
-
-
-    // 엔터 입력 시 검색 적용
+    
+ // 엔터 입력 시 검색 적용
     $("#search").on("keyup", function (input) {
         if (input.keyCode == 13) {
             $("#searchForm").prop("onsubmit", true);
             $("#searchForm").submit();
         }
     })
+
+    // 뒤로가기 버튼
+    $("#toBack_btn").on("click", function () {
+        location.href = "/page/main.jsp";
+    })
+
 
     // 검색 정렬 확인 버튼
     $("#apply_btn").on("click", function () {
@@ -1467,6 +1465,7 @@ input[type="range"]::-ms-track {
 
 
     //검색 함수
+
 
     function search2() {
         $("#searchForm").prop("onsubmit", true);

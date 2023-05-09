@@ -175,7 +175,7 @@ p {
                         </div>
                         <c:if test="${sessionScope.loginIsAdmin || dto.userNo == sessionScope.userno}">
                             <div class="col-12 text-center">
-                                <a href="/delete.consult?consultID=${dto.consultID}">
+                                <a href="/delete.consult?consultID=${dto.consultID}&userno=${dto.userNo}">
                                     <button type="button" id="btn_delete">삭제</button>
                                 </a>
                                 <a href="/list.consult">
