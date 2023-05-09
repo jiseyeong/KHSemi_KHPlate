@@ -554,7 +554,7 @@ td {
 						
                         <div class="btns_layout">
 							<c:if test="${sessionScope.userno==my.userNO}">
-	                            <button class="btns" id="toModiPW" type="button">아이디/비밀번호 수정</button>
+	                            <button class="btns" id="toModiPW" type="button">비밀번호 수정</button>
 	                            <button class="btns" id="modiBtn" type="button">수정하기</button>
 	                            <button class="btns" id="modiCancelBtn" type="button">수정취소</button>
 	                            <button class="btns" id="modiComBtn" type="submit">수정완료</button>
@@ -734,7 +734,7 @@ td {
             $("#memberoutBtn").css("display","none");
             $("#modiCancelBtn").css("display", "inline-block");
             $("#modiComBtn").css("display", "inline-block");
-            $(".inputcss").not("#id").removeAttr("readonly");
+            $(".inputcss").not("#id,#name").removeAttr("readonly");
             $("#profileImageChangebtn").css("display","inline-block");
         })
 

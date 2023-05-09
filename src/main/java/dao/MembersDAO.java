@@ -329,10 +329,10 @@ public class MembersDAO {
 	}
 	
 	// 네이버 로그인으로 회원가입 시,
-	public int joinWithNaver(String name, String email, String classes, String naverid) throws Exception {
+	public int joinWithNaver(String name, String email, String classes, String naverid, String userId) throws Exception {
 		String sql = "insert into members (userno,userid,pw,name,email,classes,naver) values (members_userno_seq.nextval,?,?,?,?,?,?)";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-			pstat.setString(1, naverid);
+			pstat.setString(1, userId);
 			pstat.setString(2, SecurityUtils.sha512(naverid));
 			pstat.setString(3, name);
 			pstat.setString(4, email);
@@ -345,10 +345,10 @@ public class MembersDAO {
 		}
 	}
 	
-	public int joinWithKakao(String name, String email, String classes, String kakaoid) throws Exception {
+	public int joinWithKakao(String name, String email, String classes, String kakaoid, String userId) throws Exception {
 		String sql = "insert into members (userno,userid,pw,name,email,classes,kakao) values (members_userno_seq.nextval,?,?,?,?,?,?)";
 		try (Connection con = this.getConnection(); PreparedStatement pstat = con.prepareStatement(sql);) {
-			pstat.setString(1, kakaoid);
+			pstat.setString(1, userId);
 			pstat.setString(2, SecurityUtils.sha512(kakaoid));
 			pstat.setString(3, name);
 			pstat.setString(4, email);

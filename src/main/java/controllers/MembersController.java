@@ -301,6 +301,7 @@ public class MembersController extends HttpServlet {
 			}else if(cmd.equals("/loginByNaver.members")) {
 				String naverid = request.getParameter("naverid");
 				String userId = dao.searchNaverID(naverid);
+				System.out.println(userId);
 				// 네이버 로그인이 처음인지 확인
 				if(userId==null||userId.isBlank()) {
 
@@ -355,16 +356,18 @@ public class MembersController extends HttpServlet {
 				String name = request.getParameter("name");
 				String email = request.getParameter("email");
 				String classes = request.getParameter("classes");
-				String userid = "";
+				String userid = request.getParameter("id");
 				
 				// 카카오, 네이버 간편로그인으로 접근 시 추가 등록
 				int result = 0;
 				if(request.getParameter("naverid")!=null) {
-					userid = request.getParameter("naverid");
-					result = dao.joinWithNaver(name,email,classes,userid);
+					//userid = request.getParameter("naverid");
+					String naverid = request.getParameter("naverid");
+					result = dao.joinWithNaver(name,email,classes,naverid, userid);
 				}else if(request.getParameter("kakaoid")!=null) {
-					userid = request.getParameter("kakaoid");
-					result = dao.joinWithKakao(name,email,classes,userid);
+					//userid = request.getParameter("kakaoid");
+					String kakaoid = request.getParameter("kakaoid");
+					result = dao.joinWithKakao(name,email,classes,kakaoid,userid);
 				}
 				
 				if(result>0) {
