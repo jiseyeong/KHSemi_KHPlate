@@ -1476,16 +1476,6 @@ input[type="range"]::-ms-track {
         location.href = "/page/main.jsp";
     })
 
-   
-
-    // 엔터 입력 시 검색 적용
-    $("#search").on("keyup", function (input) {
-        if (input.keyCode == 13) {
-            $("#searchForm").prop("onsubmit", true);
-            $("#searchForm").submit();
-        }
-    })
-
     // 검색 정렬 확인 버튼
     $("#apply_btn").on("click", function () {
         $("#searchFilterForm").prop("onsubmit", true);
@@ -1710,16 +1700,15 @@ input[type="range"]::-ms-track {
     
     
     //검색 함수
- 
   	function search2(){
-            $("#searchForm").prop("onsubmit", true);
-            $("#searchForm").submit();
- 		 }
+	    $("#searchForm").prop("onsubmit", true);
+	    $("#searchForm").submit();
+ 	}
+    
  	$("#searchBtn").on("click", function () {
     	search2();
-		})   
+	})   
     
-
     $("#search").keydown(function (key) {
         if (key.keyCode == 13) {
         	search2();
