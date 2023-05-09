@@ -1152,11 +1152,7 @@ input[type="range"]::-ms-track {
         location.href = "/page/main.jsp";
     })
 
-    // 검색 버튼
-    $("#searchBtn").on("click", function () {
-        $("#searchForm").prop("onsubmit", true);
-        $("#searchForm").submit();
-    })
+   
 
     // 엔터 입력 시 검색 적용
     $("#search").on("keyup", function (input) {
@@ -1192,7 +1188,7 @@ input[type="range"]::-ms-track {
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2504febed8c67836e8db1a31bda054e9">
     </script>
 
-    <script>
+	<script>
 
     // 학원 지도 설정
     var map_layout = document.getElementById('map');
@@ -1363,7 +1359,28 @@ input[type="range"]::-ms-track {
         // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
         map.panTo(moveLatLon);
     }        
-    </script>
+    
+    
+    //검색 함수
+ 
+  	function search2(){
+    $("#searchBtn").on("click", function () {
+            $("#searchForm").prop("onsubmit", true);
+            $("#searchForm").submit();
+  	})
+ 		 }
+ 	$("#searchBtn").on("click", function () {
+    	search2();
+		})   
+    
+    
+    $("#search").keydown(function (key) {
+        if (key.keyCode == 13) {
+        	search2();
+        }
+    });
+
+ 	</script>
 
 </body>
 
