@@ -63,11 +63,12 @@
             }
 
             #searchBox {
-               width: 80%;
+               width: 100%;
                height: 100%;
                font-size: 15px;
                z-index: 1;
                margin-left: 10px;
+               padding-left: 10px;
                border: 1px solid #ffffff;
             }
 
