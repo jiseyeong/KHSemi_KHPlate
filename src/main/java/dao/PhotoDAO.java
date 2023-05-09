@@ -63,6 +63,17 @@ public class PhotoDAO {
 		}
 	}
 	
+	public int deleteByuserno(int userno) throws Exception{
+		String sql = "delete from PHOTO where userno = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, userno);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
 	public int insertByStoreID(String oriName, String sysName, int storeID) throws Exception{
 		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, STOREID)"
 				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
@@ -91,11 +102,36 @@ public class PhotoDAO {
 		}
 	}
 	
+	public int insertByuserNo(String oriName, String sysName, int userNo) throws Exception{
+		String sql = "insert into PHOTO(IMAGEID, ORINAME, SYSNAME, userno)"
+				+ " values(PHOTO_IMAGEID_SEQ.nextval, ?, ?, ?)";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, oriName);
+			pstat.setString(2, sysName);
+			pstat.setInt(3, userNo);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
 	public PhotoDTO selectByImageID(int photoID) throws Exception{
 		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where IMAGEID = ?";
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, photoID);
+			try(ResultSet rs = pstat.executeQuery();){
+				return this.transAllRsToList(rs).get(0);
+			}
+		}
+	}
+	
+	public PhotoDTO selectByuserNo(int userNo) throws Exception{
+		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where userno = ?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, userNo);
 			try(ResultSet rs = pstat.executeQuery();){
 				return this.transAllRsToList(rs).get(0);
 			}
