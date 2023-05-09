@@ -1224,7 +1224,7 @@ input[type="range"]::-ms-track {
     // 지도에 마커를 표시합니다
     khacademy.setMap(khacademyMap);
 
-    var khacademy_infoWindow = '<body><div class="restaurant_infoWindow"><div class="infoWindow_img_layout"><img class="kh_icon" src="/common/khplate1.jpg"></div><div class="infoWindow_info_layout"><div class="infoWindow_info_top">KH 아카데미</div><div class="infoWindow_info_bottom"></div></div></div></body>'
+    var khacademy_infoWindow = '<body><div class="restaurant_infoWindow" style="width:130px; height:40px; text-align:center; font-size:14px; line-height:40px; font-weight:bold; color:blue; padding:0;">KH 아카데미</div></body>'
 
     //인포윈도우 표시 위치입니다
     khacademy_Position = new kakao.maps.LatLng(37.567917, 126.983043);
