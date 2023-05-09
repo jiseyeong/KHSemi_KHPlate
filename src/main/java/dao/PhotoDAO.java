@@ -108,11 +108,7 @@ public class PhotoDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, storeID);
 			try(ResultSet rs = pstat.executeQuery();){
-				if(rs.next()) {
-					return this.transAllRsToList(rs);
-				}else {
-					return null;
-				}
+				return this.transAllRsToList(rs);
 			}
 		}
 	}

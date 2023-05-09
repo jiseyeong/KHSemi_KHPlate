@@ -172,6 +172,33 @@
             $(".logo").on("click", function () {
                location.href = "/page/main.jsp";
             })
+<<<<<<< HEAD
+=======
+
+            // 실제 검색 함수
+            // 맛집 검색과 블로그 검색 구분
+            function search(){
+            	if ($("#searchCheck option:selected").val() == 1) {
+                    $("#searchForm").prop("action", "/searchStoreBySearchBox.store");
+                 } else if ($("#searchCheck option:selected").val() == 2) {
+                    $("#searchForm").prop("action", "/select.fullreview");
+                 }
+                 $("#searchForm").prop("onsubmit", true);
+                 $("#searchForm").submit();
+            }
+            
+            $("#searchBtn").on("click", function () {
+            	search()
+            })   
+      
+		    $("#searchBox").keydown(function (key) {
+		        if (key.keyCode == 13) {
+		        	search();
+		        }
+		    });
+            
+           
+>>>>>>> 6a293a8fc12d0055ffb98ba45ef72b911602b01f
          </script>
       </body>
       </html>

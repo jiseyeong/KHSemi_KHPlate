@@ -177,12 +177,36 @@ box-shadow: 1px 1px 5px 1px rgb(231, 231, 231);
 							<a href="/view.faq?cpage=${navi.naviList.get(0) - 1}"><</a>
 						</c:if>
 						<c:forEach var="i" items="${navi.naviList}">
-							<a href="/view.faq?cpage=${i.intValue()}">${i.intValue()}</a>
+							<a class="item" href="/view.faq?cpage=${i.intValue()}">${i.intValue()}</a>
 						</c:forEach>
 						<c:if test="${navi.needNext}">
 							<a href="/view.faq?cpage=${navi.naviList.get(navi.naviList.length)+1}">></a>
 						</c:if>
 					</div>
+					
+					<!-- 현제 페이지 네비게이터 링크 미부여 -->
+					<c:choose>
+						<c:when test="${param.cpage>1}">
+							<script>
+								$(".item").each(function(index,item){
+									if($(item).html()==${param.cpage}){
+										$(item).prop("href","#null");
+										$(item).css("color","black");
+									}
+								})
+							</script>
+						</c:when>
+						<c:otherwise>
+							<script>
+								$(".item").each(function(index,item){
+									if($(item).html()==1){
+										$(item).prop("href","#null");
+										$(item).css("color","black");
+									}
+								})
+							</script>
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 				<c:if test="${loginIsAdmin}">
