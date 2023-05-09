@@ -29,6 +29,7 @@ a {
 .mypage {
     margin: auto;
     margin-top: 20px;
+    width: 1200px;
 }
 
 .myPageHeader {
