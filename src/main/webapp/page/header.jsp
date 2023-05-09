@@ -62,50 +62,12 @@
                align-items: center;
             }
 
-            /* ------------------------------------------------------- */
-            /* IE */
-            #searchCheck::-ms-expand {
-               display: none;
-            }
-
-            #searchCheck {
-               -o-appearance: none;
-               -webkit-appearance: none;
-               -moz-appearance: none;
-               appearance: none;
-            }
-
-            #searchCheck {
-               font-family: 'Nanum Gothic', sans-serif;
-               font-weight: bold;
-               font-size: 17px;
-               width: 100%;
-               height: 100%;
-               background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 5px) center no-repeat;
-               background-size: 20px;
-               padding: 5px 10px 5px 10px; 
-               border-radius: 25px;
-               border: 0px solid #ffffff;
-               outline: 0 none;
-               z-index: 3;
-            }
-
-            #searchCheck option {
-               font-family: 'Nanum Gothic', sans-serif;
-               background: #57b846;
-               color: #fff;
-               padding: 3px 0;
-            }
-
-            #searchCheck option:hover {
-               background: #4dae3c;
-            }
-
             #searchBox {
-               width: 100%;
+               width: 80%;
                height: 100%;
                font-size: 15px;
                z-index: 1;
+               margin-left: 10px;
                border: 1px solid #ffffff;
             }
 
@@ -171,16 +133,10 @@
                   onsubmit="return false;">
                   <div class="searchLine">
                      <input type="text" name="searchedBy" value="mainSearch" style="display:none;">
-                     <div class="search_layout1" style="width:15%; height: 100%;">
-                        <select size="1" id="searchCheck" class="nanum-gothic" name="searchSelect">
-                           <option value="1" selected>맛집 🍟</option>
-                           <option value="2">수다 🍊</option>
-                        </select>
-                     </div>
-                     <div class="search_layout2" style="width:75%; height: 100%;">
+                     <div class="search_layout2" style="width:95%; height: 100%;">
                         <input type="search" id="searchBox" name="search">
                      </div>
-                     <div class="search_layout3" style="width:10%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                     <div class="search_layout3" style="width:5%; height: 100%; display: flex; justify-content: center; align-items: center;">
                         <svg xmlns="http://www.w3.org/2000/svg" id="searchBtn"
                            fill="#ED1C16" class="bi bi-search" viewBox="0 0 16 16">
                            <path
@@ -216,30 +172,6 @@
             $(".logo").on("click", function () {
                location.href = "/page/main.jsp";
             })
-
-            // 실제 검색 함수
-            // 맛집 검색과 블로그 검색 구분
-            function search(){
-            	if ($("#searchCheck option:selected").val() == 1) {
-                    $("#searchForm").prop("action", "/searchStoreBySearchBox.store");
-                 } else if ($("#searchCheck option:selected").val() == 2) {
-                    $("#searchForm").prop("action", "/select.fullreview");
-                 }
-                 $("#searchForm").prop("onsubmit", true);
-                 $("#searchForm").submit();
-            }
-            
-            $("#searchBtn").on("click", function () {
-            	search()
-            })   
-      
-		    $("#searchBox").keydown(function (key) {
-		        if (key.keyCode == 13) {
-		        	search();
-		        }
-		    });
-            
-           
          </script>
       </body>
       </html>

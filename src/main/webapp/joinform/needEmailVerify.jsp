@@ -15,18 +15,8 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-
-<!-- Icons font CSS-->
-<link href="vendor/mdi-font/css/material-design-iconic-font.min.css"
-	rel="stylesheet" media="all">
 <link href="vendor/font-awesome-4.7/css/font-awesome.min.css"
 	rel="stylesheet" media="all">
-
-<!-- Vendor CSS-->
-<link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-
-<!-- Main CSS-->
-<link href="css/main.css" rel="stylesheet" media="all">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 </head>
 
@@ -148,8 +138,9 @@ body {
 h1 {
 	font-size: 36px;
 	font-weight: bold;
-	font-weight: 400;
 	font-family: 'Nanum Gothic', sans-serif;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 
@@ -158,6 +149,7 @@ h4 {
 	font-size: 18px;
 	font-weight: 400;
 	font-family: 'Nanum Gothic', sans-serif;
+	margin-top: 35px;
 }
 
 
@@ -199,9 +191,7 @@ h4 {
    #TITLE
    ========================================================================== */
 .title {
-	text-transform: uppercase;
 	font-weight: 700;
-	margin-bottom: 35px;
 }
 
 /* ==========================================================================
@@ -329,27 +319,20 @@ h4 {
 						</div>
 						<div class="col-2">
 							<br>
-							<h1 class="title">${email}</h1>
+							<h4 class="title">아래 이메일로 인증 메일을 전송하였습니다.</h4>
+					<h4 class="title">이메일 인증 후 로그인 가능합니다.</h4> 
 						</div>
 					</div>
 					<br>
 					<br>
-					<h4 class="title">위 이메일로 인증 메일을 전송하였습니다.</h4>
-					<h4 class="title">이메일 인증 후 로그인 가능합니다.</h4>
+					<h1 class="title">${email}</h1>
+						<br>
 					<button class="button" id="toMain"><span>메인 페이지로 이동 </span></button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
-
-	<!-- Jquery JS-->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<!-- Vendor JS-->
-	<script src="vendor/select2/select2.min.js"></script>
-	<!-- Main JS-->
-	<script src="js/global.js"></script>
 
 	<script>
 	$("#toMain").on("click",function () {
