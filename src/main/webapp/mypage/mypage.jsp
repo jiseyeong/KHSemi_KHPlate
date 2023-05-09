@@ -714,7 +714,11 @@ td {
     })
 
     $("#toModiPW").on("click", function () {
-        window.open("/memberSearch/newpassword.jsp", "", "width=480px,height=750px");
+    	if(${naverid == null && kakaoid == null}){
+	        window.open("/memberSearch/newpassword.jsp", "", "width=480px,height=750px");
+    	}else{
+    		alert("간편 로그인 이용자는 사용할 수 없습니다.");
+    	}
     })
     
     $("document").ready(function () {

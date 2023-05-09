@@ -1333,7 +1333,8 @@ input[type="range"]::-ms-track {
         if (${ search_store_list != null || search_store_list.size() > 0 }){
            for (i = 0; i < 5; i++) {
                searchStoreTemp[i] = $(".restaurant_number" + i);
-               valueTemp[i] = searchStoreTemp[i].find(".restaurant_storeID").val();
+               valueTemp[i] = parseInt(searchStoreTemp[i].find(".restaurant_storeID").val());
+               console.log("기존 :"+valueTemp[i]);
            }
            for (i = 0; i < valueTemp.length - 1; i++) {
                for (j = i + 1; j < valueTemp.length; j++) {
@@ -1344,13 +1345,20 @@ input[type="range"]::-ms-track {
                    }
                }
            }
-           for (i = 0; i < searchStoreTemp.length; i++) {
+           for(i = 0 ; i< valueTemp.length ; i++){
+        	   console.log("변경 후 : "+valueTemp[i]);
+           }
+           for (i = 0; i < searchStoreTemp.length-1; i++) {
                console.log(i + "번째 : " + searchStoreTemp[i].find(".restaurant_storeID").val());
-               for (j = 0; j < valueTemp.length; j++) {
-                   if (searchStoreTemp[i].find(".restaurant_storeID").val() == valueTemp[j]) {
+               for (j = i+1; j < searchStoreTemp.length; j++) {
+                   if (parseInt(searchStoreTemp[i].find(".restaurant_storeID").val()) == valueTemp[j]) {
                        searchStoreid[i] = searchStoreTemp[j];
+                       console.log()
                    }
                }
+           }
+           for(i = 0 ; i< searchStoreid.length ; i++){
+        	   console.log(searchStoreid[i].find(".restaurant_storeID").val());
            }
         }
 
