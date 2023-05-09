@@ -80,12 +80,12 @@ li {
 	margin: 0px;
 	padding: 0px;
 	line-height: 50px;
-	cursor: pointer;
 	/*     a태그에 의한 색 변경 추가 */
 	color: black;
 }
 
-li:not(.firstLi):hover {
+.listLi:hover {
+	cursor: pointer;
 	color: #Ed1c16;
 }
 
@@ -130,33 +130,33 @@ a:link {
 			<li class="firstLi">Menu</li>
 
 			<!--   카테고리 접근을 위한 a태그 추가 -->
-			<a href="/searchStoreBySearchBox.store?searchedBy=mainSearch"><li>전체</li></a>
+			<a href="/searchStoreBySearchBox.store?searchedBy=mainSearch"><li class="listLi">전체</li></a>
 			<a
-				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=한식&approachBy=sidebar"><li>한식</li></a>
+				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=한식&approachBy=sidebar"><li class="listLi">한식</li></a>
 			<a
-				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=양식&approachBy=sidebar"><li>양식</li></a>
+				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=양식&approachBy=sidebar"><li class="listLi">양식</li></a>
 			<a
-				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=중식&approachBy=sidebar"><li>중식</li></a>
+				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=중식&approachBy=sidebar"><li class="listLi">중식</li></a>
 			<a
-				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=일식&approachBy=sidebar"><li>일식</li></a>
+				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=일식&approachBy=sidebar"><li class="listLi">일식</li></a>
 			<a
-				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=아시안&approachBy=sidebar"><li>아시안</li></a>
+				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=아시안&approachBy=sidebar"><li class="listLi">아시안</li></a>
 			<a
-				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=패스트푸드&approachBy=sidebar"><li>패스트푸드</li></a>
+				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=패스트푸드&approachBy=sidebar"><li class="listLi">패스트푸드</li></a>
 			<a
-				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=디저트/음료&approachBy=sidebar"><li>디저트/음료</li></a>
+				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=디저트/음료&approachBy=sidebar"><li class="listLi">디저트/음료</li></a>
 			<a
-				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=기타&approachBy=sidebar"><li>기타</li></a>
+				href="/searchStoreBySearchBox.store?searchedBy=mainSearch&food_category=기타&approachBy=sidebar"><li class="listLi">기타</li></a>
 		</ul>
 		<ul class="ulTag">
 			<li class="firstLi">Community</li>
 			<!--<li>잡담 게시판</li>-->
-			<a href="/select.fullreview"><li>리뷰 게시판</li></a>
+			<a href="/select.fullreview"><li class="listLi">리뷰 게시판</li></a>
 		</ul>
 		<ul class="ulTag">
 			<li class="firstLi">Customer Service</li>
-			<a href="/list.consult"><li>1:1 문의</li></a>
-			<a href="/view.faq"><li>FAQ 리스트</li></a>
+			<a href="/list.consult"><li class="listLi">1:1 문의</li></a>
+			<a href="/view.faq"><li class="listLi">FAQ 리스트</li></a>
 		</ul>
 	</div>
 	<script>
