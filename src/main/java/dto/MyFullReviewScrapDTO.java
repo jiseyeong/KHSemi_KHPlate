@@ -48,8 +48,9 @@ public class MyFullReviewScrapDTO {
 		
 	}
 	
-	public MyFullReviewScrapDTO(int scrapID, String title, String userID, String StoreName, Timestamp writedate) {
+	public MyFullReviewScrapDTO(int scrapID, int reviewID, String title, String userID, String StoreName, Timestamp writedate) {
 		this.scrapID = scrapID;
+		this.reviewID = reviewID;
 		this.title = title;
 		this.userID = userID;
 		this.StoreName = StoreName;

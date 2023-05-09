@@ -361,7 +361,7 @@ public class FullReviewDAO {
 		for(FullReviewUserDTO user : fullReviewList) {
 			sb.append("<tr>");
 			sb.append("<td>"+user.getReviewID()+"</td>");
-			sb.append("<td>"+user.getTitle()+"</td>");
+			sb.append("<td><a href='content.fullreview?reviewid="+user.getReviewID()+"'>"+user.getTitle()+"</a></td>");
 			sb.append("<td>"+user.getUserID()+"</td>");
 			sb.append("<td>"+user.getWritedateToString()+"</td>");
 			sb.append("</tr>");
@@ -456,11 +456,12 @@ public class FullReviewDAO {
 				List<MyFullReviewScrapDTO> result = new ArrayList<>();
 				while(rs.next()) {
 					int scrapID = rs.getInt("scrapID");
+					int reviewID = rs.getInt("reviewID");
 					String title = rs.getString("title");
 					String userID = rs.getString("userid");
 					String StoreName = rs.getString(9);
 					Timestamp writedate = rs.getTimestamp("writedate");
-					result.add(new MyFullReviewScrapDTO(scrapID,title,userID,StoreName,writedate));
+					result.add(new MyFullReviewScrapDTO(scrapID,reviewID,title,userID,StoreName,writedate));
 				}
 				return selectMyFullReviewScrapListToJSP(result);
 			}
@@ -473,7 +474,7 @@ public class FullReviewDAO {
 		for(MyFullReviewScrapDTO user : MyFullReviewScrapList) {
 			sb.append("<tr>");
 			sb.append("<td>"+user.getReviewID()+"</td>");
-			sb.append("<td>"+user.getTitle()+"</td>");
+			sb.append("<td><a href='/content.fullreview?reviewid="+user.getReviewID()+"'>"+user.getTitle()+"</a></td>");
 			sb.append("<td>"+user.getUserID()+"</td>");
 			sb.append("<td>"+user.getStoreName()+"</td>");
 			sb.append("<td>"+user.getWritedateToString()+"</td>");

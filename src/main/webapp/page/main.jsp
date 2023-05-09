@@ -52,6 +52,8 @@
     width: 100%;
     height: 100%;
 }
+/* 추가 */
+.sideListUl{padding:0px}
 .sideListUl>li{text-align:left; width:60%; margin:auto; font-weight:600;}
 
 /* 리스트 폰트 추가 */
@@ -114,6 +116,18 @@
 .imageDiv img:hover{
 	opacity:80%;
 }
+
+
+/* 추가 스타일 */
+.contents1{
+	display:flex;
+	justify-content:center;
+}
+#printToStoreList{
+	display:flex;
+	justify-content:center;
+}
+
 </style>
 
 
@@ -168,6 +182,8 @@
       	
             <div class="col-12 themed-grid-col contents">
                <div class="col-12 col-lg-12 themed-grid-col row contents1">
+               
+<!--                캐러셀 크기 조정 / 확인 바람 -->
                   <div class="col-12 col-lg-8 themed-grid-col carousel">
                      <div id="carouselIndicators" class="carousel slide"
                         data-bs-ride="true">
@@ -211,17 +227,17 @@
                   </div>
 
 
-
+<!-- 					리뷰 사이즈 3으로 조정 -> 캐러셀을 중앙쪽으로 붙이기 위함 -->
                   <div class="col-12 col-lg-4 themed-grid-col sideList">
                   	<ul class="nanum-gothic sideListUl" id="mainList">
-                  		<li class="firstLi" id="mainList">최근 작성된 Review<input type="button" value="+" id="reviewBtn"></li>
+                  		<li class="firstLi listLi" id="mainList">최근 작성된 Review<input type="button" value="+" id="reviewBtn"></li>
                   		
                   		
                   		
                   	</ul>
                   </div>
                </div>
-               <div class="col-12 col-lg-12 themed-grid-col row contents2" style="margin-top:100px;">
+               <div class="col-12 col-lg-12 themed-grid-col row contents2" style="margin-top:50px;">
                   <div class="row row-cols-1 row-cols-md-3 g-4" id="printToStoreList">
 <!--                      <div class="col-12 col-lg-3 themed-grid-col"> -->
 <!--                      	<div class="imageDiv"><img src="/page/롤링파스타.png"></div> -->
@@ -254,7 +270,7 @@
 			dataType:"json"
 		}).done(function(resp){
 			for(let i=0; i<resp.length; i++){
-				let li = $("<li>");
+				let li = $("<li class='listLi' style='list-style:none;'>");
 				let aa = $("<a href='/content.fullreview?reviewid="+resp[i].reviewID+"'>");
 				$("#mainList").append(aa)
 				aa.append(li);

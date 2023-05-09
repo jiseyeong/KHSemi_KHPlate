@@ -136,7 +136,7 @@ public class CommentReviewDAO {
 		for(CommentReviewUserDTO user : userList) {
 			sb.append("<tr>");
 			sb.append("<td>"+user.getReviewID()+"</td>");
-			sb.append("<td>"+user.getStoreName()+"</td>");
+			sb.append("<td><a href='/view.store?storeID="+user.getStoreID()+"'>"+user.getStoreName()+"</a></td>");
 			sb.append("<td>"+user.getBody()+"</td>");
 			sb.append("<td>"+user.getScore()+"</td>");
 			sb.append("<td>"+user.getWritedateToString()+"</td>");
@@ -160,11 +160,12 @@ public class CommentReviewDAO {
 				List<CommentReviewUserDTO> result = new ArrayList<>();
 				while (rs.next()) {
 					int reviewID = rs.getInt("reviewid");
+					int storeID = rs.getInt("storeID");
 					String StoreName = rs.getString(23);
 					String body = rs.getString("body");
 					int score = rs.getInt("score");
 					Timestamp writeDate = rs.getTimestamp("writedate");
-					result.add(new CommentReviewUserDTO(reviewID,StoreName,body,score,writeDate));
+					result.add(new CommentReviewUserDTO(reviewID,storeID,StoreName,body,score,writeDate));
 				}
 				return result;
 			}

@@ -53,7 +53,6 @@ public class StoreController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeID);
 				List<FullReviewDTO> fullListAll = FullReviewDAO.getInstance().selectByStoreID(storeID);
-
 				//풀리뷰 추가되면 풀리뷰도 포함해서
 				int sum = 0;
 				int cnt = commentListAll.size() + fullListAll.size();
