@@ -241,9 +241,8 @@ img {
 }
 
 .restaurant_name {
-	font-size: 20px;
-	color: red;
-	font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    color: red;
 }
 
 .restaurant_address {
