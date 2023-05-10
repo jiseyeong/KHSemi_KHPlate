@@ -41,17 +41,6 @@ public class PhotoDAO {
 		}
 	}
 	
-	public int deleteByCReviewID(int cReviewID) throws Exception{
-		String sql = "delete from PHOTO where cReviewID = ?";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setInt(1, cReviewID);
-			int result = pstat.executeUpdate();
-			con.commit();
-			return result;
-		}
-	}
-	
 	public int deleteByStoreID(int storeID) throws Exception{
 		String sql = "delete from PHOTO where STOREID = ?";
 		try(	Connection con = this.getConnection();
@@ -68,6 +57,17 @@ public class PhotoDAO {
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, userno);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int deleteByReviewId(int reviewId) throws Exception{
+		String sql = "delete from PHOTO where reviewId=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, reviewId);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
@@ -186,21 +186,6 @@ public class PhotoDAO {
 		try(	Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, consultID);
-			try(ResultSet rs = pstat.executeQuery();){
-				ArrayList<PhotoDTO> temp = this.transAllRsToList(rs);
-				if(temp.size() > 0) {
-					return temp.get(0);
-				}
-				return null;
-			}
-		}
-	}
-	
-	public PhotoDTO selectByReviewId(int reviewid) throws Exception{
-		String sql = "select IMAGEID, ORINAME, SYSNAME from PHOTO where reviewid = ?";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setInt(1, reviewid);
 			try(ResultSet rs = pstat.executeQuery();){
 				ArrayList<PhotoDTO> temp = this.transAllRsToList(rs);
 				if(temp.size() > 0) {

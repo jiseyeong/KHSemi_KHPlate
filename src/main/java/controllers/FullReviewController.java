@@ -118,6 +118,16 @@ public class FullReviewController extends HttpServlet {
 			}else if (cmd.equals("/delete.fullreview")) {
 				int reviewid = Integer.parseInt(request.getParameter("reviewid"));
 				int storeId = Integer.parseInt(request.getParameter("storeid"));
+				
+				String realPath = request.getServletContext().getRealPath("FullReview");
+				ArrayList<PhotoDTO> pdao = PhotoDAO.getInstance().ListByReviewId(reviewid);
+				if(pdao != null) {
+					for(PhotoDTO i : pdao) {
+						File realPathFile = new File(realPath +"/"+ i.getSysName());
+						realPathFile.delete();
+					}
+				}
+				PhotoDAO.getInstance().deleteByReviewId(reviewid);
 				int del =  frdao.deleteFullReview(reviewid);
 				
 				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeId);
