@@ -175,7 +175,7 @@ p {
                         </div>
                         <c:if test="${sessionScope.loginIsAdmin || dto.userNo == sessionScope.userno}">
                             <div class="col-12 text-center">
-                                <a href="/delete.consult?consultID=${dto.consultID}&userno=${dto.userNo}">
+                                <a href="/delete.consult?consultID=${dto.consultID}&userNo=${dto.userNO}">
                                     <button type="button" id="btn_delete">삭제</button>
                                 </a>
                                 <a href="/list.consult">
@@ -206,7 +206,7 @@ p {
                                 <div class="col-12 text-center">
                                     <a href="/replyForm.consult?consultID=${dto.consultID}">
                                         <button type="button" id="btn_reply">답글달기</button></a>
-                                    <a href="/delete.consult?consultID=${dto.consultID}">
+                                    <a href="/delete.consult?consultID=${dto.consultID}&userNo=${dto.userNO}">
                                         <button type="button" id="btn_delete">삭제</button>
                                     </a>
                                     <a href="/list.consult">
@@ -216,7 +216,7 @@ p {
                             </c:when>
                             <c:otherwise>
                                 <div class="col-12 text-center">
-                                    <a href="/delete.consult?consultID=${dto.consultID}">
+                                    <a href="/delete.consult?consultID=${dto.consultID}&userNo=${dto.userNO}">
                                         <button type="button" id="btn_delete">삭제</button>
                                     </a>
                                     <a href="/list.consult">
