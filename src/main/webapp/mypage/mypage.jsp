@@ -130,7 +130,7 @@ a {
 .inpocontents2>input {
 	padding-left: 10px;
 	margin-bottom: 22px;
-	width: 100%;
+	width: 96%;
 }
 
 #myid {
@@ -328,8 +328,13 @@ a {
 	text-align: center;
 	font-size: 14px;
 	magin: 0 auto;
+	table-layout: fixed;
 }
-
+.body2Contents>table td{
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
 #replyList {
 	display: none;
 }
@@ -440,7 +445,7 @@ td {
 }
 
 #toModiPW {
-	width: 33%;
+	width: 25%;
 }
 
 /* #toModiPW:hover { */
