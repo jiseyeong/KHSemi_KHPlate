@@ -16,7 +16,7 @@
 	const naverLogin = new naver.LoginWithNaverId(
 	        {
 	            clientId: "Mm9YQgxstdSEuf5xt0jg",
-	            callbackUrl: "http://localhost/login/navercallback.jsp",
+	            callbackUrl: "http://khplate.duckdns.org:8090/login/navercallback.jsp",
 	            loginButton: {color: "green", type: 2, height: 40},
 	            isPopup: false,
 	    	    callbackHandle: true
