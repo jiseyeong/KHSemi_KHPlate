@@ -154,9 +154,8 @@ public class StoreController extends HttpServlet {
 
 				String realPath = request.getServletContext().getRealPath("store");
 				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getOriName());
-				if(realPathFile.delete()) {
-					int result = PhotoDAO.getInstance().delete(imageID);
-				}
+				realPathFile.delete();
+				PhotoDAO.getInstance().delete(imageID);
 
 				response.sendRedirect("/view.store?storeID="+storeID);
 			}else if(cmd.equals("/update.store")) {
