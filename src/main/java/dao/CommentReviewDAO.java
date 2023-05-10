@@ -108,6 +108,17 @@ public class CommentReviewDAO {
 			return result;
 		}
 	}
+	
+	public int deleteByStoreID(int storeID) throws Exception{
+		String sql = "delete from COMMENTREVIEW where STOREID=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, storeID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 
 
 	private ArrayList<CommentReviewDTO> transAllRsToList(ResultSet rs) throws Exception{

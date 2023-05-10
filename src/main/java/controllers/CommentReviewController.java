@@ -88,8 +88,23 @@ public class CommentReviewController extends HttpServlet {
 				int reviewID = Integer.parseInt(request.getParameter("reviewID"));
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 				
-				int result1 = PhotoDAO.getInstance().deleteByCReviewID(reviewID);
 				int result2 = CommentReviewDAO.getInstance().delete(reviewID);
+				
+				ArrayList<CommentReviewDTO> commentListAll = CommentReviewDAO.getInstance().selectByStoreID(storeID);
+				List<FullReviewDTO> fullListAll = FullReviewDAO.getInstance().selectByStoreID(storeID);
+				
+				int sum = 0;
+				int cnt = commentListAll.size() + fullListAll.size();
+				if(cnt != 0) {
+					for(CommentReviewDTO i : commentListAll) {
+						sum += i.getScore();
+					}
+					for(FullReviewDTO i : fullListAll) {
+						sum += i.getScore();
+					}
+					StoreDAO.getInstance().updateAvgScore(((double)sum)/cnt , storeID);
+					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
+				}
 				
 				response.sendRedirect("/view.store?storeID="+storeID);
 				

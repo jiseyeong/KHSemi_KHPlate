@@ -436,7 +436,7 @@ textarea {
 		$(".delBtn").on("click",function() {
 			if (confirm("게시글을 정말로 삭제하시겠습니까?")) {
 				location.href = "/delete.fullreview?reviewid="
-						+ $(this).attr("reviewid");
+						+ $(this).attr("reviewid") +"&storeid="+$("#storeId option:selected").val();
 			} else {
 				return false;
 			}

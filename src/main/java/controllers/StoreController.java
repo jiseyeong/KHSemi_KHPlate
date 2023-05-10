@@ -220,6 +220,8 @@ public class StoreController extends HttpServlet {
 						}
 					}
 					PhotoDAO.getInstance().deleteByStoreID(storeID);
+					CommentReviewDAO.getInstance().deleteByStoreID(storeID);
+					FullReviewDAO.getInstance().deleteByStoreID(storeID);
 
 					int result = StoreDAO.getInstance().delete(storeID);
 

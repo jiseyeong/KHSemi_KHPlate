@@ -150,6 +150,17 @@ public class FullReviewDAO {
 			return result;
 		}
 	}
+	
+	public int deleteByStoreID(int storeID) throws Exception{
+		String sql = "delete from FULLREVIEW where STOREID=?";
+		try(	Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, storeID);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 
 	public int update(String title, String reviewbody, int score, int storeid, int reviewId) throws Exception {
 		String sql = "update fullreview set title=?, reviewbody=?, score=? ,storeid=? where reviewid = ?";
