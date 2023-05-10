@@ -298,6 +298,8 @@ textarea {
 		</form>
 
 		<!-- 댓글 작성란 -->
+		
+		<c:if test="${not empty sessionScope.userno}">
 		<form action="write.fullreviewreply" method="post" id="writeReplyForm">
 			<div class="replyguide">
 				<input type="text" id="userid" name="userid"
@@ -320,6 +322,8 @@ textarea {
 </label>
 			</div>
 		</form>
+		</c:if>
+		
 
 		<hr 1px>
 
