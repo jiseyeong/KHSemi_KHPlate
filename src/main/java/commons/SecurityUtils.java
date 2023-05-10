@@ -14,6 +14,8 @@ public class SecurityUtils {
 	}
 	
 	public static String XSSCheck(String text){
-		return text.replaceAll("<script>", "&lt;script>");
+		String result = text.replaceAll("<script>", "&lt;script>");
+		result = result.replaceAll("<script/>", "&lt;script/>");
+		return result;
 	}
 }
