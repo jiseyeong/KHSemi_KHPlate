@@ -658,7 +658,7 @@ public class StoreController extends HttpServlet {
 					StoreDTO dto = StoreDAO.getInstance().selectOne(it.next());
 					List<PhotoDTO> photoTemp = PhotoDAO.getInstance().selectByStoreID(dto.getStoreID());
 					if(photoTemp.size()>0) {
-						sb.append("<div class='col-12 col-lg-3 themed-grid-col'>"
+						sb.append("<div class='col-12 col-md-12 col-lg-6 themed-grid-col cardBox mx-3' style='max-width:300px; height:400px; margin-bottom:20px;'> "
 								+ "<div class='imageDiv'>"
 								+ "<a href='/view.store?storeID="+dto.getStoreID()+"'>"
 								+ "<img src='/store/"+photoTemp.get(0).getSysName()+"' onerror='this.src=/common/khplate2.jpg'>"
@@ -667,7 +667,7 @@ public class StoreController extends HttpServlet {
 								+ "<div class='nanum-gothic textDiv'>"+dto.getName()+"</div>"
 								+ "</div>");
 					}else {
-						sb.append("<div class='col-12 col-lg-3 themed-grid-col'>"
+						sb.append("<div class='col-12 col-md-12 col-lg-6 themed-grid-col cardBox mx-2' style='max-width:300px; margin-bottom:20px;'>"
 								+ "<div class='imageDiv'>"
 								+ "<a href='/view.store?storeID="+dto.getStoreID()+"'>"
 								+ "<img src='/common/khplate2.jpg'>"
