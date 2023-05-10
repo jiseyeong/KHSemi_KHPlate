@@ -224,7 +224,7 @@
 						<!--유저 정보를 같이 받고 index로 값을 전달 -->
 							<div class="col-12 col-lg-6 card">
 								<input type="hidden" value="${reviewList.reviewID}" class="hiddencard" style="display: none;">
-								<div class="reviewId" >${reviewList.reviewID}</div>
+								<div class="reviewId" style="display: none;">${reviewList.reviewID}</div>
 								
 								<div class="imgBox">
 								<img src="/FullReview/${photoList.get(status.index).sysName}" class="card-img-top" alt="...">
