@@ -65,6 +65,12 @@ button:hover {
     border: 1px solid silver;
 }
 
+.img_layout>img {
+	height:100%;
+	object-fit:cover;
+}
+
+
 .search_layout {
     width: 100%;
     height: 10%;
