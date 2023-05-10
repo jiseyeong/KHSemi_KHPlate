@@ -221,7 +221,7 @@
                   	</ul>
                   </div>
                </div>
-               <div class="col-12 col-lg-12 themed-grid-col row contents2" style="margin-top:100px;">
+               <div class="col-12 col-lg-12 themed-grid-col row contents2" style="margin-top:50px;">
                   <div class="row row-cols-1 row-cols-md-3 g-4" id="printToStoreList">
 <!--                      <div class="col-12 col-lg-3 themed-grid-col"> -->
 <!--                      	<div class="imageDiv"><img src="/page/롤링파스타.png"></div> -->
