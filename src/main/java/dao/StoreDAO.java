@@ -69,7 +69,11 @@ public class StoreDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);){
 			pstat.setInt(1, storeID);
 			try(ResultSet rs = pstat.executeQuery();){
-				return this.transAllRsToList(rs).get(0);
+				ArrayList<StoreDTO> temp = this.transAllRsToList(rs);
+				if(temp.size()>0) {
+					return temp.get(0);
+				}
+				return null;
 			}
 		}
 	}
@@ -674,21 +678,6 @@ public class StoreDAO {
 			pstat.setInt(1, storeID);
 			try(ResultSet rs = pstat.executeQuery();){
 				return rs.next();
-			}
-		}
-	}
-
-	public StoreDTO selectValidOne(int storeID) throws Exception {
-		String sql = "select * from STORE where STOREID = ?";
-		try(	Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setInt(1, storeID);
-			try(ResultSet rs = pstat.executeQuery();){
-				if(rs.next()) {
-					return this.transAllRsToList(rs).get(0);
-				}else {
-					return null;
-				}
 			}
 		}
 	}

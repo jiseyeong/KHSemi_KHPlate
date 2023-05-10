@@ -495,7 +495,7 @@ label input[type="checkbox"] {
 		        			if (resp == "1") {
 		        				alert("첫 회원은 회원가입 절차가 필요합니다.");
 		        				let id = responseKakao.id;
-		        				kakaoLogout();
+		        				//kakaoLogout();
 		        				location.href="/joinform/joinformWithLoginAPI.jsp?kakaoid="+id;
 		        			} else if(resp == "2"){
 		        				alert("이메일 인증이 되지 않았습니다.");

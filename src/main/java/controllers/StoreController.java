@@ -152,7 +152,7 @@ public class StoreController extends HttpServlet {
 				int storeID = Integer.parseInt(request.getParameter("storeID"));
 
 				String realPath = request.getServletContext().getRealPath("store");
-				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getOriName());
+				File realPathFile = new File(realPath+"/"+PhotoDAO.getInstance().selectByImageID(imageID).getSysName());
 				realPathFile.delete();
 				PhotoDAO.getInstance().delete(imageID);
 
@@ -214,11 +214,25 @@ public class StoreController extends HttpServlet {
 					ArrayList<PhotoDTO> pdao = PhotoDAO.getInstance().selectByStoreID(storeID);
 					if(pdao != null) {
 						for(PhotoDTO i : pdao) {
-							File realPathFile = new File(realPath +"/"+ i.getOriName());
+							File realPathFile = new File(realPath +"/"+ i.getSysName());
 							realPathFile.delete();
 						}
 					}
+					realPath = request.getServletContext().getRealPath("FullReview");
+					List<FullReviewDTO> reviewList = FullReviewDAO.getInstance().selectByStoreID(storeID);
+					if(reviewList.size() > 0) {
+						for(FullReviewDTO i : reviewList) {
+							pdao = PhotoDAO.getInstance().ListByReviewId(storeID);
+							for(PhotoDTO j : pdao) {
+								File realPathFile = new File(realPath +"/"+ j.getSysName());
+								realPathFile.delete();
+							}
+							PhotoDAO.getInstance().deleteByReviewId(i.getReviewID());
+						}
+					}
 					PhotoDAO.getInstance().deleteByStoreID(storeID);
+					CommentReviewDAO.getInstance().deleteByStoreID(storeID);
+					FullReviewDAO.getInstance().deleteByStoreID(storeID);
 
 					int result = StoreDAO.getInstance().delete(storeID);
 
