@@ -46,10 +46,19 @@
 	align-items: center;
 }
 
+#mapbtn {
+background-color: #ffffff;
+border: none;
+font-family: 'Nanum Gothic', sans-serif;
+font-weight: 600;
+margin-bottom: 10px;
+padding: 5px;
+}
+
 #mapBtn {
 	margin-bottom: 10px;
 	filter: invert(31%) sepia(100%) saturate(6890%) hue-rotate(355deg)
-		brightness(95%) contrast(95%);
+	brightness(95%) contrast(95%);
 	border: none;
 	width: 65%;
 	height: 40px;
@@ -114,17 +123,16 @@ a:link {
 <body>
 	<div
 		class="col-12 col-md-12 col-lg-12 col-xl-2 themed-grid-col sideBar">
-			<span class="d-inline-block" tabindex="0" data-bs-toggle="popover"
-				data-bs-placement="bottom" data-bs-trigger="hover focus"
-				data-bs-content="내 주변 맛집은?"> 
 				<div class="wrap">
+				<button id="mapbtn">
 				<svg
 					xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 					fill="currentColor" id="mapBtn" viewBox="0 0 16 16">
         <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
       </svg>
+     <br> 내 주변 맛집은?</button>
       </div>
-			</span>
+		
 		<ul class="ulTag">
 			<!--<a href="/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar"><li class="firstLi">내 근처 맛집 검색</li></a>-->
 			<li class="firstLi">Menu</li>
@@ -160,7 +168,7 @@ a:link {
 		</ul>
 	</div>
 	<script>
-   $("#mapBtn").on("click",function(){
+   $("#mapbtn").on("click",function(){
 		location.href = "/searchStoreBySearchBox.store?searchedBy=mapSearch&approachBy=sidebar";
 	})
    </script>
