@@ -278,7 +278,7 @@ public class ConsultDAO {
 		for(ConsultDTO user : myConsultList) {
 			sb.append("<tr>");
 			sb.append("<td>"+user.getConsultID()+"</td>");
-			sb.append("<td>"+user.getTitle()+"</td>");
+			sb.append("<td><a href='/view.consult?consultID="+user.getConsultID()+"'>"+user.getTitle()+"</a></td>");
 			sb.append("<td>"+user.getCategory()+"</td>");
 			if(user.getReply().equals("t")) {
 				sb.append("<td>답변 완료</td>");

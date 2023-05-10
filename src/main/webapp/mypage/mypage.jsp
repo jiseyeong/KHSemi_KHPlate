@@ -98,7 +98,7 @@ a {
 }
 
 .inpocontents1 {
-	width: 19%;
+	width: 18%;
 	line-height: 25px;
 	display: flex;
 	justify-content: center;
@@ -485,8 +485,18 @@ td {
 }
 
 #frm {
-	width: 100%;
+	width: 60%;
 	height: 100%;
+}
+.naviItem{
+	width:100%;
+	height:100%;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.body2{
+	width:97%;
 }
 </style>
 </head>
@@ -500,7 +510,7 @@ td {
 	</c:if>
 
 	<div class="mypage">
-		<div class="myPageHeader">${my.userID}님의마이페이지</div>
+		<div class="myPageHeader">${my.userID}님의 마이페이지</div>
 		<div class="row body1" style="margin-bottom: 40px;">
 			<div class="col-12 col-md-12 col-lg-12 col-xl-4 profile">
 				<form action="/profilePicUpdate.members" id="frm"
@@ -715,20 +725,29 @@ td {
 	 <script>
 	 
 	   $("#profileImageChangebtn").on("click", function() {
+		     let imgForms = /(.*?)\.(jpg|jpeg|png|bmp|pdf)$/;
 	         let formData = new FormData();
-	          formData.append("userNo", "<c:out value='${my.userNO}'></c:out>");
-	             let fileInput = document.getElementById("btn_image_add");
-	             let file = fileInput.files[0];
-	             formData.append("images", file);
+	         
+	         formData.append("userNo", "<c:out value='${my.userNO}'></c:out>");
+             let fileInput = document.getElementById("btn_image_add");
+             if (!fileInput.value.match(imgForms)) {
+                 alert("이미지 파일만 업로드 가능합니다.");
+                 return false;
+             }
+             console.log(true);
+             let file = fileInput.files[0];
+             formData.append("images", file);
 	         $.ajax({
 	            url : "/profilePicUpdate.members",
 	            type : "post",
 	            data: formData,
 	            dataType: "json",
 	            processData : false,
-	                contentType : false,
+	            contentType : false,
 	         }).done(function(resp) {
-	            $(".image").attr("src","/mypagepic/"+resp.sysName)
+	        	alert("변경이 완료되었습니다.");
+	            $(".image").attr("src","/mypagepic/"+resp.sysName);
+	            location.reload();
 	         })
 	      })
 	      
@@ -995,12 +1014,16 @@ td {
                 $.ajax({
                     url: "/selectConsultListBymypage.consult",
                     type: "post",
-                    dataType: "json"
+                    data: {
+                        cpage: location
+                    },
+                    dataType: "json",
                 }).done(function (resp) {
                     $("#consultListToPrint").html("");
                     $(".navigator_list").html("");
                     let myConsultList = JSON.parse(resp.myConsultList);
                     let myConsultNavi = JSON.parse(resp.myConsultNavi);
+                	console.log(myConsultNavi);
                     $("#consultListToPrint").append(myConsultList);
                     $(".navigator_list").append(myConsultNavi);
                     $("#consultList").css("display", "table");

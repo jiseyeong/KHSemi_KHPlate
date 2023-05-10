@@ -73,7 +73,7 @@ padding: 5px;
 	to {transform: rotateY(225deg);}
 }
 
-ul {
+.ulTag {
 	list-style: none;
 	margin: 0px;
 	padding: 0px;
@@ -81,7 +81,7 @@ ul {
 	width: 100%;
 }
 
-li {
+.firstLi, .listLi {
 	height: 50px;
 	width: 100%;
 	font-size: 15px;

@@ -109,6 +109,8 @@ textarea {
 }
 
 .stars {
+	padding:0px;
+	margin:0px;
 	float:left;
 	width:140px;
 	height:70%;

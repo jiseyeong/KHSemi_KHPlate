@@ -568,7 +568,7 @@ public class StoreDAO {
 				while(rs.next()) {
 					sb.append("<tr>");
 					sb.append("<td>"+rs.getInt("STOREID")+"</td>");
-					sb.append("<td>"+rs.getString("NAME")+"</td>");
+					sb.append("<td><a href='view.store?storeID="+rs.getInt("STOREID")+"'>"+rs.getString("NAME")+"</a></td>");
 					sb.append("<td>"+rs.getString("ADDRESS")+"</td>");
 					sb.append("<td>"+rs.getString("CATEGORY")+"</td>");
 					sb.append("<td>"+rs.getDouble("AVGSCORE")+"</td>");
@@ -630,7 +630,7 @@ public class StoreDAO {
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			sb.append("<li class='navigator_list_item'>"
 					+ "		<div class='navigator_list_item_btn_layout'>"
-					+ "			<button class='navibtn naviItem' searchto='FavoriteStoreList' location='"+i+"'>"+i+"</button>"
+					+ "			<button class='navibtn item' searchto='FavoriteStoreList' location='"+i+"'>"+i+"</button>"
 					+ "		</div>"
 					+ "</li>");
 		}

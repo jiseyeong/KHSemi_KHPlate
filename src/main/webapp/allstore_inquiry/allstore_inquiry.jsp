@@ -172,6 +172,10 @@ button:hover {
     border-radius: 70px;
 }
 
+.restaurant:hover {
+    cursor:pointer;
+}
+
 .restaurant_none {
     margin: auto;
     width: 100%;
@@ -458,7 +462,6 @@ input[type="range"]::-webkit-slider-thumb {
     width: 20px;
     border-radius: 50%;
     background: #ff4500;
-    cursor: ew-resize;
     box-shadow: 0 0 2px 0 #555;
     transition: background .3s ease-in-out;
 }
@@ -469,7 +472,6 @@ input[type="range"]::-moz-range-thumb {
     width: 20px;
     border-radius: 50%;
     background: #ff4500;
-    cursor: ew-resize;
     box-shadow: 0 0 2px 0 #555;
     transition: background .3s ease-in-out;
 }
@@ -480,7 +482,6 @@ input[type="range"]::-ms-thumb {
     width: 20px;
     border-radius: 50%;
     background: #ff4500;
-    cursor: ew-resize;
     box-shadow: 0 0 2px 0 #555;
     transition: background .3s ease-in-out;
 }
@@ -517,6 +518,10 @@ input[type="range"]::-ms-track {
     box-shadow: none;
     border: none;
     background: transparent;
+}
+
+input[type="range"]:hover{
+	cursor:pointer;
 }
 
 #range_result {

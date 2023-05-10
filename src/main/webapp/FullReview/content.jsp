@@ -299,7 +299,7 @@ textarea {
 		</form>
 
 		<!-- 댓글 작성란 -->
-		<form action="write.fullreviewreply" method="post">
+		<form action="write.fullreviewreply" method="post" id="writeReplyForm">
 			<div class="replyguide">
 				<input type="text" id="userid" name="userid"
 					value="${sessionScope.userId}" readonly
@@ -534,6 +534,14 @@ textarea {
     		    });
     		});
         }
+        
+        // 답글 폼 submit 시
+        $("#writeReplyForm").on("submit",function(){
+        	if($("#body").val()==""){
+        		alert("내용을 입력해주세요.");
+        		return false;
+        	}
+        })
 	</script>
 </body>
 </html>

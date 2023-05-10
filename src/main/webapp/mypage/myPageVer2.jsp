@@ -52,7 +52,7 @@
 			<!-- sideBar부분 건들지 말것 -->
 			<jsp:include page="/page/sideBar.jsp" flush="false"></jsp:include>
 
-			<div class="col-12 col-lg-8 g-0 themed-grid-col bodyContents" style="padding-left:100px; padding-right:100px;">
+			<div class="col-12 col-lg-9 g-0 themed-grid-col bodyContents" style="padding-left:100px; padding-right:100px;">
 				<!-- Main 내용 부분 하단부터 수정 요망 -->		
 			<jsp:include page="/mypage/mypage.jsp" flush="false"></jsp:include>
 				<!-- body main 수정 여기까지, 하단 건들지 말것. -->

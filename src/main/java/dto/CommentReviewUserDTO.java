@@ -43,9 +43,10 @@ public class CommentReviewUserDTO {
 		super();
 	}
 
-	public CommentReviewUserDTO(int reviewID, String StoreName, String body, int score, Timestamp writeDate) {
+	public CommentReviewUserDTO(int reviewID, int storeID, String StoreName, String body, int score, Timestamp writeDate) {
 		super();
 		this.reviewID = reviewID;
+		this.storeID = storeID;
 		this.storeName = StoreName;
 		this.body = body;
 		this.score = score;
