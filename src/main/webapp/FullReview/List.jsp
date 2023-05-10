@@ -69,10 +69,8 @@
 }
 
 .card {
+	max-width:350px;
 	padding:10px;
-	margin-right:20px;
-	margin-left:20px;
-	width: 30%;
 	margin-bottom: 30px;
 /* 	position 추가(즐겨찾기 버튼 고정용) */
 	position : relative;
@@ -217,14 +215,14 @@
   <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
 </svg>
 			</div>
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-0"
-				style="padding-top: 40px;">
-
+			<div class="row g-0"
+				style="padding-top: 40px; display:flex; justify-content:space-evenly">
+				
 				<c:choose>
 					<c:when test="${FullReviewList!=null}">
 						<c:forEach var="reviewList" items="${FullReviewList}" varStatus="status">
 						<!--유저 정보를 같이 받고 index로 값을 전달 -->
-							<div class="card">
+							<div class="col-12 col-lg-6 card">
 								<input type="hidden" value="${reviewList.reviewID}" class="hiddencard" style="display: none;">
 								<div class="reviewId" >${reviewList.reviewID}</div>
 								
@@ -279,6 +277,7 @@
 						<div>표시할 내용 없음</div>
 					</c:otherwise>
 				</c:choose>
+				
 			</div>
 
 			<div class="navigator" style="position: relative; width: 100%; border: 0px;">

@@ -280,7 +280,7 @@ textarea {
 			<br>
 			<div class="contentsBtn text-end">
 				<c:choose>
-					<c:when test="${sessionScope.userno eq contents.userNO}">
+					<c:when test="${sessionScope.userno eq contents.userNO || sessionScope.loginIsAdmin}">
 						<button class="modiBtn" type="button">수정하기</button>
 						<button type="button" id="btn_image_add"
 							class="btn btn-outline-secondary"
@@ -290,7 +290,6 @@ textarea {
 							reviewId="${contents.reviewID}">삭제하기</button>
 						<button class="toListBtn" type="button">목록으로</button>
 					</c:when>
-
 					<c:otherwise>
 						<button class="toListBtn" type="button">목록으로</button>
 					</c:otherwise>
