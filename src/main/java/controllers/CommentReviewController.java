@@ -54,7 +54,7 @@ public class CommentReviewController extends HttpServlet {
 					for(FullReviewDTO i : fullListAll) {
 						sum += i.getScore();
 					}
-					StoreDAO.getInstance().updateAvgScore(( Math.round(((double)sum)/cnt)/10.0) , storeID);
+					StoreDAO.getInstance().updateAvgScore(( Math.round(((double)sum)/cnt*10))/10.0 , storeID);
 					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
 				}
 				
@@ -79,7 +79,7 @@ public class CommentReviewController extends HttpServlet {
 					for(FullReviewDTO i : fullListAll) {
 						sum += i.getScore();
 					}
-					StoreDAO.getInstance().updateAvgScore(( Math.round(((double)sum)/cnt)/10.0) , storeID);
+					StoreDAO.getInstance().updateAvgScore(( Math.round(((double)sum)/cnt*10))/10.0 , storeID);
 					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
 				}
 				
@@ -102,7 +102,7 @@ public class CommentReviewController extends HttpServlet {
 					for(FullReviewDTO i : fullListAll) {
 						sum += i.getScore();
 					}
-					StoreDAO.getInstance().updateAvgScore(( Math.round(((double)sum)/cnt)/10.0) , storeID);
+					StoreDAO.getInstance().updateAvgScore(( Math.round(((double)sum)/cnt*10))/10.0 , storeID);
 					StoreDAO.getInstance().updateReviewCount(cnt, storeID);					
 				}
 				
