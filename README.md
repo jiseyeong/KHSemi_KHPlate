@@ -28,3 +28,17 @@
 ![image](https://github.com/jiseyeong/KH_study/assets/128104813/925cb72c-5241-482e-a5ed-a006f8d87ecf)
 
 <h2>주요 기능</h2>
+<h4>마이페이지</h4>
+ <ul>
+   <li>내 정보 출력, 수정, 내 프로필 등록, 수정</li>
+   <li>회원 탈퇴</li>
+   <li>내가 쓴 글 목록 출력, 내가 쓴 리뷰 목록 출력, 내가 스크랩한 리뷰 목록 출력, 내가 즐겨찾기한 가게 목록 출력, 내가 쓴 1:1문의 글 목록 출력</li>
+ </ul>
+ 
+![image](https://github.com/jiseyeong/KH_study/assets/128104813/542a00ef-b882-4df1-9ae3-7478e151adf5)
+![image](https://github.com/jiseyeong/KH_study/assets/128104813/0e0a2ca4-bcfe-40d9-ad32-06aa2e5b8425)
+
+
+
+![image](https://github.com/jiseyeong/KH_study/assets/128104813/dbf770f3-3a3d-42c1-b056-726cf8c5ce1d)
+![image](https://github.com/jiseyeong/KH_study/assets/128104813/51969db1-6ea9-4b3b-bd00-a2a641bfe5ac)
