@@ -22,3 +22,6 @@
   <li>Server : Apache Tomcat 8.5</li>
   <li>Language : Java, HTML5, CSS, JavaScript, JQuery, Servlet, JSP, Ajax</li>
 
+<h2>ERD</h2>
+
+![image](https://github.com/jiseyeong/KH_Project/assets/128104813/c0f4d9c0-0bfd-4e44-b57e-10b48f846111)
