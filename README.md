@@ -48,3 +48,31 @@
  
 ![image](https://github.com/jiseyeong/KH_study/assets/128104813/dbf770f3-3a3d-42c1-b056-726cf8c5ce1d)
 ![image](https://github.com/jiseyeong/KH_study/assets/128104813/51969db1-6ea9-4b3b-bd00-a2a641bfe5ac)
+
+<h4>﻿메인 페이지</h4>
+ <ul>
+  <li>메인 페이지 내 메인 캐러셀로 대표 맛집 메뉴를 표시</li>
+  <li>카드 형식의 추천 맛집 리스트를 출력</li>
+  <li>JSP:Include로 메인 페이지를 포함한 페이지 전반의 공통 요소들을 묶어 Component로 구현 및 사용(Header, Sidebar, Footer)</li>
+ </ul>
+<h4>회원가입 및 로그인 페이지</h4>
+ <ul>
+   <li>기존 정규식 과정과 ID 중복 여부 체크를 활용한 회원가입 폼</li>
+   <li>SMTP 서버를 활용한 JavaMail API로 회원가입 후 링크를 통한 메일 인증으로 회원가입 절차 완료</li>
+   <li>네이버, 카카오 내 간편 로그인 API를 활용하여 전송된 토큰 값에 따른 간편 로그인 기능을 적용</li>
+ </ul>
+<h4>카테고리별 맛집 리스트 조회</h4>
+ <ul>
+   <li>음식 카테고리와 검색 및 필터를 통한 맛집 리스트 조회</li>
+   <li>리스트 내에서 Ajax를 활용한 좋아요 등록/삭제 기능 구현</li>
+ </ul>
+<h4>지도를 활용한 맛집 탐방 서비스</h4>
+ <ul>
+   <li>카카오 지도 API를 활용한 맛집 리스트들을 표시</li>
+   <li>검색 필터와 연동하여 필터링된 맛집 리스트들을 별도로 표시하는 기능을 구현</li>
+ </ul>
+<h4>진심 리뷰 블로그 페이지</h4>
+  <ul>
+    <li>맛집에 대한 진심 리뷰를 담을 수 있는 게시판</li>
+    <li>WYSIWYG 편집기인 CK Editor를 활용한 게시판 및 댓글 CRUD 구현</li>
+  </ul>
