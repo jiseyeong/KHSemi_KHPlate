@@ -26,3 +26,5 @@
 
 ![image](https://github.com/jiseyeong/KH_Project/assets/128104813/c0f4d9c0-0bfd-4e44-b57e-10b48f846111)
 ![image](https://github.com/jiseyeong/KH_study/assets/128104813/925cb72c-5241-482e-a5ed-a006f8d87ecf)
+
+<h2>주요 기능</h2>
